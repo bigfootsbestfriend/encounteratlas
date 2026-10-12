@@ -297,9 +297,10 @@ p { margin: 0 0 1em; }
 .seen-box a:not(.btn) { color: var(--lantern); }
 .seen-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
 @media (max-width: 600px) { .seen-box { flex-direction: column; } .seen-box > .ico { width: 48px; height: 48px; } }
-.brand, .foot-brand { align-items: baseline; gap: 10px; }
-/* Pines sit on the text baseline; mark is ~1.2x the wordmark's height so the eyes land at cap middle */
-.brand .mark, .foot-brand .mark { height: 1.05em; width: auto; flex: none; align-self: baseline; }
+.brand, .foot-brand { align-items: center; gap: 12px; }
+/* The Dogman poster tile sits square to the left of the name */
+.brand .mark { height: 42px; width: 42px; flex: none; }
+.foot-brand { display: flex; } .foot-brand .mark { height: 36px; width: 36px; flex: none; }
 
 /* Map popups: maplibre-gl.css loads after this file, so beat its white defaults with higher specificity */
 .maplibregl-map .maplibregl-popup-content { background: var(--spruce); color: var(--lichen); border: 1px solid #3A5A4C; border-radius: 12px;

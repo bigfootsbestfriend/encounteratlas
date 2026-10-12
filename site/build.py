@@ -111,7 +111,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <body class="{body_class}">
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
-  <a class="brand" href="{url('/')}"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="35" height="26">Encounter Atlas</a>
+  <a class="brand" href="{url('/')}"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</a>
   <nav class="nav" aria-label="Main">{nav}</nav>
 </header>
 <main id="main">
@@ -119,7 +119,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 </main>
 <footer class="foot">
   <div class="foot-in">
-    <p class="foot-brand"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="35" height="26">Encounter Atlas</p>
+    <p class="foot-brand"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</p>
     <p>Sightings, creatures and official files, mapped. Reports are what witnesses say they saw. We don't claim they're real, and we don't claim they're not.</p>
     <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO files</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/report/')}">Report an encounter</a></p>
     <p class="small">Air Force case files: US National Archives, Record Group 341. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>
