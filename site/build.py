@@ -121,7 +121,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
   <div class="foot-in">
     <p class="foot-brand"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="35" height="26">Encounter Atlas</p>
     <p>Sightings, creatures and official files, mapped. Reports are what witnesses say they saw. We don't claim they're real, and we don't claim they're not.</p>
-    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO files</a><a href="{url('/report/')}">Report an encounter</a></p>
+    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO files</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/report/')}">Report an encounter</a></p>
     <p class="small">Air Force case files: US National Archives, Record Group 341. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>
   </div>
 </footer>
@@ -213,6 +213,7 @@ def build_creatures(creatures, by_slug):
     places = load('places.json')
     guides = load('guides.json')
     fam_geo = Counter(f['creature'] for f in load('famous_geo.json'))
+    close_enc = load('close_encounters.json')
     CAT_GUIDES = {'hominid': ['bigfoot-expedition', 'casting-tracks', 'trail-cameras'], 'canid': ['dogman-and-night-encounters', 'trail-cameras'],
                   'ufo': ['skywatching'], 'winged': ['dogman-and-night-encounters'], 'aquatic': [], 'entity': ['dogman-and-night-encounters'], 'fae': [], 'other': []}
     PLACE_KIND = {'museum': 'Museum', 'festival': 'Festival', 'attraction': 'Roadside stop', 'expedition': 'Tour'}
@@ -224,6 +225,10 @@ def build_creatures(creatures, by_slug):
         out += (f'<a class="next-card next-map cat-{c["cat"]}" href="{url("/map/?creature=" + c["slug"])}">{crit_icon(c)}'
                 f'<span><b>See {esc(c["name"])} on the map</b><small>{n} famous case{"s" if n != 1 else ""} pinned, plus places to visit'
                 f'{" and reader reports" if EA_API else ""}</small></span></a>')
+        ce = [x for x in close_enc if c['slug'] in x.get('creatures', [])][:5]
+        if ce:
+            items = ''.join(f'<li><a href="{url("/encounters/" + x["slug"] + "/")}">{esc(x["name"])}</a><small>{esc(x["place"])}, {x["year"]}</small></li>' for x in ce)
+            out += f'<div class="next-block"><h3>Close encounters</h3><ul class="next-list">{items}</ul></div>'
         pl = [x for x in places if c['slug'] in (x.get('creatures') or [])][:6]
         if pl:
             items = ''.join(f'<li><a href="{url("/places/" + x["slug"] + "/")}">{esc(x["name"])}</a>'
@@ -345,6 +350,7 @@ def build_ufo(bluebook):
       <a class="tile" href="{url('/ufo/files/pursue/')}">{icon('military')}<span>The Pentagon's 2026 files</span></a>
       <a class="tile" href="{url('/ufo/files/faa/')}">{icon('saucer')}<span>FAA pilot reports, 2007 to 2024</span></a>
       <a class="tile" href="{url('/ufo/countries/')}">{icon('ufo-globe') if os.path.exists(os.path.join(STATIC, 'icons', 'ufo-globe.svg')) else icon('saucer')}<span>UFO files by country</span></a>
+      <a class="tile" href="{url('/encounters/')}">{icon('entity')}<span>Close encounters with beings</span></a>
     </nav>
     <p><a class="btn" href="{url('/map/')}">Open the map</a></p>
   </div>
@@ -487,6 +493,10 @@ def build_search_index(creatures, bluebook, military):
             names[k] = b['region']
     items += [{'t': f'UFO files: {names[k]}', 'a': names[k], 'k': f'{n:,} Air Force files', 'u': url('/ufo/blue-book/' + k + '/'), 'i': 'folder', 'c': 'ufo'}
               for k, n in regions.items()]
+    ce_path = os.path.join(ROOT, 'data', 'close_encounters.json')
+    for x in (json.load(open(ce_path)) if os.path.exists(ce_path) else []):
+        items.append({'t': x['name'], 'a': x['place'] + ' ' + ' '.join(x.get('creatures', [])), 'k': f'Close encounter, {x["year"]}',
+                      'u': url('/encounters/' + x['slug'] + '/'), 'i': 'art/' + (x['creatures'] or ['grey-aliens'])[0], 'c': 'entity'})
     items += [{'t': m['name'], 'a': m['place'], 'k': 'Military encounter, ' + m['date'][:4], 'u': url('/military/'), 'i': 'military', 'c': 'ufo'}
               for m in military]
     with open(os.path.join(OUT, 'data', 'search.json'), 'w') as f:
