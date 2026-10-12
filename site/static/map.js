@@ -9,11 +9,14 @@
   const SAUCER = '<svg class="ico" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><ellipse cx="32" cy="31" rx="27" ry="7.5"/><path d="M19 28Q32 7 45 28Z"/></svg>';
   const params = new URLSearchParams(location.search);
 
+  const HOME_VIEW = { center: window.innerWidth < 720 ? [-98, 44] : [-98, 41], zoom: window.innerWidth < 720 ? 2.6 : 3.4 };
+  const fullPage = location.pathname.endsWith('/map/');
   const map = new maplibregl.Map({
     container: el,
     style: 'https://tiles.openfreemap.org/styles/dark',
-    center: window.innerWidth < 720 ? [-98, 44] : [-98, 41],
-    zoom: window.innerWidth < 720 ? 2.6 : 3.4,
+    ...HOME_VIEW,
+    // Embedded maps let the page scroll; zoom with Ctrl/Cmd + wheel or two fingers. The full-screen map zooms freely.
+    cooperativeGestures: !fullPage,
     minZoom: 1.2,
     maxZoom: 15,
     attributionControl: { compact: true },
@@ -238,6 +241,7 @@
       map.setFilter('famous', f.length > 1 ? f : null);
     }
     document.querySelectorAll('.tchip').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.type === type && !narrowed)));
+    reset.hidden = !narrowed && type === 'all';
     document.querySelectorAll('.cchip').forEach((b) => {
       const on = creature ? b.dataset.creature === creature : (cat ? b.dataset.cat === cat : false);
       b.setAttribute('aria-pressed', String(on));
@@ -261,7 +265,14 @@
       if (on) on.scrollIntoView({ inline: 'center', block: 'nearest' });
     }
   }
+  // A clear way back after picking a creature: a button on the map that shows everything at the starting view.
+  const reset = document.createElement('button');
+  reset.type = 'button'; reset.className = 'map-reset'; reset.textContent = 'Show everything'; reset.hidden = true;
+  el.parentElement.append(reset);
+  function showAll() { state.type = 'all'; state.cat = ''; state.creature = ''; apply(false); map.flyTo({ ...HOME_VIEW, duration: 800 }); }
+  reset.addEventListener('click', showAll);
   document.querySelectorAll('.tchip').forEach((b) => b.addEventListener('click', () => {
+    if (b.dataset.type === 'all') return showAll();
     state.type = b.dataset.type; state.cat = ''; state.creature = ''; apply(false);
   }));
   document.querySelectorAll('.cchip').forEach((b) => b.addEventListener('click', () => {
@@ -269,6 +280,29 @@
     state.creature = b.dataset.creature; state.cat = ''; state.type = 'all'; apply(true);
     b.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
   }));
+
+  // Creature chip row: arrow buttons page through it, and a vertical wheel scrolls it sideways until it hits an end.
+  const row = document.querySelector('.cchips');
+  if (row) {
+    const prev = document.querySelector('.cc-arrow.prev'), next = document.querySelector('.cc-arrow.next');
+    const ends = () => {
+      if (prev) prev.hidden = row.scrollLeft < 8;
+      if (next) next.hidden = row.scrollLeft + row.clientWidth > row.scrollWidth - 8;
+    };
+    const page = (d) => row.scrollBy({ left: d * row.clientWidth * 0.8, behavior: 'smooth' });
+    if (prev) prev.addEventListener('click', () => page(-1));
+    if (next) next.addEventListener('click', () => page(1));
+    row.addEventListener('scroll', ends, { passive: true });
+    row.addEventListener('wheel', (ev) => {
+      if (Math.abs(ev.deltaX) > Math.abs(ev.deltaY)) return;
+      const atStart = row.scrollLeft <= 0 && ev.deltaY < 0, atEnd = row.scrollLeft + row.clientWidth >= row.scrollWidth - 1 && ev.deltaY > 0;
+      if (atStart || atEnd) return;
+      ev.preventDefault();
+      row.scrollLeft += ev.deltaY;
+    }, { passive: false });
+    window.addEventListener('resize', ends);
+    ends();
+  }
 
   window.eaMap = map; // handy for debugging and screenshot tests
   map.on('load', async () => {

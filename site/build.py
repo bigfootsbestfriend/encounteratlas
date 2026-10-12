@@ -477,7 +477,9 @@ def filter_bar(creatures, famous_slugs):
     cchips = ''.join(f'<button type="button" class="cchip cat-{c["cat"]}" data-creature="{c["slug"]}" data-cat="{c["cat"]}" aria-pressed="false">'
                      f'{mini(c)}<span>{esc(c["name"])}</span></button>' for c in crit)
     return (f'<div class="filters" aria-label="Filter the map"><div class="tchips" role="group" aria-label="Encounter type">{tchips}</div>'
-            f'<div class="cchips" role="group" aria-label="Creature">{cchips}</div></div>')
+            f'<div class="cchips-wrap"><button type="button" class="cc-arrow prev" aria-label="Scroll creatures left" hidden>&lsaquo;</button>'
+            f'<div class="cchips" role="group" aria-label="Creature">{cchips}</div>'
+            f'<button type="button" class="cc-arrow next" aria-label="Scroll creatures right">&rsaquo;</button></div></div>')
 
 
 def build_search_index(creatures, bluebook, military):
