@@ -1,0 +1,75 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=National+Park:wght@600;800&family=Zilla+Slab:wght@700&family=Public+Sans:wght@600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0B1813;font-family:"Public Sans";color:#F3F1E4}
+h2{font:700 30px "Zilla Slab";margin:24px 22px 0}h2 span{font:600 15px "Public Sans";color:#9FB3A3;margin-left:12px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:16px 22px}
+.grid.two{grid-template-columns:repeat(2,1fr);max-width:1240px}.hero{height:330px}
+.card{background:#13261F;border-radius:18px;overflow:hidden;border:1px solid #2B4A3D}
+.hero{height:250px;display:flex;align-items:center;justify-content:center}
+.sizes{background:#0F1E18;height:84px;display:flex;align-items:center;justify-content:center;gap:18px;font-size:11px;color:#7F978A}
+.sizes div{display:flex;flex-direction:column;align-items:center;gap:4px}
+.light{background:#EFE9DA;height:96px;display:flex;align-items:center;justify-content:center}
+.label{padding:10px 16px 14px}.label b{font:700 22px "Zilla Slab";display:block}.label span{font-size:13.5px;color:#9FB3A3}
+.np{font-family:"National Park",sans-serif}
+</style></head><body>
+<h2>Round 7: the circle, with Dogman<span>Round 6's B and D, Dogman in place of Bigfoot</span></h2><div class="grid two" id="g2"></div>
+<script>
+const ART='../site/static/art/';
+const OR='#E09A4A',RU='#B5532F',NV='#1F2C44',NV2='#141E2E',CR='#F3E3B8',INK='#14211B',GR='#1E3A2F',LAKE='#22324F';
+let n=0;const uid=()=>'u'+(n++);
+const sil=(k,x,y,w,h=w,ar='xMidYMid meet')=>`<image href="${ART}${k}.svg" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="${ar}"/>`;
+const S=(vb,w,inner)=>`<svg viewBox="${vb}" width="${w}" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+const beam=(x1,x2,y1,b1,b2,y2)=>{const g=uid();return `<defs><linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${CR}" stop-opacity=".8"/><stop offset="1" stop-color="${CR}" stop-opacity=".05"/></linearGradient></defs><path d="M${x1} ${y1}L${b1} ${y2}H${b2}L${x2} ${y1}Z" fill="url(#${g})"/>`};
+const pines=(y)=>`<path d="M0 ${y}L16 ${y-38} 30 ${y} 44 ${y-46} 58 ${y} 142 ${y} 158 ${y-50} 172 ${y} 186 ${y-38} 200 ${y}V200H0Z" fill="${GR}"/>`;
+const backRidge=`<path d="M0 150L34 116 60 136 92 100 128 132 156 110 200 140V200H0Z" fill="#6A3D2A" opacity=".55"/>`;
+const lake=(y)=>`<rect y="${y}" width="200" height="${200-y}" fill="${LAKE}"/><g stroke="${CR}" stroke-width="3" opacity=".55" stroke-linecap="round"><path d="M14 ${y+14}h34M120 ${y+12}h52M60 ${y+30}h46"/></g>`;
+const humps=(x,y,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})" fill="${INK}"><path d="M0 0C0-22 26-22 26 0Z"/><path d="M34 0C34-30 66-30 66 0Z"/><path d="M74 0C74-18 94-18 94 0Z"/><path d="M-22 0C-26-26-6-40 4-30L0 0Z"/></g>`;
+// scenes, each drawn in 200x200 tile space (sky already painted)
+const SC={
+ saucer:()=>`<circle cx="152" cy="50" r="22" fill="${CR}"/>${backRidge}${beam(82,118,72,58,142,168)}${sil('ufo-saucer',54,18,92)}${pines(178)}`,
+ nessie:()=>`<circle cx="148" cy="52" r="24" fill="${CR}"/>${backRidge}${lake(136)}${humps(70,138,1.15)}`,
+ mothman:()=>`<circle cx="100" cy="82" r="58" fill="${CR}"/>${backRidge}${sil('mothman',22,22,156)}${pines(184)}`,
+ shadow:()=>{const f=uid();return `<circle cx="150" cy="50" r="22" fill="${CR}"/>${backRidge}<defs><filter id="${f}"><feGaussianBlur stdDeviation="1.6"/></filter></defs><g filter="url(#${f})">${sil('shadow-people',72,40,56,148,'none')}</g><path d="M0 182L18 120 34 182 48 104 64 182H136L152 100 168 182 184 124 200 182V200H0Z" fill="${GR}"/>`},
+ combo:()=>`<circle cx="156" cy="44" r="18" fill="${CR}"/>${beam(64,90,62,46,108,134)}${sil('ufo-saucer',36,16,82)}<path d="M0 132L40 110 70 124 104 102 140 122 170 108 200 128V136H0Z" fill="#6A3D2A" opacity=".7"/>${lake(134)}${humps(116,162,.62)}`
+};
+function tile(sc,r=22,frame=true){const g=uid(),c=uid();return `<defs><linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${OR}"/><stop offset="1" stop-color="${RU}"/></linearGradient><clipPath id="${c}"><rect width="200" height="200" rx="${r}"/></clipPath></defs><g clip-path="url(#${c})"><rect width="200" height="200" fill="url(#${g})"/>${SC[sc]()}</g>${frame?`<rect x="5" y="5" width="190" height="190" rx="${r-3}" fill="none" stroke="${CR}" stroke-width="7"/>`:''}`}
+const stack=(c1,c2,sub)=>`<text x="236" y="98" class="np" font-weight="800" font-size="66" fill="${c1}" letter-spacing="2">ENCOUNTER</text><text x="236" y="162" class="np" font-weight="800" font-size="66" fill="${c2}" letter-spacing="14">ATLAS</text>${sub?`<text x="238" y="198" font-weight="600" font-size="15" letter-spacing="5" fill="#C9D3A4" font-family="Public Sans">CRYPTIDS · UFOS · SIGHTINGS</text>`:''}`;
+const sizes=(...xs)=>xs.map(([lab,svg])=>`<div>${svg}<span>${lab}</span></div>`).join('');
+const card=(t,d,hero,sz,light)=>`<div class="card"><div class="hero">${hero}</div><div class="sizes">${sz}</div><div class="light">${light}</div><div class="label"><b>${t}</b><span>${d}</span></div></div>`;
+const T=[['saucer','1a. Saucer over the ridge','2\'s saucer beaming down into the pines. No creature, pure UFO.'],
+ ['nessie','1b. Lake humps','Three humps and a neck on a dusk lake. Ties to the globe in 3.'],
+ ['mothman','1c. Mothman and the moon','Wings spread across a big full moon. Most dramatic; reads as Mothman, not "cryptids".'],
+ ['shadow','1d. Something in the treeline','A tall, soft-edged shape between the pines. Not any one creature, so it covers them all.'],
+ ['combo','1e. Saucer and hump','Saucer in the sky, a small hump in the lake below. Both halves of the site in one tile.']];
+// ---- A-D: one family. Shared dusk sky: navy top to orange horizon.
+const sky=(id,stop=.72)=>`<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${NV}"/><stop offset="${stop}" stop-color="${OR}"/></linearGradient>`;
+const dome=()=>{const g=uid(),c=uid();return `<defs>${sky(g)}<clipPath id="${c}"><path d="M10 150A90 90 0 0 1 190 150Z"/></clipPath></defs><g clip-path="url(#${c})"><rect width="200" height="160" fill="url(#${g})"/><circle cx="54" cy="96" r="12" fill="${CR}"/>${beam(84,116,66,58,142,150)}${sil('ufo-saucer',66,22,68)}<path d="M0 150L40 122 70 138 100 112 136 136 166 120 200 146V160H0Z" fill="${GR}"/>${sil('bigfoot',112,92,62)}</g><path d="M10 150A90 90 0 0 1 190 150" fill="none" stroke="${CR}" stroke-width="6"/><path d="M4 153H196" stroke="${CR}" stroke-width="6" stroke-linecap="round"/>`};
+const grid=(o=.45)=>`<g fill="none" stroke="${CR}" stroke-width="2" opacity="${o}"><ellipse cx="100" cy="100" rx="88" ry="30"/><ellipse cx="100" cy="100" rx="30" ry="88"/><ellipse cx="100" cy="100" rx="62" ry="88"/><path d="M12 70H188"/></g>`;
+const disc=(inner,ring=8)=>{const c=uid();return `<defs><clipPath id="${c}"><circle cx="100" cy="100" r="88"/></clipPath></defs><g clip-path="url(#${c})">${inner}</g><circle cx="100" cy="100" r="88" fill="none" stroke="${CR}" stroke-width="${ring}"/>`};
+const skyRect=()=>{const g=uid();return `<defs>${sky(g,.66)}</defs><rect width="200" height="200" fill="url(#${g})"/>`};
+// A: globe recoloured into the dome's sky (Nessie kept)
+const globeA=()=>disc(`${skyRect()}<circle cx="140" cy="56" r="16" fill="${CR}"/>${grid()}<rect y="116" width="200" height="90" fill="${LAKE}"/>${sil('loch-ness-monster',22,50,150)}<g stroke="${CR}" stroke-width="3" opacity=".7" stroke-linecap="round"><path d="M28 128h30M120 128h44M70 140h40"/></g>`);
+// B: dome scene inside the globe
+const globeB=()=>disc(`${skyRect()}${grid()}<circle cx="44" cy="92" r="11" fill="${CR}"/>${beam(86,114,62,60,140,150)}${sil('ufo-saucer',64,16,72)}<path d="M0 148L40 120 70 136 100 110 136 134 166 118 200 144V200H0Z" fill="${GR}"/>${sil('dogman',108,58,80)}`);
+const favSaucer=()=>disc(`${skyRect()}${beam(78,122,82,46,154,200)}${sil('ufo-saucer',28,10,144)}<path d="M0 168L50 150 100 162 150 146 200 164V200H0Z" fill="${GR}"/>`,12);
+const favDog=()=>disc(`${skyRect()}<path d="M0 178L60 168 120 176 200 166V200H0Z" fill="${GR}"/>${sil('dogman',20,18,166)}`,12);
+// C: globe with saucer above, Nessie below
+const globeC=()=>disc(`${skyRect()}${grid()}${beam(90,110,58,80,120,116)}${sil('ufo-saucer',70,18,60)}<rect y="116" width="200" height="90" fill="${LAKE}"/>${sil('loch-ness-monster',30,64,140)}<g stroke="${CR}" stroke-width="3" opacity=".7" stroke-linecap="round"><path d="M28 128h30M124 128h40M70 142h40"/></g>`);
+const favC=()=>disc(`${skyRect()}${beam(86,114,70,62,138,128)}${sil('ufo-saucer',44,10,112)}<rect y="124" width="200" height="90" fill="${LAKE}"/>${humps(78,150,.9)}`,12);
+// D: dome as a full disc with a horizon bar
+const discD=()=>{const c=uid();return `<defs><clipPath id="${c}"><circle cx="100" cy="100" r="88"/></clipPath></defs><g clip-path="url(#${c})">${skyRect()}<circle cx="46" cy="70" r="12" fill="${CR}"/>${beam(86,114,52,60,140,124)}${sil('ufo-saucer',64,6,72)}<path d="M0 124L40 98 70 112 100 88 136 110 166 96 200 120V200H0Z" fill="${GR}"/>${sil('dogman',104,30,80)}<rect y="146" width="200" height="60" fill="${NV2}"/></g><path d="M12 146H188" stroke="${CR}" stroke-width="6"/><circle cx="100" cy="100" r="88" fill="none" stroke="${CR}" stroke-width="8"/>`};
+const wm=(x,y,sz,c,a='start',ls=1)=>`<text x="${x}" y="${y}" class="np" font-weight="800" font-size="${sz}" fill="${c}" text-anchor="${a}" letter-spacing="${ls}">ENCOUNTER ATLAS</text>`;
+const lockDome=c=>S('0 0 400 290',260,`<g transform="translate(100 6)">${dome()}</g>${wm(200,214,34,c,"middle",2)}`);
+const lockRound=(m,c)=>S('0 0 400 300',250,`<g transform="translate(110 0) scale(.9)">${m}</g>${wm(200,240,34,c,"middle",2)}`);
+const side=(m)=>S("0 0 760 200",240,`<g transform="scale(.95)">${m}</g>${wm(206,118,48,INK,"start",2)}`);
+const lockBig=(m,c)=>S('0 0 400 300',320,`<g transform="translate(110 0) scale(.9)">${m}</g>${wm(200,240,34,c,"middle",2)}`);
+const B=[
+ ['B. Globe with Dogman','The gridded atlas globe: saucer beaming over the ridge, Dogman on the skyline. Favicon: saucer-only or Dogman-only disc.',
+  lockBig(globeB(),CR),sizes(['64',S('0 0 200 200',64,globeB())],['32',S('0 0 200 200',32,globeB())],['16 saucer',S('0 0 200 200',16,favSaucer())],['16 Dogman',S('0 0 200 200',16,favDog())],['32 Dogman',S('0 0 200 200',32,favDog())]),
+  side(globeB())],
+ ['D. Disc with Dogman','The same scene as a round badge with a horizon bar and no gridlines. Simpler, more like a park patch. Same favicon choices.',
+  lockBig(discD(),CR),sizes(['64',S('0 0 200 200',64,discD())],['32',S('0 0 200 200',32,discD())],['16 saucer',S('0 0 200 200',16,favSaucer())],['16 Dogman',S('0 0 200 200',16,favDog())],['32 Dogman',S('0 0 200 200',32,favDog())]),
+  side(discD())]];
+document.getElementById('g2').innerHTML=B.map(([t,d,h,s,l])=>card(t,d,h,s,l)).join('');
+</script></body></html>
