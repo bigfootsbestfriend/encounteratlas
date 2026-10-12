@@ -327,7 +327,7 @@ p { margin: 0 0 1em; }
 .cchips::-webkit-scrollbar { display: none; }
 
 /* Full-screen map page: header + filter bar + map exactly fill the screen, so nothing scrolls under the sticky header */
-body.mapper { height: 100svh; display: flex; flex-direction: column; overflow: hidden; }
+body.mapper { height: 100vh; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
 body.mapper main { flex: 1; min-height: 0; display: flex; }
 body.mapper .foot { display: none; }
 body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
@@ -343,3 +343,4 @@ body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
   .maplibregl-map .maplibregl-popup { bottom: 34px; }
 }
 @media (prefers-reduced-motion: reduce) { .cchips { scroll-behavior: auto; } }
+.map-frame.full { max-height: none; }

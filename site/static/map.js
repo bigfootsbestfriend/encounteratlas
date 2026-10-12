@@ -12,7 +12,7 @@
   const map = new maplibregl.Map({
     container: el,
     style: 'https://tiles.openfreemap.org/styles/dark',
-    center: [-98, 41],
+    center: window.innerWidth < 720 ? [-98, 44] : [-98, 41],
     zoom: window.innerWidth < 720 ? 2.6 : 3.4,
     minZoom: 1.2,
     maxZoom: 15,
