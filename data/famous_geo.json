@@ -40,6 +40,16 @@
 "lon": -121.9
 },
 {
+"creature": "bigfoot",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Ruby Creek incident",
+"year": 1941,
+"place": "Ruby Creek, British Columbia",
+"lat": 49.35,
+"lon": -121.6
+},
+{
 "creature": "yeti",
 "cat": "hominid",
 "icon": "yeti",
@@ -470,6 +480,36 @@
 "lon": -123.1987
 },
 {
+"creature": "ufo-saucer",
+"cat": "ufo",
+"icon": "saucer",
+"name": "Falcon Lake incident",
+"year": 1967,
+"place": "Falcon Lake, Manitoba",
+"lat": 49.6864,
+"lon": -95.3261
+},
+{
+"creature": "ufo-saucer",
+"cat": "ufo",
+"icon": "saucer",
+"name": "Langenburg saucers",
+"year": 1974,
+"place": "Langenburg, Saskatchewan",
+"lat": 50.8333,
+"lon": -101.7
+},
+{
+"creature": "ufo-saucer",
+"cat": "ufo",
+"icon": "saucer",
+"name": "Clarenville sighting",
+"year": 1978,
+"place": "Clarenville, Newfoundland and Labrador",
+"lat": 48.1566,
+"lon": -53.9651
+},
+{
 "creature": "ufo-triangle",
 "cat": "ufo",
 "icon": "triangle",
@@ -508,6 +548,26 @@
 "place": "Marfa, Texas",
 "lat": 30.3097,
 "lon": -104.0213
+},
+{
+"creature": "ufo-orbs",
+"cat": "ufo",
+"icon": "orbs",
+"name": "Petrozavodsk phenomenon",
+"year": 1977,
+"place": "Petrozavodsk, Karelia",
+"lat": 61.7833,
+"lon": 34.3333
+},
+{
+"creature": "ufo-orbs",
+"cat": "ufo",
+"icon": "orbs",
+"name": "Bonaventure Hotel lights",
+"year": 1990,
+"place": "Montreal, Quebec",
+"lat": 45.5089,
+"lon": -73.5542
 },
 {
 "creature": "ufo-tic-tac",
@@ -3068,5 +3128,35 @@
 "place": "Z\u00fcrich, Switzerland",
 "lat": 47.3667,
 "lon": 8.55
+},
+{
+"creature": "dungarvon-whooper",
+"cat": "entity",
+"icon": "imp",
+"name": "Whelan's ballad published",
+"year": 1912,
+"place": "Renous, New Brunswick",
+"lat": 46.8167,
+"lon": -65.8
+},
+{
+"creature": "alyoshenka",
+"cat": "entity",
+"icon": "entity",
+"name": "Body found near the village cemetery",
+"year": 1996,
+"place": "Kaolinovy, Chelyabinsk Oblast",
+"lat": 55.7,
+"lon": 60.55
+},
+{
+"creature": "alyoshenka",
+"cat": "entity",
+"icon": "entity",
+"name": "DNA test identifies a premature human infant",
+"year": 2004,
+"place": "Kaolinovy, Chelyabinsk Oblast",
+"lat": 55.7,
+"lon": 60.55
 }
 ]

@@ -886,5 +886,96 @@
    }
   ],
   "bluebook": null
+ },
+ {
+  "slug": "falcon-lake-1967",
+  "name": "The Falcon Lake incident",
+  "date": "1967-05-20",
+  "year": 1967,
+  "place": "Falcon Lake, Whiteshell Provincial Park, Manitoba, Canada",
+  "cc": "CA",
+  "lat": 49.68639,
+  "lon": -95.32611,
+  "coord_source": "Wikipedia: Falcon Lake, Manitoba (community coordinates; the claimed landing site was in the bush nearby)",
+  "beings": "No beings were seen. Michalak said he heard voices from inside the landed craft that sounded \"definitely human\", and he believed the craft was man-made.",
+  "witnesses": "One witness: Stefan (Steve) Michalak, a 50-year-old Winnipeg industrial mechanic and amateur prospector.",
+  "summary": "A Winnipeg prospector said a landed craft burned his chest in a grid pattern; CBC has called it Canada's best-documented UFO case.",
+  "status": "disputed",
+  "status_note": "Michalak was really burned, but investigators found no landing site at first, his story changed, and later marks were judged self-inflicted.",
+  "body": [
+   "On Saturday, May 20, 1967, at about 3 p.m., Stefan Michalak flagged down an RCMP highway patrol constable on the Trans-Canada Highway near Falcon Beach. He said he had seen two glowing red, rotating \"spaceships\", that he had touched one, and that it had burned his hat and shirt. He warned the officer not to come close in case he carried radiation. That night he was treated in Winnipeg for first-degree burns.",
+   "Michalak told the Winnipeg Tribune that one of the objects landed. He described it as metallic and about 35 feet long, with a door that opened to show violet light, a hissing sound and human-sounding voices. He said he spoke to it in several languages and got no answer, and that when it lifted off, its exhaust burned him in a checkerboard pattern. He reported headaches, vomiting and weight loss afterwards.",
+   "The RCMP, the RCAF, the Department of National Defence and the Department of Health all looked into it, and the US Condon Committee reviewed it. A first aerial and ground search failed to find the site. In late June, Michalak said he had gone back with a friend and collected his burnt shirt and soil; one soil sample tested highly radioactive, and he then led officials to a spot where moss had been removed in a semicircle. Only trace radiation was found there, and chemists suggested contamination, for example from radium-based paint.",
+   "In January 1968 Michalak showed the press a neat grid of marks on his abdomen and said his burns had come back. A Mayo Clinic psychiatrist judged the new marks to be self-inflicted. Sceptic Aaron Sakulich argued the original burns were most likely an accident, and that the story kept rival prospectors away. Supporters, including Michalak's son, say a blue-collar mechanic could not have invented it. The Royal Canadian Mint put the event on a silver coin in 2018."
+  ],
+  "official": [
+   {
+    "agency": "Royal Canadian Mounted Police",
+    "note": "Took the first report on the highway and interviewed Michalak at home; searched the area by air and on foot with the RCAF."
+   },
+   {
+    "agency": "Royal Canadian Air Force / Department of National Defence",
+    "note": "Investigated the claim; records are held at Library and Archives Canada."
+   },
+   {
+    "agency": "Department of Health",
+    "note": "Tested the soil and items for radiation and found only low, non-dangerous levels at the site."
+   },
+   {
+    "agency": "Condon Committee (US Air Force–funded study)",
+    "note": "Reviewed the case as part of its 1966–1968 UFO study."
+   }
+  ],
+  "creatures": [
+   "ufo-saucer"
+  ],
+  "sources": [
+   {
+    "title": "Falcon Lake Incident (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Falcon_Lake_Incident"
+   },
+   {
+    "title": "UFO sightings in Canada (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/UFO_sightings_in_Canada"
+   }
+  ],
+  "bluebook": null
+ },
+ {
+  "slug": "langenburg-1974",
+  "name": "The Langenburg saucers",
+  "date": "1974-09-01",
+  "year": 1974,
+  "place": "Near Langenburg, Saskatchewan, Canada",
+  "cc": "CA",
+  "lat": 50.83333,
+  "lon": -101.7,
+  "coord_source": "Wikipedia: Langenburg, Saskatchewan (town coordinates; the field was on a farm in the area)",
+  "beings": "No beings were seen. The farmer described five saucer-shaped objects spinning just above the ground.",
+  "witnesses": "One witness: Edwin Fuhr, a farmer swathing his crop.",
+  "summary": "A Saskatchewan farmer said five spinning saucers hovered by a slough; the RCMP found five matching circles in the field.",
+  "status": "unexplained",
+  "status_note": "The RCMP found the circles and no sign of anyone driving in to make them; no explanation was settled on.",
+  "body": [
+   "At about 10:30 a.m. on September 1, 1974, Edwin Fuhr was swathing a field near Langenburg, Saskatchewan, when he saw five saucer-shaped objects hovering about a foot off the ground near a slough. He first thought it was a prank and walked closer, then saw that the objects were spinning fast.",
+   "Fuhr said his swather would not restart, and he sat watching for about 15 minutes, too scared to move. The objects then took off very fast and in silence, leaving only a grey vapour.",
+   "The RCMP investigated and found five circles in the field matching Fuhr's description, with no physical sign that anyone had driven in to make them. The Royal Canadian Mint marked the event with a silver coin in 2024."
+  ],
+  "official": [
+   {
+    "agency": "Royal Canadian Mounted Police",
+    "note": "Investigated and recorded five circles in the field matching the witness's account."
+   }
+  ],
+  "creatures": [
+   "ufo-saucer"
+  ],
+  "sources": [
+   {
+    "title": "UFO sightings in Canada: 1974, Langenburg (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/UFO_sightings_in_Canada#1974,_Langenburg,_Saskatchewan"
+   }
+  ],
+  "bluebook": null
  }
 ]

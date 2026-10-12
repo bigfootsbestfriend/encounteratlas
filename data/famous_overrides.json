@@ -79,6 +79,10 @@
   44.9,
   3.45
  ],
+ "Clarenville, Newfoundland and Labrador": [
+  48.1566,
+  -53.9651
+ ],
  "Cologne, Germany": [
   50.938,
   6.96
@@ -118,6 +122,10 @@
  "Everton, Liverpool": [
   53.42,
   -2.97
+ ],
+ "Falcon Lake, Manitoba": [
+  49.6864,
+  -95.3261
  ],
  "Falmouth, Cornwall": [
   50.153,
@@ -183,6 +191,10 @@
   38.35,
   -81.63
  ],
+ "Kaolinovy, Chelyabinsk Oblast": [
+  55.7,
+  60.55
+ ],
  "Kerinci, Sumatra": [
   -1.7,
   101.27
@@ -226,6 +238,10 @@
  "Lamport, England": [
   52.36,
   -0.886
+ ],
+ "Langenburg, Saskatchewan": [
+  50.8333,
+  -101.7
  ],
  "Latoon, County Clare, Ireland": [
   52.79,
@@ -307,6 +323,10 @@
   19.8667,
   -71.65
  ],
+ "Montreal, Quebec": [
+  45.5089,
+  -73.5542
+ ],
  "Mount Hiba, Hiroshima Prefecture": [
   35.0,
   133.1
@@ -383,13 +403,25 @@
   -5.2,
   39.8
  ],
+ "Petrozavodsk, Karelia": [
+  61.7833,
+  34.3333
+ ],
  "Prague, Czech Republic": [
   50.0875,
   14.4214
  ],
+ "Renous, New Brunswick": [
+  46.8167,
+  -65.8
+ ],
  "Richtersveld, South Africa": [
   -28.2,
   17.0
+ ],
+ "Ruby Creek, British Columbia": [
+  49.35,
+  -121.6
  ],
  "Saijo, Hiroshima Prefecture": [
   34.42,

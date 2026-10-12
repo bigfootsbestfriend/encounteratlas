@@ -173,7 +173,8 @@
     "stronsay-beast": {"dim": "length", "lo": 55.0, "hi": 55.0, "draw": 55.0, "basis": "Witness reports usually say 55 ft long."},
     "gambo": {"dim": "length", "lo": 15.0, "hi": 15.0, "draw": 15.0, "basis": "Witness reports usually say 15 ft long."},
     "blue-men-of-the-minch": {"dim": "height", "lo": 5.5, "hi": 6.5, "draw": 6.0, "basis": "Described as \"Human-sized\". We drew it at 5.5 to 6.5 ft tall, a typical human."},
-    "finfolk": {"dim": "height", "lo": 5.5, "hi": 6.5, "draw": 6.0, "basis": "Described as \"Human-sized\". We drew it at 5.5 to 6.5 ft tall, a typical human."}
+    "finfolk": {"dim": "height", "lo": 5.5, "hi": 6.5, "draw": 6.0, "basis": "Described as \"Human-sized\". We drew it at 5.5 to 6.5 ft tall, a typical human."},
+    "alyoshenka": {"dim": "height", "lo": 0.7, "hi": 0.7, "draw": 0.7, "basis": "The mummified body measured a little over 20 cm (about 8 in)."}
   },
   "left_out": {
     "ufo-saucer": "Reports range from tens of feet to hundreds or more, so there is no single size to draw.",
@@ -231,7 +232,11 @@
     "uss-stein-monster": "No size is given that we could draw with any confidence.",
     "bloop": "No size is given that we could draw with any confidence.",
     "amabie": "No size is given that we could draw with any confidence.",
-    "jenny-haniver": "No size is given that we could draw with any confidence."
+    "jenny-haniver": "No size is given that we could draw with any confidence.",
+    "ponik": "No size is given that we could draw with any confidence.",
+    "brosno-dragon": "No size is given that we could draw with any confidence.",
+    "dungarvon-whooper": "Usually unseen, only heard, so there is no size to draw.",
+    "menk": "A spirit of Khanty and Mansi epic songs, not a sighting report, so we do not draw it."
   },
   "icon_box": {
     "abduction": [9, 7, 46, 55],

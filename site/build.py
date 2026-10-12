@@ -316,7 +316,7 @@ def build_creatures(creatures, by_slug):
     # Folklore hybrid (proposed to Mike, NOT approved yet): stories first, then modern claimed sightings, and both
     # actions in the box. Living traditions get a respect note, and their reports are shown at region precision only.
     FOLK_HYBRID = False
-    LIVING_TRADITIONS = {'skinwalker', 'wendigo', 'kushtaka', 'pukwudgie', 'menehune', 'yunwi-tsunsdi', 'mannegishi',
+    LIVING_TRADITIONS = {'skinwalker', 'menk', 'wendigo', 'kushtaka', 'pukwudgie', 'menehune', 'yunwi-tsunsdi', 'mannegishi',
                          'makiawisug', 'nimerigar', 'tokoloshe', 'mami-wata', 'inkanyamba', 'alux', 'mamlambo'}
 
     def kind(c):

@@ -54,6 +54,11 @@
     "name": "Skookum cast",
     "year": 2000,
     "place": "Gifford Pinchot National Forest, Washington"
+   },
+   {
+    "name": "Ruby Creek incident",
+    "year": 1941,
+    "place": "Ruby Creek, British Columbia"
    }
   ],
   "related": [
@@ -1554,6 +1559,21 @@
     "name": "McMinnville photos",
     "year": 1950,
     "place": "McMinnville, Oregon"
+   },
+   {
+    "name": "Falcon Lake incident",
+    "year": 1967,
+    "place": "Falcon Lake, Manitoba"
+   },
+   {
+    "name": "Langenburg saucers",
+    "year": 1974,
+    "place": "Langenburg, Saskatchewan"
+   },
+   {
+    "name": "Clarenville sighting",
+    "year": 1978,
+    "place": "Clarenville, Newfoundland and Labrador"
    }
   ],
   "related": [
@@ -1649,6 +1669,16 @@
     "name": "Marfa lights",
     "year": 1883,
     "place": "Marfa, Texas"
+   },
+   {
+    "name": "Petrozavodsk phenomenon",
+    "year": 1977,
+    "place": "Petrozavodsk, Karelia"
+   },
+   {
+    "name": "Bonaventure Hotel lights",
+    "year": 1990,
+    "place": "Montreal, Quebec"
    }
   ],
   "related": [
@@ -10519,5 +10549,198 @@
    "ningyo"
   ],
   "wiki": "Jenny Haniver"
+ },
+ {
+  "slug": "ponik",
+  "name": "Ponik",
+  "aliases": [
+   "Pohénégamook monster",
+   "Monstre du lac Pohénégamook"
+  ],
+  "cat": "aquatic",
+  "icon": "lake",
+  "region": "Lake Pohénégamook, Bas-Saint-Laurent, Quebec",
+  "cc": [
+   "CA"
+  ],
+  "first": "Local legend at Lake Pohénégamook, on the Quebec–Maine border",
+  "summary": "Quebec's lake monster, said to look like an upturned canoe covered in scales.",
+  "body": [
+   "Lake Pohénégamook sits in a valley of the Notre Dame Mountains in south-east Quebec, right on the border with Maine. Local legend says a creature called the Ponik lives in its deep water, and people describe it as looking like an upturned canoe covered in scales.",
+   "Suggested explanations include a large sturgeon, floating logs and the influence of older sea-serpent stories. The town has embraced the legend: the Ponik has its own sculpture by the lake and helped make Pohénégamook known across Quebec."
+  ],
+  "signs": [
+   "A long dark back like an overturned canoe",
+   "Scales or a ridged back",
+   "A wake with no boat"
+  ],
+  "size": "About the length of a canoe (reported)",
+  "habitat": "Deep valley lake",
+  "famous": [],
+  "related": [
+   "memphre",
+   "ogopogo",
+   "igopogo",
+   "manipogo",
+   "champ",
+   "old-ned"
+  ],
+  "wiki": "Lake_Pohenegamook"
+ },
+ {
+  "slug": "dungarvon-whooper",
+  "name": "Dungarvon Whooper",
+  "aliases": [
+   "The Whooper",
+   "Ghost of the Dungarvon"
+  ],
+  "cat": "entity",
+  "icon": "imp",
+  "region": "Dungarvon River, central New Brunswick",
+  "cc": [
+   "CA"
+  ],
+  "first": "Lumber-camp tale set around 1850 to 1875; best known from Michael Whelan's 1912 ballad",
+  "summary": "A New Brunswick lumber-camp ghost whose terrible whooping drove woodsmen from their camp.",
+  "body": [
+   "The story is set in a lumber camp on the Dungarvon River. While the crew was away, the camp boss is said to have murdered the young cook, usually named Ryan, for the money in his belt, then claimed the lad had fallen sick and died. The men buried him in the woods, and that night a terrible whooping kept them awake until they fled the camp.",
+   "In many versions a priest, sometimes named as Rev. Edward Murdoch of Renous, later prayed at the grave by Whooper Spring and quieted the spirit. The Whooper is usually invisible, but some tellings give it the shape of a wildcat or panther. Sceptics point to screech owls or a big cat as the source of the cries.",
+   "Michael Whelan's 1912 song made the tale famous, and it was handed down in lumber camps through the 20th century. It is still a well-known piece of New Brunswick folklore."
+  ],
+  "signs": [
+   "A loud, whooping cry in the woods at night",
+   "Unease around an old camp or grave",
+   "Sometimes a cat-like shape"
+  ],
+  "size": "Unseen; sometimes a panther-sized cat",
+  "habitat": "River valleys and old lumber camps",
+  "famous": [
+   {
+    "name": "Whelan's ballad published",
+    "year": 1912,
+    "place": "Renous, New Brunswick"
+   }
+  ],
+  "related": [
+   "wendigo",
+   "old-ned"
+  ],
+  "wiki": "Dungarvon_Whooper"
+ },
+ {
+  "slug": "brosno-dragon",
+  "name": "Brosno dragon",
+  "aliases": [
+   "Brosnya",
+   "Бросня"
+  ],
+  "cat": "aquatic",
+  "icon": "lake",
+  "region": "Lake Brosno, near Andreapol, Tver Oblast",
+  "cc": [
+   "RU"
+  ],
+  "first": "Regional legends said to go back to the 13th century; rumours of sightings in the 18th and 19th centuries",
+  "summary": "Russia's dragon of Lake Brosno, said to surface at dusk and once to have swallowed a warplane.",
+  "body": [
+   "Lake Brosno lies in western Russia near the town of Andreapol. It is about 43 m deep at its deepest point and has a sunken church in its western part. Local legends say a dragon-like creature, Brosnya, lives in it, and some of the stories are said to date back to the 13th century.",
+   "In the 18th and 19th centuries it was rumoured to rise to the surface in the evening and sink again as soon as people came near. One wartime tale says it swallowed a German aeroplane during the Second World War.",
+   "Sceptics suggest a beaver or a very large pike behind the sightings."
+  ],
+  "signs": [
+   "Something large surfacing at dusk",
+   "It dives as people approach",
+   "Dragon-like head or back"
+  ],
+  "size": "Unknown; described as huge",
+  "habitat": "Deep forest lake",
+  "famous": [],
+  "related": [
+   "loch-ness-monster",
+   "labynkyr-devil",
+   "rusalka"
+  ],
+  "wiki": "Brosno_dragon"
+ },
+ {
+  "slug": "menk",
+  "name": "Menk",
+  "aliases": [
+   "Mengk",
+   "Мэнк"
+  ],
+  "cat": "entity",
+  "icon": "imp",
+  "region": "Khanty-Mansi lands, western Siberia",
+  "cc": [
+   "RU"
+  ],
+  "first": "Khanty and Mansi oral tradition and epic songs",
+  "summary": "A formidable forest spirit of Khanty and Mansi tradition in western Siberia.",
+  "body": [
+   "In the oral tradition of the Khanty and Mansi peoples of western Siberia, menk are forest spirits. These beliefs lasted even after the two peoples became, or were made to become, Russian Orthodox Christians in the 17th and 18th centuries.",
+   "In the Khanty epics menk are formidable foes who often come in sevens, such as seven menk born of one mother. Gods protect them from death, so a hero has to defeat one again and again. A menk cannot look down, so heroes attack from below, sometimes from a river. Some Khanty describe menk as being like people, only spirits of a parallel forest world.",
+   "Menk was pulled into the Dyatlov Pass story by a 2014 TV programme. Sceptic Benjamin Radford called that show a textbook example of cable-TV mystery-mongering. This page treats menk as a living tradition, not a cryptid."
+  ],
+  "signs": [
+   "Told in epic songs, not sighting reports",
+   "Often appear in groups of seven",
+   "Their eyes cannot look downward"
+  ],
+  "size": "Human-like or larger (in the epics)",
+  "habitat": "Taiga forest",
+  "famous": [],
+  "related": [
+   "chuchuna",
+   "almas",
+   "domovoi"
+  ],
+  "wiki": "Menk"
+ },
+ {
+  "slug": "alyoshenka",
+  "name": "Alyoshenka, the Kyshtym dwarf",
+  "aliases": [
+   "Kyshtym dwarf",
+   "Алёшенька",
+   "Kyshtym alien"
+  ],
+  "cat": "entity",
+  "icon": "entity",
+  "region": "Kaolinovy, near Kyshtym, Chelyabinsk Oblast",
+  "cc": [
+   "RU"
+  ],
+  "first": "Small mummified body found in 1996",
+  "summary": "A tiny mummified body found in a Ural village in 1996, called an alien until DNA said otherwise.",
+  "body": [
+   "In mid-1996, 74-year-old Tamara Prosvirina found a small mummified body near the cemetery in Kaolinovy, a village near Kyshtym. She believed it was alive, named it Alyoshenka and cared for it at home until neighbours, worried about her health, called doctors and she was taken to hospital. The body went to the local police.",
+   "It was a little over 20 cm long, greyish with large eyes, long arms and an oddly shaped skull. A gynaecologist said it was a premature human baby, possibly deformed by fallout from the 1957 Kyshtym nuclear disaster, but other examiners said they had never seen anything like it, and the story spread as the Kyshtym alien.",
+   "In April 2004 DNA testing found it was a premature human girl with severe deformities. By then the body itself had been lost, so the tests used preserved tissue, which kept a small debate going."
+  ],
+  "signs": [
+   "One exhibit, now lost",
+   "Large eyes and a ridged skull",
+   "No physical remains left to test"
+  ],
+  "size": "About 20 cm (8 in)",
+  "habitat": "Not applicable (a single find)",
+  "famous": [
+   {
+    "name": "Body found near the village cemetery",
+    "year": 1996,
+    "place": "Kaolinovy, Chelyabinsk Oblast"
+   },
+   {
+    "name": "DNA test identifies a premature human infant",
+    "year": 2004,
+    "place": "Kaolinovy, Chelyabinsk Oblast"
+   }
+  ],
+  "related": [
+   "ufo-crash",
+   "alien-abduction"
+  ],
+  "wiki": "Alyoshenka"
  }
 ]
