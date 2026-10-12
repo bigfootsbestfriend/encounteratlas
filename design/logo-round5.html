@@ -1,0 +1,68 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=National+Park:wght@600;800&family=Zilla+Slab:wght@700&family=Public+Sans:wght@600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0B1813;font-family:"Public Sans"}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:22px}
+.card{background:#13261F;border-radius:18px;overflow:hidden;border:1px solid #2B4A3D}
+.hero{height:320px;display:flex;align-items:center;justify-content:center}
+.light{background:#EFE9DA;height:104px;display:flex;align-items:center;justify-content:center;gap:16px}
+.label{padding:10px 18px 14px}.label b{font:700 24px "Zilla Slab";color:#F3F1E4;display:block}.label span{font-size:14px;color:#9FB3A3}
+.np{font-family:"National Park","Big Shoulders Display",sans-serif}
+</style></head><body><div class="grid" id="g"></div>
+<script>
+const ART='../site/static/art/';
+const OR='#E09A4A',RU='#B5532F',NV='#1F2C44',NV2='#141E2E',CR='#F3E3B8',INK='#14211B';
+let n=0;const uid=()=>'u'+(n++);
+const sil=(k,x,y,s)=>`<image href="${ART}${k}.svg" x="${x}" y="${y}" width="${s}" height="${s}"/>`;
+// dusk tile: rounded square scene
+function tile(k='bigfoot',r=22,frame=true){const g=uid(),c=uid();return `<defs><linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${OR}"/><stop offset="1" stop-color="${RU}"/></linearGradient><clipPath id="${c}"><rect width="200" height="200" rx="${r}"/></clipPath></defs>
+<g clip-path="url(#${c})"><rect width="200" height="200" fill="url(#${g})"/><circle cx="148" cy="54" r="26" fill="${CR}"/><path d="M0 150L34 116 60 136 92 100 128 132 156 110 200 140V200H0Z" fill="#6A3D2A" opacity=".55"/><path d="M0 178L16 140 30 178 44 132 58 178 142 178 158 128 172 178 186 140 200 178V200H0Z" fill="#1E3A2F"/>${sil(k,26,30,150)}</g>${frame?`<rect x="5" y="5" width="190" height="190" rx="${r-3}" fill="none" stroke="${CR}" stroke-width="7"/>`:''}`}
+const S=(vb,w,inner)=>`<svg viewBox="${vb}" width="${w}" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+const wm=(x,y,sz,c,a='start',ls=1)=>`<text x="${x}" y="${y}" class="np" font-weight="800" font-size="${sz}" fill="${c}" text-anchor="${a}" letter-spacing="${ls}">ENCOUNTER ATLAS</text>`;
+const O=[];
+// 1 poster badge
+O.push(['1. Poster badge','A small park-poster tile, Bigfoot mid-stride at dusk, beside a national-park-sign wordmark. The art system, shrunk to a mark.',
+ S('0 0 640 220',380,`<g transform="translate(10 10)">${tile()}</g><text x="236" y="98" class="np" font-weight="800" font-size="66" fill="${CR}" letter-spacing="2">ENCOUNTER</text><text x="236" y="162" class="np" font-weight="800" font-size="66" fill="${OR}" letter-spacing="14">ATLAS</text><text x="238" y="198" font-family="Public Sans" font-weight="600" font-size="15" letter-spacing="5" fill="#C9D3A4">CRYPTIDS · UFOS · SIGHTINGS</text>`),
+ S('0 0 200 200',64,tile()), S('0 0 200 200',32,tile('bigfoot',30,false)), S('0 0 200 200',16,tile('bigfoot',34,false)),
+ S('0 0 640 220',230,`<g transform="translate(10 10)">${tile()}</g><text x="236" y="98" class="np" font-weight="800" font-size="66" fill="${INK}" letter-spacing="2">ENCOUNTER</text><text x="236" y="162" class="np" font-weight="800" font-size="66" fill="${RU}" letter-spacing="14">ATLAS</text>`)]);
+// 2 sky and ground
+const dome=()=>{const g=uid(),c=uid(),b=uid();return `<defs><linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${NV}"/><stop offset=".7" stop-color="${OR}"/></linearGradient><linearGradient id="${b}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${CR}" stop-opacity=".75"/><stop offset="1" stop-color="${CR}" stop-opacity=".05"/></linearGradient><clipPath id="${c}"><path d="M10 150A90 90 0 0 1 190 150Z"/></clipPath></defs>
+<g clip-path="url(#${c})"><rect width="200" height="160" fill="url(#${g})"/><path d="M84 66L58 150H142L116 66Z" fill="url(#${b})"/>${sil('ufo-saucer',66,22,68)}<path d="M0 150L40 122 70 138 100 112 136 136 166 120 200 146V160H0Z" fill="#1E3A2F"/>${sil('bigfoot',112,92,62)}</g><path d="M10 150A90 90 0 0 1 190 150" fill="none" stroke="${CR}" stroke-width="6"/><path d="M4 153H196" stroke="${CR}" stroke-width="6" stroke-linecap="round"/>`};
+O.push(['2. Sky and ground','A half-moon dome: a saucer beaming down over the ridge while Bigfoot walks below. Cryptids and UFOs in one mark.',
+ S('0 0 400 300',300,`<g transform="translate(100 10)">${dome()}</g>${wm(200,222,40,CR,'middle',3)}<text x="200" y="256" text-anchor="middle" font-family="Public Sans" font-weight="600" font-size="14" letter-spacing="6" fill="#C9D3A4">WHAT'S OUT THERE, MAPPED</text>`),
+ S('0 0 200 200',64,`<rect width="200" height="200" rx="40" fill="${NV2}"/><g transform="translate(0 24)">${dome()}</g>`),
+ S('0 0 200 200',32,`<rect width="200" height="200" rx="40" fill="${NV2}"/><g transform="translate(-20 4) scale(1.2)">${dome()}</g>`),
+ S('0 0 200 200',16,`<rect width="200" height="200" rx="40" fill="${NV2}"/><g transform="translate(-20 4) scale(1.2)">${dome()}</g>`),
+ S('0 0 600 170',250,`<g transform="scale(.85)">${dome()}</g>${wm(180,100,36,INK,'start',2)}`)]);
+// 3 globe
+const globe=()=>{const c=uid(),g=uid();return `<defs><clipPath id="${c}"><circle cx="100" cy="100" r="88"/></clipPath><linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${OR}"/><stop offset=".55" stop-color="${RU}"/></linearGradient></defs>
+<g clip-path="url(#${c})"><rect width="200" height="200" fill="url(#${g})"/><circle cx="140" cy="58" r="18" fill="${CR}"/><g fill="none" stroke="${CR}" stroke-width="2" opacity=".55"><ellipse cx="100" cy="100" rx="88" ry="30"/><ellipse cx="100" cy="100" rx="30" ry="88"/><ellipse cx="100" cy="100" rx="62" ry="88"/><path d="M12 70H188M12 130H188"/></g><rect y="112" width="200" height="90" fill="${NV}"/><g fill="none" stroke="${CR}" stroke-width="2" opacity=".35"><path d="M12 130H188M30 160H170"/></g>${sil('loch-ness-monster',22,46,150)}<g stroke="${CR}" stroke-width="3" opacity=".8" stroke-linecap="round"><path d="M28 124h30M120 124h44M70 134h40"/></g></g><circle cx="100" cy="100" r="88" fill="none" stroke="${CR}" stroke-width="8"/>`};
+O.push(['3. Atlas globe','A dusk globe with map gridlines, and Nessie breaking the horizon of the sea. Old-atlas charm, serious enough for the UFO files.',
+ S('0 0 400 300',300,`<g transform="translate(110 4) scale(.9)">${globe()}</g>${wm(200,240,40,CR,'middle',3)}`),
+ S('0 0 200 200',64,globe()), S('0 0 200 200',32,globe()), S('0 0 200 200',16,globe()),
+ S('0 0 600 170',250,`<g transform="translate(0 0) scale(.85)">${globe()}</g>${wm(184,100,36,INK,'start',2)}`)]);
+// 4 bold wordmark with poster O
+const oTile=(cx,cy,r)=>{const c=uid();return `<defs><clipPath id="${c}"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath></defs><g clip-path="url(#${c})"><g transform="translate(${cx-r} ${cy-r}) scale(${2*r/200})">${tile('bigfoot',0,false)}</g></g><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${CR}" stroke-width="${r*.16}"/>`};
+O.push(['4. Window wordmark','Heavy park-sign lettering where the O in ENCOUNTER is a porthole into the dusk scene. The name is the logo.',
+ S('0 0 640 200',380,`<text x="20" y="100" class="np" font-weight="800" font-size="92" fill="${CR}" letter-spacing="2">ENC</text>${oTile(228,67,38)}<text x="276" y="100" class="np" font-weight="800" font-size="92" fill="${CR}" letter-spacing="2">UNTER</text><text x="22" y="174" class="np" font-weight="800" font-size="62" fill="${OR}" letter-spacing="30">ATLAS</text>`),
+ S('0 0 200 200',64,`<rect width="200" height="200" rx="40" fill="#13261F"/>${oTile(100,100,80)}`),
+ S('0 0 200 200',32,oTile(100,100,92)), S('0 0 200 200',16,oTile(100,100,92)),
+ S('0 0 640 200',230,`<text x="20" y="100" class="np" font-weight="800" font-size="92" fill="${INK}" letter-spacing="2">ENC</text>${oTile(228,67,38)}<text x="276" y="100" class="np" font-weight="800" font-size="92" fill="${INK}" letter-spacing="2">UNTER</text><text x="22" y="174" class="np" font-weight="800" font-size="62" fill="${RU}" letter-spacing="30">ATLAS</text>`)]);
+// 5 trail sign
+const sign=(w=470,h=96,txt=true)=>`<path d="M${w*.47} ${h} V${h+70}" stroke="#4A3020" stroke-width="18"/><path d="M8 6H${w-40}L${w-6} ${h/2}L${w-40} ${h-6}H8Z" fill="#7A4E2E" stroke="#3E2616" stroke-width="5" stroke-linejoin="round"/><g stroke="#5E3B22" stroke-width="2" opacity=".6"><path d="M20 ${h*.3}H${w-60}M30 ${h*.68}H${w-80}"/></g><circle cx="22" cy="20" r="4" fill="#3E2616"/><circle cx="22" cy="${h-20}" r="4" fill="#3E2616"/>${sil('bigfoot',30,8,h-16)}${txt?`<text x="${30+h-8}" y="${h*.64}" class="np" font-weight="800" font-size="${h*.34}" fill="${CR}" letter-spacing="1">ENCOUNTER ATLAS</text>`:''}`;
+O.push(['5. Trail marker','A routed wooden trail sign pointing into the woods, with Bigfoot burned into the end. The most "out in the field".',
+ S('0 0 500 200',380,`<g transform="translate(10 20)">${sign()}</g>`),
+ S('0 0 200 200',64,`<rect width="200" height="200" rx="40" fill="#13261F"/><g transform="translate(16 46) scale(.62)"><path d="M8 6H190L240 80L190 154H8Z" fill="#7A4E2E" stroke="#3E2616" stroke-width="8" stroke-linejoin="round"/>${sil('bigfoot',30,14,130)}</g>`),
+ S('0 0 200 200',32,`<path d="M10 30H150L194 100L150 170H10Z" fill="#7A4E2E" stroke="#3E2616" stroke-width="10" stroke-linejoin="round"/>${sil('bigfoot',14,30,140)}`),
+ S('0 0 200 200',16,`<path d="M10 30H150L194 100L150 170H10Z" fill="#7A4E2E" stroke="#3E2616" stroke-width="10" stroke-linejoin="round"/>${sil('bigfoot',14,30,140)}`),
+ S('0 0 500 200',230,`<g transform="translate(10 20)">${sign()}</g>`)]);
+// 6 wild card: souvenir pennant
+const pennant=()=>{const g=uid(),c=uid();return `<defs><linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${NV}"/><stop offset="1" stop-color="${OR}"/></linearGradient><clipPath id="${c}"><path d="M20 10L390 100L20 190Z"/></clipPath></defs><g clip-path="url(#${c})"><rect width="400" height="200" fill="url(#${g})"/><circle cx="120" cy="58" r="20" fill="${CR}"/><path d="M0 170L40 140 80 158 120 128 170 152 220 134 400 160V200H0Z" fill="#1E3A2F"/>${sil('bigfoot',40,70,110)}${sil('ufo-saucer',190,52,56)}</g><path d="M20 10L390 100L20 190Z" fill="none" stroke="${CR}" stroke-width="6" stroke-linejoin="round"/><rect x="2" y="4" width="20" height="192" rx="4" fill="${CR}"/>`};
+O.push(['6. Souvenir pennant (wild card)','A felt park-souvenir pennant: dusk sky, Bigfoot and a saucer, the name stitched alongside. Fun and collectible, and made for merch.',
+ S('0 0 420 300',320,`<g transform="translate(0 0) scale(.95)">${pennant()}</g><text x="14" y="262" class="np" font-weight="800" font-size="38" fill="${CR}" letter-spacing="2">ENCOUNTER ATLAS</text>`),
+ S('0 0 200 200',64,`<rect width="200" height="200" rx="40" fill="#13261F"/><g transform="translate(6 40) scale(.47)">${pennant()}</g>`),
+ S('0 0 200 200',32,`<rect width="200" height="200" rx="40" fill="#13261F"/><g transform="translate(-2 30) scale(.5)">${pennant()}</g>`),
+ S('0 0 200 200',16,`<rect width="200" height="200" rx="40" fill="#13261F"/><g transform="translate(-2 30) scale(.5)">${pennant()}</g>`),
+ S('0 0 600 170',250,`<g transform="scale(.42) translate(0 100)">${pennant()}</g>${wm(180,100,36,INK,'start',2)}`)]);
+document.getElementById('g').innerHTML=O.map(([t,d,h,a,f,f16,l])=>`<div class="card"><div class="hero">${h}</div><div class="light">${a}${f}${f16}${l}</div><div class="label"><b>${t}</b><span>${d}</span></div></div>`).join('');
+</script></body></html>
