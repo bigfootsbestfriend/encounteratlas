@@ -20,7 +20,7 @@ DNS and domain changes trigger a permission prompt in Claude's session, so Mike 
 - **Claude:** `npx wrangler@4 d1 create encounters`, paste the `database_id` into `wrangler.toml`
 
 ## 3. Turnstile spam check (Mike 2 min)
-- **Mike:** dash → Turnstile → Add widget. Name: Encounter Atlas. Hostnames: `encounteratlas.com` and `bigfootsbestfriend.github.io`. Mode: Managed.
+- **Mike:** dash → Turnstile → Add widget. Name: Encounter Atlas. Hostname: `encounteratlas.com` (the github.io preview now redirects there). Mode: Managed.
 - **Mike:** paste the **site key** into chat (it's public). Paste the **secret key** only at the terminal prompt in the next step, never in chat.
 - **Claude:** put the site key in `wrangler.toml` and in the deploy workflow env (`TURNSTILE_SITEKEY`).
   Then Claude runs `npx wrangler@4 secret put TURNSTILE_SECRET` and Mike pastes the secret into the prompt.

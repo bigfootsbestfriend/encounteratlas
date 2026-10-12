@@ -37,7 +37,7 @@ Everything was built and tested locally (`wrangler dev --local`).
 7. **Deploy:** run `./deploy.sh`. It refuses to run while the placeholder database id is still in place. It regenerates `src/creatures.js` from
    `data/creatures.json`, applies `schema.sql` (safe to re-run) and deploys.
 8. **CORS:** `SITE` and `EXTRA_ORIGINS` in wrangler.toml must list every origin that serves the pages. The GitHub Pages preview origin is a guess
-   (`https://bigfootsbestfriend.github.io`), so check it.
+   (now `https://www.encounteratlas.com`; the github.io preview redirects to the apex), so check it.
 9. **Site build:** set `EA_API` and `TURNSTILE_SITEKEY` in the build workflow's environment (both default to production values except the test site key).
 10. **Before taking real reports:** register a DMCA agent ($6, copyright.gov) and add a takedown/contact page, as the plan says.
     Also write a short privacy note: what is stored (email, exact location, hashed IP) and who sees it.
