@@ -272,9 +272,13 @@ def build_creatures(creatures, by_slug):
         """Map, places, guides and the contribution panel: the 'what next' part of each creature page."""
         out = ''
         n = fam_geo.get(c['slug'], 0)
-        out += (f'<a class="next-card next-map cat-{c["cat"]}" href="{url("/map/?creature=" + c["slug"])}">{crit_icon(c)}'
-                f'<span><b>See {esc(c["name"])} on the map</b><small>{n} famous case{"s" if n != 1 else ""} pinned, plus places to visit'
-                f'{" and reader reports" if EA_API else ""}</small></span></a>')
+        np = sum(c['slug'] in (x.get('creatures') or []) for x in places)
+        if n or np:  # no card when there is nothing of this creature's own to pin
+            what = [f'{n} famous case{"s" if n != 1 else ""}'] if n else []
+            what += [f'{np} place{"s" if np != 1 else ""} to visit'] if np else []
+            out += (f'<a class="next-card next-map cat-{c["cat"]}" href="{url("/map/?creature=" + c["slug"])}">{crit_icon(c)}'
+                    f'<span><b>See {esc(c["name"])} on the map</b><small>{" and ".join(what)} pinned'
+                    f'{", plus reader reports" if EA_API else ""}</small></span></a>')
         ce = [x for x in close_enc if c['slug'] in x.get('creatures', [])][:5]
         if ce:
             items = ''.join(f'<li><a href="{url("/encounters/" + x["slug"] + "/")}">{esc(x["name"])}</a><small>{esc(x["place"])}, {x["year"]}</small></li>' for x in ce)

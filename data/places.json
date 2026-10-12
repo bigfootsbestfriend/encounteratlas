@@ -1921,7 +1921,9 @@
   "slug": "ponik-sculpture",
   "name": "Ponik Sculpture",
   "type": "attraction",
-  "creatures": [],
+  "creatures": [
+   "ponik"
+  ],
   "city": "Pohénégamook",
   "region": "Quebec",
   "country": "CA",
