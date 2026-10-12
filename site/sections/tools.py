@@ -325,11 +325,15 @@ class Tools:
 
     # ------------------------------------------------------------ identifier
     def size_art(self, scale):
-        hp = re.search(r'<svg[^>]*>(.*)</svg>', open(os.path.join(self.c.STATIC, 'icons', 'human.svg')).read(), re.S).group(1)
+        src = os.path.join(self.c.STATIC, 'icons', 'human.svg')
+        hp = re.search(r'<svg[^>]*>(.*)</svg>', open(src).read(), re.S).group(1)
+        bx, by, bw, bh = art_box(src)
+        k = 33.5 / bh  # person stands 33.5 units tall, feet on the ground line, centred at x 14.5
+        tf = f'translate({14.5 - (bx + bw / 2) * k:.2f} {60 - (by + bh) * k:.2f}) scale({k:.4f})'
         h = min(56, 33 * scale)
         w = min(32, 10 + 14 * scale)
         return (f'<svg class="ico" viewBox="0 0 64 64" aria-hidden="true" focusable="false">'
-                f'<g fill="currentColor" opacity=".6" transform="translate(-3 25.4) scale(.55)">{hp}</g>'
+                f'<g fill="currentColor" opacity=".6" transform="{tf}">{hp}</g>'
                 f'<rect x="{28 + (34 - w) / 2:.1f}" y="{60 - h:.1f}" width="{w:.1f}" height="{h:.1f}" rx="{min(w, h) / 2.4:.1f}" '
                 f'style="fill:var(--eye,#F2B33D)"/><path d="M2 61H62" stroke="currentColor" stroke-width="2.5"/></svg>')
 
@@ -440,9 +444,11 @@ class Tools:
                         'lo': e['lo'], 'hi': e['hi'], 't': size_text(e), 'dim': e['dim']}
             icon_src[ic] = None
         human = data.get('human', {'ft': 6})
-        items['human'] = {'n': 'Person', 'cat': 'human', 'i': 'human', 'b': boxes.get('human', [21, 2, 22, 61]), 'f': 'h',
+        hp = os.path.join(c.STATIC, 'art', 'pic-human.svg')
+        hi, hb = ('art/pic-human', art_box(hp)) if os.path.exists(hp) else ('human', boxes.get('human', [21, 2, 22, 61]))
+        items['human'] = {'n': 'Person', 'cat': 'human', 'i': hi, 'b': hb, 'f': 'h',
                           'd': human['ft'], 'lo': human['ft'], 'hi': human['ft'], 't': f'{human["ft"]:g} ft tall', 'dim': 'height'}
-        icon_src['human'] = None
+        icon_src[hi] = None
         for ic in icon_src:
             svg = open(os.path.join(c.STATIC, ic + '.svg' if ic.startswith('art/') else os.path.join('icons', ic + '.svg')), encoding='utf-8').read()
             icon_src[ic] = re.sub(r'fill="#[0-9A-Fa-f]{3,6}"', 'fill="currentColor"', re.sub(r'^\s*<svg[^>]*>|</svg>\s*$', '', svg))
