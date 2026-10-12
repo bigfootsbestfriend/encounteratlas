@@ -257,3 +257,6 @@ time,slug,model,est_usd
 2026-10-12T21:07:32.160Z,redcap,gemini-3.1-flash-image,0.04
 2026-10-12T21:07:40.355Z,hinzelmann,gemini-3.1-flash-image,0.04
 2026-10-12T21:07:51.228Z,hobgoblin,gemini-3.1-flash-image,0.04
+2026-10-12T21:44:21.009Z,pic-mil-radar,gemini-3.1-flash-image,0.04
+2026-10-12T21:44:21.293Z,pic-mil-jet,gemini-3.1-flash-image,0.04
+2026-10-12T21:44:28.412Z,pic-mil-chase,gemini-3.1-flash-image,0.04
