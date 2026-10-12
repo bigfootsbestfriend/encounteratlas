@@ -1,0 +1,74 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Roboto+Slab:wght@800&family=Outfit:wght@700;800&family=Public+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E9E9E4;font-family:"Public Sans";color:#1A1A1A}
+h1{font:800 34px "Outfit";margin:22px 26px 2px}p.sub{margin:0 26px 8px;color:#555;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;padding:12px 26px 26px}
+.card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #D5D5CF}
+.ttl{padding:12px 16px 4px}.ttl b{font:800 22px "Outfit";display:block}.ttl span{font-size:13.5px;color:#555}
+.row{display:flex;align-items:center;gap:14px;padding:10px 16px;border-top:1px solid #EEE}
+.sz{display:flex;align-items:flex-end;gap:12px}.sz div{display:flex;flex-direction:column;align-items:center;font-size:10px;color:#888;gap:3px}
+.lk{flex:1;display:flex;flex-direction:column;gap:6px}.lk>div{border-radius:10px;padding:10px 14px;display:flex;align-items:center}
+.pal{font-size:11px;color:#777;writing-mode:vertical-rl;transform:rotate(180deg)}
+.ctx{display:flex;gap:14px;padding:10px 16px 14px;border-top:1px solid #EEE;align-items:center}
+.tab{background:#DEE1E6;border-radius:10px 10px 0 0;padding:8px 12px 6px;display:flex;gap:8px;align-items:center;font:500 13px system-ui;width:190px;position:relative}
+.tab:after{content:"×";position:absolute;right:10px;color:#666}
+.phone{background:linear-gradient(160deg,#3A4A6B,#1E2433);border-radius:16px;padding:12px 14px;display:flex;gap:14px}
+.app{display:flex;flex-direction:column;align-items:center;gap:4px;font:500 10px system-ui;color:#fff;width:52px}
+.app .ph{width:48px;height:48px;border-radius:12px}
+</style></head><body>
+<h1>Round 9: square-first marks</h1><p class="sub">Flat, bold marks built as squares. Wordmark always to the right. Each concept in two palettes, at 160 (512 master) / 64 / 32 / 16, on dark and light, plus a browser tab and a phone home screen.</p>
+<div class="grid" id="g"></div>
+<script>
+const P={
+ nv:{n:'Night vision',bg:'#07110A',fg:'#8CFF6A',ac:'#8CFF6A',dim:'#2C5E26',ink:'#0B1A0E',ink2:'#2E8A1F'},
+ bone:{n:'Bone, forest, signal red',bg:'#1F3B2D',fg:'#EDE4CF',ac:'#D7372A',dim:'#3D5E4C',ink:'#1F3B2D',ink2:'#C0301F'},
+ bw:{n:'Black, white, safety orange',bg:'#111111',fg:'#FFFFFF',ac:'#FF6A13',dim:'#3A3A3A',ink:'#111111',ink2:'#E85A08'},
+ indigo:{n:'Indigo and electric teal',bg:'#1C1A4A',fg:'#ECEAFF',ac:'#2EE6D0',dim:'#36337A',ink:'#1C1A4A',ink2:'#14A898'}};
+let n=0;const uid=()=>'k'+(n++);
+const sq=(p,inner,r=20)=>`<rect width="100" height="100" rx="${r}" fill="${p.bg}"/>${inner}`;
+const grid=(p,o=.9,step=20)=>{let s='';for(let i=step;i<100;i+=step)s+=`<path d="M${i} 6V94M6 ${i}H94"/>`;return `<g stroke="${p.dim}" stroke-width="1.6" opacity="${o}">${s}</g>`};
+const M={
+ // 1 viewfinder
+ view:(p)=>{const f=uid();return sq(p,`<defs><filter id="${f}" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.4"/></filter></defs>
+ <g fill="none" stroke="${p.fg}" stroke-width="7" stroke-linecap="square"><path d="M16 32V16H32M68 16H84V32M84 68V84H68M32 84H16V68"/></g>
+ <g filter="url(#${f})" fill="${p.fg}" opacity=".95"><circle cx="54" cy="35" r="7"/><path d="M45 44Q54 40 63 44L66 66 61 66 60 82H55L54 68 52 82H47L46 66 41 66Z"/></g>
+ <g stroke="${p.ac}" stroke-width="3"><path d="M28 50H36M64 50H72"/></g><circle cx="24" cy="24" r="0" fill="${p.ac}"/>`)},
+ // 2 claw marks over a map grid
+ claw:(p)=>sq(p,`${grid(p)}<g fill="${p.ac}">${[0,1,2].map(i=>`<path d="M${22+i*17} ${86-i*2}C${30+i*17} ${60-i*2} ${52+i*17} ${30-i*2} ${70+i*15} ${12+i*3}C${62+i*17} ${38-i*2} ${40+i*17} ${66-i*2} ${22+i*17} ${86-i*2}Z"/>`).join('')}</g>`),
+ // 3 X marks the spot
+ xspot:(p)=>{const g=uid();return sq(p,`<defs><radialGradient id="${g}"><stop offset="0" stop-color="${p.ac}" stop-opacity=".55"/><stop offset="1" stop-color="${p.ac}" stop-opacity="0"/></radialGradient></defs>${grid(p,1,25)}
+ <path d="M14 82Q30 70 34 58T52 46" fill="none" stroke="${p.fg}" stroke-width="4.5" stroke-dasharray="1 8" stroke-linecap="round"/>
+ <circle cx="65" cy="37" r="26" fill="url(#${g})"/><g stroke="${p.ac}" stroke-width="10" stroke-linecap="round"><path d="M54 26L76 48M76 26L54 48"/></g>`)},
+ // 4 contour footprint
+ contour:(p)=>{const sole='M0 -30C14 -30 18 -14 16 0C14 16 12 26 0 30C-12 26 -14 14 -15 0C-16 -16 -14 -30 0 -30Z';
+ const rings=[1,.72,.44].map((s,i)=>`<path d="${sole}" transform="translate(50 60) scale(${s})" fill="${i==2?p.ac:'none'}" stroke="${i==2?'none':p.fg}" stroke-width="${4/s}"/>`).join('');
+ const toes=[[-14,-42,6.5],[-3,-46,6],[8,-44,5.5],[17,-38,5],[24,-30,4.5]].map(([x,y,r])=>`<circle cx="${50+x}" cy="${60+y}" r="${r}" fill="none" stroke="${p.fg}" stroke-width="3.6"/><circle cx="${50+x}" cy="${60+y}" r="${r*.38}" fill="${p.ac}"/>`).join('');
+ return sq(p,rings+toes)},
+ // 5 case-file stamp monogram
+ stamp:(p)=>sq(p,`<g transform="rotate(-7 50 50)"><rect x="15" y="20" width="70" height="60" rx="5" fill="none" stroke="${p.ac}" stroke-width="5"/><rect x="21" y="26" width="58" height="48" rx="2" fill="none" stroke="${p.ac}" stroke-width="2"/>
+ <text x="50" y="65" text-anchor="middle" font-family="Roboto Slab" font-weight="800" font-size="36" fill="${p.fg}" letter-spacing="-1">EA</text></g>`),
+ // 6 wild card: unknown pin
+ qpin:(p)=>sq(p,`${grid(p,.7,25)}<path d="M50 90C34 68 24 56 24 40A26 26 0 0 1 76 40C76 56 66 68 50 90Z" fill="${p.ac}"/>
+ <text x="50" y="53" text-anchor="middle" font-family="Outfit" font-weight="800" font-size="34" fill="${p.bg}">?</text>`),
+};
+const svg=(w,inner)=>`<svg viewBox="0 0 100 100" width="${w}" height="${w}" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+const FONT={cond:['Barlow Condensed',800,1.5,'ENCOUNTER','ATLAS',1],slab:['Roboto Slab',800,0,'Encounter','Atlas',1],geo:['Outfit',800,0,'encounter','atlas',1],
+  cond1:['Barlow Condensed',800,2,'ENCOUNTER ATLAS','',0],geo1:['Outfit',800,-.5,'Encounter Atlas','',0]};
+function lock(p,mark,font,light){const [ff,fw,ls,a,b,two]=FONT[font];const c1=light?p.ink:p.fg,c2=light?p.ink2:p.ac;
+ const txt=two?`<div style="font:${fw} 30px/0.95 '${ff}';letter-spacing:${ls}px;color:${c1}">${a}<br><span style="color:${c2}">${b}</span></div>`
+  :`<div style="font:${fw} 30px/1 '${ff}';letter-spacing:${ls}px;color:${c1}">${a}</div>`;
+ return `<div style="background:${light?'#F4F3EE':p.bg==='#111111'?'#1C1C1C':p.bg};gap:12px">${svg(58,mark)}${txt}</div>`}
+const C=[['1. Viewfinder','Trail-cam corner brackets around a soft, ambiguous figure. Says "caught on camera" without naming a creature.','view',['nv','bw'],['cond','cond1']],
+ ['2. Claw marks','Three slashes ripped through a map grid. The most aggressive; reads instantly at 16px.','claw',['bone','indigo'],['slab','cond']],
+ ['3. X marks the spot','A glowing X on a map grid with a dotted trail leading in. Treasure-map energy: "it happened here".','xspot',['bw','indigo'],['geo','geo1']],
+ ['4. Contour track','A footprint drawn as topographic contour rings: part track, part survey map.','contour',['bone','nv'],['cond','slab']],
+ ['5. Case-file stamp','A rubber-stamped "EA" monogram, tilted like it was slammed onto a file folder.','stamp',['bone','bw'],['slab','cond']],
+ ['6. Wild card: unknown pin','A map pin with a question mark knocked out of it. Simplest of all; "unidentified, but located".','qpin',['indigo','nv'],['geo','geo1']]];
+document.getElementById('g').innerHTML=C.map(([t,d,k,pals,fonts])=>{
+ const rows=pals.map((pk,i)=>{const p=P[pk],m=M[k](p);return `<div class="row"><span class="pal">${p.n}</span><div class="sz"><div>${svg(150,m)}<span>512</span></div><div>${svg(64,m)}<span>64</span></div><div>${svg(32,m)}<span>32</span></div><div>${svg(16,m)}<span>16</span></div></div><div class="lk">${lock(p,m,fonts[i],false)}${lock(p,m,fonts[i],true)}</div></div>`}).join('');
+ const p=P[pals[0]],m=M[k](p);
+ const others=['#E2574C','#4C8BF5','#F4B400'].map((c,i)=>`<div class="app"><div class="ph" style="background:${c}"></div>${['Photos','Maps','Notes'][i]}</div>`).join('');
+ const ctx=`<div class="ctx"><div class="tab">${svg(16,m)}Encounter Atlas</div><div class="phone">${others.slice(0)}<div class="app">${svg(48,M[k](p).replace('rx="20"','rx="22"'))}Encounter</div></div></div>`;
+ return `<div class="card"><div class="ttl"><b>${t}</b><span>${d}</span></div>${rows}${ctx}</div>`}).join('');
+</script></body></html>
