@@ -1,0 +1,90 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600;700&family=Public+Sans:wght@500;600;800;900&family=Big+Shoulders+Stencil+Display:wght@800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0B1813;font-family:"Public Sans",sans-serif}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:24px}
+.card{background:#13261F;border-radius:18px;overflow:hidden;border:1px solid #2B4A3D}
+.hero{height:330px;display:flex;align-items:center;justify-content:center}
+.light{background:#E4EBE6;height:110px;display:flex;align-items:center;justify-content:center;gap:20px}
+.label{padding:12px 20px 16px}.label b{font:700 26px "Zilla Slab",serif;color:#F3F1E4;display:block}.label span{font-size:15px;color:#9FB3A3}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+ <symbol id="bf" viewBox="0 0 64 64"><g fill="currentColor"><path d="M14 18Q14 7 22 5Q29 6 29 13L28 19 17 21Z"/><path d="M15 19Q29 13 39 22Q44 32 37 43H22Q13 33 15 19Z"/><path d="M39 22Q44 28 42 36L46 33 44 39 48 38Z"/><path d="M16 26 9 31 13 32 7 37 12 38 7 43 12 43 10 48 16 44Z"/></g><g stroke="currentColor" fill="none" stroke-linecap="round"><path d="M18 24 12 46" stroke-width="7"/><path d="M35 25 45 42" stroke-width="7"/><path d="M24 41 18 50 14 58" stroke-width="8.5"/><path d="M33 41 38 50 42 58" stroke-width="8.5"/><path d="M8 59H19M40 59H50" stroke-width="5"/></g></symbol>
+ <symbol id="foot" viewBox="0 0 60 100"><g fill="currentColor"><path d="M30 26c-14 0-20 12-19 26 1 12 4 20 4 28 0 9 6 14 13 14s14-6 14-16c0-11 8-19 8-31 0-12-8-21-20-21Z"/><circle cx="13" cy="18" r="6"/><circle cx="23" cy="11" r="6.2"/><circle cx="34" cy="9.5" r="6"/><circle cx="44" cy="13" r="5.4"/><circle cx="51" cy="21" r="4.6"/></g></symbol>
+ <clipPath id="bfclip"><path d="M14 18Q14 7 22 5Q29 6 29 13L28 19 17 21Z M15 19Q29 13 39 22Q44 32 37 43H22Q13 33 15 19Z M8 59 L12 46 L18 24 L24 25 L20 46 L14 58 L19 59 Z M24 41 L33 41 L40 50 L46 58 L50 61 L38 61 L34 51 L28 47 L20 58 L14 61 L8 61 Z M35 25 L40 23 L48 40 L42 44 Z"/></clipPath>
+</defs></svg>
+<div class="grid" id="g"></div>
+<script>
+const LA='#F2B33D',SP='#13261F',DK='#0E1D18',PN='#21402F',CR='#F3F1E4',LI='#C9D3A4',MU='#5E7F6E';
+const svg=(vb,w,inner)=>`<svg viewBox="${vb}" width="${w}" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+const sq=(inner,bg=SP)=>`<rect width="64" height="64" rx="14" fill="${bg}"/>${inner}`;
+const zs=(x,y,sz,c,t='Encounter Atlas',a='start',extra='')=>`<text x="${x}" y="${y}" font-family="Zilla Slab" font-weight="700" font-size="${sz}" fill="${c}" text-anchor="${a}" ${extra}>${t}</text>`;
+
+// 1 folded map
+const mapMark=(w,h,c1='#E9DFC4',c2='#D8CBA6',route='#13261F')=>{const n=4,pw=w/n;let s='';for(let i=0;i<n;i++){const y0=i%2?6:0;s+=`<path d="M${i*pw} ${i%2?0:6}L${(i+1)*pw} ${i%2?6:0}V${h+(i%2?6:0)}L${i*pw} ${h+(i%2?0:6)}Z" fill="${i%2?c2:c1}"/>`}
+ return `<g>${s}<g opacity=".35" stroke="#8C7B4E" fill="none" stroke-width="1.2"><path d="M8 ${h*.3}q${w*.25} -14 ${w*.5} 4t${w*.45} -6"/><path d="M8 ${h*.62}q${w*.3} 16 ${w*.6} -2t${w*.38} 8"/></g><path d="M${w*.1} ${h*.86}C${w*.25} ${h*.7} ${w*.3} ${h*.95} ${w*.45} ${h*.75}S${w*.55} ${h*.45} ${w*.6} ${h*.5}" fill="none" stroke="${route}" stroke-width="${w/70}" stroke-dasharray="${w/40} ${w/50}" stroke-linecap="round"/><use href="#foot" x="${w*.56}" y="${h*.08}" width="${w*.34}" height="${h*.62}" color="${route}" transform="rotate(14 ${w*.73} ${h*.4})"/><path d="M${w*.08} ${h*.89}l${w*.04} ${-h*.06}M${w*.08} ${h*.83}l${w*.04} ${h*.06}" stroke="#B4471E" stroke-width="${w/60}" stroke-linecap="round"/></g>`};
+
+// 2 tentacle compass
+const compass=(c=LA,c2=LI)=>`<g><circle r="40" fill="none" stroke="${c2}" stroke-width="2" opacity=".5"/><circle r="48" fill="none" stroke="${c2}" stroke-width="1" opacity=".35" stroke-dasharray="2 4"/>
+ <path d="M0-62 9-9 0 0-9-9Z" fill="${c}"/><path d="M62 0 9 9 0 0 9-9Z" fill="${c2}"/><path d="M-62 0-9-9 0 0-9 9Z" fill="${c2}"/>
+ <path d="M30-30 6-2 0 0 2-6Z M-30-30-2-6 0 0-6-2Z M30 30 2 6 0 0 6 2Z M-30 30-6 2 0 0-2 6Z" fill="${c2}" opacity=".6"/>
+ <path d="M-8 4C-10 22-2 36 6 46C14 56 18 66 10 74C3 81-8 76-6 68C-5 63 1 62 3 66C1 63-3 64-2 68C-1 72 6 73 9 67C13 59 4 52-3 42C-11 30-14 16-8 4Z" fill="${c}"/>
+ <g fill="${SP}"><circle cx="1" cy="30" r="2"/><circle cx="8" cy="42" r="2"/><circle cx="13" cy="54" r="1.8"/><circle cx="12" cy="65" r="1.5"/></g>
+ <circle r="7" fill="${SP}" stroke="${c}" stroke-width="3"/><text y="-68" text-anchor="middle" font-family="Zilla Slab" font-weight="700" font-size="16" fill="${c}">N</text></g>`;
+
+// 3 topo squatch
+const topo=(w,h,on=LA,off='#27493A',sw=2.4)=>{let lines='';for(let y=3;y<h;y+=h/22){lines+=`<path d="M-4 ${y}C${w*.2} ${y-6} ${w*.35} ${y+7} ${w*.5} ${y}S${w*.8} ${y-7} ${w+4} ${y+2}"/>`}
+ return `<g fill="none" stroke-width="${sw}" stroke-linecap="round"><g stroke="${off}">${lines}</g><g stroke="${on}" clip-path="url(#bfc${w})">${lines}</g></g><clipPath id="bfc${w}">${['M14 18Q14 7 22 5Q29 6 29 13L28 19 17 21Z','M15 19Q29 13 39 22Q44 32 37 43H22Q13 33 15 19Z','M12 24 L21 25 L16 48 L8 46Z','M33 26 L39 22 L49 42 L42 45Z','M21 40 L28 42 L20 56 L18 61 L6 61 L10 56Z','M30 40 L37 40 L43 54 L52 61 L38 61 L34 52Z'].map(d=>`<path transform="translate(${w*.08} ${h*.02}) scale(${h/64})" d="${d}"/>`).join('')}</clipPath>`};
+
+// 4 expedition crate
+const crate=(w,h,ink=LA,wood='#2A4636',wood2='#244030')=>`<g><rect width="${w}" height="${h}" rx="4" fill="${wood}"/>${[1,2,3].map(i=>`<rect y="${i*h/4-1}" width="${w}" height="2" fill="${DK}" opacity=".6"/>`).join('')}<rect x="0" y="0" width="${w*.06}" height="${h}" fill="${wood2}"/><rect x="${w*.94}" y="0" width="${w*.06}" height="${h}" fill="${wood2}"/>
+ <g fill="${ink}" opacity=".95"><text x="${w*.5}" y="${h*.42}" text-anchor="middle" font-family="Big Shoulders Stencil Display" font-weight="800" font-size="${h*.27}" letter-spacing="2">ENCOUNTER</text><text x="${w*.5}" y="${h*.76}" text-anchor="middle" font-family="Big Shoulders Stencil Display" font-weight="800" font-size="${h*.3}" letter-spacing="${h*.06}">ATLAS</text>
+ <text x="${w*.5}" y="${h*.93}" text-anchor="middle" font-family="Public Sans" font-weight="800" font-size="${h*.07}" letter-spacing="3">FIELD UNIT 07 · THIS SIDE UP</text></g>
+ <use href="#foot" x="${w*.07}" y="${h*.5}" width="${h*.13}" height="${h*.24}" color="${ink}" opacity=".55" transform="rotate(-12 ${w*.1} ${h*.62})"/><use href="#foot" x="${w*.86}" y="${h*.46}" width="${h*.13}" height="${h*.24}" color="${ink}" opacity=".55" transform="rotate(14 ${w*.9} ${h*.58})"/></g>`;
+
+// 5 lantern beam
+const lantern=(s=1,glow=LA)=>`<g transform="scale(${s})"><path d="M-10-26a10 10 0 0 1 20 0" fill="none" stroke="${LI}" stroke-width="3"/><rect x="-14" y="-22" width="28" height="6" rx="2" fill="${LI}"/><rect x="-11" y="-16" width="22" height="30" rx="4" fill="${glow}"/><path d="M-11-6h22M-11 4h22" stroke="${SP}" stroke-width="1.6" opacity=".4"/><rect x="-14" y="14" width="28" height="6" rx="2" fill="${LI}"/></g>`;
+const beam=(x,y,len,spread,id)=>`<defs><linearGradient id="${id}" x1="0" x2="1"><stop offset="0" stop-color="${LA}" stop-opacity=".85"/><stop offset="1" stop-color="${LA}" stop-opacity=".12"/></linearGradient></defs><path d="M${x} ${y-6}L${x+len} ${y-spread}V${y+spread}L${x} ${y+6}Z" fill="url(#${id})"/>`;
+
+// 6 constellation
+const P={h:[40,12],n:[44,26],hp:[42,54],e:[55,40],hd:[60,54],ba:[30,40],bh:[26,52],kf:[54,70],ff:[62,88],kb:[34,72],fb:[24,88]};
+const E=[['h','n'],['n','hp'],['n','e'],['e','hd'],['n','ba'],['ba','bh'],['hp','kf'],['kf','ff'],['hp','kb'],['kb','fb']];
+const star=(x,y,r,c)=>`<path d="M${x} ${y-r*2.2}L${x+r*.5} ${y-r*.5}L${x+r*2.2} ${y}L${x+r*.5} ${y+r*.5}L${x} ${y+r*2.2}L${x-r*.5} ${y+r*.5}L${x-r*2.2} ${y}L${x-r*.5} ${y-r*.5}Z" fill="${c}"/>`;
+const constel=(c=CR,line=LI,lw=1.2,bg=true)=>{let s='';if(bg){const pts=[[8,10],[78,8],[90,30],[12,66],[84,62],[70,92],[6,40],[94,84],[20,26],[72,22]];s+=pts.map(([x,y])=>`<circle cx="${x}" cy="${y}" r=".9" fill="${line}" opacity=".6"/>`).join('')}
+ s+=E.map(([a,b])=>`<line x1="${P[a][0]}" y1="${P[a][1]}" x2="${P[b][0]}" y2="${P[b][1]}" stroke="${line}" stroke-width="${lw}" opacity=".7"/>`).join('');
+ s+=Object.entries(P).map(([k,[x,y]])=>k==='h'?star(x,y,2.4,LA):`<circle cx="${x}" cy="${y}" r="${k==='hp'||k==='n'?2.6:2}" fill="${c}"/>`).join('');return s};
+
+const O=[
+ {t:'1. Folded field map',d:'A creased old map with a dashed trail that ends at a giant footprint. Says "atlas" and "the hunt" at once.',
+  hero:svg('0 0 360 260',330,`<g transform="translate(70 10)">${mapMark(220,150)}</g>${zs(180,222,44,CR,'Encounter Atlas','middle')}<path d="M60 238h240" stroke="${LA}" stroke-width="3" stroke-dasharray="10 8" stroke-linecap="round"/>`),
+  app:svg('0 0 64 64',64,sq(`<g transform="translate(7 12)">${mapMark(50,34)}</g>`)),
+  fav:svg('0 0 64 64',32,sq(`<use href="#foot" x="14" y="6" width="36" height="52" color="#E9DFC4"/>`)),
+  light:svg('0 0 360 80',230,`<g transform="translate(0 6)">${mapMark(90,62)}</g>${zs(104,52,36,SP)}`)},
+ {t:'2. Here be monsters',d:'A navigator\'s compass rose whose south point curls into a tentacle. Old-map "here be dragons" energy.',
+  hero:svg('0 0 360 290',300,`<g transform="translate(180 112) scale(1.35)">${compass()}</g>${zs(180,250,42,CR,'Encounter Atlas','middle')}<text x="180" y="276" text-anchor="middle" font-family="Public Sans" font-weight="600" font-size="13" letter-spacing="4" fill="${LI}">HERE BE MONSTERS</text>`),
+  app:svg('0 0 64 64',64,sq(`<g transform="translate(32 26) scale(.36)">${compass()}</g>`)),
+  fav:svg('0 0 64 64',32,sq(`<g transform="translate(32 22) scale(.4)"><path d="M0-50 12-8 0 2-12-8Z" fill="${LA}"/><path d="M-8 4C-10 22-2 36 6 46C14 56 18 66 10 74C3 81-8 76-6 68C-5 63 1 62 3 66C1 63-3 64-2 68C-1 72 6 73 9 67C13 59 4 52-3 42C-11 30-14 16-8 4Z" fill="${LA}"/></g>`)),
+  light:svg('0 0 360 90',230,`<g transform="translate(45 40) scale(.5)">${compass('#B57A0C',SP)}</g>${zs(100,56,36,SP)}`)},
+ {t:'3. Topo Squatch',d:'Contour lines like a hiking map; Bigfoot is only visible where the lines turn gold. Hidden in plain sight.',
+  hero:svg('0 0 320 300',290,`<g transform="translate(70 0)">${topo(180,210)}</g><text x="160" y="262" text-anchor="middle" font-family="Public Sans" font-weight="900" font-size="38" letter-spacing="-1" fill="${CR}">encounter atlas</text>`),
+  app:svg('0 0 64 64',64,sq(`<clipPath id="r3"><rect width="64" height="64" rx="14"/></clipPath><g clip-path="url(#r3)"><g transform="translate(2 3)">${topo(60,60,LA,'#2E5541',1.6)}</g></g>`)),
+  fav:svg('0 0 64 64',32,sq(`<use href="#bf" x="6" y="4" width="54" height="58" color="${LA}"/>`)),
+  light:svg('0 0 360 80',230,`<g transform="translate(0 4)">${topo(70,72,SP,'#B9C7BE',1.6)}</g><text x="84" y="52" font-family="Public Sans" font-weight="900" font-size="36" letter-spacing="-1" fill="${SP}">encounter atlas</text>`)},
+ {t:'4. Expedition crate',d:'Stencilled field-gear crate with muddy tracks across it. Rugged, merch-ready, very "we go out there".',
+  hero:svg('0 0 340 240',330,`<g transform="translate(20 20)">${crate(300,190)}</g>`),
+  app:svg('0 0 64 64',64,`<rect width="64" height="64" rx="14" fill="#2A4636"/><rect y="21" width="64" height="2" fill="${DK}" opacity=".6"/><rect y="41" width="64" height="2" fill="${DK}" opacity=".6"/><text x="32" y="42" text-anchor="middle" font-family="Big Shoulders Stencil Display" font-weight="800" font-size="34" fill="${LA}">EA</text>`),
+  fav:svg('0 0 64 64',32,`<rect width="64" height="64" rx="14" fill="#2A4636"/><text x="32" y="46" text-anchor="middle" font-family="Big Shoulders Stencil Display" font-weight="800" font-size="40" fill="${LA}">EA</text>`),
+  light:svg('0 0 300 90',230,`${crate(300,90,'#E9DFC4','#2A4636','#244030')}`)},
+ {t:'5. Lantern light',d:'A camp lantern throws its beam into the dark and catches something walking. Our "night shift" story in one picture.',
+  hero:svg('0 0 360 280',330,`${beam(70,110,270,90,'b5')}<g transform="translate(60 110)">${lantern(1.4)}</g><g opacity=".5" fill="${PN}"><path d="M170 200 190 120 210 200Z"/><path d="M290 200 310 100 330 200Z"/></g><use href="#bf" x="212" y="72" width="108" height="128" color="${SP}"/><rect x="40" y="198" width="300" height="3" fill="${LI}" opacity=".4"/>${zs(180,252,42,CR,'Encounter Atlas','middle')}`),
+  app:svg('0 0 64 64',64,sq(`${beam(16,34,48,26,'b5a')}<g transform="translate(14 34) scale(.6)">${lantern(1)}</g><use href="#bf" x="30" y="16" width="32" height="38" color="${SP}"/>`)),
+  fav:svg('0 0 64 64',32,sq(`${beam(14,32,50,30,'b5b')}<use href="#bf" x="24" y="10" width="40" height="48" color="${SP}"/>`)),
+  light:svg('0 0 360 80',230,`<g transform="translate(0 2)"><rect width="76" height="76" rx="16" fill="${SP}"/>${beam(16,40,60,30,'b5c')}<g transform="translate(16 40) scale(.7)">${lantern(1)}</g><use href="#bf" x="34" y="18" width="38" height="44" color="${SP}"/></g>${zs(92,52,36,SP)}`)},
+ {t:'6. Ursa Squatch',d:'A star chart where the constellation is a walking Bigfoot, head star in gold. Ties the cryptids and the skies together.',
+  hero:svg('0 0 340 300',300,`<g transform="translate(80 -4) scale(1.8)">${constel(CR,LI,1.6)}</g><text x="174" y="252" text-anchor="middle" font-family="Public Sans" font-weight="600" font-size="22" letter-spacing="6" fill="${CR}">ENCOUNTER ATLAS</text><text x="170" y="280" text-anchor="middle" font-family="Zilla Slab" font-weight="600" font-size="15" fill="${LI}" font-style="italic">Ursa Squatch, the wandering one</text>`),
+  app:svg('0 0 64 64',64,sq(`<g transform="translate(4 2) scale(.6)">${constel(CR,LI,1.6,true)}</g>`,'#0E1D2A')),
+  fav:svg('0 0 64 64',32,sq(`<g transform="translate(-2 -2) scale(.7)">${constel(CR,LI,3,false)}</g>`,'#0E1D2A')),
+  light:svg('0 0 420 80',250,`<g transform="translate(4 2) scale(.75)">${constel(SP,'#5E7F6E',1.6,false)}</g><text x="84" y="50" font-family="Public Sans" font-weight="700" font-size="24" letter-spacing="5" fill="${SP}">ENCOUNTER ATLAS</text>`)},
+];
+document.getElementById('g').innerHTML=O.map(o=>`<div class="card"><div class="hero">${o.hero}</div><div class="light">${o.app}${o.fav}${o.light}</div><div class="label"><b>${o.t}</b><span>${o.d}</span></div></div>`).join('');
+</script></body></html>
