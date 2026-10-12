@@ -23,7 +23,14 @@ if (!existsSync(LOG)) writeFileSync(LOG, 'time,slug,model,est_usd\n');
 const spent = readFileSync(LOG, 'utf8').trim().split('\n').slice(1).reduce((s, l) => s + (+l.split(',')[3] || 0), 0);
 if (spent + COST > STOP) { console.error(`budget stop: $${spent.toFixed(2)} logged`); process.exit(3); }
 
-const prompt = `A single solid black silhouette of ${desc}, full body, side or three-quarter view, in a natural mid-motion pose. ` +
+const object = desc.startsWith('OBJECT:');
+const what = object ? desc.slice(7).trim() : desc;
+const prompt = object
+  ? `A single solid black silhouette of ${what}, as one bold iconic shape, seen from a dramatic but clear angle. ` +
+    'Like a vintage national park poster cut-out: crisp edges, believable shape, no cartoon style. ' +
+    'Pure black fill only, no grey, no shading, no internal lines, no outline. No ground, no background scenery, no text, no people unless described. ' +
+    'Plain flat white background with an even margin around the subject. Square 1:1.'
+  : `A single solid black silhouette of ${what}, full body, side or three-quarter view, in a natural mid-motion pose. ` +
   'Realistic, anatomically believable proportions, like a professional wildlife silhouette or a vintage national park poster cut-out. ' +
   'Pure black fill only, no grey, no shading, no internal lines, no outline. No ground, no shadow, no background scenery, no text. ' +
   'Plain flat white background with an even margin around the figure. Square 1:1.';
