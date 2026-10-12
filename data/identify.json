@@ -1,0 +1,1206 @@
+{
+  "about": "Rules for the 'What did I see?' tool (site/sections/tools.py). Each answer adds points to creatures. 'cats' gives points to a whole category; 'words' gives points when a creature's habitat, summary, signs or description mention the word (habitat counts most); size answers compare against data/sizes.json; region answers match place names in a creature's 'region' text. 'slugs' are hand nudges for one creature. The build reads creatures.json every time and checks that every creature can come out in the top 3. Everyday explanations use the same answer ids.",
+  "field_weights": {
+    "habitat": 2,
+    "summary": 1,
+    "signs": 1,
+    "body": 0.5,
+    "size": 1,
+    "name": 1
+  },
+  "word_cap": 3,
+  "questions": [
+    {
+      "id": "where",
+      "weight": 1.2,
+      "q": "Where were you?",
+      "help": "Pick the place that fits best.",
+      "answers": [
+        {
+          "id": "woods",
+          "label": "Woods or forest",
+          "icon": "q-woods",
+          "cats": {
+            "hominid": 1.5,
+            "canid": 1
+          },
+          "words": [
+            "forest",
+            "woods",
+            "woodland",
+            "timber",
+            "rainforest",
+            "pine"
+          ]
+        },
+        {
+          "id": "mountains",
+          "label": "Mountains or snow",
+          "icon": "q-mountain",
+          "cats": {
+            "hominid": 0.5
+          },
+          "words": [
+            "mountain",
+            "alpine",
+            "glacier",
+            "snow",
+            "slopes",
+            "high valleys",
+            "steppe"
+          ]
+        },
+        {
+          "id": "water",
+          "label": "Lake, river or sea",
+          "icon": "q-water",
+          "cats": {
+            "aquatic": 2.5
+          },
+          "words": [
+            "lake",
+            "loch",
+            "river",
+            "sea",
+            "ocean",
+            "coast",
+            "inlet",
+            "billabong",
+            "riverbank"
+          ]
+        },
+        {
+          "id": "swamp",
+          "label": "Swamp, marsh or bayou",
+          "icon": "q-swamp",
+          "cats": {
+            "aquatic": 0.5
+          },
+          "words": [
+            "swamp",
+            "bayou",
+            "marsh",
+            "bog",
+            "wetland",
+            "cypress",
+            "river bottoms"
+          ]
+        },
+        {
+          "id": "open",
+          "label": "Open fields, plains or desert",
+          "icon": "q-open",
+          "cats": {
+            "other": 1,
+            "winged": 0.5
+          },
+          "words": [
+            "desert",
+            "plains",
+            "dunes",
+            "scrub",
+            "prairie",
+            "fields",
+            "ranch",
+            "rocky"
+          ]
+        },
+        {
+          "id": "road",
+          "label": "Road, farm or town",
+          "icon": "q-road",
+          "cats": {
+            "canid": 1,
+            "entity": 1
+          },
+          "words": [
+            "road",
+            "town",
+            "farm",
+            "suburban",
+            "farmhouse",
+            "highway",
+            "church",
+            "ranch",
+            "livestock"
+          ]
+        },
+        {
+          "id": "sky",
+          "label": "Up in the sky",
+          "icon": "q-sky",
+          "cats": {
+            "ufo": 3,
+            "winged": 2
+          },
+          "words": [
+            "sky",
+            "wingspan",
+            "flying",
+            "overhead"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "size",
+      "weight": 1,
+      "q": "How big was it, next to a person?",
+      "help": "Your best guess is fine. Things look bigger in the dark.",
+      "answers": [
+        {
+          "id": "small",
+          "label": "Small: knee-high or less",
+          "scale": 0.3,
+          "ft": [
+            0,
+            2.5
+          ]
+        },
+        {
+          "id": "child",
+          "label": "About the size of a child",
+          "scale": 0.65,
+          "ft": [
+            2.5,
+            5
+          ]
+        },
+        {
+          "id": "person",
+          "label": "About my size",
+          "scale": 1,
+          "ft": [
+            5,
+            7
+          ]
+        },
+        {
+          "id": "taller",
+          "label": "Taller than me",
+          "scale": 1.35,
+          "ft": [
+            7,
+            11
+          ]
+        },
+        {
+          "id": "huge",
+          "label": "Huge: car-sized or bigger",
+          "scale": 2,
+          "ft": [
+            11,
+            1000
+          ]
+        },
+        {
+          "id": "unknown",
+          "label": "Couldn't tell (too far, or just a light)",
+          "icon": "q-unsure",
+          "cats": {
+            "ufo": 2.5
+          }
+        }
+      ]
+    },
+    {
+      "id": "move",
+      "weight": 1.2,
+      "q": "How did it move?",
+      "help": "If you saw it move more than one way, pick the first.",
+      "answers": [
+        {
+          "id": "upright",
+          "label": "Walked upright, on two legs",
+          "icon": "human",
+          "cats": {
+            "hominid": 2.5,
+            "entity": 1.5,
+            "canid": 0.5
+          },
+          "words": [
+            "upright",
+            "bipedal",
+            "two legs",
+            "walk",
+            "stride"
+          ]
+        },
+        {
+          "id": "fours",
+          "label": "On all fours",
+          "icon": "q-quad",
+          "cats": {
+            "canid": 1.5
+          },
+          "words": [
+            "all fours",
+            "four legs",
+            "four-legged",
+            "hopping",
+            "leaping",
+            "hops"
+          ]
+        },
+        {
+          "id": "slither",
+          "label": "Crawled or slithered",
+          "icon": "worm",
+          "cats": {
+            "other": 2
+          },
+          "words": [
+            "slither",
+            "crawl",
+            "burrow",
+            "serpent",
+            "worm"
+          ]
+        },
+        {
+          "id": "flew",
+          "label": "Flew, with wings",
+          "icon": "q-fly",
+          "cats": {
+            "winged": 3
+          },
+          "words": [
+            "wings",
+            "wingspan",
+            "flew",
+            "glide"
+          ]
+        },
+        {
+          "id": "hovered",
+          "label": "Hovered or drifted silently",
+          "icon": "saucer",
+          "cats": {
+            "ufo": 3
+          },
+          "words": [
+            "hover",
+            "drift",
+            "float",
+            "silent"
+          ]
+        },
+        {
+          "id": "swam",
+          "label": "Swam or broke the surface",
+          "icon": "serpent",
+          "cats": {
+            "aquatic": 3
+          },
+          "words": [
+            "swim",
+            "surface",
+            "hump",
+            "wake"
+          ]
+        },
+        {
+          "id": "still",
+          "label": "It stood still, or I didn't see it move",
+          "icon": "q-still",
+          "cats": {
+            "entity": 1
+          },
+          "words": [
+            "stood",
+            "staring",
+            "watched"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eyes",
+      "weight": 0.8,
+      "q": "Did you see eyes or lights?",
+      "help": "Animal eyes reflect a torch or headlights. Lights glow on their own.",
+      "answers": [
+        {
+          "id": "red",
+          "label": "Glowing red eyes",
+          "icon": "eyeshine",
+          "eye": "#FF5A44",
+          "cats": {
+            "winged": 1,
+            "canid": 0.5
+          },
+          "words": [
+            "red eyes",
+            "glowing red",
+            "red, glowing",
+            "eyes glowed red",
+            "red eyeshine"
+          ]
+        },
+        {
+          "id": "amber",
+          "label": "Yellow, amber or green eyes",
+          "icon": "eyeshine",
+          "eye": "#F2B33D",
+          "cats": {
+            "hominid": 0.5,
+            "canid": 0.5
+          },
+          "words": [
+            "eyeshine",
+            "yellow eyes",
+            "amber",
+            "green eyes",
+            "glowing eyes",
+            "large eyes",
+            "big eyes"
+          ]
+        },
+        {
+          "id": "lights",
+          "label": "Lights on it, or it was a light",
+          "icon": "orbs",
+          "cats": {
+            "ufo": 3
+          },
+          "words": [
+            "lights",
+            "glow",
+            "glowing",
+            "beam",
+            "light"
+          ]
+        },
+        {
+          "id": "none",
+          "label": "No eyes or lights stood out",
+          "icon": "q-noeye",
+          "cats": {
+            "aquatic": 1.5,
+            "hominid": 0.5,
+            "other": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "sound",
+      "weight": 0.8,
+      "q": "What did you hear?",
+      "help": "Sounds carry a long way at night.",
+      "answers": [
+        {
+          "id": "scream",
+          "label": "A howl, scream or shriek",
+          "icon": "q-howl",
+          "cats": {
+            "canid": 1
+          },
+          "words": [
+            "howl",
+            "scream",
+            "shriek",
+            "wail",
+            "screech",
+            "cry",
+            "squeal"
+          ]
+        },
+        {
+          "id": "knock",
+          "label": "Knocks, whoops or thrown rocks",
+          "icon": "q-knock",
+          "cats": {
+            "hominid": 1.5
+          },
+          "words": [
+            "knock",
+            "whoop",
+            "clack",
+            "rock clack",
+            "thrown",
+            "throw"
+          ]
+        },
+        {
+          "id": "growl",
+          "label": "A growl, snarl or hiss",
+          "icon": "q-growl",
+          "cats": {
+            "canid": 1
+          },
+          "words": [
+            "growl",
+            "snarl",
+            "hiss",
+            "grunt",
+            "huff"
+          ]
+        },
+        {
+          "id": "hum",
+          "label": "A hum, buzz or whine",
+          "icon": "q-hum",
+          "cats": {
+            "ufo": 2
+          },
+          "words": [
+            "hum",
+            "buzz",
+            "whine",
+            "whir",
+            "throb"
+          ]
+        },
+        {
+          "id": "splash",
+          "label": "A splash",
+          "icon": "q-splash",
+          "cats": {
+            "aquatic": 2.5
+          },
+          "words": [
+            "splash",
+            "wake"
+          ]
+        },
+        {
+          "id": "silent",
+          "label": "Nothing at all",
+          "icon": "q-silent",
+          "cats": {
+            "ufo": 1.5,
+            "aquatic": 0.5,
+            "entity": 0.5
+          },
+          "words": [
+            "silent",
+            "no sound",
+            "without a sound"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "weight": 0.5,
+      "q": "When was it?",
+      "help": "Most strange sightings happen in poor light.",
+      "answers": [
+        {
+          "id": "night",
+          "label": "At night",
+          "icon": "q-night",
+          "cats": {
+            "canid": 1,
+            "winged": 0.5,
+            "entity": 1,
+            "ufo": 1
+          },
+          "words": [
+            "night",
+            "after dark",
+            "midnight",
+            "headlights"
+          ]
+        },
+        {
+          "id": "dusk",
+          "label": "Dusk or dawn",
+          "icon": "q-dusk",
+          "cats": {
+            "hominid": 0.5,
+            "ufo": 0.5
+          },
+          "words": [
+            "dusk",
+            "dawn",
+            "twilight",
+            "evening",
+            "sunset"
+          ]
+        },
+        {
+          "id": "day",
+          "label": "In daylight",
+          "icon": "q-day",
+          "cats": {
+            "aquatic": 1.5,
+            "hominid": 0.5
+          },
+          "words": [
+            "daylight",
+            "afternoon",
+            "morning",
+            "photograph",
+            "sunny"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "region",
+      "weight": 1.6,
+      "q": "Where in the world?",
+      "help": "Many creatures are tied to one place.",
+      "answers": [
+        {
+          "id": "west",
+          "label": "Western US or Canada",
+          "places": [
+            "pacific",
+            "washington",
+            "oregon",
+            "california",
+            "british columbia",
+            "alberta",
+            "yukon",
+            "alaska",
+            "montana",
+            "idaho",
+            "utah",
+            "nevada",
+            "arizona",
+            "colorado",
+            "new mexico",
+            "wyoming",
+            "southwest",
+            "okanagan",
+            "cascades"
+          ]
+        },
+        {
+          "id": "midwest",
+          "label": "Midwest, Great Lakes or Plains",
+          "places": [
+            "michigan",
+            "wisconsin",
+            "ohio",
+            "indiana",
+            "illinois",
+            "minnesota",
+            "missouri",
+            "iowa",
+            "kansas",
+            "nebraska",
+            "dakota",
+            "great lakes",
+            "great plains",
+            "lake erie",
+            "ontario",
+            "midwest",
+            "manitoba",
+            "saskatchewan"
+          ]
+        },
+        {
+          "id": "east",
+          "label": "Eastern US or Canada",
+          "places": [
+            "new york",
+            "vermont",
+            "new england",
+            "massachusetts",
+            "new jersey",
+            "pennsylvania",
+            "west virginia",
+            "kentucky",
+            "appalachia",
+            "quebec",
+            "maine",
+            "champlain",
+            "virginia",
+            "maryland",
+            "connecticut",
+            "east coast",
+            "north carolina",
+            "nova scotia",
+            "new brunswick"
+          ]
+        },
+        {
+          "id": "south",
+          "label": "Southern US",
+          "places": [
+            "texas",
+            "louisiana",
+            "arkansas",
+            "florida",
+            "georgia",
+            "south carolina",
+            "mississippi",
+            "alabama",
+            "tennessee",
+            "oklahoma",
+            "the south",
+            "everglades",
+            "bayou"
+          ]
+        },
+        {
+          "id": "latam",
+          "label": "Mexico, Caribbean or South America",
+          "places": [
+            "puerto rico",
+            "mexico",
+            "central america",
+            "brazil",
+            "argentina",
+            "chile",
+            "peru",
+            "caribbean",
+            "colombia"
+          ]
+        },
+        {
+          "id": "europe",
+          "label": "UK or Europe",
+          "places": [
+            "england",
+            "scotland",
+            "wales",
+            "ireland",
+            "britain",
+            "cornwall",
+            "alps",
+            "austria",
+            "switzerland",
+            "germany",
+            "bavaria",
+            "france",
+            "italy",
+            "sweden",
+            "norway",
+            "belgium",
+            "spain",
+            "scottish",
+            "highlands",
+            "irish",
+            "english",
+            "welsh",
+            "swiss",
+            "iceland",
+            "loch"
+          ]
+        },
+        {
+          "id": "asia",
+          "label": "Asia",
+          "places": [
+            "himalaya",
+            "nepal",
+            "tibet",
+            "bhutan",
+            "china",
+            "mongolia",
+            "gobi",
+            "central asia",
+            "sumatra",
+            "indonesia",
+            "japan",
+            "india",
+            "caucasus",
+            "russia",
+            "vietnam",
+            "malaysia"
+          ]
+        },
+        {
+          "id": "africa",
+          "label": "Africa",
+          "places": [
+            "africa",
+            "congo",
+            "zambia",
+            "angola",
+            "cameroon",
+            "kenya",
+            "tanzania",
+            "madagascar"
+          ]
+        },
+        {
+          "id": "oceania",
+          "label": "Australia or New Zealand",
+          "places": [
+            "australia",
+            "queensland",
+            "new south wales",
+            "victoria",
+            "tasmania",
+            "new zealand"
+          ]
+        },
+        {
+          "id": "sea",
+          "label": "Somewhere else, or out at sea",
+          "places": [
+            "worldwide",
+            "ocean",
+            "off the coast"
+          ]
+        }
+      ],
+      "not_places": [
+        "new mexico",
+        "new south wales"
+      ],
+      "cc_fallback": {
+        "US": [
+          "west",
+          "midwest",
+          "east",
+          "south"
+        ],
+        "CA": [
+          "west",
+          "midwest",
+          "east"
+        ],
+        "MX": [
+          "latam"
+        ],
+        "PR": [
+          "latam"
+        ],
+        "BR": [
+          "latam"
+        ],
+        "AR": [
+          "latam"
+        ],
+        "CL": [
+          "latam"
+        ],
+        "GB": [
+          "europe"
+        ],
+        "IE": [
+          "europe"
+        ],
+        "AU": [
+          "oceania"
+        ],
+        "NZ": [
+          "oceania"
+        ],
+        "JP": [
+          "asia"
+        ],
+        "CN": [
+          "asia"
+        ],
+        "IN": [
+          "asia"
+        ],
+        "ID": [
+          "asia"
+        ],
+        "MN": [
+          "asia"
+        ],
+        "NP": [
+          "asia"
+        ],
+        "RU": [
+          "asia"
+        ],
+        "KZ": [
+          "asia"
+        ],
+        "GE": [
+          "asia"
+        ],
+        "BT": [
+          "asia"
+        ],
+        "MY": [
+          "asia"
+        ],
+        "VN": [
+          "asia"
+        ],
+        "PH": [
+          "asia"
+        ],
+        "KR": [
+          "asia"
+        ],
+        "ZM": [
+          "africa"
+        ],
+        "AO": [
+          "africa"
+        ],
+        "CG": [
+          "africa"
+        ],
+        "CD": [
+          "africa"
+        ],
+        "CM": [
+          "africa"
+        ],
+        "KE": [
+          "africa"
+        ],
+        "TZ": [
+          "africa"
+        ],
+        "ZA": [
+          "africa"
+        ],
+        "MG": [
+          "africa"
+        ],
+        "NG": [
+          "africa"
+        ],
+        "FR": [
+          "europe"
+        ],
+        "DE": [
+          "europe"
+        ],
+        "IT": [
+          "europe"
+        ],
+        "AT": [
+          "europe"
+        ],
+        "CH": [
+          "europe"
+        ],
+        "SE": [
+          "europe"
+        ],
+        "NO": [
+          "europe"
+        ],
+        "IS": [
+          "europe"
+        ],
+        "ES": [
+          "europe"
+        ],
+        "BE": [
+          "europe"
+        ],
+        "NL": [
+          "europe"
+        ],
+        "PT": [
+          "europe"
+        ],
+        "DK": [
+          "europe"
+        ],
+        "FI": [
+          "europe"
+        ],
+        "PL": [
+          "europe"
+        ],
+        "PE": [
+          "latam"
+        ],
+        "CO": [
+          "latam"
+        ],
+        "VE": [
+          "latam"
+        ],
+        "GT": [
+          "latam"
+        ],
+        "HN": [
+          "latam"
+        ],
+        "CR": [
+          "latam"
+        ],
+        "PA": [
+          "latam"
+        ],
+        "CU": [
+          "latam"
+        ],
+        "DO": [
+          "latam"
+        ]
+      },
+      "overrides": {
+        "momo": [
+          "midwest"
+        ]
+      },
+      "worldwide_score": 0.5
+    }
+  ],
+  "everyday": [
+    {
+      "id": "bear",
+      "name": "A bear standing up",
+      "icon": "q-quad",
+      "tells": "Bears stand on their hind legs for a few seconds to sniff or look, then drop back down. Look for rounded ears, a long snout and short back legs. A standing black bear is 5 to 6 ft; a grizzly can top 8 ft.",
+      "fits": [
+        "woods",
+        "mountains",
+        "person",
+        "taller",
+        "upright",
+        "fours",
+        "growl",
+        "amber",
+        "none",
+        "dusk",
+        "day",
+        "west",
+        "east",
+        "midwest"
+      ]
+    },
+    {
+      "id": "person",
+      "name": "A person in dark clothes",
+      "icon": "human",
+      "tells": "Hunters in ghillie suits, hikers in ponchos and people walking dogs at night are easy to misjudge. A figure that stops, turns its head and watches you is behaving very much like a person.",
+      "fits": [
+        "woods",
+        "road",
+        "person",
+        "upright",
+        "still",
+        "none",
+        "night",
+        "dusk"
+      ]
+    },
+    {
+      "id": "deer",
+      "name": "Deer eyeshine",
+      "icon": "eyeshine",
+      "tells": "Pale green or white eyes about 3 to 4 ft off the ground, often in twos and threes, that blink out when the animal turns. Deer also give a loud, startling snort.",
+      "fits": [
+        "woods",
+        "road",
+        "open",
+        "child",
+        "amber",
+        "fours",
+        "still",
+        "night",
+        "dusk",
+        "scream"
+      ]
+    },
+    {
+      "id": "small-eyes",
+      "name": "Raccoon, possum, fox or coyote eyes",
+      "icon": "eyeshine",
+      "tells": "Small, close-set eyes low to the ground that look orange or red in a torch beam. Coyotes yip and howl in groups; a fox's scream sounds alarmingly human.",
+      "fits": [
+        "woods",
+        "road",
+        "swamp",
+        "small",
+        "child",
+        "red",
+        "amber",
+        "fours",
+        "scream",
+        "growl",
+        "night"
+      ]
+    },
+    {
+      "id": "mange",
+      "name": "A coyote or dog with mange",
+      "icon": "chupacabra",
+      "tells": "Mange makes coyotes, foxes and dogs lose their fur, leaving grey, wrinkled skin, a ridge of spine and ears that look far too big. Sick animals often come close to farms to find food.",
+      "fits": [
+        "road",
+        "open",
+        "small",
+        "child",
+        "fours",
+        "growl",
+        "night",
+        "day",
+        "south",
+        "latam"
+      ]
+    },
+    {
+      "id": "owl",
+      "name": "An owl",
+      "icon": "q-fly",
+      "tells": "Silent wingbeats, a broad pale face that can look human in a light, and eyes that reflect. Barn owls give a long, rasping scream; great horned owls stand nearly 2 ft tall with a 4 to 5 ft wingspan.",
+      "fits": [
+        "woods",
+        "road",
+        "sky",
+        "small",
+        "child",
+        "flew",
+        "still",
+        "amber",
+        "red",
+        "scream",
+        "silent",
+        "night",
+        "dusk"
+      ]
+    },
+    {
+      "id": "heron",
+      "name": "A heron or crane",
+      "icon": "q-fly",
+      "tells": "Long legs, a long neck folded back in flight and slow, heavy wingbeats. A great blue heron stands about 4 ft tall with a 6 ft wingspan and gives a harsh croak. Sandhill cranes are just as tall and call loudly in flocks.",
+      "fits": [
+        "water",
+        "swamp",
+        "open",
+        "child",
+        "person",
+        "flew",
+        "upright",
+        "still",
+        "scream",
+        "dusk",
+        "day"
+      ]
+    },
+    {
+      "id": "wake",
+      "name": "A boat wake, log or line of animals",
+      "icon": "q-water",
+      "tells": "A wake can travel across calm water long after the boat is out of sight. Floating logs roll and seem to surface. Otters, swimming deer, beavers or a row of diving ducks can look like a string of humps.",
+      "fits": [
+        "water",
+        "swamp",
+        "huge",
+        "child",
+        "swam",
+        "none",
+        "splash",
+        "silent",
+        "day",
+        "dusk"
+      ]
+    },
+    {
+      "id": "fish",
+      "name": "A big fish or seal",
+      "icon": "q-splash",
+      "tells": "Sturgeon can pass 6 ft and leap clear of the water. Seals and sea lions travel far up rivers and lakes. A dark head that rises, looks around and sinks is often a seal.",
+      "fits": [
+        "water",
+        "person",
+        "taller",
+        "huge",
+        "swam",
+        "none",
+        "splash",
+        "day"
+      ]
+    },
+    {
+      "id": "starlink",
+      "name": "A Starlink satellite train",
+      "icon": "q-sky",
+      "tells": "A straight line of evenly spaced lights moving together across the sky, usually an hour or two after sunset or before sunrise. They fade out one by one as they leave sunlight.",
+      "fits": [
+        "sky",
+        "unknown",
+        "hovered",
+        "lights",
+        "silent",
+        "dusk",
+        "night",
+        "sea"
+      ]
+    },
+    {
+      "id": "satellite",
+      "name": "A satellite or the space station",
+      "icon": "q-sky",
+      "tells": "A steady point of light, no blinking, gliding smoothly across the sky in a few minutes. It can fade or vanish mid-sky when it passes into Earth's shadow. The space station is brighter than any star.",
+      "fits": [
+        "sky",
+        "unknown",
+        "hovered",
+        "lights",
+        "silent",
+        "night",
+        "dusk",
+        "sea"
+      ]
+    },
+    {
+      "id": "venus",
+      "name": "Venus, Jupiter or a bright star",
+      "icon": "q-night",
+      "tells": "Very bright and steady, low in the west after sunset or in the east before dawn. It seems to follow your car and can flicker red and green near the horizon. It's in the same place the next night.",
+      "fits": [
+        "sky",
+        "unknown",
+        "hovered",
+        "still",
+        "lights",
+        "silent",
+        "dusk",
+        "night",
+        "sea"
+      ]
+    },
+    {
+      "id": "plane",
+      "name": "A plane or helicopter heading toward you",
+      "icon": "ufo-plane",
+      "tells": "Landing lights pointed straight at you seem to hang still for minutes. Look for a red or green light on the sides, a flashing white strobe, and a sound that arrives late.",
+      "fits": [
+        "sky",
+        "road",
+        "unknown",
+        "huge",
+        "hovered",
+        "lights",
+        "hum",
+        "night",
+        "dusk"
+      ]
+    },
+    {
+      "id": "drone",
+      "name": "A drone",
+      "icon": "q-hum",
+      "tells": "Red, green and white lights, sharp stops, sudden direction changes and a thin, high whine when it comes close. Drones often fly in the evening near towns, farms and parks.",
+      "fits": [
+        "sky",
+        "road",
+        "small",
+        "unknown",
+        "hovered",
+        "lights",
+        "hum",
+        "night",
+        "dusk"
+      ]
+    },
+    {
+      "id": "lanterns",
+      "name": "Sky lanterns or flares",
+      "icon": "orbs",
+      "tells": "Orange, flickering lights drifting together on the wind, rising slowly and then winking out. Parachute flares from military ranges hang in a row and sink slowly for several minutes.",
+      "fits": [
+        "sky",
+        "unknown",
+        "hovered",
+        "lights",
+        "silent",
+        "night"
+      ]
+    }
+  ]
+}

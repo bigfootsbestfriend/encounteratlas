@@ -57,7 +57,7 @@ def write(path, text):
 EA_API = os.environ.get('EA_API', '').rstrip('/')  # report Worker; empty until it's deployed
 MAP_API = f' data-api="{EA_API}"' if EA_API else ''
 NAV = [('/map/', 'Map'), ('/creatures/', 'Creatures'), ('/ufo/', 'UFO files'), ('/military/', 'Military'),
-       ('/places/', 'Places'), ('/guides/', 'Guides'), ('/podcasts/', 'Podcasts')] + ([('/reports/', 'Reports')] if EA_API else []) + [('/report/', 'Report')]
+       ('/places/', 'Places'), ('/guides/', 'Guides'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts')] + ([('/reports/', 'Reports')] if EA_API else []) + [('/report/', 'Report')]
 
 
 def page(path, title, body, desc='', body_class='', head_extra='', canonical=True):
