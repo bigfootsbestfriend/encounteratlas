@@ -40,7 +40,13 @@ def url(path):
     return BASE + path
 
 
+ICON_ART = json.load(open(os.path.join(ROOT, 'data', 'icon_art.json'))) if os.path.exists(os.path.join(ROOT, 'data', 'icon_art.json')) else {}
+
+
 def icon(name, cls='ico'):
+    if name in ICON_ART:  # creature names draw the poster silhouette as a mask, so it takes the surrounding colour
+        src = url('/static/art/' + ICON_ART[name] + '.svg')
+        return f'<span class="{cls} art-ico" style="--m:url({src})" aria-hidden="true"></span>'
     svg = open(os.path.join(STATIC, 'icons', name + '.svg')).read().strip()
     return svg.replace('<svg ', f'<svg class="{cls}" aria-hidden="true" focusable="false" ', 1)
 
@@ -433,7 +439,7 @@ def build_military(military):
                              'The most famous military UFO and UAP encounters, from WWII foo fighters to the Navy Tic Tac, with official sources.'))
 
 
-TILES = [('hominid', 'bigfoot', 'Bigfoot and hairy giants'), ('canid', 'dogman', 'Dogmen and beasts'),
+TILES = [('hominid', 'yeti', 'Bigfoot and hairy giants'), ('canid', 'dogman', 'Dogmen and beasts'),
          ('winged', 'mothman', 'Winged things'), ('aquatic', 'lake', 'Lake monsters'),
          ('entity', 'entity', 'Strange visitors'), ('ufo', 'saucer', 'UFOs and UAP')]
 MAP_HEAD = None

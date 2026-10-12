@@ -141,7 +141,7 @@
   async function addMilitary() {
     const data = await fetch(BASE + '/data/military.geojson').then((r) => r.json()).catch(() => null);
     if (!data || !data.features.length) return;
-    await addBadge('mil', 'military', '#7FD3FF');
+    await addBadge('mil', 'art/ufo-tic-tac', '#7FD3FF');
     map.addSource('military', { type: 'geojson', data });
     map.addLayer({ id: 'military', type: 'symbol', source: 'military', layout: {
       'icon-image': 'mil', 'icon-size': ['interpolate', ['linear'], ['zoom'], 2, 0.62, 8, 1], 'icon-allow-overlap': true } });

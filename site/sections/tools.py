@@ -94,6 +94,14 @@ def parse_size(text, cat):
     return e, None
 
 
+def art_box(path):
+    """Bounding box [x, y, w, h] of a traced silhouette, from its absolute path coordinates (control points included, close enough)."""
+    d = ' '.join(re.findall(r' d="([^"]+)"', open(path).read()))
+    nums = [float(n) for n in re.findall(r'-?\d+(?:\.\d+)?', d)]
+    xs, ys = nums[0::2], nums[1::2]
+    return [round(min(xs), 1), round(min(ys), 1), round(max(xs) - min(xs), 1), round(max(ys) - min(ys), 1)]
+
+
 def fmt_ft(v):
     if v < 3 and abs(v * 12 - round(v * 12)) < .01 and v != int(v):
         return f'{v:g} ft'
@@ -423,6 +431,9 @@ class Tools:
         for s, e in sizes.items():
             x = by[s]
             ic = self.icon_name(x)
+            if os.path.exists(os.path.join(c.STATIC, 'art', s + '.svg')):  # each creature stands on the wall as its own poster silhouette
+                ic = 'art/' + s
+                boxes.setdefault(ic, art_box(os.path.join(c.STATIC, 'art', s + '.svg')))
             fit = 'w' if e['dim'] in ('length', 'wingspan', 'across') else 'h'
             draw = e['draw'] * (1.2 if e['dim'] == 'shoulder' else 1)
             items[s] = {'n': x['name'], 'cat': x['cat'], 'i': ic, 'b': boxes.get(ic, [0, 0, 64, 64]), 'f': fit, 'd': draw,
@@ -433,8 +444,8 @@ class Tools:
                           'd': human['ft'], 'lo': human['ft'], 'hi': human['ft'], 't': f'{human["ft"]:g} ft tall', 'dim': 'height'}
         icon_src['human'] = None
         for ic in icon_src:
-            svg = open(os.path.join(c.STATIC, 'icons', ic + '.svg'), encoding='utf-8').read()
-            icon_src[ic] = re.sub(r'^\s*<svg[^>]*>|</svg>\s*$', '', svg)
+            svg = open(os.path.join(c.STATIC, ic + '.svg' if ic.startswith('art/') else os.path.join('icons', ic + '.svg')), encoding='utf-8').read()
+            icon_src[ic] = re.sub(r'fill="#[0-9A-Fa-f]{3,6}"', 'fill="currentColor"', re.sub(r'^\s*<svg[^>]*>|</svg>\s*$', '', svg))
         default = [s for s in DEFAULT_CMP if s in items]
         stage = self.render_wall(['human'] + default, items, icon_src, 1000, 520)
         legend = self.legend(['human'] + default, items)
@@ -444,7 +455,7 @@ class Tools:
             x = by[s]
             chips += (f'<button type="button" class="pchip cat-{x["cat"]}" data-s="{s}" aria-pressed="{"true" if s in default else "false"}" '
                       f'data-names="{c.esc((x["name"] + " " + " ".join(x["aliases"])).lower())}">'
-                      f'<span class="mask-ico" style="--m:url({c.url("/static/icons/" + items[s]["i"] + ".svg")})"></span>{c.esc(x["name"])}</button>')
+                      f'<span class="mask-ico" style="--m:url({c.url("/static/" + ("" if items[s]["i"].startswith("art/") else "icons/") + items[s]["i"] + ".svg")})"></span>{c.esc(x["name"])}</button>')
         rows = ''
         for s in sorted(sizes, key=lambda s: -sizes[s]['hi']):
             e, x = sizes[s], by[s]
