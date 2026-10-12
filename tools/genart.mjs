@@ -23,9 +23,14 @@ if (!existsSync(LOG)) writeFileSync(LOG, 'time,slug,model,est_usd\n');
 const spent = readFileSync(LOG, 'utf8').trim().split('\n').slice(1).reduce((s, l) => s + (+l.split(',')[3] || 0), 0);
 if (spent + COST > STOP) { console.error(`budget stop: $${spent.toFixed(2)} logged`); process.exit(3); }
 
-const object = desc.startsWith('OBJECT:');
-const what = object ? desc.slice(7).trim() : desc;
-const prompt = object
+const picto = desc.startsWith('PICTO:');  // small UI pictograms: bold shape, white cut-out details allowed
+const object = picto || desc.startsWith('OBJECT:');
+const what = object ? desc.slice(desc.indexOf(':') + 1).trim() : desc;
+const prompt = picto
+  ? `A bold solid black silhouette pictogram of ${what}. One simple, chunky, instantly readable shape that still works at 24 pixels, ` +
+    'in the style of a vintage national park poster or park map symbol. Black fill only; a few important details may be shown as clean white cut-out gaps. ' +
+    'No grey, no shading, no thin lines, no outline, no text, no background scenery beyond what is described. Plain flat white background with an even margin. Square 1:1.'
+  : object
   ? `A single solid black silhouette of ${what}, as one bold iconic shape, seen from a dramatic but clear angle. ` +
     'Like a vintage national park poster cut-out: crisp edges, believable shape, no cartoon style. ' +
     'Pure black fill only, no grey, no shading, no internal lines, no outline. No ground, no background scenery, no text, no people unless described. ' +

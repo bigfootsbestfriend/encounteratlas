@@ -166,7 +166,7 @@
 .g-links { list-style: none; padding: 0; margin: .8rem 0 1.4rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: .5rem; }
 .g-links li { background: #fff; border: 1px solid var(--mist-2); border-radius: var(--r-sm); padding: .55rem .8rem; font-size: .92rem; line-height: 1.4; }
 .g-links a { font-weight: 700; }
-.g-links span { display: block; color: var(--muted-l); font-size: .85rem; }
+.g-links span:not(.ico) { display: block; color: var(--muted-l); font-size: .85rem; }
 
 /* key-value strip (e.g. quick settings) */
 .g-kv { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .6rem; margin: 1rem 0 1.5rem; }
@@ -216,13 +216,13 @@
 .g-hub-in { position: relative; }
 .g-hub-icons { position: absolute; right: clamp(16px, 3vw, 28px); top: 50%; transform: translateY(-50%); display: grid;
   grid-template-columns: repeat(3, 76px); gap: 30px 14px; }
-.g-hub-icons span { display: grid; place-items: center; width: 76px; height: 76px; border-radius: 50%; background: var(--spruce-2);
+.g-hub-icons > span { display: grid; place-items: center; width: 76px; height: 76px; border-radius: 50%; background: var(--spruce-2);
   color: var(--tone); --bg: var(--spruce-2); --eye: var(--lantern); box-shadow: 0 0 0 4px var(--spruce-3); }
-.g-hub-icons span:nth-child(even) { transform: translateY(22px); }
+.g-hub-icons > span:nth-child(even) { transform: translateY(22px); }
 .g-hub-icons .ico { width: 62%; height: 62%; }
 .g-hub-head .lede { max-width: 54ch; }
 @media (max-width: 980px) { .g-hub-icons { position: static; transform: none; grid-template-columns: repeat(6, 46px); gap: 8px; margin-bottom: 1.4rem; }
-  .g-hub-icons span { width: 46px; height: 46px; box-shadow: 0 0 0 3px var(--spruce-3); } .g-hub-icons span:nth-child(even) { transform: none; } }
+  .g-hub-icons > span { width: 46px; height: 46px; box-shadow: 0 0 0 3px var(--spruce-3); } .g-hub-icons > span:nth-child(even) { transform: none; } }
 .g-card-cta { background: var(--lantern); border-color: var(--lantern); }
 .g-card-cta:hover { background: var(--lantern-2); border-color: var(--lantern-2); }
 .g-card-cta .g-card-kick { color: #5C3B00; }

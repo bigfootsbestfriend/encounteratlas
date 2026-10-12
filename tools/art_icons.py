@@ -3,7 +3,8 @@
 Writes data/icon_art.json ({icon name: art slug}). build.py's icon() then draws those names as a CSS mask of
 static/art/<slug>.svg, and the matching site/static/icons/<name>.svg files are rewritten from the art (fill
 currentColor) so the map, search and size-comparison scripts that fetch icons by name get the new art too.
-Pictograms that aren't creatures (folder, festival, q-* quiz answers, footprint...) are left alone.
+Pictograms (place types, file types, quiz answers, guide tools) use design/art-src/pic-<name>.svg, published to
+static/art/ the same way. Only `human` (the size-wall person) and `q-pin` keep their plain icons.
 """
 import json, os, re
 
@@ -21,6 +22,13 @@ m = {}
 for c in creatures:
     m.setdefault(c['icon'], c['slug'])
 m.update(PICK)
+SRC = os.path.join(ROOT, 'design', 'art-src')
+for f in sorted(os.listdir(SRC)):
+    if f.startswith('pic-') and f.endswith('.svg'):
+        svg = open(os.path.join(SRC, f)).read()
+        svg = re.sub(r'\s(width|height)="[^"]*"', '', svg, count=2)
+        open(os.path.join(ART, f), 'w').write(re.sub(r'fill="#0{3,6}"', 'fill="#14211B"', svg))
+        m[f[4:-4]] = f[:-4]
 m = {k: v for k, v in sorted(m.items()) if os.path.exists(os.path.join(ART, v + '.svg'))}
 for name, slug in m.items():
     svg = open(os.path.join(ART, slug + '.svg')).read()
