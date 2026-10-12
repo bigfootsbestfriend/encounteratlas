@@ -1,0 +1,85 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=National+Park:wght@600;800&family=Zilla+Slab:wght@700&family=Public+Sans:wght@600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0B1813;font-family:"Public Sans";color:#F3F1E4}
+h2{font:700 30px "Zilla Slab";margin:22px 22px 0}h2 span{font:600 15px "Public Sans";color:#9FB3A3;margin-left:12px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:14px 22px}
+.card{background:#13261F;border-radius:18px;overflow:hidden;border:1px solid #2B4A3D}
+.hero{height:260px;display:flex;align-items:center;justify-content:center}
+.sizes{background:#0F1E18;height:84px;display:flex;align-items:center;justify-content:center;gap:16px;font-size:11px;color:#7F978A}
+.sizes div{display:flex;flex-direction:column;align-items:center;gap:4px}
+.sizes .lt{background:#EFE9DA;padding:6px;border-radius:8px;display:flex;gap:10px;align-items:center}
+.light{background:#EFE9DA;height:96px;display:flex;align-items:center;justify-content:center}
+.label{padding:10px 16px 14px}.label b{font:700 22px "Zilla Slab";display:block}.label span{font-size:13.5px;color:#9FB3A3}
+.np{font-family:"National Park",sans-serif}
+</style></head><body>
+<h2>Round 8: globes and maps, no round badges<span>Each large, at 64 / 32 / 16 on dark and on cream, and as a lockup on cream</span></h2>
+<div class="grid" id="g"></div>
+<script>
+const ART='../site/static/art/';
+const OR='#E09A4A',RU='#B5532F',NV='#1F2C44',NV2='#141E2E',CR='#F3E3B8',INK='#14211B',GR='#1E3A2F',GOLD='#D9B25F',CLOTH='#24433A';
+let n=0;const uid=()=>'u'+(n++);
+const sil=(k,x,y,w,h=w)=>`<image href="${ART}${k}.svg" x="${x}" y="${y}" width="${w}" height="${h}"/>`;
+const silC=(k,x,y,w,c)=>{const m=uid();return `<defs><mask id="${m}" maskUnits="userSpaceOnUse" x="0" y="0" width="200" height="200"><rect width="200" height="200" fill="#000"/><image href="${ART}${k}.svg" x="${x}" y="${y}" width="${w}" height="${w}" style="filter:invert(1)"/></mask></defs><rect x="${x}" y="${y}" width="${w}" height="${w}" fill="${c}" mask="url(#${m})"/>`};
+const S=(vb,w,inner)=>`<svg viewBox="${vb}" width="${w}" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+const skyG=(id)=>`<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${NV}"/><stop offset=".7" stop-color="${OR}"/></linearGradient>`;
+const beam=(x1,x2,y1,b1,b2,y2)=>{const g=uid();return `<defs><linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${CR}" stop-opacity=".85"/><stop offset="1" stop-color="${CR}" stop-opacity=".05"/></linearGradient></defs><path d="M${x1} ${y1}L${b1} ${y2}H${b2}L${x2} ${y1}Z" fill="url(#${g})"/>`};
+const wm=(x,y,sz,c,a='start',ls=2)=>`<text x="${x}" y="${y}" class="np" font-weight="800" font-size="${sz}" fill="${c}" text-anchor="${a}" letter-spacing="${ls}">ENCOUNTER ATLAS</text>`;
+// globe body: dusk sphere with gridlines, ridge and optional creature, centred cx,cy radius r
+function sphere(cx,cy,r,{dog=true,saucer=false,grid=true}={}){const c=uid(),g=uid();const k=r/88;return `<defs><clipPath id="${c}"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath>${skyG(g)}</defs>
+<g clip-path="url(#${c})"><g transform="translate(${cx-100*k} ${cy-100*k}) scale(${k})"><rect width="200" height="200" fill="url(#${g})"/>${grid?`<g fill="none" stroke="${CR}" stroke-width="2.4" opacity=".45"><ellipse cx="100" cy="100" rx="88" ry="30"/><ellipse cx="100" cy="100" rx="30" ry="88"/><ellipse cx="100" cy="100" rx="62" ry="88"/><path d="M12 66H188"/></g>`:''}
+${saucer?beam(88,112,64,66,134,140)+sil('ufo-saucer',62,22,76):''}<path d="M0 140L40 116 70 130 100 106 136 128 166 112 200 136V200H0Z" fill="${GR}"/>${dog?sil('dogman',104,52,80):''}</g></g>`}
+// G1 desk globe
+const deskGlobe=(sc=true)=>`<path d="M100 186h-44q4-14 44-16q40 2 44 16Z" fill="${CR}"/><rect x="94" y="150" width="12" height="24" fill="${CR}"/>
+${sphere(100,88,62,{dog:true,saucer:false})}
+<path d="M48 40A74 74 0 0 1 166 128" fill="none" stroke="${GOLD}" stroke-width="9" stroke-linecap="round"/><circle cx="48" cy="40" r="7" fill="${GOLD}"/><circle cx="166" cy="128" r="7" fill="${GOLD}"/>
+<path d="M100 150V162" stroke="${GOLD}" stroke-width="8"/>${sc?silC('ufo-saucer',114,0,60,'#D9673A'):''}`;
+// G2 globe rising behind a ridge with an orbit
+const orbitGlobe=()=>{const c=uid();return `<defs><clipPath id="${c}"><rect width="200" height="150"/></clipPath></defs>
+<path d="M14 118A88 30 -14 0 1 186 76" fill="none" stroke="${CR}" stroke-width="6" stroke-dasharray="2 12" stroke-linecap="round" opacity=".9"/>
+<g clip-path="url(#${c})">${sphere(100,128,82,{dog:false,saucer:false})}</g>
+<path d="M0 150L36 128 64 140 100 120 140 140 170 126 200 146V160H0Z" fill="${GR}"/><path d="M0 152H200" stroke="${CR}" stroke-width="6"/>
+<path d="M186 76A88 30 -14 0 1 14 118" fill="none" stroke="${CR}" stroke-width="6" stroke-linecap="round"/>${silC('ufo-saucer',140,22,66,'#D9673A')}${sil('dogman',28,90,64)}`};
+// G3 O-globe wordmark
+const oGlobe=(cx,cy,r)=>`${sphere(cx,cy,r,{dog:false,saucer:true})}<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${CR}" stroke-width="${r*.17}"/>`;
+const oGlobeInk=(cx,cy,r)=>`${sphere(cx,cy,r,{dog:false,saucer:true})}<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${INK}" stroke-width="${r*.17}"/>`;
+// M1 folded field map
+function foldMap(w=200){const p=[['M10 40L70 22V170L10 186Z','#EADFC2'],['M70 22L130 40V186L70 170Z','#D9CCAA'],['M130 40L190 22V170L130 186Z','#EADFC2']];
+return `${p.map(([d,f])=>`<path d="${d}" fill="${f}" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/>`).join('')}
+<path d="M10 120Q40 100 60 118T110 110T150 90T190 70V100Q160 120 130 130T70 150T10 150Z" fill="${GR}" opacity=".85"/>
+<path d="M18 70Q40 60 70 66T130 62T188 46" fill="none" stroke="${NV}" stroke-width="6" opacity=".55"/>
+<path d="M30 160Q60 130 90 132T120 96T168 70" fill="none" stroke="${RU}" stroke-width="5" stroke-dasharray="2 10" stroke-linecap="round"/>
+${pin(168,70,22)}${pin(62,138,16,OR)}<g fill="${INK}"><ellipse cx="104" cy="118" rx="5" ry="8"/><ellipse cx="114" cy="104" rx="5" ry="8"/></g>`}
+function pin(x,y,s,f=RU){return `<path d="M${x} ${y}c-${s*.6}-${s*.75}-${s*.6}-${s*1.55} 0-${s*1.55}s${s*.6} ${s*.8} 0 ${s*1.55}Z" fill="${f}" stroke="${INK}" stroke-width="3"/><circle cx="${x}" cy="${y-s*1.05}" r="${s*.2}" fill="${CR}"/>`}
+const panel=()=>`<path d="M30 30L170 14V180L30 192Z" fill="#EADFC2" stroke="${INK}" stroke-width="8" stroke-linejoin="round"/><path d="M30 140Q80 118 110 132T170 104V150Q130 160 100 170T30 176Z" fill="${GR}"/><path d="M50 170Q80 130 110 118" fill="none" stroke="${RU}" stroke-width="9" stroke-dasharray="3 16" stroke-linecap="round"/>${pin(124,104,44)}`;
+// M2 pin with scene
+const PIN='M100 194C60 140 28 112 28 74A72 72 0 0 1 172 74C172 112 140 140 100 194Z';
+const scenePin=(ring=CR)=>{const c=uid(),g=uid();return `<defs><clipPath id="${c}"><path d="${PIN}"/></clipPath>${skyG(g)}</defs><g clip-path="url(#${c})"><rect width="200" height="200" fill="url(#${g})"/><circle cx="60" cy="72" r="11" fill="${CR}"/>${beam(90,110,46,72,128,120)}${sil('ufo-saucer',66,8,68)}<path d="M0 118L40 98 70 110 100 92 136 108 166 96 200 116V200H0Z" fill="${GR}"/>${sil('dogman',96,58,74)}</g><path d="${PIN}" fill="none" stroke="${ring}" stroke-width="9" stroke-linejoin="round"/>`};
+// M3 atlas book
+const emblem=(c)=>`<g fill="${c}"><path d="M60 128L80 112 96 120 112 104 132 118 140 112V132H60Z"/></g>${beam(94,106,82,86,114,112).replace(/CR|#F3E3B8/g,c)}<g opacity="1">${sil('ufo-saucer',78,62,44)}</g>`;
+const book=(title=true)=>`<rect x="34" y="12" width="140" height="180" rx="6" fill="${INK}"/><rect x="30" y="8" width="140" height="180" rx="6" fill="${CLOTH}"/><rect x="30" y="8" width="20" height="180" rx="4" fill="#1B342C"/>
+<rect x="60" y="24" width="96" height="148" rx="4" fill="none" stroke="${GOLD}" stroke-width="3"/>
+<circle cx="108" cy="100" r="34" fill="none" stroke="${GOLD}" stroke-width="3"/><g transform="translate(58 34) scale(.5)"><g fill="${GOLD}"><path d="M10 160L48 128 76 144 100 120 140 146 170 132 190 150V170H10Z"/><path d="M88 82L64 150H136L112 82Z" opacity=".55"/></g></g>${sil('ufo-saucer',86,58,44)}
+${title?`<text x="108" y="52" text-anchor="middle" class="np" font-weight="800" font-size="13" fill="${GOLD}" letter-spacing="1.5">ENCOUNTER</text><text x="108" y="156" text-anchor="middle" class="np" font-weight="800" font-size="16" fill="${GOLD}" letter-spacing="4">ATLAS</text>`:''}`;
+const bookIcon=()=>`<rect x="34" y="8" width="132" height="184" rx="10" fill="${CLOTH}" stroke="${GOLD}" stroke-width="8"/><rect x="34" y="8" width="26" height="184" fill="#1B342C"/><path d="M70 150L94 124 112 136 132 114 156 132V150Z" fill="${GOLD}"/>${sil('ufo-saucer',72,36,86)}`;
+const SZ=(f)=>`<div>${S('0 0 200 200',64,f())}<span>64</span></div><div>${S('0 0 200 200',32,f())}<span>32</span></div><div>${S('0 0 200 200',16,f())}<span>16</span></div><div class="lt">${S('0 0 200 200',32,f())}${S('0 0 200 200',16,f())}</div>`;
+const card=(t,d,hero,icon,light)=>`<div class="card"><div class="hero">${hero}</div><div class="sizes">${SZ(icon)}</div><div class="light">${light}</div><div class="label"><b>${t}</b><span>${d}</span></div></div>`;
+const lockup=(m,c)=>S('0 0 400 300',300,`<g transform="translate(110 0) scale(.9)">${m}</g>${wm(200,248,34,c,'middle')}`);
+const side=(m)=>S('0 0 760 200',250,`${m}${wm(212,116,48,INK)}`);
+const O=[
+ card('G1. Desk globe','A vintage desk globe on its stand with a brass meridian arc, Dogman on the ridge and a saucer skimming past. Not a flat circle.',
+  lockup(deskGlobe(),CR),()=>deskGlobe(false),side(deskGlobe())),
+ card('G2. Globe rising, with an orbit','A dusk globe rising behind the ridge, a dotted orbit wrapping it and a saucer riding the orbit. Dogman watches from the ridge.',
+  lockup(orbitGlobe(),CR),orbitGlobe,side(orbitGlobe())),
+ card('G3. Globe in the name','Park-sign lettering where the O of ENCOUNTER is a globe with meridians and a saucer in the dusk. Icon is the globe O.',
+  S('0 0 640 200',360,`<text x="20" y="100" class="np" font-weight="800" font-size="92" fill="${CR}" letter-spacing="2">ENC</text>${oGlobe(228,67,38)}<text x="276" y="100" class="np" font-weight="800" font-size="92" fill="${CR}" letter-spacing="2">UNTER</text><text x="22" y="174" class="np" font-weight="800" font-size="62" fill="${OR}" letter-spacing="30">ATLAS</text>`),
+  ()=>oGlobe(100,100,86),
+  S('0 0 640 200',250,`<text x="20" y="100" class="np" font-weight="800" font-size="92" fill="${INK}" letter-spacing="2">ENC</text>${oGlobeInk(228,67,38)}<text x="276" y="100" class="np" font-weight="800" font-size="92" fill="${INK}" letter-spacing="2">UNTER</text><text x="22" y="174" class="np" font-weight="800" font-size="62" fill="${RU}" letter-spacing="30">ATLAS</text>`)),
+ card('M1. Folded field map','A creased three-panel park map: forest, river, a dotted trail, pins and a line of tracks. Icon is one panel with a pin.',
+  lockup(foldMap(),CR),panel,side(foldMap())),
+ card('M2. Map pin with the scene','The dusk scene inside a map-pin shape: saucer beaming over the ridge, Dogman on the skyline. The icon is the pin itself.',
+  lockup(scenePin(),CR),()=>scenePin(),side(scenePin(INK))),
+ card('M3. Field atlas cover','A cloth-bound field atlas with a gold-stamped emblem (saucer over a ridge) and title. Icon is the book.',
+  lockup(book(),CR),bookIcon,side(book(false)))];
+document.getElementById('g').innerHTML=O.join('');
+</script></body></html>
