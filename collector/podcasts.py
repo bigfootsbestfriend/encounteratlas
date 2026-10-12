@@ -270,7 +270,8 @@ def collect_shows():
             sim = SequenceMatcher(None, norm(name), norm(r.get('collectionName'))).ratio()
             if norm(name) in norm(r.get('collectionName')):
                 sim = max(sim, .9)
-            if sim > best_sim:
+            # equal names: the original has far more episodes than copycat re-uploads
+            if sim > best_sim or (sim == best_sim and best and (r.get('trackCount') or 0) > (best.get('trackCount') or 0)):
                 best, best_sim = r, sim
         if best and best_sim >= .72:
             add(best, 'notable', 0, notable=name)
@@ -381,6 +382,14 @@ def collect_shows():
                         'url': clean_url(ep0.get('trackViewUrl'))} if ep0 else None,
         })
 
+    # Copycat re-uploads reuse a big show's exact name (e.g. a 140-episode "MrBallen Podcast" clone on a generic
+    # audiobook account): for each name keep only the show with the most episodes, which is the original.
+    best = {}
+    for s in shows:
+        k = norm(s['name'])
+        if k not in best or s['episodes'] > best[k]['episodes']:
+            best[k] = s
+    shows = [s for s in shows if best[norm(s['name'])] is s]
     # dedupe: same normalised name, or same feed
     shows.sort(key=lambda s: -s['score'])
     seen, out = set(), []

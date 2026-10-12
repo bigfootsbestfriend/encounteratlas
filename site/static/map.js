@@ -77,7 +77,7 @@
     if (html) n.innerHTML = html; else if (text != null) n.textContent = text;
     return n;
   }
-  function link(href, text) { const a = node('a', '', text); a.href = href; return a; }
+  function link(href, text) { const a = node('a', '', text); a.href = href; if (a.host !== location.host) { a.target = '_blank'; a.rel = 'noopener'; } return a; }
   function pointer(id) {
     map.on('mouseenter', id, () => { map.getCanvas().style.cursor = 'pointer'; });
     map.on('mouseleave', id, () => { map.getCanvas().style.cursor = ''; });
@@ -135,6 +135,7 @@
       popup(e.features[0].geometry.coordinates, [
         node('div', 'pop-kind', null, '<span class="dot" style="background:' + (CAT[p.c] || '#ccc') + '"></span><span>' + p.n + '</span>'),
         node('p', 'pop-h', p.t), node('p', 'pop-meta', p.p + ', ' + p.y),
+        ...(p.u ? [link(p.u, 'Read the full story')] : []),
         link(BASE + '/creatures/' + p.s + '/', 'About the ' + p.n)]);
     });
     pointer('famous');
@@ -162,17 +163,20 @@
     if (!data || !data.features || !data.features.length) return;
     map.addSource('places', { type: 'geojson', data });
     map.addLayer({ id: 'places', type: 'circle', source: 'places', paint: {
-      'circle-color': '#9CC46B', 'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 5, 10, 9],
+      // Festivals and gatherings get their own colour (and their own "Events and gatherings" chip)
+      'circle-color': ['case', ['==', ['get', 'k'], 'festival'], '#F0806A', '#9CC46B'], 'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 5, 10, 9],
       'circle-stroke-color': '#13261F', 'circle-stroke-width': 2 } });
     map.on('click', 'places', (e) => {
       const p = e.features[0].properties;
       const nodes = [node('div', 'pop-kind', null, '<span>' + (p.type || 'Place to visit') + '</span>'), node('p', 'pop-h', p.name || p.t || '')];
       if (p.city || p.region) nodes.push(node('p', 'pop-meta', [p.city, p.region].filter(Boolean).join(', ')));
-      if (p.slug) nodes.push(link(BASE + '/places/' + p.slug + '/', 'Visit details'));
+      if (p.slug) nodes.push(link(BASE + '/places/' + p.slug + '/', p.k === 'festival' ? 'Dates and details' : 'Visit details'));
+      if (p.k === 'festival') nodes.push(link(BASE + '/events/', 'All upcoming events'));
       popup(e.features[0].geometry.coordinates, nodes);
     });
     pointer('places');
     LAYERS.push({ key: 'places', label: 'Places to visit', color: '#9CC46B', ids: ['places'] });
+    LAYERS.push({ key: 'events', label: 'Events and gatherings', color: '#F0806A', ids: [] });
   }
 
   // Newer official cases: FAA pilot reports (NARA RG 615) and the Pentagon's PURSUE files
@@ -214,16 +218,33 @@
   const state = { type: params.get('type') || 'all', cat: params.get('cat') || '', creature: params.get('creature') || '' };
   let famousData = null;
   function setVis(ids, on) { for (const id of ids) if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none'); }
+  const chipBox = document.querySelector('.cchips'), find = document.querySelector('.cfind-in'), none = document.querySelector('.cfind-none');
+  // Which creature chips to show: matches for the search box, else the open category's creatures.
+  function showChips(openCat) {
+    if (!chipBox) return;
+    const q = find ? find.value.trim().toLowerCase() : '';
+    let n = 0;
+    chipBox.querySelectorAll('.cchip').forEach((c) => {
+      const on = q ? c.dataset.names.includes(q) : (!!openCat && c.dataset.cat === openCat);
+      c.hidden = !on; if (on) n++;
+    });
+    chipBox.hidden = n === 0;
+    if (none) none.hidden = !(q && n === 0);
+  }
   function apply(fit) {
     const { type, cat, creature } = state;
     const narrowed = !!(cat || creature);
     const showUfoFiles = (type === 'all' || type === 'ufo') && (!narrowed || cat === 'ufo');
     setVis(['bb-glow', 'bb-clusters', 'bb-count', 'bb-point', 'faa', 'pursue'], showUfoFiles);
     setVis(['military'], (type === 'all' || type === 'military') && !narrowed);
-    setVis(['places'], type === 'all' || type === 'places');
+    setVis(['places'], type === 'all' || type === 'places' || type === 'events');
     if (map.getLayer('places')) {
       const slugs = cat ? [...document.querySelectorAll('.cchip')].filter((b) => b.dataset.cat === cat).map((b) => b.dataset.creature) : null;
-      map.setFilter('places', creature ? ['==', ['get', 'c'], creature] : slugs ? ['in', ['get', 'c'], ['literal', slugs]] : null);
+      const f = ['all'];
+      if (creature) f.push(['==', ['get', 'c'], creature]); else if (slugs) f.push(['in', ['get', 'c'], ['literal', slugs]]);
+      if (type === 'events') f.push(['==', ['get', 'k'], 'festival']);
+      if (type === 'places') f.push(['!=', ['get', 'k'], 'festival']);
+      map.setFilter('places', f.length > 1 ? f : null);
     }
     const showFamous = type === 'all' || type === 'cryptid' || (type === 'ufo');
     setVis(['famous'], showFamous);
@@ -242,11 +263,10 @@
     }
     document.querySelectorAll('.tchip').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.type === type && !narrowed)));
     reset.hidden = !narrowed && type === 'all';
-    document.querySelectorAll('.cchip').forEach((b) => {
-      const on = creature ? b.dataset.creature === creature : (cat ? b.dataset.cat === cat : false);
-      b.setAttribute('aria-pressed', String(on));
-      b.classList.toggle('dim', narrowed && !on);
-    });
+    document.querySelectorAll('.cchip').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.creature === creature)));
+    const openCat = cat || (creature && (document.querySelector(`.cchip[data-creature="${creature}"]`) || { dataset: {} }).dataset.cat) || '';
+    document.querySelectorAll('.catchip').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.cat === openCat)));
+    showChips(openCat);
     const q = new URLSearchParams();
     if (type !== 'all') q.set('type', type);
     if (cat) q.set('cat', cat);
@@ -261,8 +281,6 @@
         // Worldwide groups (Bigfoot to Yowie) stay on the default view rather than zooming out to mid-Atlantic.
         if (b.getEast() - b.getWest() < 150) map.fitBounds(b, { padding: 70, maxZoom: 7 });
       }
-      const on = document.querySelector('.cchip[aria-pressed="true"]');
-      if (on) on.scrollIntoView({ inline: 'center', block: 'nearest' });
     }
   }
   // A clear way back after picking a creature: a button on the map that shows everything at the starting view.
@@ -276,33 +294,16 @@
     state.type = b.dataset.type; state.cat = ''; state.creature = ''; apply(false);
   }));
   document.querySelectorAll('.cchip').forEach((b) => b.addEventListener('click', () => {
-    if (state.creature === b.dataset.creature) { state.creature = ''; apply(false); return; }
+    if (state.creature === b.dataset.creature) { state.creature = ''; state.cat = b.dataset.cat; apply(false); return; }
     state.creature = b.dataset.creature; state.cat = ''; state.type = 'all'; apply(true);
-    b.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
   }));
-
-  // Creature chip row: arrow buttons page through it, and a vertical wheel scrolls it sideways until it hits an end.
-  const row = document.querySelector('.cchips');
-  if (row) {
-    const prev = document.querySelector('.cc-arrow.prev'), next = document.querySelector('.cc-arrow.next');
-    const ends = () => {
-      if (prev) prev.hidden = row.scrollLeft < 8;
-      if (next) next.hidden = row.scrollLeft + row.clientWidth > row.scrollWidth - 8;
-    };
-    const page = (d) => row.scrollBy({ left: d * row.clientWidth * 0.8, behavior: 'smooth' });
-    if (prev) prev.addEventListener('click', () => page(-1));
-    if (next) next.addEventListener('click', () => page(1));
-    row.addEventListener('scroll', ends, { passive: true });
-    row.addEventListener('wheel', (ev) => {
-      if (Math.abs(ev.deltaX) > Math.abs(ev.deltaY)) return;
-      const atStart = row.scrollLeft <= 0 && ev.deltaY < 0, atEnd = row.scrollLeft + row.clientWidth >= row.scrollWidth - 1 && ev.deltaY > 0;
-      if (atStart || atEnd) return;
-      ev.preventDefault();
-      row.scrollLeft += ev.deltaY;
-    }, { passive: false });
-    window.addEventListener('resize', ends);
-    ends();
-  }
+  // Category chips open that group's creatures (and filter the map to it); clicking again closes it.
+  document.querySelectorAll('.catchip').forEach((b) => b.addEventListener('click', () => {
+    const open = b.getAttribute('aria-pressed') === 'true';
+    if (find) find.value = '';
+    state.creature = ''; state.type = 'all'; state.cat = open ? '' : b.dataset.cat; apply(!open);
+  }));
+  if (find) find.addEventListener('input', () => showChips(state.cat || ''));
 
   window.eaMap = map; // handy for debugging and screenshot tests
   map.on('load', async () => {

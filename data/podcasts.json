@@ -547,6 +547,31 @@
    "about": "All the latest shows from Small Town Monsters, including our post-show livestreams and The Lore You Know!"
   },
   {
+   "id": 1608813794,
+   "name": "MrBallen Podcast: Strange, Dark & Mysterious Stories",
+   "publisher": "Ballen Studios",
+   "genre": "True Crime",
+   "episodes": 567,
+   "latest": "2026-10-12",
+   "recent30": 17,
+   "apple": "https://podcasts.apple.com/us/podcast/mrballen-podcast-strange-dark-mysterious-stories/id1608813794",
+   "feed": "https://feeds.simplecast.com/dloY8UYJ",
+   "art": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/a5/9c/8a/a59c8a0a-0cb2-9862-e0d6-7b5ee4e9e157/mza_12554888833857337425.jpg/600x600bb.jpg",
+   "explicit": false,
+   "topics": [
+    "paranormal"
+   ],
+   "notable": true,
+   "stale": false,
+   "score": 37.65,
+   "last_ep": {
+    "title": "The Hidden Connection (PODCAST EXCLUSIVE EPISODE)",
+    "date": "2026-10-12",
+    "url": "https://podcasts.apple.com/us/podcast/the-hidden-connection-podcast-exclusive-episode/id1608813794?i=1000793185674"
+   },
+   "about": "MrBallen Podcast: Strange, Dark and Mysterious Stories is a true crime and mystery podcast that presents strange, dark and mysterious content delivered in story format. The program is hosted by John Allen a.k.a. MrBallen. Subscribe to SiriusXM Podcasts+ to listen to new episodes 7-days early and…"
+  },
+  {
    "id": 1431872901,
    "name": "UFO WARNING",
    "publisher": "UFO WARNING",
@@ -800,27 +825,27 @@
    "about": "Looking for new ways to explore the unexplained, paranormal, reality, consciousness, and the deeper side of human experiences... Hosted on Acast. See for more information."
   },
   {
-   "id": 1568287960,
+   "id": 1594940535,
    "name": "UFO - Extraterrestrial Reality",
    "publisher": "James Quirk",
    "genre": "Documentary",
    "episodes": 944,
    "latest": "2026-10-11",
    "recent30": 13,
-   "apple": "https://podcasts.apple.com/us/podcast/ufo-extraterrestrial-reality/id1568287960",
+   "apple": "https://podcasts.apple.com/us/podcast/ufo-extraterrestrial-reality/id1594940535",
    "feed": "https://anchor.fm/s/5b711ba4/podcast/rss",
-   "art": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts126/v4/07/d7/7b/07d77ba9-6ebd-eb1f-0dbb-9356f50e28e5/mza_5590736735977772607.jpg/600x600bb.jpg",
+   "art": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/e9/ca/b8/e9cab829-df1e-f928-3218-b6c9dd1c93e2/mza_17210609351267490856.jpg/600x600bb.jpg",
    "explicit": false,
    "topics": [
     "ufo"
    ],
    "notable": false,
    "stale": false,
-   "score": 34.94,
+   "score": 34.71,
    "last_ep": {
     "title": "Disclosure by ETs or Botched Abduction Top Explanations for PA Backyard Alien Incident",
     "date": "2026-10-11",
-    "url": "https://podcasts.apple.com/us/podcast/disclosure-by-ets-or-botched-abduction-top-explanations/id1568287960?i=1000795195857"
+    "url": "https://podcasts.apple.com/us/podcast/disclosure-by-ets-or-botched-abduction-top-explanations/id1594940535?i=1000795196331"
    },
    "about": "Reporter Jim Quirk discusses UFOs and other mysterious topics and some current affairs. Please check out my YouTube channel, as well: Contact Jim Quirk at"
   },
@@ -902,31 +927,6 @@
    "about": "Expanded Perspectives Podcast is your source for Ancient History, Alternative History, Cryptozoology, UFO's, Conspiracy Theories and all things Paranormal. Join the hosts and lifelong friends Kyle Philson and Cameron Hale as they dig into mysteries of our ancient past, unusual events, unbelievable…"
   },
   {
-   "id": 6807541116,
-   "name": "MrBallen Podcast: Strange, Dark & Mysterious Stories",
-   "publisher": "Noe",
-   "genre": "Books",
-   "episodes": 140,
-   "latest": "2026-09-13",
-   "recent30": 41,
-   "apple": "https://podcasts.apple.com/us/podcast/mrballen-podcast-strange-dark-mysterious-stories/id6807541116",
-   "feed": "https://media.rss.com/audiobooks-pod6/feed.xml",
-   "art": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/db/14/93/db149322-c1f6-70eb-db31-6213bf58ce7b/mza_12779190523906029957.jpg/600x600bb.jpg",
-   "explicit": false,
-   "topics": [
-    "paranormal"
-   ],
-   "notable": true,
-   "stale": false,
-   "score": 34.39,
-   "last_ep": {
-    "title": "9/11",
-    "date": "2026-09-13",
-    "url": "https://podcasts.apple.com/us/podcast/9-11/id6807541116?i=1000789377380"
-   },
-   "about": ""
-  },
-  {
    "id": 978052928,
    "name": "Lore",
    "publisher": "Aaron Mahnke",
@@ -976,6 +976,33 @@
     "url": "https://podcasts.apple.com/us/podcast/an-important-update-about-howard-november-2024/id155963493?i=1000677185247"
    },
    "about": "Join Howard Hughes as he explores the world of the unexplained, live from London Howard has been in conversation with some of the world's most renown mediums and paranormal investigators, more information is available on The Unexplained website - where you can join the mailing list, contact Howard…"
+  },
+  {
+   "id": 1896795877,
+   "name": "Mysterious Universe",
+   "publisher": "James Jeans",
+   "genre": "Books",
+   "episodes": 71,
+   "latest": "2026-10-12",
+   "recent30": 32,
+   "apple": "https://podcasts.apple.com/us/podcast/mysterious-universe/id1896795877",
+   "feed": "https://www.spreaker.com/show/7009424/episodes/feed",
+   "art": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/05/6f/3f/056f3f59-af22-77db-f279-a7ce56afb7c1/mza_17897134966344872545.jpg/600x600bb.jpg",
+   "explicit": false,
+   "topics": [
+    "paranormal",
+    "ufo",
+    "cryptids"
+   ],
+   "notable": true,
+   "stale": false,
+   "score": 34.11,
+   "last_ep": {
+    "title": "Relativity The Special and General Theory-Albert Einstein",
+    "date": "2026-10-12",
+    "url": "https://podcasts.apple.com/us/podcast/relativity-the-special-and-general-theory-albert-einstein/id1896795877?i=1000795921252"
+   },
+   "about": "One of the earliest of the popular science book genre, it is a philosophical summary of the new physics of the era by a leading British physicist. Keeping technical references to a bare minimum, Jeans argues that physics has entered a new age in which mathematical representation has supplanted…"
   },
   {
    "id": 990897842,
@@ -1341,59 +1368,6 @@
    "about": "Two Girls One Ghost is a paranormal comedy podcast, deemed “The Most Haunted Podcast in America”. Award-winning hosts and best friends Corinne Vien and Sabrina Deana-Roga bring an obsession with the strange, the spooky, and the supernatural to deeply researched stories and listener-submitted…"
   },
   {
-   "id": 329937558,
-   "name": "Mysterious Universe",
-   "publisher": "8th Kind",
-   "genre": "Social Sciences",
-   "episodes": 20,
-   "latest": "2026-10-09",
-   "recent30": 4,
-   "apple": "https://podcasts.apple.com/us/podcast/mysterious-universe/id329937558",
-   "feed": "https://feeds.megaphone.fm/mupod",
-   "art": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts112/v4/1e/33/f9/1e33f91a-edfa-0e84-2c12-e9eb3e464b07/mza_4914288206950426810.jpg/600x600bb.jpg",
-   "explicit": false,
-   "topics": [
-    "ufo",
-    "paranormal",
-    "cryptids"
-   ],
-   "notable": true,
-   "stale": false,
-   "score": 31.8,
-   "last_ep": {
-    "title": "The Tayos Caves Mystery Part 1",
-    "date": "2026-10-09",
-    "url": "https://podcasts.apple.com/us/podcast/the-tayos-caves-mystery-part-1/id329937558?i=1000794043432"
-   },
-   "about": "Always interesting and often hilarious, join hosts Joe Hodgdon and Brandon Thomas as they investigate the latest in reality, futurology, weird science, consciousness research, alternative history, cryptozoology, UFOs, and new-age absurdity."
-  },
-  {
-   "id": 1527642980,
-   "name": "Paranormal UK Radio Network",
-   "publisher": "Paranormal UK Radio Network",
-   "genre": "Society & Culture",
-   "episodes": 1000,
-   "latest": "2026-10-12",
-   "recent30": 21,
-   "apple": "https://podcasts.apple.com/us/podcast/paranormal-uk-radio-network/id1527642980",
-   "feed": "https://www.spreaker.com/show/4541473/episodes/feed",
-   "art": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/3c/56/7f/3c567fdd-0508-ff81-4fe5-841eef068dc7/mza_2826610383961660205.jpg/600x600bb.jpg",
-   "explicit": false,
-   "topics": [
-    "ufo",
-    "paranormal"
-   ],
-   "notable": false,
-   "stale": false,
-   "score": 31.6,
-   "last_ep": {
-    "title": "Zones of the Unknown - Ep.4: Paranormal Investigation Tools",
-    "date": "2026-10-12",
-    "url": "https://podcasts.apple.com/us/podcast/zones-of-the-unknown-ep-4-paranormal-investigation-tools/id1527642980?i=1000795878519"
-   },
-   "about": "Paranormal UK Radio Network offers a variety of paranormal talk radio shows that cover all aspects of the strange and paranormal in the United Kingdom and beyond! Become a supporter of this podcast: ."
-  },
-  {
    "id": 1757327783,
    "name": "SASQUATCH THEORY",
    "publisher": "SASQUATCH THEORY",
@@ -1545,6 +1519,32 @@
    "about": "UFO Talker will be available every Wednesday. It will be a mixture of discussion, interviews and people describing their sightings of unidentified flying objects. You can contact the podcast by email:"
   },
   {
+   "id": 1108007596,
+   "name": "Paranormal UK Radio Network",
+   "publisher": "Paranormal UK Radio Network",
+   "genre": "Society & Culture",
+   "episodes": 1001,
+   "latest": "2026-10-12",
+   "recent30": 21,
+   "apple": "https://podcasts.apple.com/us/podcast/paranormal-uk-radio-network/id1108007596",
+   "feed": "https://www.spreaker.com/show/4541473/episodes/feed",
+   "art": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/8e/6f/df/8e6fdf54-52eb-0e02-3970-cd7bc1ed8677/mza_9956002645077138191.jpg/600x600bb.jpg",
+   "explicit": false,
+   "topics": [
+    "ufo",
+    "paranormal"
+   ],
+   "notable": false,
+   "stale": false,
+   "score": 31.17,
+   "last_ep": {
+    "title": "Zones of the Unknown - Ep.4: Paranormal Investigation Tools",
+    "date": "2026-10-12",
+    "url": "https://podcasts.apple.com/us/podcast/zones-of-the-unknown-ep-4-paranormal-investigation-tools/id1108007596?i=1000795877494"
+   },
+   "about": "Paranormal UK Radio Network offers a variety of paranormal talk radio shows that cover all aspects of the strange and paranormal in the United Kingdom and beyond! Become a supporter of this podcast: ."
+  },
+  {
    "id": 1589077549,
    "name": "My Bigfoot Sighting",
    "publisher": "Vic Cundiff",
@@ -1677,7 +1677,7 @@
    "genre": "True Crime",
    "episodes": 561,
    "latest": "2026-10-09",
-   "recent30": 14,
+   "recent30": 13,
    "apple": "https://podcasts.apple.com/us/podcast/just-creepy-scary-stories/id1557367493",
    "feed": "https://anchor.fm/s/cb11d70/podcast/rss",
    "art": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts125/v4/ab/03/6e/ab036e92-d400-ac70-9bb4-7cf780b4f9fd/mza_4998497495646275807.jpg/600x600bb.jpg",
@@ -1986,7 +1986,7 @@
    "genre": "Social Sciences",
    "episodes": 82,
    "latest": "2026-10-09",
-   "recent30": 3,
+   "recent30": 2,
    "apple": "https://podcasts.apple.com/us/podcast/universal-disclosure-podcast-investigating-ufos-uap/id1755654407",
    "feed": "https://rss.buzzsprout.com/2373653.rss",
    "art": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/21/64/2f/21642f0e-ee08-5992-26dc-3941c5568afc/mza_12349276273911477148.jpg/600x600bb.jpg",
@@ -2215,7 +2215,7 @@
    "genre": "News",
    "episodes": 1000,
    "latest": "2026-10-09",
-   "recent30": 10,
+   "recent30": 9,
    "apple": "https://podcasts.apple.com/us/podcast/truth-be-told-with-tony-sweet-paranormal/id980666162",
    "feed": "https://www.spreaker.com/show/3589860/episodes/feed",
    "art": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/62/08/f3/6208f3bf-5fe0-e6d2-5300-3a9e349a2d33/mza_5137963487470452392.jpg/600x600bb.jpg",
@@ -2446,7 +2446,7 @@
    "genre": "Arts",
    "episodes": 390,
    "latest": "2026-10-12",
-   "recent30": 10,
+   "recent30": 9,
    "apple": "https://podcasts.apple.com/us/podcast/scary-stories-from-bad-vibes/id1614005240",
    "feed": "https://www.spreaker.com/show/5472198/episodes/feed",
    "art": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/e6/0c/cb/e60ccbdc-a9da-be98-b01b-4f8ad3042a77/mza_7155817090806456122.jpg/600x600bb.jpg",
@@ -3629,32 +3629,6 @@
    "about": "Jason and David are on a journey to find the truth on the Paranormal. We are doing this by interviewing guest that are in the top of there field in categories such as these, paranormal, cryptids, aliens, conspiracy theories, forbidden history, Folklore, and more. Come join us on this journey of…"
   },
   {
-   "id": 1770602068,
-   "name": "Sterling Psychic Medium, Paranormal, ET, UFO, AI, The Future, The Unexplained",
-   "publisher": "Sterling",
-   "genre": "Entertainment News",
-   "episodes": 83,
-   "latest": "2026-06-30",
-   "recent30": 0,
-   "apple": "https://podcasts.apple.com/us/podcast/sterling-psychic-medium-paranormal-et-ufo-ai-the/id1770602068",
-   "feed": "https://media.rss.com/sterling-psychic-medium-paranormal-et-ufo-ai-future/feed.xml",
-   "art": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/43/8b/66/438b669b-ede6-d57f-be65-874dfe2c8b85/mza_13546549492374773273.png/600x600bb.jpg",
-   "explicit": false,
-   "topics": [
-    "ufo",
-    "paranormal"
-   ],
-   "notable": false,
-   "stale": false,
-   "score": 26.25,
-   "last_ep": {
-    "title": "Sterling Psychic Medium, Season 3, Episode 27, Paranormal Events, Politics, ET UFO AI Future, New Technology, World Events, The Unexplained",
-    "date": "2026-06-30",
-    "url": "https://podcasts.apple.com/us/podcast/sterling-psychic-medium-season-3-episode-27-paranormal/id1770602068?i=1000774903692"
-   },
-   "about": "Sterling is an Internationally known Psychic and Medium with over three decades of experience helping thousands of people worldwide by providing valuable insights. His YouTube Channel \"Sterling Psychic Medium\" has millions of viewers around the world. Book-A-Session with Sterling: YouTube Channel…"
-  },
-  {
    "id": 1698583278,
    "name": "Chillers and Thrillers: A Paranormal Podcast",
    "publisher": "Chillers and Thrillers | Horror Paranormal Ghost Storytelling",
@@ -3831,6 +3805,32 @@
     "url": "https://podcasts.apple.com/us/podcast/cryptid-minisode-ohio-bigfoot-jamboree-2026/id1756207379?i=1000793826050"
    },
    "about": "Join two bearded buddies as they dive deep into urban legends , cryptids , and all things creepy, spooky, and unexplained —each episode paired with a refreshing craft beer. Whether you're into haunted tales, mythical creatures, or paranormal mysteries, Kraken Cans is your new favorite stop for…"
+  },
+  {
+   "id": 1805660070,
+   "name": "Sterling Psychic Medium, Paranormal, ET, UFO, AI, The Future, The Unexplained",
+   "publisher": "Sterling",
+   "genre": "Entertainment News",
+   "episodes": 104,
+   "latest": "2026-06-30",
+   "recent30": 0,
+   "apple": "https://podcasts.apple.com/us/podcast/sterling-psychic-medium-paranormal-et-ufo-ai-the/id1805660070",
+   "feed": "https://media.rss.com/sterling-psychic-medium-paranormal-et-ufo-ai-future/feed.xml",
+   "art": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/34/7c/1e/347c1e1b-a753-19b0-8f01-db4f3f09be61/mza_13674741531000143278.png/600x600bb.jpg",
+   "explicit": false,
+   "topics": [
+    "ufo",
+    "paranormal"
+   ],
+   "notable": false,
+   "stale": false,
+   "score": 25.97,
+   "last_ep": {
+    "title": "Sterling Psychic Medium, Season 3, Episode 27, Paranormal Events, Politics, ET UFO AI Future, New Technology, World Events, The Unexplained",
+    "date": "2026-06-30",
+    "url": "https://podcasts.apple.com/us/podcast/sterling-psychic-medium-season-3-episode-27-paranormal/id1805660070?i=1000774899250"
+   },
+   "about": "Sterling is an Internationally known Psychic and Medium with over three decades of experience helping thousands of people worldwide by providing valuable insights. His YouTube Channel \"Sterling Psychic Medium\" has millions of viewers around the world. Book-A-Session with Sterling: YouTube Channel…"
   },
   {
    "id": 645706623,
@@ -5265,7 +5265,7 @@
    "genre": "Society & Culture",
    "episodes": 50,
    "latest": "2026-10-06",
-   "recent30": 4,
+   "recent30": 3,
    "apple": "https://podcasts.apple.com/us/podcast/into-the-shadows-macomb-paranormal-investigations/id1893105086",
    "feed": "https://media.rss.com/into-the-shadows-a-macomb-paranormal-investigation/feed.xml",
    "art": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/b8/c0/e3/b8c0e30f-115f-3a30-9c7b-25bf0854a7a0/mza_15373224095430369190.png/600x600bb.jpg",

@@ -259,7 +259,8 @@ p { margin: 0 0 1em; }
 .tchips { display: flex; flex-wrap: wrap; gap: .4rem; }
 .tchip { font: 600 .92rem var(--body); padding: .4rem .85rem; border-radius: 999px; border: 1.5px solid #3A5A4C; background: transparent; color: var(--lichen); cursor: pointer; }
 .tchip[aria-pressed="true"] { background: var(--lichen); color: var(--spruce); border-color: var(--lichen); }
-.cchips { display: flex; gap: .4rem; overflow-x: auto; padding: .55rem 0 .4rem; scrollbar-width: thin; scroll-snap-type: x proximity; }
+.cchips { display: flex; flex-wrap: wrap; gap: .4rem; padding: .55rem 0 .2rem; max-height: 11rem; overflow-y: auto; }
+.cchips[hidden] { display: none; }
 .cchip { flex: none; scroll-snap-align: start; display: flex; align-items: center; gap: .4rem; font: 600 .88rem var(--body); padding: .3rem .75rem .3rem .35rem; border-radius: 999px; border: 1.5px solid #2B4A3D; background: #1A3229; color: #E8ECDD; cursor: pointer; white-space: nowrap; }
 .cchip .ico { width: 26px; height: 26px; }
 .cchip[aria-pressed="true"] { border-color: var(--lantern); background: #2A3A22; }
@@ -327,10 +328,7 @@ p { margin: 0 0 1em; }
   .maplibregl-map .maplibregl-popup-content { border-radius: 14px; padding-bottom: 1rem; }
 }
 
-/* Creature chips: fade at the right edge so it's clear the row scrolls; no visible scrollbar */
-.cchips { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 56px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 56px), transparent);
-  padding-right: 56px; scroll-padding-inline: 0 56px; scroll-behavior: smooth; overscroll-behavior-x: contain; scrollbar-width: none; }
-.cchips::-webkit-scrollbar { display: none; }
+
 
 /* Full-screen map page: header + filter bar + map exactly fill the screen, so nothing scrolls under the sticky header */
 body.mapper { height: 100vh; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
@@ -348,14 +346,29 @@ body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
   .map-full-bar .tchip { flex: none; }
   .maplibregl-map .maplibregl-popup { bottom: 34px; }
 }
-@media (prefers-reduced-motion: reduce) { .cchips { scroll-behavior: auto; } }
+
 .map-frame.full { max-height: none; }
 .ufo-more { margin: 1.4rem 0 1.4rem; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)) !important; }
 /* Header: the wordmark never shrinks; with 9 nav items the nav drops to its own row below ~1100px */
 .brand { flex: none; }
 .nav { min-width: 0; }
+/* Report an encounter: on every page, top right, the brightest thing in the header */
+.report-btn { flex: none; display: inline-flex; align-items: center; gap: .5rem; padding: .6rem 1.05rem; border-radius: 999px;
+  background: var(--lantern); color: #13261F !important; font: 800 .98rem "Public Sans", sans-serif; text-decoration: none; white-space: nowrap;
+  box-shadow: 0 0 0 3px rgba(242, 179, 61, .22), 0 6px 18px rgba(0, 0, 0, .35); }
+.report-btn:hover { background: #FFC85A; }
+.report-btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.report-btn[aria-current] { box-shadow: 0 0 0 3px #fff; }
+.rb-dot { width: 9px; height: 9px; border-radius: 50%; background: #C0301F; box-shadow: 0 0 0 3px rgba(192, 48, 31, .25); }
+@media (prefers-reduced-motion: no-preference) { .rb-dot { animation: rb-pulse 2.4s ease-in-out infinite; } }
+@keyframes rb-pulse { 50% { box-shadow: 0 0 0 6px rgba(192, 48, 31, 0); } }
+.top .nav { margin-left: auto; }
+.rb-short { display: none; }
+@media (max-width: 480px) { .rb-long { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .rb-short { display: inline; } }
 @media (max-width: 1100px) {
   .top { flex-wrap: wrap; padding-bottom: .4rem; row-gap: .3rem; }
+  .top .nav { order: 3; margin-left: 0; }
+  .report-btn { order: 2; margin-left: auto; padding: .5rem .85rem; font-size: .9rem; }
   .nav { width: 100%; margin: 0 -6px; -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); padding-right: 28px; }
 }
 
@@ -380,13 +393,48 @@ body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
 .map-reset:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
 .map-reset[hidden] { display: none; }
 
-/* Creature chip row: arrows for mouse users, plus the wheel slides it sideways (map.js) */
-.cchips-wrap { position: relative; }
-.cc-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 38px; height: 38px; border-radius: 50%;
-  border: 1px solid var(--spruce-3); background: var(--spruce); color: var(--lichen); font: 700 1.6rem/1 "Public Sans", sans-serif;
-  cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.4); display: grid; place-items: center; padding: 0 0 3px; }
-.cc-arrow.prev { left: -6px; } .cc-arrow.next { right: -6px; }
-.cc-arrow:hover { background: var(--spruce-2); color: #fff; }
-.cc-arrow:focus-visible { outline: 3px solid var(--lantern); outline-offset: 2px; }
-.cc-arrow[hidden] { display: none; }
-@media (hover: none) { .cc-arrow { display: none; } }
+/* Map creature finder: category chips + search; the chosen group's creature chips wrap underneath */
+.cfind { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .6rem; margin-top: .55rem; }
+.catchips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.catchip { display: inline-flex; align-items: center; gap: .4rem; font: 600 .88rem var(--body); padding: .3rem .7rem .3rem .4rem; border-radius: 999px;
+  border: 1.5px solid #2B4A3D; background: #1A3229; color: #E8ECDD; cursor: pointer; white-space: nowrap; }
+.catchip .ico { width: 24px; height: 24px; }
+.catchip small { font-size: .78rem; opacity: .6; }
+.catchip:hover { border-color: var(--lichen); }
+.catchip[aria-pressed="true"] { border-color: var(--lantern); background: #2A3A22; }
+.catchip:focus-visible, .cchip:focus-visible { outline: 3px solid var(--lantern); outline-offset: 2px; }
+.cfind-in { flex: 1 1 12rem; max-width: 16rem; font: 500 .92rem var(--body); padding: .45rem .9rem; border-radius: 999px; border: 1.5px solid #2B4A3D;
+  background: #0E1D18; color: #E8ECDD; }
+.cfind-in::placeholder { color: #8FA394; }
+.cfind-in:focus { outline: 3px solid var(--lantern); outline-offset: 1px; border-color: transparent; }
+.cfind-none { margin: .5rem 0 0; font-size: .9rem; color: var(--muted-l, #9FB3A3); }
+.cchip[hidden] { display: none; }
+@media (max-width: 600px) {
+  .catchip { font-size: .8rem; padding: .25rem .6rem .25rem .3rem; gap: .3rem; } .catchip .ico { width: 20px; height: 20px; } .catchip small { display: none; }
+  .tchip { font-size: .85rem; } .cfind-in { max-width: none; }
+}
+/* Creature pages: full-story link under the summary, case summaries and sources, guide band, related groups */
+.lede-story { margin: .4rem 0 0; } .lede-story a { color: var(--lantern); font-weight: 700; }
+.case-sum { margin: .45rem 0 .3rem; font-size: .98rem; line-height: 1.55; color: var(--ink); }
+.case-links { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin: .2rem 0 0; font-size: .92rem; }
+.case-links .full-story { font-weight: 700; }
+.case-src { color: var(--muted-d) !important; }
+.cg-band { padding: 2.4rem 0 2.2rem; }
+.cg-band h2 { margin: 0 0 .3rem; }
+.cg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: .9rem; margin-top: 1.1rem; }
+.cg-card { display: flex; gap: 1rem; align-items: flex-start; padding: 1.1rem 1.2rem; border-radius: var(--r-md); background: var(--spruce-2);
+  border: 1px solid var(--spruce-3); color: var(--lichen) !important; text-decoration: none; }
+.cg-card:hover { border-color: var(--lantern); }
+.cg-card:focus-visible { outline: 3px solid var(--lantern); outline-offset: 2px; }
+.cg-card b { display: block; font: 700 1.2rem/1.25 var(--display); color: #F3F1E4; margin: .15rem 0 .3rem; }
+.cg-card small { display: block; font-size: .93rem; line-height: 1.45; }
+.cg-kick { font-size: .78rem; font-weight: 700; color: var(--lantern); }
+.cg-go { display: inline-block; margin-top: .55rem; font-weight: 700; color: var(--lantern); font-size: .92rem; }
+.cg-ico { flex: none; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: #0E1D18; color: var(--tone, var(--lantern)); }
+.cg-ico .ico { width: 64%; height: 64%; }
+.cg-all { margin: 1rem 0 0; } .cg-all a { color: var(--lichen); }
+.rel-wrap { padding: 1rem 0 2rem; }
+.rel-why { margin: -.4rem 0 .4rem; color: var(--muted-d); }
+.tone-hominid { --tone: var(--c-hominid); } .tone-canid { --tone: var(--c-canid); } .tone-winged { --tone: var(--c-winged); }
+.tone-entity { --tone: var(--c-entity); } .tone-fae { --tone: var(--c-fae); } .tone-ufo { --tone: var(--c-ufo); } .tone-other { --tone: var(--c-other); }
+.cg-band h2 { color: #F3F1E4; } .cg-band .lede-dark { color: var(--lichen); }

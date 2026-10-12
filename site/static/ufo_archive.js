@@ -110,7 +110,7 @@
           const meta = [p.r && p.r !== p.t ? p.r : '', p.w, p.f].filter(Boolean).join(' · ');
           if (meta) div.append(el('p', 'pop-meta', meta));
           if (p.d) div.append(el('p', 'pop-d', p.d));
-          const a = el('a', '', p.k === 'faa' ? 'Read the FAA report' : 'Open the file'); a.href = p.u; a.rel = 'noopener';
+          const a = el('a', '', p.k === 'faa' ? 'Read the FAA report' : 'Open the file'); a.href = p.u; a.rel = 'noopener'; a.target = '_blank';
           div.append(a);
           if (p.a == 1) div.append(el('p', 'approx', 'Approximate: placed in the middle of the state, country, sea or region named.'));
           new maplibregl.Popup({ maxWidth: '300px' }).setLngLat(e.features[0].geometry.coordinates).setDOMContent(div).addTo(map);

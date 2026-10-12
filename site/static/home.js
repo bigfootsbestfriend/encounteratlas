@@ -69,7 +69,7 @@
       monthBox.querySelector('.month-list').innerHTML = pick.map((f) => {
         const p = f.properties;
         const where = p.t === p.r || !p.r ? p.t : `${p.t}, ${p.r}`;
-        return `<li><span class="yr">${esc(p.w)}</span><span><a href="${caseLink(p)}" rel="noopener">${esc(where)}</a></span></li>`;
+        return `<li><span class="yr">${esc(p.w)}</span><span><a href="${caseLink(p)}" rel="noopener" target="_blank">${esc(where)}</a></span></li>`;
       }).join('') + `<li><span class="yr"></span><span>${hits.length.toLocaleString()} reports in all from ${LONG[m]}s</span></li>`;
     }).catch(() => { monthBox.hidden = true; });
   }
@@ -87,7 +87,7 @@
       const [feats, famous] = await Promise.all([loadBB(), fetch(BASE + '/data/famous.geojson').then((r) => r.json()).then((d) => d.features).catch(() => [])]);
       const rows = [];
       for (const f of famous) rows.push([km(ll, f.geometry.coordinates), `<a href="${BASE}/creatures/${esc(f.properties.s)}/">${esc(f.properties.n)}: ${esc(f.properties.t)}</a>`, f.properties.y || '']);
-      for (const f of feats) if (f.properties.a === 0) rows.push([km(ll, f.geometry.coordinates), `<a href="${caseLink(f.properties)}" rel="noopener">UFO report: ${esc(f.properties.t)}</a>`, f.properties.w]);
+      for (const f of feats) if (f.properties.a === 0) rows.push([km(ll, f.geometry.coordinates), `<a href="${caseLink(f.properties)}" rel="noopener" target="_blank">UFO report: ${esc(f.properties.t)}</a>`, f.properties.w]);
       rows.sort((x, y) => x[0] - y[0]);
       const mi = (k) => (k * 0.621371 < 1 ? 'under a mile' : `${Math.round(k * 0.621371)} mi`);
       near.querySelector('.near-list').innerHTML = rows.slice(0, 8).map(([k, link, when]) =>

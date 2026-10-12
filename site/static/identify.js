@@ -80,8 +80,8 @@
     const where = [
       '<li>Anyone in danger, or a crime: call 911 (or your local emergency number) first.</li>',
       animal ? '<li>A large or injured animal near homes or roads: your state or provincial wildlife agency.</li>' : '',
-      ufo ? '<li>Something near military sites or aircraft: the US Department of Defense <a href="https://www.aaro.mil/" rel="noopener">All-domain Anomaly Resolution Office (AARO)</a>.</li>' : '',
-      ufo || answers.includes('lights') ? '<li>A fast, bright streak or fireball: the <a href="https://www.amsmeteors.org/" rel="noopener">American Meteor Society</a> collects fireball reports.</li>' : '',
+      ufo ? '<li>Something near military sites or aircraft: the US Department of Defense <a href="https://www.aaro.mil/" rel="noopener" target="_blank">All-domain Anomaly Resolution Office (AARO)</a>.</li>' : '',
+      ufo || answers.includes('lights') ? '<li>A fast, bright streak or fireball: the <a href="https://www.amsmeteors.org/" rel="noopener" target="_blank">American Meteor Society</a> collects fireball reports.</li>' : '',
     ].join('');
     out.innerHTML = crit.length ? `
       <h2 class="res-h" tabindex="-1">Reports that sound like yours</h2>

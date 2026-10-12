@@ -52,6 +52,24 @@ def icon(name, cls='ico'):
     return svg.replace('<svg ', f'<svg class="{cls}" aria-hidden="true" focusable="false" ', 1)
 
 
+_CE = None
+
+
+def story_url(creature_slug, year):
+    """The full write-up for a famous case, if one exists (a close-encounters case page with that creature and year)."""
+    global _CE
+    if _CE is None:
+        fp = os.path.join(ROOT, 'data', 'close_encounters.json')
+        _CE = {}
+        for x in (json.load(open(fp)) if os.path.exists(fp) else []):
+            years = {x['year']} | ({1955, 1972} if x['slug'].startswith('loveland') else set())
+            for cr in x.get('creatures', []):
+                for y in years:
+                    _CE.setdefault((cr, y), url('/encounters/' + x['slug'] + '/'))
+                _CE.setdefault((cr, 'first'), (url('/encounters/' + x['slug'] + '/'), x['name']))
+    return _CE.get((creature_slug, year), '')
+
+
 def crit_icon(c, cls='ico'):
     """A creature's own poster silhouette as a colour-taking mask; falls back to its shared icon."""
     if c.get('art'):
@@ -60,19 +78,34 @@ def crit_icon(c, cls='ico'):
     return icon(c['icon'], cls)
 
 
+_EXT_A = re.compile(r'<a\b(?![^>]*\btarget=)([^>]*\bhref="https?://(?!(?:www\.)?encounteratlas\.com)[^"]*"[^>]*)>')
+
+
+def external_new_tab(html_text):
+    """Every link to another site opens in a new tab, so readers keep their place here."""
+    def fix(m):
+        attrs = m.group(1)
+        if 'rel="' in attrs:
+            attrs = re.sub(r'rel="([^"]*)"', lambda r: 'rel="' + ' '.join(dict.fromkeys(r.group(1).split() + ['noopener'])) + '"', attrs)
+        else:
+            attrs += ' rel="noopener"'
+        return f'<a{attrs} target="_blank">'
+    return _EXT_A.sub(fix, html_text)
+
+
 def write(path, text):
     full = os.path.join(OUT, path.lstrip('/'))
     if full.endswith('/'):
         full += 'index.html'
     os.makedirs(os.path.dirname(full), exist_ok=True)
     with open(full, 'w', encoding='utf-8') as f:
-        f.write(text)
+        f.write(external_new_tab(text) if full.endswith('.html') else text)
 
 
 EA_API = os.environ.get('EA_API', '').rstrip('/')  # report Worker; empty until it's deployed
 MAP_API = f' data-api="{EA_API}"' if EA_API else ''
 NAV = [('/map/', 'Map'), ('/creatures/', 'Creatures'), ('/ufo/', 'UFO files'), ('/military/', 'Military'),
-       ('/places/', 'Places'), ('/history/', 'History'), ('/guides/', 'Guides'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts')] + ([('/reports/', 'Reports')] if EA_API else []) + [('/report/', 'Report')]
+       ('/places/', 'Places'), ('/history/', 'History'), ('/guides/', 'Guides'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts')] + ([('/reports/', 'Reports')] if EA_API else []) + [('/encounters/', 'Encounters')]
 
 
 def page(path, title, body, desc='', body_class='', head_extra='', canonical=True):
@@ -113,6 +146,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <header class="top">
   <a class="brand" href="{url('/')}"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</a>
   <nav class="nav" aria-label="Main">{nav}</nav>
+  <a class="report-btn" href="{url('/report/')}"{' aria-current="page"' if path.startswith('/report/') else ''}><span class="rb-dot" aria-hidden="true"></span><span class="rb-long">Report an encounter</span><span class="rb-short" aria-hidden="true">Report</span></a>
 </header>
 <main id="main">
 {body}
@@ -235,11 +269,76 @@ def build_creatures(creatures, by_slug):
                             f'<small>{esc(PLACE_KIND.get(x["type"], "Place"))}{", " + esc(x["city"]) if x.get("city") else ""}'
                             f'{", " + esc(x["region"]) if x.get("region") else ""}</small></li>' for x in pl)
             out += f'<div class="next-block"><h3>Go see it</h3><ul class="next-list">{items}</ul></div>'
-        gs = [g for g in guides if c['slug'] in (g.get('creatures') or []) or g['slug'] in CAT_GUIDES.get(c['cat'], [])][:3]
-        if gs:
-            items = ''.join(f'<li><a href="{url("/guides/" + g["slug"] + "/")}">{esc(g.get("short") or g["title"])}</a><small>{esc(g.get("blurb") or "")}</small></li>' for g in gs)
-            out += f'<div class="next-block"><h3>Field guides</h3><ul class="next-list">{items}</ul></div>'
         return out
+
+    def guide_band(c):
+        """Field guides for this creature, as a full-width band of cards (more prominent than the old sidebar list)."""
+        gs = [g for g in guides if c['slug'] in (g.get('creatures') or [])]
+        gs += [g for g in guides if g['slug'] in CAT_GUIDES.get(c['cat'], []) and g not in gs]
+        if len(gs) < 3:
+            gs += [g for g in guides if g['slug'] == 'how-to-report' and g not in gs]
+        gs = gs[:3]
+        if not gs:
+            return ''
+        cards = ''.join(f'<a class="cg-card" href="{url("/guides/" + g["slug"] + "/")}"><span class="cg-ico tone-{g.get("tone", "other")}">{icon(g["icon"])}</span>'
+                        f'<span><span class="cg-kick">{esc(g.get("kicker") or "Field guide")}</span><b>{esc(g.get("short") or g["title"])}</b>'
+                        f'<small>{esc(g.get("blurb") or "")}</small><span class="cg-go">Read the guide{" · printable checklist" if g.get("printable") else ""}</span></span></a>' for g in gs)
+        return (f'<section class="band band-dark cg-band"><div class="wrap"><h2>Going looking for the {esc(c["name"])}?</h2>'
+                f'<p class="lede-dark">Our field guides cover where to go, what to bring and how to come back with evidence that holds up.</p>'
+                f'<div class="cg-grid">{cards}</div><p class="cg-all"><a href="{url("/guides/")}">All field guides</a></p></div></section>')
+
+    COUNTRIES = load('countries.json') or {}
+    if isinstance(COUNTRIES, list):
+        COUNTRIES = {}
+    famous_details = {}
+    for fn in ('famous_details_a.json', 'famous_details_b.json'):
+        d = load(fn)
+        if isinstance(d, dict):
+            famous_details.update(d)
+
+    def related_groups(c):
+        """Two labelled groups: similar creatures (same kind) and others reported in the same country or continent."""
+        cur = [by_slug[s] for s in c['related'] if s in by_slug]
+        cc = set(c['cc'])
+        conts = {COUNTRIES.get(x, ['', ''])[1] for x in cc} - {''}
+        def near(o):
+            return 2 if cc & set(o['cc']) else (1 if conts & {COUNTRIES.get(x, ['', ''])[1] for x in o['cc']} else 0)
+        same = [o for o in creatures if o['cat'] == c['cat'] and o['slug'] != c['slug']]
+        similar = [o for o in cur if o['cat'] == c['cat']]
+        similar += sorted((o for o in same if o not in similar), key=lambda o: (-near(o), o['name']))
+        similar = similar[:6]
+        others = [o for o in creatures if o['slug'] != c['slug'] and o not in similar and near(o)]
+        others.sort(key=lambda o: (-(o in cur), -near(o), o['name']))
+        nearby = others[:6]
+        if cc and any(near(o) == 2 for o in nearby):
+            where = ', '.join(COUNTRIES.get(x, [x])[0] for x in sorted(cc)[:3])
+        else:
+            names = {'NA': 'North America', 'SA': 'South America', 'EU': 'Europe', 'AF': 'Africa', 'AS': 'Asia', 'OC': 'Oceania', 'AN': 'Antarctica'}
+            where = ', '.join(names.get(x, x) for x in sorted(conts)) or 'the same part of the world'
+        out = ''
+        if similar:
+            out += (f'<h2 class="rel-h">Similar creatures</h2><p class="rel-why">Other {esc(CATS[c["cat"]][0].lower())} reported around the world.</p>'
+                    f'<div class="crit-grid">{"".join(creature_card(o) for o in similar)}</div>')
+        if nearby:
+            out += (f'<h2 class="rel-h">Also reported in {esc(where)}</h2><p class="rel-why">Different creatures from the same part of the world.</p>'
+                    f'<div class="crit-grid">{"".join(creature_card(o) for o in nearby)}</div>')
+        return f'<div class="wrap rel-wrap">{out}</div>' if out else ''
+
+    def case_item(c, f):
+        d = famous_details.get(c['slug'] + '|' + f['name']) or {}
+        story = story_url(c['slug'], f['year'])
+        extra = ''
+        if d.get('summary'):
+            extra += f'<p class="case-sum">{esc(d["summary"])}</p>'
+        links = []
+        if story:
+            links.append(f'<a class="full-story" href="{story}">Read the full story</a>')
+        if d.get('source_url'):
+            links.append(f'<a class="case-src" href="{esc(d["source_url"])}" rel="noopener">Source: {esc(d.get("source_title") or "read more")}</a>')
+        if links:
+            extra += f'<p class="case-links">{"".join(links)}</p>'
+        return (f'<li><span class="yr">{f["year"]}</span><span><strong>{esc(f["name"])}</strong>'
+                f'<br><span class="muted">{esc(f["place"])}</span>{extra}</span></li>')
 
     for c in creatures:
         aka = (f'<p class="aka-line">Also called {esc(", ".join(c["aliases"]))}</p>' if c['aliases'] else '')
@@ -248,9 +347,8 @@ def build_creatures(creatures, by_slug):
                          ('First reported', c['first'])] if v)
         body_p = ''.join(f'<p>{esc(p)}</p>' for p in c['body'])
         signs = ''.join(f'<li>{esc(s)}</li>' for s in c['signs'])
-        cases = ''.join(f'<li><span class="yr">{f["year"]}</span><span><strong>{esc(f["name"])}</strong>'
-                        f'<br><span class="muted">{esc(f["place"])}</span></span></li>'
-                        for f in sorted(c['famous'], key=lambda f: f['year']))
+        cases = ''.join(case_item(c, f) for f in sorted(c['famous'], key=lambda f: f['year']))
+        first_story = story_url(c['slug'], 'first')
         rel = ''.join(creature_card(by_slug[s]) for s in c['related'] if s in by_slug)
         wiki = f'https://en.wikipedia.org/wiki/{c["wiki"].replace(" ", "_")}' if c.get('wiki') else ''
         ufo_note = ''
@@ -266,6 +364,7 @@ def build_creatures(creatures, by_slug):
       <h1>{esc(c['name'])}</h1>
       {aka}
       <p class="lede">{esc(c['summary'])}</p>
+      {f'<p class="lede-story"><a href="{first_story[0]}">Read the full story: {esc(first_story[1])}</a></p>' if first_story else ''}
     </div>
   </div>
 </section>
@@ -275,8 +374,7 @@ def build_creatures(creatures, by_slug):
     {ufo_note}
     <h2>What witnesses report</h2>
     <ul class="signs">{signs}</ul>
-    <h2>Famous cases</h2>
-    <ol class="timeline">{cases}</ol>
+    {f'<h2>Famous cases</h2><ol class="timeline">{cases}</ol>' if cases else ''}
     <section class="seen-box cat-{c['cat']}" aria-labelledby="seen-{c['slug']}">
       {crit_icon(c)}
       <div>
@@ -295,8 +393,9 @@ def build_creatures(creatures, by_slug):
     {extras(c)}
   </aside>
 </div>
-{f'<div class="wrap"><h2 class="rel-h">Related</h2><div class="crit-grid">{rel}</div></div>' if rel else ''}
-</div>'''
+</div>
+{guide_band(c)}
+<div class="band band-mist">{related_groups(c)}</div>'''
         write(f'/creatures/{c["slug"]}/', page(f'/creatures/{c["slug"]}/', f'{c["name"]}: sightings, facts and other names',
                                                body, f'{c["summary"]} Also called {", ".join(c["aliases"][:4])}.'
                                                if c['aliases'] else c['summary']))
@@ -422,7 +521,7 @@ def build_layer_data(creatures, military):
     famous = json.load(open(fam_path)) if os.path.exists(fam_path) else []
     feats = [{'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [f['lon'], f['lat']]},
               'properties': {'s': f['creature'], 'n': by_slug[f['creature']]['name'], 'c': f['cat'], 'i': by_slug[f['creature']].get('art') or by_slug[f['creature']]['icon'],
-                             't': f['name'], 'y': f['year'], 'p': f['place']}}
+                             't': f['name'], 'y': f['year'], 'p': f['place'], 'u': story_url(f['creature'], f['year'])}}
              for f in famous if f['creature'] in by_slug]
     with open(os.path.join(OUT, 'data', 'famous.geojson'), 'w') as fh:
         json.dump({'type': 'FeatureCollection', 'features': feats}, fh, separators=(',', ':'))
@@ -467,19 +566,25 @@ def map_head():
 
 
 def filter_bar(creatures, famous_slugs):
-    """Type chips + a sideways-scrolling row of creature icon chips. map.js wires them up."""
-    types = [('all', 'Everything'), ('cryptid', 'Cryptids'), ('ufo', 'UFOs'), ('military', 'Military'), ('places', 'Places to visit')]
+    """Type chips, then category chips and a creature search; picking a category (or typing) shows that group's
+    creature chips, wrapped onto lines rather than one long sideways row. map.js wires them up."""
+    types = [('all', 'Everything'), ('cryptid', 'Cryptids'), ('ufo', 'UFOs'), ('military', 'Military'), ('places', 'Places to visit'), ('events', 'Events and gatherings')]
     tchips = ''.join(f'<button type="button" class="tchip" data-type="{k}" aria-pressed="{str(k == "all").lower()}">{esc(v)}</button>'
                      for k, v in types)
     crit = [c for c in creatures if c['slug'] in famous_slugs]
     order = {k: i for i, k in enumerate(CATS)}
     crit.sort(key=lambda c: (order[c['cat']], c['name']))
-    cchips = ''.join(f'<button type="button" class="cchip cat-{c["cat"]}" data-creature="{c["slug"]}" data-cat="{c["cat"]}" aria-pressed="false">'
+    counts = Counter(c['cat'] for c in crit)
+    rep = {cat: ic for cat, ic, _ in TILES}
+    catchips = ''.join(f'<button type="button" class="catchip cat-{k}" data-cat="{k}" aria-pressed="false">{icon(rep.get(k, "worm"))}'
+                       f'<span>{esc(CATS[k][0])}</span><small>{counts[k]}</small></button>' for k in CATS if counts.get(k))
+    cchips = ''.join(f'<button type="button" class="cchip cat-{c["cat"]}" data-creature="{c["slug"]}" data-cat="{c["cat"]}" '
+                     f'data-names="{esc((c["name"] + " " + " ".join(c["aliases"])).lower())}" aria-pressed="false" hidden>'
                      f'{mini(c)}<span>{esc(c["name"])}</span></button>' for c in crit)
     return (f'<div class="filters" aria-label="Filter the map"><div class="tchips" role="group" aria-label="Encounter type">{tchips}</div>'
-            f'<div class="cchips-wrap"><button type="button" class="cc-arrow prev" aria-label="Scroll creatures left" hidden>&lsaquo;</button>'
-            f'<div class="cchips" role="group" aria-label="Creature">{cchips}</div>'
-            f'<button type="button" class="cc-arrow next" aria-label="Scroll creatures right">&rsaquo;</button></div></div>')
+            f'<div class="cfind"><div class="catchips" role="group" aria-label="Creature type">{catchips}</div>'
+            f'<input type="search" class="cfind-in" placeholder="Find a creature" aria-label="Find a creature on the map" autocomplete="off"></div>'
+            f'<div class="cchips" role="group" aria-label="Creature" hidden>{cchips}</div><p class="cfind-none" hidden>No creature by that name has a pin yet.</p></div>')
 
 
 def build_search_index(creatures, bluebook, military):

@@ -1,0 +1,354 @@
+{
+"AF": [
+"Afghanistan",
+"AS"
+],
+"AO": [
+"Angola",
+"AF"
+],
+"AQ": [
+"Antarctica",
+"AN"
+],
+"AR": [
+"Argentina",
+"SA"
+],
+"AT": [
+"Austria",
+"EU"
+],
+"AU": [
+"Australia",
+"OC"
+],
+"BE": [
+"Belgium",
+"EU"
+],
+"BJ": [
+"Benin",
+"AF"
+],
+"BM": [
+"Bermuda",
+"NA"
+],
+"BN": [
+"Brunei",
+"AS"
+],
+"BR": [
+"Brazil",
+"SA"
+],
+"BS": [
+"Bahamas",
+"NA"
+],
+"BT": [
+"Bhutan",
+"AS"
+],
+"BY": [
+"Belarus",
+"EU"
+],
+"BZ": [
+"Belize",
+"NA"
+],
+"CA": [
+"Canada",
+"NA"
+],
+"CD": [
+"Democratic Republic of the Congo",
+"AF"
+],
+"CG": [
+"Republic of the Congo",
+"AF"
+],
+"CH": [
+"Switzerland",
+"EU"
+],
+"CL": [
+"Chile",
+"SA"
+],
+"CM": [
+"Cameroon",
+"AF"
+],
+"CN": [
+"China",
+"AS"
+],
+"CO": [
+"Colombia",
+"SA"
+],
+"CR": [
+"Costa Rica",
+"NA"
+],
+"CZ": [
+"Czechia",
+"EU"
+],
+"DE": [
+"Germany",
+"EU"
+],
+"DK": [
+"Denmark",
+"EU"
+],
+"DO": [
+"Dominican Republic",
+"NA"
+],
+"ES": [
+"Spain",
+"EU"
+],
+"FI": [
+"Finland",
+"EU"
+],
+"FO": [
+"Faroe Islands",
+"EU"
+],
+"FR": [
+"France",
+"EU"
+],
+"GB": [
+"United Kingdom",
+"EU"
+],
+"GE": [
+"Georgia",
+"AS"
+],
+"GH": [
+"Ghana",
+"AF"
+],
+"GM": [
+"Gambia",
+"AF"
+],
+"GT": [
+"Guatemala",
+"NA"
+],
+"HN": [
+"Honduras",
+"NA"
+],
+"HT": [
+"Haiti",
+"NA"
+],
+"ID": [
+"Indonesia",
+"AS"
+],
+"IE": [
+"Ireland",
+"EU"
+],
+"IL": [
+"Israel",
+"AS"
+],
+"IM": [
+"Isle of Man",
+"EU"
+],
+"IN": [
+"India",
+"AS"
+],
+"IS": [
+"Iceland",
+"EU"
+],
+"IT": [
+"Italy",
+"EU"
+],
+"JP": [
+"Japan",
+"AS"
+],
+"KE": [
+"Kenya",
+"AF"
+],
+"KP": [
+"North Korea",
+"AS"
+],
+"KZ": [
+"Kazakhstan",
+"AS"
+],
+"LK": [
+"Sri Lanka",
+"AS"
+],
+"LR": [
+"Liberia",
+"AF"
+],
+"LS": [
+"Lesotho",
+"AF"
+],
+"MN": [
+"Mongolia",
+"AS"
+],
+"MX": [
+"Mexico",
+"NA"
+],
+"MY": [
+"Malaysia",
+"AS"
+],
+"MZ": [
+"Mozambique",
+"AF"
+],
+"NG": [
+"Nigeria",
+"AF"
+],
+"NI": [
+"Nicaragua",
+"NA"
+],
+"NO": [
+"Norway",
+"EU"
+],
+"NP": [
+"Nepal",
+"AS"
+],
+"NZ": [
+"New Zealand",
+"OC"
+],
+"PE": [
+"Peru",
+"SA"
+],
+"PG": [
+"Papua New Guinea",
+"OC"
+],
+"PH": [
+"Philippines",
+"AS"
+],
+"PK": [
+"Pakistan",
+"AS"
+],
+"PL": [
+"Poland",
+"EU"
+],
+"PR": [
+"Puerto Rico",
+"NA"
+],
+"PT": [
+"Portugal",
+"EU"
+],
+"RS": [
+"Serbia",
+"EU"
+],
+"RU": [
+"Russia",
+"EU"
+],
+"SE": [
+"Sweden",
+"EU"
+],
+"SG": [
+"Singapore",
+"AS"
+],
+"SL": [
+"Sierra Leone",
+"AF"
+],
+"SN": [
+"Senegal",
+"AF"
+],
+"SR": [
+"Suriname",
+"SA"
+],
+"SV": [
+"El Salvador",
+"NA"
+],
+"SZ": [
+"Eswatini",
+"AF"
+],
+"TG": [
+"Togo",
+"AF"
+],
+"TR": [
+"Turkey",
+"AS"
+],
+"TZ": [
+"Tanzania",
+"AF"
+],
+"UA": [
+"Ukraine",
+"EU"
+],
+"UG": [
+"Uganda",
+"AF"
+],
+"US": [
+"United States",
+"NA"
+],
+"VE": [
+"Venezuela",
+"SA"
+],
+"ZA": [
+"South Africa",
+"AF"
+],
+"ZM": [
+"Zambia",
+"AF"
+],
+"ZW": [
+"Zimbabwe",
+"AF"
+]
+}
