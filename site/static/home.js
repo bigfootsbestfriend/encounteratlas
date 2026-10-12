@@ -28,7 +28,7 @@
       scored.sort((x, y) => x[0] - y[0] || x[1] - y[1]);
       active = -1;
       list.innerHTML = scored.length
-        ? scored.slice(0, 8).map(([, , it]) => `<li><a href="${esc(it.u)}" class="cat-${esc(it.c)}"><span class="mask-ico" style="--m:url('${BASE}/static/icons/${esc(it.i)}.svg')"></span><span><b>${esc(it.t)}</b><small>${esc(it.k)}</small></span></a></li>`).join('')
+        ? scored.slice(0, 8).map(([, , it]) => `<li><a href="${esc(it.u)}" class="cat-${esc(it.c)}"><span class="mask-ico" style="--m:url('${BASE}/static/${it.i.startsWith('art/') ? '' : 'icons/'}${esc(it.i)}.svg')"></span><span><b>${esc(it.t)}</b><small>${esc(it.k)}</small></span></a></li>`).join('')
         : `<li class="none">Nothing matches "${esc(input.value.trim())}". Try another name, a state or a country.</li>`;
       list.hidden = false;
     }

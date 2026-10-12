@@ -39,7 +39,7 @@
   // Draw an icon SVG inside a dark round badge, as a map image.
   const svgCache = {};
   async function iconSvg(name) {
-    if (!svgCache[name]) svgCache[name] = fetch(BASE + '/static/icons/' + name + '.svg').then((r) => r.text()).catch(() => '');
+    if (!svgCache[name]) svgCache[name] = fetch(BASE + (name.startsWith('art/') ? '/static/' : '/static/icons/') + name + '.svg').then((r) => r.text()).catch(() => '');
     return svgCache[name];
   }
   async function addBadge(id, name, color, size = 44) {
@@ -54,7 +54,9 @@
     c.width = c.height = px;
     const g = c.getContext('2d');
     g.beginPath(); g.arc(px / 2, px / 2, px / 2 - 3, 0, Math.PI * 2);
-    g.fillStyle = '#13261F'; g.fill(); g.lineWidth = 4; g.strokeStyle = color; g.stroke();
+    // Park-poster silhouettes: dark creature on a disc of its category colour; old icons: coloured icon on dark disc
+    const art = name.startsWith('art/');
+    g.fillStyle = art ? color : '#13261F'; g.fill(); g.lineWidth = 4; g.strokeStyle = art ? '#13261F' : color; g.stroke();
     const pad = px * 0.17;
     try { g.drawImage(img, pad, pad, px - 2 * pad, px - 2 * pad); } catch (e) { /* icon failed to load */ }
     map.addImage(id, g.getImageData(0, 0, px, px), { pixelRatio: 2 });

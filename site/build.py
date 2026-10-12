@@ -118,7 +118,37 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 
 
 def badge(c, size='md'):
+    if c.get('art'):
+        px = 168 if size == 'xl' else 64
+        return (f'<span class="badge badge-{size} art cat-{c["cat"]}"><img src="{url("/static/" + c["art"] + ".svg")}" alt="" '
+                f'width="{px}" height="{px}" loading="lazy"></span>')
     return (f'<span class="badge badge-{size} cat-{c["cat"]}">{icon(c["icon"])}</span>')
+
+
+def mini(c):
+    """Small creature mark for chips: the silhouette if we have one, else the old icon."""
+    if c.get('art'):
+        return f'<span class="mini art cat-{c["cat"]}"><img src="{url("/static/" + c["art"] + ".svg")}" alt="" width="26" height="26" loading="lazy"></span>'
+    return icon(c['icon'])
+
+
+POSTER_SKY = {'hominid': ('#E3A649', '#B5532F'), 'canid': ('#3B4C6B', '#1B2A3A'), 'winged': ('#3B4C6B', '#1B2A3A'),
+              'aquatic': ('#E8B04A', '#C8693A'), 'entity': ('#3B4C6B', '#1B2A3A'), 'ufo': ('#2E3E5C', '#141E2E'), 'other': ('#E3A649', '#B5532F')}
+
+
+def poster(c):
+    """Park-poster frame for a creature page: dusk sky, ridgeline, pines, and the silhouette in front."""
+    a, b = POSTER_SKY.get(c['cat'], POSTER_SKY['other'])
+    sid = 'sky-' + c['slug']
+    ground = ('<rect y="160" width="200" height="40" fill="#2B4A55"/>' if c['cat'] == 'aquatic' else
+              '<path d="M0 182L14 146 28 182 40 138 54 182 146 182 160 132 174 182 188 142 200 182V200H0Z" fill="#1E3A2F"/>')
+    return (f'<svg class="poster" viewBox="0 0 200 200" role="img" aria-label="{esc(c["name"])} silhouette">'
+            f'<defs><linearGradient id="{sid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{a}"/><stop offset="1" stop-color="{b}"/></linearGradient>'
+            f'<clipPath id="c{sid}"><rect x="6" y="6" width="188" height="188" rx="10"/></clipPath></defs>'
+            f'<g clip-path="url(#c{sid})"><rect width="200" height="200" fill="url(#{sid})"/><circle cx="150" cy="52" r="24" fill="#F3E3B8" opacity=".9"/>'
+            f'<path d="M0 152L30 120 55 138 85 104 120 134 150 110 200 142V200H0Z" fill="#5E4A3A" opacity=".5"/>{ground}'
+            f'<image href="{url("/static/" + c["art"] + ".svg")}" x="22" y="{34 if c["cat"] == "aquatic" else 26}" width="160" height="160"/></g>'
+            f'<rect x="6" y="6" width="188" height="188" rx="10" fill="none" stroke="#F3E3B8" stroke-width="4"/></svg>')
 
 
 def creature_card(c):
@@ -210,7 +240,7 @@ def build_creatures(creatures, by_slug):
         body = f'''
 <section class="band band-dark creature-head cat-{c['cat']}">
   <div class="wrap creature-head-in">
-    {badge(c, 'xl')}
+    {poster(c) if c.get('art') else badge(c, 'xl')}
     <div>
       <p class="crumb"><a href="{url('/creatures/')}">Creature index</a> / {esc(CATS[c['cat']][0])}</p>
       <h1>{esc(c['name'])}</h1>
@@ -370,7 +400,7 @@ def build_layer_data(creatures, military):
     fam_path = os.path.join(ROOT, 'data', 'famous_geo.json')
     famous = json.load(open(fam_path)) if os.path.exists(fam_path) else []
     feats = [{'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [f['lon'], f['lat']]},
-              'properties': {'s': f['creature'], 'n': by_slug[f['creature']]['name'], 'c': f['cat'], 'i': by_slug[f['creature']]['icon'],
+              'properties': {'s': f['creature'], 'n': by_slug[f['creature']]['name'], 'c': f['cat'], 'i': by_slug[f['creature']].get('art') or by_slug[f['creature']]['icon'],
                              't': f['name'], 'y': f['year'], 'p': f['place']}}
              for f in famous if f['creature'] in by_slug]
     with open(os.path.join(OUT, 'data', 'famous.geojson'), 'w') as fh:
@@ -424,14 +454,14 @@ def filter_bar(creatures, famous_slugs):
     order = {k: i for i, k in enumerate(CATS)}
     crit.sort(key=lambda c: (order[c['cat']], c['name']))
     cchips = ''.join(f'<button type="button" class="cchip cat-{c["cat"]}" data-creature="{c["slug"]}" data-cat="{c["cat"]}" aria-pressed="false">'
-                     f'{icon(c["icon"])}<span>{esc(c["name"])}</span></button>' for c in crit)
+                     f'{mini(c)}<span>{esc(c["name"])}</span></button>' for c in crit)
     return (f'<div class="filters" aria-label="Filter the map"><div class="tchips" role="group" aria-label="Encounter type">{tchips}</div>'
             f'<div class="cchips" role="group" aria-label="Creature">{cchips}</div></div>')
 
 
 def build_search_index(creatures, bluebook, military):
     """Small JSON index for the home search box: creatures (with aliases), UFO file regions, military cases."""
-    items = [{'t': c['name'], 'a': ' '.join(c['aliases']), 'k': CATS[c['cat']][0], 'u': url('/creatures/' + c['slug'] + '/'), 'i': c['icon'], 'c': c['cat']}
+    items = [{'t': c['name'], 'a': ' '.join(c['aliases']), 'k': CATS[c['cat']][0], 'u': url('/creatures/' + c['slug'] + '/'), 'i': c.get('art') or c['icon'], 'c': c['cat']}
              for c in creatures]
     regions = Counter()
     names = {}
@@ -571,6 +601,9 @@ def main():
     shutil.copytree(STATIC, os.path.join(OUT, 'static'))
     creatures = json.load(open(os.path.join(ROOT, 'data', 'creatures.json')))
     by_slug = {c['slug']: c for c in creatures}
+    for c in creatures:  # park-poster silhouettes (site/static/art/<slug>.svg) replace the old icons where we have them
+        if os.path.exists(os.path.join(STATIC, 'art', c['slug'] + '.svg')):
+            c['art'] = 'art/' + c['slug']
     bad = [(c['slug'], r) for c in creatures for r in c['related'] if r not in by_slug]
     if bad:
         print('unknown related slugs:', bad, file=sys.stderr)
