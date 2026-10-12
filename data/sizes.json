@@ -155,7 +155,25 @@
     "ebu-gogo": {"dim": "height", "lo": 5.0, "hi": 5.0, "draw": 5.0, "basis": "Witness reports usually say 5 ft tall."},
     "agogwe": {"dim": "height", "lo": 4.0, "hi": 5.0, "draw": 4.5, "basis": "Witness reports usually say 4 to 5 ft tall."},
     "goblins": {"dim": "height", "lo": 1.0, "hi": 1.0, "draw": 1.0, "basis": "Witness reports usually say 1 ft tall."},
-    "hinzelmann": {"dim": "height", "lo": 3, "hi": 4.5, "draw": 3.8, "basis": "Described as \"Like a small child; usually invisible\". We drew it at 3 to 4.5 ft tall, a typical child."}
+    "hinzelmann": {"dim": "height", "lo": 3, "hi": 4.5, "draw": 3.8, "basis": "Described as \"Like a small child; usually invisible\". We drew it at 3 to 4.5 ft tall, a typical child."},
+    "mermaid": {"dim": "length", "lo": 3.0, "hi": 6.0, "draw": 4.5, "basis": "Witness reports usually say 3 to 6 ft long."},
+    "merrow": {"dim": "height", "lo": 5.5, "hi": 6.5, "draw": 6.0, "basis": "Described as \"Human-sized\". We drew it at 5.5 to 6.5 ft tall, a typical human."},
+    "selkie": {"dim": "height", "lo": 5.5, "hi": 6.5, "draw": 6.0, "basis": "Described as \"Seal-sized or human-sized\". We drew it at 5.5 to 6.5 ft tall, a typical human."},
+    "ningyo": {"dim": "length", "lo": 1.0, "hi": 1.0, "draw": 1.0, "basis": "Witness reports usually say 1 ft long."},
+    "iara": {"dim": "height", "lo": 5.5, "hi": 6.5, "draw": 6.0, "basis": "Described as \"Human-sized\". We drew it at 5.5 to 6.5 ft tall, a typical human."},
+    "rusalka": {"dim": "height", "lo": 5.5, "hi": 6.5, "draw": 6.0, "basis": "Described as \"Human-sized\". We drew it at 5.5 to 6.5 ft tall, a typical human."},
+    "mami-wata": {"dim": "height", "lo": 5.5, "hi": 6.5, "draw": 6.0, "basis": "Described as \"Human-sized (in art and accounts)\". We drew it at 5.5 to 6.5 ft tall, a typical human."},
+    "kraken": {"dim": "length", "lo": 43.0, "hi": 43.0, "draw": 43.0, "basis": "Witness reports usually say 43 ft long."},
+    "globster": {"dim": "across", "lo": 39.0, "hi": 39.0, "draw": 39.0, "basis": "Witness reports usually say 39 ft across."},
+    "trunko": {"dim": "length", "lo": 47.0, "hi": 47.0, "draw": 47.0, "basis": "Witness reports usually say 47 ft long."},
+    "zuiyo-maru-carcass": {"dim": "length", "lo": 33.0, "hi": 33.0, "draw": 33.0, "basis": "Witness reports usually say 33 ft long."},
+    "hook-island-sea-monster": {"dim": "length", "lo": 75.0, "hi": 80.0, "draw": 77.5, "basis": "Witness reports usually say 75 to 80 ft long."},
+    "sea-monk": {"dim": "length", "lo": 15.0, "hi": 15.0, "draw": 15.0, "basis": "Witness reports usually say 15 ft long."},
+    "bishop-fish": {"dim": "height", "lo": 5.5, "hi": 6.5, "draw": 6.0, "basis": "Described as \"Human-sized (reported)\". We drew it at 5.5 to 6.5 ft tall, a typical human."},
+    "stronsay-beast": {"dim": "length", "lo": 55.0, "hi": 55.0, "draw": 55.0, "basis": "Witness reports usually say 55 ft long."},
+    "gambo": {"dim": "length", "lo": 15.0, "hi": 15.0, "draw": 15.0, "basis": "Witness reports usually say 15 ft long."},
+    "blue-men-of-the-minch": {"dim": "height", "lo": 5.5, "hi": 6.5, "draw": 6.0, "basis": "Described as \"Human-sized\". We drew it at 5.5 to 6.5 ft tall, a typical human."},
+    "finfolk": {"dim": "height", "lo": 5.5, "hi": 6.5, "draw": 6.0, "basis": "Described as \"Human-sized\". We drew it at 5.5 to 6.5 ft tall, a typical human."}
   },
   "left_out": {
     "ufo-saucer": "Reports range from tens of feet to hundreds or more, so there is no single size to draw.",
@@ -209,7 +227,11 @@
     "duendes": "No size is given that we could draw with any confidence.",
     "nimerigar": "No size is given that we could draw with any confidence.",
     "hobgoblin": "No size is given that we could draw with any confidence.",
-    "redcap": "No size is given that we could draw with any confidence."
+    "redcap": "No size is given that we could draw with any confidence.",
+    "uss-stein-monster": "No size is given that we could draw with any confidence.",
+    "bloop": "No size is given that we could draw with any confidence.",
+    "amabie": "No size is given that we could draw with any confidence.",
+    "jenny-haniver": "No size is given that we could draw with any confidence."
   },
   "icon_box": {
     "abduction": [9, 7, 46, 55],

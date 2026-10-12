@@ -1037,7 +1037,8 @@
   "aliases": [
    "Caddy",
    "Hiyitl'iik",
-   "Sea serpent of BC"
+   "Sea serpent of BC",
+   "Naden Harbour carcass"
   ],
   "cat": "aquatic",
   "icon": "serpent",
@@ -3604,7 +3605,9 @@
   "related": [
    "tsuchinoko",
    "ningen",
-   "loveland-frog"
+   "loveland-frog",
+   "ningyo",
+   "amabie"
   ],
   "wiki": "Kappa (folklore)"
  },
@@ -3751,7 +3754,10 @@
    "loch-ness-monster",
    "lagarfljot-worm",
    "altamaha-ha",
-   "ningen"
+   "ningen",
+   "stronsay-beast",
+   "zuiyo-maru-carcass",
+   "hook-island-sea-monster"
   ],
   "wiki": "Sea serpent"
  },
@@ -5096,7 +5102,8 @@
   ],
   "related": [
    "chupacabra",
-   "ningen"
+   "ningen",
+   "globster"
   ],
   "wiki": "Montauk Monster"
  },
@@ -6465,7 +6472,8 @@
   ],
   "related": [
    "inkanyamba",
-   "grootslang"
+   "grootslang",
+   "mami-wata"
   ],
   "wiki": "Mamlambo"
  },
@@ -7309,7 +7317,8 @@
   "aliases": [
    "Him of the Hands",
    "Giant scuttle",
-   "Blue hole monster"
+   "Blue hole monster",
+   "Giant octopus"
   ],
   "cat": "aquatic",
   "icon": "imp",
@@ -7341,7 +7350,8 @@
   "related": [
    "sea-serpent",
    "cadborosaurus",
-   "chessie"
+   "chessie",
+   "kraken"
   ],
   "wiki": "Lusca"
  },
@@ -7687,7 +7697,8 @@
   "related": [
    "sea-serpent",
    "cadborosaurus",
-   "ningen"
+   "ningen",
+   "mermaid"
   ],
   "wiki": "Steller's sea ape"
  },
@@ -9495,5 +9506,1018 @@
    "domovoi"
   ],
   "wiki": "Hinzelmann"
+ },
+ {
+  "slug": "mermaid",
+  "name": "Mermaid",
+  "aliases": [
+   "Merfolk",
+   "Merman",
+   "Sirena",
+   "Sea maid",
+   "Maighdean mhara"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Coasts and seas worldwide",
+  "cc": [
+   "DO",
+   "GB",
+   "US",
+   "IL",
+   "ZW"
+  ],
+  "first": "Fish-tailed 'sea girls' appear in the Liber Monstrorum (7th to 8th century); Columbus logged three 'sirens' in 1493",
+  "summary": "Half-human, half-fish beings reported by sailors and coast dwellers for centuries, and still seen today.",
+  "body": [
+   "Mermaids are sea beings with a human upper body and a fish's tail. Fish-tailed versions appear in European writing from the 7th or 8th century, as the singing sirens of Greek myth, first pictured as bird-women, merged with older sea maidens. That is why Spanish and Italian still call a mermaid a sirena and French a sirène. Nearly every coastal culture has its own merfolk, from the Irish merrow and the Scottish selkie to the Japanese ningyo.",
+   "On 8 January 1493, near the mouth of the river he called the Río del Oro (the Yaque del Norte, by Monte Cristi in today's Dominican Republic), Christopher Columbus saw three 'sirens' and wrote that they were not as beautiful as they are painted, with rather masculine faces. Historians agree he saw manatees. On 15 June 1608, two of Henry Hudson's crew reported a mermaid in Arctic waters, in either the Norwegian or the Barents Sea. Around 1830, seaweed cutters on Benbecula in the Outer Hebrides saw a small, woman-like creature in the water; a boy hit it with a stone, and a few days later a small body washed up at Culla Bay, where the local sheriff is said to have had it buried in a coffin and shroud.",
+   "Hoaxes have always followed. The 'Feejee mermaid' that P. T. Barnum showed in New York in 1842 was a monkey's upper body sewn to a fish's tail, one of many made for sale in Japan. In August 2009, after dozens of people reported a mermaid leaping out of Haifa Bay, the Israeli town of Kiryat Yam offered a $1 million reward for proof. In February 2012 Zimbabwe's water minister told a parliamentary committee that workers at dam projects near Gokwe and Mutare had refused to carry on because of mermaids, and traditional ceremonies were held to appease the water spirits.",
+   "In May 2012 Animal Planet aired 'Mermaids: The Body Found', a fictional mockumentary with actors playing scientists. So many viewers took it as real that NOAA, the US ocean agency, published a statement that no evidence of aquatic humanoids has ever been found. Manatees and dugongs, whose order Sirenia is named after the sirens, are the usual explanation for real sightings, along with seals."
+  ],
+  "signs": [
+   "A human-like head and shoulders above the water, then a tail as it dives",
+   "Long hair, often combed on a rock",
+   "Singing or calls heard over the water",
+   "A shape that turns out to be a manatee, dugong or seal"
+  ],
+  "size": "About 3 to 6 ft (reported); Barnum's fake was about 3 ft",
+  "habitat": "Coastal seas, bays, rocky shores and river mouths",
+  "famous": [
+   {
+    "name": "Columbus sees three 'sirens', almost certainly manatees",
+    "year": 1493,
+    "place": "Monte Cristi, Dominican Republic"
+   },
+   {
+    "name": "The Benbecula mermaid is said to be buried by the shore",
+    "year": 1830,
+    "place": "Benbecula, Scotland"
+   },
+   {
+    "name": "P. T. Barnum shows the 'Feejee mermaid', a hoax",
+    "year": 1842,
+    "place": "New York City, New York"
+   },
+   {
+    "name": "Town offers $1 million for proof of a Haifa Bay mermaid",
+    "year": 2009,
+    "place": "Kiryat Yam, Israel"
+   },
+   {
+    "name": "Dam workers refuse to work, blaming mermaids",
+    "year": 2012,
+    "place": "Gokwe, Zimbabwe"
+   },
+   {
+    "name": "Osborne Dam reports reach Zimbabwe's parliament",
+    "year": 2012,
+    "place": "Mutare, Zimbabwe"
+   }
+  ],
+  "related": [
+   "merrow",
+   "selkie",
+   "ningyo",
+   "iara",
+   "rusalka",
+   "mami-wata",
+   "stellers-sea-ape",
+   "jenny-haniver"
+  ],
+  "wiki": "Mermaid"
+ },
+ {
+  "slug": "merrow",
+  "name": "Merrow",
+  "aliases": [
+   "Murúch",
+   "Moruach",
+   "Murdúchann",
+   "Irish mermaid"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Coasts of Ireland, especially Kerry and Cork",
+  "cc": [
+   "IE"
+  ],
+  "first": "Siren-like murdúchann in medieval Irish texts; the merrow tales were popularised by T. C. Croker's Fairy Legends in 1828",
+  "summary": "Ireland's mermaid, who needs a magic cap to pass between the deep sea and dry land.",
+  "body": [
+   "The merrow is the mermaid of Irish folklore; the word comes from the Irish murúch. Medieval Irish texts already tell of murdúchann, siren-like sea singers who lulled the legendary ancestors of the Irish to sleep on their voyages, and the Annals of the Four Masters record a giant mermaid cast ashore in Scotland in the year 887.",
+   "The best-known tales come from Thomas Crofton Croker's Fairy Legends (1828). In 'The Lady of Gollerus', a Kerry man hides a green-haired merrow's magic cap, the cohuleen druith, so she cannot go back under the waves. They marry and have children, but when she finds the cap she returns to the sea. Merrow women are described as beautiful and gentle, with a fine webbing between their fingers, while the rarer mermen are said to be ugly, with green hair and red noses. One family in Bantry was said to descend from a merrow.",
+   "Croker's tale of a merman who kept drowned sailors' souls in lobster-pot cages, 'The Soul Cages', was later admitted to be an invention by Thomas Keightley, not a folk tale collected from tradition."
+  ],
+  "signs": [
+   "A strange little cap left on the shore",
+   "Music drifting up from far out at sea",
+   "A green-haired woman combing her hair on the rocks",
+   "Webbed fingers in a family said to have a sea ancestor"
+  ],
+  "size": "Human-sized",
+  "habitat": "Rocky shores and the sea floor off the Irish coast",
+  "famous": [],
+  "related": [
+   "mermaid",
+   "selkie",
+   "puca",
+   "fairies",
+   "dobhar-chu"
+  ],
+  "wiki": "Merrow"
+ },
+ {
+  "slug": "selkie",
+  "name": "Selkie",
+  "aliases": [
+   "Silkie",
+   "Selchie",
+   "Seal folk",
+   "Kópakona",
+   "Maighdeann-ròin"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Orkney, Shetland, the Hebrides, Ireland and the Faroe Islands",
+  "cc": [
+   "GB",
+   "IE",
+   "FO"
+  ],
+  "first": "Oral tradition of the Northern Isles; ballads such as 'The Great Silkie of Sule Skerry'",
+  "summary": "Seals that shed their skins to walk ashore as people, from the folklore of Orkney, Shetland and the Faroes.",
+  "body": [
+   "Selkies are seal people of Scottish, Irish and Faroese folklore. The word is Scots for seal. They live as seals in the sea but can take off their skins to become human on land, and most of the stories come from Orkney and Shetland.",
+   "In the most common tale, a man finds a seal-woman's skin on the shore and hides it, so she has to stay and marry him. She is a good wife, but always looks to the sea, and when she finds the skin years later she goes straight back to the water. Male selkies are said to be handsome and to seek out lonely women; in Orkney a woman could call one by shedding seven tears into the sea. The ballad 'The Great Silkie of Sule Skerry' tells of a seal-man who fathers a child with a human woman. In the Outer Hebrides the MacCodrum clan were called 'the MacCodrums of the seals' and were said to descend from a selkie, which was used to explain webbed fingers in the family.",
+   "In the Faroe Islands the legend of Kópakonan, the seal woman, tells of a young farmer from Mikladalur on Kalsoy who stole a seal-woman's skin on the one night of the year when seals were said to come ashore and shed their skins. A 2.6 m bronze statue of her by Hans Pauli Olsen was unveiled on the shore at Mikladalur on 1 August 2014."
+  ],
+  "signs": [
+   "A seal that watches people from the water for a long time",
+   "A sealskin hidden in a house or on the shore",
+   "A stranger with webbed fingers",
+   "Seals gathering on a beach on a special night"
+  ],
+  "size": "Seal-sized or human-sized",
+  "habitat": "Rocky skerries, beaches and coastal seas",
+  "famous": [
+   {
+    "name": "Kópakonan seal-woman statue unveiled",
+    "year": 2014,
+    "place": "Mikladalur, Faroe Islands"
+   }
+  ],
+  "related": [
+   "mermaid",
+   "merrow",
+   "finfolk",
+   "blue-men-of-the-minch",
+   "huldufolk"
+  ],
+  "wiki": "Selkie"
+ },
+ {
+  "slug": "ningyo",
+  "name": "Ningyo",
+  "aliases": [
+   "Human-fish",
+   "Japanese mermaid",
+   "Ningyo mummy"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Japan, especially Wakasa Bay (Fukui) and the Sea of Japan coast",
+  "cc": [
+   "JP"
+  ],
+  "first": "The Nihon Shoki (720) records man-like creatures netted in 619",
+  "summary": "Japan's 'human fish', an omen whose flesh was said to give centuries of life.",
+  "body": [
+   "Ningyo means 'human fish', a creature with human and fish features. The Nihon Shoki, written in 720, records man-like creatures netted in 619 on the Gamō River in Ōmi Province and in Settsu Province; because they came from fresh water, some researchers think they were giant salamanders. Later ningyo are sea creatures, and in medieval Japan a stranding was often read as a warning of war or disaster.",
+   "The most famous legend tells of a girl from Obama in Wakasa Province who ate ningyo flesh without knowing it, stopped ageing and became Yao Bikuni, the 'eight-hundred-year nun'. 15th-century writings say a 'white nun' aged 800 appeared in Kyoto in 1449. Not every ningyo was unlucky: one reported in Obama Bay in 1310 was taken as a good sign.",
+   "In the Edo period, dried 'ningyo' were made by joining parts of fish and other animals, and some are still kept in temples. In 2022 and 2023 researchers from Kurashiki University of Science and the Arts examined one held at Enjuin temple in Asakuchi, Okayama, and found it was built from cloth, paper and cotton covered with fish skin, with a fish tail, probably in the late 1800s. Oarfish, seals, dugongs and Steller's sea cows have all been suggested as the source of real sightings."
+  ],
+  "signs": [
+   "A fish with a human-like face",
+   "A red crest like a cockscomb",
+   "A stranding followed by bad news",
+   "A mummified 'mermaid' kept in a temple"
+  ],
+  "size": "About 1 ft (temple mummies) to human-sized (legend)",
+  "habitat": "Coastal seas and, in the oldest accounts, rivers",
+  "famous": [
+   {
+    "name": "A ningyo in Obama Bay is taken as a lucky sign",
+    "year": 1310,
+    "place": "Obama, Japan"
+   },
+   {
+    "name": "A 'white nun' said to be 800 years old appears",
+    "year": 1449,
+    "place": "Kyoto, Japan"
+   },
+   {
+    "name": "Enjuin temple's 'mermaid mummy' shown to be man-made",
+    "year": 2023,
+    "place": "Asakuchi, Japan"
+   }
+  ],
+  "related": [
+   "mermaid",
+   "kappa",
+   "amabie",
+   "jenny-haniver",
+   "ningen"
+  ],
+  "wiki": "Ningyo"
+ },
+ {
+  "slug": "iara",
+  "name": "Iara",
+  "aliases": [
+   "Uiara",
+   "Yara",
+   "Mãe das Águas",
+   "Mother of the Waters"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Rivers and lakes of the Amazon, Brazil",
+  "cc": [
+   "BR"
+  ],
+  "first": "Tupi and Guaraní tradition, written down by Brazilian collectors in the 19th century",
+  "summary": "A water spirit of Brazilian folklore who lures men into the rivers of the Amazon with her singing.",
+  "body": [
+   "Iara, also spelled Uiara or Yara, is a water spirit of Brazilian folklore rooted in Tupi and Guaraní tradition. Her name comes from Nheengatu words meaning roughly 'lady of the water', and she is also called Mãe das Águas, mother of the waters.",
+   "She is said to sit on rocks by the river, combing her hair or singing, and to draw young men into the water, from which they seldom return. The figure probably grew from older indigenous beings, such as the Ipupiara, a fish-man said to attack people, and the great river serpent Cobra-Grande, blended over time with the Portuguese and European mermaid.",
+   "Her appearance has changed with the tellers. The naturalist João Barbosa Rodrigues wrote in 1881 that the original Iara had dark hair, eyes and skin, while 19th-century Romantic writers made her blonde or green-haired. Some link her pink skin in later tales to the Amazon river dolphin, the boto. She remains a familiar figure in Brazilian stories and art."
+  ],
+  "signs": [
+   "A woman's voice singing by the river at dusk",
+   "A woman combing her hair on a riverside rock",
+   "Someone who stares into the water and won't come away"
+  ],
+  "size": "Human-sized",
+  "habitat": "Rivers, lakes and flooded forest",
+  "famous": [],
+  "related": [
+   "mermaid",
+   "rusalka",
+   "mami-wata",
+   "mapinguari",
+   "minhocao"
+  ],
+  "wiki": "Iara (mythology)"
+ },
+ {
+  "slug": "rusalka",
+  "name": "Rusalka",
+  "aliases": [
+   "Rusalki",
+   "Mavka",
+   "Vodyanitsa",
+   "Rusałka"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Russia, Ukraine, Belarus, Poland and the Czech lands",
+  "cc": [
+   "RU",
+   "UA",
+   "BY",
+   "PL",
+   "CZ"
+  ],
+  "first": "Slavic folk belief; the name comes from Rusalia, the Pentecost season",
+  "summary": "Slavic water maidens, often the spirits of drowned young women, who lure people into rivers and lakes.",
+  "body": [
+   "The rusalka is a female spirit of Slavic folklore, closely tied to water. Her name comes from Rusalia, an old name for Pentecost and the days around it. The folklorist Vladimir Propp argued that the earliest rusalki were kindly spirits who came out of the water in spring to bring moisture to the fields.",
+   "By the 19th century most tales described a restless, dangerous ghost: a young woman who had died before marriage, often by drowning, and returned to haunt the river or lake. She has pale skin and long, loose hair, often greenish, and she lures young men into the water, wraps them in her hair or tickles them to death. In Belarus rusalki were linked with forests and fields as much as water, and in Poland and the Czech lands the water rusalki were young and fair-haired.",
+   "They were thought most dangerous during 'Rusalka week' in early June, when they left the water to swing on birch and willow branches at night and swimming was forbidden. Antonín Dvořák's opera Rusalka, first staged in Prague in 1901, made the name known around the world."
+  ],
+  "signs": [
+   "Laughter or singing by a river on early-summer nights",
+   "Pale girls with long loose hair in the birch trees",
+   "Circle dances in a moonlit field",
+   "A pull toward the water while swimming"
+  ],
+  "size": "Human-sized",
+  "habitat": "Rivers, lakes, and nearby birch woods and fields",
+  "famous": [
+   {
+    "name": "Dvořák's opera Rusalka premieres",
+    "year": 1901,
+    "place": "Prague, Czech Republic"
+   }
+  ],
+  "related": [
+   "mermaid",
+   "iara",
+   "merrow",
+   "domovoi"
+  ],
+  "wiki": "Rusalka"
+ },
+ {
+  "slug": "mami-wata",
+  "name": "Mami Wata",
+  "aliases": [
+   "Mammy Water",
+   "Mami Wota",
+   "Mamba Muntu",
+   "Mami Muntu"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "West, Central and Southern Africa, and the African diaspora in the Americas",
+  "cc": [
+   "NG",
+   "GH",
+   "TG",
+   "BJ",
+   "LR",
+   "SL",
+   "CM",
+   "CD",
+   "AO",
+   "HT",
+   "SR"
+  ],
+  "first": "Scholars trace her imagery to contact with European mermaid images from the 15th century",
+  "summary": "A water spirit honoured across Africa and its diaspora, linked with wealth, healing and the sea.",
+  "body": [
+   "Mami Wata, 'Mother Water' in English-based creoles such as Krio and Naijá, is a water spirit, and for many people a goddess, honoured in parts of West, Central and Southern Africa and across the Atlantic diaspora. She belongs to living religious practice, with devotees and shrines, and is linked with wealth, healing, fertility, wisdom and beauty, and with the power of the sea and rivers.",
+   "She is often shown as a woman with long, flowing hair, sometimes with a fish's tail and often with a snake around her shoulders. The art historian Henry John Drewal, himself a devotee, traces parts of this image to the first meetings of Africans and Europeans in the 15th century and to European mermaid carvings and ship figureheads, and later to a 19th-century print of a snake charmer and to Hindu religious prints sold on the West African coast. Mirrors, perfume and imported goods are typical offerings at her shrines.",
+   "In Liberia in the 1960s, the researcher Ronald Wintrob found that most people believed in Mammy Water, who was thought to bring good fortune to those she favoured, often in return for strict promises. Related spirits include Lasirèn in Haiti, Mãe d'Água in Brazil and Watra-mama in Suriname and Guyana, carried across the Atlantic by enslaved Africans. Some Christian and Muslim communities view her with suspicion, while her followers see her as a powerful and generous spirit."
+  ],
+  "signs": [
+   "Mirrors, combs and perfume left at a waterside shrine",
+   "Dreams of a beautiful woman from the water",
+   "Images of a long-haired woman holding a snake",
+   "Good fortune credited to the water spirit"
+  ],
+  "size": "Human-sized (in art and accounts)",
+  "habitat": "Seas, rivers and lagoons",
+  "famous": [],
+  "related": [
+   "mermaid",
+   "mamlambo",
+   "iara"
+  ],
+  "wiki": "Mami Wata"
+ },
+ {
+  "slug": "kraken",
+  "name": "Kraken",
+  "aliases": [
+   "Krake",
+   "Hafgufa",
+   "Horven",
+   "Giant squid"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Norwegian Sea and the North Atlantic; giant squid live in all the world's oceans",
+  "cc": [
+   "NO",
+   "CA",
+   "JP"
+  ],
+  "first": "Named in Christen Jensøn's Norwegian glossary of 1646; made famous by Bishop Erik Pontoppidan in 1752-53",
+  "summary": "Norway's legendary ship-sinking monster, now linked to the giant squid, a real animal first filmed alive in 2012.",
+  "body": [
+   "The kraken is a giant, many-armed sea monster of Norwegian sailors' lore. Christen Jensøn's glossary of 1646 describes it pulling boats down into the deep, and in 1729 the missionary Hans Egede equated it with the hafgufa of Icelandic tales. Bishop Erik Pontoppidan of Bergen made it famous in his Natural History of Norway (1752-53): fishermen said that when the sea bed seemed suddenly shallow and full of fish, the kraken lay beneath, and if it rose they had to row away fast before it surfaced like a cluster of small islands. Victor Hugo and Jules Verne later turned it into a fiction staple.",
+   "The legend is widely thought to come from the giant squid. Japetus Steenstrup named the genus Architeuthis in 1857, and in the 1870s many giant squid stranded in Newfoundland. In 1873 one reportedly 'attacked' a small boat near Bell Island.",
+   "The giant squid is now a known animal, not a cryptid. Females reach about 43 ft including their two long feeding tentacles; claims of 66 ft or more have never been documented. On 30 September 2004 Tsunemi Kubodera and Kyoichi Mori took the first photographs of a live giant squid in the deep sea, about 3,000 ft down off Japan's Ogasawara Islands. In July 2012 a team from NHK and the Discovery Channel, with Kubodera and Edith Widder, filmed one in its natural habitat in the same waters for the first time."
+  ],
+  "signs": [
+   "Huge arms rising beside a boat",
+   "Deep water suddenly sounding shallow over a fishing bank",
+   "Sucker scars on sperm whales",
+   "A dead squid the length of a bus washed ashore"
+  ],
+  "size": "Giant squid up to about 43 ft; the legendary kraken island-sized",
+  "habitat": "Deep ocean slopes; in legend, Norwegian fishing banks",
+  "famous": [
+   {
+    "name": "Pontoppidan describes the kraken in his Natural History of Norway",
+    "year": 1752,
+    "place": "Bergen, Norway"
+   },
+   {
+    "name": "Giant squid reportedly attacks a dory",
+    "year": 1873,
+    "place": "Bell Island, Newfoundland"
+   },
+   {
+    "name": "First photographs of a live giant squid in the deep sea",
+    "year": 2004,
+    "place": "Ogasawara Islands, Japan"
+   },
+   {
+    "name": "First video of a giant squid in its natural habitat",
+    "year": 2012,
+    "place": "Ogasawara Islands, Japan"
+   }
+  ],
+  "related": [
+   "lusca",
+   "sea-serpent",
+   "sea-monk",
+   "uss-stein-monster",
+   "globster"
+  ],
+  "wiki": "Kraken"
+ },
+ {
+  "slug": "globster",
+  "name": "Globster",
+  "aliases": [
+   "Blob",
+   "St. Augustine Monster",
+   "Tasmanian Globster",
+   "Chilean Blob",
+   "Octopus giganteus"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Beaches worldwide; famous cases in Florida, Tasmania, Bermuda and Chile",
+  "cc": [
+   "US",
+   "AU",
+   "CL",
+   "BM"
+  ],
+  "first": "The word was coined by Ivan T. Sanderson in 1962 for a carcass found in Tasmania in 1960",
+  "summary": "Shapeless, boneless masses washed ashore and hailed as monsters, later identified as whale remains.",
+  "body": [
+   "A globster is a big, hard-to-identify lump of flesh that washes up on a beach. Writer Ivan T. Sanderson coined the word in 1962 for a Tasmanian carcass said to have no eyes, no head and no bones. Many were first called giant octopuses or sea serpents.",
+   "On 30 November 1896 two boys found a huge pale mass on Anastasia Island near St. Augustine, Florida. The local doctor, DeWitt Webb, measured about 18 ft by 7 ft of it above the sand, estimated it at around 5 tons and thought he saw arm stumps. Yale's Addison Verrill first suggested a giant squid, then named it Octopus giganteus, then decided it came from a whale. Tests on preserved samples in 1971 and 1986 seemed to support an octopus, but a 1995 analysis concluded it was the collagen-rich matrix of whale blubber, probably from a sperm whale.",
+   "In August 1960 a 20 ft by 18 ft mass covered in white bristles washed up near Interview River in western Tasmania; it was identified as a whale in 1981. In July 2003 a 13-tonne blob on Pinuno Beach at Los Muermos, Chile, was hailed as an unknown giant octopus until DNA tests in 2004 matched it to a sperm whale. The whale had died months earlier, and only its tough collagen fibres were left. Globsters in Bermuda (1988 and 1997), Nantucket (1996) and Newfoundland have also turned out to be whales."
+  ],
+  "signs": [
+   "A huge, pale, rubbery mass with no head or bones",
+   "White fibres that look like hair or fur",
+   "Flesh so tough it is hard to cut",
+   "Flaps that look like arms or tentacles"
+  ],
+  "size": "Up to about 39 ft across (Chilean blob)",
+  "habitat": "Ocean beaches",
+  "famous": [
+   {
+    "name": "St. Augustine Monster found on Anastasia Island",
+    "year": 1896,
+    "place": "St. Augustine, Florida"
+   },
+   {
+    "name": "Tasmanian Globster washes ashore",
+    "year": 1960,
+    "place": "Interview River, Tasmania"
+   },
+   {
+    "name": "Chilean blob found on Pinuno Beach",
+    "year": 2003,
+    "place": "Los Muermos, Chile"
+   }
+  ],
+  "related": [
+   "trunko",
+   "zuiyo-maru-carcass",
+   "stronsay-beast",
+   "gambo",
+   "montauk-monster",
+   "kraken"
+  ],
+  "wiki": "Globster"
+ },
+ {
+  "slug": "trunko",
+  "name": "Trunko",
+  "aliases": [
+   "Margate sea monster",
+   "Fish like a polar bear"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Margate, KwaZulu-Natal, South Africa",
+  "cc": [
+   "ZA"
+  ],
+  "first": "Seen on 25 October 1924; reported in London's Daily Mail on 27 December 1924",
+  "summary": "A white, 'furry' carcass with a trunk that washed up in South Africa in 1924, now seen as a rotting whale.",
+  "body": [
+   "On 25 October 1924, people at Margate on the South African coast said they watched a strange white animal fight two killer whales offshore for three hours, using its tail and rearing up to 20 ft out of the water. One witness, the farmer Hugh Ballance, said it looked like a giant polar bear. The story reached London's Daily Mail that December as 'Fish Like A Polar Bear'.",
+   "The carcass then washed up on Margate beach and lay there for ten days. Beach-goers measured it at 47 ft long, 10 ft wide and 5 ft high, covered in 8-inch white 'fur', with no visible head but a 5 ft trunk-like limb. No scientist examined it. Writer Karl Shuker gave it the nickname Trunko in 1996.",
+   "Photographs of the carcass turned up in 2010. Palaeontologist Darren Naish concluded they show the rotting remains of a large vertebrate, most likely a whale, with the 'fur' being frayed, decayed collagen, which makes Trunko another globster."
+  ],
+  "signs": [
+   "A white, hair-like covering",
+   "A trunk-like limb and no head",
+   "Killer whales attacking something offshore"
+  ],
+  "size": "47 ft (measured on the beach)",
+  "habitat": "Ocean beach",
+  "famous": [
+   {
+    "name": "Trunko seen fighting killer whales, then washes ashore",
+    "year": 1924,
+    "place": "Margate, South Africa"
+   }
+  ],
+  "related": [
+   "globster",
+   "zuiyo-maru-carcass",
+   "montauk-monster"
+  ],
+  "wiki": "Trunko"
+ },
+ {
+  "slug": "zuiyo-maru-carcass",
+  "name": "Zuiyō Maru carcass",
+  "aliases": [
+   "New Nessie",
+   "Nyū Nesshii",
+   "Zuiyo-maru creature"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Off Christchurch, New Zealand",
+  "cc": [
+   "NZ",
+   "JP"
+  ],
+  "first": "Hauled up on 25 April 1977",
+  "summary": "A rotting 'plesiosaur' hauled up off New Zealand in 1977, most likely a basking shark.",
+  "body": [
+   "On 25 April 1977 the Japanese trawler Zuiyō Maru, fishing east of Christchurch, New Zealand, pulled up a huge, foul-smelling carcass about 33 ft long and weighing around 1,800 kg. It seemed to have a long neck, a small head, four large reddish fins and a tail. Afraid it would spoil the catch, Captain Akira Tanaka had it thrown back, but crew member Michihiko Yano first took photographs, sketches, measurements and samples.",
+   "The pictures started a plesiosaur craze in Japan, and professor Tokio Shikama of Yokohama National University was convinced it was a surviving marine reptile.",
+   "A team of Japanese scientists who studied the samples concluded it was most likely a basking shark. When a basking shark rots, the lower jaw, gills and fins fall away first, leaving a small 'head' on a long 'neck' that looks very like a plesiosaur. Yano's measurements fit a large basking shark, the photos show a dorsal fin, and the fin fibres are found only in fish."
+  ],
+  "signs": [
+   "A long neck and small head on a big body",
+   "Four large flippers",
+   "A strong smell of rot"
+  ],
+  "size": "About 33 ft (10 m)",
+  "habitat": "Open sea",
+  "famous": [
+   {
+    "name": "Trawler Zuiyō Maru hauls up the carcass",
+    "year": 1977,
+    "place": "Christchurch, New Zealand"
+   }
+  ],
+  "related": [
+   "globster",
+   "stronsay-beast",
+   "sea-serpent",
+   "loch-ness-monster"
+  ],
+  "wiki": "Zuiyo-maru carcass"
+ },
+ {
+  "slug": "hook-island-sea-monster",
+  "name": "Hook Island Sea Monster",
+  "aliases": [
+   "Hook Island monster",
+   "Giant tadpole",
+   "Le Serrec sea serpent"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Stonehaven Bay, Hook Island, Whitsunday Islands, Queensland",
+  "cc": [
+   "AU"
+  ],
+  "first": "Photographed by Robert Le Serrec on 12 December 1964",
+  "summary": "A giant tadpole-shaped 'sea serpent' photographed off Queensland in 1964, widely considered a hoax.",
+  "body": [
+   "On 12 December 1964 the French photographer Robert Le Serrec, his family and a friend were crossing Stonehaven Bay at Hook Island in the Whitsundays when, they said, they saw a huge, dark, tadpole-shaped animal lying on the floor of the shallow lagoon. Le Serrec photographed it, and estimates of its length grew to around 75 to 80 ft.",
+   "The photos were published in Australia's Everyone magazine and went around the world. The best-known picture shows a broad head and a long, tapering tail under the water.",
+   "The case is widely considered a hoax. It came out that Le Serrec was in debt in France and had talked about making money from a sea-serpent photo before the trip. Suggested explanations range from a sheet or tarpaulin weighted on the sea bed to a large fish."
+  ],
+  "signs": [
+   "A huge dark tadpole shape on the sea floor",
+   "A broad head and long thin tail",
+   "Seen in clear, shallow lagoon water"
+  ],
+  "size": "About 75 to 80 ft (claimed)",
+  "habitat": "Shallow coral lagoon",
+  "famous": [
+   {
+    "name": "Robert Le Serrec photographs the 'giant tadpole'",
+    "year": 1964,
+    "place": "Hook Island, Queensland"
+   }
+  ],
+  "related": [
+   "sea-serpent",
+   "lusca",
+   "globster"
+  ],
+  "wiki": "Hook Island"
+ },
+ {
+  "slug": "uss-stein-monster",
+  "name": "USS Stein monster",
+  "aliases": [
+   "USS Stein sonar dome attack",
+   "Stein squid"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "At sea; USS Stein was a US Navy frigate based at San Diego",
+  "cc": [
+   "US"
+  ],
+  "first": "Damage found in 1978",
+  "summary": "Mysterious cuts and curved 'teeth' found in a US Navy frigate's sonar dome in 1978.",
+  "body": [
+   "USS Stein was a Knox-class frigate of the US Navy, carrying a large AN/SQS-26 sonar in a dome under its bow. In 1978 the dome's rubber 'NOFOUL' coating was found cut in many places, across about 8 percent of its surface.",
+   "Nearly all the cuts held fragments of sharp, curved teeth or claws. They were reported as larger than those of any squid known at the time, and the case has been linked ever since to an unknown giant squid or other large animal.",
+   "Exactly where and when the damage happened is not recorded, no animal was seen, and the fragments have never been tied to a known species. It remains one of the few sea-monster stories with physical evidence from a navy ship."
+  ],
+  "signs": [
+   "Slash marks on a ship's hull or sonar dome",
+   "Sharp, curved hooks left embedded",
+   "No animal ever seen"
+  ],
+  "size": "Unknown",
+  "habitat": "Open ocean",
+  "famous": [],
+  "related": [
+   "kraken",
+   "lusca",
+   "bloop"
+  ],
+  "wiki": "USS Stein"
+ },
+ {
+  "slug": "bloop",
+  "name": "Bloop",
+  "aliases": [
+   "The Bloop",
+   "Bloop sound"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Remote South Pacific west of southern South America (about 50°S 100°W)",
+  "cc": [],
+  "first": "Recorded by NOAA hydrophones in 1997",
+  "summary": "A huge, low underwater sound recorded in 1997 that sparked monster talk, later matched to icequakes.",
+  "body": [
+   "In 1997 NOAA's Equatorial Pacific hydrophone array, which listens for undersea earthquakes, ice and whales, picked up an ultra-low-frequency sound that rose in pitch over about a minute. It was loud enough to be heard on sensors more than 3,000 miles apart, and its source was roughly placed near 50°S 100°W in the remote South Pacific.",
+   "Its quick rise in pitch sounded like an animal call, and NOAA scientist Christopher Fox told New Scientist in 2002 that it was far more powerful than any known animal. That opened the door to years of talk about a creature bigger than any whale.",
+   "By 2012 NOAA described the sound as consistent with an icequake, the cracking and calving of large icebergs. Very similar sounds were recorded as iceberg A53a broke up near South Georgia in 2008, and the Bloop's source was most likely ice between the Bransfield Strait and the Ross Sea, or at Cape Adare in Antarctica."
+  ],
+  "signs": [
+   "A very low rumble on underwater microphones",
+   "Pitch rising over about a minute",
+   "Heard thousands of miles apart"
+  ],
+  "size": "No animal involved; the sound carried over 3,000 miles",
+  "habitat": "Southern Ocean and Antarctic ice edge",
+  "famous": [
+   {
+    "name": "NOAA hydrophones record the Bloop (rough source point)",
+    "year": 1997,
+    "place": "South Pacific, 50°S 100°W"
+   }
+  ],
+  "related": [
+   "uss-stein-monster",
+   "kraken",
+   "ningen"
+  ],
+  "wiki": "Bloop"
+ },
+ {
+  "slug": "sea-monk",
+  "name": "Sea monk",
+  "aliases": [
+   "Monk-fish",
+   "Monachus marinus",
+   "Piscis monachus"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "The Øresund strait between Denmark and Sweden",
+  "cc": [
+   "DK",
+   "SE"
+  ],
+  "first": "Caught in 1546 (some sources say 1549)",
+  "summary": "A 'fish' shaped like a hooded monk, caught in the Øresund off Denmark in 1546.",
+  "body": [
+   "In 1546, according to most sources, a strange 'fish' was caught in the Øresund, the strait between Zealand in Denmark and Sweden, either in a herring net or found stranded. It looked like a monk in his habit, with a human-like face. A Danish chronicle of 1575 gives its length as 4 ells, about 15 ft, and King Christian III sent a drawing of it to Emperor Charles V.",
+   "The sea monk then appeared in the great natural histories of the age, by Pierre Belon (1553), Guillaume Rondelet (1554) and Conrad Gesner (1558). Rondelet suspected the artist had embellished it 'to make the thing seem more marvelous'.",
+   "In the 1850s the Danish zoologist Japetus Steenstrup argued it was a giant squid. Others have suggested a walrus, a grey, hooded or monk seal, an angel shark, still called munk in Danish, or a doctored ray of the kind known as a Jenny Haniver."
+  ],
+  "signs": [
+   "A human-like face on a fish",
+   "A head shaped like a monk's hood",
+   "Fins or skin draped like a hooded robe"
+  ],
+  "size": "About 15 ft (4 ells, per a 1575 chronicle)",
+  "habitat": "Coastal strait",
+  "famous": [
+   {
+    "name": "Sea monk caught in the Øresund",
+    "year": 1546,
+    "place": "Øresund, Denmark"
+   }
+  ],
+  "related": [
+   "bishop-fish",
+   "jenny-haniver",
+   "kraken",
+   "mermaid"
+  ],
+  "wiki": "Sea monk"
+ },
+ {
+  "slug": "bishop-fish",
+  "name": "Bishop-fish",
+  "aliases": [
+   "Sea bishop",
+   "Bishop fish",
+   "Episcopus marinus"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Seas off Poland and Germany",
+  "cc": [
+   "PL",
+   "DE"
+  ],
+  "first": "16th-century accounts, pictured by Conrad Gesner in the 1550s",
+  "summary": "A 16th-century sea creature shaped like a bishop in his mitre, said to have begged Polish clergy to free it.",
+  "body": [
+   "The bishop-fish, or sea bishop, is a sea creature described in 16th-century books as looking like a bishop in his robes, with a pointed head like a mitre.",
+   "In the best-known story, one was caught and taken to the King of Poland, who wanted to keep it. It was shown to a group of bishops, and it gestured to them to let it go. They agreed, and it made the sign of the cross and vanished into the sea. Another was said to have been caught in the sea near Germany in 1531; it refused to eat and died after three days. Conrad Gesner pictured it in his Historiae animalium.",
+   "The cryptozoologist Bernard Heuvelmans thought the reports were based on a large, mangled squid. Like the sea monk, it belongs to an age when travellers' tales, drawings and doctored specimens passed from book to book with growing detail."
+  ],
+  "signs": [
+   "A pointed head like a mitre",
+   "Fins draped like a bishop's cloak",
+   "Hand-like gestures"
+  ],
+  "size": "Human-sized (reported)",
+  "habitat": "Coastal seas",
+  "famous": [],
+  "related": [
+   "sea-monk",
+   "jenny-haniver",
+   "mermaid"
+  ],
+  "wiki": "Bishop-fish"
+ },
+ {
+  "slug": "stronsay-beast",
+  "name": "Stronsay Beast",
+  "aliases": [
+   "Beast of Stronsay",
+   "Stronsa beast",
+   "Halsydrus pontoppidani"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Stronsay, Orkney, Scotland",
+  "cc": [
+   "GB"
+  ],
+  "first": "Washed ashore after a storm on 25 September 1808",
+  "summary": "A 55 ft carcass with 'paws' and glowing bristles that washed up in Orkney in 1808, likely a basking shark.",
+  "body": [
+   "After a storm on 25 September 1808, a huge carcass washed up on the island of Stronsay in Orkney. A carpenter and two farmers measured it at 55 ft long without part of its tail, and 4 ft wide. It had a long neck, three pairs of 'paws' or 'wings', and a row of bristles down its back that glowed in the dark when wet.",
+   "Edinburgh's Wernerian Natural History Society decided it was a new kind of sea serpent, and the naturalist Patrick Neill named it Halsydrus pontoppidani after Erik Pontoppidan, the bishop who wrote about sea serpents and the kraken.",
+   "In London the anatomist Sir Everard Home argued the length must be wrong, about 30 ft, and that the animal was a rotting basking shark, which John Goodsir agreed with in 1849. A decaying basking shark loses its jaw, gills and fins, leaving a long-necked shape; the same mistake was made with the Zuiyō Maru carcass in 1977. Karl Shuker has argued that the 55 ft length was reliable and the animal may have been a larger, unknown relative of the basking shark."
+  ],
+  "signs": [
+   "A long neck and small head",
+   "Three pairs of limbs",
+   "Bristles that glow in the dark when wet"
+  ],
+  "size": "55 ft (as measured); about 30 ft if a basking shark",
+  "habitat": "Ocean beach",
+  "famous": [
+   {
+    "name": "Stronsay Beast washes ashore after a storm",
+    "year": 1808,
+    "place": "Stronsay, Orkney"
+   }
+  ],
+  "related": [
+   "zuiyo-maru-carcass",
+   "globster",
+   "sea-serpent",
+   "kraken"
+  ],
+  "wiki": "Stronsay Beast"
+ },
+ {
+  "slug": "gambo",
+  "name": "Gambo",
+  "aliases": [
+   "Gambian sea serpent",
+   "Beaked beast of Bungalow Beach",
+   "Kunthum belein"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Bungalow Beach, Kotu, The Gambia",
+  "cc": [
+   "GM"
+  ],
+  "first": "Found on 12 June 1983 by Owen Burnham",
+  "summary": "A beaked, four-flippered carcass found on a Gambian beach in 1983, most likely a decayed dolphin or whale.",
+  "body": [
+   "On 12 June 1983, 15-year-old Owen Burnham, on holiday from Senegal, found a carcass on Bungalow Beach at Kotu in The Gambia. He described it as about 15 ft long, dark above and white below, with a long beak holding about 80 teeth, four paddle-like flippers and a long tail with no flukes. Two fishermen were cutting off its head to sell to a tourist, and they called it a dolphin.",
+   "Burnham's account appeared in BBC Wildlife in 1986, and Karl Shuker wrote about it the same year, suggesting it might be a surviving marine reptile. The name 'Gambo' came from a 1993 Fortean Times article.",
+   "Palaeontologist Darren Naish and others think a mangled dolphin or beaked whale is far more likely. Dorsal fins and tail flukes are among the first parts lost as a whale or dolphin rots, and in 2006 a bottlenose dolphin with a pair of extra hind flippers was caught off Taiji, Japan."
+  ],
+  "signs": [
+   "A long, toothed beak",
+   "Four flippers",
+   "A tail with no flukes"
+  ],
+  "size": "About 15 ft",
+  "habitat": "Tropical ocean beach",
+  "famous": [
+   {
+    "name": "Owen Burnham finds the carcass",
+    "year": 1983,
+    "place": "Kotu, Gambia"
+   }
+  ],
+  "related": [
+   "globster",
+   "zuiyo-maru-carcass",
+   "sea-serpent"
+  ],
+  "wiki": "Gambo (cryptid)"
+ },
+ {
+  "slug": "amabie",
+  "name": "Amabie",
+  "aliases": [
+   "Amabiko",
+   "Amahiko"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Higo Province (Kumamoto Prefecture), Kyushu, Japan",
+  "cc": [
+   "JP"
+  ],
+  "first": "A woodblock news sheet dated 1846",
+  "summary": "A glowing, beaked, scaly sea creature said to rise off Kyushu in 1846 and foretell harvests and plague.",
+  "body": [
+   "According to a woodblock news sheet dated 1846, a glowing light was seen in the sea off Higo Province, now Kumamoto Prefecture, almost every night. A town official went to look and met a creature with long hair, a bird-like beak, scales from the neck down and three legs or tail fins. It said it was an amabie that lived in the open sea, foretold six years of good harvests, and said that if disease spread, people should show its picture to the sick. Then it went back into the sea.",
+   "That print, held by Kyoto University Library, is the only record of the amabie. It is probably a miscopying of the amabiko, a similar prophetic creature known from a dozen or so hand-copied leaflets from the 1840s, some of which name villages that never existed.",
+   "During the COVID-19 pandemic in 2020, the amabie went viral in Japan as a charm against disease, drawn by manga artists and shared widely online."
+  ],
+  "signs": [
+   "A light glowing in the sea at night",
+   "Long hair and a bird-like beak",
+   "Three legs or tail fins",
+   "A message about harvests or sickness"
+  ],
+  "size": "Unknown (not given in the 1846 print)",
+  "habitat": "Open sea off Kyushu",
+  "famous": [
+   {
+    "name": "Amabie said to appear and foretell an epidemic",
+    "year": 1846,
+    "place": "Kumamoto Prefecture, Japan"
+   }
+  ],
+  "related": [
+   "ningyo",
+   "kappa",
+   "mermaid"
+  ],
+  "wiki": "Amabie"
+ },
+ {
+  "slug": "blue-men-of-the-minch",
+  "name": "Blue men of the Minch",
+  "aliases": [
+   "Storm kelpies",
+   "Na fir ghorma",
+   "Blue men"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "The Minch and the Shiant Isles, Outer Hebrides, Scotland",
+  "cc": [
+   "GB"
+  ],
+  "first": "Hebridean folklore, recorded by collectors such as John Gregorson Campbell and Donald A. Mackenzie",
+  "summary": "Blue-skinned sea men of the Hebrides who challenge sailors to finish a rhyme or have their ship sunk.",
+  "body": [
+   "The blue men of the Minch are sea beings said to live in the strait between the northern Outer Hebrides and mainland Scotland. They look like people, about the same size, but with blue skin and long grey faces. In calm weather they float asleep at or just under the surface; they can raise storms, and they swim with their upper bodies out of the water, rolling and diving like porpoises.",
+   "When a ship comes near, their chief may shout two lines of verse to the captain. If he cannot finish the rhyme, the blue men try to capsize his ship. They are said to live in caves by the Shiant Isles, beside a fast tidal stream known as the Stream of the Blue Men and nicknamed the Current of Destruction for its many wrecks.",
+   "Folklorist Donald A. Mackenzie noted that they are found nowhere else, not even elsewhere in Scotland. Explanations include a personification of the sea, painted Picts crossing in small boats, or North African captives kept by Vikings who wintered near the Shiants."
+  ],
+  "signs": [
+   "Blue men rising waist-high from the water",
+   "A rhyme shouted from the waves",
+   "A sudden storm in calm weather"
+  ],
+  "size": "Human-sized",
+  "habitat": "Fast tidal channels among the Hebridean islands",
+  "famous": [],
+  "related": [
+   "selkie",
+   "finfolk",
+   "merrow",
+   "mermaid"
+  ],
+  "wiki": "Blue men of the Minch"
+ },
+ {
+  "slug": "finfolk",
+  "name": "Finfolk",
+  "aliases": [
+   "Finnfolk",
+   "Finman",
+   "Finwife",
+   "Finfolkaheem"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "Orkney, Scotland",
+  "cc": [
+   "GB"
+  ],
+  "first": "Orkney oral tradition, written down by 19th- and 20th-century collectors",
+  "summary": "Shape-shifting sea people of Orkney folklore who kidnap islanders to be their husbands and wives.",
+  "body": [
+   "In Orkney folklore the Finfolk are sorcerous, shape-shifting sea people from Finfolkaheem, a glowing undersea home of crystal halls and seaweed gardens. In spring and summer they come ashore, wading, swimming or rowing, to seize people as husbands and wives.",
+   "The Finman is tall, thin and grim, can row from Norway to Orkney in seven strokes and can make his boat invisible. He guards his fishing grounds fiercely, but a cross chalked or tarred on the bottom of a boat was said to keep him off. The Finwife starts life as a beautiful mermaid looking for a human husband; if she fails, she must marry a Finman and is sent ashore as a healer or spinner to earn silver for him. Finfolk love silver, and throwing coins away from you was one way to escape them.",
+   "In summer they were said to live on Hildaland, a hidden island in the mist, which many in Orkney link to the real island of Eynhallow."
+  ],
+  "signs": [
+   "A tall, gloomy rower far from shore",
+   "A boat that vanishes or a phantom fleet",
+   "An island that appears and disappears in the mist"
+  ],
+  "size": "Human-sized",
+  "habitat": "The seas around Orkney and a realm beneath them",
+  "famous": [],
+  "related": [
+   "selkie",
+   "blue-men-of-the-minch",
+   "mermaid",
+   "huldufolk"
+  ],
+  "wiki": "Finfolk"
+ },
+ {
+  "slug": "jenny-haniver",
+  "name": "Jenny Haniver",
+  "aliases": [
+   "Jenny Hanivers",
+   "Dried ray dragon",
+   "Ray mummy"
+  ],
+  "cat": "aquatic",
+  "icon": "imp",
+  "region": "European ports from the 16th century; also Mexico and Japan",
+  "cc": [
+   "BE",
+   "MX",
+   "JP"
+  ],
+  "first": "First pictured by Conrad Gesner in 1558",
+  "summary": "Dried skates and rays shaped into 'dragons', 'demons' and 'angels', sold as sea monsters since the 1500s.",
+  "body": [
+   "A Jenny Haniver is the body of a ray or skate that has been cut, shaped and dried to look like a fantastic creature, such as a demon, angel, dragon or basilisk. They have been made since at least the 16th century and sold as curiosities to sailors and collectors.",
+   "The earliest known picture is in the fourth volume of Conrad Gesner's Historia Animalium (1558), where he warned readers that these were only disfigured rays, not baby dragons. The name may be a sailors' version of the French jeune d'Anvers, 'youth of Antwerp'. Some writers think the 16th-century sea monk may have been one.",
+   "In Veracruz, Mexico, they are still credited with magical powers and used by curanderos, much as fake ningyo mermaids are kept in some Japanese temples. They belong to the same family of made-up marvels as Barnum's Feejee mermaid."
+  ],
+  "signs": [
+   "A small dried 'dragon' or 'demon' with a face-like underside",
+   "Wing-like fins and a whip-thin tail",
+   "Sold as a sea curiosity"
+  ],
+  "size": "Small enough to hold in the hands",
+  "habitat": "Made from rays and skates of coastal seas",
+  "famous": [
+   {
+    "name": "Conrad Gesner pictures one and warns it is a doctored ray",
+    "year": 1558,
+    "place": "Zürich, Switzerland"
+   }
+  ],
+  "related": [
+   "sea-monk",
+   "bishop-fish",
+   "mermaid",
+   "ningyo"
+  ],
+  "wiki": "Jenny Haniver"
  }
 ]

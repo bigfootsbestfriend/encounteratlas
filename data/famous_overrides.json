@@ -43,6 +43,10 @@
   50.72,
   4.6
  ],
+ "Bell Island, Newfoundland": [
+  47.6328,
+  -52.9658
+ ],
  "Ben Macdui, Cairngorms": [
   57.07,
   -3.67
@@ -151,9 +155,17 @@
   30.33,
   -89.7
  ],
+ "Hook Island, Queensland": [
+  -20.1167,
+  148.9167
+ ],
  "Humboldt County, California": [
   41.4,
   -123.62
+ ],
+ "Interview River, Tasmania": [
+  -41.56,
+  144.87
  ],
  "Jackson County, Arkansas": [
   35.61,
@@ -175,9 +187,17 @@
   -1.7,
   101.27
  ],
+ "Kiryat Yam, Israel": [
+  32.8333,
+  35.0667
+ ],
  "Kudumbigala, Sri Lanka": [
   6.69,
   81.73
+ ],
+ "Kumamoto Prefecture, Japan": [
+  32.79,
+  130.74
  ],
  "Lagarfljót, Iceland": [
   65.17,
@@ -271,6 +291,10 @@
   39.44,
   -77.55
  ],
+ "Mikladalur, Faroe Islands": [
+  62.335,
+  -6.7669
+ ],
  "Minas Gerais, Brazil": [
   -18.5,
   -44.5
@@ -278,6 +302,10 @@
  "Mont Mouchet, France": [
   45.0,
   3.42
+ ],
+ "Monte Cristi, Dominican Republic": [
+  19.8667,
+  -71.65
  ],
  "Mount Hiba, Hiroshima Prefecture": [
   35.0,
@@ -327,6 +355,10 @@
   31.0,
   -79.0
  ],
+ "Ogasawara Islands, Japan": [
+  27.0667,
+  142.2083
+ ],
  "Okanagan Lake, BC": [
   49.9,
   -119.5
@@ -350,6 +382,10 @@
  "Pemba, Zanzibar": [
   -5.2,
   39.8
+ ],
+ "Prague, Czech Republic": [
+  50.0875,
+  14.4214
  ],
  "Richtersveld, South Africa": [
   -28.2,
@@ -375,6 +411,10 @@
   51.02,
   -3.83
  ],
+ "South Pacific, 50°S 100°W": [
+  -50.0,
+  -100.0
+ ],
  "South Texas": [
   26.8,
   -98.3
@@ -386,6 +426,10 @@
  "Storsjön, Sweden": [
   63.18,
   14.5
+ ],
+ "Stronsay, Orkney": [
+  59.1167,
+  -2.6
  ],
  "Suffolk, England": [
   52.2,
@@ -458,5 +502,9 @@
  "Zanzibar and Dar es Salaam": [
   -6.16,
   39.2
+ ],
+ "Øresund, Denmark": [
+  55.75,
+  12.75
  ]
 }

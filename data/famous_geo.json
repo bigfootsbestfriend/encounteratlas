@@ -2798,5 +2798,275 @@
 "place": "Hodenhagen, Germany",
 "lat": 52.7651,
 "lon": 9.595
+},
+{
+"creature": "mermaid",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Columbus sees three 'sirens', almost certainly manatees",
+"year": 1493,
+"place": "Monte Cristi, Dominican Republic",
+"lat": 19.8667,
+"lon": -71.65
+},
+{
+"creature": "mermaid",
+"cat": "aquatic",
+"icon": "imp",
+"name": "The Benbecula mermaid is said to be buried by the shore",
+"year": 1830,
+"place": "Benbecula, Scotland",
+"lat": 57.4474,
+"lon": -7.3427
+},
+{
+"creature": "mermaid",
+"cat": "aquatic",
+"icon": "imp",
+"name": "P. T. Barnum shows the 'Feejee mermaid', a hoax",
+"year": 1842,
+"place": "New York City, New York",
+"lat": 40.7143,
+"lon": -74.006
+},
+{
+"creature": "mermaid",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Town offers $1 million for proof of a Haifa Bay mermaid",
+"year": 2009,
+"place": "Kiryat Yam, Israel",
+"lat": 32.8333,
+"lon": 35.0667
+},
+{
+"creature": "mermaid",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Dam workers refuse to work, blaming mermaids",
+"year": 2012,
+"place": "Gokwe, Zimbabwe",
+"lat": -18.2048,
+"lon": 28.9349
+},
+{
+"creature": "mermaid",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Osborne Dam reports reach Zimbabwe's parliament",
+"year": 2012,
+"place": "Mutare, Zimbabwe",
+"lat": -18.9707,
+"lon": 32.6709
+},
+{
+"creature": "selkie",
+"cat": "aquatic",
+"icon": "imp",
+"name": "K\u00f3pakonan seal-woman statue unveiled",
+"year": 2014,
+"place": "Mikladalur, Faroe Islands",
+"lat": 62.335,
+"lon": -6.7669
+},
+{
+"creature": "ningyo",
+"cat": "aquatic",
+"icon": "imp",
+"name": "A ningyo in Obama Bay is taken as a lucky sign",
+"year": 1310,
+"place": "Obama, Japan",
+"lat": 35.4958,
+"lon": 135.746
+},
+{
+"creature": "ningyo",
+"cat": "aquatic",
+"icon": "imp",
+"name": "A 'white nun' said to be 800 years old appears",
+"year": 1449,
+"place": "Kyoto, Japan",
+"lat": 35.0211,
+"lon": 135.7538
+},
+{
+"creature": "ningyo",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Enjuin temple's 'mermaid mummy' shown to be man-made",
+"year": 2023,
+"place": "Asakuchi, Japan",
+"lat": 34.5348,
+"lon": 133.603
+},
+{
+"creature": "rusalka",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Dvo\u0159\u00e1k's opera Rusalka premieres",
+"year": 1901,
+"place": "Prague, Czech Republic",
+"lat": 50.0875,
+"lon": 14.4214
+},
+{
+"creature": "kraken",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Pontoppidan describes the kraken in his Natural History of Norway",
+"year": 1752,
+"place": "Bergen, Norway",
+"lat": 60.393,
+"lon": 5.3242
+},
+{
+"creature": "kraken",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Giant squid reportedly attacks a dory",
+"year": 1873,
+"place": "Bell Island, Newfoundland",
+"lat": 47.6328,
+"lon": -52.9658
+},
+{
+"creature": "kraken",
+"cat": "aquatic",
+"icon": "imp",
+"name": "First photographs of a live giant squid in the deep sea",
+"year": 2004,
+"place": "Ogasawara Islands, Japan",
+"lat": 27.0667,
+"lon": 142.2083
+},
+{
+"creature": "kraken",
+"cat": "aquatic",
+"icon": "imp",
+"name": "First video of a giant squid in its natural habitat",
+"year": 2012,
+"place": "Ogasawara Islands, Japan",
+"lat": 27.0667,
+"lon": 142.2083
+},
+{
+"creature": "globster",
+"cat": "aquatic",
+"icon": "imp",
+"name": "St. Augustine Monster found on Anastasia Island",
+"year": 1896,
+"place": "St. Augustine, Florida",
+"lat": 29.8947,
+"lon": -81.3145
+},
+{
+"creature": "globster",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Tasmanian Globster washes ashore",
+"year": 1960,
+"place": "Interview River, Tasmania",
+"lat": -41.56,
+"lon": 144.87
+},
+{
+"creature": "globster",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Chilean blob found on Pinuno Beach",
+"year": 2003,
+"place": "Los Muermos, Chile",
+"lat": -41.3956,
+"lon": -73.4624
+},
+{
+"creature": "trunko",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Trunko seen fighting killer whales, then washes ashore",
+"year": 1924,
+"place": "Margate, South Africa",
+"lat": -30.8636,
+"lon": 30.3705
+},
+{
+"creature": "zuiyo-maru-carcass",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Trawler Zuiy\u014d Maru hauls up the carcass",
+"year": 1977,
+"place": "Christchurch, New Zealand",
+"lat": -43.5333,
+"lon": 172.6333
+},
+{
+"creature": "hook-island-sea-monster",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Robert Le Serrec photographs the 'giant tadpole'",
+"year": 1964,
+"place": "Hook Island, Queensland",
+"lat": -20.1167,
+"lon": 148.9167
+},
+{
+"creature": "bloop",
+"cat": "aquatic",
+"icon": "imp",
+"name": "NOAA hydrophones record the Bloop (rough source point)",
+"year": 1997,
+"place": "South Pacific, 50\u00b0S 100\u00b0W",
+"lat": -50.0,
+"lon": -100.0
+},
+{
+"creature": "sea-monk",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Sea monk caught in the \u00d8resund",
+"year": 1546,
+"place": "\u00d8resund, Denmark",
+"lat": 55.75,
+"lon": 12.75
+},
+{
+"creature": "stronsay-beast",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Stronsay Beast washes ashore after a storm",
+"year": 1808,
+"place": "Stronsay, Orkney",
+"lat": 59.1167,
+"lon": -2.6
+},
+{
+"creature": "gambo",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Owen Burnham finds the carcass",
+"year": 1983,
+"place": "Kotu, Gambia",
+"lat": 13.4594,
+"lon": -16.7053
+},
+{
+"creature": "amabie",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Amabie said to appear and foretell an epidemic",
+"year": 1846,
+"place": "Kumamoto Prefecture, Japan",
+"lat": 32.79,
+"lon": 130.74
+},
+{
+"creature": "jenny-haniver",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Conrad Gesner pictures one and warns it is a doctored ray",
+"year": 1558,
+"place": "Z\u00fcrich, Switzerland",
+"lat": 47.3667,
+"lon": 8.55
 }
 ]
