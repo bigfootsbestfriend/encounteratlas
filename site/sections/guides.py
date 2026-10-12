@@ -154,6 +154,7 @@ def build(ctx):
     <section>
       <h2>Printable kits</h2>
       <p>Tick them off on your phone (your ticks are remembered on this device) or print them for the truck.</p>
+      <p><a class="btn" href="{ctx.url('/printables/after-an-encounter/')}">Encounter record sheet</a> For right after a sighting: what to write down before you forget.</p>
       <ul class="g-kits">{kits}</ul>
     </section>
     <section class="g-rules-card">

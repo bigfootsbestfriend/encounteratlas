@@ -1,0 +1,38 @@
+/* Encounter record sheet: reads as a form on screen, prints as two clean pages */
+.pr-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+.pr-sheet { background: #fff; border-radius: var(--r-md); padding: clamp(18px, 4vw, 40px); max-width: 860px; margin: 0 auto; color: #1A1A1A;
+  box-shadow: 0 10px 30px rgba(19, 38, 31, .12); }
+.pr-title h2 { margin: 0 0 .3rem; color: #13261F; }
+.pr-title p { margin: 0 0 1rem; color: #444; }
+.pr-set { border: 1.5px solid #13261F; border-radius: 8px; padding: .4rem 1rem .8rem; margin: 0 0 1rem; }
+.pr-set legend { font: 700 1rem "Zilla Slab", Georgia, serif; padding: 0 .4rem; color: #13261F; }
+.pr-set label { display: block; font-size: .9rem; color: #333; margin-top: .5rem; }
+.pr-set.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 1rem; }
+.pr-set.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 1rem; }
+.pr-set.grid3 legend, .pr-set.grid2 legend { grid-column: 1 / -1; }
+@media (max-width: 600px) { .pr-set.grid3, .pr-set.grid2 { grid-template-columns: 1fr; } }
+.pr-lines { display: block; } .pr-lines i { display: block; height: 1.9rem; border-bottom: 1px solid #9AA59E; }
+.pr-q { margin: 1rem 0; } .pr-q p { margin: 0; font-weight: 600; color: #13261F; }
+.pr-sketch { height: 260px; border: 1.5px dashed #6F7F74; border-radius: 8px; margin-top: .5rem;
+  background-image: radial-gradient(#C9D0CB 1px, transparent 1px); background-size: 18px 18px; }
+.pr-check { border-left: 4px solid #B4471E; padding: .2rem 0 .2rem 1rem; margin: 1rem 0; }
+.pr-check p { margin: 0 0 .3rem; } .pr-check ul { margin: 0; padding-left: 1.1rem; }
+.pr-send { display: flex; gap: 1rem; align-items: center; background: #F2EEE2; border-radius: 8px; padding: .8rem 1rem; margin: 1rem 0; }
+.pr-send img { width: 96px; height: 96px; flex: none; background: #fff; padding: 4px; }
+.pr-send b { display: block; font: 700 1.05rem "Zilla Slab", Georgia, serif; color: #13261F; }
+.pr-send p { margin: 0; font-size: .92rem; }
+.pr-sign { margin: 1.4rem 0 0; color: #333; }
+@media print {
+  .pr-head, .band-mist > .wrap > :not(.pr-sheet) { display: none !important; }
+  .band { padding: 0 !important; background: #fff !important; }
+  .pr-sheet { box-shadow: none; padding: 0; max-width: none; border-radius: 0; font-size: 9.5pt; }
+  .pr-title h2 { font-size: 15pt; } .pr-title p { margin-bottom: 6px; }
+  .pr-set { padding: 2px 10px 6px; margin-bottom: 7px; } .pr-set label { font-size: 8.5pt; margin-top: 3px; }
+  .pr-q { margin: 7px 0; } .pr-q p { font-size: 9.5pt; }
+  .pr-lines i { height: 1.3rem; }
+  .pr-page2 { break-before: page; }
+  .pr-set, .pr-q, .pr-send, .pr-check { break-inside: avoid; }
+  .pr-sketch { height: 200px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .pr-send { print-color-adjust: exact; -webkit-print-color-adjust: exact; padding: 6px 10px; margin: 8px 0; }
+  .pr-check { margin: 8px 0; }
+}

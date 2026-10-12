@@ -143,6 +143,8 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 </head>
 <body class="{body_class}">
 <a class="skip" href="#main">Skip to content</a>
+<div class="print-brand" aria-hidden="true"><img src="{url('/static/logo-mark.svg')}" alt="" width="44" height="44"><div><b>Encounter Atlas</b><span>Cryptids, UFOs and close encounters, mapped</span></div><span class="pb-url">encounteratlas.com</span></div>
+<div class="print-foot" aria-hidden="true">Printed from encounteratlas.com{esc(path)} · Free to print and share · Report what you saw at encounteratlas.com/report</div>
 <header class="top">
   <a class="brand" href="{url('/')}"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</a>
   <nav class="nav" aria-label="Main">{nav}</nav>
@@ -382,6 +384,7 @@ def build_creatures(creatures, by_slug):
         <p>Tell us what happened. Every report is read by a person before it goes on the map, and you can stay anonymous.</p>
         <p class="seen-actions"><a class="btn" href="{url('/report/?creature=' + c['slug'])}">Report a {esc(c['name'])} encounter</a>
         {f'<a class="btn btn-ghost" href="{url("/tools/what-did-i-see/")}">Not sure what it was?</a>' if os.path.exists(os.path.join(ROOT, 'data', 'identify.json')) else ''}</p>
+        <p class="seen-print"><a href="{url('/printables/after-an-encounter/')}">Print a record sheet</a> to fill in while it's fresh.</p>
       </div>
     </section>
   </article>
@@ -695,6 +698,7 @@ def build_static_pages():
   <p class="lede">Saw something you can't explain? The report form is being built now and opens soon, with photo and video uploads and a pin on the map.</p>
 </div></section>
 <div class="band band-mist"><div class="wrap prose">
+  <p><a class="btn" href="{url('/printables/after-an-encounter/')}">Print the encounter record sheet</a></p>
   <h2>What to write down now, while it's fresh</h2>
   <ul class="signs">
     <li>Date, time and how long it lasted</li>

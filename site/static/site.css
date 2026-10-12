@@ -438,3 +438,19 @@ body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
 .tone-hominid { --tone: var(--c-hominid); } .tone-canid { --tone: var(--c-canid); } .tone-winged { --tone: var(--c-winged); }
 .tone-entity { --tone: var(--c-entity); } .tone-fae { --tone: var(--c-fae); } .tone-ufo { --tone: var(--c-ufo); } .tone-other { --tone: var(--c-other); }
 .cg-band h2 { color: #F3F1E4; } .cg-band .lede-dark { color: var(--lichen); }
+/* Printables carry the brand: a header on the first page and a footer on every page */
+.print-brand, .print-foot { display: none; }
+@media print {
+  .print-brand { display: flex !important; align-items: center; gap: 10px; border-bottom: 2px solid #13261F; padding-bottom: 6px; margin-bottom: 10px; }
+  .print-brand img { width: 40px; height: 40px; }
+  .print-brand b { display: block; font: 700 17pt "Zilla Slab", Georgia, serif; color: #13261F; }
+  .print-brand span { font-size: 9pt; color: #333; }
+  .print-brand .pb-url { margin-left: auto; font: 700 11pt "Public Sans", sans-serif; color: #13261F; }
+  .print-foot { display: block !important; position: fixed; bottom: 0; left: 0; right: 0; font-size: 8pt; color: #444; text-align: center; }
+  .report-btn { display: none !important; }
+}
+@media print {
+  @page { margin: 12mm; }
+  body { background: #fff !important; color: #000 !important; }
+  .top, .foot, .skip { display: none !important; }
+}
