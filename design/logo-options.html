@@ -1,0 +1,86 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600;700&family=Public+Sans:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--sp:#13261F;--li:#C9D3A4;--la:#F2B33D;--mi:#E4EBE6;--cream:#F3F1E4}
+body{margin:0;background:#0B1813;font-family:"Public Sans",sans-serif;color:var(--li)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;padding:28px}
+.card{background:var(--sp);border-radius:18px;overflow:hidden;border:1px solid #2B4A3D}
+.hero{height:330px;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box}
+.light{background:var(--mi);height:120px;display:flex;align-items:center;justify-content:center;gap:22px;color:var(--sp)}
+.label{padding:16px 20px 20px}
+.label b{font:700 26px "Zilla Slab",serif;color:var(--cream);display:block}
+.label span{font-size:15px;color:#9FB3A3}
+.ws{font-family:"Zilla Slab",serif;font-weight:700}
+.icons{display:flex;gap:14px;align-items:center}
+</style></head><body><div class="grid">
+
+<!-- A: wordmark with compass O -->
+<div class="card">
+ <div class="hero"><svg viewBox="0 0 360 120" width="330">
+  <text x="0" y="62" class="ws" font-size="58" fill="#F3F1E4">Enc<tspan dx="44">unter</tspan></text>
+  <g transform="translate(118 44)"><circle r="17" fill="none" stroke="#F2B33D" stroke-width="5.5"/><path d="M0-27 4-4 0 0-4-4Z" fill="#F2B33D"/><path d="M0 27 4 4 0 0-4 4Z" fill="#C9D3A4" opacity=".6"/><circle r="4" fill="#F2B33D"/></g>
+  <text x="2" y="104" font-family="Public Sans" font-weight="800" font-size="25" letter-spacing="17" fill="#C9D3A4">ATLAS</text>
+  <path d="M190 96h165" stroke="#C9D3A4" stroke-width="2" opacity=".5"/><path d="M190 103h120" stroke="#C9D3A4" stroke-width="2" opacity=".3"/>
+ </svg></div>
+ <div class="light"><svg viewBox="0 0 64 64" width="64"><rect width="64" height="64" rx="14" fill="#13261F"/><g transform="translate(32 32)"><circle r="17" fill="none" stroke="#F2B33D" stroke-width="6"/><path d="M0-27 4-4 0 0-4-4Z" fill="#F2B33D"/><circle r="4.5" fill="#F2B33D"/></g></svg>
+  <svg viewBox="0 0 64 64" width="32"><rect width="64" height="64" rx="14" fill="#13261F"/><g transform="translate(32 32)"><circle r="17" fill="none" stroke="#F2B33D" stroke-width="7"/><circle r="6" fill="#F2B33D"/></g></svg>
+  <svg viewBox="0 0 360 120" width="190"><text x="0" y="62" class="ws" font-size="58" fill="#13261F">Enc<tspan dx="44">unter</tspan></text><g transform="translate(118 44)"><circle r="17" fill="none" stroke="#B57A0C" stroke-width="5.5"/><path d="M0-27 4-4 0 0-4-4Z" fill="#B57A0C"/><circle r="4" fill="#B57A0C"/></g><text x="2" y="104" font-family="Public Sans" font-weight="800" font-size="25" letter-spacing="17" fill="#13261F">ATLAS</text></svg></div>
+ <div class="label"><b>A. Compass wordmark</b><span>Bold slab type; the "o" is a compass, the needle points to the find.</span></div>
+</div>
+
+<!-- B: pin + footprint -->
+<div class="card">
+ <div class="hero"><svg viewBox="0 0 360 140" width="330">
+  <g id="pin"><path d="M50 8C27 8 11 25 11 47c0 29 39 79 39 79s39-50 39-79C89 25 73 8 50 8Z" fill="#F2B33D"/>
+   <g fill="#13261F" transform="rotate(8 50 50)"><path d="M50 35c-10 0-14 9-13 19 1 9 3 15 3 21 0 6 4 9 9 9s10-4 10-11c0-8 6-14 6-23 0-9-6-15-15-15Z"/><circle cx="38" cy="27" r="4.5"/><circle cx="46" cy="22" r="4.6"/><circle cx="55" cy="21.5" r="4.4"/><circle cx="63" cy="25" r="4"/><circle cx="68" cy="31" r="3.4"/></g></g>
+  <text x="108" y="66" class="ws" font-size="46" fill="#F3F1E4">Encounter</text>
+  <text x="108" y="110" class="ws" font-size="46" fill="#F2B33D">Atlas</text>
+ </svg></div>
+ <div class="light"><svg viewBox="0 0 64 64" width="64"><rect width="64" height="64" rx="14" fill="#13261F"/><g transform="translate(7 2) scale(.5)"><use href="#pin"/></g></svg>
+  <svg viewBox="0 0 64 64" width="32"><rect width="64" height="64" rx="14" fill="#13261F"/><g transform="translate(7 2) scale(.5)"><use href="#pin"/></g></svg>
+  <svg viewBox="0 0 360 140" width="190"><g transform="translate(0 0)"><use href="#pin"/></g><text x="108" y="66" class="ws" font-size="46" fill="#13261F">Encounter</text><text x="108" y="110" class="ws" font-size="46" fill="#B57A0C">Atlas</text></svg></div>
+ <div class="label"><b>B. Pin + footprint</b><span>A map pin with a Bigfoot track pressed into it. Says "map of sightings" at a glance.</span></div>
+</div>
+
+<!-- C: field guide badge -->
+<div class="card">
+ <div class="hero"><svg viewBox="0 0 220 220" width="290">
+  <defs><path id="top" d="M30 110a80 80 0 0 1 160 0"/><path id="bot" d="M20 110a90 90 0 0 0 180 0"/>
+   <clipPath id="win"><circle cx="110" cy="110" r="60"/></clipPath></defs>
+  <g id="badge">
+  <circle cx="110" cy="110" r="104" fill="#13261F" stroke="#F2B33D" stroke-width="5"/>
+  <circle cx="110" cy="110" r="94" fill="none" stroke="#C9D3A4" stroke-width="1.5" opacity=".6"/>
+  <circle cx="110" cy="110" r="62" fill="#1E3A2F" stroke="#F2B33D" stroke-width="3"/>
+  <g clip-path="url(#win)">
+   <circle cx="138" cy="80" r="14" fill="#F3F1E4"/><circle cx="145" cy="76" r="12" fill="#1E3A2F"/>
+   <g fill="#0E1D18"><path d="M48 175 66 110 84 175Z"/><path d="M62 175 78 124 94 175Z"/><path d="M140 175 158 104 176 175Z"/><path d="M128 175 142 130 156 175Z"/><rect x="40" y="152" width="150" height="30"/></g>
+   <g transform="translate(86 102) scale(.8)" fill="#0E1D18" color="#0E1D18"><path d="M14 18Q14 7 22 5Q29 6 29 13L28 19 17 21Z"/><path d="M15 19Q29 13 39 22Q44 32 37 43H22Q13 33 15 19Z"/><g stroke="currentColor" fill="none" stroke-linecap="round"><path d="M18 24 12 46" stroke-width="7"/><path d="M35 25 45 42" stroke-width="7"/><path d="M24 41 18 50 14 58" stroke-width="8.5"/><path d="M33 41 38 50 42 58" stroke-width="8.5"/></g><circle cx="19.5" cy="11.5" r="1.8" fill="#F2B33D"/></g>
+  </g>
+  <text font-family="Public Sans" font-weight="800" font-size="19" letter-spacing="3.5" fill="#F3F1E4"><textPath href="#top" startOffset="50%" text-anchor="middle">ENCOUNTER ATLAS</textPath></text>
+  <text font-family="Public Sans" font-weight="600" font-size="11.5" letter-spacing="2.4" fill="#C9D3A4"><textPath href="#bot" startOffset="50%" text-anchor="middle">FIELD GUIDE TO THE UNEXPLAINED</textPath></text>
+  <circle cx="22" cy="110" r="3.5" fill="#F2B33D"/><circle cx="198" cy="110" r="3.5" fill="#F2B33D"/>
+  </g>
+ </svg></div>
+ <div class="light"><svg viewBox="0 0 220 220" width="64"><use href="#badge"/></svg>
+  <svg viewBox="48 48 124 124" width="32"><circle cx="110" cy="110" r="62" fill="#1E3A2F" stroke="#F2B33D" stroke-width="8"/><g transform="translate(86 102) scale(.8)" fill="#0E1D18"><path d="M14 18Q14 7 22 5Q29 6 29 13L28 19 17 21Z"/><path d="M15 19Q29 13 39 22Q44 32 37 43H22Q13 33 15 19Z"/></g></svg>
+  <span class="ws" style="font-size:30px">Encounter Atlas</span></div>
+ <div class="label"><b>C. Field-guide badge</b><span>Vintage park-ranger patch: moonlit pines, a figure in the trees. Great for merch.</span></div>
+</div>
+
+<!-- D: eyes in the treeline -->
+<div class="card">
+ <div class="hero"><svg viewBox="0 0 320 200" width="310">
+  <g id="eyes">
+  <g fill="#21402F"><path d="M40 120 70 30 100 120Z"/><path d="M85 120 112 50 139 120Z"/><path d="M180 120 208 46 236 120Z"/><path d="M220 120 252 22 284 120Z"/></g>
+  <g fill="#F2B33D"><path d="M136 86q10-8 20 2q-10 5-20-2Z"/><path d="M186 86q-10-8-20 2q10 5 20-2Z"/></g>
+  <path d="M30 120H294" stroke="#C9D3A4" stroke-width="2.5" opacity=".6"/>
+  </g>
+  <text x="160" y="172" text-anchor="middle" class="ws" font-size="40" fill="#F3F1E4">Encounter Atlas</text>
+ </svg></div>
+ <div class="light"><svg viewBox="0 0 64 64" width="64"><rect width="64" height="64" rx="14" fill="#13261F"/><g fill="#2E5541"><path d="M2 54 14 14 26 54Z"/><path d="M38 54 50 10 62 54Z"/></g><g fill="#F2B33D"><path d="M19 37q6-5 12 1q-6 3-12-1Z"/><path d="M45 37q-6-5-12 1q6 3 12-1Z"/></g></svg>
+  <svg viewBox="0 0 64 64" width="32"><rect width="64" height="64" rx="14" fill="#13261F"/><g fill="#F2B33D"><path d="M8 32q11-10 22 2q-11 6-22-2Z"/><path d="M56 32q-11-10-22 2q11 6 22-2Z"/></g></svg>
+  <span class="ws" style="font-size:30px">Encounter Atlas</span></div>
+ <div class="label"><b>D. Eyes in the treeline</b><span>Minimal: dark pines, two lantern eyes looking back. Spooky-fun, works tiny.</span></div>
+</div>
+
+</div></body></html>
