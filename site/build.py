@@ -80,6 +80,13 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <link rel="icon" href="{url('/static/favicon.svg')}" type="image/svg+xml">
 <link rel="manifest" href="{url('/manifest.webmanifest')}">
 <link rel="apple-touch-icon" href="{url('/static/apple-touch-icon.png')}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Encounter Atlas">
+<meta property="og:title" content="{esc(full_title)}">
+<meta property="og:description" content="{esc(desc)}">
+<meta property="og:url" content="{SITE_URL}{path}">
+<meta property="og:image" content="{SITE_URL}/static/og.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet">
@@ -89,7 +96,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <body class="{body_class}">
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
-  <a class="brand" href="{url('/')}"><span class="lantern" aria-hidden="true"></span>Encounter Atlas</a>
+  <a class="brand" href="{url('/')}"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="34" height="29">Encounter Atlas</a>
   <nav class="nav" aria-label="Main">{nav}</nav>
 </header>
 <main id="main">
@@ -97,7 +104,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 </main>
 <footer class="foot">
   <div class="foot-in">
-    <p class="foot-brand"><span class="lantern" aria-hidden="true"></span>Encounter Atlas</p>
+    <p class="foot-brand"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="34" height="29">Encounter Atlas</p>
     <p>Sightings, creatures and official files, mapped. Reports are what witnesses say they saw. We don't claim they're real, and we don't claim they're not.</p>
     <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO files</a><a href="{url('/report/')}">Report an encounter</a></p>
     <p class="small">Air Force case files: US National Archives, Record Group 341. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>

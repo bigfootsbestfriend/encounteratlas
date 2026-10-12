@@ -295,3 +295,4 @@ p { margin: 0 0 1em; }
 .seen-box a:not(.btn) { color: var(--lantern); }
 .seen-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
 @media (max-width: 600px) { .seen-box { flex-direction: column; } .seen-box > .ico { width: 48px; height: 48px; } }
+.brand .mark, .foot-brand .mark { width: 34px; height: 29px; flex: none; }
