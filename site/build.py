@@ -77,6 +77,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <meta name="theme-color" content="#13261F">
 <link rel="icon" href="{url('/static/favicon.svg')}" type="image/svg+xml">
 <link rel="manifest" href="{url('/manifest.webmanifest')}">
+<link rel="apple-touch-icon" href="{url('/static/apple-touch-icon.png')}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet">
@@ -101,6 +102,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
   </div>
 </footer>
 {beacon}
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('{url('/sw.js')}');</script>
 </body>
 </html>
 '''
@@ -474,7 +476,11 @@ def main():
     with open(os.path.join(OUT, 'manifest.webmanifest'), 'w') as f:
         json.dump({'name': 'Encounter Atlas', 'short_name': 'Encounters', 'start_url': BASE + '/map/', 'display': 'standalone',
                    'background_color': '#13261F', 'theme_color': '#13261F',
-                   'icons': [{'src': BASE + '/static/favicon.svg', 'sizes': 'any', 'type': 'image/svg+xml'}]}, f)
+                   'description': 'Report and explore Bigfoot, Dogman, UFO and cryptid encounters on a live map.',
+                   'icons': [{'src': BASE + '/static/app-192.png', 'sizes': '192x192', 'type': 'image/png'},
+                             {'src': BASE + '/static/app-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'any maskable'},
+                             {'src': BASE + '/static/favicon.svg', 'sizes': 'any', 'type': 'image/svg+xml'}]}, f)
+    shutil.copy(os.path.join(ROOT, 'site', 'sw.js'), os.path.join(OUT, 'sw.js'))
     if BASE == '':
         open(os.path.join(OUT, 'CNAME'), 'w').write(SITE_URL.split('//')[1] + '\n')
     pages = []
