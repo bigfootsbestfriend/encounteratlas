@@ -349,26 +349,95 @@ def build_military(military):
                              'The most famous military UFO and UAP encounters, from WWII foo fighters to the Navy Tic Tac, with official sources.'))
 
 
-def build_home(creatures, n_points, bluebook):
+TILES = [('hominid', 'bigfoot', 'Bigfoot and hairy giants'), ('canid', 'dogman', 'Dogmen and beasts'),
+         ('winged', 'mothman', 'Winged things'), ('aquatic', 'lake', 'Lake monsters'),
+         ('entity', 'entity', 'Strange visitors'), ('ufo', 'saucer', 'UFOs and UAP')]
+MAP_HEAD = None
+
+
+def map_head():
+    return (f'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.css">'
+            f'<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.js" defer></script>'
+            f'<script src="{url("/static/map.js")}" defer></script>')
+
+
+def filter_bar(creatures, famous_slugs):
+    """Type chips + a sideways-scrolling row of creature icon chips. map.js wires them up."""
+    types = [('all', 'Everything'), ('cryptid', 'Cryptids'), ('ufo', 'UFOs'), ('military', 'Military'), ('places', 'Places to visit')]
+    tchips = ''.join(f'<button type="button" class="tchip" data-type="{k}" aria-pressed="{str(k == "all").lower()}">{esc(v)}</button>'
+                     for k, v in types)
+    crit = [c for c in creatures if c['slug'] in famous_slugs]
+    order = {k: i for i, k in enumerate(CATS)}
+    crit.sort(key=lambda c: (order[c['cat']], c['name']))
+    cchips = ''.join(f'<button type="button" class="cchip cat-{c["cat"]}" data-creature="{c["slug"]}" data-cat="{c["cat"]}" aria-pressed="false">'
+                     f'{icon(c["icon"])}<span>{esc(c["name"])}</span></button>' for c in crit)
+    return (f'<div class="filters" aria-label="Filter the map"><div class="tchips" role="group" aria-label="Encounter type">{tchips}</div>'
+            f'<div class="cchips" role="group" aria-label="Creature">{cchips}</div></div>')
+
+
+def build_search_index(creatures, bluebook, military):
+    """Small JSON index for the home search box: creatures (with aliases), UFO file regions, military cases."""
+    items = [{'t': c['name'], 'a': ' '.join(c['aliases']), 'k': CATS[c['cat']][0], 'u': url('/creatures/' + c['slug'] + '/'), 'i': c['icon'], 'c': c['cat']}
+             for c in creatures]
+    regions = Counter()
+    names = {}
+    for b in bluebook:
+        k = region_slug(b)
+        if k != 'unknown':
+            regions[k] += 1
+            names[k] = b['region']
+    items += [{'t': f'UFO files: {names[k]}', 'a': names[k], 'k': f'{n:,} Air Force files', 'u': url('/ufo/blue-book/' + k + '/'), 'i': 'folder', 'c': 'ufo'}
+              for k, n in regions.items()]
+    items += [{'t': m['name'], 'a': m['place'], 'k': 'Military encounter, ' + m['date'][:4], 'u': url('/military/'), 'i': 'military', 'c': 'ufo'}
+              for m in military]
+    with open(os.path.join(OUT, 'data', 'search.json'), 'w') as f:
+        json.dump(items, f, separators=(',', ':'))
+
+
+def build_home(creatures, n_points, bluebook, military):
+    fam_path = os.path.join(ROOT, 'data', 'famous_geo.json')
+    famous_slugs = {f['creature'] for f in json.load(open(fam_path))} if os.path.exists(fam_path) else set()
     featured = [c for c in creatures if c['slug'] in ('bigfoot', 'dogman', 'mothman', 'loch-ness-monster', 'chupacabra',
                                                        'ufo-tic-tac', 'jersey-devil', 'flatwoods-monster')]
     cards = ''.join(creature_card(c) for c in featured)
-    head = (f'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.css">'
-            f'<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.js" defer></script>'
-            f'<script src="{url("/static/map.js")}" defer></script>')
+    tiles = ''.join(f'<a class="tile cat-{cat}" href="{url("/map/?cat=" + cat)}">{icon(ic)}<span>{esc(label)}</span></a>'
+                    for cat, ic, label in TILES)
+    tiles += f'<a class="tile tile-mil" href="{url("/map/?type=military")}">{icon("military")}<span>Military encounters</span></a>'
+    build_search_index(creatures, bluebook, military)
     body = f'''
-<section class="hero-map" aria-label="Map of encounters">
-  <div id="map" class="map" data-base="{BASE}"></div>
-  <div class="map-panel">
+<section class="home-hero">
+  <div class="wrap">
     <h1>Every strange thing, on one map</h1>
-    <p>{n_points:,} Air Force UFO files are pinned so far. Bigfoot, Dogman and the rest are next, with your reports.</p>
-    <div class="map-actions">
-      <button type="button" class="btn" data-locate>Show what's near me</button>
-      <a class="btn btn-ghost" href="{url('/creatures/')}">Browse creatures</a>
+    <p class="lede">Bigfoot, Dogman, lake monsters, UFOs and what the military saw. {len(creatures)} creatures, {len(bluebook):,} Air Force files, and soon, your reports.</p>
+    <div class="search" data-index="{url('/data/search.json')}">
+      <label class="visually-hidden" for="home-q">Search</label>
+      <input id="home-q" type="search" placeholder="Search: Sasquatch, Ohio, Roswell..." autocomplete="off">
+      <ul class="search-results" hidden></ul>
     </div>
+    <nav class="tiles" aria-label="Browse by type">{tiles}</nav>
   </div>
 </section>
+<section class="map-block" aria-label="Encounter map">
+  <div class="wrap">
+    <div class="map-block-head">
+      <h2>The encounter map</h2>
+      <div class="map-block-actions"><button type="button" class="btn btn-sm" data-locate>Use my location</button>
+      <a class="btn btn-sm btn-ghost" href="{url('/map/')}">Full screen</a></div>
+    </div>
+    {filter_bar(creatures, famous_slugs)}
+  </div>
+  <div class="map-frame"><div id="map" class="map" data-base="{BASE}"></div></div>
+</section>
 <div class="band band-mist"><div class="wrap">
+  <div class="near" hidden>
+    <h2>Near you</h2>
+    <ol class="timeline near-list"></ol>
+  </div>
+  <div class="this-month">
+    <h2>This month in the Air Force files</h2>
+    <p class="lede-dark">UFO reports the Air Force logged in <span class="month-name">this month</span>, 1947 to 1969.</p>
+    <ol class="timeline cases month-list"><li><span class="yr"></span><span>Loading...</span></li></ol>
+  </div>
   <h2>Meet the locals</h2>
   <p class="lede-dark">Every creature has its other names, what witnesses report and the cases that made it famous.</p>
   <div class="crit-grid">{cards}</div>
@@ -387,19 +456,20 @@ def build_home(creatures, n_points, bluebook):
     <p>Foo fighters over Germany, radar returns over the White House, a Tic Tac off San Diego. The cases pilots and soldiers reported.</p>
     <p><a class="btn" href="{url('/military/')}">Read the cases</a></p>
   </div>
-</div></div>'''
+</div></div>
+<script src="{url('/static/home.js')}" defer></script>'''
     write('/', page('/', 'Encounter Atlas: Bigfoot, UFO and cryptid sightings mapped', body,
                     'A map of Bigfoot, Dogman, UFO and cryptid encounters, a searchable creature index, and the US Air Force Project Blue Book files.',
-                    body_class='home', head_extra=head))
+                    body_class='home', head_extra=map_head()))
     write('/map/', page('/map/', 'Encounter map', f'''
-<section class="hero-map full" aria-label="Map of encounters">
-  <div id="map" class="map" data-base="{BASE}"></div>
-  <div class="map-panel compact">
-    <h1>Encounter map</h1>
-    <p>{n_points:,} Air Force UFO files (1947 to 1969). Tap a dot for the case.</p>
-    <button type="button" class="btn" data-locate>Near me</button>
+<section class="map-full" aria-label="Encounter map">
+  <div class="map-full-bar">
+    {filter_bar(creatures, famous_slugs)}
+    <button type="button" class="btn btn-sm" data-locate>Near me</button>
   </div>
-</section>''', 'Map of UFO and cryptid encounters, including every US Air Force Project Blue Book case.', body_class='home mapper', head_extra=head))
+  <div class="map-frame full"><div id="map" class="map" data-base="{BASE}"></div></div>
+</section>''', 'Map of Bigfoot, Dogman, UFO and cryptid encounters, military cases and every US Air Force Project Blue Book file.',
+                        body_class='mapper', head_extra=map_head()))
 
 
 def build_static_pages():
@@ -455,7 +525,7 @@ def main():
     military = json.load(open(mil_path)) if os.path.exists(mil_path) else []
     n_points = build_map_data(bluebook)
     build_layer_data(creatures, military)
-    build_home(creatures, n_points, bluebook)
+    build_home(creatures, n_points, bluebook, military)
     build_creatures(creatures, by_slug)
     build_ufo(bluebook)
     build_military(military)
@@ -471,8 +541,13 @@ def main():
         if fn.endswith('.py') and not fn.startswith('_'):
             spec = importlib.util.spec_from_file_location('sec_' + fn[:-3], os.path.join(sec_dir, fn))
             mod = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(mod)
-            mod.build(ctx)
+            try:
+                spec.loader.exec_module(mod)
+                mod.build(ctx)
+            except Exception as e:  # SKIP_BROKEN_SECTIONS=1 for local previews while a section is half-built
+                if not os.environ.get('SKIP_BROKEN_SECTIONS'):
+                    raise
+                print(f'warning: section {fn} skipped: {e!r}', file=sys.stderr)
     with open(os.path.join(OUT, 'manifest.webmanifest'), 'w') as f:
         json.dump({'name': 'Encounter Atlas', 'short_name': 'Encounters', 'start_url': BASE + '/map/', 'display': 'standalone',
                    'background_color': '#13261F', 'theme_color': '#13261F',

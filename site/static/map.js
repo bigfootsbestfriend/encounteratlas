@@ -170,27 +170,59 @@
     LAYERS.push({ key: 'places', label: 'Places to visit', color: '#9CC46B', ids: ['places'] });
   }
 
-  function layerPanel() {
-    const panel = document.createElement('div');
-    panel.className = 'map-layers';
-    panel.setAttribute('role', 'group');
-    panel.setAttribute('aria-label', 'Map layers');
-    const hidden = new Set((params.get('hide') || '').split(',').filter(Boolean));
-    for (const L of LAYERS) {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'layer-chip';
-      b.innerHTML = '<span class="swatch" style="background:' + L.color + '"></span>' + L.label;
-      const set = (on) => {
-        b.setAttribute('aria-pressed', String(on));
-        for (const id of L.ids) map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none');
-      };
-      set(!hidden.has(L.key));
-      b.addEventListener('click', () => set(b.getAttribute('aria-pressed') !== 'true'));
-      panel.appendChild(b);
+  // Filters: encounter type chips + creature chips (and ?type= / ?cat= / ?creature= in the URL).
+  const state = { type: params.get('type') || 'all', cat: params.get('cat') || '', creature: params.get('creature') || '' };
+  let famousData = null;
+  function setVis(ids, on) { for (const id of ids) if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none'); }
+  function apply(fit) {
+    const { type, cat, creature } = state;
+    const narrowed = !!(cat || creature);
+    const showUfoFiles = (type === 'all' || type === 'ufo') && (!narrowed || cat === 'ufo');
+    setVis(['bb-glow', 'bb-clusters', 'bb-count', 'bb-point'], showUfoFiles);
+    setVis(['military'], (type === 'all' || type === 'military') && !narrowed);
+    setVis(['places'], (type === 'all' || type === 'places') && !narrowed);
+    const showFamous = type === 'all' || type === 'cryptid' || (type === 'ufo');
+    setVis(['famous'], showFamous);
+    if (map.getLayer('famous')) {
+      const f = ['all'];
+      if (type === 'cryptid') f.push(['!=', ['get', 'c'], 'ufo']);
+      if (type === 'ufo') f.push(['==', ['get', 'c'], 'ufo']);
+      if (cat) f.push(['==', ['get', 'c'], cat]);
+      if (creature) f.push(['==', ['get', 's'], creature]);
+      map.setFilter('famous', f.length > 1 ? f : null);
     }
-    el.appendChild(panel);
+    document.querySelectorAll('.tchip').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.type === type && !narrowed)));
+    document.querySelectorAll('.cchip').forEach((b) => {
+      const on = creature ? b.dataset.creature === creature : (cat ? b.dataset.cat === cat : false);
+      b.setAttribute('aria-pressed', String(on));
+      b.classList.toggle('dim', narrowed && !on);
+    });
+    const q = new URLSearchParams();
+    if (type !== 'all') q.set('type', type);
+    if (cat) q.set('cat', cat);
+    if (creature) q.set('creature', creature);
+    if (location.pathname.endsWith('/map/')) history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : ''));
+    if (fit && famousData && narrowed) {
+      const pts = famousData.features.filter((x) => (!creature || x.properties.s === creature) && (!cat || x.properties.c === cat));
+      if (pts.length === 1) map.flyTo({ center: pts[0].geometry.coordinates, zoom: 6 });
+      else if (pts.length) {
+        const b = new maplibregl.LngLatBounds();
+        pts.forEach((x) => b.extend(x.geometry.coordinates));
+        // Worldwide groups (Bigfoot to Yowie) stay on the default view rather than zooming out to mid-Atlantic.
+        if (b.getEast() - b.getWest() < 150) map.fitBounds(b, { padding: 70, maxZoom: 7 });
+      }
+      const on = document.querySelector('.cchip[aria-pressed="true"]');
+      if (on) on.scrollIntoView({ inline: 'center', block: 'nearest' });
+    }
   }
+  document.querySelectorAll('.tchip').forEach((b) => b.addEventListener('click', () => {
+    state.type = b.dataset.type; state.cat = ''; state.creature = ''; apply(false);
+  }));
+  document.querySelectorAll('.cchip').forEach((b) => b.addEventListener('click', () => {
+    if (state.creature === b.dataset.creature) { state.creature = ''; apply(false); return; }
+    state.creature = b.dataset.creature; state.cat = ''; state.type = 'all'; apply(true);
+    b.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }));
 
   map.on('load', async () => {
     tint();
@@ -198,7 +230,8 @@
     await addPlaces();
     await addMilitary();
     await addFamous();
-    layerPanel();
+    famousData = map.getSource('famous') ? await fetch(BASE + '/data/famous.geojson').then((r) => r.json()) : null;
+    apply(!!(state.cat || state.creature));
   });
 
   let me;
@@ -216,6 +249,7 @@
       me.setLngLat(ll).addTo(map);
       map.flyTo({ center: ll, zoom: 8 });
       btn.textContent = label;
+      document.dispatchEvent(new CustomEvent('ea:located', { detail: ll }));
     }, () => { btn.textContent = 'Location blocked: allow it in your browser'; }, { enableHighAccuracy: true, timeout: 10000 });
   }));
 })();
