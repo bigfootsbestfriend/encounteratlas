@@ -2,3 +2,5 @@ data/raw/
 _site/
 __pycache__/
 QUESTIONS-FOR-MIKE.md
+node_modules/
+design/art-raw/
