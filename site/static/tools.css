@@ -127,7 +127,7 @@
 .pchip .mask-ico { width: 28px; height: 28px; }
 .pchip.cat-hominid .mask-ico { color: var(--c-hominid); } .pchip.cat-canid .mask-ico { color: var(--c-canid); }
 .pchip.cat-winged .mask-ico { color: var(--c-winged); } .pchip.cat-aquatic .mask-ico { color: var(--c-aquatic); }
-.pchip.cat-entity .mask-ico { color: var(--c-entity); } .pchip.cat-ufo .mask-ico { color: var(--c-ufo); } .pchip.cat-other .mask-ico { color: var(--c-other); }
+.pchip.cat-entity .mask-ico { color: var(--c-entity); } .pchip.cat-fae .mask-ico { color: var(--c-fae); } .pchip.cat-ufo .mask-ico { color: var(--c-ufo); } .pchip.cat-other .mask-ico { color: var(--c-other); }
 .pchip:hover { border-color: var(--lichen); }
 .pchip[aria-pressed="true"] { background: var(--lichen); color: var(--spruce); border-color: var(--lichen); }
 .pchip[aria-pressed="true"] .mask-ico { color: var(--spruce); }

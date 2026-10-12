@@ -15,7 +15,7 @@ ICONS = os.path.join(ROOT, 'site', 'static', 'icons')
 PICK = {'hominid': 'yowie', 'lake': 'loch-ness-monster', 'entity': 'grey-aliens', 'winged': 'jersey-devil',
         'mib': 'men-in-black', 'orbs': 'ufo-orbs', 'serpent': 'sea-serpent', 'hound': 'black-shuck',
         'bigcat': 'beast-of-bodmin', 'bigfish': 'white-river-monster', 'pterosaur': 'ropen', 'imp': 'pukwudgie',
-        'military': 'ufo-tic-tac'}
+        'military': 'ufo-tic-tac', 'fairy': 'fairies'}
 
 creatures = json.load(open(os.path.join(ROOT, 'data', 'creatures.json')))
 m = {}

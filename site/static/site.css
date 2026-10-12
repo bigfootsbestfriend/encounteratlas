@@ -12,7 +12,7 @@
   --muted-l: #4D6157;
   --red: #E5483B;
   --c-hominid: #D9A05B; --c-canid: #D0633F; --c-winged: #B98ACB; --c-aquatic: #4FB3A9;
-  --c-entity: #9CC46B; --c-ufo: #8E8CF0; --c-other: #E0C36A;
+  --c-entity: #9CC46B; --c-fae: #E58FB0; --c-ufo: #8E8CF0; --c-other: #E0C36A;
   --display: "Zilla Slab", Rockwell, "Roboto Slab", Georgia, serif;
   --body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --r-sm: 6px; --r-md: 12px;
@@ -123,11 +123,12 @@ p { margin: 0 0 1em; }
 .cat-winged .ico, .badge.cat-winged { color: var(--c-winged); }
 .cat-aquatic .ico, .badge.cat-aquatic { color: var(--c-aquatic); }
 .cat-entity .ico, .badge.cat-entity { color: var(--c-entity); }
+.cat-fae .ico, .badge.cat-fae { color: var(--c-fae); }
 .cat-ufo .ico, .badge.cat-ufo { color: var(--c-ufo); }
 .cat-other .ico, .badge.cat-other { color: var(--c-other); }
 .dot { display: inline-block; width: .7em; height: .7em; border-radius: 50%; margin-right: .45em; vertical-align: .05em; }
 .dot.cat-hominid { background: var(--c-hominid); } .dot.cat-canid { background: var(--c-canid); } .dot.cat-winged { background: var(--c-winged); }
-.dot.cat-aquatic { background: var(--c-aquatic); } .dot.cat-entity { background: var(--c-entity); } .dot.cat-ufo { background: var(--c-ufo); }
+.dot.cat-aquatic { background: var(--c-aquatic); } .dot.cat-entity { background: var(--c-entity); } .dot.cat-fae { background: var(--c-fae); } .dot.cat-ufo { background: var(--c-ufo); }
 .dot.cat-other { background: var(--c-other); }
 
 /* creature list */
@@ -231,7 +232,7 @@ p { margin: 0 0 1em; }
 .mask-ico { flex: none; width: 30px; height: 30px; background: currentColor; -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat; }
 .search-results .cat-hominid .mask-ico { color: #A86A1E; } .search-results .cat-canid .mask-ico { color: #B4472A; }
 .search-results .cat-winged .mask-ico { color: #8A5C9E; } .search-results .cat-aquatic .mask-ico { color: #23827A; }
-.search-results .cat-entity .mask-ico { color: #5D8A2E; } .search-results .cat-ufo .mask-ico { color: #5B58C9; }
+.search-results .cat-entity .mask-ico { color: #5D8A2E; } .search-results .cat-fae .mask-ico { color: #B04F7A; } .search-results .cat-ufo .mask-ico { color: #5B58C9; }
 .search-results .cat-other .mask-ico { color: #9A7E1C; }
 .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: .6rem; }
 .tile { display: flex; align-items: center; gap: .6rem; padding: .75rem .85rem; border-radius: 12px; background: #1A3229; color: #F3F1E4 !important; text-decoration: none; font-weight: 600; line-height: 1.2; border: 1px solid #2B4A3D; }
@@ -271,7 +272,7 @@ p { margin: 0 0 1em; }
   .map-full-bar { padding: .5rem .6rem; }
   .timeline.cases li { grid-template-columns: 6.5rem 1fr; }
 }
-@media (min-width: 1000px) { .tiles { grid-template-columns: repeat(7, 1fr); } .tile { flex-direction: column; align-items: flex-start; } }
+@media (min-width: 1000px) { .tiles { grid-template-columns: repeat(8, 1fr); } .tile { flex-direction: column; align-items: flex-start; } }
 @media (max-width: 600px) { .tile-mil { grid-column: 1 / -1; } .map-frame { max-height: 560px; } .search input { font-size: 1rem; } }
 
 /* Creature pages: what-next sidebar and the "Seen one?" panel */
@@ -363,6 +364,7 @@ body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
 .badge.art.cat-winged, .mini.art.cat-winged { background: var(--c-winged); }
 .badge.art.cat-aquatic, .mini.art.cat-aquatic { background: var(--c-aquatic); }
 .badge.art.cat-entity, .mini.art.cat-entity { background: var(--c-entity); }
+.badge.art.cat-fae, .mini.art.cat-fae { background: var(--c-fae); }
 .badge.art.cat-ufo, .mini.art.cat-ufo { background: var(--c-ufo); }
 .badge-xl.art { box-shadow: 0 0 0 6px var(--spruce-2), 0 0 60px rgba(242,179,61,.18); }
 .poster { width: clamp(150px, 24vw, 230px); height: auto; flex: none; filter: drop-shadow(0 12px 30px rgba(0,0,0,.45)); }

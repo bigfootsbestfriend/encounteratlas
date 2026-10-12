@@ -26,7 +26,7 @@ def _head(ctx, extra_js=''):
 
 def _config(ctx):
     cfg = {'api': API, 'base': ctx.BASE, 'sitekey': SITEKEY}
-    meta = {c['slug']: {'n': c['name'], 'c': c['cat'], 'i': c['icon']} for c in ctx.creatures}
+    meta = {c['slug']: {'n': c['name'], 'c': c['cat'], 'i': c.get('art') or 'icons/' + c['icon']} for c in ctx.creatures}
     cats = {k: v[0] for k, v in ctx.CATS.items()}
     # json.dumps output is safe inside <script type="application/json"> once "</" is escaped.
     j = lambda o: json.dumps(o, separators=(',', ':')).replace('</', '<\\/')

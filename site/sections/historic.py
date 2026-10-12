@@ -121,7 +121,7 @@ class H:
         if x.get('creature'):
             cr = c.by_slug[x['creature']]
             crit = (f'<a class="hc-crit" href="{self.u("/creatures/" + cr["slug"] + "/")}">'
-                    f'<span class="badge cat-{cr["cat"]}">{c.icon(cr["icon"])}</span>{e(cr["name"])}</a>')
+                    f'<span class="badge cat-{cr["cat"]}">{c.crit_icon(cr)}</span>{e(cr["name"])}</a>')
         carried = ''
         if more:
             items = ''.join(f'<li><a href="{e(p["url"])}" rel="noopener">{e(p["paper"])}</a>'

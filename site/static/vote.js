@@ -92,7 +92,7 @@
   function badge(slug, size = 'sm', other) {
     const c = creature(slug, other);
     const b = h('span', { class: `badge badge-${size} cat-${c.cat}` });
-    if (c.icon) b.append(h('span', { class: 'mico', 'aria-hidden': 'true', style: `--i:url("${BASE}/static/icons/${c.icon}.svg")` }));
+    if (c.icon) b.append(h('span', { class: 'mico', 'aria-hidden': 'true', style: `--i:url("${BASE}/static/${c.icon}.svg")` }));
     else b.append(h('span', { class: 'q', 'aria-hidden': 'true', text: '?' }));
     return b;
   }
@@ -118,7 +118,7 @@
   const page = (q = '') => `${BASE}/reports/${q}`;
 
   // ---------- map (same dark, forest-tinted look as the main map) ----------
-  const CAT_COLORS = { hominid: '#D9A05B', canid: '#D0633F', winged: '#B98ACB', aquatic: '#4FB3A9', entity: '#9CC46B', ufo: '#8E8CF0', other: '#E0C36A' };
+  const CAT_COLORS = { hominid: '#D9A05B', canid: '#D0633F', winged: '#B98ACB', aquatic: '#4FB3A9', entity: '#9CC46B', fae: '#E58FB0', ufo: '#8E8CF0', other: '#E0C36A' };
   function makeMap(el, opts = {}) {
     if (!window.maplibregl) return null;
     const map = new maplibregl.Map({

@@ -9,7 +9,7 @@ Re-seed sizes.json after creatures.json grows (keeps hand-edited entries):
 """
 import json, math, os, re, sys
 
-CAT_ICON = {'hominid': 'hominid', 'canid': 'dogman', 'winged': 'winged', 'aquatic': 'lake', 'entity': 'entity',
+CAT_ICON = {'hominid': 'hominid', 'canid': 'dogman', 'winged': 'winged', 'aquatic': 'lake', 'entity': 'entity', 'fae': 'fairy',
             'other': 'worm', 'ufo': 'saucer'}
 DIM_WORD = {'height': 'tall', 'length': 'long', 'wingspan': 'wingspan', 'shoulder': 'at the shoulder', 'across': 'across'}
 DEFAULT_CMP = ['bigfoot', 'dogman', 'mothman']
@@ -251,7 +251,7 @@ def ensure_reachable(spec, creatures, M):
         return pick
 
     region_q = next(q for q in spec['questions'] if q['id'] == 'region')
-    for _ in range(4):
+    for _ in range(10):
         changed = False
         for s in slugs:
             pick = best_pick(s)
@@ -374,7 +374,7 @@ class Tools:
         data = {
             'q': [{'id': q['id'], 'w': q['weight'], 'a': [[a['id'], a['label']] for a in q['answers']]} for q in spec['questions']],
             'M': M,
-            'c': {x['slug']: [x['name'], ', '.join(x['aliases'][:2]), x['summary'], x['cat'], self.icon_name(x)] for x in self.creatures},
+            'c': {x['slug']: [x['name'], ', '.join(x['aliases'][:2]), x['summary'], x['cat'], x.get('art') or 'icons/' + self.icon_name(x)] for x in self.creatures},
             'e': {e['id']: e['fits'] for e in spec['everyday']},
             'icons': c.url('/static/icons/'), 'base': c.url(''),
         }

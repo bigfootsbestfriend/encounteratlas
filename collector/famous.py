@@ -35,7 +35,7 @@ def main():
                 if cc:
                     for p in parts[:-1]:
                         for cand in bb.place_candidates(p):
-                            for key in ((cc, a1 or '', cand), (cc, a1 or '', cand + '#full'), (cc, '', cand)):
+                            for key in ((cc, a1 or '', cand), (cc, a1 or '', cand + '#full')) + (() if a1 else ((cc, '', cand),)):  # never jump to another state
                                 hits = by_place.get(key)
                                 if hits:
                                     _, lat, lon, _ = max(hits)

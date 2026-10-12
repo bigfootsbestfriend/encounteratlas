@@ -5,7 +5,7 @@
   const el = document.getElementById('map');
   if (!el || !window.maplibregl) return;
   const BASE = el.dataset.base || '';
-  const CAT = { hominid: '#D9A05B', canid: '#D0633F', winged: '#B98ACB', aquatic: '#4FB3A9', entity: '#9CC46B', ufo: '#8E8CF0', other: '#E0C36A' };
+  const CAT = { hominid: '#D9A05B', canid: '#D0633F', winged: '#B98ACB', aquatic: '#4FB3A9', entity: '#9CC46B', fae: '#E58FB0', ufo: '#8E8CF0', other: '#E0C36A' };
   const SAUCER = '<svg class="ico" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><ellipse cx="32" cy="31" rx="27" ry="7.5"/><path d="M19 28Q32 7 45 28Z"/></svg>';
   const params = new URLSearchParams(location.search);
 

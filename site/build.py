@@ -20,6 +20,7 @@ CATS = {
     'winged': ('Winged things', 'Red-eyed fliers and impossible birds'),
     'aquatic': ('Lake and sea monsters', 'Long necks, humps and serpents in deep water'),
     'entity': ('Strange visitors', 'Small grey beings, frogmen and things from the sky'),
+    'fae': ('Fairies and little people', 'Fae, pixies, hidden folk and little people from every continent'),
     'other': ('Odd creatures', 'Desert worms, Alpine lizards and other one-offs'),
     'ufo': ('UFOs and UAP', 'Saucers, triangles, orbs and what the military tracked'),
 }
@@ -49,6 +50,14 @@ def icon(name, cls='ico'):
         return f'<span class="{cls} art-ico" style="--m:url({src})" aria-hidden="true"></span>'
     svg = open(os.path.join(STATIC, 'icons', name + '.svg')).read().strip()
     return svg.replace('<svg ', f'<svg class="{cls}" aria-hidden="true" focusable="false" ', 1)
+
+
+def crit_icon(c, cls='ico'):
+    """A creature's own poster silhouette as a colour-taking mask; falls back to its shared icon."""
+    if c.get('art'):
+        src = url('/static/' + c['art'] + '.svg')
+        return f'<span class="{cls} art-ico" style="--m:url({src})" aria-hidden="true"></span>'
+    return icon(c['icon'], cls)
 
 
 def write(path, text):
@@ -139,7 +148,7 @@ def mini(c):
 
 
 POSTER_SKY = {'hominid': ('#E3A649', '#B5532F'), 'canid': ('#3B4C6B', '#1B2A3A'), 'winged': ('#3B4C6B', '#1B2A3A'),
-              'aquatic': ('#E8B04A', '#C8693A'), 'entity': ('#3B4C6B', '#1B2A3A'), 'ufo': ('#2E3E5C', '#141E2E'), 'other': ('#E3A649', '#B5532F')}
+              'aquatic': ('#E8B04A', '#C8693A'), 'entity': ('#3B4C6B', '#1B2A3A'), 'ufo': ('#2E3E5C', '#141E2E'), 'fae': ('#C97B9A', '#4A2E4F'), 'other': ('#E3A649', '#B5532F')}
 
 
 def poster(c):
@@ -205,14 +214,14 @@ def build_creatures(creatures, by_slug):
     guides = load('guides.json')
     fam_geo = Counter(f['creature'] for f in load('famous_geo.json'))
     CAT_GUIDES = {'hominid': ['bigfoot-expedition', 'casting-tracks', 'trail-cameras'], 'canid': ['dogman-and-night-encounters', 'trail-cameras'],
-                  'ufo': ['skywatching'], 'winged': ['dogman-and-night-encounters'], 'aquatic': [], 'entity': ['dogman-and-night-encounters'], 'other': []}
+                  'ufo': ['skywatching'], 'winged': ['dogman-and-night-encounters'], 'aquatic': [], 'entity': ['dogman-and-night-encounters'], 'fae': [], 'other': []}
     PLACE_KIND = {'museum': 'Museum', 'festival': 'Festival', 'attraction': 'Roadside stop', 'expedition': 'Tour'}
 
     def extras(c):
         """Map, places, guides and the contribution panel: the 'what next' part of each creature page."""
         out = ''
         n = fam_geo.get(c['slug'], 0)
-        out += (f'<a class="next-card next-map cat-{c["cat"]}" href="{url("/map/?creature=" + c["slug"])}">{icon(c["icon"])}'
+        out += (f'<a class="next-card next-map cat-{c["cat"]}" href="{url("/map/?creature=" + c["slug"])}">{crit_icon(c)}'
                 f'<span><b>See {esc(c["name"])} on the map</b><small>{n} famous case{"s" if n != 1 else ""} pinned, plus places to visit'
                 f'{" and reader reports" if EA_API else ""}</small></span></a>')
         pl = [x for x in places if c['slug'] in (x.get('creatures') or [])][:6]
@@ -264,7 +273,7 @@ def build_creatures(creatures, by_slug):
     <h2>Famous cases</h2>
     <ol class="timeline">{cases}</ol>
     <section class="seen-box cat-{c['cat']}" aria-labelledby="seen-{c['slug']}">
-      {icon(c['icon'])}
+      {crit_icon(c)}
       <div>
         <h2 id="seen-{c['slug']}">Seen the {esc(c['name'])}?</h2>
         <p>Tell us what happened. Every report is read by a person before it goes on the map, and you can stay anonymous.</p>
@@ -441,7 +450,7 @@ def build_military(military):
 
 TILES = [('hominid', 'yeti', 'Bigfoot and hairy giants'), ('canid', 'dogman', 'Dogmen and beasts'),
          ('winged', 'mothman', 'Winged things'), ('aquatic', 'lake', 'Lake monsters'),
-         ('entity', 'entity', 'Strange visitors'), ('ufo', 'saucer', 'UFOs and UAP')]
+         ('entity', 'entity', 'Strange visitors'), ('fae', 'fairy', 'Fairies and little people'), ('ufo', 'saucer', 'UFOs and UAP')]
 MAP_HEAD = None
 
 
@@ -627,7 +636,7 @@ def main():
     # build(ctx). ctx gives it the shared helpers and loaded data, so sections never edit this file.
     import importlib.util, types
     ctx = types.SimpleNamespace(ROOT=ROOT, OUT=OUT, STATIC=STATIC, SITE_URL=SITE_URL, BASE=BASE, page=page, write=write,
-                                url=url, esc=esc, icon=icon, slugify=slugify, badge=badge, creature_card=creature_card,
+                                url=url, esc=esc, icon=icon, crit_icon=crit_icon, slugify=slugify, badge=badge, creature_card=creature_card,
                                 creatures=creatures, by_slug=by_slug, bluebook=bluebook, military=military, CATS=CATS, MONTHS=MONTHS)
     sec_dir = os.path.join(ROOT, 'site', 'sections')
     for fn in sorted(os.listdir(sec_dir)) if os.path.isdir(sec_dir) else []:

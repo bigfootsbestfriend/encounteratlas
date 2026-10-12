@@ -6,8 +6,8 @@
 "name": "Bluff Creek footprints",
 "year": 1958,
 "place": "Humboldt County, California",
-"lat": 45.3325,
-"lon": -93.7461
+"lat": 41.4,
+"lon": -123.62
 },
 {
 "creature": "bigfoot",
@@ -16,8 +16,8 @@
 "name": "Patterson-Gimlin film",
 "year": 1967,
 "place": "Bluff Creek, California",
-"lat": 30.5405,
-"lon": -88.6875
+"lat": 41.4,
+"lon": -123.62
 },
 {
 "creature": "bigfoot",
@@ -1106,8 +1106,8 @@
 "name": "White River Monster Refuge created",
 "year": 1973,
 "place": "Jackson County, Arkansas",
-"lat": 32.2988,
-"lon": -90.1848
+"lat": 35.61,
+"lon": -91.28
 },
 {
 "creature": "memphre",
@@ -1501,7 +1501,7 @@
 },
 {
 "creature": "nain-rouge",
-"cat": "entity",
+"cat": "fae",
 "icon": "imp",
 "name": "Seen after the Battle of Bloody Run",
 "year": 1763,
@@ -1511,7 +1511,7 @@
 },
 {
 "creature": "nain-rouge",
-"cat": "entity",
+"cat": "fae",
 "icon": "imp",
 "name": "Sighting before the riots",
 "year": 1967,
@@ -1521,7 +1521,7 @@
 },
 {
 "creature": "nain-rouge",
-"cat": "entity",
+"cat": "fae",
 "icon": "imp",
 "name": "First Marche du Nain Rouge",
 "year": 2010,
@@ -1836,8 +1836,8 @@
 "name": "Hudson Valley boomerang wave",
 "year": 1983,
 "place": "Westchester County, New York",
-"lat": 25.7548,
-"lon": -80.3273
+"lat": 41.12,
+"lon": -73.79
 },
 {
 "creature": "ufo-boomerang",
@@ -1886,8 +1886,8 @@
 "name": "Cow-napping airship tale",
 "year": 1897,
 "place": "Le Roy, Kansas",
-"lat": 42.9784,
-"lon": -77.9842
+"lat": 38.087,
+"lon": -95.633
 },
 {
 "creature": "green-fireballs",
@@ -2048,5 +2048,755 @@
 "place": "Uintah County, Utah",
 "lat": 41.1441,
 "lon": -111.9233
+},
+{
+"creature": "bunnyman",
+"cat": "entity",
+"icon": "imp",
+"name": "Hatchet thrown through a parked car's window on Guinea Road",
+"year": 1970,
+"place": "Burke, Virginia",
+"lat": 38.7934,
+"lon": -77.2716
+},
+{
+"creature": "bunnyman",
+"cat": "entity",
+"icon": "imp",
+"name": "Man in rabbit costume chops at a porch post",
+"year": 1970,
+"place": "Burke, Virginia",
+"lat": 38.7934,
+"lon": -77.2716
+},
+{
+"creature": "skinwalker",
+"cat": "entity",
+"icon": "imp",
+"name": "Book Hunt for the Skinwalker spreads the name of a Utah ranch",
+"year": 2005,
+"place": "Ballard, Utah",
+"lat": 40.2894,
+"lon": -109.9432
+},
+{
+"creature": "snarly-yow",
+"cat": "canid",
+"icon": "imp",
+"name": "Dahlgren publishes South-Mountain Magic, recording the black dog",
+"year": 1882,
+"place": "Turner's Gap, Maryland",
+"lat": 39.484,
+"lon": -77.62
+},
+{
+"creature": "white-thing",
+"cat": "canid",
+"icon": "imp",
+"name": "Ruth Ann Musick prints the tale from her Fairmont students",
+"year": 1965,
+"place": "Fairmont, West Virginia",
+"lat": 39.4851,
+"lon": -80.1426
+},
+{
+"creature": "jackalope",
+"cat": "other",
+"icon": "imp",
+"name": "Herrick brothers mount the first jackalope, per the New York Times",
+"year": 1932,
+"place": "Douglas, Wyoming",
+"lat": 42.7597,
+"lon": -105.3822
+},
+{
+"creature": "wolfman-of-defiance",
+"cat": "canid",
+"icon": "imp",
+"name": "Railroad crewman reports being struck by a 'wolfman'",
+"year": 1972,
+"place": "Defiance, Ohio",
+"lat": 41.2845,
+"lon": -84.3558
+},
+{
+"creature": "grootslang",
+"cat": "other",
+"icon": "imp",
+"name": "Treasure hunter Peter Grayson disappears",
+"year": 1917,
+"place": "Richtersveld, South Africa",
+"lat": -28.2,
+"lon": 17.0
+},
+{
+"creature": "barghest",
+"cat": "canid",
+"icon": "imp",
+"name": "Ballad of the Troller's Gill barghest printed by William Hone",
+"year": 1830,
+"place": "Troller's Gill, North Yorkshire",
+"lat": 54.051,
+"lon": -1.896
+},
+{
+"creature": "inkanyamba",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Game ranger reports a horse-headed serpent on the Umgeni River",
+"year": 1962,
+"place": "Howick, KwaZulu-Natal, South Africa",
+"lat": -29.4779,
+"lon": 30.2306
+},
+{
+"creature": "lukwata",
+"cat": "aquatic",
+"icon": "imp",
+"name": "C. W. Hobley records Lukwata stories around the lake",
+"year": 1913,
+"place": "Lake Victoria",
+"lat": -1.0,
+"lon": 33.0
+},
+{
+"creature": "dingonek",
+"cat": "aquatic",
+"icon": "imp",
+"name": "John Alfred Jordan fires at the dingonek",
+"year": 1907,
+"place": "Migori, Kenya",
+"lat": -1.0634,
+"lon": 34.4731
+},
+{
+"creature": "mbielu-mbielu-mbielu",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Roy Mackal's expedition collects descriptions",
+"year": 1980,
+"place": "Epena, Likouala, Republic of the Congo",
+"lat": 1.37,
+"lon": 17.48
+},
+{
+"creature": "mamlambo",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Villagers blame drownings on a giant river reptile",
+"year": 1997,
+"place": "Mount Ayliff, Eastern Cape, South Africa",
+"lat": -30.8082,
+"lon": 29.3664
+},
+{
+"creature": "barmanou",
+"cat": "hominid",
+"icon": "imp",
+"name": "Magraner's team hears unexplained guttural calls in the Shishikoh valley",
+"year": 1994,
+"place": "Chitral, Pakistan",
+"lat": 35.8518,
+"lon": 71.7864
+},
+{
+"creature": "nittaewo",
+"cat": "hominid",
+"icon": "imp",
+"name": "Army captain searches the Kudumbigala caves",
+"year": 1963,
+"place": "Kudumbigala, Sri Lanka",
+"lat": 6.69,
+"lon": 81.73
+},
+{
+"creature": "amomongo",
+"cat": "hominid",
+"icon": "imp",
+"name": "Two men clawed and livestock killed in a two-night scare",
+"year": 2008,
+"place": "La Castellana, Negros Occidental, Philippines",
+"lat": 10.3239,
+"lon": 123.0215
+},
+{
+"creature": "issie",
+"cat": "aquatic",
+"icon": "imp",
+"name": "About twenty people see a two-humped creature; a photo is taken",
+"year": 1978,
+"place": "Ibusuki, Kagoshima, Japan",
+"lat": 31.2333,
+"lon": 130.65
+},
+{
+"creature": "labynkyr-devil",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Geologist Viktor Tverdokhlebov writes about the lake creature",
+"year": 1953,
+"place": "Lake Labynkyr",
+"lat": 62.5,
+"lon": 143.6
+},
+{
+"creature": "labynkyr-devil",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Expedition makes a record dive under the lake's ice",
+"year": 2013,
+"place": "Lake Labynkyr",
+"lat": 62.5,
+"lon": 143.6
+},
+{
+"creature": "lake-van-monster",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Saadet newspaper says a creature dragged a man into the lake",
+"year": 1889,
+"place": "Lake Van, Turkey",
+"lat": 38.63,
+"lon": 42.9
+},
+{
+"creature": "lake-van-monster",
+"cat": "aquatic",
+"icon": "imp",
+"name": "\u00dcnal Kozak films an alleged monster",
+"year": 1997,
+"place": "Van, Turkey",
+"lat": 38.4946,
+"lon": 43.3832
+},
+{
+"creature": "monkey-man-of-delhi",
+"cat": "entity",
+"icon": "imp",
+"name": "Monkey-man panic sweeps the city",
+"year": 2001,
+"place": "New Delhi, India",
+"lat": 28.6214,
+"lon": 77.2148
+},
+{
+"creature": "queensland-tiger",
+"cat": "canid",
+"icon": "imp",
+"name": "Carl Lumholtz's Among Cannibals describes the yarri",
+"year": 1889,
+"place": "Ingham, Queensland",
+"lat": -18.6455,
+"lon": 146.1625
+},
+{
+"creature": "tantanoola-tiger",
+"cat": "canid",
+"icon": "imp",
+"name": "Thomas Donovan shoots the 'tiger', which proves to be a wolf",
+"year": 1895,
+"place": "Tantanoola, South Australia",
+"lat": -37.7,
+"lon": 140.457
+},
+{
+"creature": "waitoreke",
+"cat": "other",
+"icon": "imp",
+"name": "Cook's crew see a cat-sized four-footed animal",
+"year": 1773,
+"place": "Dusky Sound, New Zealand",
+"lat": -45.75,
+"lon": 166.6
+},
+{
+"creature": "minhocao",
+"cat": "other",
+"icon": "imp",
+"name": "Fritz M\u00fcller publishes highland accounts of the minhoc\u00e3o",
+"year": 1878,
+"place": "Curitibanos, Santa Catarina, Brazil",
+"lat": -27.2828,
+"lon": -50.5844
+},
+{
+"creature": "moca-vampire",
+"cat": "other",
+"icon": "imp",
+"name": "Drained livestock found in Moca",
+"year": 1975,
+"place": "Moca, Puerto Rico",
+"lat": 18.3947,
+"lon": -67.1132
+},
+{
+"creature": "lusca",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Diver George Benjamin's National Geographic article on the blue holes",
+"year": 1970,
+"place": "Andros, Bahamas",
+"lat": 24.7,
+"lon": -77.95
+},
+{
+"creature": "morgawr",
+"cat": "aquatic",
+"icon": "imp",
+"name": "'Mary F' photographs sent to the Falmouth Packet",
+"year": 1976,
+"place": "Falmouth, Cornwall",
+"lat": 50.153,
+"lon": -5.07
+},
+{
+"creature": "morgawr",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Two fishermen report the creature off Lizard Point",
+"year": 1976,
+"place": "Lizard Point, Cornwall",
+"lat": 49.96,
+"lon": -5.21
+},
+{
+"creature": "selma",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Oldest written account of the serpent",
+"year": 1750,
+"place": "Seljord, Norway",
+"lat": 59.4848,
+"lon": 8.6302
+},
+{
+"creature": "moddey-dhoo",
+"cat": "canid",
+"icon": "imp",
+"name": "George Waldron's description of the Isle of Man is published",
+"year": 1731,
+"place": "Peel, Isle of Man",
+"lat": 54.2221,
+"lon": -4.691
+},
+{
+"creature": "moddey-dhoo",
+"cat": "canid",
+"icon": "imp",
+"name": "Doctor meets a calf-sized black dog near Milntown",
+"year": 1931,
+"place": "Ramsey, Isle of Man",
+"lat": 54.3227,
+"lon": -4.3853
+},
+{
+"creature": "gef",
+"cat": "other",
+"icon": "imp",
+"name": "Irving family report a talking animal in their walls",
+"year": 1931,
+"place": "Dalby, Isle of Man",
+"lat": 54.172,
+"lon": -4.727
+},
+{
+"creature": "gef",
+"cat": "other",
+"icon": "imp",
+"name": "Harry Price and Richard Lambert investigate",
+"year": 1935,
+"place": "Dalby, Isle of Man",
+"lat": 54.172,
+"lon": -4.727
+},
+{
+"creature": "stellers-sea-ape",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Georg Steller watches the 'sea ape' for two hours",
+"year": 1741,
+"place": "Shumagin Islands, Alaska",
+"lat": 55.1,
+"lon": -159.6
+},
+{
+"creature": "stellers-sea-ape",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Miles Smeeton reports a similar animal",
+"year": 1965,
+"place": "Atka Island, Alaska",
+"lat": 52.2,
+"lon": -174.2
+},
+{
+"creature": "mussie",
+"cat": "aquatic",
+"icon": "imp",
+"name": "First anecdotes of the lake creature",
+"year": 1916,
+"place": "Cobden, Ontario",
+"lat": 45.6334,
+"lon": -76.8827
+},
+{
+"creature": "old-ned",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Schooner crew reports a sea serpent in the Bay of Fundy",
+"year": 1908,
+"place": "Cutler, Maine",
+"lat": 44.6576,
+"lon": -67.2039
+},
+{
+"creature": "sharlie",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Tie cutters see a 'log' start to move",
+"year": 1920,
+"place": "McCall, Idaho",
+"lat": 44.911,
+"lon": -116.0987
+},
+{
+"creature": "sharlie",
+"cat": "aquatic",
+"icon": "imp",
+"name": "About twenty people watch a 30 to 40 ft creature diving",
+"year": 1946,
+"place": "McCall, Idaho",
+"lat": 44.911,
+"lon": -116.0987
+},
+{
+"creature": "sharlie",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Newspaper contest names the serpent Sharlie",
+"year": 1954,
+"place": "McCall, Idaho",
+"lat": 44.911,
+"lon": -116.0987
+},
+{
+"creature": "wild-man-of-the-navidad",
+"cat": "hominid",
+"icon": "imp",
+"name": "Settlers report night thefts along the Navidad bottoms",
+"year": 1836,
+"place": "Sublime, Texas",
+"lat": 29.4789,
+"lon": -96.7975
+},
+{
+"creature": "vegetable-man",
+"cat": "entity",
+"icon": "imp",
+"name": "Jennings Frederick's claimed encounter",
+"year": 1968,
+"place": "Grant Town, West Virginia",
+"lat": 39.5581,
+"lon": -80.1817
+},
+{
+"creature": "piasa",
+"cat": "winged",
+"icon": "imp",
+"name": "Marquette and Jolliet see the painted monsters",
+"year": 1673,
+"place": "Alton, Illinois",
+"lat": 38.8906,
+"lon": -90.1843
+},
+{
+"creature": "fairies",
+"cat": "fae",
+"icon": "imp",
+"name": "Robert Kirk writes The Secret Commonwealth",
+"year": 1691,
+"place": "Aberfoyle, Scotland",
+"lat": 56.178,
+"lon": -4.383
+},
+{
+"creature": "fairies",
+"cat": "fae",
+"icon": "imp",
+"name": "Murder of Bridget Cleary, said to be a changeling",
+"year": 1895,
+"place": "Ballyvadlea, County Tipperary, Ireland",
+"lat": 52.49,
+"lon": -7.6
+},
+{
+"creature": "fairies",
+"cat": "fae",
+"icon": "imp",
+"name": "Cottingley Fairies photographs (a hoax, admitted 1983)",
+"year": 1917,
+"place": "Cottingley, England",
+"lat": 53.832,
+"lon": -1.81
+},
+{
+"creature": "fairies",
+"cat": "fae",
+"icon": "imp",
+"name": "Latoon fairy bush saved from the Ennis bypass",
+"year": 1999,
+"place": "Latoon, County Clare, Ireland",
+"lat": 52.79,
+"lon": -8.92
+},
+{
+"creature": "tylwyth-teg",
+"cat": "fae",
+"icon": "imp",
+"name": "Lady of Llyn y Fan Fach legend printed in Meddygon Myddvai",
+"year": 1861,
+"place": "Llyn y Fan Fach, Wales",
+"lat": 51.882,
+"lon": -3.742
+},
+{
+"creature": "pixies",
+"cat": "fae",
+"icon": "imp",
+"name": "Coleridge visits the Pixies' Parlour and writes Songs of the Pixies",
+"year": 1793,
+"place": "Ottery St Mary, England",
+"lat": 50.75,
+"lon": -3.2667
+},
+{
+"creature": "pixies",
+"cat": "fae",
+"icon": "imp",
+"name": "Earliest Three Little Pigs tale, with pixies instead of pigs",
+"year": 1853,
+"place": "Dartmoor, England",
+"lat": 50.57,
+"lon": -3.9
+},
+{
+"creature": "leprechaun",
+"cat": "fae",
+"icon": "imp",
+"name": "Cooley Mountains 'protected zone' for little people reported",
+"year": 2010,
+"place": "Carlingford, Ireland",
+"lat": 54.04,
+"lon": -6.1883
+},
+{
+"creature": "puca",
+"cat": "fae",
+"icon": "imp",
+"name": "First P\u00faca Festival held for Halloween",
+"year": 2019,
+"place": "Trim, Ireland",
+"lat": 53.555,
+"lon": -6.7917
+},
+{
+"creature": "gnomes",
+"cat": "fae",
+"icon": "imp",
+"name": "Sir Charles Isham begins the gnome rockery at Lamport Hall",
+"year": 1847,
+"place": "Lamport, England",
+"lat": 52.36,
+"lon": -0.886
+},
+{
+"creature": "huldufolk",
+"cat": "fae",
+"icon": "imp",
+"name": "Bulldozer trouble blamed on elves at \u00c1lfh\u00f3lsvegur",
+"year": 1971,
+"place": "K\u00f3pavogur, Iceland",
+"lat": 64.1123,
+"lon": -21.913
+},
+{
+"creature": "huldufolk",
+"cat": "fae",
+"icon": "imp",
+"name": "Group searches for elves at the NATO base",
+"year": 1982,
+"place": "Keflav\u00edk, Iceland",
+"lat": 64.0049,
+"lon": -22.5624
+},
+{
+"creature": "huldufolk",
+"cat": "fae",
+"icon": "imp",
+"name": "Rockfall on residential streets blamed by some on hidden people",
+"year": 2011,
+"place": "Bolungarv\u00edk, Iceland",
+"lat": 66.158,
+"lon": -23.25
+},
+{
+"creature": "huldufolk",
+"cat": "fae",
+"icon": "imp",
+"name": "Road through the G\u00e1lgahraun lava field halted by protests",
+"year": 2013,
+"place": "G\u00e1lgahraun, Iceland",
+"lat": 64.092,
+"lon": -21.967
+},
+{
+"creature": "kobold",
+"cat": "fae",
+"icon": "imp",
+"name": "Hinzelmann begins haunting Hudem\u00fchlen Castle",
+"year": 1584,
+"place": "Hodenhagen, Germany",
+"lat": 52.7651,
+"lon": 9.595
+},
+{
+"creature": "kobold",
+"cat": "fae",
+"icon": "imp",
+"name": "Ernst Weyden writes down the Heinzelm\u00e4nnchen legend",
+"year": 1826,
+"place": "Cologne, Germany",
+"lat": 50.938,
+"lon": 6.96
+},
+{
+"creature": "knockers",
+"cat": "fae",
+"icon": "imp",
+"name": "Herbert Hoover writes to Grass Valley about tommyknockers",
+"year": 1963,
+"place": "Grass Valley, California",
+"lat": 39.2191,
+"lon": -121.0611
+},
+{
+"creature": "knockers",
+"cat": "fae",
+"icon": "imp",
+"name": "Tommyknocker Brewery named after the mine spirits",
+"year": 1994,
+"place": "Idaho Springs, Colorado",
+"lat": 39.7425,
+"lon": -105.5136
+},
+{
+"creature": "spriggans",
+"cat": "fae",
+"icon": "imp",
+"name": "Robert Hunt links spriggans to Trencrom Hill in Popular Romances of the West of England",
+"year": 1865,
+"place": "Trencrom Hill, Cornwall",
+"lat": 50.174,
+"lon": -5.478
+},
+{
+"creature": "spriggans",
+"cat": "fae",
+"icon": "imp",
+"name": "Spriggan sculpture installed on the Parkland Walk",
+"year": 1993,
+"place": "Parkland Walk, London",
+"lat": 51.574,
+"lon": -0.125
+},
+{
+"creature": "hobyahs",
+"cat": "fae",
+"icon": "imp",
+"name": "Tale from a Perth family printed in the Journal of American Folklore",
+"year": 1891,
+"place": "Perth, Scotland",
+"lat": 56.3952,
+"lon": -3.4314
+},
+{
+"creature": "menehune",
+"cat": "fae",
+"icon": "imp",
+"name": "Census of Kaua\u02bbi lists 65 people as menehune",
+"year": 1820,
+"place": "Kauai, Hawaii",
+"lat": 22.0494,
+"lon": -159.531
+},
+{
+"creature": "menehune",
+"cat": "fae",
+"icon": "imp",
+"name": "\u02bbAlekoko (Menehune) Fishpond listed on the National Register",
+"year": 1973,
+"place": "Lihue, Hawaii",
+"lat": 21.9812,
+"lon": -159.3721
+},
+{
+"creature": "yunwi-tsunsdi",
+"cat": "fae",
+"icon": "imp",
+"name": "James Mooney publishes Myths of the Cherokee",
+"year": 1900,
+"place": "Cherokee, North Carolina",
+"lat": 35.4743,
+"lon": -83.3149
+},
+{
+"creature": "makiawisug",
+"cat": "fae",
+"icon": "imp",
+"name": "Frank Speck publishes the Muhkeahweesug traditions told by Fidelia Fielding",
+"year": 1903,
+"place": "Uncasville, Connecticut",
+"lat": 41.4345,
+"lon": -72.1098
+},
+{
+"creature": "ebu-gogo",
+"cat": "hominid",
+"icon": "imp",
+"name": "Homo floresiensis fossils found at Liang Bua",
+"year": 2003,
+"place": "Liang Bua, Flores, Indonesia",
+"lat": -8.534,
+"lon": 120.46
+},
+{
+"creature": "agogwe",
+"cat": "hominid",
+"icon": "imp",
+"name": "Capt. William Hichens' account of two agogwe published",
+"year": 1937,
+"place": "Wembere River, Tanzania",
+"lat": -4.167,
+"lon": 34.183
+},
+{
+"creature": "redcap",
+"cat": "fae",
+"icon": "imp",
+"name": "Ballad of Lord Soulis and his redcap printed in Scott's Minstrelsy",
+"year": 1802,
+"place": "Hermitage Castle, Scotland",
+"lat": 55.256,
+"lon": -2.793
+},
+{
+"creature": "hinzelmann",
+"cat": "fae",
+"icon": "imp",
+"name": "Hinzelmann's haunting begins at Hudem\u00fchlen Castle",
+"year": 1584,
+"place": "Hodenhagen, Germany",
+"lat": 52.7651,
+"lon": 9.595
 }
 ]

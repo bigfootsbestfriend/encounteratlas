@@ -57,7 +57,7 @@
   function card(slug, lead) {
     const [name, aka, sum, cat, icon] = D.c[slug];
     return `<a class="crit res-crit${lead ? ' lead' : ''}" href="${D.base}/creatures/${slug}/">
-      <span class="badge badge-md cat-${cat}"><span class="mask-ico" style="--m:url(${D.icons}${icon}.svg)"></span></span>
+      <span class="badge badge-md cat-${cat}"><span class="mask-ico" style="--m:url(${D.base}/static/${icon}.svg)"></span></span>
       <span class="crit-txt">${lead ? '<span class="res-tag">Closest match</span>' : ''}<span class="crit-name">${esc(name)}</span>
       ${aka ? `<span class="aka">aka ${esc(aka)}</span>` : ''}<span class="crit-sum">${esc(sum)}</span></span></a>`;
   }

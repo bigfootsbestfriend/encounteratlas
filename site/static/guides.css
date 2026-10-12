@@ -1,6 +1,6 @@
 /* Field guides. Builds on site.css tokens; every class here starts with g- (or dg- for diagrams). */
 .tone-hominid { --tone: var(--c-hominid); } .tone-canid { --tone: var(--c-canid); } .tone-winged { --tone: var(--c-winged); }
-.tone-entity { --tone: var(--c-entity); } .tone-ufo { --tone: var(--c-ufo); } .tone-other { --tone: var(--c-other); }
+.tone-entity { --tone: var(--c-entity); } .tone-fae { --tone: var(--c-fae); } .tone-ufo { --tone: var(--c-ufo); } .tone-other { --tone: var(--c-other); }
 
 /* hero */
 .g-hero { position: relative; overflow: hidden; }
