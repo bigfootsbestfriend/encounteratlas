@@ -1,0 +1,53 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600;700&family=Public+Sans:wght@600;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0B1813;font-family:"Public Sans",sans-serif}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:24px}
+.card{background:#13261F;border-radius:18px;overflow:hidden;border:1px solid #2B4A3D}
+.hero{height:330px;display:flex;align-items:center;justify-content:center}
+.light{background:#E4EBE6;height:110px;display:flex;align-items:center;justify-content:center;gap:20px}
+.label{padding:12px 20px 16px}.label b{font:700 26px "Zilla Slab",serif;color:#F3F1E4;display:block}.label span{font-size:15px;color:#9FB3A3}
+</style></head><body><div class="grid" id="g"></div>
+<script>
+const LA='#F2B33D', SP='#13261F', DK='#0E1D18', PN='#21402F', PN2='#2E5541', CR='#F3F1E4', LI='#C9D3A4';
+const eyes=(cx,cy,s,gap,c=LA)=>{const L=cx-gap/2-2*s,R=cx+gap/2+2*s;return `<g fill="${c}"><path d="M${L} ${cy}q${s} ${-.8*s} ${2*s} ${.2*s}q${-s} ${.5*s} ${-2*s} ${-.2*s}Z"/><path d="M${R} ${cy}q${-s} ${-.8*s} ${-2*s} ${.2*s}q${s} ${.5*s} ${2*s} ${-.2*s}Z"/></g>`};
+const pine=(x,b,h,w,c=PN)=>{let d='';for(let i=0;i<3;i++){const t=b-h+i*h*.25,bt=t+h*.42,hw=w*(.28+.22*i);d+=`M${x} ${t}L${x+hw} ${bt}H${x-hw}Z`}return `<path d="${d}" fill="${c}"/><rect x="${x-w*.06}" y="${b-h*.12}" width="${w*.12}" height="${h*.12}" fill="${c}"/>`};
+const ws=(x,y,size,c=CR,anchor='start')=>`<text x="${x}" y="${y}" font-family="Zilla Slab" font-weight="700" font-size="${size}" fill="${c}" text-anchor="${anchor}">Encounter Atlas</text>`;
+const sq=(inner,bg=SP)=>`<rect width="64" height="64" rx="14" fill="${bg}"/>${inner}`;
+const svg=(vb,w,inner)=>`<svg viewBox="${vb}" width="${w}" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+const pinPath='M50 6C26 6 10 23 10 46c0 30 40 82 40 82s40-52 40-82C90 23 74 6 50 6Z';
+const pinMark=(fill=LA)=>`<path d="${pinPath}" fill="${fill}"/><circle cx="50" cy="46" r="29" fill="${SP}"/><clipPath id="pc"><circle cx="50" cy="46" r="29"/></clipPath><g clip-path="url(#pc)">${pine(30,78,48,30,PN2)}${pine(72,78,54,32,PN2)}${eyes(50,52,7.5,7)}</g>`;
+const O = [
+ {t:'1. Eyes in the pin',d:'B\'s map pin, but inside it a pair of eyes watches from the pines. Map + mystery in one mark.',
+  hero:svg('0 0 380 140',340,`${pinMark()}<text x="110" y="64" font-family="Zilla Slab" font-weight="700" font-size="46" fill="${CR}">Encounter</text><text x="110" y="108" font-family="Zilla Slab" font-weight="700" font-size="46" fill="${LA}">Atlas</text>`),
+  app:svg('0 0 64 64',64,sq(`<g transform="translate(9 3) scale(.46)">${pinMark()}</g>`)),
+  fav:svg('0 0 64 64',32,sq(`<g transform="translate(5 -1) scale(.54)"><path d="${pinPath}" fill="${LA}"/><circle cx="50" cy="46" r="29" fill="${SP}"/>${eyes(50,48,7,8)}</g>`)),
+  light:svg('0 0 380 140',200,`${pinMark()}<text x="110" y="64" font-family="Zilla Slab" font-weight="700" font-size="46" fill="${SP}">Encounter</text><text x="110" y="108" font-family="Zilla Slab" font-weight="700" font-size="46" fill="#B57A0C">Atlas</text>`)},
+ {t:'2. Moonrise',d:'A big pale moon behind the treeline, eyes in the dark below it. Stacked lockup, the most atmospheric.',
+  hero:svg('0 0 320 290',270,`<circle cx="160" cy="100" r="70" fill="${CR}" opacity=".92"/><circle cx="160" cy="100" r="90" fill="${CR}" opacity=".06"/>${pine(70,190,120,64)}${pine(118,190,90,52)}${pine(205,190,104,56)}${pine(252,190,132,66)}<rect x="40" y="184" width="240" height="8" fill="${PN}"/>${eyes(160,165,13,14)}${ws(160,250,40,CR,'middle')}<text x="160" y="278" text-anchor="middle" font-family="Public Sans" font-weight="600" font-size="13" letter-spacing="3.2" fill="${LI}">SIGHTINGS · CRYPTIDS · UFOS</text>`),
+  app:svg('0 0 64 64',64,sq(`<circle cx="32" cy="26" r="16" fill="${CR}"/>${pine(14,58,40,22)}${pine(50,58,44,24)}${eyes(32,46,5,5)}`)),
+  fav:svg('0 0 64 64',32,sq(`<circle cx="32" cy="24" r="16" fill="${CR}"/>${eyes(32,46,6,6)}`)),
+  light:svg('0 0 340 70',224,`<g transform="translate(0 0) scale(1.05)"><circle cx="32" cy="28" r="20" fill="#C9CDB8"/>${pine(16,62,40,22,SP)}${pine(48,62,44,24,SP)}${eyes(32,50,3.4,4)}</g>${ws(82,46,36,SP)}`)},
+ {t:'3. Peekaboo icon',d:'Tightest mark: three pines, eyes peeking out of the gap. Built to be an app icon first.',
+  hero:svg('0 0 300 260',250,`<rect x="70" y="10" width="160" height="160" rx="36" fill="${DK}" stroke="#2B4A3D" stroke-width="2"/>${pine(108,150,110,56,PN2)}${pine(192,150,118,58,PN2)}${pine(150,150,70,40,PN2)}${eyes(150,100,12,10)}${ws(150,230,40,CR,'middle')}`),
+  app:svg('0 0 64 64',64,sq(`${pine(16,56,44,24,PN2)}${pine(48,56,46,24,PN2)}${eyes(32,36,5,4)}`,DK)),
+  fav:svg('0 0 64 64',32,sq(`${pine(12,60,48,26,PN2)}${pine(52,60,48,26,PN2)}${eyes(32,36,6,4)}`,DK)),
+  light:svg('0 0 340 70',220,`<g transform="translate(2 3)">${sq(`${pine(16,56,44,24,PN2)}${pine(48,56,46,24,PN2)}${eyes(32,36,5,4)}`,DK)}</g>${ws(82,46,36,SP)}`)},
+ {t:'4. Watching wordmark',d:'The "o" in Encounter is a dark hollow with eyes in it; a small treeline sits on the word.',
+  hero:svg('0 0 400 150',360,`<g>${pine(298,64,40,22)}${pine(320,64,52,26)}${pine(342,64,36,20)}${pine(30,64,30,16)}</g><text x="10" y="110" font-family="Zilla Slab" font-weight="700" font-size="64" fill="${CR}">Enc<tspan dx="62">unter</tspan></text><circle cx="152" cy="88" r="22" fill="${DK}" stroke="${CR}" stroke-width="7"/>${eyes(152,90,5.6,3)}<text x="12" y="142" font-family="Public Sans" font-weight="800" font-size="22" letter-spacing="16" fill="${LI}">ATLAS</text>`),
+  app:svg('0 0 64 64',64,sq(`<circle cx="32" cy="32" r="19" fill="${DK}" stroke="${CR}" stroke-width="6"/>${eyes(32,34,5.5,3)}`)),
+  fav:svg('0 0 64 64',32,sq(`<circle cx="32" cy="32" r="20" fill="${DK}" stroke="${CR}" stroke-width="8"/>${eyes(32,34,4.5,3)}`)),
+  light:svg('0 0 400 150',210,`<text x="10" y="110" font-family="Zilla Slab" font-weight="700" font-size="64" fill="${SP}">Enc<tspan dx="62">unter</tspan></text><circle cx="152" cy="88" r="22" fill="${DK}" stroke="${SP}" stroke-width="7"/>${eyes(152,90,5.6,3)}<text x="12" y="142" font-family="Public Sans" font-weight="800" font-size="22" letter-spacing="16" fill="${SP}">ATLAS</text>`)},
+ {t:'5. Ranger patch',d:'Vintage badge version of D: lettered ring, moon, pines and eyes. For merch, stickers and the About page.',
+  hero:svg('0 0 220 220',270,`<defs><path id="tp" d="M32 110a78 78 0 0 1 156 0"/><path id="bp" d="M22 110a88 88 0 0 0 176 0"/><clipPath id="w5"><circle cx="110" cy="110" r="62"/></clipPath></defs><circle cx="110" cy="110" r="104" fill="${SP}" stroke="${LA}" stroke-width="5"/><circle cx="110" cy="110" r="94" fill="none" stroke="${LI}" stroke-width="1.5" opacity=".6"/><circle cx="110" cy="110" r="62" fill="#1E3A2F" stroke="${LA}" stroke-width="3"/><g clip-path="url(#w5)"><circle cx="140" cy="78" r="13" fill="${CR}"/><circle cx="147" cy="74" r="11" fill="#1E3A2F"/>${pine(66,178,90,46,DK)}${pine(152,178,100,50,DK)}${pine(96,178,60,34,DK)}<rect x="40" y="160" width="150" height="30" fill="${DK}"/>${eyes(116,138,7.5,7)}</g><text font-family="Public Sans" font-weight="800" font-size="19" letter-spacing="3.5" fill="${CR}"><textPath href="#tp" startOffset="50%" text-anchor="middle">ENCOUNTER ATLAS</textPath></text><text font-family="Public Sans" font-weight="600" font-size="11.5" letter-spacing="2.6" fill="${LI}"><textPath href="#bp" startOffset="50%" text-anchor="middle">SOMETHING IS WATCHING</textPath></text><circle cx="22" cy="110" r="3.5" fill="${LA}"/><circle cx="198" cy="110" r="3.5" fill="${LA}"/>`),
+  app:svg('0 0 64 64',64,`<circle cx="32" cy="32" r="31" fill="${SP}" stroke="${LA}" stroke-width="3"/><clipPath id="a5"><circle cx="32" cy="32" r="27"/></clipPath><g clip-path="url(#a5)"><circle cx="40" cy="20" r="6" fill="${CR}"/>${pine(18,62,40,24,DK)}${pine(46,62,44,24,DK)}${eyes(32,44,3.4,4)}</g>`),
+  fav:svg('0 0 64 64',32,`<circle cx="32" cy="32" r="31" fill="${SP}" stroke="${LA}" stroke-width="5"/>${eyes(32,36,7,5)}`),
+  light:svg('0 0 340 70',220,`<g><circle cx="32" cy="35" r="31" fill="${SP}" stroke="${LA}" stroke-width="3"/>${eyes(32,40,4,4)}</g>${ws(78,48,36,SP)}`)},
+ {t:'6. Many eyes',d:'Several pairs in the trees, one per creature colour. Says "lots of things out there". Horizontal lockup.',
+  hero:svg('0 0 380 190',350,`${pine(30,120,90,46)}${pine(84,120,110,52)}${pine(140,120,80,44)}${pine(196,120,120,56)}${pine(252,120,96,48)}${pine(306,120,114,54)}${pine(352,120,80,40)}<rect x="0" y="116" width="380" height="5" fill="${PN}"/>${eyes(57,92,6.5,5,'#D9A05B')}${eyes(112,104,5,4,'#D0633F')}${eyes(168,82,7.5,6,LA)}${eyes(224,106,5,4,'#9CC46B')}${eyes(280,90,6,5,'#B98ACB')}${eyes(330,104,5,4,'#4FB3A9')}${ws(190,172,40,CR,'middle')}`),
+  app:svg('0 0 64 64',64,sq(`${pine(12,60,44,24)}${pine(32,60,50,24)}${pine(52,60,44,24)}${eyes(20,42,3.6,3,'#D9A05B')}${eyes(44,48,3.4,3,'#B98ACB')}${eyes(32,26,4.2,3,LA)}`)),
+  fav:svg('0 0 64 64',32,sq(`${eyes(32,22,6,5,LA)}${eyes(20,44,4.5,4,'#D9A05B')}${eyes(44,44,4.5,4,'#B98ACB')}`)),
+  light:svg('0 0 380 70',230,`${pine(20,64,50,26,SP)}${pine(48,64,58,28,SP)}${eyes(26,46,3.6,3,'#D9A05B')}${eyes(46,34,4,3,LA)}${ws(82,48,36,SP)}`)},
+];
+document.getElementById('g').innerHTML=O.map(o=>`<div class="card"><div class="hero">${o.hero}</div><div class="light">${o.app}${o.fav}${o.light}</div><div class="label"><b>${o.t}</b><span>${o.d}</span></div></div>`).join('');
+</script></body></html>
