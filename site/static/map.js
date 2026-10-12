@@ -170,6 +170,24 @@
     LAYERS.push({ key: 'places', label: 'Places to visit', color: '#9CC46B', ids: ['places'] });
   }
 
+  // Newer official cases: FAA pilot reports (NARA RG 615) and the Pentagon's PURSUE files
+  async function addOfficial(file, id, color, label) {
+    const data = await fetch(BASE + '/data/' + file).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    if (!data || !data.features || !data.features.length) return;
+    map.addSource(id, { type: 'geojson', data });
+    map.addLayer({ id, type: 'circle', source: id, paint: {
+      'circle-color': color, 'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 3.5, 10, 7],
+      'circle-stroke-color': '#13261F', 'circle-stroke-width': 1.5, 'circle-opacity': ['case', ['==', ['get', 'a'], 1], 0.55, 0.95] } });
+    map.on('click', id, (e) => {
+      const p = e.features[0].properties;
+      const nodes = [node('div', 'pop-kind', null, '<span>' + label + (p.w ? ', ' + p.w : '') + '</span>'), node('p', 'pop-h', p.t || 'Report')];
+      if (p.r) nodes.push(node('p', 'pop-meta', p.r + (p.a == 1 ? ' (approximate spot)' : '')));
+      if (p.u) nodes.push(link(p.u, 'Open the official file'));
+      popup(e.features[0].geometry.coordinates, nodes);
+    });
+    pointer(id);
+  }
+
   async function addReports() {
     const api = el.dataset.api;
     if (!api) return;
@@ -195,7 +213,7 @@
     const { type, cat, creature } = state;
     const narrowed = !!(cat || creature);
     const showUfoFiles = (type === 'all' || type === 'ufo') && (!narrowed || cat === 'ufo');
-    setVis(['bb-glow', 'bb-clusters', 'bb-count', 'bb-point'], showUfoFiles);
+    setVis(['bb-glow', 'bb-clusters', 'bb-count', 'bb-point', 'faa', 'pursue'], showUfoFiles);
     setVis(['military'], (type === 'all' || type === 'military') && !narrowed);
     setVis(['places'], type === 'all' || type === 'places');
     if (map.getLayer('places')) {
@@ -254,6 +272,8 @@
   map.on('load', async () => {
     tint();
     await addBlueBook();
+    await addOfficial('ufo_faa.geojson', 'faa', '#7FD3FF', 'FAA pilot report');
+    await addOfficial('ufo_pursue.geojson', 'pursue', '#E07A5F', 'Pentagon UFO file');
     await addPlaces();
     await addMilitary();
     await addFamous();

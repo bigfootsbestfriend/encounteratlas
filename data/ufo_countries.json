@@ -1,0 +1,112 @@
+[
+  {"code": "us", "slug": "united-states", "name": "United States",
+   "bodies": "Project Sign, Grudge and Blue Book (1947 to 1969); AATIP and AAWSAP (2007 to 2012); UAP Task Force (2020); AARO (2022 to now)",
+   "body": [
+     "The US Air Force began collecting flying-saucer reports in 1947 and ran Project Blue Book until 1969, when the Condon Report concluded the subject held nothing for science. For nearly 50 years after that, the official line was that the government had no UFO programme.",
+     "That changed in December 2017 when newspapers revealed AATIP, a small Pentagon study, and Navy pilot videos leaked. Congress pushed back hard: an intelligence assessment in 2021, a permanent office (AARO) in 2022, open hearings from 2022 onward and a law in 2023 ordering every agency to send its UFO records to the National Archives.",
+     "In 2026 the Pentagon began the PURSUE releases, posting hundreds of declassified files and videos, including cases it admits it cannot explain."
+   ],
+   "data": "US federal records are in the public domain, so we map Blue Book, the FAA pilot reports and the PURSUE files in full.",
+   "links": [{"name": "AARO", "url": "https://www.aaro.mil/"}, {"name": "National Archives UAP records", "url": "https://www.archives.gov/research/topics/uaps"}, {"name": "PURSUE releases", "url": "https://www.war.gov/ufo/"}]},
+
+  {"code": "gb", "slug": "united-kingdom", "name": "United Kingdom",
+   "bodies": "Flying Saucer Working Party (1950 to 1951); MoD UFO desk (1950s to 2009); DI55 Project Condign (1997 to 2000)",
+   "body": [
+     "Britain's Ministry of Defence kept a small desk that logged public UFO reports for more than 50 years, mainly to check that nothing threatened UK airspace. A secret intelligence study, Project Condign, reviewed the reports in the late 1990s and found no threat.",
+     "The desk closed in December 2009. Between 2008 and 2013 the MoD released its files through The National Archives, including the Rendlesham Forest papers from 1980, and the Condign report came out under Freedom of Information in 2006."
+   ],
+   "data": "The National Archives' catalogue is Open Government Licence, but its API terms ask users not to store results, and the files are scanned letters rather than a sighting table. We link to the files rather than copy them.",
+   "links": [{"name": "The National Archives: UFO reports", "url": "https://www.nationalarchives.gov.uk/explore-the-collection/explore-by-time-period/postwar/ufo-reports/"}]},
+
+  {"code": "ca", "slug": "canada", "name": "Canada",
+   "bodies": "Project Magnet (1950 to 1954); National Research Council sighting files (to 1995); RCMP and DND files; Sky Canada Project (2023 to 2025)",
+   "body": [
+     "Canada's Department of Transport ran Project Magnet in the early 1950s, a study of whether UFOs used geomagnetic propulsion. The National Research Council collected \"non-meteoric\" sighting reports until 1995, and the RCMP and Department of National Defence investigated cases like Falcon Lake (1967) and Shag Harbour (1967).",
+     "Library and Archives Canada has digitised about 9,500 of these documents. In 2025 the Chief Science Advisor's Sky Canada Project recommended that Ottawa name a lead agency and start publishing UAP data again."
+   ],
+   "data": "Library and Archives Canada allows reproduction for non-commercial purposes only and needs written permission for commercial reuse, so we link to its database instead of copying it.",
+   "links": [{"name": "Canada's UFOs at LAC", "url": "https://www.canada.ca/en/library-archives/collection/research-help/science-technology/ufos.html"}, {"name": "Sky Canada Project", "url": "https://science.gc.ca/site/science/en/office-chief-science-advisor/sky-canada-project/management-public-reporting-unidentified-aerial-phenomena-canada"}]},
+
+  {"code": "fr", "slug": "france", "name": "France",
+   "bodies": "GEPAN (1977), SEPRA (1988), GEIPAN (2005 to now), all at the national space agency CNES",
+   "body": [
+     "France is the only country whose space agency has run a UFO office continuously since the 1970s. GEPAN was founded at CNES in Toulouse in 1977, became SEPRA in 1988 and GEIPAN in 2005.",
+     "GEIPAN investigates reports with help from the gendarmerie, air force and Météo-France and grades each case from A (explained) to D (unexplained after investigation). According to CNES, about a quarter of cases are fully identified, 40% probably identified, a third lack data and around 3% stay unexplained. It began putting its archive online at the end of 2006."
+   ],
+   "data": "GEIPAN's legal notice reserves all rights and forbids extraction of its content beyond private or educational copies, so we don't copy its cases. Search them on geipan.fr.",
+   "links": [{"name": "GEIPAN at CNES", "url": "https://cnes.fr/projets/geipan"}, {"name": "GEIPAN case search", "url": "https://www.geipan.fr/fr/recherche/cas"}]},
+
+  {"code": "br", "slug": "brazil", "name": "Brazil",
+   "bodies": "Brazilian Air Force (COMAER); Operação Prato (1977 to 1978); Arquivo Nacional",
+   "body": [
+     "Brazil's Air Force investigated the lights over Colares in 1977 and 1978 (Operação Prato) and scrambled jets on the \"official night of UFOs\" in May 1986, when radar tracked objects over São Paulo and Rio.",
+     "Since 2008 the Air Force has sent its UFO records to the National Archives, where the Objeto Voador Não Identificado fund holds hundreds of reports from 1952 to 2016. The Air Force says it now only receives and catalogues reports."
+   ],
+   "data": "The fund is public but no reuse licence for bulk data is published, so we link to it.",
+   "links": [{"name": "Arquivo Nacional UFO fund", "url": "https://www.gov.br/arquivonacional/pt-br/canais_atendimento/imprensa/noticias/conheca-o-fundo-sobre-ovnis-do-arquivo-nacional"}]},
+
+  {"code": "cl", "slug": "chile", "name": "Chile",
+   "bodies": "CEFAA (1997 to 2021), SEFAA (2022 to now), part of the civil aviation authority DGAC",
+   "body": [
+     "Chile set up a committee inside its civil aviation authority in 1997 to collect and study anomalous aerial phenomena as a flight-safety matter. It was renamed SEFAA in 2022.",
+     "It encourages pilots and air traffic controllers to report without stigma and publishes resolved cases with explanations. Its release of a 2014 Navy helicopter infrared video in 2017 drew worldwide attention."
+   ],
+   "data": "No reuse licence is published, so we link to SEFAA's case pages.",
+   "links": [{"name": "SEFAA", "url": "https://sefaa.dgac.gob.cl/"}]},
+
+  {"code": "ar", "slug": "argentina", "name": "Argentina",
+   "bodies": "Comisión de Estudio de Fenómenos Aeroespaciales (CEFAe), Argentine Air Force, 2011 onward",
+   "body": [
+     "Argentina's Air Force created a commission to study aerospace phenomena in 2011. It published annual reports from 2015, listing every case it examined and the explanation it reached, using photo analysis software developed for France's GEIPAN."
+   ],
+   "data": "Reports are linked, not copied.",
+   "links": [{"name": "CEFAe 2018 report (PDF)", "url": "https://www.argentina.gob.ar/sites/default/files/informe_cefae_2018.pdf"}]},
+
+  {"code": "pe", "slug": "peru", "name": "Peru",
+   "bodies": "Departamento de Investigación de Fenómenos Aéreos Anómalos (DIFAA), Peruvian Air Force",
+   "body": [
+     "Peru's Air Force has run an office for anomalous aerial phenomena on and off since the early 2000s. It was closed for five years and reopened in October 2013, inviting citizens to send photos and accounts."
+   ],
+   "data": "Linked only.",
+   "links": [{"name": "Andina news agency, 2013", "url": "https://andina.pe/agencia/noticia-fenomenos-aereos-anomalos-peru-podran-reportarse-a-fap-478982.aspx"}]},
+
+  {"code": "mx", "slug": "mexico", "name": "Mexico",
+   "bodies": "Cámara de Diputados public hearings (2023)",
+   "body": [
+     "Mexico's lower house held two public hearings on unidentified anomalous phenomena in September and November 2023 as a first step toward possible legislation. The first is remembered for the presentation of two mummified bodies said to be non-human, which scientists dismissed."
+   ],
+   "data": "Linked only.",
+   "links": [{"name": "Chamber of Deputies announcement", "url": "https://comunicacionsocial.diputados.gob.mx/index.php/notas/anuncian-sergio-gutierrez-y-jaime-maussan-primera-audiencia-publica-para-la-posible-legislacion-de-fenomenos-aereos-anomalos-no-identificados-en-mexico"}]},
+
+  {"code": "it", "slug": "italy", "name": "Italy",
+   "bodies": "Aeronautica Militare, Reparto Generale Sicurezza (1978 onward)",
+   "body": [
+     "After a wave of sightings in 1978, Prime Minister Giulio Andreotti made the Air Force Italy's official collector of UFO reports. Citizens file a form at their local Carabinieri station, the Air Force checks for aircraft and natural causes, and anything left unexplained goes on a yearly public list."
+   ],
+   "data": "The yearly PDF lists carry no stated licence, so we link to them.",
+   "links": [{"name": "Aeronautica Militare: OVNI", "url": "https://www.aeronautica.difesa.it/ovni/"}]},
+
+  {"code": "es", "slug": "spain", "name": "Spain",
+   "bodies": "Ejército del Aire (Spanish Air Force) intelligence section",
+   "body": [
+     "The Spanish Air Force investigated sightings by its own pilots and radars from the 1960s. Between 1992 and 1999 it declassified its files, and in 2016 the Defence Ministry published them all online."
+   ],
+   "data": "Linked only.",
+   "links": [{"name": "Expedientes OVNI, Biblioteca Virtual de Defensa", "url": "https://bibliotecavirtual.defensa.gob.es/BVMDefensa/exp_ovni/es/micrositios/inicio.do"}]},
+
+  {"code": "nz", "slug": "new-zealand", "name": "New Zealand",
+   "bodies": "New Zealand Defence Force",
+   "body": [
+     "The NZDF released its UFO files, covering 1952 to 2009, in December 2010, with personal details removed. It says it no longer investigates sightings and refers reports to the Civil Aviation Authority."
+   ],
+   "data": "Linked only.",
+   "links": [{"name": "National Library record", "url": "https://natlib.govt.nz/records/22979464"}]},
+
+  {"code": "au", "slug": "australia", "name": "Australia",
+   "bodies": "Royal Australian Air Force; National Archives of Australia",
+   "body": [
+     "The RAAF recorded public and military UFO reports on special forms for decades. Those files, including reports from the Woomera weapons range, now sit in the National Archives of Australia."
+   ],
+   "data": "Linked only.",
+   "links": [{"name": "National Archives of Australia", "url": "https://www.naa.gov.au/blog/flying-saucers-fact-or-fiction"}]}
+]

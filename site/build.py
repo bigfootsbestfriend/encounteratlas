@@ -295,6 +295,12 @@ def build_ufo(bluebook):
     <p class="crumb">UFO files</p>
     <h1>Project Blue Book: the Air Force UFO files</h1>
     <p class="lede">From 1947 to 1969 the US Air Force investigated {len(bluebook):,} UFO reports. Every case folder is now public at the National Archives. We've put them on a map and sorted them by state and country.</p>
+    <nav class="tiles ufo-more" aria-label="More official UFO files">
+      <a class="tile" href="{url('/ufo/releases/')}">{icon('folder')}<span>Every official release, 13 countries</span></a>
+      <a class="tile" href="{url('/ufo/files/pursue/')}">{icon('military')}<span>The Pentagon's 2026 files</span></a>
+      <a class="tile" href="{url('/ufo/files/faa/')}">{icon('saucer')}<span>FAA pilot reports, 2007 to 2024</span></a>
+      <a class="tile" href="{url('/ufo/countries/')}">{icon('ufo-globe') if os.path.exists(os.path.join(STATIC, 'icons', 'ufo-globe.svg')) else icon('saucer')}<span>UFO files by country</span></a>
+    </nav>
     <p><a class="btn" href="{url('/map/')}">Open the map</a></p>
   </div>
 </section>

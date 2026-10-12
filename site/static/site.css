@@ -344,3 +344,4 @@ body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) { .cchips { scroll-behavior: auto; } }
 .map-frame.full { max-height: none; }
+.ufo-more { margin: 1.4rem 0 1.4rem; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)) !important; }

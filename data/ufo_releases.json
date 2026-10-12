@@ -1,0 +1,836 @@
+[
+ {
+  "slug": "pursue-war-department-uap-files",
+  "title": "PURSUE: the Pentagon's rolling UAP file releases",
+  "country": "us",
+  "agency": "US Department of War (Defense), with ODNI, FBI, CIA, NASA, State Department and others",
+  "date": "2026-05-08",
+  "period": "1946 to 2025",
+  "type": "documents",
+  "summary": "After a presidential order in February 2026, the Department of War began posting declassified UAP records on war.gov in batches every few weeks. Six tranches went up between May 8 and September 18, 2026: Project Blue Book files and films, FBI and CIA memos, State Department cables, NASA mission records, AAWSAP research papers and modern military sensor videos.",
+  "why": "The largest single government push to publish UFO material since Blue Book closed. Unlike AARO's reports, it deliberately posts unresolved cases and invites outside analysis.",
+  "url": "https://www.war.gov/ufo/",
+  "size": "450 records in 6 tranches (270 PDFs, 134 videos, 30 images, 16 audio)",
+  "local": "/ufo/files/pursue/",
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "nara-uap-records-collection",
+  "title": "UAP Records Collection opens at the National Archives (Record Group 615)",
+  "country": "us",
+  "agency": "National Archives and Records Administration (NARA)",
+  "date": "2024",
+  "period": "1945 to 2025",
+  "type": "documents",
+  "summary": "The 2024 defence bill (NDAA FY2024, section 1841) ordered every federal agency to find its UFO and UAP records and hand copies to the National Archives. NARA created a new record group, RG 615, to hold them. By 2026 it had nine series from the FAA, Pentagon, ODNI, NSA, FBI, State Department, Nuclear Regulatory Commission, Customs and Border Protection and the Air Force.",
+  "why": "For the first time there is one permanent, public home for UFO records from across the US government, with full-text PDFs online.",
+  "url": "https://www.archives.gov/research/topics/uaps",
+  "size": "9 series, 717 items online (October 2026)",
+  "links": [
+   {
+    "name": "Bulk downloads (JSON and ZIP)",
+    "url": "https://www.archives.gov/research/catalog/catalog-bulk-downloads/uap-bulk-download"
+   },
+   {
+    "name": "RG 615 in the catalog",
+    "url": "https://catalog.archives.gov/id/445887258"
+   }
+  ],
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "rg615-faa-uap-reports",
+  "title": "FAA pilot UAP reports (RG 615)",
+  "country": "us",
+  "agency": "Federal Aviation Administration",
+  "date": "2025-04",
+  "period": "2007 to 2024",
+  "type": "dataset",
+  "rg615": 493468575,
+  "summary": "Hundreds of short incident reports from the FAA's Washington Operations Center and its Skywatch system: an airliner or business jet crew radios air traffic control about lights, orbs or objects, and the FAA logs the callsign, aircraft type, altitude, position and what was seen. Many note whether radar saw anything and a few say the lights matched Starlink satellites.",
+  "why": "The most detailed set of modern pilot sightings ever released, with exact positions for most of them. We've mapped every one.",
+  "url": "https://catalog.archives.gov/id/493468575",
+  "size": "575 reports",
+  "local": "/ufo/files/faa/",
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "rg615-osd-aaro-records",
+  "title": "Pentagon and AARO records (RG 615)",
+  "country": "us",
+  "agency": "Office of the Secretary of Defense / AARO",
+  "date": "2025-04",
+  "period": "2023 to 2025",
+  "type": "documents",
+  "rg615": 493468580,
+  "summary": "AARO's own paperwork transferred to the Archives: case resolutions such as Go Fast, Puerto Rico and the Eglin object, the Oak Ridge analysis of a claimed metal fragment, papers on parallax and Starlink flares, briefing slides, hearing transcripts and the annual reports.",
+  "why": "Shows how the Pentagon's UAP office actually works a case, in its own working documents.",
+  "url": "https://catalog.archives.gov/id/493468580",
+  "size": "30 items",
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "rg615-nsa-records",
+  "title": "NSA records on UFOs (RG 615)",
+  "country": "us",
+  "agency": "National Security Agency",
+  "date": "2025",
+  "period": "1950s to 1990s",
+  "type": "documents",
+  "rg615": 580103959,
+  "summary": "A mixed bag the NSA turned over: State Department airgrams about sightings in Angola, Tunisia and Antarctica, the Joint Chiefs report on the 1976 Tehran jet chase, a Guantanamo sighting report, NSA Technical Journal essays on talking to extraterrestrials, and court papers from a 1980 lawsuit against the agency.",
+  "why": "Puts the 1976 Iran incident report and the NSA's long-rumoured UFO holdings into the open archive.",
+  "url": "https://catalog.archives.gov/id/580103959",
+  "size": "38 items",
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "rg615-state-department-cables",
+  "title": "State Department UFO cables (RG 615)",
+  "country": "us",
+  "agency": "Department of State",
+  "date": "2025",
+  "period": "1980 to 2023",
+  "type": "documents",
+  "rg615": 608806625,
+  "summary": "Diplomatic cables from embassies reporting local UFO stories: lights over the eastern Caribbean, a strange glow over Kuwait, pilots in Tajikistan, sightings in Argentina and Afghanistan, and a Moscow cable headed \"UFOs over Georgia\".",
+  "why": "A window on how US diplomats reported other countries' flaps back to Washington.",
+  "url": "https://catalog.archives.gov/id/608806625",
+  "size": "13 items",
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "rg615-nrc-records",
+  "title": "Nuclear Regulatory Commission UAP and drone records (RG 615)",
+  "country": "us",
+  "agency": "Nuclear Regulatory Commission",
+  "date": "2024",
+  "period": "2023 to 2024",
+  "type": "documents",
+  "rg615": 488808322,
+  "summary": "Briefings and emails on how nuclear plants should report drones and UAP flying over them, including a chain about drone sightings near the Pilgrim plant in Massachusetts.",
+  "why": "Objects over nuclear sites are a recurring theme in UFO history. These show how the regulator handles them today.",
+  "url": "https://catalog.archives.gov/id/488808322",
+  "size": "9 items",
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "rg615-cbp-videos",
+  "title": "Customs and Border Protection UAP videos (RG 615)",
+  "country": "us",
+  "agency": "US Customs and Border Protection",
+  "date": "2025",
+  "period": "2013 to 2021",
+  "type": "videos",
+  "rg615": 665701604,
+  "summary": "Twelve sensor videos recorded by CBP aircraft between 2013 and 2021, released as files labelled \"Video pertaining to Unidentified Aerial Phenomenon\" 1 to 10.",
+  "why": "Raw footage from a border agency, not the Navy, which most UAP video has come from.",
+  "url": "https://catalog.archives.gov/id/665701604",
+  "size": "12 videos",
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "rg615-air-force-records",
+  "title": "Department of the Air Force UFO records (RG 615)",
+  "country": "us",
+  "agency": "Department of the Air Force",
+  "date": "2025",
+  "period": "1945 to 1969",
+  "type": "documents",
+  "rg615": 656595571,
+  "summary": "Unit histories and correspondence that mention UFOs: the 1947 MacDill Field history, 4602d Air Intelligence Service Squadron histories, the 1948 \"Estimate of the Situation\", Curtis LeMay papers, Fifth Air Force intelligence summaries and Air Force Regulation 200-2.",
+  "why": "Fills gaps around Blue Book with the Air Force's wider paper trail from its early saucer years.",
+  "url": "https://catalog.archives.gov/id/656595571",
+  "size": "30 items",
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "rg615-fbi-records",
+  "title": "FBI Guardian UAP case files (RG 615)",
+  "country": "us",
+  "agency": "Federal Bureau of Investigation",
+  "date": "2025",
+  "period": "2024 to 2025",
+  "type": "documents",
+  "rg615": 580705010,
+  "summary": "Recent FBI tip files: a report of UAP seen by Anoka, Minnesota police, and possible UAP hovering near a site in the 2024 drone wave, with an FD-302 interview form.",
+  "why": "Shows the Bureau still logs UFO reports, decades after the famous Hottel memo.",
+  "url": "https://catalog.archives.gov/id/580705010",
+  "size": "6 items",
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "rg615-odni-reports",
+  "title": "ODNI UAP reports (RG 615)",
+  "country": "us",
+  "agency": "Office of the Director of National Intelligence",
+  "date": "2024",
+  "period": "2004 to 2024",
+  "type": "report",
+  "rg615": 493468579,
+  "summary": "Archival copies of the four intelligence community UAP reports: the 2021 preliminary assessment, the 2022 annual report and the FY2023 and FY2024 consolidated reports.",
+  "why": "The reports Congress asked for, now permanently preserved.",
+  "url": "https://catalog.archives.gov/id/493468579",
+  "size": "4 items",
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "aaro-fy2025-annual-report",
+  "title": "AARO FY2025 Consolidated Annual Report on UAP",
+  "country": "us",
+  "agency": "All-domain Anomaly Resolution Office (AARO)",
+  "date": "2026-07",
+  "period": "June 2024 to May 2025",
+  "type": "report",
+  "summary": "AARO's fourth yearly report to Congress, published months after its deadline. It logs 319 new reports, closes hundreds of older ones, and credits a large share of sightings to sunlight glinting off satellites, using new 3D modelling tools.",
+  "why": "The latest official count. Every case AARO solved had an ordinary explanation, but most reports still lack enough data to judge.",
+  "url": "https://www.aaro.mil/Portals/136/PDFs/FY25%20UAP%20Annual%20Report/AARO_FY2025_Consolidated_Annual_Report_on_UAP.pdf",
+  "size": "",
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "aaro-fy2024-annual-report",
+  "title": "FY2024 Consolidated Annual Report on UAP",
+  "country": "us",
+  "agency": "Department of Defense / ODNI (AARO)",
+  "date": "2024-11-14",
+  "period": "May 2023 to June 2024",
+  "type": "report",
+  "summary": "AARO received 757 reports in the year, 392 of them from the FAA. It resolved dozens as balloons, birds, drones and satellites, flagged 21 for deeper study, and archived 444 for lack of data. Reports near nuclear sites and from US forces over East Asian seas are broken out.",
+  "why": "The first report to fold in years of FAA pilot data, and the one that put the total past 1,600 reports.",
+  "url": "https://media.defense.gov/2024/Nov/14/2003583603/-1/-1/0/FY24-CONSOLIDATED-ANNUAL-REPORT-ON-UAP-508.PDF",
+  "size": "",
+  "links": [
+   {
+    "name": "Press release",
+    "url": "https://www.defense.gov/News/Releases/Release/Article/3964824/department-of-defense-releases-the-annual-report-on-unidentified-anomalous-phen/"
+   }
+  ],
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "aaro-historical-record-report-vol-1",
+  "title": "AARO Historical Record Report, Volume 1",
+  "country": "us",
+  "agency": "All-domain Anomaly Resolution Office (AARO)",
+  "date": "2024-03-08",
+  "period": "1945 to 2023",
+  "type": "report",
+  "summary": "Congress asked AARO to review the government's entire UFO history. Volume 1 walks through Blue Book, the Robertson Panel, the Condon study, AAWSAP and AATIP, and claims of crashed craft and reverse engineering, and finds no evidence that any government programme recovered alien technology.",
+  "why": "The Pentagon's official answer to the \"secret crash retrieval\" claims made in Congress in 2023. Plenty of people dispute it.",
+  "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+  "size": "",
+  "links": [
+   {
+    "name": "Pentagon statement",
+    "url": "https://www.defense.gov/News/Releases/Release/Article/3700894/statement-by-pentagon-press-secretary-maj-gen-pat-ryder-on-the-historical-recor/"
+   }
+  ],
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "aaro-fy2023-annual-report",
+  "title": "FY2023 Consolidated Annual Report on UAP",
+  "country": "us",
+  "agency": "ODNI and Department of Defense (AARO)",
+  "date": "2023-10",
+  "period": "May 2022 to April 2023",
+  "type": "report",
+  "summary": "AARO's first full-year report. It received 291 new reports, most of lights or round objects at altitude, bringing the running total to 801. Many were later matched to balloons, drones and clutter.",
+  "why": "Set the pattern for later reports: lots of sightings, a growing pile resolved as ordinary objects, and a stubborn remainder short on data.",
+  "url": "https://www.aaro.mil/Portals/136/PDFs/UNCLASSIFIED-FY23_Consolidated_Annual_Report_on_UAP-Oct_25_2023_1236.pdf",
+  "size": "",
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "aaro-case-resolutions",
+  "title": "AARO case resolution reports",
+  "country": "us",
+  "agency": "All-domain Anomaly Resolution Office (AARO)",
+  "date": "2024-02",
+  "period": "2013 to 2023",
+  "type": "report",
+  "summary": "Short write-ups explaining individual cases: the Navy's Go Fast video, the 2013 Puerto Rico object, \"Southeast Asia triangles\", \"atmospheric wakes\", a Western United States sighting, an Eglin AFB object, a Mount Etna object and an Al Taqaddum object in Iraq. Each shows the imagery and AARO's explanation.",
+  "why": "The clearest look at AARO's method. You can check its reasoning against the footage.",
+  "url": "https://www.aaro.mil/UAP-Cases/UAP-Case-Resolution-Reports/",
+  "size": "8 case reports",
+  "links": [
+   {
+    "name": "Official UAP imagery",
+    "url": "https://www.aaro.mil/UAP-Cases/Official-UAP-Imagery/"
+   }
+  ],
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "nasa-uap-independent-study",
+  "title": "NASA UAP Independent Study Team report",
+  "country": "us",
+  "agency": "NASA",
+  "date": "2023-09-14",
+  "period": "",
+  "type": "report",
+  "summary": "NASA asked 16 outside experts how science could study UAP. Their report says the main problem is poor data, recommends better sensors, citizen reporting apps and less stigma, and finds no evidence of extraterrestrial origin. NASA named its first director of UAP research the same day.",
+  "why": "The first time NASA formally weighed in since the 1960s, treating UAP as a data problem worth solving.",
+  "url": "https://science.nasa.gov/uap/",
+  "size": "",
+  "links": [
+   {
+    "name": "Final report (PDF)",
+    "url": "https://smd-cms.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf"
+   }
+  ],
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "odni-2022-annual-report",
+  "title": "2022 Annual Report on Unidentified Aerial Phenomena",
+  "country": "us",
+  "agency": "Office of the Director of National Intelligence",
+  "date": "2023-01-12",
+  "period": "March 2021 to August 2022",
+  "type": "report",
+  "summary": "The follow-up to the 2021 assessment. It added 366 reports, 247 of them new, for a total of 510. About half were tentatively matched to balloons, drones or clutter; 171 stayed uncharacterised, and a few appeared to show unusual flight.",
+  "why": "Showed that once pilots were encouraged to report, the numbers jumped.",
+  "url": "https://www.dni.gov/files/ODNI/documents/assessments/Unclassified-2022-Annual-Report-UAP.pdf",
+  "size": "",
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "odni-preliminary-assessment-2021",
+  "title": "Preliminary Assessment: Unidentified Aerial Phenomena",
+  "country": "us",
+  "agency": "Office of the Director of National Intelligence (UAP Task Force)",
+  "date": "2021-06-25",
+  "period": "2004 to 2021",
+  "type": "report",
+  "summary": "A nine-page unclassified report to Congress on 144 military UAP reports. Only one was explained (a deflating balloon). In 18 incidents observers described objects that seemed to move without visible propulsion, and there were 11 near misses with aircraft.",
+  "why": "The first time the US intelligence community said in public that UAP are real objects, mostly unexplained, and a flight safety issue.",
+  "url": "https://www.dni.gov/files/ODNI/documents/assessments/Prelimary-Assessment-UAP-20210625.pdf",
+  "size": "9 pages",
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "navy-videos-2020",
+  "title": "Navy UAP videos: FLIR, Gimbal and GoFast",
+  "country": "us",
+  "agency": "Department of Defense / US Navy",
+  "date": "2020-04-27",
+  "period": "2004 and 2015",
+  "type": "videos",
+  "summary": "The Pentagon formally released three infrared videos taken by Navy F/A-18 crews, one from the 2004 Nimitz \"Tic Tac\" encounter and two from 2015 off the East Coast. They had leaked in 2017; the release confirmed they were real and unclassified.",
+  "why": "These clips restarted mainstream interest in UFOs and led directly to the UAP Task Force, ODNI reports and AARO.",
+  "url": "https://www.defense.gov/News/Releases/Release/Article/2165713/statement-by-the-department-of-defense-on-the-release-of-historical-navy-videos-i/",
+  "size": "3 videos",
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "hearing-2025-09-house-task-force",
+  "title": "House hearing: Restoring Public Trust Through UAP Transparency",
+  "country": "us",
+  "agency": "House Oversight, Task Force on the Declassification of Federal Secrets",
+  "date": "2025-09-09",
+  "period": "",
+  "type": "hearing",
+  "summary": "Chaired by Rep. Anna Paulina Luna, the task force heard from Air Force veterans, a police chief who saw a UAP, journalist George Knapp and a whistleblower-law expert about sightings and how AARO handles them.",
+  "why": "Kept congressional pressure on the Pentagon months before the 2026 PURSUE releases.",
+  "url": "https://oversight.house.gov/hearing/restoring-public-trust-through-uap-transparency-and-whistleblower-protection/",
+  "size": "",
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "hearing-2024-11-sasc-aaro",
+  "title": "Senate Armed Services open hearing with AARO's director",
+  "country": "us",
+  "agency": "Senate Armed Services Subcommittee on Emerging Threats and Capabilities",
+  "date": "2024-11-19",
+  "period": "",
+  "type": "hearing",
+  "summary": "AARO director Jon Kosloski briefed senators in public on the FY2024 report and walked through example cases with slides, including ones AARO could not yet explain.",
+  "why": "Shows AARO presenting unresolved footage to Congress, not just solved cases.",
+  "url": "https://www.armed-services.senate.gov/hearings/to-receive-testimony-on-the-activities-of-the-all-domain-anomaly-resolution-office",
+  "size": "",
+  "links": [
+   {
+    "name": "Kosloski statement (PDF)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/Dr_Jon_Kosloski_Statement_for_the_Record_SASC_Open_Hearing_Nov2024.pdf"
+   },
+   {
+    "name": "Case slides (PDF)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/SASC_AARO_Open_Hearing_Case_Slides_19Nov2024.pdf"
+   }
+  ],
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "hearing-2024-11-house-oversight",
+  "title": "House hearing: UAP, Exposing the Truth",
+  "country": "us",
+  "agency": "House Oversight Committee",
+  "date": "2024-11-13",
+  "period": "",
+  "type": "hearing",
+  "summary": "Retired Rear Admiral Tim Gallaudet, former AATIP official Luis Elizondo, journalist Michael Shellenberger and former NASA official Michael Gold testified about alleged hidden UAP programmes and called for disclosure.",
+  "why": "The second big public hearing built around whistleblower claims.",
+  "url": "https://oversight.house.gov/hearing/unidentified-anomalous-phenomena-exposing-the-truth/",
+  "size": "",
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "hearing-2023-07-house-oversight",
+  "title": "House hearing: UAP, Implications on National Security (Grusch hearing)",
+  "country": "us",
+  "agency": "House Oversight Subcommittee on National Security",
+  "date": "2023-07-26",
+  "period": "",
+  "type": "hearing",
+  "summary": "Former intelligence officer David Grusch testified under oath that the US has a long-running programme to retrieve crashed craft and \"non-human biologics\". Navy pilots David Fravor (Tic Tac) and Ryan Graves described their encounters.",
+  "why": "The most-watched UFO hearing ever, and the reason AARO's historical review and later PURSUE releases happened.",
+  "url": "https://oversight.house.gov/hearing/unidentified-anomalous-phenomena-implications-on-national-security-public-safety-and-government-transparency/",
+  "size": "",
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "hearing-2023-04-sasc-aaro",
+  "title": "Senate hearing on AARO's mission and budget",
+  "country": "us",
+  "agency": "Senate Armed Services Subcommittee on Emerging Threats and Capabilities",
+  "date": "2023-04-19",
+  "period": "",
+  "type": "hearing",
+  "summary": "AARO's first director, Sean Kirkpatrick, gave senators an open briefing, showing a video of an orb over the Middle East and saying the office had found no evidence of extraterrestrial activity.",
+  "why": "AARO's public debut in Congress.",
+  "url": "https://www.armed-services.senate.gov/hearings/to-receive-testimony-on-the-mission-activities-oversight-and-budget-of-the-all-domain-anomaly-resolution-office",
+  "size": "",
+  "links": [
+   {
+    "name": "Transcript (PDF)",
+    "url": "https://www.armed-services.senate.gov/imo/media/doc/23-31_04-19-2023.pdf"
+   }
+  ],
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "hearing-2022-05-house-intelligence",
+  "title": "House Intelligence hearing on Unidentified Aerial Phenomena",
+  "country": "us",
+  "agency": "House Intelligence Subcommittee on Counterterrorism, Counterintelligence and Counterproliferation",
+  "date": "2022-05-17",
+  "period": "",
+  "type": "hearing",
+  "summary": "Under Secretary of Defense Ronald Moultrie and Deputy Director of Naval Intelligence Scott Bray testified in public and showed two short Navy clips, one of which they could not explain.",
+  "why": "The first open congressional hearing on UFOs in more than 50 years.",
+  "url": "https://www.congress.gov/event/117th-congress/house-event/114761",
+  "size": "",
+  "links": [
+   {
+    "name": "Transcript (PDF)",
+    "url": "https://www.congress.gov/117/meeting/house/114761/documents/HHRG-117-IG05-Transcript-20220517.pdf"
+   }
+  ],
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "fbi-vault-ufo",
+  "title": "FBI Vault: UFO files and the Hottel memo",
+  "country": "us",
+  "agency": "Federal Bureau of Investigation",
+  "date": "2011-04",
+  "period": "1947 to 1950s",
+  "type": "documents",
+  "summary": "The FBI's online reading room includes its 1940s and 1950s flying-saucer file and a one-page 1950 memo from agent Guy Hottel passing on a third-hand story about three saucers and small bodies recovered in New Mexico. The memo became the most viewed page in the Vault.",
+  "why": "The Hottel memo is endlessly shared as \"proof\". The FBI itself says it was an unverified tip it never investigated.",
+  "url": "https://vault.fbi.gov/UFO",
+  "size": "",
+  "links": [
+   {
+    "name": "Hottel memo",
+    "url": "https://vault.fbi.gov/hottel_guy"
+   },
+   {
+    "name": "Roswell file",
+    "url": "https://vault.fbi.gov/Roswell%20UFO"
+   }
+  ],
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "cia-ufo-collection",
+  "title": "CIA reading room: \"UFOs: Fact or Fiction?\"",
+  "country": "us",
+  "agency": "Central Intelligence Agency",
+  "date": "2016-01",
+  "period": "1940s to 1990s",
+  "type": "documents",
+  "summary": "The CIA's online reading room gathers its declassified UFO documents into one collection: memos from the early 1950s, the Robertson Panel papers, foreign sighting reports and analysis of the U-2 and OXCART spy planes that were often mistaken for UFOs.",
+  "why": "Shows the CIA's real interest was intelligence and public panic, not little green men, and that its own spy planes caused many sightings.",
+  "url": "https://www.cia.gov/readingroom/collection/ufos-fact-or-fiction",
+  "size": "",
+  "links": [
+   {
+    "name": "Gerald Haines, CIA's Role in the Study of UFOs, 1947-90 (PDF)",
+    "url": "https://www.cia.gov/resources/csi/static/cia-role-study-UFOs.pdf"
+   }
+  ],
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "roswell-report-case-closed-1997",
+  "title": "The Roswell Report: Case Closed",
+  "country": "us",
+  "agency": "US Air Force",
+  "date": "1997-06-24",
+  "period": "1947 to 1959",
+  "type": "report",
+  "summary": "The Air Force's second Roswell report tackled stories of alien bodies. It traced them to crash-test dummies dropped from high-altitude balloons in the 1950s and to real accidents, including a 1956 KC-97 crash, which witnesses may have merged with 1947 in memory.",
+  "why": "The government's last word on Roswell until AARO. Critics point out the dummies were dropped years after 1947.",
+  "url": "https://www.af.mil/The-Roswell-Report/",
+  "size": "",
+  "links": [
+   {
+    "name": "Full report at GovInfo",
+    "url": "https://www.govinfo.gov/app/details/GOVPUB-D301-PURL-gpo92195"
+   }
+  ],
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "roswell-report-1994",
+  "title": "Report of Air Force Research Regarding the \"Roswell Incident\"",
+  "country": "us",
+  "agency": "US Air Force",
+  "date": "1994-07",
+  "period": "1947",
+  "type": "report",
+  "summary": "Prompted by a congressional records search, the Air Force concluded that the 1947 Roswell debris came from Project Mogul, a then-secret string of balloons and radar reflectors meant to listen for Soviet nuclear tests.",
+  "why": "The first official admission that the 1947 \"weather balloon\" story was a cover for something classified, just not a spacecraft.",
+  "url": "https://media.defense.gov/2021/Jul/13/2002761379/-1/-1/0/REPORT_AF_ROSWELL.PDF",
+  "size": "",
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "gao-roswell-records-1995",
+  "title": "GAO: Results of a search for records on the 1947 Roswell crash",
+  "country": "us",
+  "agency": "General Accounting Office",
+  "date": "1995-07-28",
+  "period": "1947",
+  "type": "report",
+  "summary": "At Rep. Steven Schiff's request, Congress's auditors searched government files for Roswell records. They found that key Roswell Army Air Field administrative and outgoing message records from 1945 to 1949 had been destroyed without a recorded authority.",
+  "why": "The missing records are still a cornerstone of Roswell theories.",
+  "url": "https://www.gao.gov/products/nsiad-95-187",
+  "size": "",
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "project-blue-book",
+  "title": "Project Blue Book case files",
+  "country": "us",
+  "agency": "US Air Force",
+  "date": "1976",
+  "period": "1947 to 1969",
+  "type": "documents",
+  "summary": "The Air Force investigated 12,618 sightings before closing Blue Book in December 1969; 701 stayed unidentified. The declassified files went to the National Archives, which now has 10,622 case folders scanned online.",
+  "why": "Still the biggest official UFO archive in the world. We've mapped every folder.",
+  "url": "https://www.archives.gov/research/military/air-force/ufos",
+  "size": "10,622 case folders (12,618 sightings)",
+  "local": "/ufo/",
+  "reuse": "US federal records: public domain"
+ },
+ {
+  "slug": "condon-report",
+  "title": "Scientific Study of Unidentified Flying Objects (the Condon Report)",
+  "country": "us",
+  "agency": "University of Colorado for the US Air Force",
+  "date": "1969-01",
+  "period": "1966 to 1968",
+  "type": "report",
+  "summary": "An Air Force-funded study led by physicist Edward Condon concluded that further UFO research was unlikely to advance science. The National Academy of Sciences endorsed it, and the Air Force used it to justify shutting Blue Book.",
+  "why": "It ended official US UFO investigation for decades. Several of its own case studies stayed unexplained, which critics never let go.",
+  "url": "https://www.archives.gov/research/military/air-force/ufos",
+  "size": "",
+  "reuse": "US government-funded study"
+ },
+ {
+  "slug": "house-symposium-1968",
+  "title": "House Symposium on Unidentified Flying Objects",
+  "country": "us",
+  "agency": "House Committee on Science and Astronautics",
+  "date": "1968-07-29",
+  "period": "",
+  "type": "hearing",
+  "summary": "Six scientists, including J. Allen Hynek, James McDonald and Carl Sagan, gave Congress their views on whether UFOs deserved serious study. Written papers from others were added to the record.",
+  "why": "Congress heard scientists argue both sides months before the Condon Report closed the door.",
+  "url": "https://www.govinfo.gov/app/details/CHRG-90hhrg97818/CHRG-90hhrg97818",
+  "size": "247 pages",
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "robertson-panel-1953",
+  "title": "Robertson Panel report",
+  "country": "us",
+  "agency": "CIA Scientific Advisory Panel",
+  "date": "1958-04-09",
+  "period": "January 1953",
+  "type": "report",
+  "summary": "In January 1953 a CIA-convened panel of scientists led by H.P. Robertson reviewed the best Air Force cases and films. It found no threat and no new physics, and recommended a public education campaign to take the mystery out of UFOs. A cleaned-up version came out in 1958.",
+  "why": "Often cited as the start of official debunking policy.",
+  "url": "https://www.cia.gov/readingroom/document/cia-rdp80b01676r004000110022-4",
+  "size": "",
+  "reuse": "US federal record: public domain"
+ },
+ {
+  "slug": "uk-mod-ufo-files",
+  "title": "Ministry of Defence UFO files at The National Archives",
+  "country": "gb",
+  "agency": "Ministry of Defence / The National Archives",
+  "date": "2008-05",
+  "period": "1950s to 2009",
+  "type": "documents",
+  "summary": "From 2008 to 2013 the MoD transferred its UFO desk files to The National Archives in ten batches and they were put online free. They hold public sighting reports, letters, parliamentary questions, Rendlesham Forest papers and internal briefings, ending when the desk closed in 2009.",
+  "why": "The most complete national UFO file release outside the US, and a running record of what Britons reported for half a century.",
+  "url": "https://www.nationalarchives.gov.uk/explore-the-collection/explore-by-time-period/postwar/ufo-reports/",
+  "size": "209 files, about 52,000 pages",
+  "links": [
+   {
+    "name": "Research guide (PDF)",
+    "url": "https://cdn.nationalarchives.gov.uk/documents/ufo-research-guide-2013.pdf"
+   },
+   {
+    "name": "Final tranche press release (PDF)",
+    "url": "https://cdn.nationalarchives.gov.uk/documents/final-tranche-of-UFO-files-released.pdf"
+   }
+  ],
+  "reuse": "Crown copyright, Open Government Licence (images excluded)"
+ },
+ {
+  "slug": "uk-final-tranche-2013",
+  "title": "UK UFO files: final tranche",
+  "country": "gb",
+  "agency": "Ministry of Defence / The National Archives",
+  "date": "2013-06-21",
+  "period": "2007 to 2009",
+  "type": "documents",
+  "summary": "The last 25 files, about 4,400 pages, covering the MoD UFO desk's final two years, including the decision to close it in late 2009 because sightings had no defence value.",
+  "why": "Closes the official British story.",
+  "url": "https://cdn.nationalarchives.gov.uk/documents/final-tranche-of-UFO-files-released.pdf",
+  "size": "25 files, about 4,400 pages",
+  "reuse": "Crown copyright, Open Government Licence"
+ },
+ {
+  "slug": "uk-project-condign",
+  "title": "Project Condign: UAP in the UK Air Defence Region",
+  "country": "gb",
+  "agency": "Defence Intelligence Staff (DI55)",
+  "date": "2006-05",
+  "period": "1959 to 1997",
+  "type": "report",
+  "summary": "A secret study completed in 2000, released under Freedom of Information in 2006. It analysed about 10,000 sighting reports, found no threat, and suggested most unexplained cases were natural atmospheric plasmas, a theory that drew heavy criticism.",
+  "why": "Britain's equivalent of the Condon Report, kept secret for six years.",
+  "url": "https://webarchive.nationalarchives.gov.uk/ukgwa/+tf_/http://www.mod.uk/DefenceInternet/FreedomOfInformation/PublicationScheme/SearchPublicationScheme/UnidentifiedAerialPhenomenauapInTheUkAirDefenceRegion.htm",
+  "size": "Executive summary and 3 volumes",
+  "reuse": "Crown copyright"
+ },
+ {
+  "slug": "canada-lac-ufo-files",
+  "title": "Canada's UFOs: The Search for the Unknown",
+  "country": "ca",
+  "agency": "Library and Archives Canada",
+  "date": "2009-01",
+  "period": "1947 to early 1980s",
+  "type": "documents",
+  "summary": "Library and Archives Canada digitised the UFO records of the Department of National Defence, Transport Canada, the National Research Council and the RCMP and made them searchable by place and date. They include the 1967 Falcon Lake and Shag Harbour files.",
+  "why": "Every federal UFO record Canada filed in the Cold War years, scanned and free to read.",
+  "url": "https://www.canada.ca/en/library-archives/collection/research-help/science-technology/ufos.html",
+  "size": "about 9,500 digitised documents",
+  "reuse": "Non-commercial reproduction only (LAC terms); we link rather than copy"
+ },
+ {
+  "slug": "canada-sky-canada-report",
+  "title": "Sky Canada Project report",
+  "country": "ca",
+  "agency": "Office of the Chief Science Advisor of Canada",
+  "date": "2025-06",
+  "period": "",
+  "type": "report",
+  "summary": "A review of how Canada handles UAP reports. It estimates 600 to 1,000 sightings a year with no single body collecting them, and recommends a federal lead, a public reporting service, open data and links with AARO, NASA, GEIPAN and Chile's SEFAA.",
+  "why": "Canada's first official look at UAP since the National Research Council stopped collecting reports in 1995.",
+  "url": "https://science.gc.ca/site/science/en/office-chief-science-advisor/sky-canada-project/management-public-reporting-unidentified-aerial-phenomena-canada",
+  "size": "59 pages",
+  "reuse": "Government of Canada terms"
+ },
+ {
+  "slug": "france-geipan-archives",
+  "title": "GEIPAN opens its case archives",
+  "country": "fr",
+  "agency": "CNES (French space agency) / GEIPAN",
+  "date": "2006-12-27",
+  "period": "1954 to present",
+  "type": "dataset",
+  "summary": "France's official UFO office announced it was putting 30 years of files online: about 1,600 cases, 6,000 witness statements and 100,000 pages. Its website now publishes every investigated case with a grade from A (fully explained) to D (unexplained after investigation), and offers CSV downloads.",
+  "why": "The model many countries copy: a civilian scientific body that publishes every case and its verdict. Only about 3% end up as D.",
+  "url": "https://cnes.fr/actualites/geipan-ouvre-dossiers",
+  "size": "about 1,600 cases at launch",
+  "links": [
+   {
+    "name": "GEIPAN case search",
+    "url": "https://www.geipan.fr/fr/recherche/cas"
+   },
+   {
+    "name": "GEIPAN at CNES",
+    "url": "https://cnes.fr/projets/geipan"
+   }
+  ],
+  "reuse": "All rights reserved by CNES; extraction prohibited. We link only"
+ },
+ {
+  "slug": "brazil-arquivo-nacional-ovni",
+  "title": "Brazil's UFO fund at the National Archives",
+  "country": "br",
+  "agency": "Brazilian Air Force (COMAER) / Arquivo Nacional",
+  "date": "2008",
+  "period": "1952 to 2016",
+  "type": "documents",
+  "summary": "Since 2008 the Air Force has passed its UFO paperwork to the Arquivo Nacional, which holds it as the \"Objeto Voador Não Identificado\" fund. It includes reports, questionnaires, drawings, photos, audio, and files on the 1986 \"official night of UFOs\" jet chase and parts of 1977's Operação Prato.",
+  "why": "One of the largest military UFO archives in Latin America, fully searchable online.",
+  "url": "https://www.gov.br/arquivonacional/pt-br/canais_atendimento/imprensa/noticias/conheca-o-fundo-sobre-ovnis-do-arquivo-nacional",
+  "size": "743 records",
+  "links": [
+   {
+    "name": "SIAN archive search",
+    "url": "http://sian.an.gov.br/sianex/consulta/login.asp"
+   }
+  ],
+  "reuse": "Public records; licence for bulk reuse not stated. We link only"
+ },
+ {
+  "slug": "chile-cefaa-sefaa",
+  "title": "Chile's SEFAA (formerly CEFAA) resolved cases",
+  "country": "cl",
+  "agency": "Dirección General de Aeronáutica Civil (DGAC)",
+  "date": "2020",
+  "period": "1997 to present",
+  "type": "dataset",
+  "summary": "Chile's civil aviation authority set up a committee to study anomalous aerial phenomena in 1997. Renamed SEFAA in 2022, it publishes regular batches of resolved cases with photos and explanations and released a much-discussed 2014 Navy helicopter video in 2017.",
+  "why": "One of the few offices worldwide that publishes case verdicts every month.",
+  "url": "https://sefaa.dgac.gob.cl/",
+  "size": "",
+  "reuse": "Licence not stated. We link only"
+ },
+ {
+  "slug": "argentina-cefae-reports",
+  "title": "Argentine Air Force CEFAe annual reports",
+  "country": "ar",
+  "agency": "Fuerza Aérea Argentina",
+  "date": "2015",
+  "period": "2011 to 2018",
+  "type": "report",
+  "summary": "The Air Force's aerospace phenomena commission, set up in 2011, published yearly reports listing each case it studied. The 2015 report found every case it analysed compatible with causes of known origin.",
+  "why": "A rare set of complete, case-by-case government verdicts.",
+  "url": "https://www.argentina.gob.ar/sites/default/files/informe_cefae_2018.pdf",
+  "size": "4 annual reports",
+  "links": [
+   {
+    "name": "Air Force activity log",
+    "url": "https://www.argentina.gob.ar/node/120784"
+   }
+  ],
+  "reuse": "Licence not stated. We link only"
+ },
+ {
+  "slug": "peru-difaa-reopened",
+  "title": "Peru's Air Force reopens its UFO office",
+  "country": "pe",
+  "agency": "Fuerza Aérea del Perú (DIFAA)",
+  "date": "2013-10-18",
+  "period": "",
+  "type": "report",
+  "summary": "The Peruvian Air Force announced it had reopened its Department for the Investigation of Anomalous Aerial Phenomena, closed for five years, and invited the public to send in images and testimony for analysis.",
+  "why": "Gave Peruvians an official place to send sightings again, with plans to analyse when and where they happen.",
+  "url": "https://andina.pe/agencia/noticia-fenomenos-aereos-anomalos-peru-podran-reportarse-a-fap-478982.aspx",
+  "size": "",
+  "reuse": "Link only"
+ },
+ {
+  "slug": "mexico-congress-hearing-2023",
+  "title": "Mexican Congress public hearing on UAP",
+  "country": "mx",
+  "agency": "Cámara de Diputados",
+  "date": "2023-09-12",
+  "period": "",
+  "type": "hearing",
+  "summary": "A public hearing in Mexico's lower house, organised with journalist Jaime Maussan, heard pilots and researchers, including US Navy veteran Ryan Graves. It became world news when Maussan presented two small mummified bodies he called non-human, a claim scientists widely rejected. A second hearing followed in November 2023.",
+  "why": "The first UFO hearing in a national legislature outside the US, and a cautionary tale.",
+  "url": "https://comunicacionsocial.diputados.gob.mx/index.php/notas/anuncian-sergio-gutierrez-y-jaime-maussan-primera-audiencia-publica-para-la-posible-legislacion-de-fenomenos-aereos-anomalos-no-identificados-en-mexico",
+  "size": "",
+  "links": [
+   {
+    "name": "Second hearing (Nov 2023)",
+    "url": "https://comunicacionsocial.diputados.gob.mx/index.php/notilegis/se-realiza-en-camara-de-diputados-segunda-audiencia-publica-sobre-fenomenos-anomalos-no-identificados"
+   }
+  ],
+  "reuse": "Link only"
+ },
+ {
+  "slug": "italy-air-force-ovni-reports",
+  "title": "Italian Air Force UFO sighting lists",
+  "country": "it",
+  "agency": "Aeronautica Militare (Reparto Generale Sicurezza)",
+  "date": "2022-11",
+  "period": "1972 to 2026",
+  "type": "dataset",
+  "summary": "Since the 1978 wave, the Italian Air Force has been the official collector of UFO reports. It publishes yearly PDF lists of sightings it could not explain, with place, date, time, shape, colour and duration, plus archives covering 1972 to 2000.",
+  "why": "A long, steady official series: decades of unexplained sightings, year by year.",
+  "url": "https://www.aeronautica.difesa.it/ovni/",
+  "size": "Yearly lists, 1972 to 2026",
+  "reuse": "Licence not stated. We link only"
+ },
+ {
+  "slug": "spain-air-force-ovni-files",
+  "title": "Spanish Air Force declassified UFO files",
+  "country": "es",
+  "agency": "Ejército del Aire / Ministerio de Defensa",
+  "date": "2016-09-22",
+  "period": "1962 to 1995",
+  "type": "documents",
+  "summary": "Between 1992 and 1999 the Spanish Air Force declassified the UFO files it held, covering sightings by its personnel and radars. In 2016 the Defence Ministry put all of them online in its virtual library.",
+  "why": "Includes classic European cases like the 1979 Manises airliner diversion and the Canary Islands lights.",
+  "url": "https://bibliotecavirtual.defensa.gob.es/BVMDefensa/exp_ovni/es/micrositios/inicio.do",
+  "size": "80 files, about 1,900 pages",
+  "reuse": "Licence not stated. We link only"
+ },
+ {
+  "slug": "new-zealand-nzdf-ufo-files",
+  "title": "New Zealand Defence Force UFO files",
+  "country": "nz",
+  "agency": "New Zealand Defence Force",
+  "date": "2010-12",
+  "period": "1952 to 2009",
+  "type": "documents",
+  "summary": "The Defence Force released copies of its UFO files, with names removed, after Archives New Zealand had planned to open them. They hold reports from the public, military personnel and airline passengers, government correspondence and newspaper clippings.",
+  "why": "Fifty-seven years of what New Zealanders reported to their military, in one set.",
+  "url": "https://natlib.govt.nz/records/22979464",
+  "size": "about 2,000 pages",
+  "reuse": "Link only"
+ },
+ {
+  "slug": "australia-naa-ufo-records",
+  "title": "Australian UFO records at the National Archives",
+  "country": "au",
+  "agency": "Royal Australian Air Force / National Archives of Australia",
+  "date": "",
+  "period": "1950s to 1990s",
+  "type": "documents",
+  "summary": "The RAAF logged sightings on special report forms for decades. Those files, including reports from the Woomera rocket range, are kept by the National Archives of Australia and many are digitised in its RecordSearch database.",
+  "why": "Australia's official paper trail, including radar and visual reports from the Woomera weapons range.",
+  "url": "https://www.naa.gov.au/blog/flying-saucers-fact-or-fiction",
+  "size": "",
+  "links": [
+   {
+    "name": "Woomera sightings (NAA)",
+    "url": "https://www.naa.gov.au/students-and-teachers/student-research-portal/learning-resource-themes/war/defence-equipment-and-weapons/ufo-sightings-weapons-testing-site-woomera"
+   }
+  ],
+  "reuse": "Link only"
+ }
+]
