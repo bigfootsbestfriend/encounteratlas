@@ -7,7 +7,7 @@ import html, json, os, re, shutil, sys
 from collections import Counter, defaultdict
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
-OUT = os.path.join(ROOT, '_site')
+OUT = os.environ.get('OUT_DIR') or os.path.join(ROOT, '_site')
 STATIC = os.path.join(ROOT, 'site', 'static')
 SITE_URL = os.environ.get('SITE_URL', 'https://encounteratlas.com').rstrip('/')
 BASE = os.environ.get('BASE_PATH', '').rstrip('/')  # '/encounteratlas' on the GitHub Pages preview
