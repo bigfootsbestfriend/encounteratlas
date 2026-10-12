@@ -313,6 +313,11 @@ def build_creatures(creatures, by_slug):
             famous_details.update(d)
 
     KINDS = load('creature_kinds.json') or {}
+    # Folklore hybrid (proposed to Mike, NOT approved yet): stories first, then modern claimed sightings, and both
+    # actions in the box. Living traditions get a respect note, and their reports are shown at region precision only.
+    FOLK_HYBRID = False
+    LIVING_TRADITIONS = {'skinwalker', 'wendigo', 'kushtaka', 'pukwudgie', 'menehune', 'yunwi-tsunsdi', 'mannegishi',
+                         'makiawisug', 'nimerigar', 'tokoloshe', 'mami-wata', 'inkanyamba', 'alux', 'mamlambo'}
 
     def kind(c):
         """cryptid (still reported), single (one exhibit, hoax or incident), folklore (a told tradition) or ufo."""
@@ -325,6 +330,15 @@ def build_creatures(creatures, by_slug):
             h, p = f'Know more about the {n}?', ('Found an old article, a photo or a mistake on this page? Send it in. '
                                                  'Every note is read by a person, and we credit sources.')
             acts = f'<a class="btn" href="{url("/report/?about=" + sl)}">Add a detail or correction</a>'
+        elif k == 'folklore' and FOLK_HYBRID:
+            h = 'Seen something, or heard a local story?'
+            p = ('Tell us what happened, or share a story passed down in your family or community. '
+                 'Every report is read by a person, and you can stay anonymous.')
+            if sl in LIVING_TRADITIONS:
+                p += (' This is part of a living tradition. Please write respectfully, and we only map reports '
+                      'to the nearest region, never an exact spot.')
+            acts = (f'<a class="btn" href="{url("/report/?creature=" + sl)}">Report an encounter</a>\n        '
+                    f'<a class="btn btn-ghost" href="{url("/report/?story=" + sl)}">Share a story</a>')
         elif k == 'folklore':
             h, p = 'Heard a local story, or had an experience?', ('Stories passed down in families and communities matter. '
                                                                    'Share yours in your own words, and you can stay anonymous.')
@@ -391,7 +405,13 @@ def build_creatures(creatures, by_slug):
                          ({'single': 'When', 'folklore': 'Earliest record'}.get(kind(c), 'First reported'), c['first'])] if v)
         body_p = ''.join(f'<p>{esc(p)}</p>' for p in c['body'])
         signs = ''.join(f'<li>{esc(s)}</li>' for s in c['signs'])
-        cases = ''.join(case_item(c, f) for f in sorted(c['famous'], key=lambda f: f['year']))
+        fam = sorted(c['famous'], key=lambda f: f['year'])
+        modern = ''
+        if kind(c) == 'folklore' and FOLK_HYBRID:
+            yr = lambda f: f['year'] if isinstance(f['year'], int) else 0
+            modern = ''.join(case_item(c, f) for f in fam if yr(f) >= 1900)
+            fam = [f for f in fam if yr(f) < 1900]
+        cases = ''.join(case_item(c, f) for f in fam)
         first_story = story_url(c['slug'], 'first')
         rel = ''.join(creature_card(by_slug[s]) for s in c['related'] if s in by_slug)
         wiki = f'https://en.wikipedia.org/wiki/{c["wiki"].replace(" ", "_")}' if c.get('wiki') else ''
@@ -420,6 +440,7 @@ def build_creatures(creatures, by_slug):
     <h2>{ {'single': 'What was shown or claimed', 'folklore': 'What the stories say'}.get(kind(c), 'What witnesses report') }</h2>
     <ul class="signs">{signs}</ul>
     {f'<h2>{"Timeline" if kind(c) == "single" else "Famous cases"}</h2><ol class="timeline">{cases}</ol>' if cases else ''}
+    {f'<h2>Modern reports</h2><ol class="timeline">{modern}</ol>' if modern else ''}
     {seen_box(c)}
   </article>
   <aside class="side">
