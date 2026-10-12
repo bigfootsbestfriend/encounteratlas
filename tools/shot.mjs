@@ -4,7 +4,7 @@ import { spawn } from 'node:child_process';
 import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-const [url, out, w = '1300', h = '850', wait = '9000'] = process.argv.slice(2);
+const [url, out, w = '1300', h = '850', wait = '9000', js = ''] = process.argv.slice(2);
 const port = 9300 + Math.floor(Math.random() * 500);
 const chrome = spawn('chromium', ['--headless=new', `--remote-debugging-port=${port}`, '--use-angle=swiftshader',
   '--enable-unsafe-swiftshader', `--window-size=${w},${h}`, '--hide-scrollbars', `--user-data-dir=${mkdtempSync(join(tmpdir(), 'shot-'))}`, 'about:blank'],
@@ -22,6 +22,7 @@ const send = (method, params = {}) => new Promise((r) => { const i = ++id; pendi
 await send('Emulation.setDeviceMetricsOverride', { width: +w, height: +h, deviceScaleFactor: 1, mobile: +w < 600 });
 await send('Page.navigate', { url });
 await sleep(+wait);
+if (js) { await send('Runtime.evaluate', { expression: js, awaitPromise: true }); await sleep(1200); }
 const shot = await send('Page.captureScreenshot', { format: 'png' });
 writeFileSync(out, Buffer.from(shot.data, 'base64'));
 chrome.kill();

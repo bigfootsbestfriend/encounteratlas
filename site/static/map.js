@@ -250,6 +250,7 @@
     b.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
   }));
 
+  window.eaMap = map; // handy for debugging and screenshot tests
   map.on('load', async () => {
     tint();
     await addBlueBook();

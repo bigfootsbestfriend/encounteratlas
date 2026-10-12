@@ -298,3 +298,48 @@ p { margin: 0 0 1em; }
 .brand, .foot-brand { align-items: baseline; gap: 10px; }
 /* Pines sit on the text baseline; mark is ~1.2x the wordmark's height so the eyes land at cap middle */
 .brand .mark, .foot-brand .mark { height: 1.05em; width: auto; flex: none; align-self: baseline; }
+
+/* Map popups: maplibre-gl.css loads after this file, so beat its white defaults with higher specificity */
+.maplibregl-map .maplibregl-popup-content { background: var(--spruce); color: var(--lichen); border: 1px solid #3A5A4C; border-radius: 12px;
+  font: 400 .95rem/1.45 var(--body); padding: .85rem 2.2rem .85rem 1rem; box-shadow: 0 12px 32px rgba(0,0,0,.55); }
+.maplibregl-map .maplibregl-popup-anchor-bottom .maplibregl-popup-tip, .maplibregl-map .maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
+.maplibregl-map .maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip { border-top-color: var(--spruce); }
+.maplibregl-map .maplibregl-popup-anchor-top .maplibregl-popup-tip, .maplibregl-map .maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
+.maplibregl-map .maplibregl-popup-anchor-top-right .maplibregl-popup-tip { border-bottom-color: var(--spruce); }
+.maplibregl-map .maplibregl-popup-anchor-left .maplibregl-popup-tip { border-right-color: var(--spruce); }
+.maplibregl-map .maplibregl-popup-anchor-right .maplibregl-popup-tip { border-left-color: var(--spruce); }
+.maplibregl-map .maplibregl-popup-close-button { color: #F3F1E4; font-size: 1.5rem; line-height: 1; width: 36px; height: 36px; top: 2px; right: 2px; border-radius: 8px; }
+.maplibregl-map .maplibregl-popup-close-button:hover { background: #22402F; color: var(--lantern); }
+.maplibregl-map .pop-h { color: #F3F1E4; font-size: 1.1rem; }
+.maplibregl-map .pop-kind { color: #B7C6B9; font-weight: 600; }
+.maplibregl-map .pop-meta { color: #D5DEC9; }
+.maplibregl-map .pop a { color: var(--lantern); }
+/* Phones: popup becomes a bottom sheet so it doesn't cover the pin */
+@media (max-width: 600px) {
+  .maplibregl-map .maplibregl-popup { transform: none !important; top: auto !important; left: 8px !important; right: 8px; bottom: 8px; max-width: none !important; }
+  .maplibregl-map .maplibregl-popup-tip { display: none; }
+  .maplibregl-map .maplibregl-popup-content { border-radius: 14px; padding-bottom: 1rem; }
+}
+
+/* Creature chips: fade at the right edge so it's clear the row scrolls; no visible scrollbar */
+.cchips { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 56px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 56px), transparent);
+  padding-right: 56px; scroll-padding-inline: 0 56px; scroll-behavior: smooth; overscroll-behavior-x: contain; scrollbar-width: none; }
+.cchips::-webkit-scrollbar { display: none; }
+
+/* Full-screen map page: header + filter bar + map exactly fill the screen, so nothing scrolls under the sticky header */
+body.mapper { height: 100svh; display: flex; flex-direction: column; overflow: hidden; }
+body.mapper main { flex: 1; min-height: 0; display: flex; }
+body.mapper .foot { display: none; }
+body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
+.map-full-bar { position: relative; display: block; box-shadow: 0 6px 14px rgba(0,0,0,.35); z-index: 3; }
+.map-full-bar .tchips { padding-right: 7.5rem; }
+.map-full-bar [data-locate] { position: absolute; top: .6rem; right: 1rem; }
+@media (max-width: 600px) {
+  .map-full-bar [data-locate] { right: .6rem; top: .5rem; }
+  .map-full-bar .tchips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-right: 0; margin-right: 6.6rem;
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); }
+  .map-full-bar .tchips::-webkit-scrollbar { display: none; }
+  .map-full-bar .tchip { flex: none; }
+  .maplibregl-map .maplibregl-popup { bottom: 34px; }
+}
+@media (prefers-reduced-motion: reduce) { .cchips { scroll-behavior: auto; } }
