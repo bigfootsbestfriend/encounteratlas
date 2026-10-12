@@ -7,8 +7,8 @@
       "Skookum",
       "Wood ape",
       "Forest giant",
-      "Grassman",
-      "Wild man of the woods"
+      "Wild man of the woods",
+      "Wood booger"
     ],
     "cat": "hominid",
     "icon": "bigfoot",
@@ -64,7 +64,15 @@
       "honey-island-swamp-monster",
       "momo",
       "orang-pendek",
-      "almas"
+      "almas",
+      "grassman",
+      "mogollon-monster",
+      "old-yellow-top",
+      "minnesota-iceman",
+      "batsquatch",
+      "lake-worth-monster",
+      "wendigo",
+      "mapinguari"
     ],
     "wiki": "Bigfoot"
   },
@@ -119,7 +127,10 @@
     "related": [
       "bigfoot",
       "almas",
-      "yeren"
+      "yeren",
+      "yowie",
+      "minnesota-iceman",
+      "big-grey-man"
     ],
     "wiki": "Yeti"
   },
@@ -160,7 +171,9 @@
     ],
     "related": [
       "bigfoot",
-      "yeti"
+      "yeti",
+      "bunyip",
+      "thylacine"
     ],
     "wiki": "Yowie"
   },
@@ -201,7 +214,8 @@
     "related": [
       "bigfoot",
       "honey-island-swamp-monster",
-      "fouke-monster"
+      "fouke-monster",
+      "mogollon-monster"
     ],
     "wiki": "Skunk ape"
   },
@@ -242,7 +256,8 @@
     "related": [
       "bigfoot",
       "skunk-ape",
-      "honey-island-swamp-monster"
+      "honey-island-swamp-monster",
+      "ozark-howler"
     ],
     "wiki": "Fouke Monster"
   },
@@ -282,7 +297,8 @@
     "related": [
       "skunk-ape",
       "fouke-monster",
-      "rougarou"
+      "rougarou",
+      "bigfoot"
     ],
     "wiki": "Honey Island Swamp monster"
   },
@@ -319,7 +335,8 @@
       }
     ],
     "related": [
-      "bigfoot"
+      "bigfoot",
+      "grassman"
     ],
     "wiki": "Momo the Monster"
   },
@@ -362,7 +379,8 @@
     "related": [
       "yeti",
       "yeren",
-      "bigfoot"
+      "bigfoot",
+      "big-grey-man"
     ],
     "wiki": "Almas (cryptozoology)"
   },
@@ -401,7 +419,9 @@
     "related": [
       "yeti",
       "almas",
-      "orang-pendek"
+      "orang-pendek",
+      "hibagon",
+      "bukit-timah-monkey-man"
     ],
     "wiki": "Yeren"
   },
@@ -440,7 +460,10 @@
     ],
     "related": [
       "yeren",
-      "bigfoot"
+      "bigfoot",
+      "hibagon",
+      "bukit-timah-monkey-man",
+      "mapinguari"
     ],
     "wiki": "Orang pendek"
   },
@@ -451,7 +474,8 @@
       "Michigan Dogman",
       "Upright canine",
       "Wolfman",
-      "Beast of Bray Road (Wisconsin)"
+      "Michigan Dog Man",
+      "Upright canine cryptid"
     ],
     "cat": "canid",
     "icon": "dogman",
@@ -488,7 +512,15 @@
     ],
     "related": [
       "rougarou",
-      "chupacabra"
+      "chupacabra",
+      "beast-of-bray-road",
+      "black-shuck",
+      "beast-of-gevaudan",
+      "shunka-warakin",
+      "melon-heads",
+      "nain-rouge",
+      "wendigo",
+      "skinwalker-ranch"
     ],
     "wiki": "Michigan Dogman"
   },
@@ -528,7 +560,8 @@
     ],
     "related": [
       "dogman",
-      "honey-island-swamp-monster"
+      "honey-island-swamp-monster",
+      "beast-of-bray-road"
     ],
     "wiki": "Rougarou"
   },
@@ -552,7 +585,7 @@
     "first": "Puerto Rico, 1995",
     "summary": "The goat-sucker: a spiny creature blamed for draining livestock of blood.",
     "body": [
-      "In 1995 farmers in Puerto Rico began finding goats and chickens dead with small puncture wounds. Witness Madelyne Tolentino described a spiny, bipedal creature with large dark eyes, and comedian Silverio Pérez coined the name chupacabras.",
+      "In 1995 farmers in Puerto Rico began finding goats and chickens dead with small puncture wounds. Witness Madelyne Tolentino described a spiny, bipedal creature with large dark eyes, and comedian Silverio P\u00e9rez coined the name chupacabras.",
       "As reports spread to Mexico and Texas, the Chupacabra changed shape: in the US it is usually a hairless, dog-like animal. Most of those carcasses have turned out to be coyotes or foxes with severe mange, but the original Puerto Rican version remains a mystery."
     ],
     "signs": [
@@ -564,9 +597,9 @@
     "habitat": "Farms, ranches and scrubland",
     "famous": [
       {
-        "name": "Canóvanas attacks",
+        "name": "Can\u00f3vanas attacks",
         "year": 1995,
-        "place": "Canóvanas, Puerto Rico"
+        "place": "Can\u00f3vanas, Puerto Rico"
       },
       {
         "name": "Cuero carcass",
@@ -575,7 +608,12 @@
       }
     ],
     "related": [
-      "dogman"
+      "dogman",
+      "thylacine",
+      "shunka-warakin",
+      "beast-of-bladenboro",
+      "montauk-monster",
+      "cattle-mutilation"
     ],
     "wiki": "Chupacabra"
   },
@@ -620,7 +658,17 @@
     "related": [
       "owlman",
       "thunderbird",
-      "jersey-devil"
+      "jersey-devil",
+      "flatwoods-monster",
+      "batsquatch",
+      "van-meter-visitor",
+      "big-bird",
+      "lechuza",
+      "grafton-monster",
+      "spring-heeled-jack",
+      "popobawa",
+      "indrid-cold",
+      "men-in-black"
     ],
     "wiki": "Mothman"
   },
@@ -659,7 +707,10 @@
     ],
     "related": [
       "mothman",
-      "kongamato"
+      "kongamato",
+      "snallygaster",
+      "ropen",
+      "big-bird"
     ],
     "wiki": "Thunderbird (cryptozoology)"
   },
@@ -697,7 +748,9 @@
       }
     ],
     "related": [
-      "mothman"
+      "mothman",
+      "snallygaster",
+      "van-meter-visitor"
     ],
     "wiki": "Jersey Devil"
   },
@@ -733,7 +786,9 @@
       }
     ],
     "related": [
-      "mothman"
+      "mothman",
+      "lechuza",
+      "spring-heeled-jack"
     ],
     "wiki": "Owlman"
   },
@@ -771,7 +826,11 @@
       }
     ],
     "related": [
-      "thunderbird"
+      "thunderbird",
+      "mokele-mbembe",
+      "ahool",
+      "ropen",
+      "emela-ntouka"
     ],
     "wiki": "Kongamato"
   },
@@ -824,7 +883,16 @@
       "bessie",
       "cadborosaurus",
       "bear-lake-monster",
-      "flathead-lake-monster"
+      "flathead-lake-monster",
+      "mokele-mbembe",
+      "tahoe-tessie",
+      "lagarfljot-worm",
+      "storsjoodjuret",
+      "nahuelito",
+      "morag",
+      "lake-tianchi-monster",
+      "sea-serpent",
+      "dobhar-chu"
     ],
     "wiki": "Loch Ness Monster"
   },
@@ -865,7 +933,12 @@
     "related": [
       "loch-ness-monster",
       "cadborosaurus",
-      "champ"
+      "champ",
+      "tahoe-tessie",
+      "igopogo",
+      "manipogo",
+      "nahuelito",
+      "lake-tianchi-monster"
     ],
     "wiki": "Ogopogo"
   },
@@ -906,7 +979,10 @@
     ],
     "related": [
       "loch-ness-monster",
-      "ogopogo"
+      "ogopogo",
+      "bessie",
+      "chessie",
+      "memphre"
     ],
     "wiki": "Champ (folklore)"
   },
@@ -945,7 +1021,8 @@
     ],
     "related": [
       "champ",
-      "loch-ness-monster"
+      "loch-ness-monster",
+      "morag"
     ],
     "wiki": "Bessie (lake monster)"
   },
@@ -986,7 +1063,8 @@
     ],
     "related": [
       "ogopogo",
-      "loch-ness-monster"
+      "loch-ness-monster",
+      "sea-serpent"
     ],
     "wiki": "Cadborosaurus"
   },
@@ -1023,7 +1101,10 @@
     ],
     "related": [
       "loch-ness-monster",
-      "flathead-lake-monster"
+      "flathead-lake-monster",
+      "tahoe-tessie",
+      "white-river-monster",
+      "beast-of-busco"
     ],
     "wiki": "Bear Lake monster"
   },
@@ -1099,7 +1180,10 @@
     ],
     "related": [
       "kongamato",
-      "loch-ness-monster"
+      "loch-ness-monster",
+      "nahuelito",
+      "emela-ntouka",
+      "mapinguari"
     ],
     "wiki": "Mokele-mbembe"
   },
@@ -1135,7 +1219,8 @@
       }
     ],
     "related": [
-      "yowie"
+      "yowie",
+      "thylacine"
     ],
     "wiki": "Bunyip"
   },
@@ -1175,7 +1260,11 @@
     "related": [
       "hopkinsville-goblins",
       "dover-demon",
-      "mothman"
+      "mothman",
+      "loveland-frog",
+      "grafton-monster",
+      "enfield-monster",
+      "fresno-nightcrawlers"
     ],
     "wiki": "Flatwoods monster"
   },
@@ -1211,7 +1300,10 @@
     ],
     "related": [
       "flatwoods-monster",
-      "hopkinsville-goblins"
+      "hopkinsville-goblins",
+      "pukwudgie",
+      "enfield-monster",
+      "fresno-nightcrawlers"
     ],
     "wiki": "Dover Demon"
   },
@@ -1250,9 +1342,12 @@
     ],
     "related": [
       "flatwoods-monster",
-      "dover-demon"
+      "dover-demon",
+      "pukwudgie",
+      "enfield-monster",
+      "grey-aliens"
     ],
-    "wiki": "Kelly–Hopkinsville encounter"
+    "wiki": "Kelly\u2013Hopkinsville encounter"
   },
   {
     "slug": "loveland-frog",
@@ -1288,7 +1383,9 @@
     ],
     "related": [
       "lizard-man",
-      "flatwoods-monster"
+      "flatwoods-monster",
+      "kappa",
+      "thetis-lake-monster"
     ],
     "wiki": "Loveland frog"
   },
@@ -1325,7 +1422,9 @@
       }
     ],
     "related": [
-      "loveland-frog"
+      "loveland-frog",
+      "thetis-lake-monster",
+      "reptilians"
     ],
     "wiki": "Lizard Man of Scape Ore Swamp"
   },
@@ -1361,7 +1460,11 @@
         "place": "Gobi Desert, Mongolia"
       }
     ],
-    "related": [],
+    "related": [
+      "tatzelwurm",
+      "tsuchinoko",
+      "hoop-snake"
+    ],
     "wiki": "Mongolian death worm"
   },
   {
@@ -1449,7 +1552,14 @@
     "related": [
       "ufo-triangle",
       "ufo-orbs",
-      "ufo-tic-tac"
+      "ufo-tic-tac",
+      "grey-aliens",
+      "ufo-cigar",
+      "ufo-boomerang",
+      "mystery-airships",
+      "ufo-crash",
+      "alien-abduction",
+      "crop-circles"
     ],
     "wiki": "Flying saucer"
   },
@@ -1491,7 +1601,8 @@
     ],
     "related": [
       "ufo-saucer",
-      "ufo-orbs"
+      "ufo-orbs",
+      "ufo-boomerang"
     ],
     "wiki": "Black triangle (UFO)"
   },
@@ -1535,7 +1646,12 @@
     ],
     "related": [
       "ufo-saucer",
-      "ufo-triangle"
+      "ufo-triangle",
+      "ufo-tic-tac",
+      "ufo-boomerang",
+      "green-fireballs",
+      "crop-circles",
+      "skinwalker-ranch"
     ],
     "wiki": "Foo fighter"
   },
@@ -1581,8 +1697,3976 @@
     ],
     "related": [
       "ufo-saucer",
-      "ufo-orbs"
+      "ufo-orbs",
+      "ufo-cigar"
     ],
     "wiki": "USS Nimitz UFO incident"
+  },
+  {
+    "slug": "grassman",
+    "name": "Ohio Grassman",
+    "aliases": [
+      "Grassman",
+      "Ohio Bigfoot",
+      "Minerva Monster",
+      "Salt Fork Bigfoot",
+      "Grass Man"
+    ],
+    "cat": "hominid",
+    "icon": "bigfoot",
+    "region": "Eastern and southeastern Ohio, especially Salt Fork State Park, Stark County and the Hocking Hills",
+    "cc": [
+      "US"
+    ],
+    "first": "Newspaper reports of hairy wild men in Ohio go back to the 1800s; the \"Minerva Monster\" made headlines in 1978",
+    "summary": "Ohio's own Bigfoot, named for the flattened grass nests it is said to build.",
+    "body": [
+      "The Grassman is Ohio's regional name for Bigfoot: a tall, dark, hair-covered biped reported in the wooded hills and old strip-mine country of the eastern half of the state. The name comes from lean-tos and beds of flattened grass and bent saplings that some witnesses say they found near sightings.",
+      "The best-known case came in August 1978, when a family living near a gravel pit outside Minerva, in Stark County, said a large hairy creature kept returning to their property at night and stared in through a window. Deputies investigated, footprints were reported, and the press dubbed it the Minerva Monster. Some locals suspected a publicity stunt; the family stood by their story.",
+      "Since the 1980s Salt Fork State Park near Cambridge has become Ohio's hotspot, with dozens of reports, an annual Bigfoot conference and regular night hikes run by researchers."
+    ],
+    "signs": [
+      "Nests or lean-tos of bent saplings and flattened grass",
+      "Dark hair, 7 ft or taller, walking upright",
+      "Rock throwing and wood knocks near campsites",
+      "A rotten, musky smell",
+      "Large footprints in creek mud"
+    ],
+    "size": "6 to 8 ft tall (reported)",
+    "habitat": "Hilly hardwood forest, reclaimed strip mines and state parks",
+    "famous": [
+      {
+        "name": "Minerva Monster sightings",
+        "year": 1978,
+        "place": "Minerva, Stark County, Ohio"
+      },
+      {
+        "name": "Salt Fork reports begin to pile up",
+        "year": 1985,
+        "place": "Salt Fork State Park, Guernsey County, Ohio"
+      }
+    ],
+    "related": [
+      "bigfoot",
+      "momo",
+      "sheepsquatch",
+      "old-yellow-top"
+    ],
+    "wiki": "Bigfoot"
+  },
+  {
+    "slug": "mogollon-monster",
+    "name": "Mogollon Monster",
+    "aliases": [
+      "Arizona Bigfoot",
+      "Mogollon Rim monster",
+      "Mogollon Bigfoot"
+    ],
+    "cat": "hominid",
+    "icon": "bigfoot",
+    "region": "Along the Mogollon Rim of central and eastern Arizona, from Prescott to Alpine",
+    "cc": [
+      "US"
+    ],
+    "first": "An 1903 Arizona Republican story described a wild hairy man near the Grand Canyon",
+    "summary": "Arizona's red-eyed, foul-smelling wild man of the pine country.",
+    "body": [
+      "The Mogollon Monster is Arizona's Bigfoot, said to roam the ponderosa pine forests along the Mogollon Rim, a 200-mile escarpment that cuts across the middle of the state. Witnesses describe a creature over 7 feet tall with black or reddish-brown hair, glowing red eyes and a smell compared to dead fish, skunk and snapping turtle all at once.",
+      "A 1903 story in The Arizona Republican told of a hairy, clawed wild man near the Grand Canyon who screamed at the witness. Cryptozoologist Don Davis said he saw a huge, square-faced creature as a Boy Scout near Payson in the 1940s, and residents of Whiteriver and the Fort Apache reservation have reported sightings in more recent decades.",
+      "Campfire tellings add that it mimics birds and coyotes, whistles, throws stones from cover and builds nests of pine needles."
+    ],
+    "signs": [
+      "Red or glowing eyes",
+      "Long black or reddish hair",
+      "A blood-curdling, woman-like scream",
+      "Whistles and animal mimicry",
+      "Rocks thrown from hiding",
+      "Footprints up to 22 inches long"
+    ],
+    "size": "Over 7 ft tall (reported)",
+    "habitat": "High pine forest along the Mogollon Rim",
+    "famous": [
+      {
+        "name": "Grand Canyon wild man story",
+        "year": 1903,
+        "place": "Near the Grand Canyon, Arizona"
+      },
+      {
+        "name": "Don Davis scout-trip sighting",
+        "year": 1946,
+        "place": "Near Payson, Arizona"
+      }
+    ],
+    "related": [
+      "bigfoot",
+      "skunk-ape"
+    ],
+    "wiki": "Mogollon Monster"
+  },
+  {
+    "slug": "old-yellow-top",
+    "name": "Old Yellow Top",
+    "aliases": [
+      "Yellow Top",
+      "Cobalt sasquatch",
+      "Ontario Bigfoot"
+    ],
+    "cat": "hominid",
+    "icon": "bigfoot",
+    "region": "Around the mining town of Cobalt, northern Ontario",
+    "cc": [
+      "CA"
+    ],
+    "first": "September 1906, near Cobalt, Ontario",
+    "summary": "A Bigfoot with a pale blond mane, reported around Ontario's silver mines.",
+    "body": [
+      "Old Yellow Top is the nickname for a sasquatch-like creature reported around Cobalt, a silver-mining town in northern Ontario. What set it apart was a light-coloured, shaggy mane over a dark body, which gave the creature its name.",
+      "The first reports date to 1906, during Cobalt's silver rush, and local accounts tell of prospectors in the 1920s who saw a hairy creature feeding in a blueberry patch before it ran off. Sightings were claimed on and off for more than sixty years, making it one of Canada's longest-running regional Bigfoot stories."
+    ],
+    "signs": [
+      "A light yellow or blond mane on a dark body",
+      "Upright walk, sometimes with a limp",
+      "Seen near mine workings and berry patches"
+    ],
+    "size": "Human-sized to 7 ft (reported)",
+    "habitat": "Boreal forest and old mine country",
+    "famous": [
+      {
+        "name": "First reported sighting",
+        "year": 1906,
+        "place": "Cobalt, Ontario"
+      },
+      {
+        "name": "Blueberry patch encounter",
+        "year": 1923,
+        "place": "Near Cobalt, Ontario"
+      }
+    ],
+    "related": [
+      "bigfoot",
+      "grassman"
+    ],
+    "wiki": "Bigfoot"
+  },
+  {
+    "slug": "minnesota-iceman",
+    "name": "Minnesota Iceman",
+    "aliases": [
+      "Iceman",
+      "Frozen Bigfoot",
+      "Hansen Iceman",
+      "Missing link in ice"
+    ],
+    "cat": "hominid",
+    "icon": "iceman",
+    "region": "Toured US and Canadian fairs; now in Austin, Texas",
+    "cc": [
+      "US"
+    ],
+    "first": "Exhibited from the late 1960s by showman Frank Hansen",
+    "summary": "A hairy 'missing link' frozen in a block of ice, shown at fairs in the 1960s.",
+    "body": [
+      "The Minnesota Iceman was a carnival exhibit: a hairy, man-like body about 6 feet tall, frozen inside a block of ice in a refrigerated coffin. Showman Frank Hansen toured it around shopping malls and state fairs, hinting it had been found in Siberian ice.",
+      "In 1968 naturalist Ivan Sanderson and Belgian zoologist Bernard Heuvelmans examined it through the ice and announced it could be a real, recently killed hominid. The Smithsonian's John Napier looked into it and concluded it was a latex model. Hansen then swapped in what he called a substitute, which muddied the story further.",
+      "The figure was sold on eBay in 2013 and now sits in the Museum of the Weird in Austin, Texas, where people can still argue about it in person."
+    ],
+    "signs": [
+      "A hairy body frozen in ice",
+      "One arm bent over the head",
+      "An eye apparently knocked out"
+    ],
+    "size": "About 6 ft",
+    "habitat": "A refrigerated carnival trailer",
+    "famous": [
+      {
+        "name": "Sanderson and Heuvelmans examine it",
+        "year": 1968,
+        "place": "Rollingstone, Minnesota"
+      },
+      {
+        "name": "Argosy \"missing link\" cover story",
+        "year": 1969,
+        "place": "United States"
+      },
+      {
+        "name": "Sold on eBay to the Museum of the Weird",
+        "year": 2013,
+        "place": "Austin, Texas"
+      }
+    ],
+    "related": [
+      "bigfoot",
+      "yeti"
+    ],
+    "wiki": "Minnesota Iceman"
+  },
+  {
+    "slug": "big-grey-man",
+    "name": "Big Grey Man of Ben Macdui",
+    "aliases": [
+      "Am Fear Liath M\u00f2r",
+      "Fear Liath",
+      "The Greyman",
+      "Grey Man of Ben MacDhui",
+      "Ferla Mohr"
+    ],
+    "cat": "hominid",
+    "icon": "yeti",
+    "region": "Summit and passes of Ben Macdui, Cairngorms, Scotland",
+    "cc": [
+      "GB"
+    ],
+    "first": "Professor J. Norman Collie described his 1891 experience in an 1925 speech",
+    "summary": "Footsteps in the mist and a towering grey figure on Scotland's second-highest peak.",
+    "body": [
+      "The Big Grey Man, Am Fear Liath M\u00f2r in Gaelic, is said to haunt the summit plateau of Ben Macdui in the Cairngorms. Very few people claim to have seen it clearly. Most describe crunching footsteps in the fog, each step far longer than their own, followed by an overwhelming urge to run.",
+      "In 1925 the respected mountaineer and chemist J. Norman Collie told a Cairngorm Club dinner that he had fled the summit in 1891 after hearing giant footsteps behind him in the mist. Other climbers then came forward. Those who say they glimpsed it describe a figure over 10 feet tall, with long arms and broad shoulders.",
+      "Skeptics point to the Brocken spectre, where a climber's own shadow is thrown huge onto cloud, plus exhaustion and altitude. Hill walkers still trade Greyman stories in the bothies."
+    ],
+    "signs": [
+      "Heavy footsteps in fog, too far apart to be human",
+      "A sudden feeling of dread or panic",
+      "A huge grey shape in the mist",
+      "Strange high singing notes"
+    ],
+    "size": "10 ft or taller (reported)",
+    "habitat": "High, misty mountain plateau",
+    "famous": [
+      {
+        "name": "Collie's summit encounter",
+        "year": 1891,
+        "place": "Ben Macdui, Cairngorms"
+      },
+      {
+        "name": "Collie tells the story publicly",
+        "year": 1925,
+        "place": "Aberdeen, Scotland"
+      },
+      {
+        "name": "Peter Densham rescue-work encounter",
+        "year": 1945,
+        "place": "Cairngorms, Scotland"
+      }
+    ],
+    "related": [
+      "yeti",
+      "almas"
+    ],
+    "wiki": "Am Fear Liath M\u00f2r"
+  },
+  {
+    "slug": "hibagon",
+    "name": "Hibagon",
+    "aliases": [
+      "Hinagon",
+      "Japanese Bigfoot",
+      "Mount Hiba ape",
+      "Hiba monster"
+    ],
+    "cat": "hominid",
+    "icon": "hominid",
+    "region": "Around Mount Hiba, Hiroshima Prefecture, Japan",
+    "cc": [
+      "JP"
+    ],
+    "first": "A run of sightings starting in 1970",
+    "summary": "Japan's ape-man of Mount Hiba, reported in the early 1970s.",
+    "body": [
+      "The Hibagon is a gorilla-like creature reported around Mount Hiba in the mountains of northern Hiroshima Prefecture. Witnesses in the early 1970s described an animal about 5 feet tall with dark bristly hair, a large nose, deep glaring eyes and pale hands and feet.",
+      "The sightings drew national press. The town of Saijo set up a Hibagon office to log reports, and local Boy Scouts said they found footprints about 10 inches long. Reports faded by the mid-1970s, but the Hibagon became a local mascot and still appears on signs and souvenirs."
+    ],
+    "signs": [
+      "Dark hair with pale hands and feet",
+      "Gorilla-like face with deep-set eyes",
+      "Footprints about 10 inches long",
+      "Shy; flees from people"
+    ],
+    "size": "About 5 ft",
+    "habitat": "Mountain forest",
+    "famous": [
+      {
+        "name": "First wave of sightings",
+        "year": 1970,
+        "place": "Mount Hiba, Hiroshima Prefecture"
+      },
+      {
+        "name": "Sazawa and Harada reports",
+        "year": 1972,
+        "place": "Saijo, Hiroshima Prefecture"
+      }
+    ],
+    "related": [
+      "yeren",
+      "orang-pendek",
+      "bukit-timah-monkey-man"
+    ],
+    "wiki": "Hibagon"
+  },
+  {
+    "slug": "bukit-timah-monkey-man",
+    "name": "Bukit Timah Monkey Man",
+    "aliases": [
+      "BTM",
+      "BTMM",
+      "Singapore's Bigfoot",
+      "Monkey Man of Singapore"
+    ],
+    "cat": "hominid",
+    "icon": "hominid",
+    "region": "Bukit Timah Nature Reserve, Singapore",
+    "cc": [
+      "SG"
+    ],
+    "first": "Said to date to a Malay elder's report around 1805",
+    "summary": "A grey, upright 'monkey man' said to live in Singapore's last big forest.",
+    "body": [
+      "The Bukit Timah Monkey Man is a hominid said to live in the Bukit Timah Nature Reserve, a patch of primary rainforest in the middle of Singapore. It is described as grey, about 5 ft 9 in tall, with a monkey's face and a man's upright walk.",
+      "Folklore traces the first report to around 1805. Japanese soldiers are said to have reported it during World War II, and The New Paper ran a series of sightings in 2007. A night hiker's report in late 2020 sent the story around local media again.",
+      "Reserve staff have pointed to long-tailed macaques, which are common on the hill, though they are far smaller than the creature people describe."
+    ],
+    "signs": [
+      "Grey hair and a monkey-like face",
+      "Walking upright on two legs",
+      "Seen after dark on forest trails"
+    ],
+    "size": "About 5 ft 9 in (reported)",
+    "habitat": "Lowland tropical rainforest",
+    "famous": [
+      {
+        "name": "First claimed sighting",
+        "year": 1805,
+        "place": "Bukit Timah, Singapore"
+      },
+      {
+        "name": "New Paper sightings series",
+        "year": 2007,
+        "place": "Bukit Timah, Singapore"
+      },
+      {
+        "name": "Night hiker report",
+        "year": 2020,
+        "place": "Bukit Timah Nature Reserve"
+      }
+    ],
+    "related": [
+      "orang-pendek",
+      "hibagon",
+      "yeren"
+    ],
+    "wiki": "Bukit Timah Monkey Man"
+  },
+  {
+    "slug": "beast-of-bray-road",
+    "name": "Beast of Bray Road",
+    "aliases": [
+      "Bray Road Beast",
+      "Wisconsin werewolf",
+      "Elkhorn werewolf",
+      "Wisconsin Dogman",
+      "Beast of Walworth County"
+    ],
+    "cat": "canid",
+    "icon": "dogman",
+    "region": "Bray Road and the farmland around Elkhorn, Walworth County, Wisconsin",
+    "cc": [
+      "US"
+    ],
+    "first": "Reports from 1989 on; reported in the press in December 1991",
+    "summary": "A wolf-headed creature seen kneeling by a Wisconsin farm road.",
+    "body": [
+      "The Beast of Bray Road is a wolf-like creature reported along a quiet farm road outside Elkhorn, Wisconsin. Witnesses describe something 6 to 7 feet tall, covered in fur, with a wolf's head, pointed ears and glowing eyes, seen both on all fours and standing upright.",
+      "In late 1989 Lori Endrizzi said she saw it crouched by the roadside holding roadkill like a person would. On Halloween night 1991, teenager Doristine Gipson said she hit something on Bray Road and was chased back to her car. Reporter Linda Godfrey began covering the reports for the Walworth County Week that December, and her later books helped spark the wider Dogman craze.",
+      "Skeptics suggest wolves, large dogs or a bear with mange. Reports of an upright hairy creature in Walworth County still turn up now and then."
+    ],
+    "signs": [
+      "Wolf head with pointed ears on a broad, man-like body",
+      "Kneeling or squatting while eating roadkill",
+      "Glowing yellow-orange eyes",
+      "Switching from four legs to two",
+      "Claw marks on cars"
+    ],
+    "size": "6 to 7 ft standing (reported)",
+    "habitat": "Farm fields, cornrows and woodlots",
+    "famous": [
+      {
+        "name": "Endrizzi roadside sighting",
+        "year": 1989,
+        "place": "Bray Road, Elkhorn, Wisconsin"
+      },
+      {
+        "name": "Gipson Halloween encounter",
+        "year": 1991,
+        "place": "Bray Road, Elkhorn, Wisconsin"
+      },
+      {
+        "name": "Godfrey's book The Beast of Bray Road",
+        "year": 2003,
+        "place": "Wisconsin"
+      }
+    ],
+    "related": [
+      "dogman",
+      "rougarou",
+      "black-shuck"
+    ],
+    "wiki": "Beast of Bray Road"
+  },
+  {
+    "slug": "black-shuck",
+    "name": "Black Shuck",
+    "aliases": [
+      "Old Shuck",
+      "Old Shock",
+      "Shuck",
+      "Black dog",
+      "Hellhound",
+      "Shuck the Dog-fiend",
+      "Barghest",
+      "Church Grim"
+    ],
+    "cat": "canid",
+    "icon": "hound",
+    "region": "Coast and countryside of Norfolk, Suffolk, Essex and the Cambridgeshire Fens, England",
+    "cc": [
+      "GB"
+    ],
+    "first": "The Bungay and Blythburgh church attacks of 4 August 1577",
+    "summary": "East Anglia's huge, fiery-eyed phantom dog.",
+    "body": [
+      "Black Shuck is the giant black dog of East Anglian folklore, said to pad silently along dark lanes, coast paths and churchyards. Descriptions run from a big shaggy hound to something the size of a calf, often with blazing red eyes, sometimes a single eye in the middle of its head. Meeting it was said to foretell a death, though some stories make it a protective companion.",
+      "Its most famous night was 4 August 1577. During a violent thunderstorm, a black dog was said to burst into St Mary's Church in Bungay, killing two worshippers, and then into Holy Trinity Church at Blythburgh, where scorch marks on the north door are still called the devil's fingerprints. Abraham Fleming's pamphlet A Straunge and Terrible Wunder spread the story.",
+      "Black dogs appear all over Britain under other names: the Barghest of Yorkshire, the Gurt Dog of Somerset and the Church Grim. Shuck sightings are still reported on the Norfolk and Suffolk coast."
+    ],
+    "signs": [
+      "A huge black dog that makes no sound as it walks",
+      "Red or fiery eyes, sometimes just one",
+      "Seen on coast paths, crossroads and churchyards",
+      "Appearing during storms"
+    ],
+    "size": "Large dog to calf-sized",
+    "habitat": "Coastal lanes, marshes and churchyards",
+    "famous": [
+      {
+        "name": "Bungay and Blythburgh church attacks",
+        "year": 1577,
+        "place": "Suffolk, England"
+      },
+      {
+        "name": "First printed as \"Black Shuck\"",
+        "year": 1850,
+        "place": "Notes and Queries, Norfolk"
+      }
+    ],
+    "related": [
+      "beast-of-gevaudan",
+      "beast-of-bray-road",
+      "dogman"
+    ],
+    "wiki": "Black Shuck"
+  },
+  {
+    "slug": "beast-of-gevaudan",
+    "name": "Beast of G\u00e9vaudan",
+    "aliases": [
+      "La B\u00eate du G\u00e9vaudan",
+      "Beast of Gevaudan",
+      "B\u00eate du G\u00e9vaudan",
+      "Wolf of G\u00e9vaudan"
+    ],
+    "cat": "canid",
+    "icon": "hound",
+    "region": "Former province of G\u00e9vaudan (Loz\u00e8re and Haute-Loire), south-central France",
+    "cc": [
+      "FR"
+    ],
+    "first": "30 June 1764, when 14-year-old Jeanne Boulet was killed near Langogne",
+    "summary": "A man-eating beast that terrorised rural France for three years in the 1760s.",
+    "body": [
+      "Between 1764 and 1767, something killed and partly ate dozens of people, mostly women and children tending livestock, in the Margeride mountains of south-central France. Witnesses described a wolf-like animal the size of a calf, reddish with a dark stripe down its back, a broad chest and a long tufted tail. It was said to bound across fields at its victims.",
+      "King Louis XV sent professional hunters and dragoons. In September 1765 the royal gun-bearer Fran\u00e7ois Antoine shot a very large wolf, which was stuffed and taken to Versailles, but the killings resumed. On 19 June 1767 local hunter Jean Chastel shot another large canine, and the attacks stopped.",
+      "One study counted about 210 attacks and 113 deaths. Theories range from one or more large wolves to wolf-dog hybrids, an escaped hyena or a lion. The case is still argued over in France."
+    ],
+    "signs": [
+      "A wolf-like animal the size of a calf",
+      "Reddish coat with a dark stripe down the back",
+      "A long tail ending in a tuft",
+      "Attacks aimed at the head and throat"
+    ],
+    "size": "Calf-sized (reported)",
+    "habitat": "Upland pasture and forest",
+    "famous": [
+      {
+        "name": "First recorded victim, Jeanne Boulet",
+        "year": 1764,
+        "place": "Les Hubacs, near Langogne, France"
+      },
+      {
+        "name": "Fran\u00e7ois Antoine shoots a large wolf",
+        "year": 1765,
+        "place": "Chazes, France"
+      },
+      {
+        "name": "Jean Chastel ends the attacks",
+        "year": 1767,
+        "place": "Mont Mouchet, France"
+      }
+    ],
+    "related": [
+      "black-shuck",
+      "dogman",
+      "beast-of-bodmin",
+      "shunka-warakin",
+      "nandi-bear"
+    ],
+    "wiki": "Beast of G\u00e9vaudan"
+  },
+  {
+    "slug": "thylacine",
+    "name": "Thylacine sightings",
+    "aliases": [
+      "Tasmanian tiger",
+      "Tasmanian wolf",
+      "Thylacine",
+      "Tassie tiger",
+      "Thylacinus cynocephalus"
+    ],
+    "cat": "canid",
+    "icon": "thylacine",
+    "region": "Western and northern Tasmania; mainland reports from southern Victoria",
+    "cc": [
+      "AU"
+    ],
+    "first": "The last known thylacine died at Hobart Zoo on 7 September 1936",
+    "summary": "A striped marsupial 'tiger' declared extinct, but still reported in the Tasmanian bush.",
+    "body": [
+      "The thylacine was a real animal: a dog-sized marsupial predator with a stiff tail, a huge gape and dark stripes across its lower back. Hunted with government bounties, it was declared extinct after the last known one died at Hobart's Beaumaris Zoo in 1936.",
+      "Sightings never stopped. In 1982 Parks and Wildlife ranger Hans Naarding said he watched one in his spotlight for several minutes in north-west Tasmania, which set off a quiet two-year government search. Ted Turner offered a reward in 1983, The Bulletin offered A$1.25 million in 2005, and trail-camera searches continue today.",
+      "Hundreds of reports have been logged since 1936, and a 2023 study argued the species may have lingered into the late 20th century. Most scientists remain unconvinced, but few extinct animals have been searched for this hard."
+    ],
+    "signs": [
+      "Dark stripes across the back and rump",
+      "A thick, stiff tail held straight out",
+      "A stiff, awkward gait",
+      "A coughing bark or yap",
+      "An enormous yawning gape"
+    ],
+    "size": "About 1 m long plus tail, 15 to 30 kg",
+    "habitat": "Eucalyptus forest, button-grass plains and coastal heath",
+    "famous": [
+      {
+        "name": "Last known thylacine dies",
+        "year": 1936,
+        "place": "Hobart, Tasmania"
+      },
+      {
+        "name": "Hans Naarding spotlight sighting",
+        "year": 1982,
+        "place": "North-west Tasmania"
+      },
+      {
+        "name": "The Bulletin $1.25 million reward",
+        "year": 2005,
+        "place": "Australia"
+      }
+    ],
+    "related": [
+      "yowie",
+      "bunyip",
+      "chupacabra"
+    ],
+    "wiki": "Thylacine"
+  },
+  {
+    "slug": "shunka-warakin",
+    "name": "Shunka Warak'in",
+    "aliases": [
+      "Shunka warakin",
+      "Ringdocus",
+      "Montana mystery wolf",
+      "Hutchins' wolf",
+      "Madison Valley beast"
+    ],
+    "cat": "canid",
+    "icon": "hound",
+    "region": "Madison Valley, Montana; mount displayed in Ennis",
+    "cc": [
+      "US"
+    ],
+    "first": "Shot by settler Israel Ammon Hutchins in 1886",
+    "summary": "A strange wolf-like animal shot in 1886, whose stuffed body still exists.",
+    "body": [
+      "In 1886 Montana settler Israel Ammon Hutchins shot a dark, wolf-like animal that had been prowling around his ranch. It had a sloping back and high shoulders like a hyena. Taxidermist Joseph Sherwood mounted it, named it a ringdocus, and showed it for decades in his store and museum near Henry's Lake, Idaho, until it disappeared from view around 1980.",
+      "Hutchins' grandson Jack Kirby tracked the mount down at the Idaho Museum of Natural History in 2007, and it was put on display at the Madison Valley History Museum in Ennis, Montana. Cryptozoologist Loren Coleman linked it to shunka warak'in, an Ioway name usually translated as 'carries off dogs'. Others say that link is a stretch. The animal has never been DNA tested."
+    ],
+    "signs": [
+      "A wolf-like animal with a hyena-like sloping back",
+      "Dark coat and high shoulders",
+      "Prowling near ranches at night"
+    ],
+    "size": "Wolf-sized",
+    "habitat": "River valleys and open range",
+    "famous": [
+      {
+        "name": "Hutchins shoots the animal",
+        "year": 1886,
+        "place": "Madison Valley, Montana"
+      },
+      {
+        "name": "Mount rediscovered and displayed",
+        "year": 2007,
+        "place": "Ennis, Montana"
+      }
+    ],
+    "related": [
+      "dogman",
+      "beast-of-gevaudan",
+      "chupacabra"
+    ],
+    "wiki": ""
+  },
+  {
+    "slug": "beast-of-bodmin",
+    "name": "Beast of Bodmin Moor",
+    "aliases": [
+      "Beast of Bodmin",
+      "Bodmin beast",
+      "Cornish panther",
+      "British big cat",
+      "Alien big cat",
+      "ABC"
+    ],
+    "cat": "canid",
+    "icon": "bigcat",
+    "region": "Bodmin Moor, Cornwall, England",
+    "cc": [
+      "GB"
+    ],
+    "first": "Livestock killings and sightings from 1983",
+    "summary": "A black panther-like cat blamed for killing sheep on a Cornish moor.",
+    "body": [
+      "The Beast of Bodmin is a large black cat, often described as panther-sized with yellow-green eyes, reported on and around Bodmin Moor in Cornwall since the early 1980s. Farmers blamed it for mauled sheep and calves, and dozens of witnesses reported a big cat crossing roads and fields.",
+      "In 1995 the Ministry of Agriculture investigated and concluded there was no verifiable evidence of a big cat, though it could not rule one out. Days later a boy found a leopard skull on the bank of the River Fowey. The Natural History Museum confirmed it was a leopard, but it had been cut from a leopard-skin rug.",
+      "Britain's 1976 Dangerous Wild Animals Act made exotic pets expensive to keep, and some owners are thought to have released pumas and leopards. Big cat sightings are reported all over the UK every year."
+    ],
+    "signs": [
+      "A long, low black cat much bigger than a house cat",
+      "A long curved tail",
+      "Sheep killed with throat bites or stripped carcasses",
+      "Large rounded paw prints without claw marks"
+    ],
+    "size": "Panther-sized, 3 to 5 ft plus tail (reported)",
+    "habitat": "Open moorland, wooded valleys and farmland",
+    "famous": [
+      {
+        "name": "Ministry of Agriculture report",
+        "year": 1995,
+        "place": "Bodmin Moor, Cornwall"
+      },
+      {
+        "name": "Leopard skull found in the River Fowey",
+        "year": 1995,
+        "place": "Cornwall, England"
+      }
+    ],
+    "related": [
+      "beast-of-exmoor",
+      "beast-of-bladenboro",
+      "wampus-cat",
+      "beast-of-gevaudan",
+      "mngwa"
+    ],
+    "wiki": "British big cats"
+  },
+  {
+    "slug": "beast-of-exmoor",
+    "name": "Beast of Exmoor",
+    "aliases": [
+      "Exmoor Beast",
+      "Exmoor panther",
+      "Exmoor big cat",
+      "British big cat"
+    ],
+    "cat": "canid",
+    "icon": "bigcat",
+    "region": "Exmoor, on the Devon and Somerset border, England",
+    "cc": [
+      "GB"
+    ],
+    "first": "Spring 1983, when a South Molton farmer lost dozens of sheep",
+    "summary": "The big cat that sent Royal Marines snipers onto the moors in 1983.",
+    "body": [
+      "The Beast of Exmoor is a black or tawny big cat reported on Exmoor since the 1970s. It became national news in 1983 when South Molton farmer Eric Ley said he had lost over 100 sheep in three months, all killed with savage throat wounds.",
+      "The government took the unusual step of sending Royal Marines snipers to watch the moor. They never got a clear shot, and no cat was ever found.",
+      "Sightings continue, and several big cats, including a puma caught in Scotland in 1980, have proven that exotic cats have lived wild in Britain."
+    ],
+    "signs": [
+      "A powerful black or tawny cat",
+      "Sheep killed by throat bites",
+      "Seen at dusk crossing lanes"
+    ],
+    "size": "Panther- or puma-sized (reported)",
+    "habitat": "Moorland, combes and farmland",
+    "famous": [
+      {
+        "name": "Sheep killings and Royal Marines hunt",
+        "year": 1983,
+        "place": "South Molton, Devon"
+      }
+    ],
+    "related": [
+      "beast-of-bodmin",
+      "beast-of-bladenboro"
+    ],
+    "wiki": "British big cats"
+  },
+  {
+    "slug": "beast-of-bladenboro",
+    "name": "Beast of Bladenboro",
+    "aliases": [
+      "Bladenboro Beast",
+      "Vampire Beast of Bladenboro",
+      "Bladenboro vampire cat"
+    ],
+    "cat": "canid",
+    "icon": "bigcat",
+    "region": "Bladenboro and Clarkton, Bladen County, North Carolina",
+    "cc": [
+      "US"
+    ],
+    "first": "29 December 1953, when a dog was killed near Clarkton",
+    "summary": "A dog-killing 'vampire beast' that drew hundreds of armed hunters in 1954.",
+    "body": [
+      "Over the winter of 1953 to 1954, something killed dogs and other animals around Bladenboro, a small mill town in North Carolina. Victims were found crushed, with jaws broken and, according to reports, hardly any blood left in them. Newspapers called it the Vampire Beast.",
+      "Witnesses described a sleek black animal about 5 feet long with a cat-like face. By early January hundreds of hunters with guns and dogs were roaming the swamps, and the town became a national story. A bobcat was shot and displayed as the culprit, though many locals doubted it.",
+      "Bladenboro now holds an annual Beast Fest each fall."
+    ],
+    "signs": [
+      "Dogs killed with crushed heads and broken jaws",
+      "Carcasses said to be drained of blood",
+      "A sleek black cat-like animal about 5 ft long",
+      "A scream like a woman or a baby"
+    ],
+    "size": "About 5 ft long (reported)",
+    "habitat": "Swamps and farmland",
+    "famous": [
+      {
+        "name": "First dog killed",
+        "year": 1953,
+        "place": "Clarkton, North Carolina"
+      },
+      {
+        "name": "Mass hunt in Bladenboro",
+        "year": 1954,
+        "place": "Bladenboro, North Carolina"
+      }
+    ],
+    "related": [
+      "beast-of-bodmin",
+      "chupacabra",
+      "wampus-cat",
+      "beast-of-exmoor"
+    ],
+    "wiki": "Beast of Bladenboro"
+  },
+  {
+    "slug": "mngwa",
+    "name": "Mngwa",
+    "aliases": [
+      "Nunda",
+      "Mngwa cat",
+      "The strange one",
+      "Tanzanian mystery cat"
+    ],
+    "cat": "canid",
+    "icon": "bigcat",
+    "region": "Coastal forests of Tanzania",
+    "cc": [
+      "TZ"
+    ],
+    "first": "Described by colonial officer William Hichens in a 1937 article",
+    "summary": "A grey, donkey-sized cat said to stalk villages on the Tanzanian coast.",
+    "body": [
+      "The mngwa, Swahili for 'the strange one', is a big cat reported in the coastal forests of Tanzania. It is described as larger than a leopard, as big as a donkey, with grey brindled fur, and it is blamed for night attacks in fishing villages.",
+      "British administrator William Hichens wrote about local accounts of the mngwa in 1937, and hunter Patrick Bowen later said he tracked one that had carried off a boy, following prints shaped like a leopard's but as big as a lion's. The same name, nunda, belongs to a giant cat in Swahili folktales. Zoologists suggest unusually large or oddly coloured leopards or lions."
+    ],
+    "signs": [
+      "A grey, brindled cat bigger than a leopard",
+      "Leopard-shaped prints as big as a lion's",
+      "Night attacks on villages"
+    ],
+    "size": "Donkey-sized (reported)",
+    "habitat": "Coastal forest and village edges",
+    "famous": [
+      {
+        "name": "Hichens' Discovery article",
+        "year": 1937,
+        "place": "Tanganyika (Tanzania)"
+      }
+    ],
+    "related": [
+      "nandi-bear",
+      "beast-of-bodmin"
+    ],
+    "wiki": "Werecat"
+  },
+  {
+    "slug": "nandi-bear",
+    "name": "Nandi bear",
+    "aliases": [
+      "Chemosit",
+      "Kerit",
+      "Koddoelo",
+      "Ngoloko",
+      "Duba",
+      "East African bear"
+    ],
+    "cat": "canid",
+    "icon": "hound",
+    "region": "Nandi Hills and western Kenya",
+    "cc": [
+      "KE"
+    ],
+    "first": "Colonial-era reports from the early 1900s",
+    "summary": "A ferocious, hyena-shaped 'bear' reported in western Kenya, where no bears live.",
+    "body": [
+      "The Nandi bear is named after the Nandi people of western Kenya, who call it kerit or chemosit. It is described as a powerful carnivore with high shoulders over 4 feet tall, a sloping back like a hyena, and reddish or dark shaggy fur. It is said to attack at night and to go for the head.",
+      "Settlers and officers sent in reports in the early 20th century. Charles Hobley published a drawing of a footprint in 1914, and the paleontologist Louis Leakey once wondered whether it could be a surviving chalicothere, an extinct clawed relative of horses. Most zoologists think the stories mix up spotted hyenas, honey badgers and baboons. Reports dropped off as the forests were cleared."
+    ],
+    "signs": [
+      "High shoulders and a sloping, hyena-like back",
+      "Shaggy reddish or dark fur",
+      "Stands up on its hind legs",
+      "Night attacks aimed at the head"
+    ],
+    "size": "Over 4 ft at the shoulder (reported)",
+    "habitat": "Highland forest and grassland",
+    "famous": [
+      {
+        "name": "Hobley's footprint drawing",
+        "year": 1914,
+        "place": "Nandi Hills, Kenya"
+      },
+      {
+        "name": "Chalicothere theory proposed",
+        "year": 1923,
+        "place": "London"
+      }
+    ],
+    "related": [
+      "mngwa",
+      "beast-of-gevaudan"
+    ],
+    "wiki": "Nandi bear"
+  },
+  {
+    "slug": "ozark-howler",
+    "name": "Ozark Howler",
+    "aliases": [
+      "Ozark Black Howler",
+      "Howler",
+      "Ozark Mountain Howler"
+    ],
+    "cat": "canid",
+    "icon": "hodag",
+    "region": "Ozark Mountains of northern Arkansas, southern Missouri and north-east Oklahoma",
+    "cc": [
+      "US"
+    ],
+    "first": "Mostly 20th-century reports; some tie it to tales from Daniel Boone's day",
+    "summary": "A bear-sized, horned black cat with a howl that shakes the hollows.",
+    "body": [
+      "The Ozark Howler is a large, dark, shaggy animal said to roam the hills of the Ozarks. Descriptions vary: some say it is bear-shaped, others say it is cat-like with horns on its head, and almost all mention glowing eyes and a terrible howl that mixes a wolf's call with a laugh or an elk's bugle.",
+      "In 2014 an emergency call to the Arkansas Game and Fish Commission reported a bear-sized, grey, fast-running animal on a road near Springdale. A year later a TV station received photos claimed to show the Howler, which the commission dismissed as fake."
+    ],
+    "signs": [
+      "A deep, eerie howl or laughing call",
+      "Glowing red or yellow eyes",
+      "Shaggy black or grey fur",
+      "Horns or tufted ears on the head"
+    ],
+    "size": "Bear-sized (reported)",
+    "habitat": "Wooded hollows and ridges",
+    "famous": [
+      {
+        "name": "Wildlife emergency call near Springdale",
+        "year": 2014,
+        "place": "Benton County, Arkansas"
+      },
+      {
+        "name": "Photo hoax sent to TV station",
+        "year": 2015,
+        "place": "Arkansas"
+      }
+    ],
+    "related": [
+      "wampus-cat",
+      "hodag",
+      "fouke-monster"
+    ],
+    "wiki": "Ozark Howler"
+  },
+  {
+    "slug": "batsquatch",
+    "name": "Batsquatch",
+    "aliases": [
+      "Bat Squatch",
+      "Winged Bigfoot",
+      "Mount St. Helens Batsquatch",
+      "Flying Bigfoot"
+    ],
+    "cat": "winged",
+    "icon": "batsquatch",
+    "region": "Pierce County and the Cascades of Washington state",
+    "cc": [
+      "US"
+    ],
+    "first": "April 1994, near Buckley, Washington",
+    "summary": "A purple-blue, bat-winged ape that landed in front of a stalled truck.",
+    "body": [
+      "Batsquatch is a hairy, ape-like creature with huge leathery wings, reported in the Washington Cascades. The story starts in April 1994, when 18-year-old Brian Canfield said his truck stalled in Pierce County and a nine-foot creature with bluish fur, a wolf-like face, yellow eyes and bat wings landed on the road in front of him before flying off toward Mount Rainier.",
+      "The account ran in the Tacoma News Tribune, and the reporter said Canfield seemed sincere. A few later reports followed, including a pilot who said he saw something similar. The creature is now tied to Mount St. Helens in popular telling, though the original report was nearer Rainier."
+    ],
+    "signs": [
+      "Huge leathery bat wings on an ape-like body",
+      "Blue or purple-tinged fur",
+      "Yellow or red eyes",
+      "Vehicles stalling nearby"
+    ],
+    "size": "About 9 ft tall (reported)",
+    "habitat": "Mountain forest",
+    "famous": [
+      {
+        "name": "Brian Canfield encounter",
+        "year": 1994,
+        "place": "Pierce County, Washington"
+      }
+    ],
+    "related": [
+      "mothman",
+      "bigfoot",
+      "ahool",
+      "van-meter-visitor"
+    ],
+    "wiki": ""
+  },
+  {
+    "slug": "snallygaster",
+    "name": "Snallygaster",
+    "aliases": [
+      "Schneller Geist",
+      "Snollygoster",
+      "Snally",
+      "Snallygaster of Maryland"
+    ],
+    "cat": "winged",
+    "icon": "snallygaster",
+    "region": "Frederick and Washington counties, Maryland; South Mountain and the Middletown Valley",
+    "cc": [
+      "US"
+    ],
+    "first": "Tales among German settlers from the 1730s; newspaper wave in 1909",
+    "summary": "Maryland's beaked, tentacled dragon from German settler folklore.",
+    "body": [
+      "The snallygaster comes from the folklore of German immigrants who settled around Frederick, Maryland in the 18th century. Their schneller Geist, or 'quick ghost', was half bird and half reptile, with a metal-like beak full of teeth, and in some versions octopus-like tentacles. It swooped from the sky to carry off people and livestock. Seven-pointed stars painted on barns were said to keep it away.",
+      "In February and March 1909 the Middletown Valley Register ran reports of a winged beast with a long beak, hooked claws and one eye in the middle of its forehead, screeching like a train whistle. The story spread nationwide, and the Smithsonian was said to have offered a reward for its hide. It was later revealed as a circulation stunt by the paper's editor and a reporter. A 1932 wave had it dying in a vat of moonshine."
+    ],
+    "signs": [
+      "Huge wings and a long hooked beak",
+      "A single eye in the forehead",
+      "A scream like a locomotive whistle",
+      "Seven-pointed hex stars on barns"
+    ],
+    "size": "Huge, with a wingspan of many feet (reported)",
+    "habitat": "Mountain ridges and farm valleys",
+    "famous": [
+      {
+        "name": "Newspaper sightings wave",
+        "year": 1909,
+        "place": "Middletown Valley, Maryland"
+      },
+      {
+        "name": "Second wave of reports",
+        "year": 1932,
+        "place": "Frederick County, Maryland"
+      }
+    ],
+    "related": [
+      "jersey-devil",
+      "thunderbird",
+      "goatman",
+      "hodag"
+    ],
+    "wiki": "Snallygaster"
+  },
+  {
+    "slug": "van-meter-visitor",
+    "name": "Van Meter Visitor",
+    "aliases": [
+      "Van Meter Monster",
+      "Van Meter creature",
+      "Iowa winged demon"
+    ],
+    "cat": "winged",
+    "icon": "vanmeter",
+    "region": "Van Meter, Dallas County, Iowa",
+    "cc": [
+      "US"
+    ],
+    "first": "Late September 1903; first in print in the Des Moines Daily News on 4 October 1903",
+    "summary": "A bat-winged creature with a glowing horn that visited an Iowa town for five nights in 1903.",
+    "body": [
+      "For several nights in late September and early October 1903, residents of the small town of Van Meter, Iowa reported a huge winged creature, half human and half animal, with bat-like wings and a single blunt horn on its forehead that shone a beam of light.",
+      "A farm implement salesman saw the light first on a rooftop. The town doctor said he saw it outside his office window, and a bank cashier fired at it through the bank's front window, leaving only three-toed tracks. Witnesses said bullets did nothing to it. Accounts say townspeople finally drove it and a smaller companion back into an old mine.",
+      "Van Meter now holds a Visitor festival each autumn."
+    ],
+    "signs": [
+      "Bat-like wings on a part-human body",
+      "A single horn that shines a bright beam of light",
+      "Three-toed tracks",
+      "A strong sulfur smell",
+      "Unharmed by gunfire"
+    ],
+    "size": "Around 8 ft tall (reported)",
+    "habitat": "Small-town rooftops and an old mine",
+    "famous": [
+      {
+        "name": "Five nights of sightings",
+        "year": 1903,
+        "place": "Van Meter, Iowa"
+      }
+    ],
+    "related": [
+      "mothman",
+      "jersey-devil",
+      "batsquatch"
+    ],
+    "wiki": "Van Meter, Iowa"
+  },
+  {
+    "slug": "ahool",
+    "name": "Ahool",
+    "aliases": [
+      "Athol",
+      "Giant bat of Java",
+      "Java giant bat"
+    ],
+    "cat": "winged",
+    "icon": "bat",
+    "region": "Mount Salak and the rainforests of western Java, Indonesia",
+    "cc": [
+      "ID"
+    ],
+    "first": "Naturalist Ernst Bartels said he saw one on Mount Salak in 1925",
+    "summary": "A giant bat of Java with a monkey-like face and a 10-foot wingspan.",
+    "body": [
+      "The ahool is a giant bat said to live in the rainforest of western Java. It is named for its call, a long 'a-hoool'. Witnesses describe a grey, furry flier with a wingspan of about 10 feet, a flat monkey-like face, big dark eyes and clawed forearms.",
+      "Naturalist Ernst Bartels said one flew right over him while he was exploring Mount Salak in 1925, and that he heard the call again from his home two years later. Ivan Sanderson thought it was an unknown species of bat. Bartels himself later wondered if it might be a large owl. Fruit bats in the region are big, but none come close to the size claimed."
+    ],
+    "signs": [
+      "A loud \"a-hoool\" call at night",
+      "A 10-ft wingspan",
+      "A monkey-like face and grey fur",
+      "Seen skimming over rivers"
+    ],
+    "size": "Wingspan about 10 ft (reported)",
+    "habitat": "Mountain rainforest near waterfalls",
+    "famous": [
+      {
+        "name": "Bartels sighting on Mount Salak",
+        "year": 1925,
+        "place": "West Java, Indonesia"
+      },
+      {
+        "name": "Bartels hears the call again",
+        "year": 1927,
+        "place": "Near the Tjidjenkol River, Java"
+      }
+    ],
+    "related": [
+      "kongamato",
+      "ropen",
+      "batsquatch",
+      "popobawa"
+    ],
+    "wiki": ""
+  },
+  {
+    "slug": "ropen",
+    "name": "Ropen",
+    "aliases": [
+      "Duwas",
+      "Indava",
+      "Seklo-bali",
+      "Living pterosaur of New Guinea",
+      "Umboi Island flying creature"
+    ],
+    "cat": "winged",
+    "icon": "pterosaur",
+    "region": "Umboi Island and nearby islands, Papua New Guinea",
+    "cc": [
+      "PG"
+    ],
+    "first": "Local stories; Western expeditions from 1994",
+    "summary": "A glowing, pterosaur-like flier said to cross the night skies of Papua New Guinea.",
+    "body": [
+      "The ropen is a flying creature from the folklore of Umboi Island and neighbouring islands in Papua New Guinea. It is described as featherless, with leathery wings, a long tail ending in a diamond-shaped flap, and, most strikingly, a body that glows at night.",
+      "Since the 1990s a handful of American expeditions, several of them driven by young-earth creationists hoping to find a living pterosaur, have travelled to Umboi to interview witnesses. They reported distant glowing lights but brought back no clear photographs. Scientists point to large fruit bats and frigatebirds, and to bioluminescent fungi or meteors for the lights."
+    ],
+    "signs": [
+      "A slow-moving glowing light at night",
+      "Leathery wings and a long tail with a flap at the end",
+      "Seen over reefs and grave sites"
+    ],
+    "size": "Wingspan 3 to 20 ft (varies by account)",
+    "habitat": "Tropical islands and reefs",
+    "famous": [
+      {
+        "name": "First Western expedition",
+        "year": 1994,
+        "place": "Umboi Island, Papua New Guinea"
+      },
+      {
+        "name": "Two Umboi Island expeditions",
+        "year": 2004,
+        "place": "Umboi Island, Papua New Guinea"
+      }
+    ],
+    "related": [
+      "kongamato",
+      "ahool",
+      "thunderbird"
+    ],
+    "wiki": "Umboi Island"
+  },
+  {
+    "slug": "big-bird",
+    "name": "Big Bird of the Rio Grande Valley",
+    "aliases": [
+      "Big Bird",
+      "Texas Big Bird",
+      "Rio Grande Valley Big Bird",
+      "Raymondville Big Bird"
+    ],
+    "cat": "winged",
+    "icon": "thunderbird",
+    "region": "Lower Rio Grande Valley, Texas: Harlingen, Brownsville, Raymondville and San Benito",
+    "cc": [
+      "US"
+    ],
+    "first": "Reports from late December 1975",
+    "summary": "A flap of giant bird sightings in South Texas in the winter of 1976.",
+    "body": [
+      "Over a few weeks around New Year 1976, people across the Lower Rio Grande Valley in South Texas reported an enormous bird or bat-like flier. Two girls in Harlingen saw a dark bird with a gorilla-like face on New Year's Day, and their family found three-toed tracks.",
+      "On 7 January a Brownsville man said something slammed into his trailer home. On 14 January Armando Grimaldo of Raymondville said a creature with a monkey-like face and leathery skin swooped on him in his yard and tore his shirt. A $1,000 reward was offered for its capture. Some sightings were later traced to herons and pelicans, but the flap is still a Valley legend."
+    ],
+    "signs": [
+      "A huge dark bird or bat with a wingspan of 10 to 15 ft",
+      "A bald, gorilla- or monkey-like face",
+      "Three-toed tracks",
+      "Attacks from above"
+    ],
+    "size": "Wingspan 10 to 15 ft (reported)",
+    "habitat": "Farmland and small towns",
+    "famous": [
+      {
+        "name": "Harlingen New Year sighting",
+        "year": 1976,
+        "place": "Harlingen, Texas"
+      },
+      {
+        "name": "Armando Grimaldo attack",
+        "year": 1976,
+        "place": "Raymondville, Texas"
+      }
+    ],
+    "related": [
+      "thunderbird",
+      "lechuza",
+      "mothman"
+    ],
+    "wiki": ""
+  },
+  {
+    "slug": "lechuza",
+    "name": "La Lechuza",
+    "aliases": [
+      "Lechuza",
+      "Owl witch",
+      "Witch owl",
+      "La Lechuza de Texas",
+      "Owl woman"
+    ],
+    "cat": "winged",
+    "icon": "owl",
+    "region": "South Texas and northern Mexico",
+    "cc": [
+      "US",
+      "MX"
+    ],
+    "first": "A long-told Mexican and Tejano legend",
+    "summary": "A witch who turns into a huge owl with a woman's face, from Texas-Mexican folklore.",
+    "body": [
+      "La Lechuza is a figure from Mexican and Tejano folklore: a witch, or a wronged woman, who takes the shape of a huge barn owl, sometimes with the face of an old woman. She is said to perch on rooftops and trees at night, and her whistle or cry is taken as a warning of death or bad luck. Parents in the Rio Grande Valley have long warned children that she snatches kids who stay out late.",
+      "Stories say salt, a prayer or a rosary can drive her off, and that a wounded lechuza turns back into a woman with matching wounds. Modern reports from South Texas describe an owl far too large to be real. The legend often blends with the 1976 Big Bird sightings in the same region."
+    ],
+    "signs": [
+      "An owl far larger than any real owl",
+      "A woman's face on an owl's body",
+      "Whistling or a crying baby sound at night",
+      "Perching on rooftops"
+    ],
+    "size": "Person-sized owl (reported)",
+    "habitat": "Ranchland, small towns and rooftops",
+    "famous": [
+      {
+        "name": "Rio Grande Valley Big Bird flap revives the legend",
+        "year": 1976,
+        "place": "South Texas"
+      }
+    ],
+    "related": [
+      "big-bird",
+      "owlman",
+      "mothman"
+    ],
+    "wiki": ""
+  },
+  {
+    "slug": "altamaha-ha",
+    "name": "Altamaha-ha",
+    "aliases": [
+      "Altie",
+      "Altamaha River monster",
+      "Darien sea monster",
+      "Georgia sea monster"
+    ],
+    "cat": "aquatic",
+    "icon": "bigfish",
+    "region": "Mouth of the Altamaha River and the creeks around Darien, McIntosh County, Georgia",
+    "cc": [
+      "US"
+    ],
+    "first": "A local legend; boaters and fishermen have reported it for decades",
+    "summary": "A long, snouted river monster of coastal Georgia's tidal creeks.",
+    "body": [
+      "Altie is said to live where the Altamaha River spreads into marsh, old rice fields and tidal creeks near Darien on the Georgia coast. Witnesses describe a dark animal 20 to 30 feet long with a long snout, a ridged back and flippers, that swims with up-and-down humps rather than side to side.",
+      "The Brunswick News has traced the legend back to Muscogee tradition. Fishermen and boaters have reported it for decades. In 2018 a strange carcass on a beach in the Wolf Island refuge looked like the Altie of local drawings, until performance artist Zardulu said she had built it from a stuffed shark and papier-m\u00e2ch\u00e9.",
+      "Many think Altie is a very large sturgeon or alligator gar, both of which live in the river. A sculpture of the creature stands at the Darien welcome center."
+    ],
+    "signs": [
+      "A long snout like a sturgeon or crocodile",
+      "Bony plates or ridges along the back",
+      "Up-and-down humps as it swims",
+      "Seen in tidal creeks at dawn or dusk"
+    ],
+    "size": "20 to 30 ft (reported)",
+    "habitat": "Brackish river mouth, marsh and tidal creeks",
+    "famous": [
+      {
+        "name": "Wolf Island carcass stunt",
+        "year": 2018,
+        "place": "Wolf Island, Georgia"
+      }
+    ],
+    "related": [
+      "chessie",
+      "white-river-monster",
+      "sea-serpent"
+    ],
+    "wiki": "Altamaha-ha"
+  },
+  {
+    "slug": "tahoe-tessie",
+    "name": "Tahoe Tessie",
+    "aliases": [
+      "Tessie",
+      "Lake Tahoe monster",
+      "Lake Tahoe Tessie"
+    ],
+    "cat": "aquatic",
+    "icon": "lake",
+    "region": "Lake Tahoe, on the California and Nevada border",
+    "cc": [
+      "US"
+    ],
+    "first": "A serpent reported by San Francisco visitor I.C. Coggin in 1865",
+    "summary": "The cold, very deep lake on the California-Nevada line has its own Nessie.",
+    "body": [
+      "Lake Tahoe is over 1,600 feet deep and famously clear, and since the 1800s some visitors have claimed something big swims in it. Tessie is usually described as a dark, humped, serpent-like animal leaving a wake, or a shape moving under the surface.",
+      "A San Francisco visitor named I.C. Coggin reported a vast serpent in 1865. In the 1980s hikers, an optician and local police described a dark creature as big as a rowboat. A TV station owner, Mike Conway, said children shouted 'It's Tessie!' during a commercial shoot at Zephyr Cove, though his footage was lost. In 2005 a former sheriff's officer described a big V-shaped wake on calm water.",
+      "Stories of water spirits around Cave Rock belong to the Washoe people, who have lived at the lake for thousands of years, but the Tessie legend itself is modern. Large lake trout and sturgeon are the usual suspects."
+    ],
+    "signs": [
+      "A V-shaped wake on calm water",
+      "A dark humped back",
+      "A large shape moving beneath the clear surface"
+    ],
+    "size": "10 to 80 ft (reported)",
+    "habitat": "Very deep, cold alpine lake",
+    "famous": [
+      {
+        "name": "Coggin serpent report",
+        "year": 1865,
+        "place": "Lake Tahoe"
+      },
+      {
+        "name": "V-shaped wake report",
+        "year": 2005,
+        "place": "Lake Tahoe"
+      }
+    ],
+    "related": [
+      "loch-ness-monster",
+      "ogopogo",
+      "bear-lake-monster"
+    ],
+    "wiki": "Tahoe Tessie"
+  },
+  {
+    "slug": "chessie",
+    "name": "Chessie",
+    "aliases": [
+      "Chesapeake Bay monster",
+      "Chessie the sea serpent",
+      "Chessie sea monster"
+    ],
+    "cat": "aquatic",
+    "icon": "serpent",
+    "region": "Chesapeake Bay and its rivers, Maryland and Virginia",
+    "cc": [
+      "US"
+    ],
+    "first": "Claims from 1936; a 1943 sighting by perch fishermen near Baltimore",
+    "summary": "A snake-like sea serpent said to wind through the Chesapeake Bay.",
+    "body": [
+      "Chessie is a long, dark, snake-like animal said to live in the Chesapeake Bay. Witnesses usually describe a body 25 to 40 feet long and about a foot thick, with a football-shaped head and humps that roll along the surface.",
+      "In 1943 two fishermen near Baltimore said a black creature about 12 feet long, with a head like a horse, turned its head almost all the way round to look at them. Sightings peaked in the late 1970s and early 1980s. In 1982 Robert and Karen Frew filmed a brown, snake-like shape moving near Kent Island, and Smithsonian scientists who reviewed it could not say what it was.",
+      "Some sightings have been traced to manatees, which wander north into the bay in summer. Chessie later became a mascot for keeping the bay clean."
+    ],
+    "signs": [
+      "A long, thin, dark body with several humps",
+      "A football- or horse-shaped head",
+      "Side-to-side serpentine swimming",
+      "Seen near the bay shore in summer"
+    ],
+    "size": "25 to 40 ft (reported)",
+    "habitat": "Brackish estuary and tidal rivers",
+    "famous": [
+      {
+        "name": "Perch fishermen sighting",
+        "year": 1943,
+        "place": "Near Baltimore, Maryland"
+      },
+      {
+        "name": "Frew video",
+        "year": 1982,
+        "place": "Kent Island, Maryland"
+      },
+      {
+        "name": "Magothy River roadside report",
+        "year": 2014,
+        "place": "Magothy River, Maryland"
+      }
+    ],
+    "related": [
+      "altamaha-ha",
+      "sea-serpent",
+      "champ"
+    ],
+    "wiki": "Chessie (sea monster)"
+  },
+  {
+    "slug": "white-river-monster",
+    "name": "White River Monster",
+    "aliases": [
+      "Whitey",
+      "Arkansas river monster",
+      "Newport monster"
+    ],
+    "cat": "aquatic",
+    "icon": "bigfish",
+    "region": "White River near Newport, Jackson County, Arkansas",
+    "cc": [
+      "US"
+    ],
+    "first": "A plantation owner reported it on 1 July 1915",
+    "summary": "A grey, boxcar-sized river monster so beloved Arkansas gave it a legal refuge.",
+    "body": [
+      "Whitey is a huge grey animal reported in the White River near Newport, Arkansas. In July 1915 a plantation owner described it as wide as a car and three cars long. In 1937 plantation owner Bramlett Bateman said it had skin like an elephant and a face like a catfish, and lay lolling on the surface. Crowds came with cameras, and plans to net it or blast it with dynamite fell through.",
+      "In 1971 the creature was back. Witnesses described a peeling grey animal the size of a boxcar with a bony spike on its forehead, making a sound like a cow crossed with a horse, and 14-inch three-toed tracks were found on Towhead Island.",
+      "In 1973 the Arkansas legislature created the White River Monster Refuge, where it is illegal to harm the creature. A lost elephant seal or a giant catfish are the favourite explanations."
+    ],
+    "signs": [
+      "A huge grey back like an overturned boat",
+      "Skin that looks like it is peeling",
+      "A bony spike on the forehead",
+      "A noise like a cow and a horse mixed",
+      "Three-toed tracks on sandbars"
+    ],
+    "size": "12 to 30 ft (reported)",
+    "habitat": "Slow, muddy river",
+    "famous": [
+      {
+        "name": "First reported sighting",
+        "year": 1915,
+        "place": "Newport, Arkansas"
+      },
+      {
+        "name": "Bateman sightings and crowds",
+        "year": 1937,
+        "place": "Newport, Arkansas"
+      },
+      {
+        "name": "Boxcar-sized sightings and tracks",
+        "year": 1971,
+        "place": "Newport, Arkansas"
+      },
+      {
+        "name": "White River Monster Refuge created",
+        "year": 1973,
+        "place": "Jackson County, Arkansas"
+      }
+    ],
+    "related": [
+      "altamaha-ha",
+      "bear-lake-monster",
+      "beast-of-busco"
+    ],
+    "wiki": "White River Monster"
+  },
+  {
+    "slug": "memphre",
+    "name": "Memphr\u00e9",
+    "aliases": [
+      "Memphre",
+      "Memphremagog monster",
+      "Lake Memphremagog monster",
+      "Mem"
+    ],
+    "cat": "aquatic",
+    "icon": "lake",
+    "region": "Lake Memphremagog, between Magog, Quebec and Newport, Vermont",
+    "cc": [
+      "CA",
+      "US"
+    ],
+    "first": "Reports stretch back to the 1800s",
+    "summary": "The cross-border lake monster of Quebec and Vermont, honoured on a Canadian coin.",
+    "body": [
+      "Memphr\u00e9 is said to live in Lake Memphremagog, a long, deep glacial lake that crosses the border between Quebec and Vermont. It is usually described much like Nessie: a long-necked, humped animal with dark skin.",
+      "Local historian Jacques Boisvert founded the International Dracontology Society of Lake Memphremagog in 1986 to collect and study sightings. In 2011 the Royal Canadian Mint put Memphr\u00e9 on a coloured 25-cent coin."
+    ],
+    "signs": [
+      "A long neck and small head",
+      "Dark humps on calm water",
+      "Seen near the deepest stretch of the lake"
+    ],
+    "size": "15 to 40 ft (reported)",
+    "habitat": "Long, deep glacial lake",
+    "famous": [
+      {
+        "name": "Dracontology society founded",
+        "year": 1986,
+        "place": "Magog, Quebec"
+      },
+      {
+        "name": "Royal Canadian Mint coloured quarter",
+        "year": 2011,
+        "place": "Canada"
+      }
+    ],
+    "related": [
+      "champ",
+      "igopogo",
+      "manipogo"
+    ],
+    "wiki": "Memphre"
+  },
+  {
+    "slug": "igopogo",
+    "name": "Igopogo",
+    "aliases": [
+      "Kempenfelt Kelly",
+      "Beaverton Bessie",
+      "Lake Simcoe monster",
+      "Simcoe Kelly"
+    ],
+    "cat": "aquatic",
+    "icon": "seal",
+    "region": "Lake Simcoe, Ontario",
+    "cc": [
+      "CA"
+    ],
+    "first": "Settler David Soules in 1823",
+    "summary": "A seal-faced lake animal said to live in Ontario's Lake Simcoe.",
+    "body": [
+      "Igopogo, named as a play on BC's Ogopogo, is said to live in Lake Simcoe north of Toronto. Most witnesses describe a grey, seal-like animal with a dog- or horse-like face, a neck like a stovepipe and dorsal fins, rather than a long-necked dinosaur.",
+      "Settler David Soules is credited with the first report in 1823. In 1952 several people, including Georgina Island First Nation chief Wellington Charles, said they saw it. A sonar operator recorded a large target in 1983, and a 1991 video showed a large seal-like animal. Barrie has a sea serpent sculpture on its waterfront.",
+      "Some suggest seals or otters, though neither normally lives in the lake."
+    ],
+    "signs": [
+      "A grey, seal-like head with a dog-like face",
+      "A neck like a stovepipe",
+      "Dorsal fins",
+      "Seen near Kempenfelt Bay and Beaverton"
+    ],
+    "size": "12 to 70 ft (reported)",
+    "habitat": "Large, shallow lake",
+    "famous": [
+      {
+        "name": "Soules sighting",
+        "year": 1823,
+        "place": "Lake Simcoe, Ontario"
+      },
+      {
+        "name": "Chief Wellington Charles sighting",
+        "year": 1952,
+        "place": "Lake Simcoe, Ontario"
+      },
+      {
+        "name": "Sonar contact",
+        "year": 1983,
+        "place": "Lake Simcoe, Ontario"
+      },
+      {
+        "name": "Seal-like animal video",
+        "year": 1991,
+        "place": "Lake Simcoe, Ontario"
+      }
+    ],
+    "related": [
+      "ogopogo",
+      "memphre",
+      "manipogo",
+      "lake-tianchi-monster"
+    ],
+    "wiki": "Igopogo"
+  },
+  {
+    "slug": "manipogo",
+    "name": "Manipogo",
+    "aliases": [
+      "Winnipogo",
+      "Lake Manitoba monster",
+      "Manny"
+    ],
+    "cat": "aquatic",
+    "icon": "serpent",
+    "region": "Lake Manitoba, Lake Winnipegosis and Lake Winnipeg, Manitoba",
+    "cc": [
+      "CA"
+    ],
+    "first": "Fur trader Valentine McKay in September 1909",
+    "summary": "Manitoba's humped lake serpent, with its own provincial park and festival.",
+    "body": [
+      "Manipogo is a serpent-like animal said to live in Lake Manitoba, with relatives reported in connected lakes. Witnesses describe a brownish-black body 13 to 50 feet long with at least one hump, and a head like a horse, sheep or camel. Some say it lets out a loud cry as it surfaces.",
+      "Hudson's Bay Company trader Valentine McKay made the first settler report in 1909. A wave of sightings in 1960 gave it its name, coined by land inspector Tom Locke, who also named Manipogo Provincial Park. In 1962 fishermen Richard Vincent and John Konefell took the only known photograph of it, showing a dark, snake-like shape. First Nations stories of serpents in the lake are much older.",
+      "Skeptics suggest swimming moose, sturgeon, otters or floating logs. St. Laurent holds a Manipogo festival every March."
+    ],
+    "signs": [
+      "Brownish-black humps on the surface",
+      "A flat or horse-like head",
+      "A loud cry when it surfaces"
+    ],
+    "size": "13 to 50 ft (reported)",
+    "habitat": "Large, shallow prairie lakes",
+    "famous": [
+      {
+        "name": "McKay sighting",
+        "year": 1909,
+        "place": "Lake Manitoba"
+      },
+      {
+        "name": "Name coined after a wave of sightings",
+        "year": 1960,
+        "place": "Lake Manitoba"
+      },
+      {
+        "name": "Vincent and Konefell photo",
+        "year": 1962,
+        "place": "Lake Manitoba"
+      }
+    ],
+    "related": [
+      "ogopogo",
+      "igopogo",
+      "memphre"
+    ],
+    "wiki": "Manipogo"
+  },
+  {
+    "slug": "lagarfljot-worm",
+    "name": "Lagarflj\u00f3t Worm",
+    "aliases": [
+      "Lagarflj\u00f3tsormurinn",
+      "Lagarfljot Wyrm",
+      "Icelandic worm monster",
+      "Iceland lake monster"
+    ],
+    "cat": "aquatic",
+    "icon": "serpent",
+    "region": "Lagarflj\u00f3t, by Egilssta\u00f0ir, east Iceland",
+    "cc": [
+      "IS"
+    ],
+    "first": "A \"marvel\" in the lake recorded in Icelandic annals for 1345",
+    "summary": "Iceland's many-humped lake serpent, filmed in a viral 2012 video.",
+    "body": [
+      "The Lagarflj\u00f3t worm is a serpent said to live in Lagarflj\u00f3t, a long, silty glacial lake in east Iceland. It is a 'many humps' monster, said to be longer than a bus, and in some tales it coils up on the shore.",
+      "Icelandic annals record a strange sight in the lake in 1345, and the worm appears on 16th-century maps. A folk tale says it began as a small worm a girl put on a gold ring to make the gold grow, and both grew enormous. In 1963 the head of Iceland's forestry service reported a sighting, and in 1983 contractors said a new phone cable laid across the lake bed was found torn in many places.",
+      "In February 2012 a farmer filmed a long shape moving in the icy river, and the video went viral around the world. A local committee later debated whether it showed the worm. Skeptics say it is ice or a fishing net."
+    ],
+    "signs": [
+      "Several humps moving in a line",
+      "A body longer than a bus",
+      "Something coiled on the shore"
+    ],
+    "size": "About 40 ft or more (reported)",
+    "habitat": "Cold, murky glacial lake",
+    "famous": [
+      {
+        "name": "Annals record a marvel in the lake",
+        "year": 1345,
+        "place": "Lagarflj\u00f3t, Iceland"
+      },
+      {
+        "name": "Forestry chief sighting",
+        "year": 1963,
+        "place": "Lagarflj\u00f3t, Iceland"
+      },
+      {
+        "name": "Viral video",
+        "year": 2012,
+        "place": "Egilssta\u00f0ir, Iceland"
+      }
+    ],
+    "related": [
+      "storsjoodjuret",
+      "loch-ness-monster",
+      "sea-serpent"
+    ],
+    "wiki": "Lagarflj\u00f3t Worm"
+  },
+  {
+    "slug": "storsjoodjuret",
+    "name": "Storsj\u00f6odjuret",
+    "aliases": [
+      "Storsie",
+      "Storsj\u00f6 monster",
+      "Great-Lake Monster",
+      "Storsj\u00f6n monster",
+      "Storsj\u00f6ormen"
+    ],
+    "cat": "aquatic",
+    "icon": "lake",
+    "region": "Lake Storsj\u00f6n, J\u00e4mtland, central Sweden",
+    "cc": [
+      "SE"
+    ],
+    "first": "First described in a 1635 manuscript",
+    "summary": "Sweden's lake monster, with a dog- or cat-like head and a protected status.",
+    "body": [
+      "Storsj\u00f6odjuret, or Storsie, is said to live in Storsj\u00f6n, a deep lake in J\u00e4mtland in central Sweden. Witnesses describe a dark, serpentine body with humps and a head like a dog or a cat, sometimes with ears or fins.",
+      "A 1635 manuscript tells how a rune master bound a sea serpent to the lake bottom with a spell carved on the Fr\u00f6s\u00f6 Runestone. Hundreds of sightings have been reported since the 1800s. In 1894 a company backed by King Oscar II tried to catch it with giant hooks and failed, and the traps are now in the local museum. From 1986 to 2005 the monster was even listed as a protected animal by the county.",
+      "In 2008 a film crew claimed an underwater camera recorded a warm-bodied mass in the lake."
+    ],
+    "signs": [
+      "A dog- or cat-like head with ears",
+      "A long dark body with humps",
+      "A large wake near Fr\u00f6s\u00f6n island"
+    ],
+    "size": "10 to 40 ft (reported)",
+    "habitat": "Deep, cold inland lake",
+    "famous": [
+      {
+        "name": "First written account",
+        "year": 1635,
+        "place": "J\u00e4mtland, Sweden"
+      },
+      {
+        "name": "Royal-backed capture attempt",
+        "year": 1894,
+        "place": "Storsj\u00f6n, Sweden"
+      },
+      {
+        "name": "Underwater camera claim",
+        "year": 2008,
+        "place": "Storsj\u00f6n, Sweden"
+      }
+    ],
+    "related": [
+      "lagarfljot-worm",
+      "loch-ness-monster",
+      "morag"
+    ],
+    "wiki": "Storsj\u00f6odjuret"
+  },
+  {
+    "slug": "nahuelito",
+    "name": "Nahuelito",
+    "aliases": [
+      "Nahuel Huapi monster",
+      "Patagonian plesiosaur",
+      "Argentine Nessie"
+    ],
+    "cat": "aquatic",
+    "icon": "lake",
+    "region": "Nahuel Huapi Lake, near San Carlos de Bariloche, Patagonia, Argentina",
+    "cc": [
+      "AR"
+    ],
+    "first": "Reports collected by Buenos Aires Zoo director Clemente Onelli from 1897",
+    "summary": "A plesiosaur-shaped lake monster in the Andes of Patagonia.",
+    "body": [
+      "Nahuelito is said to live in Nahuel Huapi, a huge glacial lake in the Andean foothills of northern Patagonia. It has been described as a giant serpent, a large hump, or a long-necked plesiosaur.",
+      "In 1922 George Garret told a Toronto newspaper he had seen a creature in the lake in 1910, with 5 to 7 metres visible above the water. Buenos Aires Zoo director Clemente Onelli then launched an expedition to look for a living plesiosaur in Patagonia, which found nothing. In 1988 a regional newspaper magazine published close-up photos of a hump near Bariloche, sent in anonymously.",
+      "Stories of water creatures in the lake predate European settlement."
+    ],
+    "signs": [
+      "A long neck or a large dark hump",
+      "Turbulent water on a still day",
+      "Seen near Bariloche and the lake islands"
+    ],
+    "size": "15 to 50 ft (reported)",
+    "habitat": "Deep glacial lake in the Andes",
+    "famous": [
+      {
+        "name": "Garret sighting",
+        "year": 1910,
+        "place": "Nahuel Huapi Lake, Argentina"
+      },
+      {
+        "name": "Onelli plesiosaur expedition",
+        "year": 1922,
+        "place": "Patagonia, Argentina"
+      },
+      {
+        "name": "Anonymous hump photos",
+        "year": 1988,
+        "place": "Bariloche, Argentina"
+      }
+    ],
+    "related": [
+      "loch-ness-monster",
+      "ogopogo",
+      "mokele-mbembe"
+    ],
+    "wiki": "Nahuelito"
+  },
+  {
+    "slug": "morag",
+    "name": "Morag",
+    "aliases": [
+      "M\u00f2rag",
+      "Loch Morar monster",
+      "Morag of Loch Morar"
+    ],
+    "cat": "aquatic",
+    "icon": "lake",
+    "region": "Loch Morar, Lochaber, western Scottish Highlands",
+    "cc": [
+      "GB"
+    ],
+    "first": "Reports date back to 1887",
+    "summary": "Nessie's less famous neighbour, in Britain's deepest freshwater loch.",
+    "body": [
+      "Morag is said to live in Loch Morar, the deepest body of fresh water in the British Isles at over 1,000 feet. After Nessie it is the most written-about Scottish loch monster. Its name is a pun on the loch, and older tradition held that it surfaced before a death in the local MacDonell clan.",
+      "Reports go back to 1887, and by 1981 researchers had logged 34, sixteen with several witnesses. The most famous came in August 1969, when Duncan McDonell and William Simpson said their boat struck a brown creature 25 to 30 feet long with three humps. McDonell fended it off with an oar, Simpson fired a rifle at it, and it sank out of sight."
+    ],
+    "signs": [
+      "Brown, rough skin and several humps",
+      "A snake-like head held above the water",
+      "A large wake on a calm loch"
+    ],
+    "size": "25 to 30 ft (reported)",
+    "habitat": "Very deep freshwater loch",
+    "famous": [
+      {
+        "name": "Earliest recorded sighting",
+        "year": 1887,
+        "place": "Loch Morar, Scotland"
+      },
+      {
+        "name": "McDonell and Simpson boat encounter",
+        "year": 1969,
+        "place": "Loch Morar, Scotland"
+      }
+    ],
+    "related": [
+      "loch-ness-monster",
+      "storsjoodjuret",
+      "bessie",
+      "dobhar-chu"
+    ],
+    "wiki": "Morag (lake monster)"
+  },
+  {
+    "slug": "lake-tianchi-monster",
+    "name": "Lake Tianchi Monster",
+    "aliases": [
+      "Tianchi monster",
+      "Heaven Lake monster",
+      "Cheonji monster",
+      "Changbai Mountain monster"
+    ],
+    "cat": "aquatic",
+    "icon": "seal",
+    "region": "Heaven Lake, in the crater of Changbai (Paektu) Mountain on the China and North Korea border",
+    "cc": [
+      "CN",
+      "KP"
+    ],
+    "first": "A report of a buffalo-like beast in 1903",
+    "summary": "Seal-like creatures reported in a volcanic crater lake on the China-North Korea border.",
+    "body": [
+      "Heaven Lake fills the crater of a volcano on the border between China's Jilin Province and North Korea. It is cold, deep and high, yet visitors have reported large animals swimming in it for over a century.",
+      "The first report, in 1903, described a buffalo-like creature. In August 1962 a man with a telescope said he watched two chasing each other. More recent descriptions mention a human-like head on a long neck with a white ring around it. In September 2007 a Chinese TV reporter said he filmed six seal-like creatures with long fins swimming in pairs for over an hour.",
+      "Scientists doubt anything large could live in the lake. Skeptics suggest floating volcanic rock or swimming bears."
+    ],
+    "signs": [
+      "A seal-like head with a white ring around the neck",
+      "Several animals swimming together",
+      "Long fins or flippers"
+    ],
+    "size": "6 to 30 ft (reported)",
+    "habitat": "High, cold volcanic crater lake",
+    "famous": [
+      {
+        "name": "Buffalo-like creature report",
+        "year": 1903,
+        "place": "Heaven Lake, Jilin, China"
+      },
+      {
+        "name": "Telescope sighting of two animals",
+        "year": 1962,
+        "place": "Heaven Lake"
+      },
+      {
+        "name": "TV reporter films six creatures",
+        "year": 2007,
+        "place": "Heaven Lake, Jilin, China"
+      }
+    ],
+    "related": [
+      "loch-ness-monster",
+      "igopogo",
+      "ogopogo"
+    ],
+    "wiki": "Lake Tianchi Monster"
+  },
+  {
+    "slug": "kappa",
+    "name": "Kappa",
+    "aliases": [
+      "Kawatar\u014d",
+      "Kawappa",
+      "Gawappa",
+      "Garappa",
+      "Kawako",
+      "River child",
+      "Japanese water imp"
+    ],
+    "cat": "aquatic",
+    "icon": "kappa",
+    "region": "Rivers, ponds and marshes across Japan",
+    "cc": [
+      "JP"
+    ],
+    "first": "A yokai of Japanese folklore, common in Edo-period writings",
+    "summary": "A turtle-shelled river imp from Japanese folklore with a water-filled dish on its head.",
+    "body": [
+      "The kappa is one of Japan's best-known yokai, a child-sized river creature with green or yellow-green skin, a turtle-like shell, webbed hands, a beak and a dish-shaped hollow on top of its head that holds water. As long as the dish stays full, it is very strong.",
+      "Kappa are blamed for drownings and for dragging horses and swimmers into rivers, but they are also polite, love cucumbers and sumo wrestling, and keep their promises. The trick in many stories is to bow: the kappa bows back, spills the water from its dish and loses its strength.",
+      "Temples and families around Japan keep so-called mummified kappa hands and bodies. T\u014dno in Iwate has a famous Kappa-buchi pool, and signs warning about kappa still stand by some rivers."
+    ],
+    "signs": [
+      "A child-sized green figure by a river",
+      "A shell on its back and a beak",
+      "A bowl-shaped dent on top of the head",
+      "Cucumbers left as offerings"
+    ],
+    "size": "About the size of a child",
+    "habitat": "Rivers, ponds and irrigation canals",
+    "famous": [
+      {
+        "name": "T\u014dno Monogatari folk tales, including kappa",
+        "year": 1910,
+        "place": "T\u014dno, Iwate, Japan"
+      }
+    ],
+    "related": [
+      "tsuchinoko",
+      "ningen",
+      "loveland-frog"
+    ],
+    "wiki": "Kappa (folklore)"
+  },
+  {
+    "slug": "ningen",
+    "name": "Ningen",
+    "aliases": [
+      "Hitogata",
+      "Antarctic humanoid",
+      "Ningen of the Antarctic",
+      "Southern Ocean human"
+    ],
+    "cat": "aquatic",
+    "icon": "ningen",
+    "region": "Antarctic and South Atlantic waters",
+    "cc": [
+      "AQ"
+    ],
+    "first": "An internet legend from Japanese 2channel posts in the mid-2000s",
+    "summary": "A ghostly white, whale-sized humanoid said to surface in Antarctic seas.",
+    "body": [
+      "The Ningen, Japanese for 'human', is a modern legend of a huge, pale white creature with a human-like body, arms and sometimes legs or a tail, said to be seen by whaling and research crews in the Southern Ocean. It is described as tens of feet long and smooth-skinned, with small eyes and a slit mouth.",
+      "The story spread on the Japanese forum 2channel in the 2000s, where posters claimed whaling crews had seen something they first mistook for a submarine. In 2007 the paranormal magazine Mu ran an article on it, including a Google Earth image off Namibia that seemed to show a white humanoid shape. Skeptics point to icebergs, whales and image glitches, and the Ningen is widely treated as an internet-born legend."
+    ],
+    "signs": [
+      "A ghostly white humanoid shape in the water at night",
+      "Smooth, hairless skin",
+      "Something mistaken for a submarine"
+    ],
+    "size": "50 to 100 ft (reported)",
+    "habitat": "Cold polar seas",
+    "famous": [
+      {
+        "name": "Mu magazine article",
+        "year": 2007,
+        "place": "Japan"
+      }
+    ],
+    "related": [
+      "kappa",
+      "sea-serpent",
+      "montauk-monster"
+    ],
+    "wiki": "Ningen (folklore)"
+  },
+  {
+    "slug": "emela-ntouka",
+    "name": "Emela-ntouka",
+    "aliases": [
+      "Emela ntouka",
+      "Killer of elephants",
+      "Aseka-moke",
+      "Chipekwe",
+      "Njago-gunda",
+      "Irizima"
+    ],
+    "cat": "aquatic",
+    "icon": "horned",
+    "region": "Likouala swamps of the Republic of the Congo and nearby Central Africa",
+    "cc": [
+      "CG"
+    ],
+    "first": "In print in 1954 through game inspector Lucien Blancou",
+    "summary": "A one-horned, elephant-sized swamp beast said to gore elephants in the Congo.",
+    "body": [
+      "The Emela-ntouka, a Lingala name often translated as 'killer of elephants', is a semi-aquatic animal said to live in the swamps of the Likouala region of the Republic of the Congo. Descriptions give it a heavy, rhino-like body the size of an elephant, short legs, a thick tail and a single long horn on its snout.",
+      "Former game inspector Lucien Blancou described it in 1954, saying it killed elephants, buffalo and hippos when disturbed, but did not eat them. Biologist Roy Mackal collected accounts on his 1980 and 1981 expeditions looking for the Mokele-mbembe and suggested it might be a surviving horned dinosaur. Most scientists suggest a misremembered rhinoceros."
+    ],
+    "signs": [
+      "A single horn on the snout",
+      "A heavy, elephant-sized body",
+      "A thick crocodile-like tail",
+      "Dead elephants found with gore wounds"
+    ],
+    "size": "Elephant-sized (reported)",
+    "habitat": "Swamp forest and rivers",
+    "famous": [
+      {
+        "name": "Blancou's report in Mammalia",
+        "year": 1954,
+        "place": "Likouala, Republic of the Congo"
+      },
+      {
+        "name": "Mackal expeditions",
+        "year": 1980,
+        "place": "Likouala, Republic of the Congo"
+      }
+    ],
+    "related": [
+      "mokele-mbembe",
+      "kongamato"
+    ],
+    "wiki": "Mokele-mbembe"
+  },
+  {
+    "slug": "sea-serpent",
+    "name": "Sea serpent",
+    "aliases": [
+      "Sea monster",
+      "Gloucester sea serpent",
+      "Great sea serpent",
+      "Sea snake monster",
+      "Megophias"
+    ],
+    "cat": "aquatic",
+    "icon": "serpent",
+    "region": "Oceans worldwide; famous waves off Massachusetts and Norway",
+    "cc": [],
+    "first": "Described by Olaus Magnus in 1555; the Gloucester sightings of 1817 made it a scientific debate",
+    "summary": "Long, humped serpents reported by sailors in every ocean for centuries.",
+    "body": [
+      "Sea serpents are huge, snake-like animals reported at sea, usually with a horse- or turtle-like head, a long neck and a row of humps behind. Norse sailors told of them, and the Swedish bishop Olaus Magnus drew one wrapping around a ship in 1555.",
+      "In August 1817 hundreds of people watched a serpent with a turtle-like head and a humped back swimming in Gloucester Harbor in Massachusetts. Boston's Linnaean Society took sworn statements. On 6 August 1848 Captain Peter M'Quhae and officers of HMS Daedalus reported a 60-foot serpent in the South Atlantic, sparking a debate in The Times. In 1905 two naturalists aboard the yacht Valhalla described a long neck and a large fin off Brazil.",
+      "Oarfish, which can top 25 feet, basking sharks, whales and lines of porpoises are the leading explanations."
+    ],
+    "signs": [
+      "A row of humps or coils on the surface",
+      "A horse- or turtle-like head on a long neck",
+      "A mane or crest behind the head",
+      "Seen from ships and headlands"
+    ],
+    "size": "30 to 100 ft (reported)",
+    "habitat": "Open ocean and coastal bays",
+    "famous": [
+      {
+        "name": "Gloucester Harbor sightings",
+        "year": 1817,
+        "place": "Gloucester, Massachusetts"
+      },
+      {
+        "name": "HMS Daedalus sighting",
+        "year": 1848,
+        "place": "South Atlantic Ocean"
+      },
+      {
+        "name": "Valhalla sighting",
+        "year": 1905,
+        "place": "Off the coast of Brazil"
+      }
+    ],
+    "related": [
+      "cadborosaurus",
+      "chessie",
+      "loch-ness-monster",
+      "lagarfljot-worm",
+      "altamaha-ha",
+      "ningen"
+    ],
+    "wiki": "Sea serpent"
+  },
+  {
+    "slug": "beast-of-busco",
+    "name": "Beast of Busco",
+    "aliases": [
+      "Oscar the turtle",
+      "Busco turtle",
+      "Giant turtle of Churubusco",
+      "Indiana giant turtle"
+    ],
+    "cat": "aquatic",
+    "icon": "turtle",
+    "region": "Fulk Lake, Churubusco, Whitley County, Indiana",
+    "cc": [
+      "US"
+    ],
+    "first": "Farmer Oscar Fulk reported a giant turtle in 1898",
+    "summary": "A 500-pound snapping turtle that set off a lake-draining hunt in 1949.",
+    "body": [
+      "The Beast of Busco is a giant snapping turtle said to live in a small lake on a farm outside Churubusco, Indiana. Farmer Oscar Fulk first reported it in 1898. In July 1948 two fishermen said they saw it again, and estimated it at around 500 pounds, with a shell the size of a dining table.",
+      "When the story hit the wire services in early 1949, crowds descended on Gale Harris's farm and state police had to direct traffic. Harris tried traps, a diver, and draining the lake with pumps, but a dam broke and the water came back. The turtle, nicknamed Oscar, was never caught.",
+      "Churubusco now calls itself Turtle Town USA and holds Turtle Days each June."
+    ],
+    "signs": [
+      "A shell the size of a dining table",
+      "A huge head breaking the surface",
+      "Large drag marks on the bank"
+    ],
+    "size": "Shell 4 to 6 ft across, about 500 lb (reported)",
+    "habitat": "Small farm lake",
+    "famous": [
+      {
+        "name": "Oscar Fulk sighting",
+        "year": 1898,
+        "place": "Churubusco, Indiana"
+      },
+      {
+        "name": "Fishermen sighting",
+        "year": 1948,
+        "place": "Fulk Lake, Indiana"
+      },
+      {
+        "name": "Lake drained in turtle hunt",
+        "year": 1949,
+        "place": "Churubusco, Indiana"
+      }
+    ],
+    "related": [
+      "white-river-monster",
+      "bear-lake-monster"
+    ],
+    "wiki": "Beast of Busco"
+  },
+  {
+    "slug": "dobhar-chu",
+    "name": "Dobhar-ch\u00fa",
+    "aliases": [
+      "Dobhar chu",
+      "Dobarcu",
+      "King otter",
+      "Water hound",
+      "Irish crocodile",
+      "Doyarchu",
+      "Dhuragoo"
+    ],
+    "cat": "aquatic",
+    "icon": "seal",
+    "region": "Lakes of Leitrim, Sligo, Mayo and Galway, Ireland",
+    "cc": [
+      "IE"
+    ],
+    "first": "Linked to a woman's death at Glenade Lough in 1722",
+    "summary": "Ireland's giant 'king otter', remembered on an 18th-century gravestone.",
+    "body": [
+      "The Dobhar-ch\u00fa, Irish for 'water hound', is a giant otter-like creature of Irish lakes, said to be several times the size of a normal otter, with a white or dark pelt and black-tipped ears. It is fiercely territorial and is said to whistle to its mate.",
+      "Its best-known story comes from Glenade Lough in County Leitrim. In 1722 Grace Connolly went to the lake to wash clothes and was found dead with the creature lying on her. Her husband killed it, and its mate burst from the water and chased him until it too was killed. A gravestone in Conwall cemetery, said to be hers, is carved with an otter-like animal.",
+      "Sightings of large otter-like animals are still reported now and then in the lakes of the west of Ireland."
+    ],
+    "signs": [
+      "An otter far larger than normal",
+      "A whistling call across the water",
+      "Black-tipped ears on a pale pelt"
+    ],
+    "size": "7 to 15 ft (reported)",
+    "habitat": "Lakes and loughs",
+    "famous": [
+      {
+        "name": "Glenade Lough attack",
+        "year": 1722,
+        "place": "Glenade, County Leitrim, Ireland"
+      }
+    ],
+    "related": [
+      "loch-ness-monster",
+      "morag"
+    ],
+    "wiki": "Dobhar-ch\u00fa"
+  },
+  {
+    "slug": "goatman",
+    "name": "Goatman",
+    "aliases": [
+      "Maryland Goatman",
+      "Goat Man",
+      "Goatman of Prince George's County",
+      "Fletchertown Road Goatman",
+      "Goat-man"
+    ],
+    "cat": "entity",
+    "icon": "goatman",
+    "region": "Prince George's County, Maryland, especially Fletchertown Road near Bowie",
+    "cc": [
+      "US"
+    ],
+    "first": "A University of Maryland folklore project in May 1971; in the press that October",
+    "summary": "A half-man, half-goat said to stalk the back roads of suburban Maryland.",
+    "body": [
+      "Maryland's Goatman is a hairy, man-shaped creature with a goat's horns and legs, said to lurk in the woods of north-east Prince George's County. Stories say he attacks cars with an axe, howls at night and kills dogs.",
+      "A University of Maryland student recorded the legend for a folklore project in 1971, and that October the Prince George's County News placed the Goatman on Fletchertown Road near Bowie, linking him to the nearby Beltsville Agricultural Research Center. One popular version says he was a scientist there whose goat experiment went wrong. Another says he was a hermit who lived in the woods.",
+      "Teenagers still drive Fletchertown Road at night looking for him. Goatman stories also turn up in Kentucky, Texas and elsewhere, each with its own local twist."
+    ],
+    "signs": [
+      "A man-sized figure with horns and a goat's legs",
+      "Bleating or screaming in the woods at night",
+      "Dogs found dead or missing",
+      "An axe-wielding figure near the road"
+    ],
+    "size": "Human-sized or taller (reported)",
+    "habitat": "Wooded back roads and old railway lines",
+    "famous": [
+      {
+        "name": "Folklore project records the legend",
+        "year": 1971,
+        "place": "University of Maryland, College Park"
+      },
+      {
+        "name": "Newspaper places him on Fletchertown Road",
+        "year": 1971,
+        "place": "Bowie, Maryland"
+      }
+    ],
+    "related": [
+      "pope-lick-monster",
+      "lake-worth-monster",
+      "snallygaster",
+      "melon-heads",
+      "sheepsquatch"
+    ],
+    "wiki": "Goatman (urban legend)"
+  },
+  {
+    "slug": "pope-lick-monster",
+    "name": "Pope Lick Monster",
+    "aliases": [
+      "Goat Man of Pope Lick",
+      "Pope Lick Goatman",
+      "Pope Lick trestle monster",
+      "Kentucky Goatman",
+      "Sheepman"
+    ],
+    "cat": "entity",
+    "icon": "goatman",
+    "region": "Railroad trestle over Pope Lick Creek, Fisherville, Louisville, Kentucky",
+    "cc": [
+      "US"
+    ],
+    "first": "A long-told Louisville legend; filmed in 1988",
+    "summary": "A goat-legged figure said to lure people onto a deadly railroad trestle in Louisville.",
+    "body": [
+      "The Pope Lick Monster is a part-man, part-goat (some say part-sheep) creature said to live under a tall railroad trestle over Pope Lick Creek in eastern Louisville. Legends say it hypnotises people or mimics voices to draw them onto the bridge, leaps onto cars passing below, or carries a bloody axe.",
+      "Its backstory changes with the teller: a circus performer who escaped when a train derailed, or a farmer who traded goats for dark powers. Local filmmaker Ron Schildknecht made a short film about it in 1988, which upset the railroad.",
+      "The real danger is the trestle. It is an active Norfolk Southern main line with freight trains crossing every day, and several people have died or been badly hurt trying to cross it. The railroad warns trespassers will be arrested. Look from the road below, never from the bridge."
+    ],
+    "signs": [
+      "A goat- or sheep-legged figure under the trestle",
+      "Voices calling from the bridge",
+      "Something dropping onto cars below"
+    ],
+    "size": "Human-sized (reported)",
+    "habitat": "A high railroad trestle over a wooded creek",
+    "famous": [
+      {
+        "name": "Short film The Legend of the Pope Lick Monster",
+        "year": 1988,
+        "place": "Louisville, Kentucky"
+      }
+    ],
+    "related": [
+      "goatman",
+      "lake-worth-monster"
+    ],
+    "wiki": "Pope Lick Monster"
+  },
+  {
+    "slug": "lake-worth-monster",
+    "name": "Lake Worth Monster",
+    "aliases": [
+      "Goat-Man of Lake Worth",
+      "Lake Worth Goatman",
+      "Greer Island monster",
+      "Texas Goatman",
+      "Fort Worth monster"
+    ],
+    "cat": "entity",
+    "icon": "goatman",
+    "region": "Lake Worth and Greer Island, Fort Worth Nature Center and Refuge, Texas",
+    "cc": [
+      "US"
+    ],
+    "first": "July 1969",
+    "summary": "A furry, scaly 'goat-man' that threw a tire at a crowd in 1969.",
+    "body": [
+      "In July 1969, people around Lake Worth on the edge of Fort Worth, Texas reported a 'half-man, half-goat' with fur, scales and long clawed fingers. Newspapers reported it had jumped from a tree onto a car, leaving a long scratch, and later hurled a spare tire at a group of onlookers from a bluff.",
+      "Crowds of armed sightseers came out at night. Local resident Allen Plaster took a blurry photo of a white, furry shape that he later said was probably a prank. In 2005 an anonymous letter to the Star-Telegram claimed three high school friends had staged sightings with a tinfoil mask. Some researchers still think a real animal was involved.",
+      "The Fort Worth Nature Center has held a Lake Worth Monster Bash every October since 2009."
+    ],
+    "signs": [
+      "A white or grey furry figure with scales",
+      "Long claws",
+      "Objects thrown from cover",
+      "Seen near Greer Island at night"
+    ],
+    "size": "About 7 ft (reported)",
+    "habitat": "Lakeside woods and nature refuge",
+    "famous": [
+      {
+        "name": "Summer of sightings and the tire throw",
+        "year": 1969,
+        "place": "Lake Worth, Fort Worth, Texas"
+      },
+      {
+        "name": "Prank confession letter",
+        "year": 2005,
+        "place": "Fort Worth, Texas"
+      }
+    ],
+    "related": [
+      "goatman",
+      "pope-lick-monster",
+      "bigfoot"
+    ],
+    "wiki": "Lake Worth Monster"
+  },
+  {
+    "slug": "pukwudgie",
+    "name": "Pukwudgie",
+    "aliases": [
+      "Puk-Wudjie",
+      "Pukwudgee",
+      "Bagwajinini",
+      "Little wild man of the woods",
+      "Bridgewater Triangle Pukwudgie"
+    ],
+    "cat": "entity",
+    "icon": "imp",
+    "region": "South-eastern Massachusetts (Freetown-Fall River State Forest, the Bridgewater Triangle); also Great Lakes traditions",
+    "cc": [
+      "US"
+    ],
+    "first": "Named in print in 1839; tied to Massachusetts in local histories from 1906",
+    "summary": "A knee-high forest being from Native American tradition, now part of Bridgewater Triangle lore.",
+    "body": [
+      "The Pukwudgie is a small, human-like forest being from Native American tradition, about knee- to waist-high, with large ears and a grey complexion. In stories it can be mischievous or dangerous, and is said to vanish, shape-shift and lead people astray. Similar 'little people' appear in the traditions of many nations, including the Ojibwe, Mohegan, Mi'kmaq and Wampanoag.",
+      "The name entered print through Henry Rowe Schoolcraft's Ojibwe stories in 1839 and Longfellow's Song of Hiawatha. Local histories later tied it to Massachusetts, and Wampanoag storytellers retold it in their own way. These are living cultural traditions, and some communities prefer that their beings not be treated as monsters for entertainment, so this page sticks to modern reports.",
+      "In recent decades, hikers in Freetown-Fall River State Forest and the swampy Bridgewater Triangle have reported small grey figures, strange lights and a sense of being watched, often credited to Pukwudgies in paranormal books."
+    ],
+    "signs": [
+      "A small grey figure, knee- to waist-high",
+      "Large ears and long fingers",
+      "Glowing lights in the woods",
+      "Feeling of being led off the trail"
+    ],
+    "size": "2 to 3 ft (reported)",
+    "habitat": "Deep forest, swamps and rocky ledges",
+    "famous": [
+      {
+        "name": "Schoolcraft's Ojibwe stories",
+        "year": 1839,
+        "place": "Great Lakes region"
+      },
+      {
+        "name": "Longfellow's Song of Hiawatha",
+        "year": 1855,
+        "place": "United States"
+      }
+    ],
+    "related": [
+      "nain-rouge",
+      "hopkinsville-goblins",
+      "dover-demon"
+    ],
+    "wiki": "Pukwudgie"
+  },
+  {
+    "slug": "melon-heads",
+    "name": "Melon heads",
+    "aliases": [
+      "Melonheads",
+      "Melon-heads",
+      "Wobbleheads",
+      "Michigan melon heads",
+      "Kirtland melon heads",
+      "Connecticut melon heads"
+    ],
+    "cat": "entity",
+    "icon": "melonhead",
+    "region": "Ottawa and Allegan counties, Michigan; Kirtland, Ohio; Shelton and Trumbull, Connecticut",
+    "cc": [
+      "US"
+    ],
+    "first": "Teen legend-tripping lore from the mid-20th century",
+    "summary": "Small, big-headed figures said to live in the woods of Michigan, Ohio and Connecticut.",
+    "body": [
+      "Melon heads are small humanoids with huge, bulbous, hairless heads, said to emerge from the woods at night. The legend turns up in three states, each with its own origin story.",
+      "In Michigan they are linked to the area around the Felt Mansion in Laketown Township and said to be children who escaped an asylum, though local historians say no such asylum existed. In Kirtland, Ohio, the story blames a sinister Dr. Crow and his experiments on orphans, and teens drive Wisner Road looking for them. In Connecticut the tales centre on Velvet Street in Trumbull and the woods of Shelton, with origins from a colonial-era family to an escaped asylum.",
+      "Folklorists note the stories borrow from real fears and prejudice about disability. They are classic legend-trip tales."
+    ],
+    "signs": [
+      "Small figures with oversized bald heads",
+      "Glowing eyes along a dark road",
+      "Seen in the woods near old buildings"
+    ],
+    "size": "Child-sized (reported)",
+    "habitat": "Woods and back roads near old estates",
+    "famous": [
+      {
+        "name": "Melonheads film",
+        "year": 2011,
+        "place": "West Michigan"
+      }
+    ],
+    "related": [
+      "nain-rouge",
+      "dogman",
+      "goatman"
+    ],
+    "wiki": "Melon heads"
+  },
+  {
+    "slug": "grafton-monster",
+    "name": "Grafton Monster",
+    "aliases": [
+      "Grafton monster",
+      "Headless monster of Grafton",
+      "White Thing of Grafton"
+    ],
+    "cat": "entity",
+    "icon": "grafton",
+    "region": "Riverside Drive and Route 119 along the Tygart Valley River, Grafton, West Virginia",
+    "cc": [
+      "US"
+    ],
+    "first": "16 June 1964",
+    "summary": "A tall, pale, headless-looking figure seen by a Grafton newspaperman in 1964.",
+    "body": [
+      "Late on 16 June 1964, Grafton Sentinel reporter Robert Cockrell said he saw a huge, smooth, pale figure, 7 to 9 feet tall and seal-like, standing by the road along the Tygart Valley River. It seemed to have no head. Others later added that it made a strange whistling sound.",
+      "Two days later the Sentinel reported groups of teenagers combing the riverbank with flashlights and makeshift weapons. The next day the paper put it down to spring fever. The story lived on in West Virginia folklore, and Grafton launched a Grafton Monster Festival in 2024 for the 60th anniversary. It also appears in the video game Fallout 76."
+    ],
+    "signs": [
+      "A tall, pale or white shape with no visible head",
+      "Smooth, seal-like skin",
+      "A whistling sound"
+    ],
+    "size": "7 to 9 ft (reported)",
+    "habitat": "Riverbank and roadside",
+    "famous": [
+      {
+        "name": "Cockrell sighting",
+        "year": 1964,
+        "place": "Grafton, West Virginia"
+      },
+      {
+        "name": "First Grafton Monster Festival",
+        "year": 2024,
+        "place": "Grafton, West Virginia"
+      }
+    ],
+    "related": [
+      "flatwoods-monster",
+      "mothman",
+      "sheepsquatch"
+    ],
+    "wiki": "Grafton monster"
+  },
+  {
+    "slug": "enfield-monster",
+    "name": "Enfield Monster",
+    "aliases": [
+      "Enfield Horror",
+      "Enfield creature",
+      "Illinois three-legged monster"
+    ],
+    "cat": "entity",
+    "icon": "dover",
+    "region": "Enfield, White County, Illinois",
+    "cc": [
+      "US"
+    ],
+    "first": "25 April 1973",
+    "summary": "A three-legged, pink-eyed creature that scratched at an Illinois front door in 1973.",
+    "body": [
+      "At about 10 pm on 25 April 1973, Henry McDaniel of Enfield, Illinois heard scratching at his door. Outside, he later said, stood a greyish creature about 4.5 feet tall with three legs, a short body, two short arms and two pink eyes as big as flashlights. He fired at it, it hissed like a wildcat, and it bounded off toward the railway embankment, covering 50 feet in three jumps.",
+      "Police found odd six-padded tracks. A neighbour boy's claim that it had torn his shoes was later admitted to be a joke. McDaniel reported seeing it again on 6 May, and a radio search party said they heard something in the brush. The case later became a textbook example of how scares spread through a community."
+    ],
+    "signs": [
+      "Three legs and two short arms",
+      "Large pink, glowing eyes",
+      "A wildcat-like hiss",
+      "Huge leaps",
+      "Dog-like tracks with six toe pads"
+    ],
+    "size": "About 4.5 ft (reported)",
+    "habitat": "Small-town yard near a railway",
+    "famous": [
+      {
+        "name": "McDaniel encounter",
+        "year": 1973,
+        "place": "Enfield, Illinois"
+      }
+    ],
+    "related": [
+      "dover-demon",
+      "flatwoods-monster",
+      "hopkinsville-goblins"
+    ],
+    "wiki": "Enfield Monster"
+  },
+  {
+    "slug": "nain-rouge",
+    "name": "Nain Rouge",
+    "aliases": [
+      "Red Dwarf of Detroit",
+      "Demon of the Strait",
+      "Le Nain Rouge",
+      "Detroit red imp",
+      "Lutin of Detroit"
+    ],
+    "cat": "entity",
+    "icon": "imp",
+    "region": "Detroit, Michigan",
+    "cc": [
+      "US"
+    ],
+    "first": "In print in Marie Hamlin's Legends of Le D\u00e9troit, 1883",
+    "summary": "Detroit's red imp, said to appear before every disaster to hit the city.",
+    "body": [
+      "The Nain Rouge, French for 'red dwarf', is a small, red-faced imp with a glittering eye and a grin full of sharp teeth, said to haunt Detroit. Seeing it is a warning that something bad is coming.",
+      "The story says Detroit's founder, Antoine de la Mothe Cadillac, struck the imp with his cane and lost his fortune. Tellers say it danced among the dead after the Battle of Bloody Run in 1763, was seen before the 1805 fire that burned the city, and was spotted by utility workers just before the 1967 riots. The legend first appeared in print in 1883, so how far back it really goes is unclear.",
+      "Since 2010 Detroiters have held the Marche du Nain Rouge each spring, a costumed parade that banishes the imp from the city for another year."
+    ],
+    "signs": [
+      "A small red figure with a wide, toothy grin",
+      "A glittering eye",
+      "Seen just before fires, riots or disasters"
+    ],
+    "size": "Child-sized",
+    "habitat": "City streets and riverbank",
+    "famous": [
+      {
+        "name": "Seen after the Battle of Bloody Run",
+        "year": 1763,
+        "place": "Detroit"
+      },
+      {
+        "name": "Sighting before the riots",
+        "year": 1967,
+        "place": "Detroit, Michigan"
+      },
+      {
+        "name": "First Marche du Nain Rouge",
+        "year": 2010,
+        "place": "Detroit, Michigan"
+      }
+    ],
+    "related": [
+      "melon-heads",
+      "pukwudgie",
+      "dogman"
+    ],
+    "wiki": "Nain Rouge"
+  },
+  {
+    "slug": "fresno-nightcrawlers",
+    "name": "Fresno Nightcrawlers",
+    "aliases": [
+      "Nightcrawlers",
+      "Fresno nightcrawler",
+      "Fresno Alien",
+      "Walking pants",
+      "Fresno pants creature"
+    ],
+    "cat": "entity",
+    "icon": "nightcrawler",
+    "region": "Fresno and Yosemite Lakes Park, California",
+    "cc": [
+      "US"
+    ],
+    "first": "Security camera footage from 2007",
+    "summary": "Walking pairs of white legs caught on a Fresno security camera.",
+    "body": [
+      "Fresno Nightcrawlers are white, legs-only figures seen on home security footage, often described as a pair of pants out for a walk. They seem to have a tiny head and body sitting directly on long legs, and tend to appear in pairs.",
+      "The first clip was recorded in south Fresno in 2007 and shown on Univision. More footage followed from Yosemite Lakes Park in 2011. The TV show Fact or Faked: Paranormal Files gave them their name and could not prove the footage was faked. Skeptic Brian Dunning calls them an urban legend nobody truly believes in, yet they have become a beloved Fresno mascot, with T-shirts, toys and murals."
+    ],
+    "signs": [
+      "Two long white legs with almost no body",
+      "A slow, swaying walk",
+      "Usually seen in pairs on security cameras"
+    ],
+    "size": "2 to 4 ft (reported)",
+    "habitat": "Suburban yards at night",
+    "famous": [
+      {
+        "name": "First security camera clip",
+        "year": 2007,
+        "place": "Fresno, California"
+      },
+      {
+        "name": "Yosemite Lakes Park footage",
+        "year": 2011,
+        "place": "Yosemite Lakes Park, California"
+      }
+    ],
+    "related": [
+      "dover-demon",
+      "flatwoods-monster"
+    ],
+    "wiki": "Fresno nightcrawler"
+  },
+  {
+    "slug": "black-eyed-children",
+    "name": "Black-eyed children",
+    "aliases": [
+      "Black-eyed kids",
+      "BEK",
+      "BEKs",
+      "Black eyed kids",
+      "Black-eyed people"
+    ],
+    "cat": "entity",
+    "icon": "blackeyed",
+    "region": "Reported across the US and UK; first story from Abilene, Texas",
+    "cc": [
+      "US",
+      "GB"
+    ],
+    "first": "A 1996 online post by Texas reporter Brian Bethel",
+    "summary": "Pale children with solid black eyes who knock and insist on being let in.",
+    "body": [
+      "Black-eyed children look like ordinary kids or teens, usually pale and oddly dressed, until you see their eyes, which are completely black with no whites. They knock on doors or tap on car windows late at night and ask, politely but insistently, to be let in to use the phone or get a ride. Witnesses say they feel a wave of dread they cannot explain.",
+      "The legend traces to 1996, when reporter Brian Bethel posted about two black-eyed boys who approached his car in Abilene, Texas. The story spread through ghost forums, TV shows and, in 2014, a burst of British tabloid front pages. Bethel still says the encounter happened.",
+      "Researchers have found no documented cases beyond friend-of-a-friend stories, and the tale fits a long line of 'don't let it in' folklore."
+    ],
+    "signs": [
+      "Pale children with completely black eyes",
+      "Insisting on being invited inside",
+      "Stilted, adult-sounding speech",
+      "A sudden feeling of fear"
+    ],
+    "size": "Child or teen-sized",
+    "habitat": "Doorsteps and parked cars at night",
+    "famous": [
+      {
+        "name": "Brian Bethel encounter",
+        "year": 1996,
+        "place": "Abilene, Texas"
+      },
+      {
+        "name": "UK tabloid wave",
+        "year": 2014,
+        "place": "Staffordshire, England"
+      }
+    ],
+    "related": [
+      "shadow-people",
+      "men-in-black",
+      "grey-aliens"
+    ],
+    "wiki": "Black-eyed children"
+  },
+  {
+    "slug": "shadow-people",
+    "name": "Shadow people",
+    "aliases": [
+      "Shadow person",
+      "Shadow figures",
+      "The Hat Man",
+      "Hat Man",
+      "Black mass",
+      "Shadow beings"
+    ],
+    "cat": "entity",
+    "icon": "shadow",
+    "region": "Reported worldwide, often in bedrooms at night",
+    "cc": [],
+    "first": "Popularised on Coast to Coast AM radio in 2001",
+    "summary": "Dark, human-shaped silhouettes seen at the edge of vision, including the infamous Hat Man.",
+    "body": [
+      "Shadow people are dark, featureless human silhouettes seen in the corner of the eye, in doorways or standing at the foot of the bed. They are usually solid black, darker than the room around them, and dart away when looked at directly.",
+      "The idea took off after Coast to Coast AM devoted a show to them in April 2001 and invited listeners to send drawings. The best-known figure is the Hat Man, a tall shadow in a brimmed hat and sometimes a long coat, often reported during sleep paralysis.",
+      "Sleep researchers point out that sleep paralysis often brings vivid sensed presences and figures, and the Hat Man is also widely reported by people who take dangerous overdoses of the antihistamine diphenhydramine."
+    ],
+    "signs": [
+      "A solid black human outline",
+      "A figure in a brimmed hat watching from the doorway",
+      "Being unable to move on waking",
+      "Pressure on the chest"
+    ],
+    "size": "Human height or taller",
+    "habitat": "Bedrooms and hallways at night",
+    "famous": [
+      {
+        "name": "Coast to Coast AM shadow people show",
+        "year": 2001,
+        "place": "United States"
+      }
+    ],
+    "related": [
+      "black-eyed-children",
+      "men-in-black",
+      "alien-abduction",
+      "spring-heeled-jack",
+      "popobawa",
+      "wendigo"
+    ],
+    "wiki": "Shadow person"
+  },
+  {
+    "slug": "spring-heeled-jack",
+    "name": "Spring-heeled Jack",
+    "aliases": [
+      "Springheel Jack",
+      "Spring Heeled Jack",
+      "Jumping Jack",
+      "The Terror of London"
+    ],
+    "cat": "entity",
+    "icon": "springjack",
+    "region": "London and southern England, later the Midlands and Liverpool",
+    "cc": [
+      "GB"
+    ],
+    "first": "October 1837, in south London",
+    "summary": "A fire-breathing, high-leaping figure who terrorised Victorian England.",
+    "body": [
+      "Spring-heeled Jack was a figure of Victorian panic: a tall, thin man in a black cloak with clawed hands and glowing red eyes, who could leap over walls and hedges in a single bound and breathed out blue and white flames.",
+      "Reports began in London in 1837. In January 1838 the Lord Mayor of London read out a letter about the attacks at a public session. On 19 February 1838, 18-year-old Jane Alsop answered her door to a man who said he was a policeman, then threw off his cloak, spat flames in her face and tore at her with claws. Lucy Scales reported a similar attack days later.",
+      "Sightings went on for decades, including sentries at Aldershot army camp in 1877, until the last widely reported appearance in Liverpool in 1904. He became a star of penny dreadful comics."
+    ],
+    "signs": [
+      "Enormous leaps over walls and rooftops",
+      "Blue or white flames from the mouth",
+      "Clawed hands and glowing eyes",
+      "A cloak and tight-fitting oilskin suit"
+    ],
+    "size": "Tall and thin",
+    "habitat": "City lanes, commons and barracks",
+    "famous": [
+      {
+        "name": "First reported attacks",
+        "year": 1837,
+        "place": "Barnes and Battersea, London"
+      },
+      {
+        "name": "Jane Alsop attack",
+        "year": 1838,
+        "place": "Bow, London"
+      },
+      {
+        "name": "Liverpool sightings",
+        "year": 1904,
+        "place": "Everton, Liverpool"
+      }
+    ],
+    "related": [
+      "owlman",
+      "mothman",
+      "shadow-people"
+    ],
+    "wiki": "Spring-heeled Jack"
+  },
+  {
+    "slug": "popobawa",
+    "name": "Popobawa",
+    "aliases": [
+      "Popo Bawa",
+      "Mapopobawa",
+      "Bat-wing spirit",
+      "Zanzibar bat demon"
+    ],
+    "cat": "entity",
+    "icon": "popobawa",
+    "region": "Pemba and Unguja islands, Zanzibar, and the Tanzanian coast",
+    "cc": [
+      "TZ"
+    ],
+    "first": "Pemba, around 1965",
+    "summary": "A shape-shifting night spirit whose name means 'bat wing', behind waves of panic in Zanzibar.",
+    "body": [
+      "Popobawa is a spirit from Zanzibar whose Swahili name means 'bat wing', after the shadow it is said to cast. It is a shapeshifter that can appear as a man or an animal, though it is often pictured as a small, one-eyed creature with bat wings. It visits homes at night, attacks sleepers, and brings a sulfur smell.",
+      "Reports began on Pemba around 1965 and returned in waves. In 1995 a major panic spread across Zanzibar and the coast to Dar es Salaam, with families sleeping outdoors around fires to avoid it. Shorter outbreaks followed in 2000 and 2007.",
+      "Researchers describe the waves as social panics tied to sleep paralysis, rumour and times of political tension."
+    ],
+    "signs": [
+      "Night attacks on sleepers",
+      "A shadow like bat wings",
+      "A sulfur smell",
+      "Families sleeping outside in groups"
+    ],
+    "size": "Varies; often small",
+    "habitat": "Village houses at night",
+    "famous": [
+      {
+        "name": "First reports on Pemba",
+        "year": 1965,
+        "place": "Pemba, Zanzibar"
+      },
+      {
+        "name": "Great panic",
+        "year": 1995,
+        "place": "Zanzibar and Dar es Salaam"
+      },
+      {
+        "name": "Renewed outbreak",
+        "year": 2007,
+        "place": "Dar es Salaam, Tanzania"
+      }
+    ],
+    "related": [
+      "shadow-people",
+      "mothman",
+      "ahool"
+    ],
+    "wiki": "Popobawa"
+  },
+  {
+    "slug": "wendigo",
+    "name": "Wendigo",
+    "aliases": [
+      "Windigo",
+      "Witiko",
+      "Wiindigoo",
+      "W\u012bhtik\u014dw",
+      "Whitiko"
+    ],
+    "cat": "entity",
+    "icon": "woods",
+    "region": "Northern forests of Canada and the Great Lakes, in the traditions of Algonquian-speaking peoples",
+    "cc": [
+      "CA",
+      "US"
+    ],
+    "first": "In English accounts since at least 1714; popularised by Algernon Blackwood's 1910 story",
+    "summary": "A being of winter and hunger from Algonquian traditions, far removed from its horror-movie image.",
+    "body": [
+      "The wendigo belongs to the traditions of several Algonquian-speaking peoples, including the Ojibwe, Cree, Saulteaux, Naskapi and Innu. In these teachings it is tied to winter, cold and starvation, and to greed that can never be satisfied. Ojibwe scholar Basil Johnston described it as gaunt, ash-grey and always hungry. It is also a moral idea, a warning about what selfishness does to a person and a community.",
+      "These are living spiritual traditions, and many Indigenous people prefer that the wendigo not be treated as a casual campfire monster. We keep this page short for that reason.",
+      "The antlered, deer-skulled 'wendigo' seen in films, games and online stories is a recent pop-culture invention that grew from Algernon Blackwood's 1910 story The Wendigo. Most modern 'wendigo sightings' online describe that version, not the being of the traditions."
+    ],
+    "signs": [
+      "Modern reports describe a tall, gaunt figure in winter woods",
+      "Bitter cold and a sense of dread",
+      "Voices or calls deep in the forest"
+    ],
+    "size": "Described as gaunt; sometimes giant",
+    "habitat": "Northern boreal forest in winter",
+    "famous": [
+      {
+        "name": "Blackwood's story The Wendigo",
+        "year": 1910,
+        "place": "Published in England"
+      }
+    ],
+    "related": [
+      "shadow-people",
+      "dogman",
+      "bigfoot"
+    ],
+    "wiki": "Wendigo"
+  },
+  {
+    "slug": "thetis-lake-monster",
+    "name": "Thetis Lake Monster",
+    "aliases": [
+      "Thetis Lake creature",
+      "BC Gill-man",
+      "Victoria lake monster"
+    ],
+    "cat": "entity",
+    "icon": "lizardman",
+    "region": "Thetis Lake, near Victoria, British Columbia",
+    "cc": [
+      "CA"
+    ],
+    "first": "August 1972",
+    "summary": "A silver, scaly gill-man two teenagers said chased them from a BC beach in 1972.",
+    "body": [
+      "On 22 August 1972, the Victoria Daily Times reported that two teenage boys said a silver-scaled, man-shaped creature with claws and a sharp, spiked head rose out of Thetis Lake and chased them off the beach. Two other boys fishing on the far shore said they saw it too. The RCMP investigated and found nothing.",
+      "Years later skeptic Daniel Loxton tracked down one of the witnesses, who admitted the story was made up. Loxton found the description matched the monster in Monster from the Surf, a film shown on local TV just days earlier."
+    ],
+    "signs": [
+      "Silvery scales",
+      "A pointed, spiked head with ear-like gills",
+      "Clawed hands",
+      "Rising out of the water"
+    ],
+    "size": "About 5 ft (reported)",
+    "habitat": "Lake beach",
+    "famous": [
+      {
+        "name": "Teenagers chased from the beach",
+        "year": 1972,
+        "place": "Thetis Lake, British Columbia"
+      }
+    ],
+    "related": [
+      "lizard-man",
+      "loveland-frog",
+      "reptilians"
+    ],
+    "wiki": "Thetis Lake Monster"
+  },
+  {
+    "slug": "indrid-cold",
+    "name": "Indrid Cold",
+    "aliases": [
+      "Grinning Man",
+      "Smiling Man",
+      "The Grinning Man",
+      "Indrid Cold of Lanulos"
+    ],
+    "cat": "entity",
+    "icon": "mib",
+    "region": "Interstate 77 near Parkersburg, West Virginia, and the Ohio Valley",
+    "cc": [
+      "US"
+    ],
+    "first": "2 November 1966",
+    "summary": "A smiling man in a shiny suit who stepped out of a UFO in West Virginia in 1966.",
+    "body": [
+      "On the evening of 2 November 1966, salesman Woodrow Derenberger said a craft shaped like an old kerosene lamp blocked his truck on Interstate 77 near Parkersburg, West Virginia. A tall man with dark slicked-back hair, a deep tan and a glossy coat stepped out, smiled, and spoke to him without moving his lips. He called himself Cold and said, 'We mean you no harm.'",
+      "Derenberger told the story on local TV the next day, and others came forward describing a similar grinning man. Writer John Keel folded the story into his Mothman Prophecies, and Indrid Cold became a fixture of Point Pleasant lore. Derenberger later claimed trips to Cold's home planet, Lanulos."
+    ],
+    "signs": [
+      "A tall man with a fixed, too-wide grin",
+      "A shiny or glossy coat",
+      "Telepathic speech",
+      "A lamp-shaped craft blocking the road"
+    ],
+    "size": "About 6 ft",
+    "habitat": "Highway pull-off at night",
+    "famous": [
+      {
+        "name": "Derenberger roadside encounter",
+        "year": 1966,
+        "place": "Near Parkersburg, West Virginia"
+      }
+    ],
+    "related": [
+      "mothman",
+      "men-in-black",
+      "nordic-aliens"
+    ],
+    "wiki": "Indrid Cold"
+  },
+  {
+    "slug": "grey-aliens",
+    "name": "Grey aliens",
+    "aliases": [
+      "Greys",
+      "Grays",
+      "Gray aliens",
+      "Zeta Reticulans",
+      "Roswell Greys",
+      "Little grey men",
+      "Ebens"
+    ],
+    "cat": "entity",
+    "icon": "entity",
+    "region": "Reported worldwide, especially in US abduction accounts",
+    "cc": [],
+    "first": "The 1961 Betty and Barney Hill case made the image famous",
+    "summary": "Small, grey, big-headed beings with huge black eyes, the classic face of alien encounters.",
+    "body": [
+      "Greys are the beings most often described in alien abduction and close encounter reports: short, slender, hairless humanoids with grey skin, an oversized head, tiny nose and mouth, and large, black, almond-shaped eyes. Tall versions are reported too.",
+      "Betty and Barney Hill's 1961 account of being taken aboard a craft in New Hampshire, recalled under hypnosis, set the template. Betty's sketch of a star map led to the idea that greys come from Zeta Reticuli. Later accounts of Roswell bodies and Whitley Strieber's 1987 book Communion, with its famous cover, made the face known everywhere.",
+      "Skeptics note that similar big-headed, big-eyed future humans appeared in science fiction long before 1961."
+    ],
+    "signs": [
+      "Large black almond-shaped eyes",
+      "Grey, hairless skin",
+      "Thin body and an oversized head",
+      "Telepathic communication",
+      "Missing time"
+    ],
+    "size": "3 to 4 ft, sometimes taller",
+    "habitat": "Inside craft, bedrooms and lonely roads",
+    "famous": [
+      {
+        "name": "Betty and Barney Hill encounter",
+        "year": 1961,
+        "place": "White Mountains, New Hampshire"
+      },
+      {
+        "name": "Communion published",
+        "year": 1987,
+        "place": "United States"
+      }
+    ],
+    "related": [
+      "alien-abduction",
+      "nordic-aliens",
+      "hopkinsville-goblins",
+      "ufo-saucer",
+      "black-eyed-children",
+      "men-in-black",
+      "reptilians",
+      "ufo-crash"
+    ],
+    "wiki": "Grey alien"
+  },
+  {
+    "slug": "nordic-aliens",
+    "name": "Nordic aliens",
+    "aliases": [
+      "Nordics",
+      "Pleiadians",
+      "Space Brothers",
+      "Tall whites",
+      "Venusians"
+    ],
+    "cat": "entity",
+    "icon": "nordic",
+    "region": "Mostly contactee reports from the US and Europe, especially in the 1950s",
+    "cc": [],
+    "first": "George Adamski said he met one in the California desert on 20 November 1952",
+    "summary": "Tall, fair-haired, human-looking visitors from 1950s contactee stories.",
+    "body": [
+      "Nordics are human-looking beings reported in UFO contact stories: tall, often 6 to 7 feet, with long fair hair, pale skin and light eyes. They are usually described as calm and kind, speaking telepathically and warning people about nuclear weapons or the health of the planet.",
+      "George Adamski said he met a long-haired visitor named Orthon near Desert Center, California in 1952, who told him he came from Venus. Other 1950s contactees reported similar 'space brothers', and from 1975 the Swiss farmer Billy Meier claimed contact with beings from the Pleiades.",
+      "Historians point to the 1951 film The Day the Earth Stood Still as one inspiration. From the 1960s on, greys largely replaced Nordics in encounter reports."
+    ],
+    "signs": [
+      "Tall, human-looking people with long fair hair",
+      "One-piece suits",
+      "Calm, peaceful warnings",
+      "Telepathy"
+    ],
+    "size": "6 to 7 ft",
+    "habitat": "Desert landing sites and contact meetings",
+    "famous": [
+      {
+        "name": "Adamski meets Orthon",
+        "year": 1952,
+        "place": "Desert Center, California"
+      },
+      {
+        "name": "Billy Meier contacts begin",
+        "year": 1975,
+        "place": "Hinwil, Switzerland"
+      }
+    ],
+    "related": [
+      "grey-aliens",
+      "indrid-cold",
+      "ufo-cigar"
+    ],
+    "wiki": "Nordic aliens"
+  },
+  {
+    "slug": "men-in-black",
+    "name": "Men in Black",
+    "aliases": [
+      "MIB",
+      "Men in black",
+      "Black-suited men",
+      "Silencers",
+      "Three men in black"
+    ],
+    "cat": "entity",
+    "icon": "mib",
+    "region": "Mostly the United States, following UFO sightings",
+    "cc": [
+      "US"
+    ],
+    "first": "Harold Dahl's 1947 Maury Island story; Albert K. Bender's 1953 visit",
+    "summary": "Pale, oddly behaved men in black suits who warn UFO witnesses to keep quiet.",
+    "body": [
+      "Men in Black are strangers in dark suits, hats and sunglasses who turn up after a UFO sighting and warn witnesses not to talk. Reports describe them as pale or oddly tanned, stiff, with flat voices, unfamiliar with everyday things like ballpoint pens, and arriving in old but brand-new-looking black cars.",
+      "In 1947 Harold Dahl claimed a man in a dark suit warned him about his Maury Island sighting. In 1953 Albert K. Bender shut down his UFO research group, saying three men in black had visited him. Author Gray Barker turned the story into a 1956 book, and John Keel reported MIB visits around Point Pleasant during the Mothman flap.",
+      "Folklorists compare them to old tales of meeting the devil on the road. The 1997 film made them comic heroes."
+    ],
+    "signs": [
+      "Black suits, hats and sunglasses",
+      "Pale skin and stiff, odd movements",
+      "Knowing details they could not know",
+      "Warnings to stay quiet",
+      "Old-model black cars that look new"
+    ],
+    "size": "Human-sized",
+    "habitat": "Witnesses' homes after a sighting",
+    "famous": [
+      {
+        "name": "Maury Island warning",
+        "year": 1947,
+        "place": "Tacoma, Washington"
+      },
+      {
+        "name": "Albert K. Bender visit",
+        "year": 1953,
+        "place": "Bridgeport, Connecticut"
+      },
+      {
+        "name": "Point Pleasant visits",
+        "year": 1967,
+        "place": "Point Pleasant, West Virginia"
+      }
+    ],
+    "related": [
+      "indrid-cold",
+      "mothman",
+      "black-eyed-children",
+      "grey-aliens",
+      "shadow-people",
+      "ufo-crash"
+    ],
+    "wiki": "Men in black"
+  },
+  {
+    "slug": "reptilians",
+    "name": "Reptilians",
+    "aliases": [
+      "Reptoids",
+      "Reptilian aliens",
+      "Lizard people",
+      "Saurians",
+      "Draconians",
+      "Reptiloids"
+    ],
+    "cat": "entity",
+    "icon": "lizardman",
+    "region": "Abduction reports worldwide; conspiracy theory spread online",
+    "cc": [],
+    "first": "Patrolman Herbert Schirmer's 1967 account from Ashland, Nebraska",
+    "summary": "Scaly, reptile-like humanoids from some abduction reports, and a notorious conspiracy theory.",
+    "body": [
+      "In UFO lore, reptilians are tall, scaly, reptile-like humanoids with slit-pupil eyes, described in a minority of abduction accounts. One of the earliest came from Ashland, Nebraska patrolman Herbert Schirmer, who under hypnosis recalled being taken aboard a craft in 1967 by beings with a slightly reptilian look and a winged-serpent emblem.",
+      "From the 1990s the idea was spun into a conspiracy theory claiming shape-shifting reptilians secretly rule the world. Researchers have traced it to pulp fiction of the 1920s, and note it often recycles old antisemitic tropes. This page is about encounter reports only."
+    ],
+    "signs": [
+      "Scaly green or grey skin",
+      "Vertical slit pupils",
+      "Tall, muscular build",
+      "A winged-serpent emblem"
+    ],
+    "size": "6 to 8 ft (reported)",
+    "habitat": "Inside craft during reported abductions",
+    "famous": [
+      {
+        "name": "Herbert Schirmer encounter",
+        "year": 1967,
+        "place": "Ashland, Nebraska"
+      }
+    ],
+    "related": [
+      "lizard-man",
+      "grey-aliens",
+      "alien-abduction",
+      "thetis-lake-monster"
+    ],
+    "wiki": "Reptilian humanoid"
+  },
+  {
+    "slug": "wampus-cat",
+    "name": "Wampus cat",
+    "aliases": [
+      "Wampus",
+      "Whistling wampus",
+      "Gallywampus",
+      "Catawampus",
+      "Wampus beast"
+    ],
+    "cat": "other",
+    "icon": "bigcat",
+    "region": "Appalachia, the Ozarks, Tennessee and the Carolinas",
+    "cc": [
+      "US"
+    ],
+    "first": "Appalachian folklore; in newspapers by the 1930s",
+    "summary": "An Appalachian monster cat with glowing eyes, sometimes said to have six legs.",
+    "body": [
+      "The wampus cat is a big, dark cat of Appalachian and Ozark folklore with glowing green or yellow eyes and a scream like a cougar. Depending on who tells it, it is a spirit cat with strange powers, a six-legged cat that can run forever, or an amphibious panther that swims like a mink.",
+      "Some versions draw on older Cherokee stories, while others are plain lumber camp yarns. In the 1930s, newspapers in the North Carolina Piedmont blamed a wampus cat for killing livestock. Today it is a popular school mascot, from the Conway Wampus Cats in Arkansas to schools in Texas and Tennessee."
+    ],
+    "signs": [
+      "A dark cat bigger than a panther",
+      "Glowing green or yellow eyes",
+      "Screams and whistles in the woods at night",
+      "Livestock and dogs killed"
+    ],
+    "size": "7 to 20 ft long in tall tales",
+    "habitat": "Mountain forest and swamps",
+    "famous": [
+      {
+        "name": "Knoxville paper describes a 15- to 20-foot wampus cat",
+        "year": 1936,
+        "place": "Knoxville, Tennessee"
+      }
+    ],
+    "related": [
+      "ozark-howler",
+      "hodag",
+      "beast-of-bladenboro",
+      "beast-of-bodmin"
+    ],
+    "wiki": "Wampus cat"
+  },
+  {
+    "slug": "hodag",
+    "name": "Hodag",
+    "aliases": [
+      "Rhinelander Hodag",
+      "Hodag of Wisconsin",
+      "Black Hodag"
+    ],
+    "cat": "other",
+    "icon": "hodag",
+    "region": "Rhinelander, Oneida County, Wisconsin",
+    "cc": [
+      "US"
+    ],
+    "first": "Newspaper reports in 1893",
+    "summary": "Wisconsin's grinning, horned, spiny-backed beast of the logging camps.",
+    "body": [
+      "The hodag is a fearsome critter of the northern Wisconsin logging camps: a dark beast with bull horns, a frog's head, a huge grin full of teeth, a row of spikes along its back and a spear-tipped tail. Lumberjacks said it was born from the ashes of mistreated oxen.",
+      "In 1893 surveyor and prankster Eugene Shepard announced that he and some locals had killed a hodag in Rhinelander with dynamite, and released a photo of its charred remains. In 1896 he claimed to have caught one alive and displayed it in a dark tent at the county fair, moving it with wires. When scientists said they would come to see it, he admitted it was a wooden carving.",
+      "Rhinelander embraced the beast: its schools are the Hodags, a giant statue stands by the chamber of commerce, and the Hodag Country Festival is held each summer."
+    ],
+    "signs": [
+      "Bull horns and a wide, toothy grin",
+      "A row of spikes down the back",
+      "A long tail with a spear tip",
+      "The smell of buzzard meat and skunk"
+    ],
+    "size": "About 7 ft long (tall tale)",
+    "habitat": "Northwoods logging country",
+    "famous": [
+      {
+        "name": "Shepard \"kills\" a hodag",
+        "year": 1893,
+        "place": "Rhinelander, Wisconsin"
+      },
+      {
+        "name": "Live hodag shown at the fair",
+        "year": 1896,
+        "place": "Rhinelander, Wisconsin"
+      }
+    ],
+    "related": [
+      "wampus-cat",
+      "ozark-howler",
+      "snallygaster"
+    ],
+    "wiki": "Hodag"
+  },
+  {
+    "slug": "tsuchinoko",
+    "name": "Tsuchinoko",
+    "aliases": [
+      "Bachi hebi",
+      "Tsuchinoko snake",
+      "Hammer child snake",
+      "Japanese fat snake",
+      "Nozuchi"
+    ],
+    "cat": "other",
+    "icon": "tsuchinoko",
+    "region": "Mountain villages across western Japan; famously Shimokitayama, Nara",
+    "cc": [
+      "JP"
+    ],
+    "first": "A yokai in old folklore; a wave of sightings in the late 1980s",
+    "summary": "A short, fat, jumping snake from Japan with a bounty on its head.",
+    "body": [
+      "The tsuchinoko is a snake-like creature from Japanese folklore, 30 to 80 centimetres long with a fat middle like a beer bottle, a narrow tail and a viper's fangs. It is said to jump a metre or more, sometimes twice in a row, and in some legends it speaks, lies and likes sake. Some say it bites its tail and rolls like a wheel.",
+      "In the late 1980s it turned from yokai to cryptid after a burst of sightings. In 1988 the village of Shimokitayama in Nara Prefecture launched a Tsuchinoko Expedition with a reward of a million yen for a live capture. About 200 people joined, and nothing was found. Tsuchinoko hunts are still held as village festivals, and Shimokitayama opened a Tsuchinoko Park in 2023.",
+      "Herpetologists suggest it could be a mamushi or blue-tongued skink that has just eaten a big meal."
+    ],
+    "signs": [
+      "A short, fat-bodied snake",
+      "Jumping leaps of a metre or more",
+      "A squeaking or chirping sound",
+      "Rolling like a hoop"
+    ],
+    "size": "30 to 80 cm",
+    "habitat": "Mountain forest and rice paddy edges",
+    "famous": [
+      {
+        "name": "Shimokitayama Tsuchinoko Expedition",
+        "year": 1988,
+        "place": "Shimokitayama, Nara Prefecture"
+      },
+      {
+        "name": "Tsuchinoko Park opens",
+        "year": 2023,
+        "place": "Shimokitayama, Nara Prefecture"
+      }
+    ],
+    "related": [
+      "hoop-snake",
+      "kappa",
+      "mongolian-death-worm"
+    ],
+    "wiki": "Tsuchinoko"
+  },
+  {
+    "slug": "hoop-snake",
+    "name": "Hoop snake",
+    "aliases": [
+      "Hoopsnake",
+      "Rolling snake",
+      "Horn snake",
+      "Wheel snake"
+    ],
+    "cat": "other",
+    "icon": "hoop",
+    "region": "Rural United States, Canada and Australia",
+    "cc": [
+      "US",
+      "CA",
+      "AU"
+    ],
+    "first": "Described in a 1784 travel letter",
+    "summary": "A snake that grabs its tail in its mouth and rolls after you like a wheel.",
+    "body": [
+      "The hoop snake is a staple of American rural tall tales: a snake that takes its tail in its jaws and rolls downhill after its victim like a wagon hoop. At the last moment it straightens out and strikes with a venomous stinger on its tail. The only escape is to jump behind a tree, which takes the hit and dies.",
+      "A 1784 travel account from the United States described the rolling snake in detail, and the story later fed into Pecos Bill tales. Snake experts suggest the mud snake and rainbow snake, which have pointed but harmless tail tips, and the habit of some snakes of coiling in a loop."
+    ],
+    "signs": [
+      "A snake rolling along in a hoop",
+      "A sharp, stinging tail",
+      "A tree that withers after being struck"
+    ],
+    "size": "Snake-sized",
+    "habitat": "Hills, fields and farm lanes",
+    "famous": [
+      {
+        "name": "Described in a travel letter",
+        "year": 1784,
+        "place": "United States"
+      }
+    ],
+    "related": [
+      "tsuchinoko",
+      "mongolian-death-worm"
+    ],
+    "wiki": "Hoop snake"
+  },
+  {
+    "slug": "mapinguari",
+    "name": "Mapinguari",
+    "aliases": [
+      "Mapinguary",
+      "Mapinguari of the Amazon",
+      "Kida harara",
+      "Amazon giant sloth",
+      "Juma"
+    ],
+    "cat": "other",
+    "icon": "sloth",
+    "region": "Brazilian Amazon, especially Acre, Amazonas and Par\u00e1",
+    "cc": [
+      "BR"
+    ],
+    "first": "Brazilian folklore; researched by ornithologist David Oren from the 1990s",
+    "summary": "A foul-smelling Amazon giant, sometimes said to have a mouth on its belly.",
+    "body": [
+      "The Mapinguari is a large, shaggy, upright creature of Amazon folklore, said to stink so badly it dizzies hunters. Folklore gives it backward-turned feet, hooked claws, a single eye and, most strangely, a gaping mouth in its belly. Its roar is said to sound like a human scream or thunder.",
+      "Ornithologist David Oren, of the Goeldi Museum in Bel\u00e9m, spent years interviewing rubber tappers, miners and Indigenous people who said they had seen or even shot one. He proposed that the stories could describe a surviving giant ground sloth, a group that died out about 10,000 years ago. His field searches found no animal, and most scientists remain doubtful."
+    ],
+    "signs": [
+      "An overwhelming rotten smell",
+      "Loud screams in the forest",
+      "Twisted palm trees with the hearts eaten",
+      "Huge reversed-looking footprints"
+    ],
+    "size": "6 to 7 ft standing (reported)",
+    "habitat": "Deep Amazon rainforest",
+    "famous": [
+      {
+        "name": "Oren's ground sloth hypothesis",
+        "year": 1993,
+        "place": "Amazonas, Brazil"
+      }
+    ],
+    "related": [
+      "bigfoot",
+      "orang-pendek",
+      "mokele-mbembe"
+    ],
+    "wiki": "Mapinguari"
+  },
+  {
+    "slug": "montauk-monster",
+    "name": "Montauk Monster",
+    "aliases": [
+      "Montauk carcass",
+      "Hound of Bonacville",
+      "Plum Island monster"
+    ],
+    "cat": "other",
+    "icon": "carcass",
+    "region": "Ditch Plains beach, Montauk, Long Island, New York",
+    "cc": [
+      "US"
+    ],
+    "first": "Found on 12 July 2008; reported on 23 July 2008",
+    "summary": "A beaked, hairless carcass on a Long Island beach that broke the internet in 2008.",
+    "body": [
+      "In July 2008, four friends found a strange, bloated carcass on Ditch Plains beach in Montauk, New York. It was hairless, with a beak-like face, sharp teeth and long-fingered paws. A local paper ran the photo as 'The Hound of Bonacville', blogs picked it up, and within days it was a worldwide story.",
+      "Rumours linked it to the Plum Island Animal Disease Center just offshore. The carcass vanished before scientists could examine it, but experts who studied the photos concluded it was most likely a raccoon that had been in the water for a while, with its upper jaw bones exposed. Similar 'monsters' have washed up on Long Island and elsewhere since."
+    ],
+    "signs": [
+      "A hairless, bloated body",
+      "A beak-like face with teeth",
+      "Long, finger-like toes"
+    ],
+    "size": "About the size of a small dog",
+    "habitat": "Ocean beach",
+    "famous": [
+      {
+        "name": "Carcass found at Ditch Plains",
+        "year": 2008,
+        "place": "Montauk, New York"
+      }
+    ],
+    "related": [
+      "chupacabra",
+      "ningen"
+    ],
+    "wiki": "Montauk Monster"
+  },
+  {
+    "slug": "sheepsquatch",
+    "name": "Sheepsquatch",
+    "aliases": [
+      "White Thing",
+      "Sheep Squatch",
+      "Boone County white beast",
+      "Kanawha Valley white thing"
+    ],
+    "cat": "other",
+    "icon": "goatman",
+    "region": "Kanawha, Boone, Putnam and Mason counties, West Virginia",
+    "cc": [
+      "US"
+    ],
+    "first": "A \"White Thing\" tale in a 1965 folklore collection; sightings in the mid-1990s",
+    "summary": "A woolly white, horned beast reported in West Virginia hollows in the 1990s.",
+    "body": [
+      "Sheepsquatch is a West Virginia cryptid described as a bear-sized animal covered in long, shaggy white wool, with a sheep- or goat-like head, horns, and the ability to walk on four legs or stand upright. Witnesses also mention a sulfur smell and a scream like a woman.",
+      "Mountain folklore had stories of a 'White Thing' long before the name existed, including one in a 1965 collection about a woman who met a white beast riding home from church. A run of sightings in the mid-1990s, many around the Kanawha Valley near Cross Lanes, gave the creature its modern nickname."
+    ],
+    "signs": [
+      "Long, dirty white wool",
+      "Horns and a sheep-like face",
+      "Walking on two legs or four",
+      "A sulfur smell",
+      "A scream like a woman"
+    ],
+    "size": "Bear-sized, 7 ft upright (reported)",
+    "habitat": "Wooded hollows and creek banks",
+    "famous": [
+      {
+        "name": "\"The White Thing\" folk tale collected",
+        "year": 1965,
+        "place": "West Virginia"
+      },
+      {
+        "name": "Mid-1990s wave of sightings",
+        "year": 1995,
+        "place": "Kanawha Valley, West Virginia"
+      }
+    ],
+    "related": [
+      "grassman",
+      "grafton-monster",
+      "goatman"
+    ],
+    "wiki": ""
+  },
+  {
+    "slug": "ufo-cigar",
+    "name": "Cigar-shaped UFO",
+    "aliases": [
+      "Cigar UFO",
+      "Cylinder UFO",
+      "Cylindrical UFO",
+      "Mothership",
+      "Rocket-shaped UFO",
+      "Flying cigar"
+    ],
+    "cat": "ufo",
+    "icon": "cigar",
+    "region": "Worldwide",
+    "cc": [],
+    "first": "Reported since the late 1940s",
+    "summary": "Long, wingless cylinders, sometimes glowing, sometimes releasing smaller objects.",
+    "body": [
+      "Cigar- or cylinder-shaped UFOs are long, rounded, wingless objects, often metallic by day and glowing by night, sometimes with a row of lit 'windows'. Some witnesses say smaller discs or lights flew out of them, which earned them the nickname 'motherships'.",
+      "On 24 July 1948, Eastern Air Lines pilots Clarence Chiles and John Whitted said a glowing, wingless, cigar-shaped craft with two rows of lit windows shot past their DC-3 near Montgomery, Alabama, then pulled up into the clouds. It was one of the cases that convinced Air Force investigators at the time that UFOs deserved study, though Project Blue Book later put it down to a bright meteor. Contactee George Adamski claimed he saw a giant cigar-shaped 'mother ship' over Palomar, California in 1946 and photographed it the next year.",
+      "Many cylinder sightings turn out to be blimps, aircraft seen end-on in glare, or rocket and satellite re-entries."
+    ],
+    "signs": [
+      "A long, wingless, rounded body",
+      "A row of lit windows or portholes",
+      "No sound",
+      "Smaller objects leaving it"
+    ],
+    "size": "From tens of feet to hundreds of feet long",
+    "habitat": "The sky",
+    "famous": [
+      {
+        "name": "Chiles-Whitted encounter",
+        "year": 1948,
+        "place": "Near Montgomery, Alabama"
+      }
+    ],
+    "related": [
+      "ufo-saucer",
+      "ufo-tic-tac",
+      "ghost-rockets",
+      "mystery-airships",
+      "nordic-aliens"
+    ],
+    "wiki": "Chiles-Whitted UFO encounter"
+  },
+  {
+    "slug": "ufo-boomerang",
+    "name": "Boomerang and V-shaped UFOs",
+    "aliases": [
+      "Boomerang UFO",
+      "V-shaped UFO",
+      "Chevron UFO",
+      "Flying wing UFO",
+      "Westchester Boomerang",
+      "Hudson Valley boomerang"
+    ],
+    "cat": "ufo",
+    "icon": "boomerang",
+    "region": "Worldwide; famous waves over New York and Arizona",
+    "cc": [],
+    "first": "The 1951 Lubbock Lights are an early example",
+    "summary": "Huge V-shaped or chevron formations of lights, gliding silently overhead.",
+    "body": [
+      "Boomerang UFOs are V-shaped or chevron-shaped objects, or formations of lights in a V, often described as enormous, silent and slow. Witnesses often cannot tell whether they are seeing one dark craft with lights on its edges, or separate lights moving together.",
+      "In 1951 residents and college professors in Lubbock, Texas saw a V of glowing lights cross the night sky several times. From 1983 to 1984 thousands of people in New York's Hudson Valley and western Connecticut reported a football-field-sized boomerang of coloured lights. Police later found that pilots in light Cessnas were flying in tight formation as a prank, though some witnesses insist that wasn't what they saw. On 13 March 1997 the Phoenix Lights, a mile-wide V of lights, crossed Arizona in front of thousands.",
+      "Formations of birds lit by streetlights, aircraft in formation and military flares explain many cases."
+    ],
+    "signs": [
+      "Lights arranged in a V or chevron",
+      "A dark shape between the lights blocking stars",
+      "Silent and slow",
+      "Huge apparent size"
+    ],
+    "size": "Up to a mile across (reported)",
+    "habitat": "The sky",
+    "famous": [
+      {
+        "name": "Lubbock Lights",
+        "year": 1951,
+        "place": "Lubbock, Texas"
+      },
+      {
+        "name": "Hudson Valley boomerang wave",
+        "year": 1983,
+        "place": "Westchester County, New York"
+      },
+      {
+        "name": "Phoenix Lights",
+        "year": 1997,
+        "place": "Phoenix, Arizona"
+      }
+    ],
+    "related": [
+      "ufo-triangle",
+      "ufo-orbs",
+      "ufo-saucer"
+    ],
+    "wiki": "1984 Hudson Valley UFO sightings"
+  },
+  {
+    "slug": "ghost-rockets",
+    "name": "Ghost rockets",
+    "aliases": [
+      "Sp\u00f6kraketer",
+      "Scandinavian ghost rockets",
+      "Ghost missiles",
+      "Swedish ghost rockets"
+    ],
+    "cat": "ufo",
+    "icon": "rocket",
+    "region": "Sweden, Finland and the rest of Scandinavia",
+    "cc": [
+      "SE",
+      "FI",
+      "NO"
+    ],
+    "first": "26 February 1946, by Finnish observers",
+    "summary": "Rocket-shaped objects that streaked across Scandinavian skies in 1946.",
+    "body": [
+      "In 1946, a year before the term 'flying saucer' existed, people across Sweden and Finland began reporting rocket- or cigar-shaped objects streaking through the sky, some trailing fire, some apparently changing course. About 2,000 reports were logged between May and December, with peaks on 9 and 11 August.",
+      "On 19 July 1946 a farmer saw an object crash into Lake K\u00f6lmj\u00e4rv in northern Sweden, and the Swedish military searched the lake but found nothing. Officials feared the Soviets were test-firing captured German V-weapons, and the Swedish army told newspapers not to print exact locations.",
+      "Investigators concluded that many sightings were meteors, and the August peaks match the Perseid shower. But some reports, including radar returns and recovered fragments, were never fully explained."
+    ],
+    "signs": [
+      "A cigar or rocket shape with a fiery tail",
+      "Changing direction in flight",
+      "Crashing into lakes",
+      "No sound"
+    ],
+    "size": "Small to aircraft-sized (reported)",
+    "habitat": "The sky and northern lakes",
+    "famous": [
+      {
+        "name": "First reports",
+        "year": 1946,
+        "place": "Finland"
+      },
+      {
+        "name": "Lake K\u00f6lmj\u00e4rv crash",
+        "year": 1946,
+        "place": "Norrbotten, Sweden"
+      }
+    ],
+    "related": [
+      "ufo-cigar",
+      "green-fireballs",
+      "mystery-airships"
+    ],
+    "wiki": "Ghost rockets"
+  },
+  {
+    "slug": "mystery-airships",
+    "name": "Mystery airships",
+    "aliases": [
+      "Phantom airship",
+      "Mystery airship",
+      "Airship wave of 1896-97",
+      "Phantom zeppelin",
+      "Great Airship"
+    ],
+    "cat": "ufo",
+    "icon": "airship",
+    "region": "Across the United States, starting in California",
+    "cc": [
+      "US"
+    ],
+    "first": "November 1896, over Sacramento, California",
+    "summary": "Lit-up 'airships' reported across America years before anyone could build one.",
+    "body": [
+      "From late 1896 to mid-1897, thousands of Americans reported airships in the night sky: large, cigar-shaped gas bags with lights, propellers, sometimes wings, and occasionally a crew who spoke to the people below. Reports started over Sacramento in November 1896 and spread east through Texas and the Midwest by spring 1897.",
+      "Newspapers of the era printed wild tales, including a story that an airship crashed into a windmill in Aurora, Texas in April 1897 and its pilot was buried in the town cemetery, and a Kansas farmer's claim that an airship lassoed one of his cows. Both are now widely seen as hoaxes. No airship capable of such flights existed yet.",
+      "The wave is seen as a forerunner of modern UFO reports, with each era seeing the future technology it imagined."
+    ],
+    "signs": [
+      "A lit, cigar-shaped craft at night",
+      "Searchlights sweeping the ground",
+      "Propellers, fins or wings",
+      "Human-looking crews"
+    ],
+    "size": "Large dirigible-sized (reported)",
+    "habitat": "Night skies over towns and farms",
+    "famous": [
+      {
+        "name": "Sacramento sightings",
+        "year": 1896,
+        "place": "Sacramento, California"
+      },
+      {
+        "name": "Aurora crash story",
+        "year": 1897,
+        "place": "Aurora, Texas"
+      },
+      {
+        "name": "Cow-napping airship tale",
+        "year": 1897,
+        "place": "Le Roy, Kansas"
+      }
+    ],
+    "related": [
+      "ufo-cigar",
+      "ghost-rockets",
+      "ufo-saucer"
+    ],
+    "wiki": "Mystery airship"
+  },
+  {
+    "slug": "green-fireballs",
+    "name": "Green fireballs",
+    "aliases": [
+      "Green fireball",
+      "Project Twinkle fireballs",
+      "New Mexico green fireballs"
+    ],
+    "cat": "ufo",
+    "icon": "orbs",
+    "region": "New Mexico and the US Southwest, near Los Alamos and Sandia",
+    "cc": [
+      "US"
+    ],
+    "first": "Pilots reported them over New Mexico on 5 December 1948",
+    "summary": "Bright green balls of fire over New Mexico's nuclear labs that the military investigated.",
+    "body": [
+      "Starting in late 1948, pilots, scientists and security guards around New Mexico's atomic sites reported brilliant green fireballs crossing the sky. They looked like meteors but were described as flying flat and level, burning a vivid green, and making no sound.",
+      "Meteor expert Lincoln LaPaz of the University of New Mexico saw one himself and said it did not behave like an ordinary meteor. The Army worried about foreign weapons, and in 1949 scientists including Edward Teller met at Los Alamos to discuss them. The Air Force ran Project Twinkle to photograph them, with little result.",
+      "Today most researchers think they were unusually bright bolide meteors, which can glow green from burning metals."
+    ],
+    "signs": [
+      "A bright green ball of light",
+      "A flat, level path",
+      "No sound",
+      "Breaking into fragments at the end"
+    ],
+    "size": "Point of light to moon-sized",
+    "habitat": "The sky",
+    "famous": [
+      {
+        "name": "Pilot sightings",
+        "year": 1948,
+        "place": "New Mexico"
+      },
+      {
+        "name": "Los Alamos fireball conference",
+        "year": 1949,
+        "place": "Los Alamos, New Mexico"
+      }
+    ],
+    "related": [
+      "ufo-orbs",
+      "ghost-rockets"
+    ],
+    "wiki": "Green fireballs"
+  },
+  {
+    "slug": "ufo-crash",
+    "name": "UFO crashes",
+    "aliases": [
+      "Crashed saucer",
+      "Roswell",
+      "Roswell incident",
+      "UFO crash retrieval",
+      "Kecksburg acorn",
+      "Shag Harbour",
+      "Crash retrievals"
+    ],
+    "cat": "ufo",
+    "icon": "crash",
+    "region": "Worldwide; best known in New Mexico, Pennsylvania and Nova Scotia",
+    "cc": [
+      "US",
+      "CA"
+    ],
+    "first": "The Roswell debris recovery in July 1947",
+    "summary": "Stories of objects falling from the sky and being quietly taken away.",
+    "body": [
+      "Crash stories are some of the most famous in ufology: something falls from the sky, the military seals off the area, and witnesses say the debris, or bodies, were taken away in secret.",
+      "In July 1947 the Roswell Army Air Field announced it had recovered a 'flying disc' on a ranch in New Mexico, then said it was a weather balloon. In the 1990s the Air Force said it was debris from Project Mogul, a secret balloon program. On 9 December 1965 a fireball came down near Kecksburg, Pennsylvania, and residents described an acorn-shaped object hauled away by soldiers. On 4 October 1967 witnesses at Shag Harbour, Nova Scotia saw a lit object hit the sea, and the RCMP and navy searched the water.",
+      "Explanations include balloons, meteors and space debris. Each case still has dedicated researchers."
+    ],
+    "signs": [
+      "A bright object falling from the sky",
+      "Military or police cordons",
+      "Unusual metallic debris",
+      "Witnesses told to stay quiet"
+    ],
+    "size": "Varies",
+    "habitat": "Ranches, forests and coastal waters",
+    "famous": [
+      {
+        "name": "Roswell debris recovery",
+        "year": 1947,
+        "place": "Lincoln County, New Mexico"
+      },
+      {
+        "name": "Kecksburg fireball",
+        "year": 1965,
+        "place": "Kecksburg, Pennsylvania"
+      },
+      {
+        "name": "Shag Harbour impact",
+        "year": 1967,
+        "place": "Shag Harbour, Nova Scotia"
+      }
+    ],
+    "related": [
+      "ufo-saucer",
+      "grey-aliens",
+      "men-in-black"
+    ],
+    "wiki": "Roswell incident"
+  },
+  {
+    "slug": "alien-abduction",
+    "name": "Alien abduction",
+    "aliases": [
+      "Abduction",
+      "Close encounter of the fourth kind",
+      "CE4",
+      "Missing time",
+      "Abductee experience"
+    ],
+    "cat": "ufo",
+    "icon": "abduction",
+    "region": "Reported worldwide, most often in North America",
+    "cc": [],
+    "first": "Ant\u00f4nio Villas Boas in Brazil in 1957 and the Hills in New Hampshire in 1961",
+    "summary": "People who say they were taken aboard a craft, often remembering only 'missing time'.",
+    "body": [
+      "Alien abduction reports describe being taken, usually at night from a bedroom or a lonely road, by beings into a craft, examined, and returned with gaps in memory. Common details include a bright light, paralysis, small grey beings, a medical-style exam and an hour or more of missing time.",
+      "Brazilian farmer Ant\u00f4nio Villas Boas told of a 1957 abduction, and Betty and Barney Hill's 1961 account from New Hampshire, recalled under hypnosis, became the template. In October 1973 two shipyard workers in Pascagoula, Mississippi, said they were taken aboard a craft by the river. In November 1975 Arizona logger Travis Walton disappeared for five days after his crew said a beam of light struck him.",
+      "Psychologists link many reports to sleep paralysis, false memories formed under hypnosis and cultural expectations. Abductees say their experiences are real."
+    ],
+    "signs": [
+      "A beam of bright light",
+      "Being unable to move",
+      "An hour or more of missing time",
+      "Grey beings and an exam table",
+      "Unexplained marks on the body"
+    ],
+    "size": "Not applicable",
+    "habitat": "Bedrooms, cars and remote roads",
+    "famous": [
+      {
+        "name": "Villas Boas case",
+        "year": 1957,
+        "place": "Minas Gerais, Brazil"
+      },
+      {
+        "name": "Betty and Barney Hill",
+        "year": 1961,
+        "place": "New Hampshire"
+      },
+      {
+        "name": "Pascagoula abduction",
+        "year": 1973,
+        "place": "Pascagoula, Mississippi"
+      },
+      {
+        "name": "Travis Walton disappearance",
+        "year": 1975,
+        "place": "Apache-Sitgreaves National Forest, Arizona"
+      }
+    ],
+    "related": [
+      "grey-aliens",
+      "reptilians",
+      "shadow-people",
+      "ufo-saucer"
+    ],
+    "wiki": "Alien abduction"
+  },
+  {
+    "slug": "crop-circles",
+    "name": "Crop circles",
+    "aliases": [
+      "Crop circle",
+      "Crop formations",
+      "Corn circles",
+      "Agriglyphs",
+      "Saucer nests"
+    ],
+    "cat": "ufo",
+    "icon": "cropcircle",
+    "region": "Mostly southern England, especially Wiltshire; also worldwide",
+    "cc": [
+      "GB"
+    ],
+    "first": "The term spread in the early 1980s; 1966 \"saucer nests\" in Australia",
+    "summary": "Patterns flattened into fields overnight, long linked to UFOs.",
+    "body": [
+      "Crop circles are patterns of flattened grain that appear in fields, often overnight, from simple circles to vast fractal designs. They cluster in southern England, especially Wiltshire near Avebury and Stonehenge, and became linked to UFOs and mysterious energies.",
+      "In 1966 a banana farmer at Tully, Queensland said he saw a saucer rise from a swamp and leave a flattened circular 'nest' in the reeds. Circles multiplied in England through the 1980s. In 1991 two men, Doug Bower and Dave Chorley, revealed they had been making circles since 1978 with a plank, rope and a wire loop on a cap to keep their lines straight, and showed reporters how.",
+      "Since then artist teams have openly made ever more complex formations, such as the 409-circle design at Milk Hill in 2001. All tested circles have been consistent with human makers, though some visitors still report odd lights and feelings in them."
+    ],
+    "signs": [
+      "Flattened crop in precise geometric patterns",
+      "Appearing overnight",
+      "Bent rather than broken stalks",
+      "Lights reported over fields"
+    ],
+    "size": "Tens to hundreds of feet across",
+    "habitat": "Wheat, barley and rapeseed fields",
+    "famous": [
+      {
+        "name": "Tully saucer nest",
+        "year": 1966,
+        "place": "Tully, Queensland"
+      },
+      {
+        "name": "Bower and Chorley reveal their method",
+        "year": 1991,
+        "place": "Southampton, England"
+      },
+      {
+        "name": "Milk Hill formation",
+        "year": 2001,
+        "place": "Wiltshire, England"
+      }
+    ],
+    "related": [
+      "ufo-saucer",
+      "ufo-orbs",
+      "cattle-mutilation"
+    ],
+    "wiki": "Crop circle"
+  },
+  {
+    "slug": "cattle-mutilation",
+    "name": "Cattle mutilations",
+    "aliases": [
+      "Cattle mutilation",
+      "Animal mutilation",
+      "Cattle mutes",
+      "Livestock mutilation",
+      "Snippy the horse"
+    ],
+    "cat": "ufo",
+    "icon": "cow",
+    "region": "Western United States, especially Colorado, New Mexico and the Plains",
+    "cc": [
+      "US"
+    ],
+    "first": "The death of a horse named Snippy in September 1967",
+    "summary": "Cattle found dead with neat cuts and no blood, often blamed on UFOs.",
+    "body": [
+      "Cattle mutilation reports describe livestock found dead with parts removed, such as an eye, an ear, the tongue or sex organs, with clean-looking cuts, little blood, and no tracks around the body. Ranchers sometimes reported lights or unmarked helicopters nearby.",
+      "The modern story began in September 1967 when a horse called Snippy was found near Alamosa, Colorado with the flesh stripped from its head and neck. Reports surged across the West in the 1970s. In 1979 a federal grant paid for an investigation in New Mexico led by retired FBI agent Kenneth Rommel. His 1980 report concluded that the cases were consistent with normal predators and scavengers.",
+      "Veterinarians explain the clean 'surgical' cuts as the work of birds, insects and decomposition. Theories have also blamed cults, secret government projects and the chupacabra."
+    ],
+    "signs": [
+      "A carcass with eyes, tongue or ears removed",
+      "Smooth-looking cuts",
+      "Little or no blood on the ground",
+      "No tracks around the body",
+      "Lights or helicopters at night"
+    ],
+    "size": "Not applicable",
+    "habitat": "Remote ranchland",
+    "famous": [
+      {
+        "name": "Snippy the horse",
+        "year": 1967,
+        "place": "Alamosa, Colorado"
+      },
+      {
+        "name": "Rommel investigation begins",
+        "year": 1979,
+        "place": "New Mexico"
+      }
+    ],
+    "related": [
+      "chupacabra",
+      "skinwalker-ranch",
+      "crop-circles"
+    ],
+    "wiki": "Cattle mutilation"
+  },
+  {
+    "slug": "skinwalker-ranch",
+    "name": "Skinwalker Ranch",
+    "aliases": [
+      "Skinwalker",
+      "Skin walker",
+      "Sherman Ranch",
+      "UFO Ranch",
+      "Skinwalker Ranch Utah"
+    ],
+    "cat": "ufo",
+    "icon": "orbs",
+    "region": "Near Ballard, Uintah Basin, north-eastern Utah",
+    "cc": [
+      "US"
+    ],
+    "first": "The Sherman family's story appeared in the Deseret News in 1996",
+    "summary": "A Utah ranch famous for claims of UFOs, orbs, strange animals and cattle mutilations.",
+    "body": [
+      "Skinwalker Ranch is a roughly 512-acre property in Utah's Uintah Basin, an area with UFO reports going back to the 1970s. In 1996 the Sherman family told the Deseret News of glowing orbs, mutilated cattle, a huge wolf that bullets could not hurt, and lights in the sky.",
+      "That year businessman Robert Bigelow bought the ranch for his National Institute for Discovery Science, and researchers logged around 100 odd incidents. The Defense Intelligence Agency later funded related work through a program called AAWSAP. Today the ranch is the setting of a TV series.",
+      "The name comes from the skin-walker of Navajo tradition. Navajo people generally do not discuss skin-walkers with outsiders and many object to the casual use of the word, so this page covers only the ranch."
+    ],
+    "signs": [
+      "Glowing orbs over the fields",
+      "Cattle found mutilated",
+      "Large animals unhurt by gunfire",
+      "Electronics failing"
+    ],
+    "size": "About 512 acres",
+    "habitat": "High desert ranch",
+    "famous": [
+      {
+        "name": "Sherman family story published",
+        "year": 1996,
+        "place": "Ballard, Utah"
+      },
+      {
+        "name": "Bigelow buys the ranch",
+        "year": 1996,
+        "place": "Uintah County, Utah"
+      },
+      {
+        "name": "Hunt for the Skinwalker published",
+        "year": 2005,
+        "place": "United States"
+      }
+    ],
+    "related": [
+      "cattle-mutilation",
+      "ufo-orbs",
+      "dogman"
+    ],
+    "wiki": "Skinwalker Ranch"
   }
 ]

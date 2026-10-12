@@ -528,5 +528,1525 @@
 "place": "Off the US East Coast",
 "lat": 31.0,
 "lon": -79.0
+},
+{
+"creature": "grassman",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Minerva Monster sightings",
+"year": 1978,
+"place": "Minerva, Stark County, Ohio",
+"lat": 40.7298,
+"lon": -81.1054
+},
+{
+"creature": "grassman",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Salt Fork reports begin to pile up",
+"year": 1985,
+"place": "Salt Fork State Park, Guernsey County, Ohio",
+"lat": 40.1817,
+"lon": -81.5923
+},
+{
+"creature": "mogollon-monster",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Grand Canyon wild man story",
+"year": 1903,
+"place": "Near the Grand Canyon, Arizona",
+"lat": 36.1,
+"lon": -112.1
+},
+{
+"creature": "mogollon-monster",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Don Davis scout-trip sighting",
+"year": 1946,
+"place": "Near Payson, Arizona",
+"lat": 34.2309,
+"lon": -111.3251
+},
+{
+"creature": "old-yellow-top",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "First reported sighting",
+"year": 1906,
+"place": "Cobalt, Ontario",
+"lat": 47.4002,
+"lon": -79.683
+},
+{
+"creature": "old-yellow-top",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Blueberry patch encounter",
+"year": 1923,
+"place": "Near Cobalt, Ontario",
+"lat": 47.4002,
+"lon": -79.683
+},
+{
+"creature": "minnesota-iceman",
+"cat": "hominid",
+"icon": "iceman",
+"name": "Sanderson and Heuvelmans examine it",
+"year": 1968,
+"place": "Rollingstone, Minnesota",
+"lat": 44.0977,
+"lon": -91.8168
+},
+{
+"creature": "minnesota-iceman",
+"cat": "hominid",
+"icon": "iceman",
+"name": "Sold on eBay to the Museum of the Weird",
+"year": 2013,
+"place": "Austin, Texas",
+"lat": 30.2672,
+"lon": -97.7431
+},
+{
+"creature": "big-grey-man",
+"cat": "hominid",
+"icon": "yeti",
+"name": "Collie's summit encounter",
+"year": 1891,
+"place": "Ben Macdui, Cairngorms",
+"lat": 57.07,
+"lon": -3.67
+},
+{
+"creature": "big-grey-man",
+"cat": "hominid",
+"icon": "yeti",
+"name": "Collie tells the story publicly",
+"year": 1925,
+"place": "Aberdeen, Scotland",
+"lat": 57.1437,
+"lon": -2.0981
+},
+{
+"creature": "big-grey-man",
+"cat": "hominid",
+"icon": "yeti",
+"name": "Peter Densham rescue-work encounter",
+"year": 1945,
+"place": "Cairngorms, Scotland",
+"lat": 57.08,
+"lon": -3.65
+},
+{
+"creature": "hibagon",
+"cat": "hominid",
+"icon": "hominid",
+"name": "First wave of sightings",
+"year": 1970,
+"place": "Mount Hiba, Hiroshima Prefecture",
+"lat": 35.0,
+"lon": 133.1
+},
+{
+"creature": "hibagon",
+"cat": "hominid",
+"icon": "hominid",
+"name": "Sazawa and Harada reports",
+"year": 1972,
+"place": "Saijo, Hiroshima Prefecture",
+"lat": 34.42,
+"lon": 132.74
+},
+{
+"creature": "bukit-timah-monkey-man",
+"cat": "hominid",
+"icon": "hominid",
+"name": "First claimed sighting",
+"year": 1805,
+"place": "Bukit Timah, Singapore",
+"lat": 1.328,
+"lon": 103.791
+},
+{
+"creature": "bukit-timah-monkey-man",
+"cat": "hominid",
+"icon": "hominid",
+"name": "New Paper sightings series",
+"year": 2007,
+"place": "Bukit Timah, Singapore",
+"lat": 1.328,
+"lon": 103.791
+},
+{
+"creature": "bukit-timah-monkey-man",
+"cat": "hominid",
+"icon": "hominid",
+"name": "Night hiker report",
+"year": 2020,
+"place": "Bukit Timah Nature Reserve",
+"lat": 1.354,
+"lon": 103.776
+},
+{
+"creature": "beast-of-bray-road",
+"cat": "canid",
+"icon": "dogman",
+"name": "Endrizzi roadside sighting",
+"year": 1989,
+"place": "Bray Road, Elkhorn, Wisconsin",
+"lat": 42.6728,
+"lon": -88.5445
+},
+{
+"creature": "beast-of-bray-road",
+"cat": "canid",
+"icon": "dogman",
+"name": "Gipson Halloween encounter",
+"year": 1991,
+"place": "Bray Road, Elkhorn, Wisconsin",
+"lat": 42.6728,
+"lon": -88.5445
+},
+{
+"creature": "beast-of-bray-road",
+"cat": "canid",
+"icon": "dogman",
+"name": "Godfrey's book The Beast of Bray Road",
+"year": 2003,
+"place": "Wisconsin",
+"lat": 44.5,
+"lon": -89.5
+},
+{
+"creature": "black-shuck",
+"cat": "canid",
+"icon": "hound",
+"name": "Bungay and Blythburgh church attacks",
+"year": 1577,
+"place": "Suffolk, England",
+"lat": 52.2,
+"lon": 1.0
+},
+{
+"creature": "beast-of-gevaudan",
+"cat": "canid",
+"icon": "hound",
+"name": "First recorded victim, Jeanne Boulet",
+"year": 1764,
+"place": "Les Hubacs, near Langogne, France",
+"lat": 44.7273,
+"lon": 3.8554
+},
+{
+"creature": "beast-of-gevaudan",
+"cat": "canid",
+"icon": "hound",
+"name": "Fran\u00e7ois Antoine shoots a large wolf",
+"year": 1765,
+"place": "Chazes, France",
+"lat": 44.9,
+"lon": 3.45
+},
+{
+"creature": "beast-of-gevaudan",
+"cat": "canid",
+"icon": "hound",
+"name": "Jean Chastel ends the attacks",
+"year": 1767,
+"place": "Mont Mouchet, France",
+"lat": 45.0,
+"lon": 3.42
+},
+{
+"creature": "thylacine",
+"cat": "canid",
+"icon": "thylacine",
+"name": "Last known thylacine dies",
+"year": 1936,
+"place": "Hobart, Tasmania",
+"lat": -42.8794,
+"lon": 147.3294
+},
+{
+"creature": "thylacine",
+"cat": "canid",
+"icon": "thylacine",
+"name": "Hans Naarding spotlight sighting",
+"year": 1982,
+"place": "North-west Tasmania",
+"lat": -41.2,
+"lon": 145.3
+},
+{
+"creature": "shunka-warakin",
+"cat": "canid",
+"icon": "hound",
+"name": "Hutchins shoots the animal",
+"year": 1886,
+"place": "Madison Valley, Montana",
+"lat": 45.2,
+"lon": -111.7
+},
+{
+"creature": "shunka-warakin",
+"cat": "canid",
+"icon": "hound",
+"name": "Mount rediscovered and displayed",
+"year": 2007,
+"place": "Ennis, Montana",
+"lat": 45.3488,
+"lon": -111.7297
+},
+{
+"creature": "beast-of-bodmin",
+"cat": "canid",
+"icon": "bigcat",
+"name": "Ministry of Agriculture report",
+"year": 1995,
+"place": "Bodmin Moor, Cornwall",
+"lat": 50.55,
+"lon": -4.6
+},
+{
+"creature": "beast-of-bodmin",
+"cat": "canid",
+"icon": "bigcat",
+"name": "Leopard skull found in the River Fowey",
+"year": 1995,
+"place": "Cornwall, England",
+"lat": 50.4,
+"lon": -4.9
+},
+{
+"creature": "beast-of-exmoor",
+"cat": "canid",
+"icon": "bigcat",
+"name": "Sheep killings and Royal Marines hunt",
+"year": 1983,
+"place": "South Molton, Devon",
+"lat": 51.02,
+"lon": -3.83
+},
+{
+"creature": "beast-of-bladenboro",
+"cat": "canid",
+"icon": "bigcat",
+"name": "First dog killed",
+"year": 1953,
+"place": "Clarkton, North Carolina",
+"lat": 34.4874,
+"lon": -78.6561
+},
+{
+"creature": "beast-of-bladenboro",
+"cat": "canid",
+"icon": "bigcat",
+"name": "Mass hunt in Bladenboro",
+"year": 1954,
+"place": "Bladenboro, North Carolina",
+"lat": 34.5388,
+"lon": -78.7875
+},
+{
+"creature": "mngwa",
+"cat": "canid",
+"icon": "bigcat",
+"name": "Hichens' Discovery article",
+"year": 1937,
+"place": "Tanganyika (Tanzania)",
+"lat": -6.4,
+"lon": 35.0
+},
+{
+"creature": "nandi-bear",
+"cat": "canid",
+"icon": "hound",
+"name": "Hobley's footprint drawing",
+"year": 1914,
+"place": "Nandi Hills, Kenya",
+"lat": 0.1037,
+"lon": 35.1843
+},
+{
+"creature": "nandi-bear",
+"cat": "canid",
+"icon": "hound",
+"name": "Chalicothere theory proposed",
+"year": 1923,
+"place": "London",
+"lat": 51.507,
+"lon": -0.128
+},
+{
+"creature": "ozark-howler",
+"cat": "canid",
+"icon": "hodag",
+"name": "Wildlife emergency call near Springdale",
+"year": 2014,
+"place": "Benton County, Arkansas",
+"lat": 34.5645,
+"lon": -92.5868
+},
+{
+"creature": "ozark-howler",
+"cat": "canid",
+"icon": "hodag",
+"name": "Photo hoax sent to TV station",
+"year": 2015,
+"place": "Arkansas",
+"lat": 34.9,
+"lon": -92.4
+},
+{
+"creature": "batsquatch",
+"cat": "winged",
+"icon": "batsquatch",
+"name": "Brian Canfield encounter",
+"year": 1994,
+"place": "Pierce County, Washington",
+"lat": 46.6349,
+"lon": -119.4523
+},
+{
+"creature": "snallygaster",
+"cat": "winged",
+"icon": "snallygaster",
+"name": "Newspaper sightings wave",
+"year": 1909,
+"place": "Middletown Valley, Maryland",
+"lat": 39.44,
+"lon": -77.55
+},
+{
+"creature": "snallygaster",
+"cat": "winged",
+"icon": "snallygaster",
+"name": "Second wave of reports",
+"year": 1932,
+"place": "Frederick County, Maryland",
+"lat": 39.4143,
+"lon": -77.4105
+},
+{
+"creature": "van-meter-visitor",
+"cat": "winged",
+"icon": "vanmeter",
+"name": "Five nights of sightings",
+"year": 1903,
+"place": "Van Meter, Iowa",
+"lat": 41.5319,
+"lon": -93.9541
+},
+{
+"creature": "ahool",
+"cat": "winged",
+"icon": "bat",
+"name": "Bartels sighting on Mount Salak",
+"year": 1925,
+"place": "West Java, Indonesia",
+"lat": -6.9,
+"lon": 107.6
+},
+{
+"creature": "ahool",
+"cat": "winged",
+"icon": "bat",
+"name": "Bartels hears the call again",
+"year": 1927,
+"place": "Near the Tjidjenkol River, Java",
+"lat": -7.2,
+"lon": 107.5
+},
+{
+"creature": "ropen",
+"cat": "winged",
+"icon": "pterosaur",
+"name": "First Western expedition",
+"year": 1994,
+"place": "Umboi Island, Papua New Guinea",
+"lat": -5.6,
+"lon": 147.9
+},
+{
+"creature": "ropen",
+"cat": "winged",
+"icon": "pterosaur",
+"name": "Two Umboi Island expeditions",
+"year": 2004,
+"place": "Umboi Island, Papua New Guinea",
+"lat": -5.6,
+"lon": 147.9
+},
+{
+"creature": "big-bird",
+"cat": "winged",
+"icon": "thunderbird",
+"name": "Harlingen New Year sighting",
+"year": 1976,
+"place": "Harlingen, Texas",
+"lat": 26.1906,
+"lon": -97.6961
+},
+{
+"creature": "big-bird",
+"cat": "winged",
+"icon": "thunderbird",
+"name": "Armando Grimaldo attack",
+"year": 1976,
+"place": "Raymondville, Texas",
+"lat": 26.4815,
+"lon": -97.7831
+},
+{
+"creature": "lechuza",
+"cat": "winged",
+"icon": "owl",
+"name": "Rio Grande Valley Big Bird flap revives the legend",
+"year": 1976,
+"place": "South Texas",
+"lat": 26.8,
+"lon": -98.3
+},
+{
+"creature": "altamaha-ha",
+"cat": "aquatic",
+"icon": "bigfish",
+"name": "Wolf Island carcass stunt",
+"year": 2018,
+"place": "Wolf Island, Georgia",
+"lat": 31.3463,
+"lon": -81.3076
+},
+{
+"creature": "tahoe-tessie",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Coggin serpent report",
+"year": 1865,
+"place": "Lake Tahoe",
+"lat": 39.09,
+"lon": -120.04
+},
+{
+"creature": "tahoe-tessie",
+"cat": "aquatic",
+"icon": "lake",
+"name": "V-shaped wake report",
+"year": 2005,
+"place": "Lake Tahoe",
+"lat": 39.09,
+"lon": -120.04
+},
+{
+"creature": "chessie",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "Perch fishermen sighting",
+"year": 1943,
+"place": "Near Baltimore, Maryland",
+"lat": 39.2904,
+"lon": -76.6122
+},
+{
+"creature": "chessie",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "Frew video",
+"year": 1982,
+"place": "Kent Island, Maryland",
+"lat": 38.9807,
+"lon": -76.3144
+},
+{
+"creature": "chessie",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "Magothy River roadside report",
+"year": 2014,
+"place": "Magothy River, Maryland",
+"lat": 39.07,
+"lon": -76.47
+},
+{
+"creature": "white-river-monster",
+"cat": "aquatic",
+"icon": "bigfish",
+"name": "First reported sighting",
+"year": 1915,
+"place": "Newport, Arkansas",
+"lat": 35.6048,
+"lon": -91.2818
+},
+{
+"creature": "white-river-monster",
+"cat": "aquatic",
+"icon": "bigfish",
+"name": "Bateman sightings and crowds",
+"year": 1937,
+"place": "Newport, Arkansas",
+"lat": 35.6048,
+"lon": -91.2818
+},
+{
+"creature": "white-river-monster",
+"cat": "aquatic",
+"icon": "bigfish",
+"name": "Boxcar-sized sightings and tracks",
+"year": 1971,
+"place": "Newport, Arkansas",
+"lat": 35.6048,
+"lon": -91.2818
+},
+{
+"creature": "white-river-monster",
+"cat": "aquatic",
+"icon": "bigfish",
+"name": "White River Monster Refuge created",
+"year": 1973,
+"place": "Jackson County, Arkansas",
+"lat": 32.2988,
+"lon": -90.1848
+},
+{
+"creature": "memphre",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Dracontology society founded",
+"year": 1986,
+"place": "Magog, Quebec",
+"lat": 45.2668,
+"lon": -72.1491
+},
+{
+"creature": "igopogo",
+"cat": "aquatic",
+"icon": "seal",
+"name": "Soules sighting",
+"year": 1823,
+"place": "Lake Simcoe, Ontario",
+"lat": 44.4236,
+"lon": -79.3712
+},
+{
+"creature": "igopogo",
+"cat": "aquatic",
+"icon": "seal",
+"name": "Chief Wellington Charles sighting",
+"year": 1952,
+"place": "Lake Simcoe, Ontario",
+"lat": 44.4236,
+"lon": -79.3712
+},
+{
+"creature": "igopogo",
+"cat": "aquatic",
+"icon": "seal",
+"name": "Sonar contact",
+"year": 1983,
+"place": "Lake Simcoe, Ontario",
+"lat": 44.4236,
+"lon": -79.3712
+},
+{
+"creature": "igopogo",
+"cat": "aquatic",
+"icon": "seal",
+"name": "Seal-like animal video",
+"year": 1991,
+"place": "Lake Simcoe, Ontario",
+"lat": 44.4236,
+"lon": -79.3712
+},
+{
+"creature": "manipogo",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "McKay sighting",
+"year": 1909,
+"place": "Lake Manitoba",
+"lat": 50.9,
+"lon": -98.6
+},
+{
+"creature": "manipogo",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "Name coined after a wave of sightings",
+"year": 1960,
+"place": "Lake Manitoba",
+"lat": 50.9,
+"lon": -98.6
+},
+{
+"creature": "manipogo",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "Vincent and Konefell photo",
+"year": 1962,
+"place": "Lake Manitoba",
+"lat": 50.9,
+"lon": -98.6
+},
+{
+"creature": "lagarfljot-worm",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "Annals record a marvel in the lake",
+"year": 1345,
+"place": "Lagarflj\u00f3t, Iceland",
+"lat": 65.17,
+"lon": -14.6
+},
+{
+"creature": "lagarfljot-worm",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "Forestry chief sighting",
+"year": 1963,
+"place": "Lagarflj\u00f3t, Iceland",
+"lat": 65.17,
+"lon": -14.6
+},
+{
+"creature": "lagarfljot-worm",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "Viral video",
+"year": 2012,
+"place": "Egilssta\u00f0ir, Iceland",
+"lat": 65.2669,
+"lon": -14.3948
+},
+{
+"creature": "storsjoodjuret",
+"cat": "aquatic",
+"icon": "lake",
+"name": "First written account",
+"year": 1635,
+"place": "J\u00e4mtland, Sweden",
+"lat": 63.18,
+"lon": 14.5
+},
+{
+"creature": "storsjoodjuret",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Royal-backed capture attempt",
+"year": 1894,
+"place": "Storsj\u00f6n, Sweden",
+"lat": 63.18,
+"lon": 14.5
+},
+{
+"creature": "storsjoodjuret",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Underwater camera claim",
+"year": 2008,
+"place": "Storsj\u00f6n, Sweden",
+"lat": 63.18,
+"lon": 14.5
+},
+{
+"creature": "nahuelito",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Garret sighting",
+"year": 1910,
+"place": "Nahuel Huapi Lake, Argentina",
+"lat": -41.0,
+"lon": -71.5
+},
+{
+"creature": "nahuelito",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Onelli plesiosaur expedition",
+"year": 1922,
+"place": "Patagonia, Argentina",
+"lat": -45.0,
+"lon": -69.0
+},
+{
+"creature": "nahuelito",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Anonymous hump photos",
+"year": 1988,
+"place": "Bariloche, Argentina",
+"lat": -41.13,
+"lon": -71.31
+},
+{
+"creature": "morag",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Earliest recorded sighting",
+"year": 1887,
+"place": "Loch Morar, Scotland",
+"lat": 56.95,
+"lon": -5.7
+},
+{
+"creature": "morag",
+"cat": "aquatic",
+"icon": "lake",
+"name": "McDonell and Simpson boat encounter",
+"year": 1969,
+"place": "Loch Morar, Scotland",
+"lat": 56.95,
+"lon": -5.7
+},
+{
+"creature": "lake-tianchi-monster",
+"cat": "aquatic",
+"icon": "seal",
+"name": "Buffalo-like creature report",
+"year": 1903,
+"place": "Heaven Lake, Jilin, China",
+"lat": 43.8465,
+"lon": 126.5608
+},
+{
+"creature": "lake-tianchi-monster",
+"cat": "aquatic",
+"icon": "seal",
+"name": "Telescope sighting of two animals",
+"year": 1962,
+"place": "Heaven Lake",
+"lat": 42.0,
+"lon": 128.06
+},
+{
+"creature": "lake-tianchi-monster",
+"cat": "aquatic",
+"icon": "seal",
+"name": "TV reporter films six creatures",
+"year": 2007,
+"place": "Heaven Lake, Jilin, China",
+"lat": 43.8465,
+"lon": 126.5608
+},
+{
+"creature": "kappa",
+"cat": "aquatic",
+"icon": "kappa",
+"name": "T\u014dno Monogatari folk tales, including kappa",
+"year": 1910,
+"place": "T\u014dno, Iwate, Japan",
+"lat": 39.3167,
+"lon": 141.5333
+},
+{
+"creature": "emela-ntouka",
+"cat": "aquatic",
+"icon": "horned",
+"name": "Blancou's report in Mammalia",
+"year": 1954,
+"place": "Likouala, Republic of the Congo",
+"lat": 1.6,
+"lon": 17.3
+},
+{
+"creature": "emela-ntouka",
+"cat": "aquatic",
+"icon": "horned",
+"name": "Mackal expeditions",
+"year": 1980,
+"place": "Likouala, Republic of the Congo",
+"lat": 1.6,
+"lon": 17.3
+},
+{
+"creature": "sea-serpent",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "Gloucester Harbor sightings",
+"year": 1817,
+"place": "Gloucester, Massachusetts",
+"lat": 42.614,
+"lon": -70.6631
+},
+{
+"creature": "beast-of-busco",
+"cat": "aquatic",
+"icon": "turtle",
+"name": "Oscar Fulk sighting",
+"year": 1898,
+"place": "Churubusco, Indiana",
+"lat": 41.2306,
+"lon": -85.3194
+},
+{
+"creature": "beast-of-busco",
+"cat": "aquatic",
+"icon": "turtle",
+"name": "Fishermen sighting",
+"year": 1948,
+"place": "Fulk Lake, Indiana",
+"lat": 41.2605,
+"lon": -85.2861
+},
+{
+"creature": "beast-of-busco",
+"cat": "aquatic",
+"icon": "turtle",
+"name": "Lake drained in turtle hunt",
+"year": 1949,
+"place": "Churubusco, Indiana",
+"lat": 41.2306,
+"lon": -85.3194
+},
+{
+"creature": "dobhar-chu",
+"cat": "aquatic",
+"icon": "seal",
+"name": "Glenade Lough attack",
+"year": 1722,
+"place": "Glenade, County Leitrim, Ireland",
+"lat": 54.37,
+"lon": -8.32
+},
+{
+"creature": "goatman",
+"cat": "entity",
+"icon": "goatman",
+"name": "Folklore project records the legend",
+"year": 1971,
+"place": "University of Maryland, College Park",
+"lat": 38.99,
+"lon": -76.94
+},
+{
+"creature": "goatman",
+"cat": "entity",
+"icon": "goatman",
+"name": "Newspaper places him on Fletchertown Road",
+"year": 1971,
+"place": "Bowie, Maryland",
+"lat": 38.9428,
+"lon": -76.7303
+},
+{
+"creature": "pope-lick-monster",
+"cat": "entity",
+"icon": "goatman",
+"name": "Short film The Legend of the Pope Lick Monster",
+"year": 1988,
+"place": "Louisville, Kentucky",
+"lat": 38.2542,
+"lon": -85.7594
+},
+{
+"creature": "lake-worth-monster",
+"cat": "entity",
+"icon": "goatman",
+"name": "Summer of sightings and the tire throw",
+"year": 1969,
+"place": "Lake Worth, Fort Worth, Texas",
+"lat": 32.8049,
+"lon": -97.445
+},
+{
+"creature": "lake-worth-monster",
+"cat": "entity",
+"icon": "goatman",
+"name": "Prank confession letter",
+"year": 2005,
+"place": "Fort Worth, Texas",
+"lat": 32.7254,
+"lon": -97.3208
+},
+{
+"creature": "melon-heads",
+"cat": "entity",
+"icon": "melonhead",
+"name": "Melonheads film",
+"year": 2011,
+"place": "West Michigan",
+"lat": 43.0,
+"lon": -85.9
+},
+{
+"creature": "grafton-monster",
+"cat": "entity",
+"icon": "grafton",
+"name": "Cockrell sighting",
+"year": 1964,
+"place": "Grafton, West Virginia",
+"lat": 39.3409,
+"lon": -80.019
+},
+{
+"creature": "grafton-monster",
+"cat": "entity",
+"icon": "grafton",
+"name": "First Grafton Monster Festival",
+"year": 2024,
+"place": "Grafton, West Virginia",
+"lat": 39.3409,
+"lon": -80.019
+},
+{
+"creature": "enfield-monster",
+"cat": "entity",
+"icon": "dover",
+"name": "McDaniel encounter",
+"year": 1973,
+"place": "Enfield, Illinois",
+"lat": 38.0995,
+"lon": -88.3375
+},
+{
+"creature": "nain-rouge",
+"cat": "entity",
+"icon": "imp",
+"name": "Seen after the Battle of Bloody Run",
+"year": 1763,
+"place": "Detroit",
+"lat": 42.33,
+"lon": -83.05
+},
+{
+"creature": "nain-rouge",
+"cat": "entity",
+"icon": "imp",
+"name": "Sighting before the riots",
+"year": 1967,
+"place": "Detroit, Michigan",
+"lat": 42.3314,
+"lon": -83.0457
+},
+{
+"creature": "nain-rouge",
+"cat": "entity",
+"icon": "imp",
+"name": "First Marche du Nain Rouge",
+"year": 2010,
+"place": "Detroit, Michigan",
+"lat": 42.3314,
+"lon": -83.0457
+},
+{
+"creature": "fresno-nightcrawlers",
+"cat": "entity",
+"icon": "nightcrawler",
+"name": "First security camera clip",
+"year": 2007,
+"place": "Fresno, California",
+"lat": 36.7477,
+"lon": -119.7724
+},
+{
+"creature": "fresno-nightcrawlers",
+"cat": "entity",
+"icon": "nightcrawler",
+"name": "Yosemite Lakes Park footage",
+"year": 2011,
+"place": "Yosemite Lakes Park, California",
+"lat": 37.1819,
+"lon": -119.7682
+},
+{
+"creature": "black-eyed-children",
+"cat": "entity",
+"icon": "blackeyed",
+"name": "Brian Bethel encounter",
+"year": 1996,
+"place": "Abilene, Texas",
+"lat": 32.4487,
+"lon": -99.7331
+},
+{
+"creature": "black-eyed-children",
+"cat": "entity",
+"icon": "blackeyed",
+"name": "UK tabloid wave",
+"year": 2014,
+"place": "Staffordshire, England",
+"lat": 52.8,
+"lon": -2.1
+},
+{
+"creature": "spring-heeled-jack",
+"cat": "entity",
+"icon": "springjack",
+"name": "First reported attacks",
+"year": 1837,
+"place": "Barnes and Battersea, London",
+"lat": 51.47,
+"lon": -0.2
+},
+{
+"creature": "spring-heeled-jack",
+"cat": "entity",
+"icon": "springjack",
+"name": "Jane Alsop attack",
+"year": 1838,
+"place": "Bow, London",
+"lat": 51.53,
+"lon": -0.02
+},
+{
+"creature": "spring-heeled-jack",
+"cat": "entity",
+"icon": "springjack",
+"name": "Liverpool sightings",
+"year": 1904,
+"place": "Everton, Liverpool",
+"lat": 53.42,
+"lon": -2.97
+},
+{
+"creature": "popobawa",
+"cat": "entity",
+"icon": "popobawa",
+"name": "First reports on Pemba",
+"year": 1965,
+"place": "Pemba, Zanzibar",
+"lat": -5.2,
+"lon": 39.8
+},
+{
+"creature": "popobawa",
+"cat": "entity",
+"icon": "popobawa",
+"name": "Great panic",
+"year": 1995,
+"place": "Zanzibar and Dar es Salaam",
+"lat": -6.16,
+"lon": 39.2
+},
+{
+"creature": "popobawa",
+"cat": "entity",
+"icon": "popobawa",
+"name": "Renewed outbreak",
+"year": 2007,
+"place": "Dar es Salaam, Tanzania",
+"lat": -6.8235,
+"lon": 39.2695
+},
+{
+"creature": "thetis-lake-monster",
+"cat": "entity",
+"icon": "lizardman",
+"name": "Teenagers chased from the beach",
+"year": 1972,
+"place": "Thetis Lake, British Columbia",
+"lat": 48.4663,
+"lon": -123.4693
+},
+{
+"creature": "indrid-cold",
+"cat": "entity",
+"icon": "mib",
+"name": "Derenberger roadside encounter",
+"year": 1966,
+"place": "Near Parkersburg, West Virginia",
+"lat": 39.2667,
+"lon": -81.5615
+},
+{
+"creature": "grey-aliens",
+"cat": "entity",
+"icon": "entity",
+"name": "Betty and Barney Hill encounter",
+"year": 1961,
+"place": "White Mountains, New Hampshire",
+"lat": 44.27,
+"lon": -71.3
+},
+{
+"creature": "nordic-aliens",
+"cat": "entity",
+"icon": "nordic",
+"name": "Adamski meets Orthon",
+"year": 1952,
+"place": "Desert Center, California",
+"lat": 33.7125,
+"lon": -115.4022
+},
+{
+"creature": "nordic-aliens",
+"cat": "entity",
+"icon": "nordic",
+"name": "Billy Meier contacts begin",
+"year": 1975,
+"place": "Hinwil, Switzerland",
+"lat": 47.2943,
+"lon": 8.8439
+},
+{
+"creature": "men-in-black",
+"cat": "entity",
+"icon": "mib",
+"name": "Maury Island warning",
+"year": 1947,
+"place": "Tacoma, Washington",
+"lat": 47.2529,
+"lon": -122.4443
+},
+{
+"creature": "men-in-black",
+"cat": "entity",
+"icon": "mib",
+"name": "Albert K. Bender visit",
+"year": 1953,
+"place": "Bridgeport, Connecticut",
+"lat": 41.1792,
+"lon": -73.1894
+},
+{
+"creature": "men-in-black",
+"cat": "entity",
+"icon": "mib",
+"name": "Point Pleasant visits",
+"year": 1967,
+"place": "Point Pleasant, West Virginia",
+"lat": 38.8445,
+"lon": -82.1371
+},
+{
+"creature": "reptilians",
+"cat": "entity",
+"icon": "lizardman",
+"name": "Herbert Schirmer encounter",
+"year": 1967,
+"place": "Ashland, Nebraska",
+"lat": 41.0392,
+"lon": -96.3684
+},
+{
+"creature": "wampus-cat",
+"cat": "other",
+"icon": "bigcat",
+"name": "Knoxville paper describes a 15- to 20-foot wampus cat",
+"year": 1936,
+"place": "Knoxville, Tennessee",
+"lat": 35.9606,
+"lon": -83.9207
+},
+{
+"creature": "hodag",
+"cat": "other",
+"icon": "hodag",
+"name": "Shepard \"kills\" a hodag",
+"year": 1893,
+"place": "Rhinelander, Wisconsin",
+"lat": 45.6366,
+"lon": -89.4121
+},
+{
+"creature": "hodag",
+"cat": "other",
+"icon": "hodag",
+"name": "Live hodag shown at the fair",
+"year": 1896,
+"place": "Rhinelander, Wisconsin",
+"lat": 45.6366,
+"lon": -89.4121
+},
+{
+"creature": "tsuchinoko",
+"cat": "other",
+"icon": "tsuchinoko",
+"name": "Shimokitayama Tsuchinoko Expedition",
+"year": 1988,
+"place": "Shimokitayama, Nara Prefecture",
+"lat": 34.0,
+"lon": 135.95
+},
+{
+"creature": "tsuchinoko",
+"cat": "other",
+"icon": "tsuchinoko",
+"name": "Tsuchinoko Park opens",
+"year": 2023,
+"place": "Shimokitayama, Nara Prefecture",
+"lat": 34.0,
+"lon": 135.95
+},
+{
+"creature": "mapinguari",
+"cat": "other",
+"icon": "sloth",
+"name": "Oren's ground sloth hypothesis",
+"year": 1993,
+"place": "Amazonas, Brazil",
+"lat": -3.4,
+"lon": -65.0
+},
+{
+"creature": "montauk-monster",
+"cat": "other",
+"icon": "carcass",
+"name": "Carcass found at Ditch Plains",
+"year": 2008,
+"place": "Montauk, New York",
+"lat": 41.0359,
+"lon": -71.9545
+},
+{
+"creature": "sheepsquatch",
+"cat": "other",
+"icon": "goatman",
+"name": "\"The White Thing\" folk tale collected",
+"year": 1965,
+"place": "West Virginia",
+"lat": 38.6,
+"lon": -80.6
+},
+{
+"creature": "sheepsquatch",
+"cat": "other",
+"icon": "goatman",
+"name": "Mid-1990s wave of sightings",
+"year": 1995,
+"place": "Kanawha Valley, West Virginia",
+"lat": 38.35,
+"lon": -81.63
+},
+{
+"creature": "ufo-cigar",
+"cat": "ufo",
+"icon": "cigar",
+"name": "Chiles-Whitted encounter",
+"year": 1948,
+"place": "Near Montgomery, Alabama",
+"lat": 32.3668,
+"lon": -86.3
+},
+{
+"creature": "ufo-boomerang",
+"cat": "ufo",
+"icon": "boomerang",
+"name": "Lubbock Lights",
+"year": 1951,
+"place": "Lubbock, Texas",
+"lat": 33.5779,
+"lon": -101.8552
+},
+{
+"creature": "ufo-boomerang",
+"cat": "ufo",
+"icon": "boomerang",
+"name": "Hudson Valley boomerang wave",
+"year": 1983,
+"place": "Westchester County, New York",
+"lat": 25.7548,
+"lon": -80.3273
+},
+{
+"creature": "ufo-boomerang",
+"cat": "ufo",
+"icon": "boomerang",
+"name": "Phoenix Lights",
+"year": 1997,
+"place": "Phoenix, Arizona",
+"lat": 33.4484,
+"lon": -112.074
+},
+{
+"creature": "ghost-rockets",
+"cat": "ufo",
+"icon": "rocket",
+"name": "Lake K\u00f6lmj\u00e4rv crash",
+"year": 1946,
+"place": "Norrbotten, Sweden",
+"lat": 66.8,
+"lon": 20.0
+},
+{
+"creature": "mystery-airships",
+"cat": "ufo",
+"icon": "airship",
+"name": "Sacramento sightings",
+"year": 1896,
+"place": "Sacramento, California",
+"lat": 38.5816,
+"lon": -121.4944
+},
+{
+"creature": "mystery-airships",
+"cat": "ufo",
+"icon": "airship",
+"name": "Aurora crash story",
+"year": 1897,
+"place": "Aurora, Texas",
+"lat": 33.0607,
+"lon": -97.5034
+},
+{
+"creature": "mystery-airships",
+"cat": "ufo",
+"icon": "airship",
+"name": "Cow-napping airship tale",
+"year": 1897,
+"place": "Le Roy, Kansas",
+"lat": 42.9784,
+"lon": -77.9842
+},
+{
+"creature": "green-fireballs",
+"cat": "ufo",
+"icon": "orbs",
+"name": "Pilot sightings",
+"year": 1948,
+"place": "New Mexico",
+"lat": 34.5,
+"lon": -106.0
+},
+{
+"creature": "green-fireballs",
+"cat": "ufo",
+"icon": "orbs",
+"name": "Los Alamos fireball conference",
+"year": 1949,
+"place": "Los Alamos, New Mexico",
+"lat": 35.8881,
+"lon": -106.307
+},
+{
+"creature": "ufo-crash",
+"cat": "ufo",
+"icon": "crash",
+"name": "Roswell debris recovery",
+"year": 1947,
+"place": "Lincoln County, New Mexico",
+"lat": 33.492,
+"lon": -105.3839
+},
+{
+"creature": "ufo-crash",
+"cat": "ufo",
+"icon": "crash",
+"name": "Kecksburg fireball",
+"year": 1965,
+"place": "Kecksburg, Pennsylvania",
+"lat": 40.1848,
+"lon": -79.4606
+},
+{
+"creature": "ufo-crash",
+"cat": "ufo",
+"icon": "crash",
+"name": "Shag Harbour impact",
+"year": 1967,
+"place": "Shag Harbour, Nova Scotia",
+"lat": 43.4941,
+"lon": -65.718
+},
+{
+"creature": "alien-abduction",
+"cat": "ufo",
+"icon": "abduction",
+"name": "Villas Boas case",
+"year": 1957,
+"place": "Minas Gerais, Brazil",
+"lat": -18.5,
+"lon": -44.5
+},
+{
+"creature": "alien-abduction",
+"cat": "ufo",
+"icon": "abduction",
+"name": "Betty and Barney Hill",
+"year": 1961,
+"place": "New Hampshire",
+"lat": 43.7,
+"lon": -71.6
+},
+{
+"creature": "alien-abduction",
+"cat": "ufo",
+"icon": "abduction",
+"name": "Pascagoula abduction",
+"year": 1973,
+"place": "Pascagoula, Mississippi",
+"lat": 30.3658,
+"lon": -88.5561
+},
+{
+"creature": "alien-abduction",
+"cat": "ufo",
+"icon": "abduction",
+"name": "Travis Walton disappearance",
+"year": 1975,
+"place": "Apache-Sitgreaves National Forest, Arizona",
+"lat": 34.0,
+"lon": -109.5
+},
+{
+"creature": "crop-circles",
+"cat": "ufo",
+"icon": "cropcircle",
+"name": "Tully saucer nest",
+"year": 1966,
+"place": "Tully, Queensland",
+"lat": -17.9326,
+"lon": 145.9228
+},
+{
+"creature": "crop-circles",
+"cat": "ufo",
+"icon": "cropcircle",
+"name": "Bower and Chorley reveal their method",
+"year": 1991,
+"place": "Southampton, England",
+"lat": 50.904,
+"lon": -1.4043
+},
+{
+"creature": "crop-circles",
+"cat": "ufo",
+"icon": "cropcircle",
+"name": "Milk Hill formation",
+"year": 2001,
+"place": "Wiltshire, England",
+"lat": 51.3,
+"lon": -1.9
+},
+{
+"creature": "cattle-mutilation",
+"cat": "ufo",
+"icon": "cow",
+"name": "Snippy the horse",
+"year": 1967,
+"place": "Alamosa, Colorado",
+"lat": 37.4695,
+"lon": -105.87
+},
+{
+"creature": "cattle-mutilation",
+"cat": "ufo",
+"icon": "cow",
+"name": "Rommel investigation begins",
+"year": 1979,
+"place": "New Mexico",
+"lat": 34.5,
+"lon": -106.0
+},
+{
+"creature": "skinwalker-ranch",
+"cat": "ufo",
+"icon": "orbs",
+"name": "Sherman family story published",
+"year": 1996,
+"place": "Ballard, Utah",
+"lat": 40.2894,
+"lon": -109.9432
+},
+{
+"creature": "skinwalker-ranch",
+"cat": "ufo",
+"icon": "orbs",
+"name": "Bigelow buys the ranch",
+"year": 1996,
+"place": "Uintah County, Utah",
+"lat": 41.1441,
+"lon": -111.9233
 }
 ]

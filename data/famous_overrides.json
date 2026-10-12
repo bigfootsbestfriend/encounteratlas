@@ -1,26 +1,318 @@
 {
-  "Abkhazia, Georgia": [43.0, 41.0],
-  "Belgium": [50.72, 4.6],
-  "Delaware Valley, NJ/PA": [39.95, -75.0],
-  "Gifford Pinchot National Forest, Washington": [46.3, -121.9],
-  "Gobi Desert, Mongolia": [43.5, 104.0],
-  "Haida Gwaii, BC": [54.03, -132.98],
-  "Honey Island Swamp, Louisiana": [30.33, -89.7],
-  "Jiundu Swamp, Zambia": [-11.9, 24.4],
-  "Kerinci, Sumatra": [-1.7, 101.27],
-  "Lhakpa La, Tibet": [28.07, 86.97],
-  "Likouala, Republic of the Congo": [1.6, 17.3],
-  "Loch Ness, Scotland": [57.32, -4.45],
-  "Mawnan, Cornwall": [50.1, -5.12],
-  "Menlung Glacier, Nepal": [28.0, 86.35],
-  "Middle Island, Lake Erie": [41.68, -82.68],
-  "Mount St. Helens, Washington": [46.2, -122.19],
-  "Murrumbidgee River, New South Wales": [-34.6, 146.0],
-  "Off San Diego, California": [31.5, -117.5],
-  "Off the US East Coast": [31.0, -79.0],
-  "Okanagan Lake, BC": [49.9, -119.5],
-  "Over Europe": [49.0, 8.3],
-  "Pangboche Monastery, Nepal": [27.86, 86.79],
-  "Shennongjia, Hubei": [31.74, 110.68],
-  "Swiss Alps": [46.6, 8.2]
+"Abkhazia, Georgia": [
+43.0,
+41.0
+],
+"Belgium": [
+50.72,
+4.6
+],
+"Delaware Valley, NJ/PA": [
+39.95,
+-75.0
+],
+"Gifford Pinchot National Forest, Washington": [
+46.3,
+-121.9
+],
+"Gobi Desert, Mongolia": [
+43.5,
+104.0
+],
+"Haida Gwaii, BC": [
+54.03,
+-132.98
+],
+"Honey Island Swamp, Louisiana": [
+30.33,
+-89.7
+],
+"Jiundu Swamp, Zambia": [
+-11.9,
+24.4
+],
+"Kerinci, Sumatra": [
+-1.7,
+101.27
+],
+"Lhakpa La, Tibet": [
+28.07,
+86.97
+],
+"Likouala, Republic of the Congo": [
+1.6,
+17.3
+],
+"Loch Ness, Scotland": [
+57.32,
+-4.45
+],
+"Mawnan, Cornwall": [
+50.1,
+-5.12
+],
+"Menlung Glacier, Nepal": [
+28.0,
+86.35
+],
+"Middle Island, Lake Erie": [
+41.68,
+-82.68
+],
+"Mount St. Helens, Washington": [
+46.2,
+-122.19
+],
+"Murrumbidgee River, New South Wales": [
+-34.6,
+146.0
+],
+"Off San Diego, California": [
+31.5,
+-117.5
+],
+"Off the US East Coast": [
+31.0,
+-79.0
+],
+"Okanagan Lake, BC": [
+49.9,
+-119.5
+],
+"Over Europe": [
+49.0,
+8.3
+],
+"Pangboche Monastery, Nepal": [
+27.86,
+86.79
+],
+"Shennongjia, Hubei": [
+31.74,
+110.68
+],
+"Swiss Alps": [
+46.6,
+8.2
+],
+"Amazonas, Brazil": [
+-3.4,
+-65.0
+],
+"Apache-Sitgreaves National Forest, Arizona": [
+34.0,
+-109.5
+],
+"Arkansas": [
+34.9,
+-92.4
+],
+"Bariloche, Argentina": [
+-41.13,
+-71.31
+],
+"Barnes and Battersea, London": [
+51.47,
+-0.2
+],
+"Ben Macdui, Cairngorms": [
+57.07,
+-3.67
+],
+"Bodmin Moor, Cornwall": [
+50.55,
+-4.6
+],
+"Bow, London": [
+51.53,
+-0.02
+],
+"Bukit Timah Nature Reserve": [
+1.354,
+103.776
+],
+"Cairngorms, Scotland": [
+57.08,
+-3.65
+],
+"Chazes, France": [
+44.9,
+3.45
+],
+"Cornwall, England": [
+50.4,
+-4.9
+],
+"Detroit": [
+42.33,
+-83.05
+],
+"Everton, Liverpool": [
+53.42,
+-2.97
+],
+"Glenade, County Leitrim, Ireland": [
+54.37,
+-8.32
+],
+"Heaven Lake": [
+42.0,
+128.06
+],
+"Jämtland, Sweden": [
+63.18,
+14.5
+],
+"Kanawha Valley, West Virginia": [
+38.35,
+-81.63
+],
+"Lagarfljót, Iceland": [
+65.17,
+-14.6
+],
+"Lake Manitoba": [
+50.9,
+-98.6
+],
+"Lake Tahoe": [
+39.09,
+-120.04
+],
+"Loch Morar, Scotland": [
+56.95,
+-5.7
+],
+"London": [
+51.507,
+-0.128
+],
+"Madison Valley, Montana": [
+45.2,
+-111.7
+],
+"Magothy River, Maryland": [
+39.07,
+-76.47
+],
+"Middletown Valley, Maryland": [
+39.44,
+-77.55
+],
+"Minas Gerais, Brazil": [
+-18.5,
+-44.5
+],
+"Mont Mouchet, France": [
+45.0,
+3.42
+],
+"Mount Hiba, Hiroshima Prefecture": [
+35.0,
+133.1
+],
+"Nahuel Huapi Lake, Argentina": [
+-41.0,
+-71.5
+],
+"Near the Grand Canyon, Arizona": [
+36.1,
+-112.1
+],
+"Near the Tjidjenkol River, Java": [
+-7.2,
+107.5
+],
+"New Hampshire": [
+43.7,
+-71.6
+],
+"New Mexico": [
+34.5,
+-106.0
+],
+"Norrbotten, Sweden": [
+66.8,
+20.0
+],
+"North-west Tasmania": [
+-41.2,
+145.3
+],
+"Patagonia, Argentina": [
+-45.0,
+-69.0
+],
+"Pemba, Zanzibar": [
+-5.2,
+39.8
+],
+"Saijo, Hiroshima Prefecture": [
+34.42,
+132.74
+],
+"Shimokitayama, Nara Prefecture": [
+34.0,
+135.95
+],
+"South Molton, Devon": [
+51.02,
+-3.83
+],
+"South Texas": [
+26.8,
+-98.3
+],
+"Staffordshire, England": [
+52.8,
+-2.1
+],
+"Storsjön, Sweden": [
+63.18,
+14.5
+],
+"Suffolk, England": [
+52.2,
+1.0
+],
+"Tanganyika (Tanzania)": [
+-6.4,
+35.0
+],
+"Umboi Island, Papua New Guinea": [
+-5.6,
+147.9
+],
+"University of Maryland, College Park": [
+38.99,
+-76.94
+],
+"West Java, Indonesia": [
+-6.9,
+107.6
+],
+"West Michigan": [
+43.0,
+-85.9
+],
+"West Virginia": [
+38.6,
+-80.6
+],
+"White Mountains, New Hampshire": [
+44.27,
+-71.3
+],
+"Wiltshire, England": [
+51.3,
+-1.9
+],
+"Wisconsin": [
+44.5,
+-89.5
+],
+"Zanzibar and Dar es Salaam": [
+-6.16,
+39.2
+]
 }
