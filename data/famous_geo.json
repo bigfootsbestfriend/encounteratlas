@@ -313,7 +313,7 @@
 "creature": "bessie",
 "cat": "aquatic",
 "icon": "serpent",
-"name": "Sloop Felicity sighting",
+"name": "1793 sloop captain's sighting",
 "year": 1793,
 "place": "Middle Island, Lake Erie",
 "lat": 41.68,
@@ -1003,11 +1003,11 @@
 "creature": "lechuza",
 "cat": "winged",
 "icon": "owl",
-"name": "Rio Grande Valley Big Bird flap revives the legend",
-"year": 1976,
-"place": "South Texas",
-"lat": 26.8,
-"lon": -98.3
+"name": "Big Bird flap revives the legend",
+"year": 1975,
+"place": "Robstown, Texas",
+"lat": 27.7903,
+"lon": -97.6689
 },
 {
 "creature": "altamaha-ha",
@@ -2584,7 +2584,7 @@
 "cat": "fae",
 "icon": "imp",
 "name": "Cooley Mountains 'protected zone' for little people reported",
-"year": 2010,
+"year": 2009,
 "place": "Carlingford, Ireland",
 "lat": 54.04,
 "lon": -6.1883
