@@ -1,0 +1,82 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,600;0,700;1,600&family=Public+Sans:wght@600;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0B1813;font-family:"Public Sans",sans-serif;color:#C9D3A4;padding:20px 24px}
+.row{display:grid;grid-template-columns:220px repeat(6,1fr);gap:14px;align-items:center;margin-bottom:22px;background:#13261F;border:1px solid #2B4A3D;border-radius:16px;padding:16px}
+.lab b{font:700 26px "Zilla Slab";color:#F3F1E4;display:block}.lab span{font-size:14px;color:#9FB3A3;display:block;margin-top:6px}
+.cell{display:flex;flex-direction:column;align-items:center;gap:8px}
+.icons{display:flex;gap:10px;align-items:center}
+.cap{font-size:12px;color:#9FB3A3}
+</style></head><body><div id="g"></div>
+<script>
+// Creature silhouettes, 200x200, facing right / front. Realistic proportions.
+const C={
+bigfoot:{name:'Bigfoot',d:[
+ 'M108 26C116 22 126 26 128 36C130 42 128 48 124 52L122 58C134 62 142 74 142 90C142 104 138 116 134 126L132 134C138 146 146 158 150 172L152 186C156 190 166 192 170 196L140 196L138 186C132 172 124 160 118 150L108 160C102 172 94 182 86 190L90 196L64 196C66 190 72 186 76 182C84 168 90 154 92 140C88 130 84 118 82 104C80 86 84 64 92 46C96 36 100 30 108 26Z',
+ 'M128 60C144 70 158 90 166 112C170 122 172 132 170 140C166 145 160 143 158 136C156 126 150 112 140 98C134 90 128 82 124 74Z',
+ 'M94 58C84 72 72 92 62 112C58 120 54 130 56 138C60 142 66 140 68 134C72 122 80 106 92 92C96 86 98 80 100 74Z']},
+dogman:{name:'Dogman',d:[
+ 'M118 30L124 10L130 30C138 32 146 38 156 42L168 46C170 51 165 55 156 55L144 58C140 62 136 64 132 66C138 76 142 88 140 102C138 114 132 124 128 132C134 142 140 152 138 162C136 170 128 178 130 186L142 194L120 196L118 186C116 176 122 166 120 156L110 150C104 160 100 170 104 180L110 192L88 196L88 188C84 176 86 164 92 152C94 140 92 130 90 122C86 104 90 80 100 62C104 52 108 40 110 32L108 14Z',
+ 'M132 70C142 86 148 104 150 122L157 133L150 131L152 139L146 133L144 140L141 129C137 113 131 97 123 85Z',
+ 'M90 126C78 134 68 150 70 168C78 156 86 146 96 138Z']},
+mothman:{name:'Mothman',d:[
+ 'M100 58C109 58 116 66 116 80L114 120C112 132 110 140 108 150L111 192L102 192L100 152L98 192L89 192L92 150C90 140 88 132 86 120L84 80C84 66 91 58 100 58Z',
+ 'M86 76C70 58 40 44 8 50C22 58 28 68 30 78C22 82 15 90 13 102C26 98 37 100 45 106C40 114 40 123 42 132C56 119 70 108 86 104Z',
+ 'M114 76C130 58 160 44 192 50C178 58 172 68 170 78C178 82 185 90 187 102C174 98 163 100 155 106C160 114 160 123 158 132C144 119 130 108 114 104Z'],eyes:[[94,80],[106,80]]},
+nessie:{name:'Loch Ness Monster',d:[
+ 'M40 152C44 120 52 90 62 70C66 60 72 54 81 54C89 54 94 59 92 65L84 65C78 67 73 77 69 93C65 111 65 131 68 152Z',
+ 'M90 152C96 132 112 125 127 132C133 138 135 146 137 152Z',
+ 'M147 152C151 141 161 137 171 143L176 152Z'],water:true},
+chupacabra:{name:'Chupacabra',d:[
+ 'M30 150C34 132 44 118 60 112C80 104 104 104 124 108C134 100 144 92 156 94L172 94C178 98 177 104 171 107L160 110C156 116 150 122 146 128L150 168L142 168L136 136L126 140L124 168L116 168L114 138C100 140 84 138 70 134L66 168L58 168L56 140L48 168L40 168L42 140C36 142 32 146 30 150Z',
+ 'M31 146C20 150 13 160 11 172C20 162 27 156 35 153Z',
+ 'M150 95L147 79L159 92Z',
+ 'M58 113L62 98L68 110L74 95L80 107L86 93L92 105L98 92L104 104L110 92L116 105L122 95L126 108Z'],eyes:[[160,99]],eyeShape:'almond'},
+grey:{name:'Grey alien',d:[
+ 'M100 18C126 18 140 38 138 60C136 80 116 98 100 102C84 98 64 80 62 60C60 38 74 18 100 18Z',
+ 'M96 100H104V112H96Z',
+ 'M100 110C112 110 120 116 120 130L116 160L112 196L106 196L102 162L98 162L94 196L88 196L84 160L80 130C80 116 88 110 100 110Z',
+ 'M82 116C74 130 70 150 70 170L66 180L70 180L74 173C76 152 82 134 88 122Z',
+ 'M118 116C126 130 130 150 130 170L134 180L130 180L126 173C124 152 118 134 112 122Z'],alienEyes:true},
+};
+const ORDER=['bigfoot','dogman','mothman','nessie','chupacabra','grey'];
+const paths=(k,fill,extra='')=>C[k].d.map(d=>`<path d="${d}" fill="${fill}" ${extra}/>`).join('');
+const eyesOf=(k,col)=>{const c=C[k];let s='';
+ if(c.eyes&&!c.eyeShape) s+=c.eyes.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3.6" fill="${col}"/>`).join('');
+ if(c.eyeShape) s+=c.eyes.map(([x,y])=>`<path d="M${x-7} ${y}q7-6 14 0q-7 5-14 0Z" fill="${col}"/>`).join('');
+ if(c.alienEyes) s+=`<path d="M72 58C80 50 94 54 96 66C92 74 80 74 72 58Z" fill="${col}"/><path d="M128 58C120 50 106 54 104 66C108 74 120 74 128 58Z" fill="${col}"/>`;
+ return s};
+const water=(k,col,w=2)=>C[k].water?`<g stroke="${col}" stroke-width="${w}" fill="none" stroke-linecap="round"><path d="M20 156h60M86 156h100M30 166h50M100 166h70M50 176h90"/></g>`:'';
+let uid=0;
+// STYLE A: national-park poster (flat layered landscape, creature in silhouette)
+function poster(k,size=200){const id='p'+(uid++);const sky=k==='nessie'?['#E8B04A','#C8693A']:k==='grey'||k==='mothman'?['#3B4C6B','#1B2A3A']:['#E3A649','#B5532F'];
+ return `<svg viewBox="0 0 200 200" width="${size}"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sky[0]}"/><stop offset="1" stop-color="${sky[1]}"/></linearGradient><clipPath id="c${id}"><rect x="6" y="6" width="188" height="188" rx="10"/></clipPath></defs>
+ <g clip-path="url(#c${id})"><rect width="200" height="200" fill="url(#${id})"/><circle cx="150" cy="56" r="26" fill="#F3E3B8" opacity=".9"/>
+ <path d="M0 150L30 118 55 136 85 100 120 132 150 108 200 140V200H0Z" fill="#5E4A3A" opacity=".55"/>
+ ${k==='nessie'?`<rect y="150" width="200" height="50" fill="#2B4A55"/>`:`<path d="M0 176L14 140 28 176 40 132 54 176 150 176 162 128 176 176 188 138 200 176V200H0Z" fill="#1E3A2F"/>`}
+ ${paths(k,'#14211B')}${eyesOf(k,k==='grey'?'#0B0F0D':'#E0563A')}${water(k,'#9CC3C9',2.5)}</g>
+ <rect x="6" y="6" width="188" height="188" rx="10" fill="none" stroke="#F3E3B8" stroke-width="4"/></svg>`}
+// STYLE B: linocut / woodcut (ink on bone, carved hatch texture, rough frame)
+function lino(k,size=200){const id='l'+(uid++);
+ return `<svg viewBox="0 0 200 200" width="${size}"><defs><pattern id="${id}" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><rect width="7" height="7" fill="#1C1B16"/><rect y="5.2" width="7" height="1.1" fill="#E9DFC4" opacity=".55"/></pattern></defs>
+ <rect width="200" height="200" fill="#E9DFC4"/><circle cx="100" cy="98" r="88" fill="none" stroke="#1C1B16" stroke-width="3"/><circle cx="100" cy="98" r="82" fill="none" stroke="#1C1B16" stroke-width="1" stroke-dasharray="3 3"/>
+ <g stroke="#1C1B16" stroke-width="1.4" opacity=".55">${Array.from({length:9},(_,i)=>`<path d="M${30+i*4} ${40+i*2}h${36-i*3}"/>`).join('')}</g>
+ ${k==='nessie'?'':`<path d="M18 196C50 188 150 188 182 196Z" fill="#1C1B16"/>`}
+ ${paths(k,`url(#${id})`,'stroke="#1C1B16" stroke-width="2.5" stroke-linejoin="round"')}${eyesOf(k,k==='grey'?'#1C1B16':'#B5532F')}${water(k,'#1C1B16',3)}</svg>`}
+// STYLE C: naturalist engraving (fine line shading on paper, specimen caption)
+function engrave(k,size=200){const id='e'+(uid++);
+ return `<svg viewBox="0 0 200 200" width="${size}"><defs><pattern id="${id}" width="3.2" height="3.2" patternUnits="userSpaceOnUse"><rect width="3.2" height="3.2" fill="#F4EEDC"/><rect y="0" width="3.2" height=".9" fill="#2A2A22"/></pattern>
+ <linearGradient id="g${id}" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#2A2A22" stop-opacity=".55"/></linearGradient></defs>
+ <rect width="200" height="200" fill="#F4EEDC"/><rect x="8" y="8" width="184" height="184" fill="none" stroke="#2A2A22" stroke-width="1"/><rect x="12" y="12" width="176" height="176" fill="none" stroke="#2A2A22" stroke-width=".5"/>
+ <g transform="translate(14 6) scale(.86)">${paths(k,`url(#${id})`,'stroke="#2A2A22" stroke-width="1.8" stroke-linejoin="round"')}${paths(k,`url(#g${id})`)}${eyesOf(k,k==='grey'?'#2A2A22':'#A0412A')}${water(k,'#2A2A22',1.2)}</g>
+ <text x="100" y="186" text-anchor="middle" font-family="Zilla Slab" font-style="italic" font-weight="600" font-size="11" fill="#2A2A22">${C[k].name}</text></svg>`}
+// small icons: strong silhouette
+const iconA=(k,s)=>`<svg viewBox="0 0 200 200" width="${s}"><rect width="200" height="200" rx="40" fill="#1E3A2F"/><circle cx="100" cy="100" r="86" fill="#C8693A"/><g transform="translate(14 8) scale(.86)">${paths(k,'#14211B')}${eyesOf(k,k==='grey'?'#14211B':'#F3E3B8')}</g></svg>`;
+const iconB=(k,s)=>`<svg viewBox="0 0 200 200" width="${s}"><rect width="200" height="200" rx="40" fill="#E9DFC4"/><g transform="translate(10 6) scale(.9)">${paths(k,'#1C1B16')}${eyesOf(k,k==='grey'?'#E9DFC4':'#B5532F')}</g></svg>`;
+const iconC=(k,s)=>`<svg viewBox="0 0 200 200" width="${s}"><circle cx="100" cy="100" r="96" fill="#F4EEDC" stroke="#2A2A22" stroke-width="6"/><g transform="translate(20 14) scale(.8)">${paths(k,'#2A2A22')}${eyesOf(k,k==='grey'?'#F4EEDC':'#A0412A')}</g></svg>`;
+const STY=[
+ ['A. Park poster','Flat layered landscapes like 1930s national-park posters: dusk sky, ridgelines, the creature as a dark silhouette. Bold, warm, very recognisable.',poster,iconA],
+ ['B. Linocut','Carved ink on bone paper, with diagonal cut texture and a hand-stamped ring. Folk-horror field notes; prints well on merch.',lino,iconB],
+ ['C. Naturalist engraving','Fine-line shaded specimen plates with italic captions, like a 1800s natural-history book. The most "serious study" feel.',engrave,iconC]];
+document.getElementById('g').innerHTML=STY.map(([t,d,hero,ic])=>`<div class="row"><div class="lab"><b>${t}</b><span>${d}</span></div>${ORDER.map(k=>`<div class="cell">${hero(k,190)}<div class="icons">${ic(k,48)}${ic(k,32)}${ic(k,20)}</div><div class="cap">${C[k].name}</div></div>`).join('')}</div>`).join('');
+</script></body></html>
