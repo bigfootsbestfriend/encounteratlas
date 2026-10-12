@@ -507,7 +507,7 @@ def build_home(creatures, n_points, bluebook, military):
     fam_path = os.path.join(ROOT, 'data', 'famous_geo.json')
     famous_slugs = {f['creature'] for f in json.load(open(fam_path))} if os.path.exists(fam_path) else set()
     featured = [c for c in creatures if c['slug'] in ('bigfoot', 'dogman', 'mothman', 'loch-ness-monster', 'chupacabra',
-                                                       'ufo-tic-tac', 'jersey-devil', 'flatwoods-monster')]
+                                                       'ufo-tic-tac', 'jersey-devil', 'flatwoods-monster', 'fairies')]
     cards = ''.join(creature_card(c) for c in featured)
     tiles = ''.join(f'<a class="tile cat-{cat}" href="{url("/map/?cat=" + cat)}">{icon(ic)}<span>{esc(label)}</span></a>'
                     for cat, ic, label in TILES)
@@ -549,7 +549,7 @@ def build_home(creatures, n_points, bluebook, military):
   </div>
   <h2>Meet the locals</h2>
   <p class="lede-dark">Every creature has its other names, what witnesses report and the cases that made it famous.</p>
-  <div class="crit-grid">{cards}</div>
+  <div class="crit-grid home-crits">{cards}</div>
   <p><a href="{url('/creatures/')}">See all {len(creatures)} creatures</a></p>
 </div></div>
 <div class="band band-dark"><div class="wrap split">
