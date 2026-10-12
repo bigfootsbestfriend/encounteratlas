@@ -1,0 +1,75 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@600;700&family=Public+Sans:wght@500;700&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E8E4D8;font-family:"Public Sans";color:#1A1A1A}
+h1{font:700 32px "Zilla Slab";margin:22px 26px 2px}p.sub{margin:0 26px 8px;color:#555;font-size:15px}
+.card{background:#fff;border-radius:16px;margin:16px 26px;border:1px solid #D5D0C2;display:grid;grid-template-columns:420px 1fr;overflow:hidden}
+.big{background:#0E1510;display:flex;align-items:center;justify-content:center;padding:18px}
+.side{padding:14px 18px;display:flex;flex-direction:column;gap:10px}
+.side b{font:700 24px "Zilla Slab"}.side span.d{font-size:14px;color:#555}
+.sz{display:flex;align-items:flex-end;gap:12px;font-size:10px;color:#888}.sz div{display:flex;flex-direction:column;align-items:center;gap:3px}
+.lk{border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:14px}
+.ctx{display:flex;gap:14px;align-items:center}
+.tab{background:#DEE1E6;border-radius:10px 10px 0 0;padding:8px 12px 6px;display:flex;gap:8px;align-items:center;font:500 13px system-ui;width:180px}
+.phone{background:linear-gradient(160deg,#3A4A6B,#1E2433);border-radius:14px;padding:10px 12px;display:flex;gap:12px}
+.app{display:flex;flex-direction:column;align-items:center;gap:3px;font:500 10px system-ui;color:#fff}
+.app .ph{width:48px;height:48px;border-radius:12px}
+</style></head><body>
+<h1>Round 10: retro field-team badges</h1><p class="sub">Inspired by your sample's ingredients (patch badge, forest green, mustard and rust, felt-print texture, silhouettes in a window), drawn fresh with our own creatures. Each one also comes as a square icon and a side-by-side lockup.</p>
+<div id="g"></div>
+<script>
+const ART='../site/static/art/';
+const G={bg:'#1B2B20',win:'#7FA866',win2:'#4F7D4C',ridge:'#3B6440',gold:'#D8B04A',rust:'#C0432C',cream:'#EAD9A4',ink:'#0F1A12',night:'#22304A'};
+let n=0;const uid=()=>'r'+(n++);
+// silhouette in any colour (mask trick)
+const silC=(k,x,y,w,c,h=w)=>{const m=uid();return `<defs><mask id="${m}" maskUnits="userSpaceOnUse" x="${x}" y="${y}" width="${w}" height="${h}"><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#000"/><image href="${ART}${k}.svg" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMax meet" style="filter:invert(1)"/></mask></defs><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${c}" mask="url(#${m})"/>`};
+const grain=(shape)=>{const f=uid(),c=uid();return {clip:`<clipPath id="${c}">${shape}</clipPath>`,cid:c,def:`<filter id="${f}"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 -.18"/><feComposite in2="SourceGraphic" operator="in"/></filter>`,id:f}};
+const pine=(x,y,s,c)=>`<path d="M${x} ${y-s}L${x+s*.35} ${y-s*.45}H${x+s*.18}L${x+s*.45} ${y}H${x-s*.45}L${x-s*.18} ${y-s*.45}H${x-s*.35}Z" fill="${c}"/>`;
+const star=(x,y,r,c)=>{let d='';for(let i=0;i<10;i++){const a=Math.PI/5*i-Math.PI/2,rr=i%2?r*.45:r;d+=(i?'L':'M')+(x+rr*Math.cos(a)).toFixed(1)+' '+(y+rr*Math.sin(a)).toFixed(1)}return `<path d="${d}Z" fill="${c}"/>`};
+// the window scene: night-green sky, moon, ridge, pines, three figures. drawn in a 200x200 box
+function scene(clip,{moon=true,three=true}={}){const c=uid(),g=uid();return `<defs><clipPath id="${c}">${clip}</clipPath><linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${G.win2}"/><stop offset="1" stop-color="${G.win}"/></linearGradient></defs>
+<g clip-path="url(#${c})"><rect width="200" height="200" fill="url(#${g})"/>${moon?`<circle cx="136" cy="64" r="15" fill="${G.cream}" opacity=".9"/>`:''}
+<path d="M0 150L40 118 62 134 92 104 128 136 160 116 200 142V200H0Z" fill="${G.ridge}"/>${pine(30,150,40,G.ink)}${pine(176,152,44,G.ink)}${pine(160,156,28,G.ink)}
+${three?silC('mothman',50,44,50,G.ink)+silC('dogman',62,66,86,G.ink)+silC('grey-aliens',122,106,44,G.ink):silC('dogman',50,34,110,G.ink)}
+<path d="M0 162H200V200H0Z" fill="${G.ink}"/><g stroke="${G.cream}" stroke-width="2.5" opacity=".5"><path d="M30 172h40M110 178h50"/></g></g>`}
+const arcText=(txt,r,cy,size,c,ls,top=true)=>{const p=uid();const d=top?`M${100-r} ${cy}A${r} ${r} 0 0 1 ${100+r} ${cy}`:`M${100-r} ${cy}A${r} ${r} 0 0 0 ${100+r} ${cy}`;return `<defs><path id="${p}" d="${d}"/></defs><text font-family="Archivo Black" font-size="${size}" fill="${c}" letter-spacing="${ls}"><textPath href="#${p}" startOffset="50%" text-anchor="middle">${txt}</textPath></text>`};
+// A: crest (circle + flat banner band, like a patch)
+function crest(){const gr=grain('<circle cx="100" cy="100" r="96"/><rect x="4" y="128" width="192" height="34"/>');return `<defs>${gr.def}${gr.clip}</defs><g>
+<circle cx="100" cy="100" r="96" fill="${G.gold}"/><circle cx="100" cy="100" r="91" fill="${G.bg}"/><circle cx="100" cy="100" r="86" fill="none" stroke="${G.gold}" stroke-width="1.5"/>
+${scene('<circle cx="100" cy="104" r="58"/>')}<circle cx="100" cy="104" r="58" fill="none" stroke="${G.gold}" stroke-width="3"/>
+${arcText('ENCOUNTER',70,104,21,G.cream,1.5)}
+<path d="M4 128H196V162H4Z" fill="${G.gold}"/><path d="M8 132H192V158H8Z" fill="${G.bg}"/>
+<text x="100" y="155" text-anchor="middle" font-family="Archivo Black" font-size="25" fill="${G.cream}" letter-spacing="5">ATLAS</text>
+<text x="100" y="181" text-anchor="middle" font-family="Oswald" font-weight="700" font-size="9" fill="${G.rust}" letter-spacing="2">★ FIELD RESEARCH ★</text>
+${star(28,96,5,G.rust)}${star(172,96,5,G.rust)}
+<rect width="200" height="200" filter="url(#${gr.id})" opacity=".55" clip-path="url(#${gr.cid})"/></g>`}
+// B: shield patch (scout style)
+const SHIELD='M100 6L188 26V96C188 146 150 178 100 196C50 178 12 146 12 96V26Z';
+function shield(){const gr=grain(`<path d="${SHIELD}"/>`);return `<defs>${gr.def}${gr.clip}</defs><path d="${SHIELD}" fill="${G.gold}"/><path d="M100 13L181 31V96C181 141 146 171 100 188C54 171 19 141 19 96V31Z" fill="${G.bg}"/>
+<text x="100" y="47" text-anchor="middle" font-family="Archivo Black" font-size="19" fill="${G.cream}" letter-spacing="1.5">ENCOUNTER</text>
+${scene('<path d="M32 56H168V112C168 140 138 160 100 170C62 160 32 140 32 112Z"/>')}<path d="M32 56H168V112C168 140 138 160 100 170C62 160 32 140 32 112Z" fill="none" stroke="${G.gold}" stroke-width="3"/>
+<path d="M22 118H178L170 142H30Z" fill="${G.rust}"/><text x="100" y="138" text-anchor="middle" font-family="Archivo Black" font-size="19" fill="${G.cream}" letter-spacing="6">ATLAS</text>
+<rect width="200" height="200" filter="url(#${gr.id})" opacity=".5" clip-path="url(#${gr.cid})"/>`}
+// C: square patch (square-first)
+function square(){const gr=grain('<rect x="4" y="4" width="192" height="192" rx="30"/>');return `<defs>${gr.def}${gr.clip}</defs><rect x="4" y="4" width="192" height="192" rx="30" fill="${G.gold}"/><rect x="11" y="11" width="178" height="178" rx="24" fill="${G.bg}"/>
+<text x="100" y="40" text-anchor="middle" font-family="Archivo Black" font-size="20" fill="${G.cream}" letter-spacing="2">ENCOUNTER</text>
+${scene('<rect x="24" y="50" width="152" height="96" rx="10"/>')}<rect x="24" y="50" width="152" height="96" rx="10" fill="none" stroke="${G.gold}" stroke-width="3"/>
+<text x="100" y="176" text-anchor="middle" font-family="Archivo Black" font-size="24" fill="${G.rust}" letter-spacing="9">ATLAS</text>
+${star(32,166,5,G.gold)}${star(168,166,5,G.gold)}<rect width="200" height="200" filter="url(#${gr.id})" opacity=".5" clip-path="url(#${gr.cid})"/>`}
+// simplified square icons (no words): the window + border
+function iconA(){return `<rect width="200" height="200" rx="40" fill="${G.bg}"/><circle cx="100" cy="100" r="86" fill="${G.gold}"/><circle cx="100" cy="100" r="78" fill="${G.bg}"/>${scene('<circle cx="100" cy="100" r="72"/>',{three:false})}`}
+function iconB(){return `<rect width="200" height="200" rx="40" fill="${G.bg}"/><g transform="translate(14 8) scale(.86)"><path d="${SHIELD}" fill="${G.gold}"/>${scene('<path d="M100 18L176 34V96C176 140 144 168 100 182C56 168 24 140 24 96V34Z"/>',{three:false})}</g>`}
+function iconC(){return `<rect width="200" height="200" rx="40" fill="${G.gold}"/><rect x="12" y="12" width="176" height="176" rx="30" fill="${G.bg}"/>${scene('<rect x="24" y="24" width="152" height="152" rx="22"/>',{three:false})}`}
+const S=(w,inner,vb='0 0 200 200')=>`<svg viewBox="${vb}" width="${w}" height="${w}" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+const name=(dark)=>`<div style="font:400 30px/0.95 'Archivo Black';letter-spacing:1px;color:${dark?G.cream:G.bg}">ENCOUNTER<br><span style="color:${dark?G.gold:G.rust};letter-spacing:7px">ATLAS</span></div>`;
+const C=[['A. Field crest','Round patch with a banner band: ENCOUNTER arched over a window of Mothman, Dogman and a grey alien in the pines; ATLAS on the band.',crest,iconA],
+ ['B. Scout shield','A shield patch with a rust ribbon. The most "official field team" of the three.',shield,iconB],
+ ['C. Square patch','The same badge built as a rounded square, so the full badge and the app icon are the same shape.',square,iconC]];
+document.getElementById('g').innerHTML=C.map(([t,d,big,ic])=>{
+ const others=['#E2574C','#4C8BF5','#F4B400'].map((c,i)=>`<div class="app"><div class="ph" style="background:${c}"></div>${['Photos','Maps','Notes'][i]}</div>`).join('');
+ return `<div class="card"><div class="big">${S(380,big())}</div><div class="side"><b>${t}</b><span class="d">${d}</span>
+ <div class="sz"><div>${S(150,ic())}<span>icon 512</span></div><div>${S(64,ic())}<span>64</span></div><div>${S(32,ic())}<span>32</span></div><div>${S(16,ic())}<span>16</span></div><div>${S(64,big())}<span>full badge 64</span></div></div>
+ <div class="lk" style="background:${G.ink}">${S(64,ic())}${name(true)}</div>
+ <div class="lk" style="background:#F2EEE2">${S(64,ic())}${name(false)}</div>
+ <div class="ctx"><div class="tab">${S(16,ic())}Encounter Atlas</div><div class="phone">${others}<div class="app">${S(48,ic())}Encounter</div></div></div></div></div>`}).join('');
+</script></body></html>
