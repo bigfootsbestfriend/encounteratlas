@@ -299,7 +299,7 @@ def build_creatures(creatures, by_slug):
         cards = ''.join(f'<a class="cg-card" href="{url("/guides/" + g["slug"] + "/")}"><span class="cg-ico tone-{g.get("tone", "other")}">{icon(g["icon"])}</span>'
                         f'<span><span class="cg-kick">{esc(g.get("kicker") or "Field guide")}</span><b>{esc(g.get("short") or g["title"])}</b>'
                         f'<small>{esc(g.get("blurb") or "")}</small><span class="cg-go">Read the guide{" · printable checklist" if g.get("printable") else ""}</span></span></a>' for g in gs)
-        return (f'<section class="band band-dark cg-band"><div class="wrap"><h2>Going looking for the {esc(c["name"])}?</h2>'
+        return (f'<section class="band band-dark cg-band"><div class="wrap"><h2>{"Out where the stories are told?" if kind(c) == "folklore" else "Watching the skies?" if kind(c) == "ufo" else "Going looking for the " + esc(c["name"]) + "?"}</h2>'
                 f'<p class="lede-dark">Our field guides cover where to go, what to bring and how to come back with evidence that holds up.</p>'
                 f'<div class="cg-grid">{cards}</div><p class="cg-all"><a href="{url("/guides/")}">All field guides</a></p></div></section>')
 
@@ -311,6 +311,34 @@ def build_creatures(creatures, by_slug):
         d = load(fn)
         if isinstance(d, dict):
             famous_details.update(d)
+
+    KINDS = load('creature_kinds.json') or {}
+
+    def kind(c):
+        """cryptid (still reported), single (one exhibit, hoax or incident), folklore (a told tradition) or ufo."""
+        return 'ufo' if c['cat'] == 'ufo' else KINDS.get(c['slug'], 'cryptid')
+
+    def seen_box(c):
+        k, n, sl = kind(c), esc(c['name']), c['slug']
+        extra = ''
+        if k == 'single':
+            h, p = f'Know more about the {n}?', ('Found an old article, a photo or a mistake on this page? Send it in. '
+                                                 'Every note is read by a person, and we credit sources.')
+            acts = f'<a class="btn" href="{url("/report/?about=" + sl)}">Add a detail or correction</a>'
+        elif k == 'folklore':
+            h, p = 'Heard a local story, or had an experience?', ('Stories passed down in families and communities matter. '
+                                                                   'Share yours in your own words, and you can stay anonymous.')
+            acts = f'<a class="btn" href="{url("/report/?creature=" + sl)}">Share your story</a>'
+        else:
+            h = 'Seen one?' if k == 'ufo' else f'Seen the {n}?'
+            p = 'Tell us what happened. Every report is read by a person before it goes on the map, and you can stay anonymous.'
+            label = 'Report a sighting' if k == 'ufo' else f'Report a {n} encounter'
+            acts = f'<a class="btn" href="{url("/report/?creature=" + sl)}">{label}</a>'
+            if os.path.exists(os.path.join(ROOT, 'data', 'identify.json')):
+                acts += f'\n        <a class="btn btn-ghost" href="{url("/tools/what-did-i-see/")}">Not sure what it was?</a>'
+            extra = f'<p class="seen-print"><a href="{url("/printables/after-an-encounter/")}">Print a record sheet</a> to fill in while it\'s fresh.</p>'
+        return (f'<section class="seen-box cat-{c["cat"]}" aria-labelledby="seen-{sl}">\n      {crit_icon(c)}\n      <div>\n'
+                f'        <h2 id="seen-{sl}">{h}</h2>\n        <p>{p}</p>\n        <p class="seen-actions">{acts}</p>\n        {extra}\n      </div>\n    </section>')
 
     def related_groups(c):
         """Two labelled groups: similar creatures (same kind) and others reported in the same country or continent."""
@@ -333,10 +361,10 @@ def build_creatures(creatures, by_slug):
             where = ', '.join(names.get(x, x) for x in sorted(conts)) or 'the same part of the world'
         out = ''
         if similar:
-            out += (f'<h2 class="rel-h">Similar creatures</h2><p class="rel-why">Other {esc(CATS[c["cat"]][0].lower())} reported around the world.</p>'
+            out += (f'<h2 class="rel-h">Similar creatures</h2><p class="rel-why">Other {esc(CATS[c["cat"]][0].lower())} from around the world.</p>'
                     f'<div class="crit-grid">{"".join(creature_card(o) for o in similar)}</div>')
         if nearby:
-            out += (f'<h2 class="rel-h">Also reported in {esc(where)}</h2><p class="rel-why">Different creatures from the same part of the world.</p>'
+            out += (f'<h2 class="rel-h">Also from {esc(where)}</h2><p class="rel-why">Different creatures from the same part of the world.</p>'
                     f'<div class="crit-grid">{"".join(creature_card(o) for o in nearby)}</div>')
         return f'<div class="wrap rel-wrap">{out}</div>' if out else ''
 
@@ -359,8 +387,8 @@ def build_creatures(creatures, by_slug):
     for c in creatures:
         aka = (f'<p class="aka-line">Also called {esc(", ".join(c["aliases"]))}</p>' if c['aliases'] else '')
         facts = ''.join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in
-                        [('Where', c['region']), ('Size', c['size']), ('Habitat', c['habitat']),
-                         ('First reported', c['first'])] if v)
+                        [('Where', c['region']), ('Size', c['size']), ('Setting' if kind(c) == 'single' else 'Habitat', c['habitat']),
+                         ({'single': 'When', 'folklore': 'Earliest record'}.get(kind(c), 'First reported'), c['first'])] if v)
         body_p = ''.join(f'<p>{esc(p)}</p>' for p in c['body'])
         signs = ''.join(f'<li>{esc(s)}</li>' for s in c['signs'])
         cases = ''.join(case_item(c, f) for f in sorted(c['famous'], key=lambda f: f['year']))
@@ -386,21 +414,13 @@ def build_creatures(creatures, by_slug):
 </section>
 <div class="band band-mist"><div class="wrap creature-body">
   <article class="prose">
+    {'<h2>The story</h2>' if kind(c) == 'single' else ''}
     {body_p}
     {ufo_note}
-    <h2>What witnesses report</h2>
+    <h2>{ {'single': 'What was shown or claimed', 'folklore': 'What the stories say'}.get(kind(c), 'What witnesses report') }</h2>
     <ul class="signs">{signs}</ul>
-    {f'<h2>Famous cases</h2><ol class="timeline">{cases}</ol>' if cases else ''}
-    <section class="seen-box cat-{c['cat']}" aria-labelledby="seen-{c['slug']}">
-      {crit_icon(c)}
-      <div>
-        <h2 id="seen-{c['slug']}">Seen the {esc(c['name'])}?</h2>
-        <p>Tell us what happened. Every report is read by a person before it goes on the map, and you can stay anonymous.</p>
-        <p class="seen-actions"><a class="btn" href="{url('/report/?creature=' + c['slug'])}">Report a {esc(c['name'])} encounter</a>
-        {f'<a class="btn btn-ghost" href="{url("/tools/what-did-i-see/")}">Not sure what it was?</a>' if os.path.exists(os.path.join(ROOT, 'data', 'identify.json')) else ''}</p>
-        <p class="seen-print"><a href="{url('/printables/after-an-encounter/')}">Print a record sheet</a> to fill in while it's fresh.</p>
-      </div>
-    </section>
+    {f'<h2>{"Timeline" if kind(c) == "single" else "Famous cases"}</h2><ol class="timeline">{cases}</ol>' if cases else ''}
+    {seen_box(c)}
   </article>
   <aside class="side">
     <div class="facts">
@@ -411,9 +431,9 @@ def build_creatures(creatures, by_slug):
   </aside>
 </div>
 </div>
-{guide_band(c)}
+{guide_band(c) if kind(c) != 'single' else ''}
 <div class="band band-mist">{related_groups(c)}</div>'''
-        write(f'/creatures/{c["slug"]}/', page(f'/creatures/{c["slug"]}/', f'{c["name"]}: sightings, facts and other names',
+        write(f'/creatures/{c["slug"]}/', page(f'/creatures/{c["slug"]}/', f'{c["name"]}: ' + {'single': 'the story, facts and other names', 'folklore': 'stories, facts and other names'}.get(kind(c), 'sightings, facts and other names'),
                                                body, f'{c["summary"]} Also called {", ".join(c["aliases"][:4])}.'
                                                if c['aliases'] else c['summary']))
 

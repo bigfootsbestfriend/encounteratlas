@@ -340,9 +340,12 @@ class Tools:
     def identify(self):
         c, ROOT = self.c, self.c.ROOT
         spec = json.load(open(os.path.join(ROOT, 'data', 'identify.json'), encoding='utf-8'))
-        _, sizes, _ = settled_sizes(ROOT, self.creatures)
-        M = score_matrix(spec, self.creatures, sizes)
-        nudges, bad = ensure_reachable(spec, self.creatures, M)
+        kp = os.path.join(ROOT, 'data', 'creature_kinds.json')
+        kinds = json.load(open(kp)) if os.path.exists(kp) else {}
+        live = [x for x in self.creatures if kinds.get(x['slug']) != 'single']  # one-off exhibits and incidents can't be "seen" today
+        _, sizes, _ = settled_sizes(ROOT, live)
+        M = score_matrix(spec, live, sizes)
+        nudges, bad = ensure_reachable(spec, live, M)
         if nudges:
             print(f'tools: nudged {len(nudges)} creatures so every one can reach the top 3: '
                   + ', '.join(f'{k}+{v}' for k, v in sorted(nudges.items())), file=sys.stderr)
@@ -378,11 +381,11 @@ class Tools:
         data = {
             'q': [{'id': q['id'], 'w': q['weight'], 'a': [[a['id'], a['label']] for a in q['answers']]} for q in spec['questions']],
             'M': M,
-            'c': {x['slug']: [x['name'], ', '.join(x['aliases'][:2]), x['summary'], x['cat'], x.get('art') or 'icons/' + self.icon_name(x)] for x in self.creatures},
+            'c': {x['slug']: [x['name'], ', '.join(x['aliases'][:2]), x['summary'], x['cat'], x.get('art') or 'icons/' + self.icon_name(x)] for x in live},
             'e': {e['id']: e['fits'] for e in spec['everyday']},
             'icons': c.url('/static/icons/'), 'base': c.url(''),
         }
-        n_c = len(self.creatures)
+        n_c = len(live)
         body = f'''
 <section class="band band-dark tool-head">
   <div class="wrap">
