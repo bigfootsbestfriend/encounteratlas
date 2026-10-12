@@ -197,7 +197,11 @@
     const showUfoFiles = (type === 'all' || type === 'ufo') && (!narrowed || cat === 'ufo');
     setVis(['bb-glow', 'bb-clusters', 'bb-count', 'bb-point'], showUfoFiles);
     setVis(['military'], (type === 'all' || type === 'military') && !narrowed);
-    setVis(['places'], (type === 'all' || type === 'places') && !narrowed);
+    setVis(['places'], type === 'all' || type === 'places');
+    if (map.getLayer('places')) {
+      const slugs = cat ? [...document.querySelectorAll('.cchip')].filter((b) => b.dataset.cat === cat).map((b) => b.dataset.creature) : null;
+      map.setFilter('places', creature ? ['==', ['get', 'c'], creature] : slugs ? ['in', ['get', 'c'], ['literal', slugs]] : null);
+    }
     const showFamous = type === 'all' || type === 'cryptid' || (type === 'ufo');
     setVis(['famous'], showFamous);
     setVis(['reports'], type === 'all' || type === 'cryptid' || type === 'ufo');
