@@ -55,7 +55,7 @@ def write(path, text):
 
 
 NAV = [('/map/', 'Map'), ('/creatures/', 'Creatures'), ('/ufo/', 'UFO files'), ('/military/', 'Military'),
-       ('/report/', 'Report')]
+       ('/places/', 'Places'), ('/podcasts/', 'Podcasts'), ('/report/', 'Report')]
 
 
 def page(path, title, body, desc='', body_class='', head_extra='', canonical=True):
@@ -439,6 +439,19 @@ def main():
     build_ufo(bluebook)
     build_military(military)
     build_static_pages()
+    # Each site/sections/*.py module owns one part of the site (places, podcasts, ...) and exposes
+    # build(ctx). ctx gives it the shared helpers and loaded data, so sections never edit this file.
+    import importlib.util, types
+    ctx = types.SimpleNamespace(ROOT=ROOT, OUT=OUT, STATIC=STATIC, SITE_URL=SITE_URL, BASE=BASE, page=page, write=write,
+                                url=url, esc=esc, icon=icon, slugify=slugify, badge=badge, creature_card=creature_card,
+                                creatures=creatures, by_slug=by_slug, bluebook=bluebook, military=military, CATS=CATS, MONTHS=MONTHS)
+    sec_dir = os.path.join(ROOT, 'site', 'sections')
+    for fn in sorted(os.listdir(sec_dir)) if os.path.isdir(sec_dir) else []:
+        if fn.endswith('.py') and not fn.startswith('_'):
+            spec = importlib.util.spec_from_file_location('sec_' + fn[:-3], os.path.join(sec_dir, fn))
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            mod.build(ctx)
     with open(os.path.join(OUT, 'manifest.webmanifest'), 'w') as f:
         json.dump({'name': 'Encounter Atlas', 'short_name': 'Encounters', 'start_url': BASE + '/map/', 'display': 'standalone',
                    'background_color': '#13261F', 'theme_color': '#13261F',
