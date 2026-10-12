@@ -170,6 +170,23 @@
     LAYERS.push({ key: 'places', label: 'Places to visit', color: '#9CC46B', ids: ['places'] });
   }
 
+  async function addReports() {
+    const api = el.dataset.api;
+    if (!api) return;
+    const data = await fetch(api + '/api/reports.geojson').then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    if (!data || !data.features || !data.features.length) return;
+    map.addSource('reports', { type: 'geojson', data });
+    map.addLayer({ id: 'reports', type: 'circle', source: 'reports', paint: {
+      'circle-color': '#F3F1E4', 'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 4.5, 10, 8],
+      'circle-stroke-color': '#F2B33D', 'circle-stroke-width': 2.5 } });
+    map.on('click', 'reports', (e) => {
+      const p = e.features[0].properties;
+      popup(e.features[0].geometry.coordinates, [node('div', 'pop-kind', null, '<span>Reader report' + (p.d ? ', ' + p.d : '') + '</span>'),
+        node('p', 'pop-h', (p.n || 'Something') + (p.t ? ' near ' + p.t : '')), link(BASE + '/reports/?id=' + encodeURIComponent(p.id), 'Read the report')]);
+    });
+    pointer('reports');
+  }
+
   // Filters: encounter type chips + creature chips (and ?type= / ?cat= / ?creature= in the URL).
   const state = { type: params.get('type') || 'all', cat: params.get('cat') || '', creature: params.get('creature') || '' };
   let famousData = null;
@@ -183,6 +200,11 @@
     setVis(['places'], (type === 'all' || type === 'places') && !narrowed);
     const showFamous = type === 'all' || type === 'cryptid' || (type === 'ufo');
     setVis(['famous'], showFamous);
+    setVis(['reports'], type === 'all' || type === 'cryptid' || type === 'ufo');
+    if (map.getLayer('reports')) {
+      const slugs = cat ? [...document.querySelectorAll('.cchip')].filter((b) => b.dataset.cat === cat).map((b) => b.dataset.creature) : null;
+      map.setFilter('reports', creature ? ['==', ['get', 'c'], creature] : slugs ? ['in', ['get', 'c'], ['literal', slugs]] : null);
+    }
     if (map.getLayer('famous')) {
       const f = ['all'];
       if (type === 'cryptid') f.push(['!=', ['get', 'c'], 'ufo']);
@@ -230,6 +252,7 @@
     await addPlaces();
     await addMilitary();
     await addFamous();
+    await addReports();
     famousData = map.getSource('famous') ? await fetch(BASE + '/data/famous.geojson').then((r) => r.json()) : null;
     apply(!!(state.cat || state.creature));
   });

@@ -54,8 +54,10 @@ def write(path, text):
         f.write(text)
 
 
+EA_API = os.environ.get('EA_API', '').rstrip('/')  # report Worker; empty until it's deployed
+MAP_API = f' data-api="{EA_API}"' if EA_API else ''
 NAV = [('/map/', 'Map'), ('/creatures/', 'Creatures'), ('/ufo/', 'UFO files'), ('/military/', 'Military'),
-       ('/places/', 'Places'), ('/podcasts/', 'Podcasts'), ('/report/', 'Report')]
+       ('/places/', 'Places'), ('/podcasts/', 'Podcasts')] + ([('/reports/', 'Reports')] if EA_API else []) + [('/report/', 'Report')]
 
 
 def page(path, title, body, desc='', body_class='', head_extra='', canonical=True):
@@ -426,7 +428,7 @@ def build_home(creatures, n_points, bluebook, military):
     </div>
     {filter_bar(creatures, famous_slugs)}
   </div>
-  <div class="map-frame"><div id="map" class="map" data-base="{BASE}"></div></div>
+  <div class="map-frame"><div id="map" class="map" data-base="{BASE}"{MAP_API}></div></div>
 </section>
 <div class="band band-mist"><div class="wrap">
   <div class="near" hidden>
@@ -467,7 +469,7 @@ def build_home(creatures, n_points, bluebook, military):
     {filter_bar(creatures, famous_slugs)}
     <button type="button" class="btn btn-sm" data-locate>Near me</button>
   </div>
-  <div class="map-frame full"><div id="map" class="map" data-base="{BASE}"></div></div>
+  <div class="map-frame full"><div id="map" class="map" data-base="{BASE}"{MAP_API}></div></div>
 </section>''', 'Map of Bigfoot, Dogman, UFO and cryptid encounters, military cases and every US Air Force Project Blue Book file.',
                         body_class='mapper', head_extra=map_head()))
 

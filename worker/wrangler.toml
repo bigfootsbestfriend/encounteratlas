@@ -1,0 +1,36 @@
+# Encounter Atlas reports, sign-in and "Real or hoax?" voting. See DEPLOY.md.
+name = "encounters"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+# Uncomment once the api.encounteratlas.com DNS zone is on Cloudflare (DEPLOY.md step 6).
+# routes = [{ pattern = "api.encounteratlas.com", custom_domain = true }]
+
+[vars]
+SITE = "https://encounteratlas.com"
+# Extra origins allowed to call the API from a browser (comma-separated), e.g. the GitHub Pages preview.
+EXTRA_ORIGINS = "https://bigfootsbestfriend.github.io"
+FROM = "Encounter Atlas <hello@encounteratlas.com>"
+# OWNER_EMAIL gets a short note for each new report (leave empty to turn off).
+OWNER_EMAIL = ""
+# Turnstile site key (public); the secret is a Worker secret.
+TURNSTILE_SITEKEY = "1x00000000000000000000AA"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "encounters"
+# Replace with the id printed by `wrangler d1 create encounters` (DEPLOY.md step 2). Any value works locally.
+database_id = "00000000-0000-0000-0000-000000000000"
+
+[[r2_buckets]]
+binding = "PHOTOS"
+bucket_name = "encounter-photos"
+
+[triggers]
+crons = ["17 4 * * *"]   # daily: prune rate-limit rows and used sign-in links
+
+# Secrets (npx wrangler@4 secret put NAME; never committed):
+#   TOKEN_SECRET       long random string: signs sign-in links, sessions, IP hashes
+#   MOD_PASSWORD       password for the /mod moderation page
+#   TURNSTILE_SECRET   secret key of the Turnstile widget
+#   RESEND_API_KEY     Resend key (sending access) for sign-in emails
+# Local development uses .dev.vars instead (see .dev.vars.example).

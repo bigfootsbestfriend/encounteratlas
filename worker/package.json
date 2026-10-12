@@ -1,0 +1,9 @@
+{
+  "name": "encounteratlas-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node gen-creatures.mjs && npx -y wrangler@4 d1 execute encounters --local --file schema.sql && npx -y wrangler@4 dev --local --port 8787",
+    "test": "bash test/run.sh"
+  }
+}

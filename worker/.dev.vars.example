@@ -1,0 +1,9 @@
+# Local development only (wrangler dev reads .dev.vars). Copy to .dev.vars. Never use these values in production.
+DEV=1
+EMAIL_MODE=log
+TOKEN_SECRET=local-dev-secret-not-for-production-0123456789
+MOD_PASSWORD=letmein-local
+# Cloudflare's official Turnstile test secret: always passes (2x0000000000000000000000000000000AA always fails).
+TURNSTILE_SECRET=1x0000000000000000000000000000000AA
+SITE=http://127.0.0.1:8825
+EXTRA_ORIGINS=http://localhost:8825
