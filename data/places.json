@@ -2259,31 +2259,6 @@
   "note": null
  },
  {
-  "slug": "bfro-expeditions",
-  "name": "BFRO Expeditions",
-  "type": "expedition",
-  "creatures": [
-   "bigfoot"
-  ],
-  "city": null,
-  "region": null,
-  "country": "US",
-  "address": null,
-  "lat": null,
-  "lon": null,
-  "approx": false,
-  "summary": "The Bigfoot Field Researchers Organization runs multi-night camping expeditions in different states each year, led by experienced investigators.",
-  "month": null,
-  "when": null,
-  "d2026": null,
-  "start": null,
-  "end": null,
-  "price": "About $300 to $500 per person; meals and gear not included",
-  "url": "https://www.bfro.net",
-  "source": "https://krocnews.com/minnesota-bigfoot-sightings-2026-expedition/",
-  "note": null
- },
- {
   "slug": "mothman-tnt-tours",
   "name": "Mothman Museum TNT Area Tours",
   "type": "expedition",

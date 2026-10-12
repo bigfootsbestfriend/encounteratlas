@@ -517,5 +517,5 @@ class Builder:
 </div></div>
 {self.cta()}'''
         c.write('/expeditions/', c.page('/expeditions/', 'Bigfoot expeditions, UFO tours and cryptid night hikes', body,
-                                        'Guided Bigfoot expeditions, BFRO trips, Area 51 and Sedona UFO tours, Loch Ness sonar cruises and Bigfoot night hikes, with prices.',
+                                        'Guided Bigfoot expeditions, Area 51 and Sedona UFO tours, Loch Ness sonar cruises and Bigfoot night hikes, with prices.',
                                         body_class='places', head_extra=self.map_head))
