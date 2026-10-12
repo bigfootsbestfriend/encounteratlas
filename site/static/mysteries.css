@@ -1,0 +1,42 @@
+/* Mysteries: photo cards, type and verdict pills, timeline, rated theories, photo figures (builds on encounters.css) */
+.my-dot { display: inline-block; width: .6rem; height: .6rem; border-radius: 50%; background: var(--t); margin-right: .4rem; vertical-align: .05rem; }
+.my-gsub { margin: -.4rem 0 1rem; color: var(--muted-d); }
+.my-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 1rem; }
+.my-card a { display: flex; flex-direction: column; height: 100%; background: #fff; border-radius: var(--r-md); border: 1px solid #D6DDD6;
+  overflow: hidden; color: var(--ink) !important; text-decoration: none; }
+.my-card a:hover { border-color: var(--spruce-3); }
+.my-card a:focus-visible { outline: 3px solid var(--lantern); outline-offset: 2px; }
+.my-thumb { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: #1C3329; }
+.my-thumb-blank { background: radial-gradient(circle at 70% 30%, var(--t), #13261F 70%); opacity: .85; }
+.my-txt { display: flex; flex-direction: column; gap: .35rem; padding: .9rem 1rem 1.1rem; }
+.my-pills { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .2rem; }
+.my-type { display: inline-block; font: 700 .76rem/1 "Public Sans", sans-serif; padding: .35rem .6rem; border-radius: 999px;
+  background: color-mix(in srgb, var(--t) 22%, #fff); color: #13261F; border: 1px solid color-mix(in srgb, var(--t) 60%, #fff); }
+.my-s-unexplained { background: #2E3E5C; color: #E8ECFF; } .my-s-disputed { background: #F4E3C1; color: #6A4300; }
+.my-s-solved { background: #DDEBD6; color: #2C5A1E; } .my-s-legend { background: #EADFF5; color: #4B2A6B; }
+.my-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); gap: 2rem; align-items: center; }
+.my-fig { margin: 1.6rem 0; }
+.my-fig img { display: block; width: 100%; height: auto; border-radius: var(--r-md); background: #1C3329; }
+.my-fig figcaption { font-size: .92rem; margin-top: .5rem; line-height: 1.45; }
+.my-fig small { display: block; color: var(--muted-d); font-size: .78rem; margin-top: .2rem; }
+.my-hero-fig { margin: 0; }
+.my-hero-fig img { max-height: 340px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+.band-dark .my-hero-fig figcaption { color: var(--lichen); }
+.band-dark .my-hero-fig small, .band-dark .my-hero-fig a { color: #A9B89A; }
+.my-tl { list-style: none; padding: 0; margin: 0 0 1rem; max-width: 52rem; border-left: 3px solid var(--spruce-3); }
+.my-tl li { position: relative; padding: .35rem 0 .9rem 1.2rem; display: grid; grid-template-columns: 11rem 1fr; gap: .8rem; }
+.my-tl li::before { content: ""; position: absolute; left: -.5rem; top: .6rem; width: .7rem; height: .7rem; border-radius: 50%; background: var(--lantern); box-shadow: 0 0 0 3px var(--mist); }
+.my-tl b { color: var(--spruce); }
+.my-ths { list-style: none; padding: 0; display: grid; gap: .7rem; max-width: 52rem; }
+.my-th { background: #fff; border-radius: var(--r-md); border: 1px solid #D6DDD6; border-left: 6px solid #9AA59A; padding: .9rem 1.1rem; }
+.my-th b { font: 700 1.05rem/1.3 "Zilla Slab", serif; color: var(--spruce); }
+.my-th p { margin: .35rem 0 0; }
+.my-v { float: right; font: 700 .74rem/1 "Public Sans", sans-serif; padding: .35rem .55rem; border-radius: 999px; background: #E4E8E2; margin-left: .6rem; }
+.v-leading { border-left-color: #6BA34A; } .v-leading .my-v { background: #DDEBD6; color: #2C5A1E; }
+.v-possible { border-left-color: #E3A93A; } .v-possible .my-v { background: #F4E3C1; color: #6A4300; }
+.v-unlikely { border-left-color: #C98A6A; } .v-unlikely .my-v { background: #F3DFD5; color: #7A3A1C; }
+.v-no-evidence, .v-disproved { border-left-color: #B5574B; } .v-no-evidence .my-v, .v-disproved .my-v { background: #F5D6CF; color: #7A2A16; }
+@media (max-width: 820px) { .my-hero { grid-template-columns: 1fr; } .my-tl li { grid-template-columns: 1fr; gap: .1rem; } }
+.mysteries .ce-list .my-group:first-of-type h2 { margin-top: .4rem; }
+.mysteries .ce-list .ce-status:empty { display: none; }
+.prose .my-fig img { width: auto; max-width: 100%; max-height: 460px; margin: 0 auto; }

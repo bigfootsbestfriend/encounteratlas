@@ -197,6 +197,23 @@
     pointer(id);
   }
 
+  // Unexplained mysteries (Tunguska, Dyatlov Pass...), coloured by type
+  async function addMysteries() {
+    const data = await fetch(BASE + '/data/mysteries.geojson').then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    if (!data || !data.features || !data.features.length) return;
+    map.addSource('mysteries', { type: 'geojson', data });
+    map.addLayer({ id: 'mysteries', type: 'circle', source: 'mysteries', paint: {
+      'circle-color': ['get', 'c'], 'circle-radius': ['interpolate', ['linear'], ['zoom'], 2, 5, 10, 9],
+      'circle-stroke-color': '#F4EFD8', 'circle-stroke-width': 2 } });
+    map.on('click', 'mysteries', (e) => {
+      const p = e.features[0].properties;
+      popup(e.features[0].geometry.coordinates, [node('div', 'pop-kind', null, '<span>Mystery, ' + p.d + '</span>'),
+        node('p', 'pop-h', p.n), node('p', 'pop-meta', p.p + ' · ' + p.st), link(p.u, 'Read the mystery')]);
+    });
+    pointer('mysteries');
+    LAYERS.push({ key: 'mysteries', label: 'Mysteries', color: '#E07A4F', ids: ['mysteries'] });
+  }
+
   async function addReports() {
     const api = el.dataset.api;
     if (!api) return;
@@ -313,6 +330,7 @@
     await addOfficial('ufo_pursue.geojson', 'pursue', '#E07A5F', 'Pentagon UFO file');
     await addPlaces();
     await addMilitary();
+    await addMysteries();
     await addFamous();
     await addReports();
     famousData = map.getSource('famous') ? await fetch(BASE + '/data/famous.geojson').then((r) => r.json()) : null;

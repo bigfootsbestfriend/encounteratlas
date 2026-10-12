@@ -1,0 +1,487 @@
+[
+ {
+  "slug": "tunguska-event",
+  "name": "The Tunguska event",
+  "type": "event",
+  "date": "1908-06-30",
+  "year": 1908,
+  "place": "Podkamennaya Tunguska River, Krasnoyarsk Krai, Siberia, Russia",
+  "cc": "RU",
+  "lat": 60.90306,
+  "lon": 101.90972,
+  "coord_source": "Wikipedia: Tunguska event (epicentre)",
+  "summary": "A blast over the Siberian taiga flattened millions of trees across 2,150 km² of forest, yet left no crater.",
+  "status": "solved",
+  "status_note": "Scientists agree it was the mid-air explosion of a space rock, though no fragment has been confirmed and asteroid versus comet is still debated.",
+  "body": [
+   "At about 7:14 a.m. local time on June 30, 1908, a huge explosion went off over the taiga near the Podkamennaya Tunguska River in central Siberia. The shock wave knocked people to the ground, shattered windows up to 200 km away and was picked up by seismographs in Russia and Germany. For several nights afterwards, the night sky glowed unusually bright across western Eurasia.",
+   "The area was home to Evenk reindeer herders. At least three Evenks died, and herds of reindeer were killed. More than 700 eyewitness accounts were collected over the following decades, including a farmer at the trading post of Vanavara who described the sky splitting in two and a wave of heat.",
+   "Political upheaval and the remoteness of the site meant no scientist reached it until Leonid Kulik's expeditions in the 1920s. In 1927 his Evenk guides led him to the centre, where he expected a crater. Instead he found trees still standing but stripped of branches, surrounded by a butterfly-shaped zone, about 70 km across, where trees had been knocked flat pointing away from the centre.",
+   "Most scientists now think a stony object roughly 50 to 60 m across exploded 5 to 10 km above the ground, with an energy of a few to about 15 megatons of TNT. The 2013 Chelyabinsk meteor gave researchers a smaller modern example to compare it with. Because no meteorite has been confirmed, other ideas have been put forward, from a comet to a burst of natural gas, and more fanciful claims about a crashed spacecraft."
+  ],
+  "timeline": [
+   {"when": "June 30, 1908", "what": "The explosion; bright night skies over Europe and Asia for several days"},
+   {"when": "1921", "what": "Leonid Kulik's first expedition to the river basin"},
+   {"when": "1927", "what": "Kulik reaches ground zero and finds no crater"},
+   {"when": "1938", "what": "Aerial photo survey of the flattened forest"},
+   {"when": "2007", "what": "Italian researchers suggest nearby Lake Cheko is a fragment crater; later studies dispute it"}
+  ],
+  "theories": [
+   {"name": "A stony asteroid exploding in the air", "verdict": "leading", "note": "Fits the radial tree-fall, the standing trees at the centre and the lack of a crater. Models built on the 2013 Chelyabinsk meteor back it up."},
+   {"name": "A small icy comet", "verdict": "possible", "note": "Would explain the missing fragments and the glowing skies, but many models struggle to get a comet deep enough into the atmosphere."},
+   {"name": "A fragment made Lake Cheko", "verdict": "unlikely", "note": "Proposed in 2007; a 2017 sediment study found the lake is at least 280 years old."},
+   {"name": "A natural gas eruption", "verdict": "unlikely", "note": "Suggested by Wolfgang Kundt; it does not explain the eyewitness reports of an object crossing the sky."},
+   {"name": "An exploding spacecraft", "verdict": "no-evidence", "note": "Popular in fiction since the 1940s, with no physical evidence."}
+  ],
+  "visit": "The blast area is in a remote, roadless part of Krasnoyarsk Krai, usually reached from the village of Vanavara. Expeditions need local guides and permits.",
+  "creatures": [],
+  "sources": [
+   {"title": "Tunguska event (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Tunguska_event"}
+  ]
+ },
+ {
+  "slug": "dyatlov-pass",
+  "name": "The Dyatlov Pass incident",
+  "type": "event",
+  "date": "1959-02-01",
+  "year": 1959,
+  "place": "Kholat Syakhl, northern Ural Mountains, Sverdlovsk Oblast, Russia",
+  "cc": "RU",
+  "lat": 61.75444,
+  "lon": 59.445,
+  "coord_source": "Wikipedia: Dyatlov Pass incident (site of the final camp)",
+  "summary": "Nine experienced ski hikers cut their way out of their tent on a Ural mountainside and died in the snow.",
+  "status": "solved",
+  "status_note": "Russia's 2020 review and a 2021 scientific study point to a small slab avalanche on the tent; some people still dispute it.",
+  "body": [
+   "In late January 1959, a group of students and graduates from the Ural Polytechnical Institute set out on a difficult ski trek in the northern Urals, led by 23-year-old radio engineering student Igor Dyatlov. One member, Yuri Yudin, turned back early with joint pain. He was the only one to survive.",
+   "On February 1 the remaining nine pitched their tent on the open eastern slope of Kholat Syakhl, in heavy snow and strong wind. Some time that night they cut the tent open from the inside and left, most of them in socks or without shoes, heading down towards the woods. Searchers found the abandoned tent on February 26 and five bodies soon after; the last four were found in a creek ravine in May. Six had died of hypothermia and three of severe injuries.",
+   "The Soviet investigation found no sign of anyone else on the mountain and concluded that a \"compelling natural force\" had caused the deaths. The gaps in that verdict led to decades of theories, including attacks by the local Mansi people, military tests, infrasound, animals and UFOs.",
+   "In 2019 Russian prosecutors reopened the case and in 2020 concluded that an avalanche had most likely driven the group out of the tent into a whiteout. In 2021, researchers at ETH Zurich and EPFL published a computer model showing how a small slab of wind-packed snow on the slope above the tent could have caused the damage and injuries without leaving obvious avalanche signs for the searchers weeks later."
+  ],
+  "timeline": [
+   {"when": "January 27, 1959", "what": "The group sets off on skis toward Mount Otorten"},
+   {"when": "January 28, 1959", "what": "Yuri Yudin turns back with joint pain"},
+   {"when": "February 1–2, 1959", "what": "The hikers pitch camp on Kholat Syakhl and leave the tent during the night"},
+   {"when": "February 26, 1959", "what": "Searchers find the cut-open tent"},
+   {"when": "May 1959", "what": "The last four hikers are found in a ravine"},
+   {"when": "2020", "what": "Russian prosecutors conclude an avalanche was most likely"},
+   {"when": "2021", "what": "Swiss researchers publish a slab-avalanche model in Communications Earth & Environment"}
+  ],
+  "theories": [
+   {"name": "A small slab avalanche on the tent", "verdict": "leading", "note": "The 2020 official conclusion, backed by the 2021 ETH Zurich and EPFL simulations, which match the tent damage and chest and skull injuries."},
+   {"name": "Infrasound causing panic", "verdict": "possible", "note": "Put forward in Donnie Eichar's 2013 book Dead Mountain; but the footprints show the group walking, not running."},
+   {"name": "Secret military test", "verdict": "no-evidence", "note": "No records have backed it up."},
+   {"name": "Attack by local Mansi people", "verdict": "disproved", "note": "Investigators found only the hikers' own footprints and no sign of a fight."},
+   {"name": "A yeti or the menk forest spirit", "verdict": "no-evidence", "note": "Popularised by a 2014 TV programme that sceptic Benjamin Radford called textbook mystery-mongering."}
+  ],
+  "visit": "A rock outcrop about 500 m east-southeast of the final camp is now a memorial to the group. The pass is in roadless mountains, and trips are run as guided winter or summer expeditions.",
+  "creatures": ["menk"],
+  "sources": [
+   {"title": "Dyatlov Pass incident (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Dyatlov_Pass_incident"},
+   {"title": "Gaume and Puzrin, Mechanisms of slab avalanche release and impact in the Dyatlov Pass incident (2021)", "url": "https://www.nature.com/articles/s43247-020-00081-8"}
+  ]
+ },
+ {
+  "slug": "nahanni-headless-valley",
+  "name": "Nahanni's Headless Valley",
+  "type": "place",
+  "date": "1908",
+  "year": 1908,
+  "place": "Nahanni National Park Reserve, Northwest Territories, Canada",
+  "cc": "CA",
+  "lat": 61.6,
+  "lon": -125.685,
+  "coord_source": "Wikipedia: Nahanni National Park Reserve (park centre)",
+  "summary": "A wild river valley where prospectors were found headless, leaving names like Deadmen Valley and the Funeral Range.",
+  "status": "legend",
+  "status_note": "The deaths were real but never solved; the 'curse' grew out of them and out of 1940s newspaper stories.",
+  "body": [
+   "The South Nahanni River cuts through the Mackenzie Mountains in four canyons with walls up to 1,000 m high. The name comes from the Dene name for the area, Nahʔa Dehé, the river of the land of the Nahʔa people. Today it is a national park reserve and a UNESCO World Heritage Site.",
+   "During the Klondike Gold Rush, some prospectors tried to use the Nahanni as a route to the Yukon goldfields, or to find gold of their own. Around 1908 the headless bodies of two Métis prospectors, brothers Willie and Frank McLeod, were found. Stories grew of a lost mine where they had struck gold, and more unexplained prospector deaths followed.",
+   "The legends live on in the map: Deadmen Valley, Headless Creek, the Headless Range and the Funeral Range. In 1947 journalist Pierre Berton flew up the 'Headless Valley' for the Vancouver Sun and quoted a prospector on the valley's 'sinister atmosphere' and the 'weird, continual wailing of the wind'."
+  ],
+  "timeline": [
+   {"when": "1890s", "what": "Klondike-era prospectors try the Nahanni route"},
+   {"when": "about 1908", "what": "The headless bodies of Willie and Frank McLeod are found"},
+   {"when": "1947", "what": "Pierre Berton's flight up 'Headless Valley' makes it famous"},
+   {"when": "1978", "what": "The park becomes one of the first UNESCO World Heritage Sites"}
+  ],
+  "theories": [
+   {"name": "Harsh country and human violence", "verdict": "leading", "note": "Whitewater, cold and isolation were deadly; animals may have disturbed remains, and robbery is often suggested in the McLeod case."},
+   {"name": "A curse or a guardian of the gold", "verdict": "no-evidence", "note": "The heart of the legend; no evidence beyond the stories."},
+   {"name": "Wild men of the valley", "verdict": "no-evidence", "note": "Some retellings add hairy giants or hidden tribes; these appear in later stories, not the early records."}
+  ],
+  "visit": "Most visitors fly in by floatplane, often from Fort Simpson, to Virginia Falls, and many paddle the river through Deadmen Valley. Register with Parks Canada before any trip.",
+  "creatures": [],
+  "sources": [
+   {"title": "Nahanni National Park Reserve (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Nahanni_National_Park_Reserve"}
+  ]
+ },
+ {
+  "slug": "oak-island-money-pit",
+  "name": "The Oak Island Money Pit",
+  "type": "place",
+  "date": "1795",
+  "year": 1795,
+  "place": "Oak Island, Mahone Bay, Nova Scotia, Canada",
+  "cc": "CA",
+  "lat": 44.5135,
+  "lon": -64.2939,
+  "coord_source": "Wikipedia: Oak Island (island centre)",
+  "summary": "Treasure hunters have dug on this Nova Scotia island since the 1790s, and nobody has found the treasure.",
+  "status": "disputed",
+  "status_note": "Two centuries of digging have turned up old objects but no treasure; geologists say natural sinkholes may explain the 'pit'.",
+  "body": [
+   "Oak Island is a small, privately owned island in Mahone Bay on Nova Scotia's south shore, joined to the mainland by a causeway. It is famous for one thing: the hunt for a treasure that may or may not be buried there.",
+   "According to the often-retold story, a young man named Daniel McInnis noticed a depression in the ground in 1795 and began digging with two friends. They said they found a layer of flagstones and, about 10 ft down, a tier of oak logs. The Onslow Company, which took up the search in the following decade, was said to have found more oak platforms about every 10 ft down to about 90 ft, until the shaft flooded. Accounts of the 'Money Pit' have been published since 1857.",
+   "Theories about what is down there include Captain Kidd's treasure, religious relics, lost manuscripts and Marie Antoinette's jewels. Since 2014 the History Channel series The Curse of Oak Island has followed brothers Rick and Marty Lagina, who have reported centuries-old coins, a brooch and a lead cross. Sceptics argue the 'pit' and its flooding are natural features of the island's limestone and gypsum."
+  ],
+  "timeline": [
+   {"when": "1795", "what": "Daniel McInnis and friends begin digging, according to the traditional story"},
+   {"when": "1800s", "what": "The Onslow Company and later groups dig and hit flooding"},
+   {"when": "1857", "what": "The first published accounts of the Money Pit"},
+   {"when": "2014", "what": "The Curse of Oak Island begins airing"},
+   {"when": "2019", "what": "Long-time treasure hunter Dan Blankenship dies at 95"}
+  ],
+  "theories": [
+   {"name": "Natural sinkholes and flooding", "verdict": "leading", "note": "The island sits partly on limestone and gypsum, which form natural cavities and let seawater in."},
+   {"name": "Buried pirate treasure", "verdict": "no-evidence", "note": "The oldest version of the legend; no treasure has been found."},
+   {"name": "Hidden relics or manuscripts", "verdict": "no-evidence", "note": "Popular theories, often linked to the Knights Templar or to Shakespeare authorship, with no direct evidence."}
+  ],
+  "visit": "The island is private property. Check for any public tours or visitor centre before you go, and do not cross the causeway without permission.",
+  "creatures": [],
+  "sources": [
+   {"title": "Oak Island (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Oak_Island"}
+  ]
+ },
+ {
+  "slug": "mary-celeste",
+  "name": "The Mary Celeste",
+  "type": "vanishing",
+  "date": "1872-12-04",
+  "year": 1872,
+  "place": "Atlantic Ocean, between the Azores and Portugal",
+  "cc": "",
+  "lat": 38.3333,
+  "lon": -17.25,
+  "coord_source": "Wikipedia: Mary Celeste (position where Dei Gratia found her, 38°20′N 17°15′W)",
+  "summary": "A Nova Scotia-built ship was found drifting and seaworthy, with her cargo intact and all ten people gone.",
+  "status": "unexplained",
+  "status_note": "No trace of the crew was ever found. Most writers think the crew abandoned ship in a sudden scare.",
+  "body": [
+   "Mary Celeste was built at Spencers Island, Nova Scotia, and launched in 1861 as Amazon. Renamed under American ownership, she left New York for Genoa on November 7, 1872, with a cargo of 1,701 barrels of alcohol. On board were Captain Benjamin Briggs, his wife Sarah, their two-year-old daughter Sophia and seven crew.",
+   "On December 4 the Canadian brigantine Dei Gratia, under Captain David Morehouse, spotted her moving unsteadily between the Azores and Portugal. A boarding party found nobody on board. The ship was wet but seaworthy, with plenty of food and water, the crew's belongings in place and the cargo intact. The lifeboat was gone. The last log entry, nine days earlier, put her near Santa Maria Island in the Azores.",
+   "At the salvage hearings in Gibraltar, the court officer suspected mutiny or fraud, but no evidence supported it. Later ideas include alcohol fumes scaring the crew into the lifeboat, a faulty pump or sounding rod making them think the ship was sinking, a waterspout, and fear of running aground. Many published 'solutions', including a famous 1884 story by Arthur Conan Doyle, were fiction. Nobody from the ship was ever seen again."
+  ],
+  "timeline": [
+   {"when": "1861", "what": "Launched as Amazon at Spencers Island, Nova Scotia"},
+   {"when": "November 7, 1872", "what": "Sails from New York for Genoa"},
+   {"when": "November 25, 1872", "what": "Last log entry, off Santa Maria Island in the Azores"},
+   {"when": "December 4, 1872", "what": "Found adrift by Dei Gratia"},
+   {"when": "1873", "what": "Gibraltar salvage hearings find no proof of foul play"},
+   {"when": "1885", "what": "Her later captain wrecks her off Haiti in an insurance fraud"}
+  ],
+  "theories": [
+   {"name": "Abandoned in a scare, then lost in the lifeboat", "verdict": "leading", "note": "Alcohol fumes, a false reading that she was taking on water, or a broken pump could each have made Briggs order everyone into the boat."},
+   {"name": "Mutiny or murder", "verdict": "unlikely", "note": "Suspected in Gibraltar, but valuables were left untouched and there was no sign of a fight."},
+   {"name": "Insurance or salvage fraud", "verdict": "unlikely", "note": "No inquiry found evidence, and the crew of Dei Gratia had nothing to gain from such an odd story."},
+   {"name": "Sea monster or the supernatural", "verdict": "no-evidence", "note": "A giant squid attack and other wild ideas came from later fiction."}
+  ],
+  "visit": "The ship's story is remembered at Spencers Island on Nova Scotia's Bay of Fundy shore, where she was built.",
+  "creatures": ["kraken"],
+  "sources": [
+   {"title": "Mary Celeste (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Mary_Celeste"}
+  ]
+ },
+ {
+  "slug": "hessdalen-lights",
+  "name": "The Hessdalen lights",
+  "type": "lights",
+  "date": "1981",
+  "year": 1981,
+  "place": "Hessdalen valley, Holtålen, Trøndelag, Norway",
+  "cc": "NO",
+  "lat": 62.7933,
+  "lon": 11.1883,
+  "coord_source": "Wikipedia: Hessdalen lights",
+  "summary": "Glowing balls of light that float, hover and race through a Norwegian valley, watched by an automatic research station.",
+  "status": "unexplained",
+  "status_note": "Some sightings are planes, cars or stars, but scientists still have no agreed explanation for the rest.",
+  "body": [
+   "Since at least the 1930s, people in the Hessdalen valley in central Norway have reported unusual lights along a 12 km stretch. They are usually white, yellow or red, appear by day and by night, and can last from a few seconds to over an hour. Sometimes they hover, sometimes they sway slowly, and sometimes they move at great speed.",
+   "Between December 1981 and mid-1984, the lights were seen 15 to 20 times a week, and many people came to watch. Since 1983 'Project Hessdalen' has studied them, and in 1998 an automatic measurement station was set up in the valley. Østfold University College and Italy's National Research Council have run research there.",
+   "Ideas include burning dust from the valley's mines and rocks, and glowing clouds of charged dust in a plasma created by radon decay. By 2010, sightings had dropped to about 10 to 20 a year."
+  ],
+  "timeline": [
+   {"when": "1930s", "what": "Earliest reports of strange lights in the valley"},
+   {"when": "1981–1984", "what": "Peak activity, with 15 to 20 sightings a week"},
+   {"when": "1983", "what": "Project Hessdalen begins field studies"},
+   {"when": "1998", "what": "The Hessdalen Automatic Measurement Station is set up"}
+  ],
+  "theories": [
+   {"name": "A natural plasma from dust and radon", "verdict": "possible", "note": "A 2010 model; it fits the lights' shapes, pulsing and colour spectrum."},
+   {"name": "Burning airborne dust", "verdict": "possible", "note": "Analysis found hydrogen, oxygen and titanium in the light; Norwegian papers briefly declared the mystery solved."},
+   {"name": "Misidentified planes, cars, stars and mirages", "verdict": "leading", "note": "Explains some sightings, but not all of the recorded ones."}
+  ],
+  "visit": "Hessdalen is a rural valley in Holtålen municipality, Trøndelag. Lights are rare now, so be prepared for a long watch, and respect private land.",
+  "creatures": ["ufo-orbs"],
+  "sources": [
+   {"title": "Hessdalen lights (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Hessdalen_lights"}
+  ]
+ },
+ {
+  "slug": "brown-mountain-lights",
+  "name": "The Brown Mountain lights",
+  "type": "lights",
+  "date": "1913-09-24",
+  "year": 1913,
+  "place": "Brown Mountain, Burke County, North Carolina, USA",
+  "cc": "US",
+  "lat": 35.92,
+  "lon": -81.8,
+  "coord_source": "Approximate: Brown Mountain, near Linville Gorge, North Carolina",
+  "summary": "North Carolina's famous ghost lights, which a government scientist traced to trains and headlights in 1922.",
+  "status": "solved",
+  "status_note": "The US Geological Survey showed in 1913 and 1922 that the lights being reported were trains, car headlights and brush fires.",
+  "body": [
+   "Reports of mysterious red lights above Brown Mountain, near Linville Gorge, began appearing in newspapers around 1912 and 1913. This was the same time electric lighting was spreading through the area, and Southern Railway was fitting its locomotives with very bright headlamps.",
+   "In 1913, a US Geological Survey employee was sent to look and concluded the lights were the headlights of westbound trains. Locals were not convinced, so in 1922 the USGS sent George R. Mansfield, who used maps and a surveying telescope to show that the lights people were seeing were trains, car headlights and brush fires.",
+   "The legend kept growing anyway, helped by Scotty Wiseman's 1961 song about the lights. Appalachian State University later set up low-light cameras overlooking the mountain; by 2014 they had recorded 6,300 hours of footage with no unexplained lights."
+  ],
+  "timeline": [
+   {"when": "1913", "what": "Newspapers report red lights over Brown Mountain; the USGS points to train headlights"},
+   {"when": "1922", "what": "George R. Mansfield's USGS survey ties the lights to trains, cars and fires"},
+   {"when": "1961", "what": "Scotty Wiseman's song makes the lights famous"},
+   {"when": "2014", "what": "Appalachian State cameras log 6,300 hours with nothing unexplained"}
+  ],
+  "theories": [
+   {"name": "Distant trains, cars and fires", "verdict": "leading", "note": "Shown by the USGS in 1913 and 1922."},
+   {"name": "Ghosts or ancient lights", "verdict": "no-evidence", "note": "Stories of the lights before electrification were mostly written after Mansfield's report."}
+  ],
+  "visit": "Watch from the Brown Mountain Overlook on NC 181 near Jonas Ridge, or from Blue Ridge Parkway mileposts 310 and 301.",
+  "creatures": ["ufo-orbs"],
+  "sources": [
+   {"title": "Brown Mountain lights (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Brown_Mountain_lights"}
+  ]
+ },
+ {
+  "slug": "bennington-triangle",
+  "name": "The Bennington Triangle",
+  "type": "vanishing",
+  "date": "1945-11-12",
+  "year": 1945,
+  "place": "Glastenbury Mountain area, southwestern Vermont, USA",
+  "cc": "US",
+  "lat": 42.97813,
+  "lon": -73.07122,
+  "coord_source": "Wikipedia: Glastenbury Mountain (summit)",
+  "summary": "Five people went missing around Glastenbury Mountain, Vermont, between 1945 and 1950.",
+  "status": "unexplained",
+  "status_note": "Only one of the missing was ever found. The 'triangle' name was coined decades later by author Joseph Citro.",
+  "body": [
+   "Glastenbury and neighbouring Somerset were once logging towns in the Green Mountains of southwestern Vermont. By 1937 they were all but empty. Between 1945 and 1950, five people went missing in the area.",
+   "Hunter Middie Rivers, 74, vanished in November 1945 near Bickford Hollow; only his handkerchief was ever found. In December 1946, Bennington College student Paula Jean Welden, 18, set off for the Long Trail and was never seen again. James Tedford, a veteran, was seen boarding a bus to Bennington in 1949 and did not arrive. In October 1950, eight-year-old Paul Jepson disappeared from his mother's truck, and two weeks later Frieda Langer vanished while hiking near Somerset. Langer's body was found in May 1951, but no cause of death could be determined.",
+   "Local papers linked the cases at the time, and later author Joseph A. Citro named the area the 'Bennington Triangle' and gathered local folklore about it. Most investigators see separate tragedies in rugged, thickly wooded country. These were real people with families, so we stick to what was reported."
+  ],
+  "timeline": [
+   {"when": "November 1945", "what": "Middie Rivers goes missing while hunting"},
+   {"when": "December 1, 1946", "what": "Paula Jean Welden disappears near the Long Trail"},
+   {"when": "December 1, 1949", "what": "James Tedford goes missing on a bus trip"},
+   {"when": "October 12, 1950", "what": "Paul Jepson, 8, goes missing"},
+   {"when": "October 28, 1950", "what": "Frieda Langer goes missing; found in May 1951"}
+  ],
+  "theories": [
+   {"name": "Separate accidents and crimes in rough country", "verdict": "leading", "note": "The terrain is steep and wooded, and searches in the 1940s had limited tools."},
+   {"name": "One cause linking all five", "verdict": "no-evidence", "note": "The cases differ widely, and one person vanished from a bus."}
+  ],
+  "visit": "The Long Trail crosses Glastenbury Mountain, which has a fire tower at the top. It is remote: carry a map, tell someone your plans and stay on the trail.",
+  "creatures": [],
+  "sources": [
+   {"title": "Bennington Triangle (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Bennington_Triangle"}
+  ]
+ },
+ {
+  "slug": "bermuda-triangle",
+  "name": "The Bermuda Triangle",
+  "type": "place",
+  "date": "1950-09-17",
+  "year": 1950,
+  "place": "North Atlantic, between Florida, Bermuda and Puerto Rico",
+  "cc": "",
+  "lat": 25.0,
+  "lon": -71.0,
+  "coord_source": "Wikipedia: Bermuda Triangle (centre of the area)",
+  "summary": "The patch of ocean said to swallow ships and planes, a legend that began in a 1950 newspaper article.",
+  "status": "solved",
+  "status_note": "Investigations, including by the US government, found no more losses there than in other busy stretches of ocean.",
+  "body": [
+   "The Bermuda Triangle, or Devil's Triangle, is a loosely defined stretch of the North Atlantic roughly between Florida, Bermuda and Puerto Rico. The idea that ships and planes vanish there unusually often first appeared in a 1950 Associated Press article by Edward Van Winkle Jones of the Miami Herald.",
+   "In 1952 George X. Sand drew the now-familiar triangle in Fate magazine, listing losses since the Second World War, including Flight 19, five US Navy torpedo bombers lost on a training flight in December 1945. Vincent Gaddis coined 'The Deadly Bermuda Triangle' in Argosy in 1964, and Charles Berlitz's 1974 bestseller added supernatural ideas.",
+   "Later research found that many of the stories were exaggerated or wrong, and that this busy, storm-prone stretch of sea does not see more accidents than others with similar traffic."
+  ],
+  "timeline": [
+   {"when": "December 1945", "what": "Flight 19 is lost off Florida"},
+   {"when": "1950", "what": "An Associated Press article first links disappearances in the area"},
+   {"when": "1952", "what": "Fate magazine draws the triangle"},
+   {"when": "1964", "what": "Vincent Gaddis names it 'The Deadly Bermuda Triangle'"},
+   {"when": "1974", "what": "Charles Berlitz's book makes it a global sensation"}
+  ],
+  "theories": [
+   {"name": "Normal losses in busy, stormy waters", "verdict": "leading", "note": "Weather, the Gulf Stream, heavy traffic and human error explain the losses that did happen."},
+   {"name": "Methane eruptions or rogue waves", "verdict": "possible", "note": "Real ocean hazards, but there is no evidence they cause extra losses here."},
+   {"name": "Atlantis, aliens or time warps", "verdict": "no-evidence", "note": "Added by 1960s and 1970s writers."}
+  ],
+  "visit": null,
+  "creatures": [],
+  "sources": [
+   {"title": "Bermuda Triangle (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Bermuda_Triangle"}
+  ]
+ },
+ {
+  "slug": "taos-hum",
+  "name": "The Taos Hum",
+  "type": "signal",
+  "date": "1991",
+  "year": 1991,
+  "place": "Taos, New Mexico, USA",
+  "cc": "US",
+  "lat": 36.38694,
+  "lon": -105.58,
+  "coord_source": "Wikipedia: Taos, New Mexico (town coordinates)",
+  "summary": "A low droning sound that only some people in Taos can hear, studied by scientists in the 1990s.",
+  "status": "unexplained",
+  "status_note": "A 1990s study confirmed that some people hear it but could not find a source.",
+  "body": [
+   "In the early 1990s, residents of Taos, New Mexico, complained of a low humming or droning sound that others around them could not hear. A study at the time found that at least 2 percent of people could hear it, each at a slightly different pitch between 32 and 80 hertz, pulsing slowly.",
+   "Taos is one of several places with a well-known 'hum'. Others include Bristol in England, Auckland in New Zealand and Windsor, Ontario, where a hum was eventually traced to industry on Zug Island across the Detroit River. Researchers looking at Taos also considered sounds made inside the ear itself, which many people have without noticing.",
+   "The Taos Hum has featured on Unsolved Mysteries and in The X-Files."
+  ],
+  "timeline": [
+   {"when": "Early 1990s", "what": "Taos residents report a persistent hum"},
+   {"when": "1995", "what": "Researchers Joe Mullins and James Kelly publish 'The Mystery of the Taos Hum'"}
+  ],
+  "theories": [
+   {"name": "Industrial or mechanical noise", "verdict": "possible", "note": "Explained other hums, like Windsor's, but no source was found at Taos."},
+   {"name": "Sounds made by the ear itself", "verdict": "possible", "note": "Otoacoustic emissions are common; researchers considered them as part of the cause."},
+   {"name": "Secret military transmitters", "verdict": "no-evidence", "note": "A popular idea, with nothing to back it up."}
+  ],
+  "visit": null,
+  "creatures": [],
+  "sources": [
+   {"title": "The Hum (Wikipedia)", "url": "https://en.wikipedia.org/wiki/The_Hum"}
+  ]
+ },
+ {
+  "slug": "flannan-isles-lighthouse",
+  "name": "The Flannan Isles lighthouse keepers",
+  "type": "vanishing",
+  "date": "1900-12-15",
+  "year": 1900,
+  "place": "Eilean Mòr, Flannan Isles, Outer Hebrides, Scotland",
+  "cc": "GB",
+  "lat": 58.28806,
+  "lon": -7.58806,
+  "coord_source": "Wikipedia: Flannan Isles Lighthouse",
+  "summary": "Three lighthouse keepers disappeared from a remote Hebridean island in a December storm.",
+  "status": "disputed",
+  "status_note": "The official inquiry thought they were swept away by a huge wave; later myths added strange log entries that did not exist.",
+  "body": [
+   "The lighthouse on Eilean Mòr, in the Flannan Isles west of Lewis, was first lit in December 1899. A year later, on December 15, 1900, a passing steamer noticed it was dark in poor weather. Storms delayed the relief ship Hesperus until December 26.",
+   "When relief keeper Joseph Moore went ashore, there was no flag on the pole and nobody to meet the boat. The gate and door were closed, the beds unmade and the clock stopped. The lamps had been cleaned and refilled, and one set of oilskins was still inside. Keepers James Ducat, Thomas Marshall and Donald McArthur were never found.",
+   "Superintendent Robert Muirhead found storm damage at the west landing that was 'difficult to believe unless actually seen'. He concluded that Ducat and Marshall had gone down to the landing and that McArthur had followed in his shirt sleeves, and that all three were probably carried away by an enormous wave. The landing sits in a narrow gully that ends in a cave, where storm waves can surge with great force. Dramatic log entries about crying and praying, often quoted, appear to be later inventions."
+  ],
+  "timeline": [
+   {"when": "December 7, 1899", "what": "The lighthouse is first lit"},
+   {"when": "December 15, 1900", "what": "A passing steamer sees the light is out"},
+   {"when": "December 26, 1900", "what": "The relief ship finds the island empty"},
+   {"when": "December 29, 1900", "what": "Superintendent Robert Muirhead begins the inquiry"},
+   {"when": "1971", "what": "The lighthouse is automated"}
+  ],
+  "theories": [
+   {"name": "Swept away by a freak wave at the west landing", "verdict": "leading", "note": "The official view, supported by the storm damage and the landing's dangerous gully."},
+   {"name": "A quarrel or foul play", "verdict": "no-evidence", "note": "Based mainly on invented log entries."},
+   {"name": "Sea creatures or the supernatural", "verdict": "no-evidence", "note": "A staple of later poems and stories."}
+  ],
+  "visit": "The island is uninhabited and the lighthouse is automated. In summer, some boat operators on Lewis run trips past the Flannans, weather permitting.",
+  "creatures": [],
+  "sources": [
+   {"title": "Flannan Isles Lighthouse (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Flannan_Isles_Lighthouse"}
+  ]
+ },
+ {
+  "slug": "roanoke-lost-colony",
+  "name": "The Lost Colony of Roanoke",
+  "type": "vanishing",
+  "date": "1590-08-18",
+  "year": 1590,
+  "place": "Roanoke Island, Dare County, North Carolina, USA",
+  "cc": "US",
+  "lat": 35.93694,
+  "lon": -75.70889,
+  "coord_source": "Wikipedia: Roanoke Colony (Fort Raleigh site)",
+  "summary": "An English colony of more than 100 people vanished, leaving only the word CROATOAN carved on a post.",
+  "status": "unexplained",
+  "status_note": "Most historians think the colonists moved and joined local Native communities, but it has not been proven.",
+  "body": [
+   "In 1587, a group of English settlers led by John White landed on Roanoke Island, in what is now North Carolina. White's granddaughter, Virginia Dare, was born there that August, recorded as \"the first Christian born in Virginia\". Soon afterwards White sailed home for supplies, but war with Spain kept him in England until 1590.",
+   "When White returned on August 18, 1590, his granddaughter's third birthday, the settlement was empty. The houses had been taken down and the site fortified. 'CRO' was carved on a tree and 'CROATOAN' on a post, the name of a nearby island and its people. White took this as the agreed sign that the colonists had moved there, since there was no cross to signal distress. Storms stopped him from searching Croatoan, and he never saw the colonists again.",
+   "Tree-ring studies show a severe drought in 1587 to 1589. Digs at 'Site X' inland and on Hatteras Island, the old Croatoan, have found 16th-century European objects, and in 2025 researchers reported iron-working waste on Hatteras that they say points to the settlers. The Lumbee tribe identifies as descended in part from the colonists."
+  ],
+  "timeline": [
+   {"when": "July 1587", "what": "John White's colonists land on Roanoke Island"},
+   {"when": "August 18, 1587", "what": "Virginia Dare is born"},
+   {"when": "August 1587", "what": "White sails to England for supplies"},
+   {"when": "August 18, 1590", "what": "White returns to find the colony gone and CROATOAN carved on a post"},
+   {"when": "1998", "what": "Tree-ring study finds the worst drought in 800 years in 1587"},
+   {"when": "2025", "what": "Hatteras Island dig reports evidence of settler iron-working"}
+  ],
+  "theories": [
+   {"name": "Moved and joined Native communities", "verdict": "leading", "note": "Fits the CROATOAN carving, the lack of graves and the finds on Hatteras Island and at Site X."},
+   {"name": "Lost at sea trying to sail home", "verdict": "possible", "note": "They had a small ship, which was also never found."},
+   {"name": "Killed in an attack", "verdict": "unlikely", "note": "Reported by later Jamestown sources, but White found no signs of a fight."},
+   {"name": "The Dare Stones", "verdict": "disproved", "note": "Inscribed stones 'found' from 1937 to 1941 are widely considered a hoax."}
+  ],
+  "visit": "Fort Raleigh National Historic Site on Roanoke Island protects the colony site, and the outdoor play The Lost Colony has run there every summer since 1937.",
+  "creatures": [],
+  "sources": [
+   {"title": "Roanoke Colony (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Roanoke_Colony"}
+  ]
+ },
+ {
+  "slug": "wow-signal",
+  "name": "The Wow! signal",
+  "type": "signal",
+  "date": "1977-08-15",
+  "year": 1977,
+  "place": "Big Ear radio telescope, Delaware, Ohio, USA",
+  "cc": "US",
+  "lat": 40.25,
+  "lon": -83.05,
+  "coord_source": "Approximate: former Big Ear site next to Perkins Observatory, Delaware, Ohio",
+  "summary": "A 72-second radio burst so strong that an astronomer circled it and wrote 'Wow!'. It never came back.",
+  "status": "unexplained",
+  "status_note": "No source has been confirmed, and repeated searches have never found the signal again.",
+  "body": [
+   "On the night of August 15, 1977, Ohio State University's Big Ear radio telescope, then used in the search for extraterrestrial intelligence, picked up a strong, narrow-band radio signal from the direction of the constellation Sagittarius.",
+   "Days later, volunteer astronomer Jerry R. Ehman spotted it while reading the computer printouts by hand. He circled the code '6EQUJ5', which showed the signal's strength, and wrote 'Wow!' beside it. The signal lasted the full 72 seconds that Big Ear could watch any one spot, and it was close to 1420 MHz, the natural frequency of hydrogen, where scientists had suggested aliens might choose to transmit.",
+   "Despite many follow-up searches, the signal has never been seen again. Ideas have included space debris, comets and rare natural bursts from hydrogen clouds, but none has been confirmed. Big Ear itself was demolished in 1998."
+  ],
+  "timeline": [
+   {"when": "August 15, 1977", "what": "Big Ear records the signal"},
+   {"when": "Days later", "what": "Jerry Ehman circles it and writes 'Wow!'"},
+   {"when": "1998", "what": "Big Ear is demolished"}
+  ],
+  "theories": [
+   {"name": "A rare natural radio burst", "verdict": "possible", "note": "Recent research suggests a sudden brightening of a hydrogen cloud could produce something similar."},
+   {"name": "A signal from another civilisation", "verdict": "possible", "note": "It matched what SETI was looking for, but a single, unrepeated burst cannot prove it."},
+   {"name": "Hydrogen from passing comets", "verdict": "unlikely", "note": "Proposed in 2016 and criticised by other astronomers."},
+   {"name": "Earth-based interference", "verdict": "unlikely", "note": "The frequency band is protected and the signal behaved like it came from space."}
+  ],
+  "visit": "The Big Ear telescope is gone; the site near Perkins Observatory is now a golf course.",
+  "creatures": [],
+  "sources": [
+   {"title": "Wow! signal (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Wow!_signal"}
+  ]
+ }
+]

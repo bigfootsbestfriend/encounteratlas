@@ -91,7 +91,7 @@ class E:
                          for d, v in sorted(by_dec.items()))
         body = f'''
 <section class="band band-dark ce-head"><div class="wrap">
-  <p class="crumb"><a href="{self.u('/ufo/')}">UFO files</a> / Close encounters</p>
+  <p class="crumb"><a href="{self.u('/ufo/')}">UFOs</a> / Close encounters</p>
   <h1>Close encounters with beings</h1>
   <p class="lede">{n} of the best-documented cases where people said they saw the occupants, not just the lights: goblins at a Kentucky farmhouse, a 'monster' at Flatwoods, small beings in a French lavender field. {countries} countries, {self.cases[0]['year']} to {self.cases[-1]['year']}.</p>
   <div class="ce-chips" role="group" aria-label="Filter cases">{chips}</div>

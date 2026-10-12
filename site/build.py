@@ -118,14 +118,30 @@ def write(path, text):
 
 EA_API = os.environ.get('EA_API', '').rstrip('/')  # report Worker; empty until it's deployed
 MAP_API = f' data-api="{EA_API}"' if EA_API else ''
-NAV = [('/map/', 'Map'), ('/creatures/', 'Creatures'), ('/ufo/', 'UFO files'), ('/military/', 'Military'),
-       ('/places/', 'Places'), ('/history/', 'History'), ('/guides/', 'Guides'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts')] + ([('/reports/', 'Reports')] if EA_API else []) + [('/encounters/', 'Encounters')]
+UFO_MENU = [('/ufo/', 'UFO sightings'), ('/ufo/blue-book/', 'Air Force Blue Book files'), ('/ufo/releases/', 'Official releases'),
+            ('/ufo/countries/', 'UFO files by country'), ('/military/', 'Military encounters')]
+RES_MENU = [('/places/', 'Places to visit'), ('/guides/', 'Field guides'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts')]
+NAV = [('/map/', 'Map'), ('/creatures/', 'Creatures'), ('UFOs', UFO_MENU)] + ([('/reports/', 'Reports')] if EA_API else []) + [
+    ('/encounters/', 'Encounters'), ('/mysteries/', 'Mysteries'), ('/history/', 'History'), ('Resources', RES_MENU)]
+
+
+def nav_html(path):
+    """Top nav; a (label, [links]) entry becomes a dropdown (<details>, so it works without JS)."""
+    out = ''
+    for p, n in NAV:
+        if isinstance(n, list):
+            on = any(path.startswith(q) for q, _ in n)
+            links = ''.join(f'<a href="{url(q)}"{" aria-current=page" if path.startswith(q) and not any(path.startswith(r) and len(r) > len(q) for r, _ in n) else ""}>{esc(m)}</a>' for q, m in n)
+            out += (f'<details class="nav-dd{" on" if on else ""}"><summary>{esc(p)}<svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true">'
+                    f'<path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></summary><div class="dd-menu">{links}</div></details>')
+        else:
+            out += f'<a href="{url(p)}"{" aria-current=page" if path.startswith(p) else ""}>{esc(n)}</a>'
+    return out
 
 
 def page(path, title, body, desc='', body_class='', head_extra='', canonical=True):
     full_title = title if title.startswith('Encounter Atlas') else f'{title} | Encounter Atlas'
-    nav = ''.join(f'<a href="{url(p)}"{" aria-current=page" if path.startswith(p) else ""}>{esc(n)}</a>'
-                  for p, n in NAV)
+    nav = nav_html(path)
     robots = '' if LAUNCHED else '<meta name="robots" content="noindex">'
     beacon = (f'<script defer src="https://static.cloudflareinsights.com/beacon.min.js" '
               f'data-cf-beacon=\'{{"token": "{CF_BEACON}"}}\'></script>') if CF_BEACON else ''
@@ -171,12 +187,13 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
   <div class="foot-in">
     <p class="foot-brand"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</p>
     <p>Sightings, creatures and official files, mapped. Reports are what witnesses say they saw. We don't claim they're real, and we don't claim they're not.</p>
-    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO files</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/report/')}">Report an encounter</a></p>
+    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/report/')}">Report an encounter</a></p>
     <p class="small">Air Force case files: US National Archives, Record Group 341. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>
   </div>
 </footer>
 {beacon}
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('{url('/sw.js')}');</script>
+<script>(function(){{const dd=[...document.querySelectorAll('.nav-dd')];dd.forEach(d=>d.addEventListener('toggle',()=>{{if(d.open)dd.forEach(o=>{{if(o!==d)o.open=false;}});}}));document.addEventListener('click',e=>{{dd.forEach(d=>{{if(d.open&&!d.contains(e.target))d.open=false;}});}});document.addEventListener('keydown',e=>{{if(e.key==='Escape')dd.forEach(d=>{{if(d.open){{d.open=false;d.querySelector('summary').focus();}}}});}});}})();</script>
 </body>
 </html>
 '''
@@ -216,12 +233,19 @@ def poster(c):
             f'<rect x="6" y="6" width="188" height="188" rx="10" fill="none" stroke="#F3E3B8" stroke-width="4"/></svg>')
 
 
-def creature_card(c):
+def creature_card(c, sort=None):
+    """sort: on the creature index, a dict of sort keys (n sightings, loc, size, first and last year) shown as a meta line."""
     aka = f'<span class="aka">aka {esc(", ".join(c["aliases"][:2]))}</span>' if c['aliases'] else ''
-    return (f'<a class="crit" href="{url("/creatures/" + c["slug"] + "/")}" data-cat="{c["cat"]}" '
+    data = meta = ''
+    if sort:
+        data = ''.join(f' data-{k}="{esc(str(v))}"' for k, v in sort.items() if k != 'place')
+        n = sort['n']
+        meta = (f'<span class="crit-meta"><span class="cm-n">{f"{n} sighting" + ("s" if n != 1 else "") + " on file" if n else "No sightings on file yet"}</span>'
+                f'<span class="cm-loc">{esc(sort["place"])}</span></span>')
+    return (f'<a class="crit" href="{url("/creatures/" + c["slug"] + "/")}" data-cat="{c["cat"]}"{data} '
             f'data-names="{esc((c["name"] + " " + " ".join(c["aliases"]) + " " + c["region"]).lower())}">'
             f'{badge(c)}<span class="crit-txt"><span class="crit-name">{esc(c["name"])}</span>{aka}'
-            f'<span class="crit-sum">{esc(c["summary"])}</span></span></a>')
+            f'<span class="crit-sum">{esc(c["summary"])}</span>{meta}</span></a>')
 
 
 def build_creatures(creatures, by_slug):
@@ -230,11 +254,30 @@ def build_creatures(creatures, by_slug):
         groups[c['cat']].append(c)
     chips = ''.join(f'<button type="button" class="chip" data-filter="{k}" aria-pressed="false">'
                     f'<span class="dot cat-{k}"></span>{esc(v[0])}</button>' for k, v in CATS.items() if groups[k])
+    # Sort keys for the index. "Sightings on file" = famous cases + close encounters + historic newspaper reports
+    # (reader reports join once the Worker is live).
+    def jload(f):
+        fp = os.path.join(ROOT, 'data', f)
+        return json.load(open(fp, encoding='utf-8')) if os.path.exists(fp) else []
+    countries = jload('countries.json') or {}
+    sizes = (jload('sizes.json') or {}).get('sizes', {}) if isinstance(jload('sizes.json'), dict) else {}
+    hist = Counter(x.get('creature') for x in jload('historic.json') if x.get('creature'))
+    close_n = Counter(s for x in jload('close_encounters.json') for s in x.get('creatures', []))
+    keys = {}
+    for c in creatures:
+        yrs = [f['year'] for f in c['famous'] if isinstance(f.get('year'), int)]
+        m = re.search(r'\b(1[0-9]{3}|20[0-9]{2})', c.get('first') or '')
+        first = min(yrs + ([int(m.group(1))] if m else [])) if (yrs or m) else 9999
+        cc = c['cc'][0] if c['cc'] else ''
+        cname = (countries.get(cc) or [cc])[0] if cc else 'Worldwide'
+        keys[c['slug']] = {'n': len(c['famous']) + close_n[c['slug']] + hist[c['slug']], 'first': first,
+                           'last': max(yrs) if yrs else 0, 'size': (sizes.get(c['slug']) or {}).get('draw', 0),
+                           'loc': (cname + ' ' + c['region']).lower(), 'place': c['region'] if cname in c['region'] or cname == 'Worldwide' else f'{c["region"]}, {cname}'}
     sections = ''
     for k, (label, blurb) in CATS.items():
         if not groups[k]:
             continue
-        cards = ''.join(creature_card(c) for c in sorted(groups[k], key=lambda c: c['name']))
+        cards = ''.join(creature_card(c, keys[c['slug']]) for c in sorted(groups[k], key=lambda c: (-keys[c['slug']]['n'], c['name'])))
         sections += (f'<section class="cat-group" data-group="{k}"><h2 class="cat-h"><span class="dot cat-{k}"></span>'
                      f'{esc(label)}</h2><p class="cat-blurb">{esc(blurb)}</p><div class="crit-grid">{cards}</div></section>')
     body = f'''
@@ -247,6 +290,14 @@ def build_creatures(creatures, by_slug):
       <input id="q" type="search" placeholder="Search by name, nickname or place" autocomplete="off">
     </div>
     <div class="chips" role="group" aria-label="Filter by type">{chips}</div>
+    <div class="sort-row"><label for="sort">Sort each group by</label>
+      <select id="sort">
+        <option value="most">Most sightings</option><option value="fewest">Fewest sightings</option>
+        <option value="recent">Most recent sighting</option><option value="oldest">Oldest first record</option>
+        <option value="loc">Location (country, then region)</option><option value="size">Biggest first</option>
+        <option value="az">Name, A to Z</option>
+      </select>
+      <span class="sort-note">Sightings on file: famous cases, close encounters and historic newspaper reports.</span></div>
   </div>
 </section>
 <div class="band band-mist"><div class="wrap">
@@ -422,7 +473,7 @@ def build_creatures(creatures, by_slug):
         ufo_note = ''
         if c['cat'] == 'ufo':
             ufo_note = (f'<p class="callout">{icon("folder", "ico ico-inline")} Browse 10,622 US Air Force Project Blue Book '
-                        f'case files on the <a href="{url("/map/")}">map</a> or <a href="{url("/ufo/")}">by state</a>.</p>')
+                        f'case files on the <a href="{url("/map/")}">map</a> or <a href="{url("/ufo/blue-book/")}">by state</a>.</p>')
         body = f'''
 <section class="band band-dark creature-head cat-{c['cat']}">
   <div class="wrap creature-head-in">
@@ -503,7 +554,7 @@ def build_ufo(bluebook):
     body = f'''
 <section class="band band-dark">
   <div class="wrap">
-    <p class="crumb">UFO files</p>
+    <p class="crumb"><a href="{url('/ufo/')}">UFOs</a> / Air Force files</p>
     <h1>Project Blue Book: the Air Force UFO files</h1>
     <p class="lede">From 1947 to 1969 the US Air Force investigated {len(bluebook):,} UFO reports. Every case folder is now public at the National Archives. We've put them on a map and sorted them by state and country.</p>
     <nav class="tiles ufo-more" aria-label="More official UFO files">
@@ -530,7 +581,7 @@ def build_ufo(bluebook):
   <h2>About these files</h2>
   <p>Each link opens the case folder in the National Archives catalog, where you can read the scanned pages: witness forms, teletype messages, sketches and the Air Force's conclusion. Names of witnesses were blacked out before release. Most cases were explained as aircraft, balloons, stars or planets. 701 stayed “unidentified”.</p>
 </div></div>'''
-    write('/ufo/', page('/ufo/', 'Project Blue Book UFO files by state, year and map', body,
+    write('/ufo/blue-book/', page('/ufo/blue-book/', 'Project Blue Book UFO files by state, year and map', body,
                         f'All {len(bluebook):,} US Air Force Project Blue Book UFO case files (1947-1969), mapped and listed by state and country.'))
     for k, cases in by_region.items():
         cases = sorted(cases, key=lambda b: (b['year'] or 0, b['month'] or 0))
@@ -540,7 +591,7 @@ def build_ufo(bluebook):
         items = ''.join(case_line(b) for b in cases)
         body = f'''
 <section class="band band-dark"><div class="wrap">
-  <p class="crumb"><a href="{url('/ufo/')}">UFO files</a> / Project Blue Book</p>
+  <p class="crumb"><a href="{url('/ufo/')}">UFOs</a> / <a href="{url('/ufo/blue-book/')}">Project Blue Book</a></p>
   <h1>UFO sightings in {esc(nm)}: Air Force files</h1>
   <p class="lede">{len(cases):,} Project Blue Book case {'file' if len(cases) == 1 else 'files'} from {esc(nm)}, 1947 to 1969.{peak}</p>
   <p><a class="btn" href="{url('/map/')}">See them on the map</a></p>
@@ -603,12 +654,12 @@ def build_military(military):
                   f'{f"<p class=src>Sources: {src}</p>" if src else ""}</div></li>')
     body = f'''
 <section class="band band-dark"><div class="wrap">
-  <p class="crumb">Military</p>
+  <p class="crumb"><a href="{url('/ufo/')}">UFOs</a> / Military</p>
   <h1>Military encounters</h1>
   <p class="lede">Pilots, radar operators and soldiers have reported some of the strangest things on record, and the military has kept files on them since the 1940s.</p>
 </div></section>
 <div class="band band-mist"><div class="wrap">
-  <p>The Air Force's own Project Blue Book alone holds {10622:,} case files. <a href="{url('/ufo/')}">Browse them by state</a>. Below are the military cases people still talk about.</p>
+  <p>The Air Force's own Project Blue Book alone holds {10622:,} case files. <a href="{url('/ufo/blue-book/')}">Browse them by state</a>. Below are the military cases people still talk about.</p>
   <ol class="timeline mil-list">{items}</ol>
 </div></div>'''
     write('/military/', page('/military/', 'Military UFO and creature encounters', body,
@@ -726,7 +777,7 @@ def build_home(creatures, n_points, bluebook, military):
     {icon('folder', 'ico ico-lg')}
     <h2>The Air Force kept files</h2>
     <p>Project Blue Book collected {len(bluebook):,} UFO reports between 1947 and 1969. Find the ones from your state, read the original scans, and see where they cluster.</p>
-    <p><a class="btn" href="{url('/ufo/')}">Open the UFO files</a></p>
+    <p><a class="btn" href="{url('/ufo/blue-book/')}">Open the Air Force files</a></p>
   </div>
   <div>
     {icon('military', 'ico ico-lg')}

@@ -1,0 +1,188 @@
+{
+ "tunguska-event": [
+  {
+   "src": "/static/mysteries/tunguska-event-1.jpg",
+   "caption": "Trees flattened by the blast, photographed on Leonid Kulik's expedition",
+   "credit": "Leonid Kulik's expedition",
+   "licence": "Public domain",
+   "licence_url": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Tunguska_Ereignis-1.jpg"
+  }
+ ],
+ "dyatlov-pass": [
+  {
+   "src": "/static/mysteries/dyatlov-pass-1.jpg",
+   "caption": "The tent as searchers found it on February 26, 1959, cut open from the inside",
+   "credit": "Unknown photographer, Soviet search team",
+   "licence": "Public domain",
+   "licence_url": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Dyatlov_Pass_incident_02.jpg"
+  },
+  {
+   "src": "/static/mysteries/dyatlov-pass-2.jpg",
+   "caption": "First page of the 1959 decision closing the criminal case",
+   "credit": "Lev Ivanov, Sverdlovsk Oblast prosecutor (case file)",
+   "licence": "Public domain",
+   "licence_url": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Dyatlov.Volume_1.Page_384.jpg"
+  }
+ ],
+ "nahanni-headless-valley": [
+  {
+   "src": "/static/mysteries/nahanni-headless-valley-1.jpg",
+   "caption": "The Gate, in Second Canyon of the South Nahanni River",
+   "credit": "Paul Gierszewski",
+   "licence": "Public domain",
+   "licence_url": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Nahanni_River_-_The_Gate.JPG"
+  },
+  {
+   "src": "/static/mysteries/nahanni-headless-valley-2.jpg",
+   "caption": "Virginia Falls (Nailicho), Nahanni National Park Reserve",
+   "credit": "Paul Gierszewski (Gierszep)",
+   "licence": "Public domain",
+   "licence_url": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Nahanni_-VirginiaFalls2.jpg"
+  }
+ ],
+ "oak-island-money-pit": [
+  {
+   "src": "/static/mysteries/oak-island-money-pit-1.jpg",
+   "caption": "Oak Island and its wharf, August 1931",
+   "credit": "Richard McCully",
+   "licence": "Public domain",
+   "licence_url": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Island_and_Wharf,_Oak_Island,_Nova_Scotia,_Canada,_August_1931.jpg"
+  }
+ ],
+ "mary-celeste": [
+  {
+   "src": "/static/mysteries/mary-celeste-1.jpg",
+   "caption": "The ship as Amazon, painted in 1861",
+   "credit": "Unknown artist, possibly Honoré Pellegrin",
+   "licence": "Public domain",
+   "licence_url": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Mary_Celeste_as_Amazon_in_1861_(cropped).jpg"
+  },
+  {
+   "src": "/static/mysteries/mary-celeste-2.jpg",
+   "caption": "Captain Briggs's lap desk, recovered from the ship in 1872",
+   "credit": "Crawdad Blues",
+   "licence": "CC0",
+   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "page": "https://commons.wikimedia.org/wiki/File:Lap_desk_of_Captain_Benjamin_Briggs_from_the_Mary_Celeste_(PEM_M6557)_02.jpg"
+  }
+ ],
+ "hessdalen-lights": [
+  {
+   "src": "/static/mysteries/hessdalen-lights-1.jpg",
+   "caption": "Hessdalen, a mountain valley of scattered farms in central Norway",
+   "credit": "Unknown photographer, Arkivverket (National Archives of Norway)",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Hessdalen_-_Fo30141603210074.jpg"
+  }
+ ],
+ "brown-mountain-lights": [
+  {
+   "src": "/static/mysteries/brown-mountain-lights-1.jpg",
+   "caption": "Brown Mountain from Beacon Heights, October 2016",
+   "credit": "Thomson200",
+   "licence": "CC0",
+   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "page": "https://commons.wikimedia.org/wiki/File:Brown_Mountain,_North_Carolina_viewed_from_Beacon_Heights,_October_2016.jpg"
+  },
+  {
+   "src": "/static/mysteries/brown-mountain-lights-2.jpg",
+   "caption": "Figure 1 from George Mansfield's 1922 USGS survey of the lights",
+   "credit": "George R. Mansfield (1922, republished 1971)",
+   "licence": "Public domain",
+   "licence_url": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Mansfield_Figure_1.png"
+  }
+ ],
+ "bennington-triangle": [
+  {
+   "src": "/static/mysteries/bennington-triangle-1.jpg",
+   "caption": "The fire tower on Glastenbury Mountain",
+   "credit": "US Forest Service, Eastern Region",
+   "licence": "Public domain",
+   "licence_url": "",
+   "page": "https://commons.wikimedia.org/wiki/File:20240702_NF_BE_GreenMountain_OHV_FireTower_0003_(54103684450).jpg"
+  }
+ ],
+ "bermuda-triangle": [
+  {
+   "src": "/static/mysteries/bermuda-triangle-1.jpg",
+   "caption": "The area usually drawn as the Bermuda Triangle",
+   "credit": "Alphaios and Majestic, Wikimedia Commons",
+   "licence": "Public domain",
+   "licence_url": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Bermuda_Triangle.png"
+  },
+  {
+   "src": "/static/mysteries/bermuda-triangle-2.jpg",
+   "caption": "TBF Avengers, the type of aircraft lost on Flight 19 in 1945",
+   "credit": "Lt. Comdr. Horace Bristol, U.S. Navy photo 80-G-427475",
+   "licence": "Public domain",
+   "licence_url": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Grumman_TBF-1_Avengers_of_VGS-29_in_flight_over_Norfolk,_Virginia_(USA),_on_1_September_1942_(80-G-427475).jpg"
+  }
+ ],
+ "taos-hum": [
+  {
+   "src": "/static/mysteries/taos-hum-1.jpg",
+   "caption": "Taos, New Mexico, from a mountain trail",
+   "credit": "Billy Hathorn at en.wikipedia",
+   "licence": "CC BY-SA 3.0",
+   "licence_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+   "page": "https://commons.wikimedia.org/wiki/File:View_of_Taos,_NM_from_mountain_trail_Picture_2000.jpg"
+  }
+ ],
+ "flannan-isles-lighthouse": [
+  {
+   "src": "/static/mysteries/flannan-isles-lighthouse-1.jpg",
+   "caption": "The lighthouse on Eilean Mòr",
+   "credit": "Marc Calhoun",
+   "licence": "CC BY-SA 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:The_lighthouse_on_Eilean_Mor.jpg"
+  },
+  {
+   "src": "/static/mysteries/flannan-isles-lighthouse-2.jpg",
+   "caption": "St Flannan's Cell, with the lighthouse behind",
+   "credit": "JJM",
+   "licence": "CC BY-SA 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:St._Flannan%27s_Cell_and_Flannan_Isles_Lighthouse_-_geograph.org.uk_-_623920.jpg"
+  }
+ ],
+ "roanoke-lost-colony": [
+  {
+   "src": "/static/mysteries/roanoke-lost-colony-1.jpg",
+   "caption": "John White finds the abandoned settlement in 1590, engraving by John Parker Davis",
+   "credit": "Engraving by John Parker Davis",
+   "licence": "Public domain",
+   "licence_url": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Ruins_of_the_English_Settlement_at_Roanoke.jpg"
+  },
+  {
+   "src": "/static/mysteries/roanoke-lost-colony-2.jpg",
+   "caption": "Reconstructed earthworks at Fort Raleigh National Historic Site",
+   "credit": "Sarah Stierch",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Fort_Raleigh_National_Historic_Site_earthworks_2_-_Sarah_Stierch.jpg"
+  }
+ ],
+ "wow-signal": [
+  {
+   "src": "/static/mysteries/wow-signal-1.jpg",
+   "caption": "A copy of the 1977 printout with Jerry Ehman's 'Wow!'",
+   "credit": "Big Ear Radio Observatory and North American AstroPhysical Observatory (NAAPO)",
+   "licence": "Public domain",
+   "licence_url": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Wow_signal.jpg"
+  }
+ ]
+}

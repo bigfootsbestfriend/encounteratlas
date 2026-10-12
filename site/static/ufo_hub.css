@@ -1,0 +1,15 @@
+/* UFOs hub: famous-sighting cards (reuse .ce-* from encounters.css), reader + close-encounter boxes */
+.uh-btns { display: flex; flex-wrap: wrap; gap: .6rem; }
+.uh-card a { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem; background: #fff; border-radius: var(--r-md);
+  border: 1px solid #D6DDD6; color: var(--ink) !important; text-decoration: none; height: 100%; box-sizing: border-box; }
+.uh-card a:hover { border-color: var(--spruce-3); }
+.uh-card a:focus-visible { outline: 3px solid var(--lantern); outline-offset: 2px; }
+.uh-card .badge { flex: none; }
+.uh-shape { font: 700 .76rem/1 "Public Sans", sans-serif; padding: .35rem .6rem; border-radius: 999px; background: #E3E1FA; color: #36306B; }
+.ufo-hub .ce-dec h3 { margin: 1.6rem 0 .7rem; color: var(--spruce); }
+.uh-chips .ce-chip { background: #fff; color: var(--spruce); border-color: #C9D3C9; }
+.uh-chips .ce-chip[aria-pressed="true"] { background: var(--spruce); color: #fff; border-color: var(--spruce); }
+.uh-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 1rem; margin: 2.5rem 0 1rem; }
+.uh-box { background: #fff; border-radius: var(--r-md); border: 1px solid #D6DDD6; padding: .4rem 1.3rem 1rem; }
+.uh-box h2 { font-size: 1.3rem; }
+.ufo-hub .tiles.ufo-more .tile { color: var(--spruce); }

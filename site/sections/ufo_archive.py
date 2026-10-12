@@ -183,7 +183,7 @@ def build(ctx):
     body = f'''
 <section class="band band-dark ua-hero">
   <div class="wrap">
-    <p class="crumb"><a href="{U('/ufo/')}">UFO files</a> / Official releases</p>
+    <p class="crumb"><a href="{U('/ufo/')}">UFOs</a> / Official releases</p>
     <h1>Every official UFO release, on one timeline</h1>
     <p class="lede">Governments have been opening their UFO files since the 1950s. Here are {len(releases)} of the big releases from {n_countries} countries: document dumps, reports to parliament, cockpit videos, hearings and open case databases. Each one links straight to the official source.</p>
     <ul class="ua-stats">
@@ -235,7 +235,7 @@ def build(ctx):
             inside = (f'<h2>What is in it</h2><p>{len(faa)} pilot and controller reports. We have mapped {len(faa_feats)} of them and sorted them by state.</p>'
                       f'<p><a class="btn" href="{U("/ufo/files/faa/")}">Browse the FAA reports</a></p>')
         if r.get('local') and not inside:
-            label = {'/ufo/': 'Browse the Blue Book files', '/ufo/files/pursue/': 'Browse all PURSUE files',
+            label = {'/ufo/blue-book/': 'Browse the Blue Book files', '/ufo/files/pursue/': 'Browse all PURSUE files',
                      '/ufo/files/faa/': 'Browse the FAA reports'}.get(r['local'], 'Browse the files')
             inside = f'<h2>Browse it here</h2><p><a class="btn" href="{U(r["local"])}">{label}</a></p>'
         more = [x for x in rel_by_cc[r['country']] if x['slug'] != r['slug']][:6]
@@ -337,7 +337,7 @@ def build(ctx):
 
         def bb_link(nm):
             return (f'<a href="{U("/ufo/blue-book/us-" + ctx.slugify(nm) + "/")}">Air Force Blue Book files from {E(nm)}</a>'
-                    if nm in bb_regions else f'<a href="{U("/ufo/")}">Air Force Blue Book files</a>')
+                    if nm in bb_regions else f'<a href="{U("/ufo/blue-book/")}">Air Force Blue Book files</a>')
 
         for st, rs in by_state.items():
             rs = sorted(rs, key=lambda r: r.get('date') or '', reverse=True)
@@ -448,7 +448,7 @@ def build(ctx):
                            f'{" · ".join(x for x in ((f"<a href={chr(34)}{U(chr(47) + "ufo/files/faa/" + ctx.slugify(s) + chr(47))}{chr(34)}>{st_faa[s]} FAA</a>") if st_faa.get(s) else "", (f"<a href={chr(34)}{U(chr(47) + "ufo/blue-book/us-" + ctx.slugify(s) + chr(47))}{chr(34)}>{us_states_bb[s]:,} Blue Book</a>") if us_states_bb.get(s) else "") if x)}'
                            f'</span></li>' for s in sorted(set(st_faa) | set(us_states_bb)))
             cases = (f'<h2>Case files by state</h2><p>Three official US datasets are mapped on this site: {len(ctx.bluebook):,} Air Force '
-                     f'<a href="{U("/ufo/")}">Project Blue Book</a> folders (1947 to 1969), {len(faa):,} <a href="{U("/ufo/files/faa/")}">FAA pilot reports</a> '
+                     f'<a href="{U("/ufo/blue-book/")}">Project Blue Book</a> folders (1947 to 1969), {len(faa):,} <a href="{U("/ufo/files/faa/")}">FAA pilot reports</a> '
                      f'and the <a href="{U("/ufo/files/pursue/")}">PURSUE files</a>.</p><ul class="cols ua-states">{rows}</ul>')
         if pcs and cc != 'us':
             cases += (f'<h2>{E(name)} in the US government files</h2><p>{len(pcs)} of the Pentagon\'s 2026 PURSUE files concern events in {E(name)}.</p>'

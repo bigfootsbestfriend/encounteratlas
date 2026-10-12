@@ -23,6 +23,29 @@
     chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.filter === cat)));
     apply();
   }));
+  // Sort within each category group; the HTML ships in "most sightings" order so it works without JS.
+  const sel = document.getElementById('sort');
+  const num = (c, k) => +c.dataset[k] || 0;
+  const name = (c) => c.querySelector('.crit-name').textContent;
+  const SORTS = {
+    most: (a, b) => num(b, 'n') - num(a, 'n') || name(a).localeCompare(name(b)),
+    fewest: (a, b) => num(a, 'n') - num(b, 'n') || name(a).localeCompare(name(b)),
+    recent: (a, b) => num(b, 'last') - num(a, 'last') || num(b, 'n') - num(a, 'n'),
+    oldest: (a, b) => num(a, 'first') - num(b, 'first') || name(a).localeCompare(name(b)),
+    loc: (a, b) => (a.dataset.loc || '').localeCompare(b.dataset.loc || '') || name(a).localeCompare(name(b)),
+    size: (a, b) => num(b, 'size') - num(a, 'size') || name(a).localeCompare(name(b)),
+    az: (a, b) => name(a).localeCompare(name(b)),
+  };
+  function sortAll() {
+    const f = SORTS[sel.value] || SORTS.most;
+    document.querySelectorAll('.cat-group .crit-grid').forEach((g) => [...g.children].sort(f).forEach((c) => g.appendChild(c)));
+    try { localStorage.setItem('ea-sort', sel.value); } catch (e) { /* storage blocked */ }
+  }
+  if (sel) {
+    sel.addEventListener('change', sortAll);
+    let saved = null; try { saved = localStorage.getItem('ea-sort'); } catch (e) { /* storage blocked */ }
+    if (saved && SORTS[saved] && saved !== 'most') { sel.value = saved; sortAll(); }
+  }
   const pre = new URLSearchParams(location.search).get('q');
   if (pre) { q.value = pre; apply(); }
 })();
