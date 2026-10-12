@@ -1,0 +1,532 @@
+[
+{
+"creature": "bigfoot",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Bluff Creek footprints",
+"year": 1958,
+"place": "Humboldt County, California",
+"lat": 45.3325,
+"lon": -93.7461
+},
+{
+"creature": "bigfoot",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Patterson-Gimlin film",
+"year": 1967,
+"place": "Bluff Creek, California",
+"lat": 30.5405,
+"lon": -88.6875
+},
+{
+"creature": "bigfoot",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Ape Canyon attack",
+"year": 1924,
+"place": "Mount St. Helens, Washington",
+"lat": 46.2,
+"lon": -122.19
+},
+{
+"creature": "bigfoot",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Skookum cast",
+"year": 2000,
+"place": "Gifford Pinchot National Forest, Washington",
+"lat": 46.3,
+"lon": -121.9
+},
+{
+"creature": "yeti",
+"cat": "hominid",
+"icon": "yeti",
+"name": "Howard-Bury tracks",
+"year": 1921,
+"place": "Lhakpa La, Tibet",
+"lat": 28.07,
+"lon": 86.97
+},
+{
+"creature": "yeti",
+"cat": "hominid",
+"icon": "yeti",
+"name": "Shipton footprint photo",
+"year": 1951,
+"place": "Menlung Glacier, Nepal",
+"lat": 28.0,
+"lon": 86.35
+},
+{
+"creature": "yeti",
+"cat": "hominid",
+"icon": "yeti",
+"name": "Pangboche hand",
+"year": 1958,
+"place": "Pangboche Monastery, Nepal",
+"lat": 27.86,
+"lon": 86.79
+},
+{
+"creature": "yowie",
+"cat": "hominid",
+"icon": "hominid",
+"name": "Kilcoy sightings",
+"year": 1978,
+"place": "Kilcoy, Queensland",
+"lat": -26.943,
+"lon": 152.5654
+},
+{
+"creature": "skunk-ape",
+"cat": "hominid",
+"icon": "skunkape",
+"name": "Myakka photographs",
+"year": 2000,
+"place": "Sarasota County, Florida",
+"lat": 27.3364,
+"lon": -82.5306
+},
+{
+"creature": "fouke-monster",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Ford family encounter",
+"year": 1971,
+"place": "Fouke, Arkansas",
+"lat": 33.2612,
+"lon": -93.8855
+},
+{
+"creature": "honey-island-swamp-monster",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Harlan Ford sighting",
+"year": 1963,
+"place": "Honey Island Swamp, Louisiana",
+"lat": 30.33,
+"lon": -89.7
+},
+{
+"creature": "momo",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Momo flap",
+"year": 1972,
+"place": "Louisiana, Missouri",
+"lat": 39.4489,
+"lon": -91.0515
+},
+{
+"creature": "almas",
+"cat": "hominid",
+"icon": "hominid",
+"name": "Zana of Abkhazia",
+"year": 1850,
+"place": "Abkhazia, Georgia",
+"lat": 43.0,
+"lon": 41.0
+},
+{
+"creature": "yeren",
+"cat": "hominid",
+"icon": "hominid",
+"name": "Chinese Academy of Sciences expeditions",
+"year": 1977,
+"place": "Shennongjia, Hubei",
+"lat": 31.74,
+"lon": 110.68
+},
+{
+"creature": "orang-pendek",
+"cat": "hominid",
+"icon": "hominid",
+"name": "Debbie Martyr's sightings",
+"year": 1994,
+"place": "Kerinci, Sumatra",
+"lat": -1.7,
+"lon": 101.27
+},
+{
+"creature": "dogman",
+"cat": "canid",
+"icon": "dogman",
+"name": "\"The Legend\" broadcast",
+"year": 1987,
+"place": "Traverse City, Michigan",
+"lat": 44.7631,
+"lon": -85.6206
+},
+{
+"creature": "dogman",
+"cat": "canid",
+"icon": "dogman",
+"name": "Beast of Bray Road",
+"year": 1991,
+"place": "Elkhorn, Wisconsin",
+"lat": 42.6728,
+"lon": -88.5445
+},
+{
+"creature": "rougarou",
+"cat": "canid",
+"icon": "rougarou",
+"name": "Rougarou Fest",
+"year": 2011,
+"place": "Houma, Louisiana",
+"lat": 29.5958,
+"lon": -90.7195
+},
+{
+"creature": "chupacabra",
+"cat": "canid",
+"icon": "chupacabra",
+"name": "Can\u00f3vanas attacks",
+"year": 1995,
+"place": "Can\u00f3vanas, Puerto Rico",
+"lat": 18.3751,
+"lon": -65.8993
+},
+{
+"creature": "chupacabra",
+"cat": "canid",
+"icon": "chupacabra",
+"name": "Cuero carcass",
+"year": 2007,
+"place": "Cuero, Texas",
+"lat": 29.0939,
+"lon": -97.2892
+},
+{
+"creature": "mothman",
+"cat": "winged",
+"icon": "mothman",
+"name": "TNT area chase",
+"year": 1966,
+"place": "Point Pleasant, West Virginia",
+"lat": 38.8445,
+"lon": -82.1371
+},
+{
+"creature": "mothman",
+"cat": "winged",
+"icon": "mothman",
+"name": "Silver Bridge collapse",
+"year": 1967,
+"place": "Point Pleasant, West Virginia",
+"lat": 38.8445,
+"lon": -82.1371
+},
+{
+"creature": "thunderbird",
+"cat": "winged",
+"icon": "thunderbird",
+"name": "Lawndale incident",
+"year": 1977,
+"place": "Lawndale, Illinois",
+"lat": 41.86,
+"lon": -87.7184
+},
+{
+"creature": "jersey-devil",
+"cat": "winged",
+"icon": "winged",
+"name": "Phenomenal Week",
+"year": 1909,
+"place": "Delaware Valley, NJ/PA",
+"lat": 39.95,
+"lon": -75.0
+},
+{
+"creature": "owlman",
+"cat": "winged",
+"icon": "owlman",
+"name": "Mawnan church sighting",
+"year": 1976,
+"place": "Mawnan, Cornwall",
+"lat": 50.1,
+"lon": -5.12
+},
+{
+"creature": "kongamato",
+"cat": "winged",
+"icon": "pterosaur",
+"name": "Melland's account",
+"year": 1923,
+"place": "Jiundu Swamp, Zambia",
+"lat": -11.9,
+"lon": 24.4
+},
+{
+"creature": "loch-ness-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Mackay sighting",
+"year": 1933,
+"place": "Loch Ness, Scotland",
+"lat": 57.32,
+"lon": -4.45
+},
+{
+"creature": "loch-ness-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Surgeon's Photograph",
+"year": 1934,
+"place": "Loch Ness, Scotland",
+"lat": 57.32,
+"lon": -4.45
+},
+{
+"creature": "loch-ness-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Loch Ness eDNA survey",
+"year": 2018,
+"place": "Loch Ness, Scotland",
+"lat": 57.32,
+"lon": -4.45
+},
+{
+"creature": "ogopogo",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Folden film",
+"year": 1968,
+"place": "Okanagan Lake, BC",
+"lat": 49.9,
+"lon": -119.5
+},
+{
+"creature": "champ",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Mansi photograph",
+"year": 1977,
+"place": "Lake Champlain, Vermont",
+"lat": 44.5716,
+"lon": -73.314
+},
+{
+"creature": "bessie",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "Sloop Felicity sighting",
+"year": 1793,
+"place": "Middle Island, Lake Erie",
+"lat": 41.68,
+"lon": -82.68
+},
+{
+"creature": "cadborosaurus",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "Naden Harbour carcass",
+"year": 1937,
+"place": "Haida Gwaii, BC",
+"lat": 54.03,
+"lon": -132.98
+},
+{
+"creature": "bear-lake-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Deseret News articles",
+"year": 1868,
+"place": "Bear Lake, Utah",
+"lat": 41.9363,
+"lon": -111.3377
+},
+{
+"creature": "flathead-lake-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "U.S. Grant steamboat sighting",
+"year": 1889,
+"place": "Flathead Lake, Montana",
+"lat": 47.8869,
+"lon": -114.1316
+},
+{
+"creature": "mokele-mbembe",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Lake Tele expeditions",
+"year": 1980,
+"place": "Likouala, Republic of the Congo",
+"lat": 1.6,
+"lon": 17.3
+},
+{
+"creature": "bunyip",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Murrumbidgee skull",
+"year": 1846,
+"place": "Murrumbidgee River, New South Wales",
+"lat": -34.6,
+"lon": 146.0
+},
+{
+"creature": "flatwoods-monster",
+"cat": "entity",
+"icon": "flatwoods",
+"name": "Fisher farm encounter",
+"year": 1952,
+"place": "Flatwoods, West Virginia",
+"lat": 38.8798,
+"lon": -81.7796
+},
+{
+"creature": "dover-demon",
+"cat": "entity",
+"icon": "dover",
+"name": "Bartlett sighting",
+"year": 1977,
+"place": "Dover, Massachusetts",
+"lat": 42.2459,
+"lon": -71.2828
+},
+{
+"creature": "hopkinsville-goblins",
+"cat": "entity",
+"icon": "entity",
+"name": "Sutton farmhouse siege",
+"year": 1955,
+"place": "Kelly, Kentucky",
+"lat": 36.9706,
+"lon": -87.477
+},
+{
+"creature": "loveland-frog",
+"cat": "entity",
+"icon": "frogman",
+"name": "Police sightings",
+"year": 1972,
+"place": "Loveland, Ohio",
+"lat": 39.2689,
+"lon": -84.2638
+},
+{
+"creature": "lizard-man",
+"cat": "entity",
+"icon": "lizardman",
+"name": "Christopher Davis encounter",
+"year": 1988,
+"place": "Bishopville, South Carolina",
+"lat": 34.2182,
+"lon": -80.2484
+},
+{
+"creature": "mongolian-death-worm",
+"cat": "other",
+"icon": "worm",
+"name": "Roy Chapman Andrews reports",
+"year": 1926,
+"place": "Gobi Desert, Mongolia",
+"lat": 43.5,
+"lon": 104.0
+},
+{
+"creature": "tatzelwurm",
+"cat": "other",
+"icon": "worm",
+"name": "Balkin photograph",
+"year": 1934,
+"place": "Swiss Alps",
+"lat": 46.6,
+"lon": 8.2
+},
+{
+"creature": "ufo-saucer",
+"cat": "ufo",
+"icon": "saucer",
+"name": "Kenneth Arnold sighting",
+"year": 1947,
+"place": "Mount Rainier, Washington",
+"lat": 46.8528,
+"lon": -121.7605
+},
+{
+"creature": "ufo-saucer",
+"cat": "ufo",
+"icon": "saucer",
+"name": "Roswell incident",
+"year": 1947,
+"place": "Roswell, New Mexico",
+"lat": 33.3944,
+"lon": -104.5249
+},
+{
+"creature": "ufo-saucer",
+"cat": "ufo",
+"icon": "saucer",
+"name": "McMinnville photos",
+"year": 1950,
+"place": "McMinnville, Oregon",
+"lat": 45.2101,
+"lon": -123.1987
+},
+{
+"creature": "ufo-triangle",
+"cat": "ufo",
+"icon": "triangle",
+"name": "Belgian UFO wave",
+"year": 1989,
+"place": "Belgium",
+"lat": 50.72,
+"lon": 4.6
+},
+{
+"creature": "ufo-triangle",
+"cat": "ufo",
+"icon": "triangle",
+"name": "Phoenix Lights",
+"year": 1997,
+"place": "Phoenix, Arizona",
+"lat": 33.4484,
+"lon": -112.074
+},
+{
+"creature": "ufo-orbs",
+"cat": "ufo",
+"icon": "orbs",
+"name": "Foo fighters",
+"year": 1944,
+"place": "Over Europe",
+"lat": 49.0,
+"lon": 8.3
+},
+{
+"creature": "ufo-orbs",
+"cat": "ufo",
+"icon": "orbs",
+"name": "Marfa lights",
+"year": 1883,
+"place": "Marfa, Texas",
+"lat": 30.3097,
+"lon": -104.0213
+},
+{
+"creature": "ufo-tic-tac",
+"cat": "ufo",
+"icon": "tictac",
+"name": "Nimitz encounter",
+"year": 2004,
+"place": "Off San Diego, California",
+"lat": 31.5,
+"lon": -117.5
+},
+{
+"creature": "ufo-tic-tac",
+"cat": "ufo",
+"icon": "tictac",
+"name": "Gimbal and GoFast videos",
+"year": 2015,
+"place": "Off the US East Coast",
+"lat": 31.0,
+"lon": -79.0
+}
+]

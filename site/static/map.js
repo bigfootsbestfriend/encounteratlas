@@ -1,22 +1,25 @@
-// Encounter map: MapLibre + OpenFreeMap dark tiles, clustered Blue Book points.
+// Encounter map: MapLibre + OpenFreeMap dark tiles.
+// Layers: famous creature cases (icon pins), military encounters, Air Force UFO files (clusters),
+// places and reports when their data exists. Each layer has a toggle chip.
 (function () {
   const el = document.getElementById('map');
   if (!el || !window.maplibregl) return;
+  const BASE = el.dataset.base || '';
+  const CAT = { hominid: '#D9A05B', canid: '#D0633F', winged: '#B98ACB', aquatic: '#4FB3A9', entity: '#9CC46B', ufo: '#8E8CF0', other: '#E0C36A' };
   const SAUCER = '<svg class="ico" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><ellipse cx="32" cy="31" rx="27" ry="7.5"/><path d="M19 28Q32 7 45 28Z"/></svg>';
+  const params = new URLSearchParams(location.search);
 
   const map = new maplibregl.Map({
     container: el,
     style: 'https://tiles.openfreemap.org/styles/dark',
     center: [-98, 41],
     zoom: window.innerWidth < 720 ? 2.6 : 3.4,
-    minZoom: 1.5,
-    maxZoom: 14,
+    minZoom: 1.2,
+    maxZoom: 15,
     attributionControl: { compact: true },
-    cooperativeGestures: false,
   });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
 
-  // Tint the base map toward the site's night-forest green.
   function tint() {
     for (const layer of map.getStyle().layers) {
       const id = layer.id;
@@ -33,30 +36,67 @@
     }
   }
 
-  map.on('load', () => {
-    tint();
-    map.addSource('bluebook', { type: 'geojson', data: el.dataset.geojson, cluster: true, clusterRadius: 38, clusterMaxZoom: 9 });
+  // Draw an icon SVG inside a dark round badge, as a map image.
+  const svgCache = {};
+  async function iconSvg(name) {
+    if (!svgCache[name]) svgCache[name] = fetch(BASE + '/static/icons/' + name + '.svg').then((r) => r.text()).catch(() => '');
+    return svgCache[name];
+  }
+  async function addBadge(id, name, color, size = 44) {
+    if (map.hasImage(id)) return;
+    let svg = await iconSvg(name);
+    svg = svg.replace(/currentColor/g, color).replace(/var\(--eye,[^)]*\)/g, '#F2B33D').replace(/var\(--eye-red,[^)]*\)/g, '#FF5A44')
+      .replace(/var\(--bg,[^)]*\)/g, '#13261F').replace('<svg ', '<svg width="64" height="64" ');
+    const img = new Image();
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    await img.decode().catch(() => {});
+    const px = size * 2, c = document.createElement('canvas');
+    c.width = c.height = px;
+    const g = c.getContext('2d');
+    g.beginPath(); g.arc(px / 2, px / 2, px / 2 - 3, 0, Math.PI * 2);
+    g.fillStyle = '#13261F'; g.fill(); g.lineWidth = 4; g.strokeStyle = color; g.stroke();
+    const pad = px * 0.17;
+    try { g.drawImage(img, pad, pad, px - 2 * pad, px - 2 * pad); } catch (e) { /* icon failed to load */ }
+    map.addImage(id, g.getImageData(0, 0, px, px), { pixelRatio: 2 });
+  }
+
+  function popup(lngLat, nodes) {
+    const div = document.createElement('div');
+    div.className = 'pop';
+    div.append(...nodes);
+    new maplibregl.Popup({ maxWidth: '300px' }).setLngLat(lngLat).setDOMContent(div).addTo(map);
+  }
+  function node(tag, cls, text, html) {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html) n.innerHTML = html; else if (text != null) n.textContent = text;
+    return n;
+  }
+  function link(href, text) { const a = node('a', '', text); a.href = href; return a; }
+  function pointer(id) {
+    map.on('mouseenter', id, () => { map.getCanvas().style.cursor = 'pointer'; });
+    map.on('mouseleave', id, () => { map.getCanvas().style.cursor = ''; });
+  }
+
+  const LAYERS = []; // {key, label, color, ids}
+
+  async function addBlueBook() {
+    map.addSource('bluebook', { type: 'geojson', data: BASE + '/data/bluebook.geojson', cluster: true, clusterRadius: 38, clusterMaxZoom: 9 });
     map.addLayer({ id: 'bb-glow', type: 'circle', source: 'bluebook', paint: {
       'circle-color': '#F2B33D',
       'circle-radius': ['case', ['has', 'point_count'], ['interpolate', ['linear'], ['get', 'point_count'], 2, 16, 50, 26, 500, 42], 9],
-      'circle-blur': 1, 'circle-opacity': 0.35 } });
+      'circle-blur': 1, 'circle-opacity': 0.3 } });
     map.addLayer({ id: 'bb-clusters', type: 'circle', source: 'bluebook', filter: ['has', 'point_count'], paint: {
       'circle-color': ['interpolate', ['linear'], ['get', 'point_count'], 2, '#C98A22', 100, '#F2B33D', 600, '#FFD27A'],
       'circle-radius': ['interpolate', ['linear'], ['get', 'point_count'], 2, 9, 50, 14, 500, 22],
       'circle-stroke-color': '#13261F', 'circle-stroke-width': 2 } });
     map.addLayer({ id: 'bb-count', type: 'symbol', source: 'bluebook', filter: ['has', 'point_count'], layout: {
-      'text-field': ['get', 'point_count_abbreviated'], 'text-size': 12, 'text-font': ['Noto Sans Bold'] },
+      'text-field': ['get', 'point_count_abbreviated'], 'text-size': 12, 'text-font': ['Noto Sans Bold'], 'text-allow-overlap': true, 'text-ignore-placement': true },
       paint: { 'text-color': '#13261F' } });
     map.addLayer({ id: 'bb-point', type: 'circle', source: 'bluebook', filter: ['!', ['has', 'point_count']], paint: {
       'circle-color': ['case', ['==', ['get', 'a'], 1], '#B98A3A', '#F2B33D'],
       'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 3, 10, 6],
       'circle-stroke-color': '#13261F', 'circle-stroke-width': 1.5 } });
-
-    const legend = document.createElement('div');
-    legend.className = 'map-legend';
-    legend.innerHTML = SAUCER + '<span>Air Force UFO files, 1947 to 1969</span>';
-    el.appendChild(legend);
-
     map.on('click', 'bb-clusters', async (e) => {
       const f = e.features[0];
       const zoom = await map.getSource('bluebook').getClusterExpansionZoom(f.properties.cluster_id);
@@ -64,28 +104,101 @@
     });
     map.on('click', 'bb-point', (e) => {
       const p = e.features[0].properties;
-      const div = document.createElement('div');
-      div.className = 'pop';
-      const kind = document.createElement('div');
-      kind.className = 'pop-kind';
-      kind.innerHTML = SAUCER + '<span>Project Blue Book case</span>';
-      const h = document.createElement('p'); h.className = 'pop-h'; h.textContent = p.t || 'Unknown place';
-      const meta = document.createElement('p'); meta.style.margin = '0 0 .4rem';
-      meta.textContent = [p.r && p.r !== p.t ? p.r : '', p.w].filter(Boolean).join(', ');
-      const a = document.createElement('a');
-      a.href = 'https://catalog.archives.gov/id/' + p.id; a.rel = 'noopener'; a.textContent = 'Read the Air Force file';
-      div.append(kind, h, meta, a);
-      if (p.a == 1) {
-        const ap = document.createElement('p'); ap.className = 'approx'; ap.style.margin = '.4rem 0 0';
-        ap.textContent = 'Approximate: placed in the state or country, not the exact spot.';
-        div.append(ap);
-      }
-      new maplibregl.Popup({ maxWidth: '300px' }).setLngLat(e.features[0].geometry.coordinates).setDOMContent(div).addTo(map);
+      const nodes = [node('div', 'pop-kind', null, SAUCER + '<span>Air Force UFO file (Project Blue Book)</span>'),
+        node('p', 'pop-h', p.t || 'Unknown place'),
+        node('p', 'pop-meta', [p.r && p.r !== p.t ? p.r : '', p.w].filter(Boolean).join(', ')),
+        link('https://catalog.archives.gov/id/' + p.id, 'Read the Air Force file')];
+      if (p.a == 1) nodes.push(node('p', 'approx', 'Approximate: placed in the state or country, not the exact spot.'));
+      popup(e.features[0].geometry.coordinates, nodes);
     });
-    for (const id of ['bb-clusters', 'bb-point']) {
-      map.on('mouseenter', id, () => { map.getCanvas().style.cursor = 'pointer'; });
-      map.on('mouseleave', id, () => { map.getCanvas().style.cursor = ''; });
+    pointer('bb-clusters'); pointer('bb-point');
+    LAYERS.push({ key: 'ufo-files', label: 'Air Force UFO files', color: '#F2B33D', ids: ['bb-glow', 'bb-clusters', 'bb-count', 'bb-point'] });
+  }
+
+  async function addFamous() {
+    const data = await fetch(BASE + '/data/famous.geojson').then((r) => r.json()).catch(() => null);
+    if (!data || !data.features.length) return;
+    const icons = new Set(data.features.map((f) => f.properties.i + '|' + f.properties.c));
+    await Promise.all([...icons].map((k) => { const [i, c] = k.split('|'); return addBadge('crit-' + i + '-' + c, i, CAT[c] || '#C9D3A4'); }));
+    for (const f of data.features) f.properties.img = 'crit-' + f.properties.i + '-' + f.properties.c;
+    map.addSource('famous', { type: 'geojson', data });
+    map.addLayer({ id: 'famous', type: 'symbol', source: 'famous', layout: {
+      'icon-image': ['get', 'img'], 'icon-size': ['interpolate', ['linear'], ['zoom'], 2, 0.62, 8, 1],
+      'icon-allow-overlap': true, 'symbol-sort-key': ['get', 'y'] } });
+    map.on('click', 'famous', (e) => {
+      const p = e.features[0].properties;
+      popup(e.features[0].geometry.coordinates, [
+        node('div', 'pop-kind', null, '<span class="dot" style="background:' + (CAT[p.c] || '#ccc') + '"></span><span>' + p.n + '</span>'),
+        node('p', 'pop-h', p.t), node('p', 'pop-meta', p.p + ', ' + p.y),
+        link(BASE + '/creatures/' + p.s + '/', 'About the ' + p.n)]);
+    });
+    pointer('famous');
+    LAYERS.push({ key: 'creatures', label: 'Famous creature cases', color: '#D9A05B', ids: ['famous'] });
+  }
+
+  async function addMilitary() {
+    const data = await fetch(BASE + '/data/military.geojson').then((r) => r.json()).catch(() => null);
+    if (!data || !data.features.length) return;
+    await addBadge('mil', 'military', '#7FD3FF');
+    map.addSource('military', { type: 'geojson', data });
+    map.addLayer({ id: 'military', type: 'symbol', source: 'military', layout: {
+      'icon-image': 'mil', 'icon-size': ['interpolate', ['linear'], ['zoom'], 2, 0.62, 8, 1], 'icon-allow-overlap': true } });
+    map.on('click', 'military', (e) => {
+      const p = e.features[0].properties;
+      popup(e.features[0].geometry.coordinates, [node('div', 'pop-kind', null, '<span>Military encounter, ' + p.y + '</span>'),
+        node('p', 'pop-h', p.t), node('p', 'pop-meta', p.p + '. ' + p.b), link(BASE + '/military/', 'Read the case')]);
+    });
+    pointer('military');
+    LAYERS.push({ key: 'military', label: 'Military encounters', color: '#7FD3FF', ids: ['military'] });
+  }
+
+  async function addPlaces() {
+    const data = await fetch(BASE + '/data/places.geojson').then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    if (!data || !data.features || !data.features.length) return;
+    map.addSource('places', { type: 'geojson', data });
+    map.addLayer({ id: 'places', type: 'circle', source: 'places', paint: {
+      'circle-color': '#9CC46B', 'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 5, 10, 9],
+      'circle-stroke-color': '#13261F', 'circle-stroke-width': 2 } });
+    map.on('click', 'places', (e) => {
+      const p = e.features[0].properties;
+      const nodes = [node('div', 'pop-kind', null, '<span>' + (p.type || 'Place to visit') + '</span>'), node('p', 'pop-h', p.name || p.t || '')];
+      if (p.city || p.region) nodes.push(node('p', 'pop-meta', [p.city, p.region].filter(Boolean).join(', ')));
+      if (p.slug) nodes.push(link(BASE + '/places/' + p.slug + '/', 'Visit details'));
+      popup(e.features[0].geometry.coordinates, nodes);
+    });
+    pointer('places');
+    LAYERS.push({ key: 'places', label: 'Places to visit', color: '#9CC46B', ids: ['places'] });
+  }
+
+  function layerPanel() {
+    const panel = document.createElement('div');
+    panel.className = 'map-layers';
+    panel.setAttribute('role', 'group');
+    panel.setAttribute('aria-label', 'Map layers');
+    const hidden = new Set((params.get('hide') || '').split(',').filter(Boolean));
+    for (const L of LAYERS) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'layer-chip';
+      b.innerHTML = '<span class="swatch" style="background:' + L.color + '"></span>' + L.label;
+      const set = (on) => {
+        b.setAttribute('aria-pressed', String(on));
+        for (const id of L.ids) map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none');
+      };
+      set(!hidden.has(L.key));
+      b.addEventListener('click', () => set(b.getAttribute('aria-pressed') !== 'true'));
+      panel.appendChild(b);
     }
+    el.appendChild(panel);
+  }
+
+  map.on('load', async () => {
+    tint();
+    await addBlueBook();
+    await addPlaces();
+    await addMilitary();
+    await addFamous();
+    layerPanel();
   });
 
   let me;
@@ -97,7 +210,7 @@
       const ll = [pos.coords.longitude, pos.coords.latitude];
       if (!me) {
         const dot = document.createElement('div');
-        dot.style.cssText = 'width:16px;height:16px;border-radius:50%;background:#7FD3FF;border:3px solid #fff;box-shadow:0 0 0 6px rgba(127,211,255,.3)';
+        dot.className = 'me-dot';
         me = new maplibregl.Marker({ element: dot });
       }
       me.setLngLat(ll).addTo(map);

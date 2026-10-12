@@ -97,9 +97,15 @@ p { margin: 0 0 1em; }
 .pop-kind .ico { width: 18px; height: 18px; color: var(--c-ufo); --eye: var(--lantern); }
 .pop a { font-weight: 600; }
 .pop .approx { font-size: .8rem; color: var(--muted-d); }
-.map-legend { position: absolute; top: 12px; right: 12px; background: rgba(19,38,31,.9); border: 1px solid var(--spruce-3);
-  border-radius: var(--r-md); padding: .5rem .75rem; font-size: .85rem; display: flex; align-items: center; gap: .5rem; }
-.map-legend .ico { width: 22px; height: 22px; color: var(--c-ufo); --eye: var(--lantern); }
+.map-layers { position: absolute; top: 12px; right: 12px; display: flex; flex-direction: column; align-items: flex-end; gap: .4rem; z-index: 2; }
+.layer-chip { display: inline-flex; align-items: center; gap: .5rem; font: 600 .85rem var(--body); color: var(--lichen);
+  background: rgba(19,38,31,.92); border: 1px solid var(--spruce-3); border-radius: 999px; padding: .4rem .8rem; cursor: pointer; }
+.layer-chip .swatch { width: .8rem; height: .8rem; border-radius: 50%; box-shadow: 0 0 8px currentColor; }
+.layer-chip[aria-pressed="false"] { opacity: .55; }
+.layer-chip[aria-pressed="false"] .swatch { background: transparent !important; box-shadow: inset 0 0 0 2px var(--muted-d); }
+.pop-meta { margin: 0 0 .4rem; }
+.me-dot { width: 16px; height: 16px; border-radius: 50%; background: #7FD3FF; border: 3px solid #fff; box-shadow: 0 0 0 6px rgba(127,211,255,.3); }
+@media (max-width: 720px) { .map-layers { top: 8px; right: 8px; } .layer-chip { font-size: .78rem; padding: .3rem .6rem; } }
 .maplibregl-ctrl-attrib { font-size: 11px; }
 
 /* creature badges */

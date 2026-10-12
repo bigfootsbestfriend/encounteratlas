@@ -308,6 +308,24 @@ def build_map_data(bluebook):
     return len(feats)
 
 
+def build_layer_data(creatures, military):
+    """Small GeoJSON layers for the map: famous creature cases and military encounters."""
+    by_slug = {c['slug']: c for c in creatures}
+    fam_path = os.path.join(ROOT, 'data', 'famous_geo.json')
+    famous = json.load(open(fam_path)) if os.path.exists(fam_path) else []
+    feats = [{'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [f['lon'], f['lat']]},
+              'properties': {'s': f['creature'], 'n': by_slug[f['creature']]['name'], 'c': f['cat'], 'i': by_slug[f['creature']]['icon'],
+                             't': f['name'], 'y': f['year'], 'p': f['place']}}
+             for f in famous if f['creature'] in by_slug]
+    with open(os.path.join(OUT, 'data', 'famous.geojson'), 'w') as fh:
+        json.dump({'type': 'FeatureCollection', 'features': feats}, fh, separators=(',', ':'))
+    mil = [{'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [m['lon'], m['lat']]},
+            'properties': {'t': m['name'], 'y': m['date'][:4], 'p': m['place'], 'b': m['branch']}}
+           for m in military if 'lat' in m]
+    with open(os.path.join(OUT, 'data', 'military.geojson'), 'w') as fh:
+        json.dump({'type': 'FeatureCollection', 'features': mil}, fh, separators=(',', ':'))
+
+
 def build_military(military):
     items = ''
     for m in sorted(military, key=lambda m: m['date']):
@@ -338,7 +356,7 @@ def build_home(creatures, n_points, bluebook):
             f'<script src="{url("/static/map.js")}" defer></script>')
     body = f'''
 <section class="hero-map" aria-label="Map of encounters">
-  <div id="map" class="map" data-geojson="{url('/data/bluebook.geojson')}" data-base="{BASE}"></div>
+  <div id="map" class="map" data-base="{BASE}"></div>
   <div class="map-panel">
     <h1>Every strange thing, on one map</h1>
     <p>{n_points:,} Air Force UFO files are pinned so far. Bigfoot, Dogman and the rest are next, with your reports.</p>
@@ -373,7 +391,7 @@ def build_home(creatures, n_points, bluebook):
                     body_class='home', head_extra=head))
     write('/map/', page('/map/', 'Encounter map', f'''
 <section class="hero-map full" aria-label="Map of encounters">
-  <div id="map" class="map" data-geojson="{url('/data/bluebook.geojson')}" data-base="{BASE}"></div>
+  <div id="map" class="map" data-base="{BASE}"></div>
   <div class="map-panel compact">
     <h1>Encounter map</h1>
     <p>{n_points:,} Air Force UFO files (1947 to 1969). Tap a dot for the case.</p>
@@ -434,6 +452,7 @@ def main():
     mil_path = os.path.join(ROOT, 'data', 'military.json')
     military = json.load(open(mil_path)) if os.path.exists(mil_path) else []
     n_points = build_map_data(bluebook)
+    build_layer_data(creatures, military)
     build_home(creatures, n_points, bluebook)
     build_creatures(creatures, by_slug)
     build_ufo(bluebook)
