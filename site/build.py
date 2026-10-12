@@ -44,6 +44,20 @@ def url(path):
 ICON_ART = json.load(open(os.path.join(ROOT, 'data', 'icon_art.json'))) if os.path.exists(os.path.join(ROOT, 'data', 'icon_art.json')) else {}
 
 
+def tile_icon(name):
+    """Tile icon with the silhouette scaled to a shared optical size (equal bounding-box area, never past the box)."""
+    tag = icon(name)
+    if name not in ICON_ART:
+        return tag
+    d = ' '.join(re.findall(r' d="([^"]+)"', open(os.path.join(STATIC, 'art', ICON_ART[name] + '.svg')).read()))
+    n = [float(v) for v in re.findall(r'-?\d+(?:\.\d+)?', d)]
+    x0, x1, y0, y1 = min(n[0::2]), max(n[0::2]), min(n[1::2]), max(n[1::2])
+    w, h = x1 - x0, y1 - y0
+    k = min(560 / (w * h) ** .5, 790 / max(w, h))  # scale vs the 800 viewBox
+    pos = lambda c: (.5 - c / 800 * k) / (1 - k) * 100 if abs(1 - k) > .01 else 50
+    return tag.replace('" aria-hidden', f';--ms:{k * 100:.1f}%;--mx:{pos((x0 + x1) / 2):.1f}%;--my:{pos((y0 + y1) / 2):.1f}%" aria-hidden', 1)
+
+
 def icon(name, cls='ico'):
     if name in ICON_ART:  # creature names draw the poster silhouette as a mask, so it takes the surrounding colour
         src = url('/static/art/' + ICON_ART[name] + '.svg')
@@ -619,9 +633,9 @@ def build_home(creatures, n_points, bluebook, military):
     featured = [c for c in creatures if c['slug'] in ('bigfoot', 'dogman', 'mothman', 'loch-ness-monster', 'chupacabra',
                                                        'ufo-tic-tac', 'jersey-devil', 'flatwoods-monster', 'fairies')]
     cards = ''.join(creature_card(c) for c in featured)
-    tiles = ''.join(f'<a class="tile cat-{cat}" href="{url("/map/?cat=" + cat)}">{icon(ic)}<span>{esc(label)}</span></a>'
+    tiles = ''.join(f'<a class="tile cat-{cat}" href="{url("/map/?cat=" + cat)}">{tile_icon(ic)}<span>{esc(label)}</span></a>'
                     for cat, ic, label in TILES)
-    tiles += f'<a class="tile tile-mil" href="{url("/map/?type=military")}">{icon("military")}<span>Military encounters</span></a>'
+    tiles += f'<a class="tile tile-mil" href="{url("/map/?type=military")}">{tile_icon("military")}<span>Military encounters</span></a>'
     build_search_index(creatures, bluebook, military)
     body = f'''
 <section class="home-hero">

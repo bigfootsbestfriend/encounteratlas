@@ -239,7 +239,8 @@ p { margin: 0 0 1em; }
 .search-results .cat-other .mask-ico { color: #9A7E1C; }
 .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: .6rem; }
 .tile { display: flex; align-items: center; gap: .6rem; padding: .75rem .85rem; border-radius: 12px; background: #1A3229; color: #F3F1E4 !important; text-decoration: none; font-weight: 600; line-height: 1.2; border: 1px solid #2B4A3D; }
-.tile .ico { width: 34px; height: 34px; flex: none; }
+.tile .ico { width: 40px; height: 40px; flex: none; }
+.tile .art-ico { -webkit-mask-size: var(--ms, contain); mask-size: var(--ms, contain); -webkit-mask-position: var(--mx, 50%) var(--my, 50%); mask-position: var(--mx, 50%) var(--my, 50%); }
 .tile:hover { background: #22402F; border-color: var(--lantern); }
 .tile-mil .ico { color: #7FD3FF; }
 
@@ -277,7 +278,8 @@ p { margin: 0 0 1em; }
   .timeline.cases li { grid-template-columns: 6.5rem 1fr; }
 }
 @media (min-width: 1000px) { .tiles { grid-template-columns: repeat(8, 1fr); } .tile { flex-direction: column; align-items: flex-start; } }
-@media (max-width: 600px) { .tile-mil { grid-column: 1 / -1; } .map-frame { max-height: 560px; } .search input { font-size: 1rem; } }
+@media (min-width: 601px) and (max-width: 999px) { .tiles { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 600px) { .map-frame { max-height: 560px; } .search input { font-size: 1rem; } }
 
 /* Creature pages: what-next sidebar and the "Seen one?" panel */
 .side { align-self: start; display: grid; gap: 1rem; }
