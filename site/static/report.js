@@ -423,6 +423,10 @@
       fill(d);
       $('[data-draft-banner]').hidden = false;
     }
+    // Arriving from a creature page (?creature=bigfoot): preselect it unless a draft already chose one.
+    const pre = new URLSearchParams(location.search).get('creature');
+    const r = pre && !(d && d.creature) && form.querySelector(`input[name=creature][value="${CSS.escape(pre)}"]`);
+    if (r) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); }
     loadPhotos();
   }
 })();

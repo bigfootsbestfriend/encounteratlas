@@ -155,6 +155,35 @@ def build_creatures(creatures, by_slug):
     write('/creatures/', page('/creatures/', 'Creature index: cryptids, monsters and UFO types', body,
                               'Searchable index of cryptids and UFO types with alternative names, famous cases and what witnesses report.'))
 
+    def load(name):
+        fp = os.path.join(ROOT, 'data', name)
+        return json.load(open(fp)) if os.path.exists(fp) else []
+    places = load('places.json')
+    guides = load('guides.json')
+    fam_geo = Counter(f['creature'] for f in load('famous_geo.json'))
+    CAT_GUIDES = {'hominid': ['bigfoot-expedition', 'casting-tracks', 'trail-cameras'], 'canid': ['dogman-and-night-encounters', 'trail-cameras'],
+                  'ufo': ['skywatching'], 'winged': ['dogman-and-night-encounters'], 'aquatic': [], 'entity': ['dogman-and-night-encounters'], 'other': []}
+    PLACE_KIND = {'museum': 'Museum', 'festival': 'Festival', 'attraction': 'Roadside stop', 'expedition': 'Tour'}
+
+    def extras(c):
+        """Map, places, guides and the contribution panel: the 'what next' part of each creature page."""
+        out = ''
+        n = fam_geo.get(c['slug'], 0)
+        out += (f'<a class="next-card next-map cat-{c["cat"]}" href="{url("/map/?creature=" + c["slug"])}">{icon(c["icon"])}'
+                f'<span><b>See {esc(c["name"])} on the map</b><small>{n} famous case{"s" if n != 1 else ""} pinned, plus places to visit'
+                f'{" and reader reports" if EA_API else ""}</small></span></a>')
+        pl = [x for x in places if c['slug'] in (x.get('creatures') or [])][:6]
+        if pl:
+            items = ''.join(f'<li><a href="{url("/places/" + x["slug"] + "/")}">{esc(x["name"])}</a>'
+                            f'<small>{esc(PLACE_KIND.get(x["type"], "Place"))}{", " + esc(x["city"]) if x.get("city") else ""}'
+                            f'{", " + esc(x["region"]) if x.get("region") else ""}</small></li>' for x in pl)
+            out += f'<div class="next-block"><h3>Go see it</h3><ul class="next-list">{items}</ul></div>'
+        gs = [g for g in guides if c['slug'] in (g.get('creatures') or []) or g['slug'] in CAT_GUIDES.get(c['cat'], [])][:3]
+        if gs:
+            items = ''.join(f'<li><a href="{url("/guides/" + g["slug"] + "/")}">{esc(g.get("short") or g["title"])}</a><small>{esc(g.get("blurb") or "")}</small></li>' for g in gs)
+            out += f'<div class="next-block"><h3>Field guides</h3><ul class="next-list">{items}</ul></div>'
+        return out
+
     for c in creatures:
         aka = (f'<p class="aka-line">Also called {esc(", ".join(c["aliases"]))}</p>' if c['aliases'] else '')
         facts = ''.join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in
@@ -191,12 +220,22 @@ def build_creatures(creatures, by_slug):
     <ul class="signs">{signs}</ul>
     <h2>Famous cases</h2>
     <ol class="timeline">{cases}</ol>
-    <h2>Seen one?</h2>
-    <p><a class="btn" href="{url('/report/')}">Report an encounter</a></p>
+    <section class="seen-box cat-{c['cat']}" aria-labelledby="seen-{c['slug']}">
+      {icon(c['icon'])}
+      <div>
+        <h2 id="seen-{c['slug']}">Seen the {esc(c['name'])}?</h2>
+        <p>Tell us what happened. Every report is read by a person before it goes on the map, and you can stay anonymous.</p>
+        <p class="seen-actions"><a class="btn" href="{url('/report/?creature=' + c['slug'])}">Report a {esc(c['name'])} encounter</a>
+        {f'<a class="btn btn-ghost" href="{url("/tools/what-did-i-see/")}">Not sure what it was?</a>' if os.path.exists(os.path.join(ROOT, 'data', 'identify.json')) else ''}</p>
+      </div>
+    </section>
   </article>
-  <aside class="facts">
-    <dl>{facts}</dl>
-    {f'<p class="more"><a href="{wiki}" rel="noopener">Read more on Wikipedia</a></p>' if wiki else ''}
+  <aside class="side">
+    <div class="facts">
+      <dl>{facts}</dl>
+      {f'<p class="more"><a href="{wiki}" rel="noopener">Read more on Wikipedia</a></p>' if wiki else ''}
+    </div>
+    {extras(c)}
   </aside>
 </div>
 {f'<div class="wrap"><h2 class="rel-h">Related</h2><div class="crit-grid">{rel}</div></div>' if rel else ''}

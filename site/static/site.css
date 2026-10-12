@@ -272,3 +272,26 @@ p { margin: 0 0 1em; }
 }
 @media (min-width: 1000px) { .tiles { grid-template-columns: repeat(7, 1fr); } .tile { flex-direction: column; align-items: flex-start; } }
 @media (max-width: 600px) { .tile-mil { grid-column: 1 / -1; } .map-frame { max-height: 560px; } .search input { font-size: 1rem; } }
+
+/* Creature pages: what-next sidebar and the "Seen one?" panel */
+.side { align-self: start; display: grid; gap: 1rem; }
+.side .facts { position: static; }
+.next-card { display: flex; gap: .8rem; align-items: center; padding: .9rem 1rem; border-radius: var(--r-md); background: var(--spruce); color: #F3F1E4 !important; text-decoration: none; }
+.next-card .ico { width: 44px; height: 44px; flex: none; }
+.next-card b { display: block; font: 700 1.05rem var(--display); }
+.next-card small { color: var(--lichen); font-size: .85rem; }
+.next-card:hover { outline: 2px solid var(--lantern); }
+.next-block { background: #fff; border: 1px solid var(--mist-2); border-radius: var(--r-md); padding: .9rem 1.1rem; }
+.next-block h3 { font-size: 1.05rem; margin: 0 0 .4rem; color: var(--spruce); }
+.next-list { list-style: none; margin: 0; padding: 0; }
+.next-list li { padding: .45rem 0; border-top: 1px solid var(--mist); }
+.next-list li:first-child { border-top: 0; }
+.next-list a { font-weight: 600; }
+.next-list small { display: block; color: var(--muted-l); font-size: .84rem; }
+.seen-box { display: flex; gap: 1.1rem; align-items: flex-start; margin-top: 2.2rem; padding: 1.3rem 1.4rem; border-radius: var(--r-md); background: var(--spruce); color: var(--lichen); }
+.seen-box > .ico { width: 64px; height: 64px; flex: none; }
+.seen-box h2 { color: #F3F1E4 !important; margin: 0 0 .3rem; }
+.seen-box p { margin: 0 0 .8rem; }
+.seen-box a:not(.btn) { color: var(--lantern); }
+.seen-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+@media (max-width: 600px) { .seen-box { flex-direction: column; } .seen-box > .ico { width: 48px; height: 48px; } }
