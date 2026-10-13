@@ -155,7 +155,7 @@ def build(ctx):
         return pick[:n]
 
     about = (f'<h2>About this data</h2><p>These reports come from {CREDIT}. Each year the survey gathers sightings sent to police, '
-             f'airports, the military, researchers and UFO groups across the country, and rates each one. We left out every report the survey received from MUFON, NUFORC or Enigma Labs, so the totals here are lower than in the survey itself.</p>'
+             f'airports, the military, researchers and UFO groups across the country, and rates each one. We left out every report the survey received from online UFO reporting sites, so the totals here are lower than in the survey itself.</p>'
              f'<p>The ratings are the survey\'s: <b>explained</b> means a likely cause was found (a plane, a planet, a satellite re-entry), '
              f'<b>possibly explained</b> means there\'s a good guess, and <b>unexplained</b> means the investigators couldn\'t find one. '
              f'Notes are short summaries, lightly tidied. Most places are the nearest town, not the exact spot.</p>')

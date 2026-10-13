@@ -27,6 +27,7 @@ PROV = {'AB': ('01', 'Alberta'), 'BC': ('02', 'British Columbia'), 'MB': ('03', 
         'NT': ('13', 'Northwest Territories'), 'NWT': ('13', 'Northwest Territories'), 'NU': ('14', 'Nunavut')}
 BLOCKED_SRC = re.compile(r'mufon|nuforc|enigma', re.I)
 BLOCKED_TXT = re.compile(r'\b(mufon|nuforc|enigma\s*labs?|bfro)\b', re.I)
+MISPARSED = re.compile(r'(?:^|\s)\d{1,5}\s+\S+\s+\d|\b(?:Internet|UFOROM|SPPRC|Vike)\b|UFOS in Canada|^[a-z]{1,3}\s+\d')
 # How each sighting was seen (the survey's TYPE code)
 TYPES = {'nl': 'Night light', 'nd': 'Night disc', 'dd': 'Daytime disc', 'c1': 'Close encounter (1st kind)',
          'c2': 'Close encounter (2nd kind, physical traces)', 'c3': 'Close encounter (3rd kind, beings seen)',
@@ -167,8 +168,12 @@ def main():
     out, stats, missed = [], Counter(), Counter()
     seen = set()
     for r in parse_rows(text):
-        if BLOCKED_SRC.search(r['src']) or BLOCKED_TXT.search(r['note']):
+        if BLOCKED_SRC.search(r['src']) or BLOCKED_TXT.search(r['note']) or BLOCKED_TXT.search(r['place']):
             stats['left out (blocked source)'] += 1
+            continue
+        if MISPARSED.search(r['place']):  # columns ran together: the source code and ratings landed in the place name
+            stats['left out (row not parsed cleanly)'] += 1
+            print('  misparsed, dropped:', r['place'][:70], file=sys.stderr)
             continue
         a1, pname = PROV[r['prov']]
         note = nice_note(r['note'])
