@@ -11,6 +11,7 @@ OUT = os.environ.get('OUT_DIR') or os.path.join(ROOT, '_site')
 STATIC = os.path.join(ROOT, 'site', 'static')
 SITE_URL = os.environ.get('SITE_URL', 'https://encounteratlas.com').rstrip('/')
 BASE = os.environ.get('BASE_PATH', '').rstrip('/')  # '/encounteratlas' on the GitHub Pages preview
+INDEXNOW_KEY = '929458a6bce349d1b445a459836d80fe'
 LAUNCHED = True  # launched 2026-10-13 (Mike: "launch the site")
 CF_BEACON = os.environ.get('CF_BEACON', '')
 
@@ -1246,6 +1247,8 @@ def main():
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
         f.writelines(f'<url><loc>{SITE_URL}{p}</loc></url>\n' for p in pages)
         f.write('</urlset>\n')
+    # IndexNow (Bing, Yandex, Seznam, Naver): the key file proves we own the site when we ping changed URLs.
+    open(os.path.join(OUT, INDEXNOW_KEY + '.txt'), 'w').write(INDEXNOW_KEY)
     with open(os.path.join(OUT, 'robots.txt'), 'w') as f:
         f.write(f'User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n')
     print(f'built {len(pages)} pages, {n_points:,} map points', file=sys.stderr)
