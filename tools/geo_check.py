@@ -74,6 +74,7 @@ KNOWN_OK = {
     'Unresolved UAP Report, Africa, 2025': 'Djibouti: city and region share the name; point is in Djibouti',
     'State Department UAP Cable 005, Mexico, September 16, 2003': '"Mexico" is the country, not Mexico State',
     'An old tale of an eight-foot hairy giant in Georgia': 'US state, not the country',
+    'A copper-coloured killer of calves in Bartow County': 'US state, not the country',
     'A dragon on the Flat Rock derrick': 'Mexico, Missouri',
     'A white serpent off the New England coast': 'at sea off Massachusetts',
     'An eagle tries to carry off a girl': 'Pitcairn, New York',
