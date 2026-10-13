@@ -281,6 +281,40 @@ def signup_box(uid, title='Strange news, once a week', text=None):
 <button type="submit" class="btn">Sign me up</button></form></section>'''
 
 
+# How the "Seen ...?" box names a creature. Proper names take no article ("Seen Bigfoot?"), kinds of animal
+# take a/an ("Seen a chupacabra?"), plurals take none, and named one-off monsters keep "the" (the default).
+PROPER_NAMES = {'bigfoot', 'kussie', 'momo', 'mothman', 'owlman', 'ogopogo', 'champ', 'bessie', 'cadborosaurus', 'chessie',
+                'memphre', 'igopogo', 'manipogo', 'nahuelito', 'morag', 'morgawr', 'selma', 'mussie', 'old-ned', 'sharlie',
+                'ponik', 'cressie', 'issie', 'old-yellow-top', 'tahoe-tessie', 'storsjoodjuret', 'goatman', 'black-shuck',
+                'altamaha-ha', 'indrid-cold', 'gef', 'trunko', 'mugwump', 'batsquatch'}
+KIND_NAMES = {'yeti', 'yowie', 'skunk-ape', 'dogman', 'chupacabra', 'thunderbird', 'sea-serpent', 'almas', 'yeren',
+              'orang-pendek', 'kongamato', 'mokele-mbembe', 'tsuchinoko', 'mapinguari', 'ahool', 'ropen', 'nandi-bear', 'mngwa',
+              'tatzelwurm', 'mongolian-death-worm', 'queensland-tiger', 'lusca', 'barmanou', 'mande-barung', 'nittaewo',
+              'chuchuna', 'amomongo', 'orang-mawas', 'agogwe', 'dingonek', 'mbielu-mbielu-mbielu', 'emela-ntouka', 'lukwata',
+              'minhocao', 'mono-grande', 'waitoreke', 'ningen', 'dobhar-chu', 'grassman', 'sheepsquatch', 'hibagon',
+              'shunka-warakin', 'ozark-howler', 'globster'}
+PLURAL_NAMES = {'black-eyed-children', 'shadow-people', 'grey-aliens', 'nordic-aliens', 'men-in-black', 'reptilians',
+                'thylacine', 'melon-heads', 'fresno-nightcrawlers'}
+
+
+def a_an(word):
+    return 'an' if word[:1].lower() in 'aeiou' else 'a'
+
+
+def seen_question(c):
+    n, sl = c['name'], c['slug']
+    if sl == 'thylacine':  # named "Thylacine sightings"
+        return 'Seen a thylacine?'
+    if sl in PLURAL_NAMES:
+        return f'Seen {n if sl in ("nordic-aliens", "men-in-black") else n[0].lower() + n[1:]}?'
+    if sl in PROPER_NAMES:
+        return f'Seen {n}?'
+    if sl in KIND_NAMES:
+        n = n.lower() if sl == 'sea-serpent' else n
+        return f'Seen {a_an(n)} {n}?'
+    return f'Seen the {n[4:] if n.startswith("The ") else n}?'
+
+
 def badge(c, size='md'):
     if c.get('art'):
         px = 168 if size == 'xl' else 64
@@ -584,9 +618,9 @@ def build_creatures(creatures, by_slug):
                                                                    'Share yours in your own words, and you can stay anonymous.')
             acts = f'<a class="btn" href="{url("/report/?creature=" + sl)}">Share your story</a>'
         else:
-            h = 'Seen one?' if k == 'ufo' else f'Seen the {n}?'
+            h = 'Seen one?' if k == 'ufo' else seen_question(c)
             p = 'Tell us what happened. Every report is read by a person before it goes on the map, and you can stay anonymous.'
-            label = 'Report a sighting' if k == 'ufo' else f'Report a {n} encounter'
+            label = 'Report a sighting' if k == 'ufo' or sl == 'thylacine' else 'Report an encounter' if sl in PLURAL_NAMES else f'Report {a_an(n)} {n} encounter'
             acts = f'<a class="btn" href="{url("/report/?creature=" + sl)}">{label}</a>'
             if os.path.exists(os.path.join(ROOT, 'data', 'identify.json')):
                 acts += f'\n        <a class="btn btn-ghost" href="{url("/tools/what-did-i-see/")}">Not sure what it was?</a>'
