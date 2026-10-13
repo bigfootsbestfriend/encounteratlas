@@ -184,6 +184,7 @@
       resetHuman(slot);
       btn.disabled = false;
       if (r.status === 200) {
+        window.eaTrack && eaTrack('sign_in_request', { from: opts.r ? 'report' : 'site' });
         msg.textContent = `Check ${input.value.trim()} for your sign-in link. It works once, for 30 minutes.`;
         if (r.data.dev_link) msg.append(' ', h('a', { href: r.data.dev_link, text: '(dev: open link)' }));
         form.classList.add('sent');
@@ -318,6 +319,7 @@
       send.disabled = false;
       if (r.data.pass) store.set('ea-pass', r.data.pass, sessionStorage);
       if (r.status === 200) {
+        window.eaTrack && eaTrack('vote_cast', { choice, item_type: String(item).split(':')[0] });
         tallies.set(item, r.data);
         renderVote(el, item, opts);
         if (r.data.state === 'held') el.append(h('p', { class: 'vote-msg', text: 'Thanks. A lot of votes came from your network at once, so yours will count after a moderator checks it.' }));

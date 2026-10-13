@@ -36,6 +36,7 @@ jobs:
           BASE_PATH: ${{ vars.BASE_PATH || '' }}
           EA_API: ${{ vars.EA_API || 'https://api.encounteratlas.com' }}
           TURNSTILE_SITEKEY: ${{ vars.TURNSTILE_SITEKEY || '0x4AAAAAAFVllt3qoQHw1hRp' }}
+          GA_ID: ${{ vars.GA_ID || 'G-MB5MXNFBFC' }}  # GA4; ga_tag() leaves it out of BASE_PATH preview builds
       # IndexNow: list the pages that differ from the live site (new or edited) before deploying; pinged after the deploy.
       # Skipped on BASE_PATH preview builds and before launch (site/indexnow.py checks both).
       - name: List pages that changed (compared with the live site, before deploying)

@@ -13,7 +13,7 @@
     try { d.turnstile = await EA.human(slot); } catch (err) { msg.textContent = 'The spam check did not load. Reload and try again.'; btn.disabled = false; return; }
     const r = await EA.api('/api/contact', { method: 'POST', body: d, auth: false });
     EA.resetHuman(slot); btn.disabled = false;
-    if (r.status === 200) { form.reset(); msg.textContent = 'Thanks, your message is on its way. We reply from hello@encounteratlas.com.'; }
+    if (r.status === 200) { window.eaTrack && eaTrack('contact_send', { topic: d.topic || 'general', form: form.classList.contains('compact') ? 'about' : 'contact' }); form.reset(); msg.textContent = 'Thanks, your message is on its way. We reply from hello@encounteratlas.com.'; }
     else msg.textContent = { email: 'That email address doesn\'t look right.', message: 'Write a little more in the message.', slow: 'Too many messages. Try again in an hour.',
       turnstile: 'The spam check failed. Press Send again.', offline: 'No connection. Try again when you have signal.' }[r.data.state] || 'Something went wrong. Email hello@encounteratlas.com instead.';
   });

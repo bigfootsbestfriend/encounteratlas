@@ -256,6 +256,7 @@
     msg.textContent = 'Check the highlighted parts.';
   }
 
+  form.addEventListener('input', () => window.eaTrack && eaTrack('report_start', { edit: editId ? 'yes' : 'no' }), { once: true });
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const d = collect();
@@ -277,7 +278,7 @@
       EA.resetHuman(tsSlot);
     }
     submitBtn.disabled = false;
-    if (r.status === 200 || r.status === 201) return done(r.data, d);
+    if (r.status === 200 || r.status === 201) { window.eaTrack && eaTrack(editId ? 'report_edit' : 'report_submit', { creature: d.creature || '' }); return done(r.data, d); }
     if (r.status === 400 && r.data.fields) { showBad(r.data.fields); return; }
     msg.textContent = {
       offline: 'No signal right now. Your report is saved on this device. Press Send again when you\'re back in range.',

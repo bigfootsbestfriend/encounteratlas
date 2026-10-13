@@ -349,6 +349,7 @@
     if (type !== 'all') q.set('type', type);
     if (cat) q.set('cat', cat);
     if (creature) q.set('creature', creature);
+    if (narrowed || type !== 'all') window.eaTrack && eaTrack('map_filter', { type, cat: cat || '', creature: creature || '' });
     if (location.pathname.endsWith('/map/')) history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : ''));
     if (fit && famousData && narrowed) {
       const pts = famousData.features.filter((x) => (!creature || x.properties.s === creature) && (!cat || x.properties.c === cat));
@@ -423,6 +424,7 @@
     if (!navigator.geolocation) { btn.textContent = 'Location not available'; return; }
     const label = btn.textContent;
     btn.textContent = 'Finding you...';
+    window.eaTrack && eaTrack('near_me', {});
     navigator.geolocation.getCurrentPosition((pos) => {
       const ll = [pos.coords.longitude, pos.coords.latitude];
       if (!me) {

@@ -14,6 +14,7 @@ BASE = os.environ.get('BASE_PATH', '').rstrip('/')  # '/encounteratlas' on the G
 INDEXNOW_KEY = '929458a6bce349d1b445a459836d80fe'
 LAUNCHED = True  # launched 2026-10-13 (Mike: "launch the site")
 CF_BEACON = os.environ.get('CF_BEACON', '')
+GA_ID = os.environ.get('GA_ID', '')  # GA4 measurement ID; set in deploy.yml, empty for local and preview builds
 
 CATS = {
     'hominid': ('Hairy hominids', 'Upright, ape-like giants of the woods and mountains'),
@@ -147,6 +148,24 @@ SOCIAL = [
 ]
 
 
+def ga_tag():
+    """Analytics, live site only (never on a BASE_PATH preview): GA4 + usage events (static/track.js), and the
+    Cloudflare beacon when CF_BEACON is set. window.eaTrack(name, params) sends a named event from any page script."""
+    if BASE:
+        return ''
+    out = ''
+    if GA_ID:
+        out += (f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>'
+                "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}"
+                f"gtag('js',new Date());gtag('config','{GA_ID}');"
+                "window.eaTrack=function(n,p){try{gtag('event',n,Object.assign({page_type:location.pathname.split('/')[1]||'home'},p||{}));}catch(e){}};</script>"
+                f'<script src="{url("/static/track.js")}" defer></script>')
+    if CF_BEACON:
+        out += (f'<script defer src="https://static.cloudflareinsights.com/beacon.min.js" '
+                f'data-cf-beacon=\'{{"token": "{CF_BEACON}"}}\'></script>')
+    return out
+
+
 def social_row(cls='social'):
     """Icon links to the official accounts (footer and About page)."""
     if not SOCIAL:
@@ -184,8 +203,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
     full_title = title if title.startswith('Encounter Atlas') else f'{title} | Encounter Atlas'
     nav = nav_html(path)
     robots = '' if LAUNCHED else '<meta name="robots" content="noindex">'
-    beacon = (f'<script defer src="https://static.cloudflareinsights.com/beacon.min.js" '
-              f'data-cf-beacon=\'{{"token": "{CF_BEACON}"}}\'></script>') if CF_BEACON else ''
+    beacon = ga_tag()
     canon = f'<link rel="canonical" href="{SITE_URL}{path}">' if canonical else ''
     return f'''<!doctype html>
 <html lang="en">
@@ -212,6 +230,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <link rel="stylesheet" href="{url('/static/site.css')}">
 {head_extra}
 {ld_json(path, title, body)}
+{beacon}
 </head>
 <body class="{body_class}">
 <a class="skip" href="#main">Skip to content</a>
@@ -236,7 +255,6 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
     <p class="small">Air Force case files: US National Archives, Record Group 341. Canadian sightings: the Canadian UFO Survey, Ufology Research. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>
   </div>
 </footer>
-{beacon}
 <script src="{url('/static/amz.js')}" defer></script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('{url('/sw.js')}');</script>
 <script>(function(){{const dd=[...document.querySelectorAll('.nav-dd')];dd.forEach(d=>d.addEventListener('toggle',()=>{{if(d.open)dd.forEach(o=>{{if(o!==d)o.open=false;}});}}));document.addEventListener('click',e=>{{dd.forEach(d=>{{if(d.open&&!d.contains(e.target))d.open=false;}});}});document.addEventListener('keydown',e=>{{if(e.key==='Escape')dd.forEach(d=>{{if(d.open){{d.open=false;d.querySelector('summary').focus();}}}});}});}})();</script>
@@ -1117,12 +1135,12 @@ def build_static_pages():
 <section class="band band-dark"><div class="wrap"><h1>Privacy</h1>
 <p class="lede">What we keep when you use Encounter Atlas or send us a report, who can see it, and how to get it removed. Short version: your exact location, your email address and your IP address are never made public.</p></div></section>
 <div class="band band-mist"><div class="wrap prose">
-<p class="small">Last updated: October 12, 2026.</p>
+<p class="small">Last updated: October 13, 2026.</p>
 
 <h2>Just reading the site</h2>
 <ul>
-<li><strong>No ads, no tracking cookies, no account needed.</strong> You can read every page and use the map and tools without signing up.</li>
-<li><strong>Visitor counts:</strong> we don't run visitor analytics right now. If we add them, we'll use a cookie-free service that only shows totals, like page views and countries, and we'll update this page first.</li>
+<li><strong>No ads and no account needed.</strong> You can read every page and use the map and tools without signing up.</li>
+<li id="analytics"><strong>Analytics:</strong> we use Google Analytics to count visits and see which pages and tools people use, so we know what to improve. It sets cookies and collects things like your approximate location, your device and browser, the pages you view and the buttons, filters and map choices you use. It never gets your name, your email address, or what you type into a report or message. Search words you type into the site's search boxes are counted so we can see what people look for. You can opt out with <a href="https://tools.google.com/dlpage/gaoptout">Google's opt-out add-on</a> or by blocking cookies, and the site works the same either way. See <a href="https://policies.google.com/technologies/partner-sites">how Google uses this data</a>.</li>
 <li><strong>Things your browser remembers, not us:</strong> your sort choice on the creature index, and a draft of a report you haven't sent yet (stored only on your device so you don't lose them). Clearing your browser data removes them.</li>
 <li><strong>Other services the pages load:</strong> map tiles from OpenFreeMap, fonts from Google Fonts and code libraries from cdnjs and jsDelivr. The <a href="{url('/tools/was-it-a-planet/')}">Was it a planet?</a> tool also fetches the Space Station's orbit from Celestrak; the place you enter stays in your browser. Like any website, these see your IP address when they send the file. Witness videos only load from YouTube (in its privacy-enhanced mode) when you press play.</li>
 </ul>
@@ -1148,7 +1166,7 @@ def build_static_pages():
 <ul>
 <li><strong>Everyone:</strong> approved reports (story, date, approximate area, photo and video links, display name if you chose one) and vote totals.</li>
 <li><strong>Our moderators only:</strong> the exact location, your email address and the scrambled IP code, to check reports and stop abuse.</li>
-<li><strong>Service providers that run the site for us:</strong> Cloudflare (hosting for reports and the database), Resend (sends the sign-in emails and passes contact-form messages to our inbox) and GitHub (hosts the public pages). They process data only to provide those services.</li>
+<li><strong>Service providers that run the site for us:</strong> Cloudflare (hosting for reports and the database), Resend (sends the sign-in emails and passes contact-form messages to our inbox), GitHub (hosts the public pages) and Google (Analytics; see above). They process data only to provide those services.</li>
 <li>We don't sell or rent anyone's information, and we don't share it with advertisers or other sighting organisations.</li>
 </ul>
 

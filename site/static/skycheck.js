@@ -98,6 +98,7 @@
 
   // ---- compute ----------------------------------------------------------------------------------
   $('sk-go').addEventListener('click', async () => {
+    window.eaTrack && eaTrack('planet_check', {});
     const A = window.Astronomy;
     const p = await resolvePlace();
     if (!A) { alertBox('The sky library did not load. Check your connection and try again.'); return; }
