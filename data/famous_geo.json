@@ -50,6 +50,26 @@
 "lon": -121.6
 },
 {
+"creature": "bigfoot",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "A crouching figure by the cabin near Randle",
+"year": 1998,
+"place": "Near Randle, Washington",
+"lat": 46.5351,
+"lon": -121.957
+},
+{
+"creature": "bigfoot",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Rocks thrown at a tent near Hoopa",
+"year": 2014,
+"place": "Near Hoopa, Humboldt County, California",
+"lat": 41.0504,
+"lon": -123.6742
+},
+{
 "creature": "kussie",
 "cat": "aquatic",
 "icon": "lake",
@@ -140,6 +160,56 @@
 "lon": 152.5654
 },
 {
+"creature": "yowie",
+"cat": "hominid",
+"icon": "hominid",
+"name": "McCooey's 'indigenous ape'",
+"year": 1882,
+"place": "Between Batemans Bay and Ulladulla, New South Wales",
+"lat": -35.5,
+"lon": 150.3
+},
+{
+"creature": "yowie",
+"cat": "hominid",
+"icon": "hominid",
+"name": "A future senator's school-trip sighting",
+"year": 1977,
+"place": "Springbrook, Queensland",
+"lat": -28.19,
+"lon": 153.27
+},
+{
+"creature": "yowie",
+"cat": "hominid",
+"icon": "hominid",
+"name": "Mango farmer metres from a hairy figure",
+"year": 1997,
+"place": "Acacia Hills, Northern Territory",
+"lat": -12.78,
+"lon": 131.13
+},
+{
+"creature": "yowie",
+"cat": "hominid",
+"icon": "hominid",
+"name": "The Piper film",
+"year": 2000,
+"place": "Brindabella Ranges, Australian Capital Territory",
+"lat": -35.4,
+"lon": 148.8
+},
+{
+"creature": "yowie",
+"cat": "hominid",
+"icon": "hominid",
+"name": "Something sniffing at the shed windows",
+"year": 1998,
+"place": "Pillar Valley, New South Wales",
+"lat": -29.77,
+"lon": 153.1
+},
+{
 "creature": "skunk-ape",
 "cat": "hominid",
 "icon": "skunkape",
@@ -148,6 +218,56 @@
 "place": "Sarasota County, Florida",
 "lat": 27.3364,
 "lon": -82.5306
+},
+{
+"creature": "skunk-ape",
+"cat": "hominid",
+"icon": "skunkape",
+"name": "A car grabbed on a lonely road",
+"year": 1942,
+"place": "Suwannee County, Florida",
+"lat": 30.3891,
+"lon": -82.9565
+},
+{
+"creature": "skunk-ape",
+"cat": "hominid",
+"icon": "skunkape",
+"name": "A face at the window",
+"year": 1963,
+"place": "Alachua and Marion counties, Florida",
+"lat": 29.4,
+"lon": -82.2
+},
+{
+"creature": "skunk-ape",
+"cat": "hominid",
+"icon": "skunkape",
+"name": "The Broward County skunk ape flap",
+"year": 1971,
+"place": "Broward County, Florida",
+"lat": 26.15,
+"lon": -80.45
+},
+{
+"creature": "skunk-ape",
+"cat": "hominid",
+"icon": "skunkape",
+"name": "A bill to protect 'humanoid animals'",
+"year": 1977,
+"place": "Tallahassee, Florida",
+"lat": 30.4383,
+"lon": -84.2807
+},
+{
+"creature": "skunk-ape",
+"cat": "hominid",
+"icon": "skunkape",
+"name": "Fire chief photographs a figure crossing the road",
+"year": 1997,
+"place": "Ochopee, Florida",
+"lat": 25.9015,
+"lon": -81.3034
 },
 {
 "creature": "fouke-monster",
@@ -160,6 +280,56 @@
 "lon": -93.8855
 },
 {
+"creature": "fouke-monster",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Memphis Enquirer's hairy wild man",
+"year": 1851,
+"place": "Greene County, Arkansas",
+"lat": 36.12,
+"lon": -90.56
+},
+{
+"creature": "fouke-monster",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "A boy fires bird shot at it",
+"year": 1955,
+"place": "Jonesville, Arkansas",
+"lat": 33.2257,
+"lon": -93.9377
+},
+{
+"creature": "fouke-monster",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Seen crossing Highway 71",
+"year": 1971,
+"place": "U.S. Highway 71 near Fouke, Arkansas",
+"lat": 33.26,
+"lon": -93.88
+},
+{
+"creature": "fouke-monster",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Fined for a fake monster report",
+"year": 1971,
+"place": "Miller County, Arkansas",
+"lat": 36.4165,
+"lon": -94.2644
+},
+{
+"creature": "fouke-monster",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Forty sightings in a year",
+"year": 1997,
+"place": "Miller County, Arkansas",
+"lat": 36.4165,
+"lon": -94.2644
+},
+{
 "creature": "honey-island-swamp-monster",
 "cat": "hominid",
 "icon": "bigfoot",
@@ -170,10 +340,50 @@
 "lon": -89.7
 },
 {
+"creature": "honey-island-swamp-monster",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Four-toed tracks and a dead boar",
+"year": 1974,
+"place": "Honey Island Swamp, Louisiana",
+"lat": 30.33,
+"lon": -89.7
+},
+{
+"creature": "honey-island-swamp-monster",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Film found after Ford's death",
+"year": 1980,
+"place": "St. Tammany Parish, Louisiana",
+"lat": 30.33,
+"lon": -89.7
+},
+{
 "creature": "momo",
 "cat": "hominid",
 "icon": "bigfoot",
 "name": "Momo flap",
+"year": 1972,
+"place": "Louisiana, Missouri",
+"lat": 39.4489,
+"lon": -91.0515
+},
+{
+"creature": "momo",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "Doris Harrison sees it holding a dog",
+"year": 1972,
+"place": "Louisiana, Missouri",
+"lat": 39.4489,
+"lon": -91.0515
+},
+{
+"creature": "momo",
+"cat": "hominid",
+"icon": "bigfoot",
+"name": "The fire chief's headlights",
 "year": 1972,
 "place": "Louisiana, Missouri",
 "lat": 39.4489,
@@ -190,11 +400,31 @@
 "lon": 41.0
 },
 {
+"creature": "almas",
+"cat": "hominid",
+"icon": "hominid",
+"name": "The Soviet 'snowman commission'",
+"year": 1958,
+"place": "Pamir Mountains, Tajikistan",
+"lat": 38.5,
+"lon": 73.0
+},
+{
 "creature": "yeren",
 "cat": "hominid",
 "icon": "hominid",
 "name": "Chinese Academy of Sciences expeditions",
 "year": 1977,
+"place": "Shennongjia, Hubei",
+"lat": 31.74,
+"lon": 110.68
+},
+{
+"creature": "yeren",
+"cat": "hominid",
+"icon": "hominid",
+"name": "'The Minister of Yeren' collects testimony",
+"year": 1974,
 "place": "Shennongjia, Hubei",
 "lat": 31.74,
 "lon": 110.68
@@ -230,6 +460,66 @@
 "lon": -88.5445
 },
 {
+"creature": "dogman",
+"cat": "canid",
+"icon": "dogman",
+"name": "Lumberjacks see a man with a dog's head",
+"year": 1887,
+"place": "Wexford County, Michigan",
+"lat": 44.34,
+"lon": -85.58
+},
+{
+"creature": "dogman",
+"cat": "canid",
+"icon": "dogman",
+"name": "Attacked by a pack, one on two legs",
+"year": 1937,
+"place": "Paris, Michigan",
+"lat": 43.7734,
+"lon": -85.5025
+},
+{
+"creature": "dogman",
+"cat": "canid",
+"icon": "dogman",
+"name": "Standing behind the car in the driveway",
+"year": 1993,
+"place": "Grand Haven, Michigan",
+"lat": 43.0631,
+"lon": -86.2284
+},
+{
+"creature": "dogman",
+"cat": "canid",
+"icon": "dogman",
+"name": "A cabin break-in at Luther",
+"year": 1997,
+"place": "Luther, Michigan",
+"lat": 44.0403,
+"lon": -85.6826
+},
+{
+"creature": "dogman",
+"cat": "canid",
+"icon": "dogman",
+"name": "Between the tobacco barns",
+"year": 2006,
+"place": "Central Kentucky",
+"lat": 37.8,
+"lon": -84.9
+},
+{
+"creature": "dogman",
+"cat": "canid",
+"icon": "dogman",
+"name": "It stood up at the Escambia River bridge",
+"year": 2004,
+"place": "Escambia River, Florida Panhandle",
+"lat": 30.6,
+"lon": -87.2
+},
+{
 "creature": "rougarou",
 "cat": "canid",
 "icon": "rougarou",
@@ -260,6 +550,56 @@
 "lon": -97.2892
 },
 {
+"creature": "chupacabra",
+"cat": "canid",
+"icon": "chupacabra",
+"name": "Eight sheep with three puncture wounds",
+"year": 1995,
+"place": "Orocovis, Puerto Rico",
+"lat": 18.2269,
+"lon": -66.391
+},
+{
+"creature": "chupacabra",
+"cat": "canid",
+"icon": "chupacabra",
+"name": "A hundred animals killed in Calama",
+"year": 2000,
+"place": "Calama, Chile",
+"lat": -22.4567,
+"lon": -68.9237
+},
+{
+"creature": "chupacabra",
+"cat": "canid",
+"icon": "chupacabra",
+"name": "The Elmendorf Beast",
+"year": 2004,
+"place": "Elmendorf, near San Antonio, Texas",
+"lat": 29.2561,
+"lon": -98.3328
+},
+{
+"creature": "chupacabra",
+"cat": "canid",
+"icon": "chupacabra",
+"name": "A deputy's dashcam video",
+"year": 2008,
+"place": "Cuero, Texas",
+"lat": 29.0939,
+"lon": -97.2892
+},
+{
+"creature": "chupacabra",
+"cat": "canid",
+"icon": "chupacabra",
+"name": "A roadside carcass in Maine",
+"year": 2006,
+"place": "Turner, Maine",
+"lat": 44.2565,
+"lon": -70.2562
+},
+{
 "creature": "mothman",
 "cat": "winged",
 "icon": "mothman",
@@ -280,6 +620,36 @@
 "lon": -82.1371
 },
 {
+"creature": "mothman",
+"cat": "winged",
+"icon": "mothman",
+"name": "Connie Carpenter's daylight sighting",
+"year": 1966,
+"place": "Point Pleasant, West Virginia",
+"lat": 38.8445,
+"lon": -82.1371
+},
+{
+"creature": "mothman",
+"cat": "winged",
+"icon": "mothman",
+"name": "A photo on Route 2",
+"year": 2016,
+"place": "Mason County, West Virginia",
+"lat": 39.0217,
+"lon": -82.029
+},
+{
+"creature": "mothman",
+"cat": "winged",
+"icon": "mothman",
+"name": "Fifty-five 'Mothman' reports in Chicago",
+"year": 2017,
+"place": "Chicago, Illinois",
+"lat": 41.85,
+"lon": -87.65
+},
+{
 "creature": "thunderbird",
 "cat": "winged",
 "icon": "thunderbird",
@@ -288,6 +658,46 @@
 "place": "Lawndale, Illinois",
 "lat": 41.86,
 "lon": -87.7184
+},
+{
+"creature": "thunderbird",
+"cat": "winged",
+"icon": "thunderbird",
+"name": "Tombstone's 'winged monster' on the Huachuca desert",
+"year": 1890,
+"place": "Near Tombstone, Arizona",
+"lat": 31.7129,
+"lon": -110.0676
+},
+{
+"creature": "thunderbird",
+"cat": "winged",
+"icon": "thunderbird",
+"name": "'Body like a naval torpedo' over Alton",
+"year": 1948,
+"place": "Alton, Illinois",
+"lat": 38.8906,
+"lon": -90.1843
+},
+{
+"creature": "thunderbird",
+"cat": "winged",
+"icon": "thunderbird",
+"name": "A bird that walked like a man",
+"year": 2023,
+"place": "North of Lexington, Kentucky",
+"lat": 37.9887,
+"lon": -84.4777
+},
+{
+"creature": "thunderbird",
+"cat": "winged",
+"icon": "thunderbird",
+"name": "Ahead of a storm over Highway 3",
+"year": 2026,
+"place": "Southeast Houston, Texas",
+"lat": 29.66,
+"lon": -95.22
 },
 {
 "creature": "jersey-devil",
@@ -300,10 +710,40 @@
 "lon": -75.0
 },
 {
+"creature": "jersey-devil",
+"cat": "winged",
+"icon": "winged",
+"name": "Mother Leeds's thirteenth child",
+"year": 1735,
+"place": "Leeds Point, New Jersey",
+"lat": 39.491,
+"lon": -74.438
+},
+{
+"creature": "jersey-devil",
+"cat": "winged",
+"icon": "winged",
+"name": "Ben Franklin's 'ghost' rival",
+"year": 1733,
+"place": "Burlington, New Jersey",
+"lat": 40.0712,
+"lon": -74.8649
+},
+{
 "creature": "owlman",
 "cat": "winged",
 "icon": "owlman",
 "name": "Mawnan church sighting",
+"year": 1976,
+"place": "Mawnan, Cornwall",
+"lat": 50.1,
+"lon": -5.12
+},
+{
+"creature": "owlman",
+"cat": "winged",
+"icon": "owlman",
+"name": "Two campers meet an owl 'as big as a man'",
 "year": 1976,
 "place": "Mawnan, Cornwall",
 "lat": 50.1,
@@ -318,6 +758,36 @@
 "place": "Jiundu Swamp, Zambia",
 "lat": -11.9,
 "lon": 24.4
+},
+{
+"creature": "kongamato",
+"cat": "winged",
+"icon": "pterosaur",
+"name": "Sanderson and Russell are dive-bombed",
+"year": 1932,
+"place": "Assumbo Mountains, Cameroon",
+"lat": 6.0,
+"lon": 9.6
+},
+{
+"creature": "kongamato",
+"cat": "winged",
+"icon": "pterosaur",
+"name": "A chest wound and a sketch",
+"year": 1957,
+"place": "Bangweulu Swamps, Zambia",
+"lat": -11.5,
+"lon": 30.1
+},
+{
+"creature": "kongamato",
+"cat": "winged",
+"icon": "pterosaur",
+"name": "A Telegraph photo turns out to be a stork",
+"year": 1959,
+"place": "Zambezi Valley",
+"lat": -16.2,
+"lon": 29.5
 },
 {
 "creature": "loch-ness-monster",
@@ -360,6 +830,66 @@
 "lon": -119.5
 },
 {
+"creature": "ogopogo",
+"cat": "aquatic",
+"icon": "lake",
+"name": "MacDougal's horses pulled under",
+"year": 1855,
+"place": "Okanagan Lake, British Columbia",
+"lat": 49.8466,
+"lon": -119.5189
+},
+{
+"creature": "ogopogo",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Fifty tourists on a Kelowna beach",
+"year": 1980,
+"place": "Kelowna, British Columbia",
+"lat": 49.8831,
+"lon": -119.4857
+},
+{
+"creature": "ogopogo",
+"cat": "aquatic",
+"icon": "lake",
+"name": "The Chaplin tape",
+"year": 1989,
+"place": "Bear Creek, Okanagan Lake",
+"lat": 49.93,
+"lon": -119.53
+},
+{
+"creature": "ogopogo",
+"cat": "aquatic",
+"icon": "lake",
+"name": "The water-skier video",
+"year": 1992,
+"place": "Okanagan Lake, British Columbia",
+"lat": 49.8466,
+"lon": -119.5189
+},
+{
+"creature": "ogopogo",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Sonar near Rattlesnake Island",
+"year": 2000,
+"place": "Rattlesnake Island, Okanagan Lake",
+"lat": 49.72,
+"lon": -119.58
+},
+{
+"creature": "ogopogo",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Peachland humps photographed",
+"year": 2008,
+"place": "Peachland, British Columbia",
+"lat": 49.7686,
+"lon": -119.7463
+},
+{
 "creature": "champ",
 "cat": "aquatic",
 "icon": "lake",
@@ -368,6 +898,66 @@
 "place": "Lake Champlain, Vermont",
 "lat": 44.5716,
 "lon": -73.314
+},
+{
+"creature": "champ",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Captain Crum's 187-foot serpent",
+"year": 1819,
+"place": "Bulwagga Bay, Lake Champlain, New York",
+"lat": 44.04,
+"lon": -73.46
+},
+{
+"creature": "champ",
+"cat": "aquatic",
+"icon": "lake",
+"name": "P. T. Barnum offers a reward",
+"year": 1873,
+"place": "Lake Champlain",
+"lat": 44.5,
+"lon": -73.3
+},
+{
+"creature": "champ",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Sheriff Mooney's water serpent",
+"year": 1883,
+"place": "Lake Champlain",
+"lat": 44.5,
+"lon": -73.3
+},
+{
+"creature": "champ",
+"cat": "aquatic",
+"icon": "lake",
+"name": "The Champlain quote that never was",
+"year": 1970,
+"place": "Lake Champlain",
+"lat": 44.5,
+"lon": -73.3
+},
+{
+"creature": "champ",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Clicks recorded under the lake",
+"year": 2003,
+"place": "Lake Champlain",
+"lat": 44.5,
+"lon": -73.3
+},
+{
+"creature": "champ",
+"cat": "aquatic",
+"icon": "lake",
+"name": "The Bodette-Affolter video",
+"year": 2005,
+"place": "Lake Champlain",
+"lat": 44.5,
+"lon": -73.3
 },
 {
 "creature": "bessie",
@@ -380,6 +970,46 @@
 "lon": -82.68
 },
 {
+"creature": "bessie",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "A dark 40-foot serpent from a schooner",
+"year": 1817,
+"place": "Lake Erie",
+"lat": 42.2,
+"lon": -81.2
+},
+{
+"creature": "bessie",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "The Dusseau brothers' beached monster",
+"year": 1817,
+"place": "Near Toledo, Ohio",
+"lat": 41.6639,
+"lon": -83.5552
+},
+{
+"creature": "bessie",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "A whole crew sees it wrestling in the water",
+"year": 1892,
+"place": "Lake Erie, between Buffalo and Toledo",
+"lat": 42.0,
+"lon": -81.6
+},
+{
+"creature": "bessie",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "Forty-five minutes off Crystal Beach",
+"year": 1896,
+"place": "Crystal Beach, near Fort Erie, Ontario",
+"lat": 42.8638,
+"lon": -79.0587
+},
+{
 "creature": "cadborosaurus",
 "cat": "aquatic",
 "icon": "serpent",
@@ -388,6 +1018,56 @@
 "place": "Haida Gwaii, BC",
 "lat": 54.03,
 "lon": -132.98
+},
+{
+"creature": "cadborosaurus",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "A skeleton in the ice at Glacier Island",
+"year": 1930,
+"place": "Glacier Island, near Valdez, Alaska",
+"lat": 60.8825,
+"lon": -147.2044
+},
+{
+"creature": "cadborosaurus",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "Henry Island remains",
+"year": 1934,
+"place": "Henry Island, near Prince Rupert, British Columbia",
+"lat": 54.0227,
+"lon": -130.6679
+},
+{
+"creature": "cadborosaurus",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "'Sarah the sea hag' on Kitsilano Beach",
+"year": 1941,
+"place": "Kitsilano Beach, Vancouver",
+"lat": 49.275,
+"lon": -123.155
+},
+{
+"creature": "cadborosaurus",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "Two police officers and a line of sea lions",
+"year": 1943,
+"place": "Strait of Georgia, British Columbia",
+"lat": 49.3,
+"lon": -123.8
+},
+{
+"creature": "cadborosaurus",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "The Kelly Nash video",
+"year": 2009,
+"place": "Nushagak Bay, Alaska",
+"lat": 58.7,
+"lon": -158.6
 },
 {
 "creature": "bear-lake-monster",
@@ -400,11 +1080,41 @@
 "lon": -111.3377
 },
 {
+"creature": "bear-lake-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Bishop Budge sees a fox-faced swimmer",
+"year": 1874,
+"place": "Bear Lake, Utah-Idaho",
+"lat": 41.96,
+"lon": -111.33
+},
+{
+"creature": "bear-lake-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Brigham Young sends a rope",
+"year": 1868,
+"place": "Paris, Idaho",
+"lat": 42.2272,
+"lon": -111.401
+},
+{
 "creature": "flathead-lake-monster",
 "cat": "aquatic",
 "icon": "lake",
 "name": "U.S. Grant steamboat sighting",
 "year": 1889,
+"place": "Flathead Lake, Montana",
+"lat": 47.8869,
+"lon": -114.1316
+},
+{
+"creature": "flathead-lake-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Thirteen sightings in one summer",
+"year": 1993,
 "place": "Flathead Lake, Montana",
 "lat": 47.8869,
 "lon": -114.1316
@@ -420,6 +1130,16 @@
 "lon": 17.3
 },
 {
+"creature": "mokele-mbembe",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Captain von Stein's report",
+"year": 1913,
+"place": "Likouala and Sangha rivers, Cameroon-Congo",
+"lat": 1.6,
+"lon": 16.9
+},
+{
 "creature": "bunyip",
 "cat": "aquatic",
 "icon": "lake",
@@ -430,10 +1150,60 @@
 "lon": 146.0
 },
 {
+"creature": "bunyip",
+"cat": "aquatic",
+"icon": "lake",
+"name": "The word 'bunyip' first appears in print",
+"year": 1845,
+"place": "Geelong, Victoria",
+"lat": -38.1471,
+"lon": 144.3607
+},
+{
+"creature": "bunyip",
+"cat": "aquatic",
+"icon": "lake",
+"name": "A 'bunyip or immense platypus' in the Yarra",
+"year": 1847,
+"place": "Yarra River, Melbourne",
+"lat": -37.82,
+"lon": 144.96
+},
+{
+"creature": "bunyip",
+"cat": "aquatic",
+"icon": "lake",
+"name": "The Challicum bunyip outline",
+"year": 1851,
+"place": "Fiery Creek, near Ararat, Victoria",
+"lat": -37.2854,
+"lon": 142.9273
+},
+{
+"creature": "bunyip",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Stocqueler sketches one on the Murray",
+"year": 1857,
+"place": "Murray River",
+"lat": -34.2,
+"lon": 140.4
+},
+{
 "creature": "flatwoods-monster",
 "cat": "entity",
 "icon": "flatwoods",
 "name": "Fisher farm encounter",
+"year": 1952,
+"place": "Flatwoods, West Virginia",
+"lat": 38.8798,
+"lon": -81.7796
+},
+{
+"creature": "flatwoods-monster",
+"cat": "entity",
+"icon": "flatwoods",
+"name": "Skid marks and a gummy deposit",
 "year": 1952,
 "place": "Flatwoods, West Virginia",
 "lat": 38.8798,
@@ -450,10 +1220,30 @@
 "lon": -71.2828
 },
 {
+"creature": "dover-demon",
+"cat": "entity",
+"icon": "dover",
+"name": "John Baxter on Miller Hill Road",
+"year": 1977,
+"place": "Miller Hill Road, Dover, Massachusetts",
+"lat": 42.2459,
+"lon": -71.2828
+},
+{
 "creature": "hopkinsville-goblins",
 "cat": "entity",
 "icon": "entity",
 "name": "Sutton farmhouse siege",
+"year": 1955,
+"place": "Kelly, Kentucky",
+"lat": 36.9706,
+"lon": -87.477
+},
+{
+"creature": "hopkinsville-goblins",
+"cat": "entity",
+"icon": "entity",
+"name": "Sixteen officers search the farm",
 "year": 1955,
 "place": "Kelly, Kentucky",
 "lat": 36.9706,
@@ -470,6 +1260,36 @@
 "lon": -84.2638
 },
 {
+"creature": "loveland-frog",
+"cat": "entity",
+"icon": "frogman",
+"name": "Three frog-faced figures by the road",
+"year": 1955,
+"place": "Branch Hill, Loveland, Ohio",
+"lat": 39.2462,
+"lon": -84.2933
+},
+{
+"creature": "loveland-frog",
+"cat": "entity",
+"icon": "frogman",
+"name": "The officer who shot an iguana",
+"year": 1972,
+"place": "Riverside Drive, Loveland, Ohio",
+"lat": 39.2689,
+"lon": -84.2638
+},
+{
+"creature": "loveland-frog",
+"cat": "entity",
+"icon": "frogman",
+"name": "Pokemon Go players see it again",
+"year": 2016,
+"place": "Loveland, Ohio",
+"lat": 39.2689,
+"lon": -84.2638
+},
+{
 "creature": "lizard-man",
 "cat": "entity",
 "icon": "lizardman",
@@ -480,11 +1300,81 @@
 "lon": -80.2484
 },
 {
+"creature": "lizard-man",
+"cat": "entity",
+"icon": "lizardman",
+"name": "Airman's shooting story falls apart",
+"year": 1988,
+"place": "Highway 15, Lee County, South Carolina",
+"lat": 34.2,
+"lon": -80.25
+},
+{
+"creature": "lizard-man",
+"cat": "entity",
+"icon": "lizardman",
+"name": "A chewed-up van in Bishopville",
+"year": 2008,
+"place": "Bishopville, South Carolina",
+"lat": 34.2182,
+"lon": -80.2484
+},
+{
+"creature": "lizard-man",
+"cat": "entity",
+"icon": "lizardman",
+"name": "Drinking from Black Creek",
+"year": 2024,
+"place": "Lewis Ocean Bay Heritage Preserve, South Carolina",
+"lat": 33.8,
+"lon": -78.93
+},
+{
 "creature": "mongolian-death-worm",
 "cat": "other",
 "icon": "worm",
 "name": "Roy Chapman Andrews reports",
 "year": 1926,
+"place": "Gobi Desert, Mongolia",
+"lat": 43.5,
+"lon": 104.0
+},
+{
+"creature": "mongolian-death-worm",
+"cat": "other",
+"icon": "worm",
+"name": "Locals pick out a sand boa",
+"year": 1983,
+"place": "Gobi Desert, Mongolia",
+"lat": 43.5,
+"lon": 104.0
+},
+{
+"creature": "mongolian-death-worm",
+"cat": "other",
+"icon": "worm",
+"name": "Mackerle's 'thumper'",
+"year": 1990,
+"place": "Gobi Desert, Mongolia",
+"lat": 43.5,
+"lon": 104.0
+},
+{
+"creature": "mongolian-death-worm",
+"cat": "other",
+"icon": "worm",
+"name": "A worm lizard, not a killer",
+"year": 2005,
+"place": "Gobi Desert, Mongolia",
+"lat": 43.5,
+"lon": 104.0
+},
+{
+"creature": "mongolian-death-worm",
+"cat": "other",
+"icon": "worm",
+"name": "A TV reporter's interviews",
+"year": 2009,
 "place": "Gobi Desert, Mongolia",
 "lat": 43.5,
 "lon": 104.0
@@ -498,6 +1388,26 @@
 "place": "Swiss Alps",
 "lat": 46.6,
 "lon": 8.2
+},
+{
+"creature": "tatzelwurm",
+"cat": "other",
+"icon": "worm",
+"name": "Roduner's mountain dragon",
+"year": 1660,
+"place": "Wangsberg, Sargans, Switzerland",
+"lat": 47.049,
+"lon": 9.441
+},
+{
+"creature": "tatzelwurm",
+"cat": "other",
+"icon": "worm",
+"name": "The Tinner brothers' cat-headed serpent",
+"year": 1680,
+"place": "Frumsen, Sax, Switzerland",
+"lat": 47.24,
+"lon": 9.47
 },
 {
 "creature": "ufo-saucer",
@@ -1740,6 +2650,26 @@
 "lon": 39.2695
 },
 {
+"creature": "wendigo",
+"cat": "entity",
+"icon": "woods",
+"name": "The Swift Runner case",
+"year": 1879,
+"place": "Near Fort Saskatchewan, Alberta",
+"lat": 53.6981,
+"lon": -113.2138
+},
+{
+"creature": "wendigo",
+"cat": "entity",
+"icon": "woods",
+"name": "Jack Fiddler, the wendigo killer, is arrested",
+"year": 1907,
+"place": "Sandy Lake, Ontario",
+"lat": 53.0501,
+"lon": -93.3337
+},
+{
 "creature": "thetis-lake-monster",
 "cat": "entity",
 "icon": "lizardman",
@@ -1750,6 +2680,16 @@
 "lon": -123.4693
 },
 {
+"creature": "thetis-lake-monster",
+"cat": "entity",
+"icon": "lizardman",
+"name": "The TV movie that aired days before",
+"year": 1972,
+"place": "Victoria, British Columbia",
+"lat": 48.4359,
+"lon": -123.3516
+},
+{
 "creature": "indrid-cold",
 "cat": "entity",
 "icon": "mib",
@@ -1758,6 +2698,16 @@
 "place": "Near Parkersburg, West Virginia",
 "lat": 39.2667,
 "lon": -81.5615
+},
+{
+"creature": "indrid-cold",
+"cat": "entity",
+"icon": "mib",
+"name": "The grinning man of Elizabeth",
+"year": 1966,
+"place": "Elizabeth, New Jersey",
+"lat": 40.664,
+"lon": -74.2107
 },
 {
 "creature": "grey-aliens",
@@ -1890,10 +2840,30 @@
 "lon": -65.0
 },
 {
+"creature": "mapinguari",
+"cat": "other",
+"icon": "sloth",
+"name": "A rubber tapper's Sunday story",
+"year": 1928,
+"place": "Amazonas, Brazil",
+"lat": -3.4,
+"lon": -65.0
+},
+{
 "creature": "montauk-monster",
 "cat": "other",
 "icon": "carcass",
 "name": "Carcass found at Ditch Plains",
+"year": 2008,
+"place": "Montauk, New York",
+"lat": 41.0359,
+"lon": -71.9545
+},
+{
+"creature": "montauk-monster",
+"cat": "other",
+"icon": "carcass",
+"name": "Gawker turns it into a sensation",
 "year": 2008,
 "place": "Montauk, New York",
 "lat": 41.0359,
@@ -2240,6 +3210,16 @@
 "lon": 17.0
 },
 {
+"creature": "grootslang",
+"cat": "other",
+"icon": "imp",
+"name": "Cornell's serpent in the Orange River",
+"year": 1920,
+"place": "Richtersveld, South Africa",
+"lat": -28.2,
+"lon": 17.0
+},
+{
 "creature": "barghest",
 "cat": "canid",
 "icon": "imp",
@@ -2250,6 +3230,16 @@
 "lon": -1.896
 },
 {
+"creature": "barghest",
+"cat": "canid",
+"icon": "imp",
+"name": "The shape-shifter of Darlington",
+"year": 1870,
+"place": "Near Darlington, County Durham",
+"lat": 54.52,
+"lon": -1.55
+},
+{
 "creature": "inkanyamba",
 "cat": "aquatic",
 "icon": "imp",
@@ -2258,6 +3248,16 @@
 "place": "Howick, KwaZulu-Natal, South Africa",
 "lat": -29.4779,
 "lon": 30.2306
+},
+{
+"creature": "inkanyamba",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Tornado stories at Hogsback",
+"year": 1998,
+"place": "Hogsback, Eastern Cape, South Africa",
+"lat": -32.5953,
+"lon": 26.9402
 },
 {
 "creature": "lukwata",
@@ -2278,6 +3278,26 @@
 "place": "Migori, Kenya",
 "lat": -1.0634,
 "lon": 34.4731
+},
+{
+"creature": "dingonek",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Hobley collects more accounts",
+"year": 1913,
+"place": "Lake Victoria, Kenya",
+"lat": -0.4,
+"lon": 34.2
+},
+{
+"creature": "dingonek",
+"cat": "aquatic",
+"icon": "imp",
+"name": "Maclean's calls it a new species",
+"year": 1918,
+"place": "Lake Victoria, Kenya",
+"lat": -0.4,
+"lon": 34.2
 },
 {
 "creature": "mbielu-mbielu-mbielu",
@@ -2310,6 +3330,16 @@
 "lon": 71.7864
 },
 {
+"creature": "barmanou",
+"cat": "hominid",
+"icon": "imp",
+"name": "Magraner's fifty eyewitnesses",
+"year": 1987,
+"place": "Chitral, Pakistan",
+"lat": 35.8518,
+"lon": 71.7864
+},
+{
 "creature": "nittaewo",
 "cat": "hominid",
 "icon": "imp",
@@ -2318,6 +3348,16 @@
 "place": "Kudumbigala, Sri Lanka",
 "lat": 6.69,
 "lon": 81.73
+},
+{
+"creature": "nittaewo",
+"cat": "hominid",
+"icon": "imp",
+"name": "Hugh Nevill records the last of the Nittaewo",
+"year": 1887,
+"place": "Leanama, eastern Sri Lanka",
+"lat": 6.9,
+"lon": 81.7
 },
 {
 "creature": "amomongo",
@@ -2390,6 +3430,16 @@
 "lon": 77.2315
 },
 {
+"creature": "monkey-man-of-delhi",
+"cat": "entity",
+"icon": "imp",
+"name": "Teenage copycats caught",
+"year": 2002,
+"place": "Nizamuddin East, New Delhi",
+"lat": 28.59,
+"lon": 77.25
+},
+{
 "creature": "queensland-tiger",
 "cat": "canid",
 "icon": "imp",
@@ -2430,6 +3480,16 @@
 "lon": -50.5844
 },
 {
+"creature": "minhocao",
+"cat": "other",
+"icon": "imp",
+"name": "Saint-Hilaire hears of a lake monster",
+"year": 1846,
+"place": "Padre Aranda and Feia lakes, Brazil",
+"lat": -21.95,
+"lon": -41.35
+},
+{
 "creature": "moca-vampire",
 "cat": "other",
 "icon": "imp",
@@ -2448,6 +3508,26 @@
 "place": "Andros, Bahamas",
 "lat": 24.7,
 "lon": -77.95
+},
+{
+"creature": "lusca",
+"cat": "aquatic",
+"icon": "imp",
+"name": "A ten-foot octopus on the beach",
+"year": 1872,
+"place": "Nassau, Bahamas",
+"lat": 25.0582,
+"lon": -77.3431
+},
+{
+"creature": "lusca",
+"cat": "aquatic",
+"icon": "imp",
+"name": "The 'giant scuttle' of Hole-in-the-Wall",
+"year": 1957,
+"place": "Between Hole-in-the-Wall and Nassau, Bahamas",
+"lat": 25.6,
+"lon": -77.6
 },
 {
 "creature": "morgawr",
@@ -2518,6 +3598,26 @@
 "place": "Dalby, Isle of Man",
 "lat": 54.172,
 "lon": -4.727
+},
+{
+"creature": "gef",
+"cat": "other",
+"icon": "imp",
+"name": "A slander case over the talking mongoose",
+"year": 1937,
+"place": "London, England",
+"lat": 51.5085,
+"lon": -0.1257
+},
+{
+"creature": "gef",
+"cat": "other",
+"icon": "imp",
+"name": "The new owner says he shot Gef",
+"year": 1946,
+"place": "Cashen's Gap, Isle of Man",
+"lat": 54.24,
+"lon": -4.68
 },
 {
 "creature": "stellers-sea-ape",
@@ -2600,6 +3700,26 @@
 "lon": -96.7975
 },
 {
+"creature": "wild-man-of-the-navidad",
+"cat": "hominid",
+"icon": "imp",
+"name": "The wild man is captured",
+"year": 1851,
+"place": "Navidad River, Lavaca County, Texas",
+"lat": 28.615,
+"lon": -96.6261
+},
+{
+"creature": "wild-man-of-the-navidad",
+"cat": "hominid",
+"icon": "imp",
+"name": "A runaway notice for the 'Wild Woman'",
+"year": 1854,
+"place": "Austin, Texas",
+"lat": 30.2672,
+"lon": -97.7431
+},
+{
 "creature": "vegetable-man",
 "cat": "entity",
 "icon": "imp",
@@ -2615,6 +3735,16 @@
 "icon": "imp",
 "name": "Marquette and Jolliet see the painted monsters",
 "year": 1673,
+"place": "Alton, Illinois",
+"lat": 38.8906,
+"lon": -90.1843
+},
+{
+"creature": "piasa",
+"cat": "winged",
+"icon": "imp",
+"name": "John Russell invents the Piasa legend",
+"year": 1836,
 "place": "Alton, Illinois",
 "lat": 38.8906,
 "lon": -90.1843
@@ -2698,6 +3828,16 @@
 "place": "Carlingford, Ireland",
 "lat": 54.04,
 "lon": -6.1883
+},
+{
+"creature": "leprechaun",
+"cat": "fae",
+"icon": "imp",
+"name": "An 'Irish lubrican' on the London stage",
+"year": 1604,
+"place": "London, England",
+"lat": 51.5085,
+"lon": -0.1257
 },
 {
 "creature": "puca",
@@ -2888,6 +4028,16 @@
 "place": "Wembere River, Tanzania",
 "lat": -4.167,
 "lon": 34.183
+},
+{
+"creature": "agogwe",
+"cat": "hominid",
+"icon": "imp",
+"name": "Two little brown men among the baboons",
+"year": 1927,
+"place": "Coast of Mozambique",
+"lat": -19.8,
+"lon": 35.0
 },
 {
 "creature": "redcap",

@@ -453,7 +453,7 @@ body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
 .cg-ico { flex: none; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: #0E1D18; color: var(--tone, var(--lantern)); }
 .cg-ico .ico { width: 64%; height: 64%; }
 .cg-all { margin: 1rem 0 0; } .cg-all a { color: var(--lichen); }
-.rel-wrap { padding: 1rem 0 2rem; }
+.rel-wrap { padding-top: 1rem; padding-bottom: 2rem; }  /* keep .wrap's side padding */
 .rel-why { margin: -.4rem 0 .4rem; color: var(--muted-d); }
 .tone-hominid { --tone: var(--c-hominid); } .tone-canid { --tone: var(--c-canid); } .tone-winged { --tone: var(--c-winged); }
 .tone-entity { --tone: var(--c-entity); } .tone-fae { --tone: var(--c-fae); } .tone-ufo { --tone: var(--c-ufo); } .tone-other { --tone: var(--c-other); }
@@ -666,3 +666,7 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 .nl-band { padding-top: 0; }
 .nl-band .signup { margin: 0 auto; max-width: 760px; }
 .nl-state { font-size: 1.15rem; }
+
+/* Under 900px the nav wraps onto extra rows (three with a phone's larger text setting), so a pinned header
+   would cover a third of the screen. Let it scroll away there; it stays pinned on wider screens. */
+@media (max-width: 900px) { .top { position: relative; } .facts { top: 12px; } }

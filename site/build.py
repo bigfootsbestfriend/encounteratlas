@@ -550,6 +550,7 @@ def build_creatures(creatures, by_slug):
         d = load(fn)
         if isinstance(d, dict):
             famous_details.update(d)
+    famous_details.update(STORY_DETAILS)
 
     KINDS = load('creature_kinds.json') or {}
     # Folklore hybrid (Mike approved 2026-10-12): stories first, then modern claimed sightings, and both
@@ -1227,6 +1228,28 @@ def build_static_pages():
 }})();</script></div></section>''', canonical=False))
 
 
+def merge_stories(creatures):
+    """data/creature_stories.json adds researched stories (old newspapers, books, news reports) to each creature's
+    case timeline: {slug: [{name, year, place, summary, source_title, source_url}]}. Written by hand, in our own words."""
+    p = os.path.join(ROOT, 'data', 'creature_stories.json')
+    if not os.path.exists(p):
+        return
+    by = {c['slug']: c for c in creatures}
+    for slug, stories in json.load(open(p, encoding='utf-8')).items():
+        c = by.get(slug)
+        if not c:
+            print('creature_stories: unknown slug', slug, file=sys.stderr)
+            continue
+        have = {f['name'] for f in c['famous']}
+        for st in stories:
+            if st['name'] not in have:
+                c['famous'].append({'name': st['name'], 'year': st['year'], 'place': st['place']})
+                STORY_DETAILS[slug + '|' + st['name']] = {k: st[k] for k in ('summary', 'source_title', 'source_url') if st.get(k)}
+
+
+STORY_DETAILS = {}
+
+
 def main():
     if os.path.exists(OUT):
         shutil.rmtree(OUT)
@@ -1234,6 +1257,7 @@ def main():
     shutil.copytree(STATIC, os.path.join(OUT, 'static'))
     creatures = json.load(open(os.path.join(ROOT, 'data', 'creatures.json')))
     by_slug = {c['slug']: c for c in creatures}
+    merge_stories(creatures)
     for c in creatures:  # park-poster silhouettes (site/static/art/<slug>.svg) replace the old icons where we have them
         if os.path.exists(os.path.join(STATIC, 'art', c['slug'] + '.svg')):
             c['art'] = 'art/' + c['slug']

@@ -13,6 +13,11 @@ OVR = os.path.join(ROOT, 'data', 'famous_overrides.json')
 
 def main():
     creatures = json.load(open(os.path.join(ROOT, 'data', 'creatures.json')))
+    sp = os.path.join(ROOT, 'data', 'creature_stories.json')  # researched stories, merged the same way as site/build.py
+    extra = json.load(open(sp)) if os.path.exists(sp) else {}
+    for c in creatures:
+        have = {f['name'] for f in c['famous']}
+        c['famous'] += [{'name': s['name'], 'year': s['year'], 'place': s['place']} for s in extra.get(c['slug'], []) if s['name'] not in have]
     overrides = json.load(open(OVR)) if os.path.exists(OVR) else {}
     countries, country_names, admin1, _admin1_cc, us_abbr, by_place, centres = bb.load_geonames()
     out, missing = [], []
