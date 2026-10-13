@@ -1005,7 +1005,7 @@ def build_static_pages():
 <li><strong>No ads, no tracking cookies, no account needed.</strong> You can read every page and use the map and tools without signing up.</li>
 <li><strong>Visitor counts:</strong> we don't run visitor analytics right now. If we add them, we'll use a cookie-free service that only shows totals, like page views and countries, and we'll update this page first.</li>
 <li><strong>Things your browser remembers, not us:</strong> your sort choice on the creature index, and a draft of a report you haven't sent yet (stored only on your device so you don't lose them). Clearing your browser data removes them.</li>
-<li><strong>Other services the pages load:</strong> map tiles from OpenFreeMap, fonts from Google Fonts and code libraries from cdnjs. Like any website, these see your IP address when they send the file. Witness videos only load from YouTube (in its privacy-enhanced mode) when you press play.</li>
+<li><strong>Other services the pages load:</strong> map tiles from OpenFreeMap, fonts from Google Fonts and code libraries from cdnjs and jsDelivr. The <a href="{url('/tools/was-it-a-planet/')}">Was it a planet?</a> tool also fetches the Space Station's orbit from Celestrak; the place you enter stays in your browser. Like any website, these see your IP address when they send the file. Witness videos only load from YouTube (in its privacy-enhanced mode) when you press play.</li>
 </ul>
 
 <h2>Sending a report</h2>
