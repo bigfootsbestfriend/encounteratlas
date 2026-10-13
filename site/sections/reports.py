@@ -139,14 +139,26 @@ def build(ctx):
   </fieldset>
 
   <fieldset class="step" id="step-media">
-    <legend><span class="n">5</span>Photos and video <span class="opt">(optional)</span></legend>
-    <div class="photo-drop" data-photo-add>
-      <label class="btn btn-quiet" for="photos">Add photos</label>
-      <input id="photos" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,image/*" multiple class="visually-hidden">
-      <span class="hint">Up to 5. We remove location and camera data from photos before they leave your device.</span>
+    <legend><span class="n">5</span>Photo and video links <span class="opt">(optional)</span></legend>
+    <p class="hint">We don't host photos or videos here. To share one, upload it to a free photo or video service first, then paste the link below.</p>
+    <div class="field">
+      <label>Photo links <span class="opt">(up to 5)</span></label>
+      <div data-links></div>
+      <button type="button" class="linkish" data-add-link>+ Add another photo link</button>
+      <details class="host-help"><summary>Where can I put my photos?</summary>
+        <p>Any of these free services gives you a link you can paste here:</p>
+        <ul>
+          <li><a href="https://imgur.com/upload" target="_blank" rel="noopener nofollow">Imgur</a>: no account needed. Upload, then copy the link.</li>
+          <li><a href="https://postimages.org/" target="_blank" rel="noopener nofollow">Postimages</a>: no account needed.</li>
+          <li><a href="https://www.flickr.com/" target="_blank" rel="noopener nofollow">Flickr</a>: free account, keeps the full-quality original.</li>
+          <li>Google Photos, iCloud Photos, Dropbox or OneDrive: open the photo, choose <em>Share</em> and <em>Copy link</em> (make sure anyone with the link can view it).</li>
+          <li>Instagram, Facebook or X: post it publicly, then copy the post link.</li>
+        </ul>
+        <p>Phone photos can carry your GPS location. Imgur removes it, but other services and cloud drives may not. A screenshot of the photo is an easy way to strip it. You can delete the photo at the host whenever you like.</p>
+      </details>
+      <p class="hint">We show photo links as buttons that open the photo on that site, not on our pages.</p>
+      <p class="err" data-err="links"></p>
     </div>
-    <ul class="thumbs" data-thumbs></ul>
-    <p class="err" data-err="photos"></p>
     <div class="field">
       <label>Video links <span class="opt">(YouTube, TikTok or Vimeo)</span></label>
       <div data-videos></div>

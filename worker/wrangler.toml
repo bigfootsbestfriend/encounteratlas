@@ -21,9 +21,7 @@ database_name = "encounters"
 # Replace with the id printed by `wrangler d1 create encounters` (DEPLOY.md step 2). Any value works locally.
 database_id = "00000000-0000-0000-0000-000000000000"
 
-[[r2_buckets]]
-binding = "PHOTOS"
-bucket_name = "encounter-photos"
+# No R2 bucket: photo uploads are off for good (links only). The code treats a missing PHOTOS binding as "no photos".
 
 [triggers]
 crons = ["17 4 * * *"]   # daily: prune rate-limit rows and used sign-in links

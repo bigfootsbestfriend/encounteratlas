@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS reports (
   display_name TEXT NOT NULL DEFAULT '',
   anonymous INTEGER NOT NULL DEFAULT 1,
   videos TEXT NOT NULL DEFAULT '[]',        -- JSON [{p: youtube|tiktok|vimeo, id, url}]
+  links TEXT NOT NULL DEFAULT '[]',         -- JSON [{url, host}]: photo LINKS (we never take uploads)
   ip_hash TEXT NOT NULL DEFAULT '',
   mod_note TEXT NOT NULL DEFAULT '',
   created INTEGER NOT NULL DEFAULT (unixepoch()),
@@ -42,7 +43,7 @@ CREATE TABLE IF NOT EXISTS reports (
 CREATE INDEX IF NOT EXISTS reports_status ON reports (status, approved_at);
 CREATE INDEX IF NOT EXISTS reports_user ON reports (user_id);
 
--- Photos live in R2 at p/<id>.jpg, always the server-sanitised JPEG, never the upload as sent.
+-- Photo uploads are switched off (links only, Mike 2026-10-12). Table kept so old code paths stay valid; it stays empty.
 CREATE TABLE IF NOT EXISTS photos (
   id TEXT PRIMARY KEY,                      -- random hex, also the R2 key
   report_id INTEGER NOT NULL REFERENCES reports(id),

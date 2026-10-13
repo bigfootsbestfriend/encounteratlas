@@ -1,5 +1,5 @@
 // End-to-end test against a local `wrangler dev` (run via test/run.sh, which starts a fresh database).
-// submit -> moderate -> approve -> GeoJSON/photos -> vote rules (duplicate, hidden until 10, rate limits,
+// submit -> moderate -> approve -> GeoJSON/photo links -> vote rules (duplicate, hidden until 10, rate limits,
 // network bursts, swing freeze, AI flag) -> owner edit/withdraw.
 import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
@@ -59,7 +59,8 @@ const baseReport = {
   creature: 'bigfoot', seen_date: '2026-09-30', seen_time: '21:40', lat: EXACT.lat, lon: EXACT.lon, loc_source: 'gps',
   place: 'Near Wakefield, Quebec', story: 'Walking the dog on the trail at dusk, a tall dark shape crossed about 40 m ahead and stepped over a fallen log.',
   duration: 'About 10 seconds', sounds: 'Two wood knocks', smells: 'Wet dog', witnesses: 2, display_name: 'Trail Walker', anonymous: true,
-  videos: ['https://youtu.be/dQw4w9WgXcQ', 'https://www.tiktok.com/@someone/video/7234567890123456789', 'https://vimeo.com/76979871'],
+  videos: ['https://youtu.be/dQw4w9WgXcQ', 'https://www.tiktok.com/@someone/video/7234567890123456789', 'https://vimeo.com/76979871',
+    'https://youtu.be/aqz-KE-bpKQ', 'https://vimeo.com/22439234'],
   turnstile: 'XXXX.DUMMY.TOKEN',
 };
 function reportForm(data, photos = []) {
@@ -101,24 +102,25 @@ r = await call('POST', '/api/reports', { form: reportForm({ ...baseReport, story
 ok(r.status === 400 && r.data.fields.story && r.data.fields.location, 'missing story/location reported per field');
 r = await call('POST', '/api/reports', { form: reportForm({ ...baseReport, videos: ['https://evil.example/video.mp4'] }), session: A.session, ip: '10.1.1.1' });
 ok(r.status === 400 && r.data.fields.videos, 'non YouTube/TikTok/Vimeo video link rejected');
-r = await call('POST', '/api/reports', { form: reportForm(baseReport, [png]), session: A.session, ip: '10.1.2.2' });
-ok(r.status === 400 && /JPEG/.test(r.data.fields.photos), 'PNG (non-JPEG) upload rejected');
-const fakeJpeg = new Uint8Array([0xff, 0xd8, 0xff, 0xe0, ...new TextEncoder().encode('<?php echo 1; ?>'.padEnd(200, ' '))]);
-r = await call('POST', '/api/reports', { form: reportForm(baseReport, [fakeJpeg]), session: A.session, ip: '10.1.2.2' });
-ok(r.status === 400 && r.data.fields.photos, 'script disguised with JPEG magic bytes rejected');
-r = await call('POST', '/api/reports', { form: reportForm(baseReport, [clean, clean, clean, clean, clean, clean]), session: A.session, ip: '10.1.1.1' });
-ok(r.status === 400 && r.data.fields.photos, 'more than 5 photos rejected');
-r = await call('POST', '/api/reports', { form: reportForm(baseReport, [evil, clean]), session: A.session, ip: '10.1.1.1' });
-ok(r.status === 201 && r.data.status === 'pending' && r.data.photos === 2, 'valid report accepted as pending', JSON.stringify(r.data));
+r = await call('POST', '/api/reports', { form: reportForm(baseReport, [clean]), session: A.session, ip: '10.1.2.2' });
+ok(r.status === 400 && r.data.fields.links, 'file uploads refused (links only)');
+for (const [bad, why] of [['http://imgur.com/a.jpg', 'plain http'], ['javascript:alert(1)', 'javascript:'], ['https://127.0.0.1/a.jpg', 'IP address'],
+  ['https://user:pw@imgur.com/a', 'credentials'], ['https://localhost/a.jpg', 'localhost']]) {
+  r = await call('POST', '/api/reports', { form: reportForm({ ...baseReport, links: [bad] }), session: A.session, ip: '10.1.2.2' });
+  ok(r.status === 400 && r.data.fields.links, `photo link rejected: ${why}`);
+}
+r = await call('POST', '/api/reports', { form: reportForm({ ...baseReport, links: Array.from({ length: 6 }, (_, i) => `https://imgur.com/p${i}`) }), session: A.session, ip: '10.1.2.2' });
+ok(r.status === 400 && r.data.fields.links, 'more than 5 photo links rejected');
+const LINKS = ['https://imgur.com/abc123', 'https://www.flickr.com/photos/someone/1234#frag'];
+r = await call('POST', '/api/reports', { form: reportForm({ ...baseReport, links: LINKS }), session: A.session, ip: '10.1.1.1' });
+ok(r.status === 201 && r.data.status === 'pending', 'valid report with photo links accepted as pending', JSON.stringify(r.data));
 const PID = r.data.id;
 
 let pub = await call('GET', `/api/reports/${PID}`);
 ok(pub.status === 404, 'pending report is not public');
 const own = await call('GET', `/api/reports/${PID}`, { session: A.session });
 ok(own.status === 200 && own.data.report.status === 'pending' && own.data.report.exact.lat === EXACT.lat, 'owner sees own pending report with exact point');
-const photoIds = own.data.report.photos.map((p) => p.id);
-let img = await fetch(`${API}/img/${photoIds[0]}.jpg`);
-ok(img.status === 404, 'pending photo not served publicly');
+ok(own.data.report.links.length === 2 && own.data.report.links[1].url === 'https://www.flickr.com/photos/someone/1234', 'owner sees photo links (fragment dropped)');
 let gj = await call('GET', '/api/reports.geojson');
 ok(!gj.data.features.some((f) => f.properties.id === PID), 'pending report not in GeoJSON');
 
@@ -141,9 +143,7 @@ const csrf = await fetch(API + '/mod/action', { method: 'POST', headers: { cooki
 ok(csrf.status === 403, 'cross-site moderation POST refused');
 const pend = await queue(COOKIE);
 const pr = pend.reports.find((x) => x.pid === PID);
-ok(pr && pr.lat === EXACT.lat && pr.photos.length === 2, 'moderator sees exact location and photos');
-const modImg = await fetch(API + pr.photos[0].url);
-ok(modImg.status === 200, 'moderator can view pending photo via signed URL');
+ok(pr && pr.lat === EXACT.lat && pr.links.length === 2, 'moderator sees exact location and photo links');
 // reject the two spare reports, approve the real one
 for (const x of pend.reports.filter((x) => x.pid !== PID)) await mod('reject', x.pid, { note: 'duplicate' }, COOKIE);
 const ap = await mod('approve', PID, {}, COOKIE);
@@ -156,24 +156,21 @@ ok(pub.status === 200 && !R.exact && R.name === null, 'approved report public, n
 ok(!JSON.stringify(pub.data).includes('example.test'), 'no email in public JSON');
 const dKm = Math.hypot((R.lat - EXACT.lat) * 111, (R.lon - EXACT.lon) * 111 * Math.cos(EXACT.lat * Math.PI / 180));
 ok(R.lat !== EXACT.lat && dKm < 4 && Math.abs(R.lat / 0.045 - Math.round(R.lat / 0.045)) < 1e-6, `public point snapped to ~5 km grid (${dKm.toFixed(2)} km off)`);
-ok(R.videos.length === 3 && R.videos[1].url === 'https://www.tiktok.com/@someone/video/7234567890123456789', 'video links normalised');
+ok(R.videos.length === 5 && R.videos[1].url === 'https://www.tiktok.com/@someone/video/7234567890123456789', 'video links normalised');
 gj = await call('GET', '/api/reports.geojson');
 const feat = gj.data.features.find((f) => f.properties.id === PID);
 ok(feat && feat.geometry.coordinates[1] === R.lat && feat.properties.n === 'Bigfoot', 'approved report appears in GeoJSON at the public point');
 ok(!gj.data.features.some((f) => f.geometry.coordinates[1] === EXACT.lat), 'exact point never in GeoJSON');
 const list = await call('GET', '/api/reports?limit=5');
-ok(list.data.reports[0]?.id === PID && list.data.reports[0].photo, 'recent reports list shows it with a photo');
-img = await fetch(API + R.photos[0].url);
-const bytes = new Uint8Array(await img.arrayBuffer());
-ok(img.status === 200 && img.headers.get('content-type') === 'image/jpeg' && img.headers.get('x-content-type-options') === 'nosniff'
-  && /sandbox/.test(img.headers.get('content-security-policy')), 'photo served as image/jpeg with nosniff + sandbox CSP');
-ok(bytes[0] === 0xff && bytes[1] === 0xd8 && bytes.at(-2) === 0xff && bytes.at(-1) === 0xd9, 'served photo is a well-formed JPEG');
-ok(!has(bytes, 'Exif') && !has(bytes, 'GPS') && !has(bytes, '<?php'), 'EXIF/GPS, PHP comment and trailing PHP payload all stripped');
+ok(list.data.reports[0]?.id === PID && list.data.reports[0].n_links === 2, 'recent reports list shows it with its photo-link count');
+ok(R.links.length === 2 && R.links[1].host === 'flickr.com', 'public report has photo links with host names');
+const noImg = await fetch(`${API}/img/${'0'.repeat(24)}.jpg`);
+ok(noImg.status === 404, 'no photo store: /img always 404');
 const cors = await fetch(API + '/api/reports', { headers: { origin: 'https://evil.example' } });
 ok(!cors.headers.get('access-control-allow-origin'), 'no CORS for other origins');
 
 section('Voting rules');
-const RI = `r:${PID}`, P1 = `p:${photoIds[0]}`, P2 = `p:${photoIds[1]}`;
+const RI = `r:${PID}`, P1 = `v:${PID}:3`, P2 = `v:${PID}:4`;
 let v = await call('POST', '/api/votes', { body: { item: RI, choice: 'real', turnstile: 'x' } });
 ok(v.status === 401, 'voting needs an account');
 v = await call('POST', '/api/votes', { body: { item: RI, choice: 'real' }, session: A.session });
@@ -287,13 +284,13 @@ ok(v.status === 200 && v.data.n === 11, 'moderator voids the burst + unfreezes; 
 section('Owner edit and withdraw');
 const other = await call('PATCH', `/api/reports/${PID}`, { body: { ...baseReport }, session: outsider.session });
 ok(other.status === 404, 'someone else cannot edit the report');
-const ed = await call('PATCH', `/api/reports/${PID}`, { body: { ...baseReport, story: baseReport.story + ' Edited: it was closer to 30 m.', remove_photos: [photoIds[1]] }, session: A.session });
+const ed = await call('PATCH', `/api/reports/${PID}`, { body: { ...baseReport, story: baseReport.story + ' Edited: it was closer to 30 m.', links: [LINKS[0]] }, session: A.session });
 ok(ed.status === 200 && ed.data.status === 'pending', 'owner edit goes back to moderation');
 pub = await call('GET', `/api/reports/${PID}`);
 ok(pub.status === 404, 'edited report hidden until re-approved');
 await mod('approve', PID, {}, COOKIE);
 pub = await call('GET', `/api/reports/${PID}`);
-ok(pub.data.report.photos.length === 1 && /30 m/.test(pub.data.report.story), 'after re-approval: edit live, removed photo gone');
+ok(pub.data.report.links.length === 1 && /30 m/.test(pub.data.report.story), 'after re-approval: edit live, removed photo link gone');
 const wd = await call('DELETE', `/api/reports/${PID}`, { session: A.session });
 pub = await call('GET', `/api/reports/${PID}`);
 gj = await call('GET', '/api/reports.geojson');

@@ -443,8 +443,8 @@
 
   function card(x) {
     const c = creature(x.creature, x.other_what);
-    const pic = x.photo ? h('img', { src: API + x.photo, alt: '', loading: 'lazy', class: 'rc-img' }) : h('div', { class: `rc-img rc-noimg cat-${c.cat}` }, badge(x.creature, 'md', x.other_what));
-    const bits = [x.n_photos ? `${x.n_photos} photo${x.n_photos > 1 ? 's' : ''}` : '', x.n_videos ? `${x.n_videos} video${x.n_videos > 1 ? 's' : ''}` : '', x.witnesses > 1 ? `${x.witnesses} witnesses` : ''].filter(Boolean);
+    const pic = h('div', { class: `rc-img rc-noimg cat-${c.cat}` }, badge(x.creature, 'md', x.other_what));
+    const bits = [x.n_links ? `${x.n_links} photo link${x.n_links > 1 ? 's' : ''}` : '', x.n_videos ? `${x.n_videos} video${x.n_videos > 1 ? 's' : ''}` : '', x.witnesses > 1 ? `${x.witnesses} witnesses` : ''].filter(Boolean);
     return h('a', { class: 'rcard', href: page('?id=' + x.id) }, pic,
       h('span', { class: 'rc-body' },
         h('span', { class: 'rc-kind' }, h('span', { class: `dot cat-${c.cat}` }), c.name),
@@ -485,16 +485,13 @@
     if (R.smells) art.append(h('h2', { text: 'Smells' }), h('p', { text: R.smells }));
 
     const items = [R.item];
-    if (R.photos.length) {
-      art.append(h('h2', { text: R.photos.length > 1 ? 'Photos' : 'Photo' }));
-      const gal = h('div', { class: 'gallery' });
-      R.photos.forEach((p, i) => {
-        items.push(p.item);
-        gal.append(h('figure', { class: 'ph' },
-          p.url ? h('a', { href: API + p.url, target: '_blank', rel: 'noopener' }, h('img', { src: API + p.url, alt: `Photo ${i + 1} from the witness`, loading: 'lazy', width: p.w, height: p.h })) : h('div', { class: 'ph-wait', text: 'Photo shows after approval' }),
-          R.owner && R.status !== 'approved' ? '' : voteWidget(p.item, { label: 'This photo: real or hoax?', compact: true, ai: true })));
-      });
-      art.append(gal);
+    // Photo links: never shown inline (the file lives on someone else's server and could change after approval).
+    const links = R.links || [];
+    if (links.length) {
+      art.append(h('h2', { text: links.length > 1 ? 'Photos (links)' : 'Photo (link)' }));
+      const ul = h('ul', { class: 'plinks' });
+      links.forEach((l) => ul.append(h('li', {}, h('a', { class: 'btn btn-quiet', href: l.url, target: '_blank', rel: 'noopener nofollow ugc noreferrer', text: `View photo on ${l.host}` }))));
+      art.append(ul, h('p', { class: 'small', text: 'Photos are hosted by the witness on another site. We don\'t check or store them, and they may change or be removed.' }));
     }
     if (R.videos.length) {
       art.append(h('h2', { text: R.videos.length > 1 ? 'Videos' : 'Video' }));

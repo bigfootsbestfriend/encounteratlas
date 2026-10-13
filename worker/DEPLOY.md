@@ -1,21 +1,19 @@
 # Encounter reports + "Real or hoax?" voting: deploy checklist
 
-Nothing here has been deployed. No D1 database, R2 bucket, Turnstile widget, DNS record or email exists yet.
+Nothing here has been deployed. No D1 database, Turnstile widget, DNS record or email exists yet.
 Everything was built and tested locally (`wrangler dev --local`).
 
 ## What it is
 
 - **Worker `encounters`** (`src/index.js`) at `https://api.encounteratlas.com`: the reports API, email sign-in,
-  voting, and photo serving (`/img/<id>.jpg`).
-- **D1 `encounters`** (`schema.sql`): users, reports, photos, votes, items (freeze/flags), flags, hits (rate limits), used_links.
-- **R2 `encounter-photos`**: sanitised JPEGs only, at `p/<random id>.jpg`.
+  and voting. Photos and videos are links only; nothing is uploaded or stored.
+- **D1 `encounters`** (`schema.sql`): users, reports (with photo links), votes, items (freeze/flags), flags, hits (rate limits), used_links.
 - **Moderation page**: `https://api.encounteratlas.com/mod`. It is on the Worker, not the static site, and uses the `MOD_PASSWORD` secret.
 - **Site pages** (`site/sections/reports.py`): `/report/` (the form) and `/reports/` (list; `?id=` one report; `?me=1` your reports; `?signin=` link landing).
 
 ## Steps for Mike (in order)
 
-1. **R2: turn it on.** In the Cloudflare dashboard, go to R2 and enable it. It's free up to 10 GB, but it needs a payment method on file.
-   Then run `npx wrangler@4 r2 bucket create encounter-photos`.
+1. **R2:** not needed. Photo uploads are off (links only).
 2. **D1:** run `npx wrangler@4 d1 create encounters`. Paste the printed `database_id` into `wrangler.toml`.
 3. **Turnstile:** in the dashboard, go to Turnstile and add a widget named "Encounter Atlas". Hostnames: `encounteratlas.com`, plus the
    GitHub Pages preview host if you use it. Mode: Managed. This gives you:
@@ -28,7 +26,7 @@ Everything was built and tested locally (`wrangler dev --local`).
    `npx wrangler@4 secret put RESEND_API_KEY` (a sending-access key is enough). The sender is `FROM` in wrangler.toml
    (`hello@encounteratlas.com`).
 5. **Other secrets:**
-   - `npx wrangler@4 secret put TOKEN_SECRET`: a long random value (`openssl rand -base64 48`). It signs sign-in links, sessions, photo keys and
+   - `npx wrangler@4 secret put TOKEN_SECRET`: a long random value (`openssl rand -base64 48`). It signs sign-in links, sessions and
      IP hashes. Changing it later signs everyone out.
    - `npx wrangler@4 secret put MOD_PASSWORD`: the moderation page password.
    - Optional: set `OWNER_EMAIL` in wrangler.toml to get an email for every new report.
@@ -39,8 +37,7 @@ Everything was built and tested locally (`wrangler dev --local`).
 8. **CORS:** `SITE` and `EXTRA_ORIGINS` in wrangler.toml must list every origin that serves the pages. The GitHub Pages preview origin is a guess
    (now `https://www.encounteratlas.com`; the github.io preview redirects to the apex), so check it.
 9. **Site build:** set `EA_API` and `TURNSTILE_SITEKEY` in the build workflow's environment (both default to production values except the test site key).
-10. **Before taking real reports:** register a DMCA agent ($6, copyright.gov) and add a takedown/contact page, as the plan says.
-    Also write a short privacy note: what is stored (email, exact location, hashed IP) and who sees it.
+10. **Before taking real reports:** the privacy page (/privacy/) is done. A DMCA agent ($6, copyright.gov) is optional with links only.
 11. **Smoke test in production:** submit a report, approve it at `/mod`, vote with two accounts, then reject it again.
 
 Not done (outside my files, for whoever owns them):
@@ -66,15 +63,11 @@ then runs `test/api.test.mjs`.
 
 ## Security notes
 
-- **Photos.** The browser re-encodes each photo through a canvas. That strips EXIF/GPS, applies rotation, scales to at most 2000 px and outputs JPEG.
-  The server accepts JPEG only and **rebuilds** each file (`src/jpeg.js`). It keeps only frame, table and scan segments. It drops APPn
-  (EXIF/XMP/ICC), comments and anything after end-of-image, and it rejects anything that isn't a well-formed JPEG.
-  This catches PHP/HTML polyglots like the ConsoleVariations attack, and it is tested.
-  - Files are stored under random server-made keys and served only by the Worker, with `content-type: image/jpeg`, `nosniff` and
-    `Content-Security-Policy: default-src 'none'; sandbox`. Nothing on Cloudflare executes uploaded files anyway.
-  - Limits: 5 photos, 6 MB each, 32 MB per request.
-  - Unapproved photos are only reachable through 1-hour signed URLs given to the owner or a moderator.
-  - Optional extra: a full pixel re-encode server-side with the Cloudflare Images binding (paid beyond the free tier). Not wired in.
+- **Photos and videos: links only.** Nothing is uploaded; the API refuses file parts. Photo links must be `https://` with a real
+  hostname (no IP addresses, localhost, credentials or ports), at most 500 characters and 5 per report; the `#fragment` is dropped.
+  They are shown as plain "View photo on <host>" buttons with `rel="noopener nofollow ugc noreferrer"`, never embedded.
+  Moderators check each link before approving. `src/jpeg.js` and the `/img` route are left from the upload version; `/img` always 404s
+  without a PHOTOS binding.
 - **Location.** The exact point is stored for moderators only. Every public output (report JSON, GeoJSON, list) uses a point snapped to a
   ~5 km grid. Snapping is deterministic, so repeated edits can't be averaged out. The place name the user types is public, and the form says so.
 - **Accounts.** These are HMAC-signed magic links: single use and valid 30 minutes. They point at the site's `/reports/?signin=`, which POSTs the token,
@@ -97,7 +90,7 @@ then runs `test/api.test.mjs`.
   - Swing: once an item has 10+ votes older than an hour, 5+ new votes in the last hour that shift any choice by 25+ points freeze it
     and flag it `swing`. A brand-new item with 40+ votes in an hour is flagged `surge` (not frozen).
   - AI flags: "Looks AI-generated?" and Misidentified votes with reason "CGI or AI" put the item at the top of the moderators' Flagged tab.
-  - Moderator tools: approve, reject or unpublish; remove a single photo; unfreeze; clear a flag; count or void held votes; void votes from the last N minutes.
+  - Moderator tools: approve, reject or unpublish; unfreeze; clear a flag; count or void held votes; void votes from the last N minutes.
 - **Moderation page.** The session is an HttpOnly, Secure, SameSite=Strict cookie scoped to `/mod`. POSTs need a same-origin `Origin` header.
   The page has a strict CSP and `frame-ancestors 'none'`, and every value is HTML-escaped.
-- **Edits.** Owner edits send a report back to `pending`. Withdrawing deletes its photos from R2.
+- **Edits.** Owner edits send a report back to `pending`. Withdrawing removes the report.

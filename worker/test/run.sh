@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Runs the API tests against a throwaway local Worker (fresh D1 + R2 under .wrangler/test-state).
+# Runs the API tests against a throwaway local Worker (fresh D1 under .wrangler/test-state).
 # Nothing touches Cloudflare: wrangler dev --local, Turnstile test secret, emails logged not sent.
 set -euo pipefail
 cd "$(dirname "$0")/.."

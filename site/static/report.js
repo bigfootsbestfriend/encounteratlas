@@ -1,6 +1,6 @@
-// Report form: creature picker, GPS / map tap / place search, photos re-encoded in the browser (strips
-// EXIF and GPS), video links, a local draft (text in localStorage, photos in IndexedDB), Turnstile, and
-// edit mode (?edit=<id>) for your own reports. Needs vote.js (window.EA) loaded first.
+// Report form: creature picker, GPS / map tap / place search, photo and video LINKS (we never take uploads),
+// a local draft (localStorage), Turnstile, and edit mode (?edit=<id>) for your own reports.
+// Needs vote.js (window.EA) loaded first.
 (function () {
   const form = document.getElementById('report-form');
   const EA = window.EA;
@@ -8,9 +8,7 @@
   const { h, api, store } = EA;
   const $ = (s) => form.querySelector(s);
   const DRAFT = 'ea-report-draft';
-  const MAX_PHOTOS = 5, MAX_SIDE = 2000, QUALITY = 0.85;
   const editId = new URLSearchParams(location.search).get('edit');
-  let photos = []; // {blob, url} (new) or {id, url, keep} (existing, edit mode)
   let point = null; // {lat, lon, source}
   let restoring = false;
 
@@ -132,64 +130,23 @@
   const recount = () => { count.textContent = story.value.trim().length; };
   story.addEventListener('input', recount);
 
-  // ---------- photos ----------
-  const thumbs = $('[data-thumbs]');
-  const fileIn = document.getElementById('photos');
-  // Re-encode through a canvas: drops EXIF/GPS and every other bit of metadata, applies the camera's
-  // rotation, shrinks to 2000 px, and always gives a plain JPEG (the only format the server accepts).
-  async function reencode(file) {
-    let src;
-    try {
-      src = await createImageBitmap(file, { imageOrientation: 'from-image' });
-    } catch (e) {
-      src = await new Promise((resolve, reject) => {
-        const img = new Image();
-        img.onload = () => resolve(img);
-        img.onerror = reject;
-        img.src = URL.createObjectURL(file);
-      });
-    }
-    const w0 = src.width || src.naturalWidth, h0 = src.height || src.naturalHeight;
-    const k = Math.min(1, MAX_SIDE / Math.max(w0, h0));
-    const c = document.createElement('canvas');
-    c.width = Math.round(w0 * k); c.height = Math.round(h0 * k);
-    const g = c.getContext('2d');
-    g.fillStyle = '#fff';
-    g.fillRect(0, 0, c.width, c.height);
-    g.drawImage(src, 0, 0, c.width, c.height);
-    if (src.close) src.close();
-    return new Promise((resolve, reject) => c.toBlob((b) => (b ? resolve(b) : reject(new Error('encode'))), 'image/jpeg', QUALITY));
-  }
-  fileIn.addEventListener('change', async () => {
-    const files = [...fileIn.files];
-    fileIn.value = '';
-    clearErr('photos');
-    for (const f of files) {
-      if (photos.filter((p) => !p.removed).length >= MAX_PHOTOS) { showErr('photos', `Up to ${MAX_PHOTOS} photos.`); break; }
-      if (f.size > 40 * 1024 * 1024) { showErr('photos', `${f.name} is too large.`); continue; }
-      try {
-        const blob = await reencode(f);
-        photos.push({ blob, url: URL.createObjectURL(blob) });
-      } catch (e) {
-        showErr('photos', `Couldn't read ${f.name}. If it's a HEIC photo, choose "Most compatible" in your camera settings or send a screenshot of it.`);
-      }
-    }
-    drawThumbs();
-    savePhotos();
-  });
-  function drawThumbs() {
-    thumbs.replaceChildren();
-    photos.forEach((p, i) => {
-      const rm = h('button', { type: 'button', class: 'thumb-x', 'aria-label': p.removed ? 'Keep this photo' : 'Remove this photo', text: p.removed ? 'Undo' : '×' });
-      rm.addEventListener('click', () => {
-        if (p.id) p.removed = !p.removed; // existing photo in edit mode: toggle
-        else { URL.revokeObjectURL(p.url); photos.splice(i, 1); savePhotos(); }
-        drawThumbs();
-      });
-      thumbs.append(h('li', { class: p.removed ? 'removed' : '' }, p.url ? h('img', { src: p.url, alt: `Photo ${i + 1}` }) : h('span', { class: 'ph-wait', text: 'Photo' }), rm));
+  // ---------- photo links ----------
+  // Photos stay wherever the witness put them (Imgur, Flickr, Google Photos...). We only keep the https link.
+  const lbox = $('[data-links]');
+  const LINK = /^https:\/\/[a-z0-9.-]+\.[a-z]{2,}(\/\S*)?$/i;
+  function addLink(val = '') {
+    if (lbox.children.length >= 5) return;
+    const i = h('input', { type: 'url', inputmode: 'url', placeholder: 'https://imgur.com/...', value: val, 'aria-label': 'Photo link', class: 'vid-in' });
+    i.addEventListener('change', () => {
+      i.classList.toggle('bad', !!i.value.trim() && !LINK.test(i.value.trim()));
+      if (i.classList.contains('bad')) showErr('links', 'Paste the full link, starting with https://');
+      else clearErr('links');
     });
-    $('[data-photo-add]').hidden = !!editId;
+    lbox.append(i);
+    $('[data-add-link]').hidden = lbox.children.length >= 5;
   }
+  $('[data-add-link]').addEventListener('click', () => { addLink(); lbox.lastChild.focus(); });
+  addLink();
 
   // ---------- videos ----------
   const vbox = $('[data-videos]');
@@ -227,6 +184,7 @@
       date_approx: f.date_approx.checked, lat: point ? point.lat : '', lon: point ? point.lon : '', loc_source: point ? point.source : 'map',
       place: f.place.value, story: f.story.value, duration: f.duration.value, witnesses: f.witnesses.value || 1,
       sounds: f.sounds.value, smells: f.smells.value, videos: [...vbox.querySelectorAll('input')].map((i) => i.value.trim()).filter(Boolean),
+      links: [...lbox.querySelectorAll('input')].map((i) => i.value.trim()).filter(Boolean),
       anonymous: f.anonymous.checked, display_name: f.display_name.value, email: f.email.value.trim(), website: f.website.value,
     };
   }
@@ -244,6 +202,8 @@
     if (d.lat !== '' && d.lat != null) setPoint(+d.lat, +d.lon, d.loc_source || 'map', true);
     vbox.replaceChildren();
     (d.videos && d.videos.length ? d.videos : ['']).forEach((v) => addVideo(v));
+    lbox.replaceChildren();
+    (d.links && d.links.length ? d.links : ['']).forEach((v) => addLink(v));
     recount();
     restoring = false;
   }
@@ -264,39 +224,7 @@
   form.addEventListener('input', save);
   form.addEventListener('change', save);
 
-  // Photos in IndexedDB so a half-finished report survives closing the tab (or losing signal).
-  function idb() {
-    return new Promise((resolve, reject) => {
-      const r = indexedDB.open('ea-report', 1);
-      r.onupgradeneeded = () => r.result.createObjectStore('photos');
-      r.onsuccess = () => resolve(r.result);
-      r.onerror = () => reject(r.error);
-    });
-  }
-  async function savePhotos() {
-    if (editId) return;
-    try {
-      const db = await idb();
-      const tx = db.transaction('photos', 'readwrite');
-      tx.objectStore('photos').put(photos.filter((p) => p.blob).map((p) => p.blob), 'draft');
-    } catch (e) { /* storage blocked: photos just won't be kept */ }
-  }
-  async function loadPhotos() {
-    try {
-      const db = await idb();
-      const blobs = await new Promise((resolve) => {
-        const r = db.transaction('photos').objectStore('photos').get('draft');
-        r.onsuccess = () => resolve(r.result || []);
-        r.onerror = () => resolve([]);
-      });
-      photos = blobs.slice(0, MAX_PHOTOS).map((blob) => ({ blob, url: URL.createObjectURL(blob) }));
-      drawThumbs();
-    } catch (e) { /* none */ }
-  }
-  async function clearDraft() {
-    store.del(DRAFT);
-    try { const db = await idb(); db.transaction('photos', 'readwrite').objectStore('photos').delete('draft'); } catch (e) { /* none */ }
-  }
+  function clearDraft() { store.del(DRAFT); }
   $('[data-draft-clear]').addEventListener('click', async () => {
     await clearDraft();
     location.reload();
@@ -317,6 +245,7 @@
     if (d.lat === '') bad.location = 'Set where it happened: use your location, tap the map, or search a place.';
     if (d.story.trim().length < 30) bad.story = 'Tell us what happened in a few sentences.';
     if (d.videos.some((v) => !VID.test(v))) bad.videos = 'Only YouTube, TikTok or Vimeo links.';
+    if (d.links.some((v) => !LINK.test(v))) bad.links = 'Photo links must start with https://';
     if (d.email && !/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(d.email)) bad.email = 'Check your email address.';
     return bad;
   }
@@ -336,15 +265,14 @@
     let r;
     if (editId) {
       msg.textContent = 'Saving...';
-      r = await api('/api/reports/' + editId, { method: 'PATCH', body: { ...d, remove_photos: photos.filter((p) => p.id && p.removed).map((p) => p.id) } });
+      r = await api('/api/reports/' + editId, { method: 'PATCH', body: d });
     } else {
       msg.textContent = 'Quick spam check...';
       try { d.turnstile = await EA.human(tsSlot); } catch (err) { msg.textContent = 'The spam check didn\'t load. Your draft is saved; try again when you have signal.'; submitBtn.disabled = false; return; }
       if (EA.session()) delete d.email;
       const fd = new FormData();
       fd.append('data', JSON.stringify(d));
-      photos.forEach((p, i) => fd.append('photo', p.blob, `photo${i + 1}.jpg`));
-      msg.textContent = photos.length ? `Sending your report and ${photos.length} photo${photos.length > 1 ? 's' : ''}...` : 'Sending your report...';
+      msg.textContent = 'Sending your report...';
       r = await api('/api/reports', { method: 'POST', form: fd });
       EA.resetHuman(tsSlot);
     }
@@ -355,7 +283,6 @@
       offline: 'No signal right now. Your report is saved on this device. Press Send again when you\'re back in range.',
       slow: 'Too many reports from this connection. Your draft is saved; try again in an hour.',
       turnstile: 'The spam check failed. Press Send again.',
-      too_big: 'The photos are too large together. Remove one and try again.',
       signin: 'Your sign-in expired. Sign in again to save changes.',
     }[r.data.state] || 'Something went wrong on our side. Your draft is saved; try again in a few minutes.';
   });
@@ -400,14 +327,12 @@
     }
     const R = r.data.report;
     banner.textContent = 'Saving changes sends the report back to a moderator before it shows again.';
-    fill({ ...R, lat: R.exact.lat, lon: R.exact.lon, videos: R.videos.map((v) => v.url), anonymous: R.anonymous, display_name: R.display_name });
-    photos = R.photos.map((p) => ({ id: p.id, url: p.url ? EA.API + p.url : null }));
-    drawThumbs();
+    fill({ ...R, lat: R.exact.lat, lon: R.exact.lon, videos: R.videos.map((v) => v.url), links: (R.links || []).map((l) => l.url), anonymous: R.anonymous, display_name: R.display_name });
     tsSlot.hidden = true;
     submitBtn.textContent = 'Save changes';
     const wd = h('button', { type: 'button', class: 'linkish danger', text: 'Withdraw this report' });
     wd.addEventListener('click', async () => {
-      if (!confirm('Withdraw this report? It will be removed from the site and its photos deleted.')) return;
+      if (!confirm('Withdraw this report? It will be removed from the site.')) return;
       const x = await api('/api/reports/' + editId, { method: 'DELETE' });
       if (x.status === 200) location.href = EA.page('?me=1');
       else msg.textContent = 'That didn\'t work. Try again.';
@@ -427,6 +352,5 @@
     const pre = new URLSearchParams(location.search).get('creature');
     const r = pre && !(d && d.creature) && form.querySelector(`input[name=creature][value="${CSS.escape(pre)}"]`);
     if (r) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); }
-    loadPhotos();
   }
 })();

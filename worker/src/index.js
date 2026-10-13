@@ -1,5 +1,5 @@
 // Encounter Atlas API: encounter reports, email sign-in and "Real or hoax?" voting.
-// Cloudflare Worker + D1 (DB) + R2 (PHOTOS). See DEPLOY.md for setup and README-style notes.
+// Cloudflare Worker + D1 (DB). No uploads: photos come in as links only. See DEPLOY.md for setup and README-style notes.
 //
 // Public (CORS for SITE + EXTRA_ORIGINS):
 //   GET  /api/config                      turnstile site key, vote choices, thresholds
@@ -7,7 +7,7 @@
 //   POST /api/auth/verify  {t}            single-use link token -> {session, user}
 //   GET  /api/me                          (Bearer session) account + own reports, any status
 //   PATCH /api/me          {name}
-//   POST /api/reports      multipart: data=<JSON>, photo=<jpeg> x0-5   new report (pending)
+//   POST /api/reports      multipart: data=<JSON> (videos + photo links inside; file uploads refused)   new report (pending)
 //   GET  /api/reports?limit&before&creature   recent approved reports (summaries)
 //   GET  /api/reports.geojson             approved reports, public (~5 km) points only
 //   GET  /api/reports/<pid>               an approved report, or your own in any status (Bearer)
@@ -282,9 +282,30 @@ function readFields(d) {
     if (!n) bad.videos = 'Only YouTube, TikTok or Vimeo links';
     else if (!r.videos.some((x) => x.url === n.url)) r.videos.push(n);
   });
+  // Photo links: we never take uploads, only https links to wherever the witness hosts the photo.
+  const lks = Array.isArray(d.links) ? d.links.map((v) => String(v || '').trim()).filter(Boolean) : [];
+  if (lks.length > 5) bad.links = 'Up to 5 photo links';
+  r.links = [];
+  lks.slice(0, 5).forEach((v) => {
+    const n = normalizeLink(v);
+    if (!n) bad.links = 'Photo links must be full https:// web addresses';
+    else if (!r.links.some((x) => x.url === n.url)) r.links.push(n);
+  });
   if (Object.keys(bad).length) fail(400, 'invalid', { fields: bad });
   [r.pub_lat, r.pub_lon] = fuzz(r.lat, r.lon);
   return r;
+}
+
+// A public https web address on a real hostname (no IPs, no localhost, no credentials), max 500 chars.
+export function normalizeLink(v) {
+  if (v.length > 500) return null;
+  let u;
+  try { u = new URL(v); } catch { return null; }
+  if (u.protocol !== 'https:' || u.username || u.password || u.port) return null;
+  const host = u.hostname.toLowerCase();
+  if (!/^[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}$/.test(host) || host === 'localhost') return null;
+  u.hash = '';
+  return { url: u.href, host: host.replace(/^www\./, '') };
 }
 
 async function submit(req, env, ctx) {
@@ -302,26 +323,12 @@ async function submit(req, env, ctx) {
   const email = user ? '' : line(d.email, 254).toLowerCase();
   if (email && !EMAIL.test(email)) fail(400, 'invalid', { fields: { email: 'Check your email address' } });
 
-  const files = form.getAll('photo').filter((x) => typeof x === 'object' && x && 'arrayBuffer' in x);
-  if (files.length > MAX_PHOTOS) fail(400, 'invalid', { fields: { photos: `Up to ${MAX_PHOTOS} photos` } });
+  // Uploads are switched off for good (Mike, 2026-10-12): photos come in as links only.
+  if (form.getAll('photo').length) fail(400, 'invalid', { fields: { links: 'We don\'t take uploads. Paste a link to the photo instead.' } });
   const iph = await hash(env, ip);
   const rules = [[`rep|ip|${iph}`, int(env, 'REPORTS_IP_HOUR', 3), 3600], [`rep|ipd|${iph}`, int(env, 'REPORTS_IP_DAY', 10), 86400]];
   if (user) rules.push([`rep|u|${user.id}`, int(env, 'REPORTS_USER_DAY', 6), 86400]);
   if (await rateLimited(env, rules)) fail(429, 'slow');
-
-  // Photos: size check, then a full rebuild of the JPEG (see jpeg.js). Non-JPEGs are refused.
-  const photos = [];
-  for (const [n, file] of files.entries()) {
-    if (file.size > MAX_PHOTO_BYTES) fail(400, 'invalid', { fields: { photos: `Photo ${n + 1} is too big (6 MB max)` } });
-    let clean;
-    try {
-      clean = sanitizeJpeg(await file.arrayBuffer());
-    } catch (e) {
-      if (e instanceof BadImage) fail(400, 'invalid', { fields: { photos: `Photo ${n + 1} isn't a JPEG photo we can use` } });
-      throw e;
-    }
-    photos.push({ id: randomId(12), ...clean });
-  }
 
   let uid = user ? user.id : null;
   if (!uid && email) {
@@ -330,21 +337,13 @@ async function submit(req, env, ctx) {
     uid = u.id;
   }
   const pid = randomPid();
-  for (const ph of photos) {
-    await env.PHOTOS.put(`p/${ph.id}.jpg`, ph.bytes, { httpMetadata: { contentType: 'image/jpeg' } });
-  }
   const row = await env.DB.prepare(
     `INSERT INTO reports (pid, user_id, creature, other_what, seen_date, seen_time, date_approx, lat, lon, pub_lat, pub_lon,
-       loc_source, place, story, duration, sounds, smells, witnesses, display_name, anonymous, videos, ip_hash)
-     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18, ?19, ?20, ?21, ?22) RETURNING id`,
+       loc_source, place, story, duration, sounds, smells, witnesses, display_name, anonymous, videos, ip_hash, links)
+     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18, ?19, ?20, ?21, ?22, ?23) RETURNING id`,
   ).bind(pid, uid, f.creature, f.other_what, f.seen_date, f.seen_time, f.date_approx, f.lat, f.lon, f.pub_lat, f.pub_lon,
     f.loc_source, f.place, f.story, f.duration, f.sounds, f.smells, f.witnesses, f.display_name, f.anonymous,
-    JSON.stringify(f.videos), iph).first();
-  if (photos.length) {
-    await env.DB.batch(photos.map((ph, i) => env.DB.prepare(
-      'INSERT INTO photos (id, report_id, idx, w, h, bytes) VALUES (?1, ?2, ?3, ?4, ?5, ?6)',
-    ).bind(ph.id, row.id, i, ph.w, ph.h, ph.bytes.length)));
-  }
+    JSON.stringify(f.videos), iph, JSON.stringify(f.links)).first();
   let extra = {};
   if (!user && email) extra = await mailLink(env, email, pid, 'report').catch((e) => (console.error(e), {}));
   if (env.OWNER_EMAIL) {
@@ -355,7 +354,7 @@ async function submit(req, env, ctx) {
       text: `${what}, ${f.seen_date}, ${f.place || 'no place name'}\n\n${f.story.slice(0, 600)}\n\nReview: ${modUrl}`,
     }).catch((e) => console.error(e)));
   }
-  return json({ state: 'ok', id: pid, status: 'pending', photos: photos.length, ...extra }, 201);
+  return json({ state: 'ok', id: pid, status: 'pending', ...extra }, 201);
 }
 
 const photoUrl = (env, id) => `/img/${id}.jpg`;
@@ -370,6 +369,7 @@ function publicReport(env, r, photos) {
     name: r.anonymous ? null : r.display_name || null,
     photos: photos.map((p) => ({ id: p.id, url: photoUrl(env, p.id), w: p.w, h: p.h, item: `p:${p.id}` })),
     videos: vids.map((v, i) => ({ provider: v.p, id: v.id, url: v.url, item: `v:${r.pid}:${i}` })),
+    links: JSON.parse(r.links || '[]'),
     item: `r:${r.pid}`, created: r.created, approved_at: r.approved_at,
   };
 }
@@ -416,6 +416,7 @@ async function listReports(env, url) {
     seen_date: r.seen_date, date_approx: !!r.date_approx, place: r.place, lat: r.pub_lat, lon: r.pub_lon,
     snippet: r.story.length > 220 ? r.story.slice(0, 210).replace(/\s+\S*$/, '') + '…' : r.story,
     photo: r.photo ? photoUrl(env, r.photo) : null, n_photos: r.n_photos, n_videos: JSON.parse(r.videos).length,
+    n_links: JSON.parse(r.links || '[]').length,
     witnesses: r.witnesses, approved_at: r.approved_at,
   }));
   return json({ reports, next: more ? reports[reports.length - 1].approved_at : null }, 200, { 'cache-control': 'public, max-age=60' });
@@ -452,13 +453,13 @@ async function editReport(req, env, pid) {
   await env.DB.prepare(
     `UPDATE reports SET creature=?2, other_what=?3, seen_date=?4, seen_time=?5, date_approx=?6, lat=?7, lon=?8, pub_lat=?9,
        pub_lon=?10, loc_source=?11, place=?12, story=?13, duration=?14, sounds=?15, smells=?16, witnesses=?17,
-       display_name=?18, anonymous=?19, videos=?20, status='pending', updated=unixepoch() WHERE id=?1`,
+       display_name=?18, anonymous=?19, videos=?20, links=?21, status='pending', updated=unixepoch() WHERE id=?1`,
   ).bind(r.id, f.creature, f.other_what, f.seen_date, f.seen_time, f.date_approx, f.lat, f.lon, f.pub_lat, f.pub_lon,
     f.loc_source, f.place, f.story, f.duration, f.sounds, f.smells, f.witnesses, f.display_name, f.anonymous,
-    JSON.stringify(f.videos)).run();
+    JSON.stringify(f.videos), JSON.stringify(f.links)).run();
   for (const id of remove) {
     const ph = await env.DB.prepare('UPDATE photos SET removed = 1 WHERE id = ?1 AND report_id = ?2 RETURNING id').bind(id, r.id).first();
-    if (ph) await env.PHOTOS.delete(`p/${id}.jpg`);
+    if (ph && env.PHOTOS) await env.PHOTOS.delete(`p/${id}.jpg`);
   }
   return json({ state: 'ok', status: 'pending' });
 }
@@ -466,7 +467,7 @@ async function editReport(req, env, pid) {
 async function withdrawReport(req, env, pid) {
   const { r } = await ownReport(req, env, pid);
   const ph = (await env.DB.prepare('SELECT id FROM photos WHERE report_id = ?1').bind(r.id).all()).results;
-  if (ph.length) await env.PHOTOS.delete(ph.map((p) => `p/${p.id}.jpg`));
+  if (ph.length && env.PHOTOS) await env.PHOTOS.delete(ph.map((p) => `p/${p.id}.jpg`));
   await env.DB.batch([
     env.DB.prepare(`UPDATE reports SET status = 'withdrawn', updated = unixepoch() WHERE id = ?1`).bind(r.id),
     env.DB.prepare('UPDATE photos SET removed = 1 WHERE report_id = ?1').bind(r.id),
@@ -486,7 +487,7 @@ export const IMG_HEADERS = {
 
 async function image(env, p, url) {
   const m = p.match(/^\/img\/([0-9a-f]{24})\.jpg$/);
-  if (!m) return new Response('Not found', { status: 404 });
+  if (!m || !env.PHOTOS) return new Response('Not found', { status: 404 }); // uploads are off; no photo store
   // ?k= is a short-lived signed key the API hands an owner (or moderator) for photos not yet public.
   const k = url.searchParams.get('k');
   const kp = k ? await verify(env, k) : null;

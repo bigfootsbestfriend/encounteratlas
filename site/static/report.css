@@ -221,3 +221,7 @@
 .my-reports li { display: flex; align-items: center; gap: .8rem; flex-wrap: wrap; padding: .6rem .8rem; background: #fff; border: 1px solid var(--mist-2); border-radius: 10px; margin-bottom: .5rem; }
 .mr-t { flex: 1 1 200px; font-weight: 600; }
 .acct-name { max-width: 560px; }
+.host-help { margin: .6rem 0; padding: .6rem .9rem; background: #F6F4E6; border-radius: 10px; font-size: .92rem; }
+.host-help summary { cursor: pointer; font-weight: 700; color: var(--spruce); }
+.host-help ul { margin: .4rem 0 .6rem 1.1rem; padding: 0; }
+.plinks { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }

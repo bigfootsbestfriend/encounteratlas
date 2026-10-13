@@ -806,7 +806,7 @@ def build_static_pages():
     write('/report/', page('/report/', 'Report an encounter', f'''
 <section class="band band-dark"><div class="wrap">
   <h1>Report an encounter</h1>
-  <p class="lede">Saw something you can't explain? The report form is being built now and opens soon, with photo and video uploads and a pin on the map.</p>
+  <p class="lede">Saw something you can't explain? The report form is being built now and opens soon, with links to your photos and videos and a pin on the map.</p>
 </div></section>
 <div class="band band-mist"><div class="wrap prose">
   <p><a class="btn" href="{url('/printables/after-an-encounter/')}">Print the encounter record sheet</a></p>
@@ -845,15 +845,15 @@ def build_static_pages():
 <ul>
 <li><strong>No ads, no tracking cookies, no account needed.</strong> You can read every page and use the map and tools without signing up.</li>
 <li><strong>Visitor counts:</strong> we don't run visitor analytics right now. If we add them, we'll use a cookie-free service that only shows totals, like page views and countries, and we'll update this page first.</li>
-<li><strong>Things your browser remembers, not us:</strong> your sort choice on the creature index, and a draft of a report you haven't sent yet (text and photos, stored only on your device so you don't lose them). Clearing your browser data removes them.</li>
+<li><strong>Things your browser remembers, not us:</strong> your sort choice on the creature index, and a draft of a report you haven't sent yet (stored only on your device so you don't lose them). Clearing your browser data removes them.</li>
 <li><strong>Other services the pages load:</strong> map tiles from OpenFreeMap, fonts from Google Fonts and code libraries from cdnjs. Like any website, these see your IP address when they send the file. Witness videos only load from YouTube (in its privacy-enhanced mode) when you press play.</li>
 </ul>
 
 <h2>Sending a report</h2>
-<p>When you report an encounter we keep what you type and choose: the date and time, what you saw, the story, sounds, smells, how many people were there, any photos and video links, and where it happened.</p>
+<p>When you report an encounter we keep what you type and choose: the date and time, what you saw, the story, sounds, smells, how many people were there, links to any photos and videos, and where it happened.</p>
 <ul>
 <li><strong>Your exact location is private.</strong> Only our moderators see the exact spot. The public map shows the report on a grid of about 5 km (3 miles), never the exact point, so nobody can find your home or a private spot from it.</li>
-<li><strong>Photos are cleaned.</strong> We remove the hidden data cameras add to photos (EXIF), including GPS coordinates and the phone model, and we re-save every image before it's stored. The original file you uploaded is not kept.</li>
+<li><strong>We don't take photo or video uploads.</strong> You can link to pictures and videos you've posted elsewhere (Imgur, Flickr, YouTube and so on). Those files stay on that service, under its rules. Some services keep the GPS location inside a photo, so check before you share a link.</li>
 <li><strong>Your name is optional.</strong> Reports are anonymous unless you choose to show a display name.</li>
 <li><strong>Every report is checked by a person</strong> before it appears on the site, and we can turn down reports that break our rules.</li>
 <li><strong>Spam protection:</strong> forms use Cloudflare Turnstile to check you're not a bot, and we store a scrambled one-way code made from your IP address (not the address itself) to spot floods of fake reports or votes.</li>
@@ -868,15 +868,15 @@ def build_static_pages():
 
 <h2>Who can see what</h2>
 <ul>
-<li><strong>Everyone:</strong> approved reports (story, date, approximate area, photos, video links, display name if you chose one) and vote totals.</li>
+<li><strong>Everyone:</strong> approved reports (story, date, approximate area, photo and video links, display name if you chose one) and vote totals.</li>
 <li><strong>Our moderators only:</strong> the exact location, your email address and the scrambled IP code, to check reports and stop abuse.</li>
-<li><strong>Service providers that run the site for us:</strong> Cloudflare (hosting for reports, photos and the database), Resend (sends the sign-in emails) and GitHub (hosts the public pages). They process data only to provide those services.</li>
+<li><strong>Service providers that run the site for us:</strong> Cloudflare (hosting for reports and the database), Resend (sends the sign-in emails) and GitHub (hosts the public pages). They process data only to provide those services.</li>
 <li>We don't sell or rent anyone's information, and we don't share it with advertisers or other sighting organisations.</li>
 </ul>
 
 <h2>Removing your report or account</h2>
 <ul>
-<li>If you sent a report while signed in, you can edit or withdraw it yourself from the report page. Withdrawing deletes its photos straight away.</li>
+<li>If you sent a report while signed in, you can edit or withdraw it yourself from the report page. Withdrawing removes it from the site straight away.</li>
 <li>To remove a report sent without an account, delete your account, or ask what we hold about you, email <a href="mailto:hello@encounteratlas.com">hello@encounteratlas.com</a>. We reply within 30 days.</li>
 <li>Sign-ins expire after 90 days on a device, and you can sign out at any time.</li>
 </ul>

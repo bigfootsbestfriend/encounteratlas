@@ -94,7 +94,7 @@ async function queue(env, view) {
   for (const r of rows) {
     const photos = (await env.DB.prepare('SELECT id, w, h, bytes FROM photos WHERE report_id = ?1 AND removed = 0 ORDER BY idx').bind(r.id).all()).results;
     for (const ph of photos) ph.url = `/img/${ph.id}.jpg?k=${encodeURIComponent(await sign(env, `i|${ph.id}|${now()}`))}`;
-    out.reports.push({ ...r, videos: JSON.parse(r.videos), photos });
+    out.reports.push({ ...r, videos: JSON.parse(r.videos), links: JSON.parse(r.links || '[]'), photos });
   }
   return out;
 }
@@ -116,7 +116,7 @@ async function action(req, env, url) {
     done = r ? `${st} ${id}` : 'not found';
   } else if (act === 'remove_photo') {
     const r = await D.prepare('UPDATE photos SET removed = 1 WHERE id = ?1 RETURNING id').bind(id).first();
-    if (r) await env.PHOTOS.delete(`p/${id}.jpg`);
+    if (r && env.PHOTOS) await env.PHOTOS.delete(`p/${id}.jpg`);
     done = r ? 'photo removed' : 'not found';
   } else if (act === 'unfreeze') {
     await D.prepare(`UPDATE items SET frozen = 0, flag = '', flag_note = '', ai_flags = 0 WHERE item = ?1`).bind(id).run();
@@ -182,6 +182,8 @@ ${it.pid ? btn('reject', it.pid, 'Unpublish report', view, '<input name="note" p
       const what = r.creature === 'other' ? `Something else: ${r.other_what}` : CREATURES[r.creature] || r.creature;
       const photos = r.photos.map((ph) => `<figure><a href="${esc(ph.url)}" target="_blank"><img src="${esc(ph.url)}" alt="" loading="lazy"></a>
 <figcaption>${ph.w}×${ph.h}, ${Math.round(ph.bytes / 1024)} KB ${btn('remove_photo', ph.id, 'Remove', view, '', 'ghost small')}</figcaption></figure>`).join('');
+      // Photo links open in a new tab with no referrer; check them before approving (they're on other people's servers).
+      const lks = r.links.map((l) => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer nofollow">photo on ${esc(l.host)}: ${esc(l.url)}</a></li>`).join('');
       const vids = r.videos.map((v) => `<li><a href="${esc(v.url)}" target="_blank" rel="noopener noreferrer">${esc(v.p)}: ${esc(v.url)}</a></li>`).join('');
       const osm = `https://www.openstreetmap.org/?mlat=${r.lat}&mlon=${r.lon}#map=14/${r.lat}/${r.lon}`;
       html += `<article class="card"><h2>${esc(what)} <span class="muted">${esc(r.pid)}</span></h2>
@@ -192,7 +194,7 @@ ${it.pid ? btn('reject', it.pid, 'Unpublish report', view, '<input name="note" p
 <dt>By</dt><dd>${r.anonymous ? 'Anonymous publicly' : esc(r.display_name)} · ${r.email ? esc(r.email) + ` (account since ${when(r.u_created).slice(0, 10)})` : 'no email'} · ip ${esc(r.ip_hash.slice(0, 8))}</dd>
 <dt>Sent</dt><dd>${when(r.created)}${r.updated > r.created + 5 ? `, edited ${when(r.updated)}` : ''}</dd></dl>
 <div class="story">${esc(r.story)}</div>
-${photos ? `<div class="photos">${photos}</div>` : ''}${vids ? `<ul>${vids}</ul>` : ''}
+${photos ? `<div class="photos">${photos}</div>` : ''}${lks ? `<p><b>Photo links</b> (open each one and check it before approving)</p><ul>${lks}</ul>` : ''}${vids ? `<ul>${vids}</ul>` : ''}
 <div class="acts">${r.status !== 'approved' ? btn('approve', r.pid, 'Approve', view, '<input name="note" placeholder="note (optional)" aria-label="note">') : ''}
 ${r.status !== 'rejected' ? btn('reject', r.pid, r.status === 'approved' ? 'Unpublish' : 'Reject', view, '<input name="note" placeholder="reason (shown to the reporter)" aria-label="reason">', 'red') : ''}
 ${r.status === 'approved' ? `<a href="${esc(env.SITE)}/reports/?id=${esc(r.pid)}" target="_blank" rel="noopener">View on site</a>` : ''}</div></article>`;
