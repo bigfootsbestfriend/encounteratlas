@@ -50,6 +50,56 @@
 "lon": -121.6
 },
 {
+"creature": "kussie",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Forty schoolchildren on a hike",
+"year": 1973,
+"place": "Lake Kussharo, Teshikaga, Hokkaido, Japan",
+"lat": 43.62,
+"lon": 144.33
+},
+{
+"creature": "kussie",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Two shining humps",
+"year": 1974,
+"place": "Lake Kussharo, Teshikaga, Hokkaido, Japan",
+"lat": 43.62,
+"lon": 144.33
+},
+{
+"creature": "kussie",
+"cat": "aquatic",
+"icon": "lake",
+"name": "The face that scared a horse",
+"year": 1975,
+"place": "Lake Kussharo, Teshikaga, Hokkaido, Japan",
+"lat": 43.62,
+"lon": 144.33
+},
+{
+"creature": "kussie",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Firefighters see two creatures",
+"year": 1997,
+"place": "Lake Kussharo, Teshikaga, Hokkaido, Japan",
+"lat": 43.62,
+"lon": 144.33
+},
+{
+"creature": "moon-lake-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "A zigzag ripple through binoculars",
+"year": 1994,
+"place": "Moon Lake, Duchesne County, Utah",
+"lat": 40.565,
+"lon": -110.505
+},
+{
 "creature": "yeti",
 "cat": "hominid",
 "icon": "yeti",

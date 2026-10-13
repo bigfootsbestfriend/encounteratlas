@@ -82,6 +82,104 @@
   "wiki": "Bigfoot"
  },
  {
+  "slug": "kussie",
+  "name": "Kussie",
+  "aliases": [
+   "Kusshii",
+   "Lake Kussharo monster"
+  ],
+  "cat": "aquatic",
+  "icon": "lake",
+  "region": "Lake Kussharo, Akan-Mashu National Park, Hokkaido, Japan",
+  "cc": [
+   "JP"
+  ],
+  "first": "A wave of sightings from 1973",
+  "summary": "A humped lake monster said to live in Lake Kussharo, a volcanic crater lake in eastern Hokkaido.",
+  "body": [
+   "Kussie is the creature people have reported since the 1970s in Lake Kussharo, the largest crater lake in Japan, in Akan-Mashu National Park on Hokkaido. Like Issie in the south, the name copies Nessie.",
+   "Kussie became famous across Japan in August 1973, when a group of about forty junior-high students on a school hike said they saw it from the shore. Reports followed through the 1970s, 1980s and 1990s: dark humps, a head like a horse's, and great splashes. Since the 2000s sightings have almost stopped. A statue of Kussie now stands on the lakeshore and the creature is part of the area's tourism.",
+   "Sceptics point out that a big animal would struggle to live here. After an earthquake in 1938 the lake turned acidic and most of its fish died, and it has been restocked only since. Ainu stories tell of a giant serpent in the lake, but nobody can say whether they have anything to do with the modern sightings. Waves from boats, large trout and the long ice ridges that push up across the frozen lake in winter are the usual explanations."
+  ],
+  "signs": [
+   "Two dark, triangular humps moving fast across the lake",
+   "A long neck or a head like a horse's above the water",
+   "A sudden loud splash, like logs thrown into the lake"
+  ],
+  "size": "10 to 15 m (33 to 49 ft) long (reported)",
+  "habitat": "A large volcanic crater lake",
+  "famous": [
+   {
+    "name": "Forty schoolchildren on a hike",
+    "year": 1973,
+    "place": "Lake Kussharo, Teshikaga, Hokkaido, Japan"
+   },
+   {
+    "name": "Two shining humps",
+    "year": 1974,
+    "place": "Lake Kussharo, Teshikaga, Hokkaido, Japan"
+   },
+   {
+    "name": "The face that scared a horse",
+    "year": 1975,
+    "place": "Lake Kussharo, Teshikaga, Hokkaido, Japan"
+   },
+   {
+    "name": "Firefighters see two creatures",
+    "year": 1997,
+    "place": "Lake Kussharo, Teshikaga, Hokkaido, Japan"
+   }
+  ],
+  "related": [
+   "issie",
+   "loch-ness-monster",
+   "ogopogo",
+   "champ"
+  ],
+  "wiki": "Kussie"
+ },
+ {
+  "slug": "moon-lake-monster",
+  "name": "Moon Lake Monster",
+  "aliases": [
+   "Moonie"
+  ],
+  "cat": "aquatic",
+  "icon": "lake",
+  "region": "Moon Lake, High Uintas, Duchesne County, Utah",
+  "cc": [
+   "US"
+  ],
+  "first": "Local legend; best-known sighting 1994",
+  "summary": "A dark, serpent-like creature said to swim in Moon Lake, high in Utah's Uinta Mountains.",
+  "body": [
+   "Moonie is the local name for a creature people say lives in Moon Lake, a deep mountain lake at about 8,100 feet in the Uinta Mountains of northeast Utah. It is much less famous than the Bear Lake Monster, but it is a fixture of stories at the lake's old resort.",
+   "Witnesses describe a large, dark, snake-like shape that leaves a V-shaped wake, or something like a bumpy log 12 to 15 feet long that seems to follow boats. Guests have sent their own accounts to the resort over the years, but almost none are dated or named.",
+   "The lake was enlarged by a dam in the 1930s and is over 100 feet deep in places, which feeds stories about bottomless spots and hidden channels. Beavers, otters, big trout and floating logs are the likely explanations."
+  ],
+  "signs": [
+   "A steady V-shaped wake with nothing visible making it",
+   "A dark, bumpy shape like a log that moves against the wind",
+   "Ripples zigzagging across calm water"
+  ],
+  "size": "About 12 to 15 ft long (reported)",
+  "habitat": "A deep, dammed mountain lake",
+  "famous": [
+   {
+    "name": "A zigzag ripple through binoculars",
+    "year": 1994,
+    "place": "Moon Lake, Duchesne County, Utah"
+   }
+  ],
+  "related": [
+   "bear-lake-monster",
+   "utah-lake-monster",
+   "flathead-lake-monster",
+   "champ"
+  ],
+  "wiki": "Moon_Lake_Monster"
+ },
+ {
   "slug": "yeti",
   "name": "Yeti",
   "aliases": [
