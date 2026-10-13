@@ -636,3 +636,10 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 @media (max-width: 600px) { body.mapper .map-full-bar { padding: .45rem .6rem; } .mf-toggle { font-size: .9rem; padding: .35rem .8rem; } }
 .mf-panel .tchips, .mf-panel .catchips { flex-wrap: wrap; overflow: visible; margin-right: 0; padding-right: 0; -webkit-mask-image: none; mask-image: none; }
 .mf-done { position: sticky; bottom: 0; box-shadow: 0 -6px 14px var(--spruce), 0 4px 12px rgba(0,0,0,.35); }
+/* About page: owner card */
+.owner-card { display: flex; gap: 1.4rem; align-items: center; padding: 1.2rem 1.4rem; margin: 0 0 2rem; border-radius: 18px; background: #F6F0E2; border: 1px solid var(--mist-2); }
+.owner-card img { display: block; width: 160px; height: 160px; border-radius: 50%; background: #E9DFC8; object-fit: cover; object-position: top; flex: none; }
+.owner-card h2 { margin-top: 0; }
+.owner-card p { margin-bottom: 0; }
+@media (max-width: 560px) { .owner-card { flex-direction: column; text-align: center; } .owner-card img { width: 140px; height: 140px; } }
+.owner-card picture { flex: none; display: block; }

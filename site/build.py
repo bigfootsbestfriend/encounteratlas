@@ -144,6 +144,10 @@ def ld_json(path, title, body):
     out = []
     if path == '/':
         out.append({'@context': 'https://schema.org', '@type': 'WebSite', 'name': 'Encounter Atlas', 'url': SITE_URL + '/'})
+    if path == '/about/':
+        out.append({'@context': 'https://schema.org', '@type': 'AboutPage', 'url': SITE_URL + '/about/', 'mainEntity': {
+            '@type': 'Person', 'name': 'Mike Johnston', 'image': SITE_URL + '/static/img/mike-johnston.png', 'nationality': 'Canadian',
+            'jobTitle': 'Founder', 'worksFor': {'@type': 'Organization', 'name': 'Encounter Atlas', 'url': SITE_URL + '/'}}})
     m = re.search(r'<p class="crumb">(.*?)</p>', body, re.S)
     if m:
         items = [(html.unescape(re.sub(r'<[^>]+>', '', t)).strip(), h) for h, t in re.findall(r'<a href="([^"]+)"[^>]*>(.*?)</a>', m.group(1))]
@@ -1093,6 +1097,11 @@ def build_static_pages():
 <section class="band band-dark"><div class="wrap"><h1>About Encounter Atlas</h1>
 <p class="lede">One place for strange sightings: creatures, UFOs and the official files, mapped and searchable.</p></div></section>
 <div class="band band-mist"><div class="wrap prose">
+<div class="owner-card">
+  <picture><source srcset="{url('/static/img/mike-johnston.webp')}" type="image/webp"><img src="{url('/static/img/mike-johnston.png')}" alt="Mike Johnston" width="160" height="160"></picture>
+  <div><h2>Who's behind it</h2>
+  <p>Encounter Atlas is built and run by <strong>Mike Johnston</strong>, a Canadian web developer with a long-running interest in Bigfoot, lake monsters and UFOs. Questions, corrections or a case we should add? <a href="{url('/contact/')}">Get in touch</a>.</p></div>
+</div>
 <h2>Sources</h2>
 <ul>
 <li><strong>Project Blue Book case files</strong>, US Air Force, 1947 to 1969. US National Archives, Record Group 341, microfilm T1206. US federal records, no copyright in the United States. Places were matched automatically from the folder titles; dots marked “approximate” are placed at the state or country, not the exact spot.</li>
