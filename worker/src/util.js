@@ -139,3 +139,36 @@ export function para(v, max) {
   return String(v ?? '').replace(/\r\n?/g, '\n').replace(/[\u0000-\u0009\u000b-\u001f\u007f​-‏‪-‮⁦-⁩]/g, ' ')
     .replace(/[ \t]+/g, ' ').replace(/ *\n */g, '\n').replace(/\n{3,}/g, '\n\n').trim().slice(0, max);
 }
+
+// ---------------- branded email ----------------
+// One layout for every email the Worker sends: dark header with the folded-map mark and wordmark, a cream card,
+// and Mike's signature. Tables and inline styles only (Gmail, Outlook, Apple Mail); images are PNGs on the site.
+// paras: HTML strings the caller has already escaped. Returns { html, text } with a matching plain-text version.
+const ASSET = 'https://encounteratlas.com/static/email/';
+const C = { spruce: '#13261F', cream: '#F6F0E2', page: '#E7E9E1', ink: '#1F2A24', muted: '#5D6B62', lantern: '#F2B33D', line: '#DDD3BC' };
+const FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
+export function emailLayout({ preheader = '', heading = '', paras = [], button = null, note = '', text = '', signature = true, footer = '' }) {
+  const p = (h) => `<p style="margin:0 0 16px;font:16px/1.55 ${FONT};color:${C.ink}">${h}</p>`;
+  const btn = button ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:4px 0 20px"><tr><td bgcolor="${C.lantern}" style="border-radius:999px">
+<a href="${esc(button.href)}" style="display:inline-block;padding:13px 24px;font:700 16px ${FONT};color:${C.spruce};text-decoration:none;border-radius:999px">${esc(button.label)}</a></td></tr></table>` : '';
+  const sig = signature ? `<tr><td style="padding:0 32px 28px"><table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-top:1px solid ${C.line}"><tr>
+<td width="56" valign="top" style="padding-top:18px"><img src="${ASSET}mike-96.png" width="48" height="48" alt="" style="display:block;border:0;border-radius:24px"></td>
+<td valign="top" style="padding-top:18px;font:15px/1.5 ${FONT};color:${C.ink}"><strong>Mike Johnston</strong> · Encounter Atlas<br>
+<span style="color:${C.muted}">Got a question? Just reply to this email.</span><br>
+<a href="https://encounteratlas.com/" style="color:#8A5A00;text-decoration:underline">encounteratlas.com</a></td></tr></table></td></tr>` : '';
+  const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light only"><title>${esc(heading || 'Encounter Atlas')}</title></head>
+<body style="margin:0;padding:0;background:${C.page}">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0">${esc(preheader)}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${C.page}" style="background:${C.page}"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;background:${C.cream};border-radius:16px;overflow:hidden" bgcolor="${C.cream}">
+<tr><td bgcolor="${C.spruce}" style="background:${C.spruce};padding:18px 32px"><a href="https://encounteratlas.com/" style="text-decoration:none">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td valign="middle"><img src="${ASSET}logo-mark-96.png" width="48" height="48" alt="" style="display:block;border:0"></td>
+<td valign="middle" style="padding-left:12px;font:700 22px Georgia,'Times New Roman',serif;color:#E8E0B8">Encounter Atlas</td></tr></table></a></td></tr>
+<tr><td style="padding:28px 32px 8px">${heading ? `<h1 style="margin:0 0 14px;font:700 22px/1.3 Georgia,'Times New Roman',serif;color:${C.spruce}">${esc(heading)}</h1>` : ''}
+${paras.map(p).join('\n')}${btn}${note ? `<p style="margin:0 0 20px;font:14px/1.5 ${FONT};color:${C.muted}">${note}</p>` : ''}</td></tr>
+${sig}${footer ? `<tr><td style="padding:0 32px 24px;font:13px/1.5 ${FONT};color:${C.muted}">${footer}</td></tr>` : ''}
+</table></td></tr></table></body></html>`;
+  const plain = text + (signature ? '\n\n-- \nMike Johnston · Encounter Atlas\nGot a question? Just reply to this email.\nhttps://encounteratlas.com/' : '');
+  return { html, text: plain };
+}

@@ -24,7 +24,7 @@ import { sanitizeJpeg, BadImage } from './jpeg.js';
 import { handleMod } from './mod.js';
 import {
   HttpError, fail, json, sign, verify, hash, randomId, randomPid, clientIp, network, int, rateLimited, turnstileOk,
-  sendEmail, line, para, esc, now,
+  sendEmail, emailLayout, line, para, esc, now,
 } from './util.js';
 
 export const CHOICES = ['real', 'hoax', 'mis'];
@@ -127,7 +127,12 @@ async function contact(req, env) {
   const res = await sendEmail(env, {
     to: [env.CONTACT_TO || 'hello@encounteratlas.com'], reply_to: email,
     subject: `[Encounter Atlas] ${TOPICS[topic]}: ${name || email}`,
-    text: `From: ${name || '(no name)'} <${email}>\nTopic: ${TOPICS[topic]}\n\n${message}`,
+    ...emailLayout({
+      preheader: message.slice(0, 120), heading: `New message: ${TOPICS[topic]}`, signature: false,
+      paras: [`<strong>From:</strong> ${esc(name || '(no name)')} &lt;${esc(email)}&gt;`, esc(message).replace(/\n/g, '<br>')],
+      footer: 'Sent from the contact form on encounteratlas.com. Reply to this email to answer them directly.',
+      text: `From: ${name || '(no name)'} <${email}>\nTopic: ${TOPICS[topic]}\n\n${message}`,
+    }),
   });
   return json({ state: 'ok', ...(res.logged ? { logged: true } : {}) });
 }
@@ -169,14 +174,16 @@ async function mailLink(env, email, r, why) {
   const intro = why === 'report'
     ? 'Thanks for your report. It will appear on the map once a moderator has checked it. Use this link to sign in, follow it and make changes:'
     : 'Here is your sign-in link for Encounter Atlas. It lets you vote and edit your reports:';
+  const note = `The link works once, for ${LINK_MINUTES} minutes. If you didn't ask for it, you can ignore this email.`;
   const res = await sendEmail(env, {
-    to: [email],
+    to: [email], reply_to: env.CONTACT_TO || 'hello@encounteratlas.com',
     subject: why === 'report' ? 'Your encounter report' : 'Your Encounter Atlas sign-in link',
-    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;max-width:520px">
-<p>${esc(intro)}</p>
-<p><a href="${esc(link)}" style="display:inline-block;background:#F2B33D;color:#13261F;padding:12px 20px;border-radius:999px;text-decoration:none;font-weight:700">Sign in to Encounter Atlas</a></p>
-<p style="color:#666;font-size:14px">The link works once, for ${LINK_MINUTES} minutes. If you didn't ask for it, ignore this email.</p></div>`,
-    text: `${intro}\n\n${link}\n\nThe link works once, for ${LINK_MINUTES} minutes. If you didn't ask for it, ignore this email.`,
+    ...emailLayout({
+      preheader: why === 'report' ? 'Thanks for your report. Here is your link to follow it.' : 'Your one-time sign-in link.',
+      heading: why === 'report' ? 'Thanks for your report' : 'Your sign-in link',
+      paras: [esc(intro)], button: { href: link, label: 'Sign in to Encounter Atlas' }, note: esc(note),
+      text: `${intro}\n\n${link}\n\n${note}`,
+    }),
   });
   return res.logged && env.DEV === '1' ? { dev_link: link } : {};
 }
@@ -379,7 +386,12 @@ async function submit(req, env, ctx) {
     const modUrl = new URL('/mod', req.url).href;
     ctx.waitUntil(sendEmail(env, {
       to: [env.OWNER_EMAIL], subject: `New encounter report: ${what}`,
-      text: `${what}, ${f.seen_date}, ${f.place || 'no place name'}\n\n${f.story.slice(0, 600)}\n\nReview: ${modUrl}`,
+      ...emailLayout({
+        preheader: `${what}, ${f.seen_date}`, heading: `New report: ${what}`, signature: false,
+        paras: [`<strong>${esc(f.seen_date)}</strong> · ${esc(f.place || 'no place name')}`, esc(f.story.slice(0, 600)).replace(/\n/g, '<br>')],
+        button: { href: modUrl, label: 'Review in moderation' },
+        text: `${what}, ${f.seen_date}, ${f.place || 'no place name'}\n\n${f.story.slice(0, 600)}\n\nReview: ${modUrl}`,
+      }),
     }).catch((e) => console.error(e)));
   }
   return json({ state: 'ok', id: pid, status: 'pending', ...extra }, 201);
