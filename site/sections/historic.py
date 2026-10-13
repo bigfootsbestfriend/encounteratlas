@@ -252,6 +252,7 @@ class H:
   {groups}
   <p class="empty" hidden>Nothing matches that filter.</p>
   {self.state_links()}
+  {c.signup_box('hist', 'This week in the old newspapers', 'Every Thursday: the monster, wild-man and airship stories printed this same week a century or more ago, plus a creature of the week and new reader reports. Unsubscribe in one click.')}
   {self.source_box()}
 </div></div>'''
         c.write('/history/', c.page('/history/', 'Historic monster, sea serpent and airship reports from old newspapers', body,

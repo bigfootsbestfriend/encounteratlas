@@ -12,6 +12,7 @@ STATIC = os.path.join(ROOT, 'site', 'static')
 SITE_URL = os.environ.get('SITE_URL', 'https://encounteratlas.com').rstrip('/')
 BASE = os.environ.get('BASE_PATH', '').rstrip('/')  # '/encounteratlas' on the GitHub Pages preview
 INDEXNOW_KEY = '929458a6bce349d1b445a459836d80fe'
+NEWSLETTER_API = 'https://newsletter.crossplayguide.workers.dev'  # shared Worker (repo: newsletter); sites.json key 'encounteratlas'
 LAUNCHED = True  # launched 2026-10-13 (Mike: "launch the site")
 CF_BEACON = os.environ.get('CF_BEACON', '')
 GA_ID = os.environ.get('GA_ID', '')
@@ -253,7 +254,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
   <div class="foot-in">
     <p class="foot-brand"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</p>
     <p>Sightings, creatures and official files, mapped. Reports are what witnesses say they saw. We don't claim they're real, and we don't claim they're not.</p>
-    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/gear/')}">Gear</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{url('/privacy/')}">Privacy policy</a></p>
+    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/gear/')}">Gear</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/newsletter/')}">Weekly email</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{url('/privacy/')}">Privacy policy</a></p>
     {social_row('social foot-social')}
     <p class="small">As an Amazon Associate we earn from qualifying purchases. <a href="{url('/privacy/')}#affiliate">About our affiliate links</a>.</p>
     <p class="small">Air Force case files: US National Archives, Record Group 341. Canadian sightings: the Canadian UFO Survey, Ufology Research. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>
@@ -265,6 +266,19 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 </body>
 </html>
 '''
+
+
+def signup_box(uid, title='Strange news, once a week', text=None):
+    """Weekly email signup (double opt-in). The newsletter Worker sends people back to /newsletter/#check."""
+    text = text or ('This week in the old newspapers, a creature of the week and the newest reader reports. '
+                    'One short email on Thursdays, unsubscribe in one click.')
+    return f'''<section class="signup" id="signup-{uid}"><h2>{esc(title)}</h2>
+<p>{esc(text)}</p>
+<form action="{NEWSLETTER_API}/subscribe" method="post"><input type="hidden" name="site" value="encounteratlas">
+<input class="visually-hidden" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+<label for="email-{uid}" class="visually-hidden">Email address</label>
+<input id="email-{uid}" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
+<button type="submit" class="btn">Sign me up</button></form></section>'''
 
 
 def badge(c, size='md'):
@@ -684,7 +698,8 @@ def build_creatures(creatures, by_slug):
 </div>
 {gb}
 {mb}
-<div class="band band-mist" id="related">{related_groups(c)}</div>'''
+<div class="band band-mist" id="related">{related_groups(c)}</div>
+<div class="band band-mist nl-band"><div class="wrap">{signup_box('c', 'Get strange news, once a week', 'New ' + c['name'] + ' and cryptid reports, a creature of the week and what the old newspapers said this week. One short email on Thursdays, unsubscribe in one click.')}</div></div>'''
         write(f'/creatures/{c["slug"]}/', page(f'/creatures/{c["slug"]}/', f'{c["name"]}: ' + {'single': 'the story, facts and other names', 'folklore': 'stories, facts and other names'}.get(kind(c), 'sightings, facts and other names'),
                                                body, f'{c["summary"]} Also called {", ".join(c["aliases"][:4])}.'
                                                if c['aliases'] else c['summary']))
@@ -1061,6 +1076,7 @@ def build_home(creatures, n_points, bluebook, military):
   <p><a href="{url('/history/')}">All {len(hist)} old newspaper reports</a></p>""" if news_html else ''}
   <h2>Keep exploring</h2>
   <nav class="tiles home-explore" aria-label="More to explore">{explore_html}</nav>
+  {signup_box('home')}
 </div></div>
 <div class="band band-dark"><div class="wrap split split-3">
   <div>
@@ -1174,6 +1190,9 @@ def build_static_pages():
 <li>We don't sell or rent anyone's information, and we don't share it with advertisers or other sighting organisations.</li>
 </ul>
 
+<h2 id="newsletter">Weekly email</h2>
+<p>If you sign up for the <a href="{url('/newsletter/')}">weekly email</a>, we store your email address with <a href="https://resend.com/legal/privacy-policy">Resend</a>, the service that sends it, and use it only for that email. We ask you to confirm by clicking a link first. Every email has a one-click unsubscribe link, and we never sell or share the list. Signing up is separate from a reporting account: an account alone never puts you on the list.</p>
+
 <h2>Removing your report or account</h2>
 <ul>
 <li>If you sent a report while signed in, you can edit or withdraw it yourself from the report page. Withdrawing removes it from the site straight away.</li>
@@ -1236,7 +1255,7 @@ def main():
     import importlib.util, types
     ctx = types.SimpleNamespace(ROOT=ROOT, OUT=OUT, STATIC=STATIC, SITE_URL=SITE_URL, BASE=BASE, page=page, write=write,
                                 url=url, esc=esc, icon=icon, crit_icon=crit_icon, slugify=slugify, badge=badge, creature_card=creature_card,
-                                social_row=social_row, creatures=creatures, by_slug=by_slug, bluebook=bluebook, military=military, CATS=CATS, MONTHS=MONTHS)
+                                social_row=social_row, signup_box=signup_box, NEWSLETTER_API=NEWSLETTER_API, creatures=creatures, by_slug=by_slug, bluebook=bluebook, military=military, CATS=CATS, MONTHS=MONTHS)
     sec_dir = os.path.join(ROOT, 'site', 'sections')
     for fn in sorted(os.listdir(sec_dir)) if os.path.isdir(sec_dir) else []:
         if fn.endswith('.py') and not fn.startswith('_'):

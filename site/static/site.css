@@ -655,3 +655,14 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 .owner-social a { color: var(--spruce); border-color: var(--mist-2); background: #fff; }
 .owner-social a:hover { color: #1185FE; }
 .social a[data-net="facebook"]:hover { color: #1877F2; }
+
+/* Weekly email signup */
+.signup { background: #fff; border: 1px solid rgba(19,38,31,.15); border-left: 5px solid var(--lantern); border-radius: 12px; padding: 1.2rem 1.4rem; margin: 2rem 0 1rem; color: var(--ink); }
+.signup h2 { margin-top: 0; }
+.signup p { margin: .2rem 0 .8rem; }
+.signup form { display: flex; flex-wrap: wrap; gap: .5rem; }
+.signup input[type=email] { flex: 1 1 220px; min-width: 0; font: 1rem var(--body); padding: .65rem .8rem; border: 1px solid rgba(19,38,31,.3); border-radius: 10px; background: #fff; color: var(--ink); }
+.signup .btn { border: 0; cursor: pointer; }
+.nl-band { padding-top: 0; }
+.nl-band .signup { margin: 0 auto; max-width: 760px; }
+.nl-state { font-size: 1.15rem; }
