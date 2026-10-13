@@ -2336,8 +2336,8 @@
 "name": "Monkey-man panic sweeps the city",
 "year": 2001,
 "place": "New Delhi, India",
-"lat": 28.6214,
-"lon": 77.2148
+"lat": 28.6519,
+"lon": 77.2315
 },
 {
 "creature": "queensland-tiger",
@@ -3128,6 +3128,36 @@
 "place": "Z\u00fcrich, Switzerland",
 "lat": 47.3667,
 "lon": 8.55
+},
+{
+"creature": "cressie",
+"cat": "aquatic",
+"icon": "lake",
+"name": "The Parsons sighting",
+"year": 1991,
+"place": "Crescent Lake, Robert's Arm, Newfoundland and Labrador",
+"lat": 49.47,
+"lon": -55.82
+},
+{
+"creature": "cressie",
+"cat": "aquatic",
+"icon": "lake",
+"name": "A rolling black shape",
+"year": 1991,
+"place": "Crescent Lake, Robert's Arm, Newfoundland and Labrador",
+"lat": 49.47,
+"lon": -55.82
+},
+{
+"creature": "cressie",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Summer of sightings",
+"year": 2003,
+"place": "Crescent Lake, Robert's Arm, Newfoundland and Labrador",
+"lat": 49.47,
+"lon": -55.82
 },
 {
 "creature": "dungarvon-whooper",

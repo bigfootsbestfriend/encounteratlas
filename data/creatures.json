@@ -10588,6 +10588,60 @@
   "wiki": "Lake_Pohenegamook"
  },
  {
+  "slug": "cressie",
+  "name": "Cressie",
+  "aliases": [
+   "Crescent Lake monster",
+   "Robert's Arm lake monster"
+  ],
+  "cat": "aquatic",
+  "icon": "lake",
+  "region": "Crescent Lake, Robert's Arm, Newfoundland and Labrador",
+  "cc": [
+   "CA"
+  ],
+  "first": "Sightings at Crescent Lake from the 1950s",
+  "summary": "An eel-like lake monster said to swim in Crescent Lake, beside the Newfoundland town of Robert's Arm.",
+  "body": [
+   "Cressie is the nickname for a long, dark, eel-like animal that people in Robert's Arm, on Newfoundland's north coast, say lives in Crescent Lake on the edge of town. The name joins Crescent Lake and Nessie. Witnesses describe a shiny dark brown body about 15 feet long, with a small fish-like head and no fin.",
+   "Sightings go back to the 1950s, when two woodsmen ran to help the people in what they took for an upturned boat, only for it to slide under the water. Reports came again in the 1990s and 2000s. There are no photographs, and everything rests on local accounts.",
+   "Some writers link Cressie to Indigenous stories of a pond devil, but others point out that the link has been copied from book to book without anyone checking it. Large eels, which do live in Newfoundland lakes, are the usual explanation."
+  ],
+  "signs": [
+   "A long, dark, shiny back rolling at the surface like a whale's",
+   "A small, fish-like head and no fin",
+   "Churning water with nothing visible beneath it"
+  ],
+  "size": "About 15 ft long (reported)",
+  "habitat": "Small lake beside a coastal town",
+  "famous": [
+   {
+    "name": "The Parsons sighting",
+    "year": 1991,
+    "place": "Crescent Lake, Robert's Arm, Newfoundland and Labrador"
+   },
+   {
+    "name": "A rolling black shape",
+    "year": 1991,
+    "place": "Crescent Lake, Robert's Arm, Newfoundland and Labrador"
+   },
+   {
+    "name": "Summer of sightings",
+    "year": 2003,
+    "place": "Crescent Lake, Robert's Arm, Newfoundland and Labrador"
+   }
+  ],
+  "related": [
+   "ponik",
+   "old-ned",
+   "memphre",
+   "ogopogo",
+   "manipogo",
+   "igopogo"
+  ],
+  "wiki": "Cressie"
+ },
+ {
   "slug": "dungarvon-whooper",
   "name": "Dungarvon Whooper",
   "aliases": [

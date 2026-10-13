@@ -22,6 +22,7 @@
     "kongamato": {"dim": "wingspan", "lo": 4.0, "hi": 7.0, "draw": 5.5, "basis": "Witness reports usually say 4 to 7 ft wingspan."},
     "loch-ness-monster": {"dim": "length", "lo": 20.0, "hi": 40.0, "draw": 30.0, "basis": "Witness estimates put it at 20 to 40 ft long."},
     "ogopogo": {"dim": "length", "lo": 40.0, "hi": 50.0, "draw": 45.0, "basis": "Witness reports usually say 40 to 50 ft long."},
+    "cressie": {"dim": "length", "lo": 15.0, "hi": 20.0, "draw": 15.0, "basis": "Witnesses describe it as about 15 ft long; one 2003 report said 20 ft."},
     "champ": {"dim": "length", "lo": 15.0, "hi": 30.0, "draw": 22.5, "basis": "Witness reports usually say 15 to 30 ft long."},
     "bessie": {"dim": "length", "lo": 30.0, "hi": 40.0, "draw": 35.0, "basis": "Witness reports usually say 30 to 40 ft long."},
     "cadborosaurus": {"dim": "length", "lo": 15.0, "hi": 45.0, "draw": 30.0, "basis": "Witness reports usually say 15 to 45 ft long."},

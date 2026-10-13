@@ -14,7 +14,7 @@ OVR = os.path.join(ROOT, 'data', 'famous_overrides.json')
 def main():
     creatures = json.load(open(os.path.join(ROOT, 'data', 'creatures.json')))
     overrides = json.load(open(OVR)) if os.path.exists(OVR) else {}
-    countries, country_names, admin1, us_abbr, by_place, centres = bb.load_geonames()
+    countries, country_names, admin1, _admin1_cc, us_abbr, by_place, centres = bb.load_geonames()
     out, missing = [], []
     for c in creatures:
         for f in c.get('famous', []):
