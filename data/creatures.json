@@ -11002,5 +11002,188 @@
    "jenny-haniver"
   ],
   "wiki": "Fur-bearing trout"
+ },
+ {
+  "slug": "hudson-river-monster",
+  "name": "Hudson River Monster",
+  "aliases": [
+   "Kipsy",
+   "Keepsie",
+   "Libby"
+  ],
+  "cat": "aquatic",
+  "icon": "lake",
+  "region": "The Hudson River and New York Harbor",
+  "cc": [
+   "US"
+  ],
+  "first": "Newspaper reports from 1886",
+  "summary": "A huge serpent reported up and down the Hudson River in the summer of 1886, from New York Harbor to near Albany.",
+  "body": [
+   "In late summer 1886, New York newspapers filled with reports of a sea serpent in the Hudson River. Boatmen, swimmers, a steamer captain and a night watchman all described a long, snake-like animal, from 30 to 75 feet long, with big eyes and, in some reports, a fin along its back. Papers across the country reprinted each other's stories, sometimes with notes vouching for the witnesses' sobriety.",
+   "Its modern nickname, Kipsy, comes from Poughkeepsie. Claims that Henry Hudson's crew or older Native American stories described it have never been backed by any documents. The 1886 flap came during a long run of Atlantic sea serpent reports, starting with the famous Gloucester sightings of 1817."
+  ],
+  "signs": [
+   "A long serpent body, as thick as a smokestack",
+   "A fin running down its back",
+   "Large eyes and a flat head"
+  ],
+  "size": "30 to 75 ft long (1886 reports)",
+  "habitat": "Tidal river and harbour",
+  "famous": [
+   {
+    "name": "Swimmers at Rondout see a 55-foot serpent",
+    "year": 1886,
+    "place": "Rondout, Kingston, New York"
+   },
+   {
+    "name": "A steamer captain near Beeren Island",
+    "year": 1886,
+    "place": "Beeren Island, Hudson River, New York"
+   }
+  ],
+  "related": [
+   "champ",
+   "chessie",
+   "sea-serpent",
+   "altamaha-ha",
+   "bessie"
+  ],
+  "wiki": "Hudson River Monster"
+ },
+ {
+  "slug": "north-shore-monster",
+  "name": "North Shore Monster",
+  "aliases": [
+   "Old Briney",
+   "Great Salt Lake monster"
+  ],
+  "cat": "aquatic",
+  "icon": "lake",
+  "region": "Great Salt Lake, Utah",
+  "cc": [
+   "US"
+  ],
+  "first": "Reported by saltworks men in 1877",
+  "summary": "A 75-foot beast with a crocodile's body and a horse's head that saltworks men said came bellowing out of the Great Salt Lake in 1877.",
+  "body": [
+   "On July 8, 1877, J.H. McNeil and other men at a saltworks near Monument Point, on the north shore of the Great Salt Lake, said a huge animal came toward the shore bellowing. They described a crocodile-like body and a horse-like head, and McNeil put its length at about 75 feet. The men fled into the hills and hid overnight; in the morning they found boulders overturned along the shore.",
+   "McNeil signed an affidavit and the story ran in the Corinne Record and other Utah papers, though the Deseret News advised taking it 'with a few grains of salt'. Some suggested a buffalo in the lake. Other Great Salt Lake tales include porpoise-like animals reported in the 1840s, which gave Antelope Island its early name of Porpoise Island, and a 1903 story of a winged 'salt dragon' with bullet-proof salt-crusted skin."
+  ],
+  "signs": [
+   "A long body like a crocodile",
+   "A head like a horse's",
+   "A loud bellow from the water"
+  ],
+  "size": "About 75 ft long (McNeil's estimate)",
+  "habitat": "Very salty inland lake",
+  "famous": [
+   {
+    "name": "The Monument Point sighting",
+    "year": 1877,
+    "place": "Monument Point, Great Salt Lake, Utah"
+   },
+   {
+    "name": "The salt dragon story",
+    "year": 1903,
+    "place": "Stansbury Island, Great Salt Lake, Utah"
+   }
+  ],
+  "related": [
+   "bear-lake-monster",
+   "utah-lake-monster",
+   "flathead-lake-monster",
+   "walgren-lake-monster",
+   "ogopogo"
+  ],
+  "wiki": "North Shore Monster"
+ },
+ {
+  "slug": "utah-lake-monster",
+  "name": "Utah Lake Monster",
+  "aliases": [
+   "Utah Lake serpent"
+  ],
+  "cat": "aquatic",
+  "icon": "lake",
+  "region": "Utah Lake, Utah County, Utah",
+  "cc": [
+   "US"
+  ],
+  "first": "Settler reports from 1864",
+  "summary": "A hound-headed, snake-like animal reported by Utah Lake settlers in the 1860s and 1870s, and now and then since.",
+  "body": [
+   "Utah Lake, the big freshwater lake beside Provo, has its own monster stories. In 1864 a settler, Isaac Fox, said a large animal with 'wicked, black eyes' and a head like a vicious hound chased him to shore. In 1870 fishermen found a big skull fragment with ox-sized tooth sockets and a five-inch tusk on the shore, which modern historians think was probably a fossil mastodon. In 1871 a church bishop near Goshen reported a snake-like animal about 60 feet long standing out of the water 'like a section of a large stove pipe'.",
+   "Later reports include a seal-shaped animal near Mosida in 1921 and a serpent-like shape near Saratoga Springs in 2006. Suggested explanations include floating logs, pelicans swimming in a line and otters distorted by heat shimmer."
+  ],
+  "signs": [
+   "A head like a hound's with dark eyes",
+   "A long, snake-like body standing up out of the water",
+   "A seal-like shape near shore"
+  ],
+  "size": "Up to about 60 ft (1871 report)",
+  "habitat": "Large shallow freshwater lake",
+  "famous": [
+   {
+    "name": "Isaac Fox is chased to shore",
+    "year": 1864,
+    "place": "Utah Lake, Provo, Utah"
+   },
+   {
+    "name": "Bishop Price's stovepipe serpent",
+    "year": 1871,
+    "place": "Goshen, Utah"
+   },
+   {
+    "name": "A seal-shaped animal near Mosida",
+    "year": 1921,
+    "place": "Mosida, Utah"
+   }
+  ],
+  "related": [
+   "bear-lake-monster",
+   "north-shore-monster",
+   "flathead-lake-monster",
+   "walgren-lake-monster",
+   "champ"
+  ],
+  "wiki": "Utah Lake Monster"
+ },
+ {
+  "slug": "lutin",
+  "name": "Lutin",
+  "aliases": [
+   "Lutine",
+   "Le Cheval Bayard"
+  ],
+  "cat": "fae",
+  "icon": "imp",
+  "region": "France, especially Normandy, and Quebec",
+  "cc": [
+   "FR",
+   "CA"
+  ],
+  "first": "Medieval French writing; the name is recorded in the 1170s",
+  "summary": "A mischievous French house spirit that crossed to Quebec, where a pure white cat might be a lutin in disguise.",
+  "body": [
+   "The lutin is a hobgoblin of French folklore, a household spirit much like the English brownie or the German kobold: more mischievous than evil. In Normandy it could take the form of a saddled horse, Le Cheval Bayard, and it was blamed for tangling horses' manes into knots. The name goes back to the 1170s, when it first meant a sea monster, from the Roman sea god Neptune.",
+   "French settlers brought the lutin to Quebec, where it was thought to take the shape of a household animal, especially an all-white cat. A good lutin might shave the master of the house before he woke on Sunday; an offended one blunted scythes or filled shoes with pebbles. Spilled salt was said to keep it away.",
+   "Detroit's Nain Rouge, the red dwarf said to appear before disasters, is often described as a kind of lutin."
+  ],
+  "signs": [
+   "Horses' manes found tangled into knots in the morning",
+   "Small household mischief: pebbles in shoes, blunted tools",
+   "A pure white cat that seems to know too much"
+  ],
+  "size": "Small, or the size of the animal it becomes",
+  "habitat": "Farmhouses, barns and stables",
+  "famous": [],
+  "related": [
+   "nain-rouge",
+   "hobgoblin",
+   "kobold",
+   "fairies"
+  ],
+  "wiki": "Lutin"
  }
 ]

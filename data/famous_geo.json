@@ -3278,5 +3278,75 @@
 "place": "Sv\u00ednavatn, Iceland",
 "lat": 65.535,
 "lon": -20.1
+},
+{
+"creature": "hudson-river-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Swimmers at Rondout see a 55-foot serpent",
+"year": 1886,
+"place": "Rondout, Kingston, New York",
+"lat": 41.917,
+"lon": -73.982
+},
+{
+"creature": "hudson-river-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "A steamer captain near Beeren Island",
+"year": 1886,
+"place": "Beeren Island, Hudson River, New York",
+"lat": 42.49,
+"lon": -73.79
+},
+{
+"creature": "north-shore-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "The Monument Point sighting",
+"year": 1877,
+"place": "Monument Point, Great Salt Lake, Utah",
+"lat": 41.66,
+"lon": -112.92
+},
+{
+"creature": "north-shore-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "The salt dragon story",
+"year": 1903,
+"place": "Stansbury Island, Great Salt Lake, Utah",
+"lat": 40.88,
+"lon": -112.5
+},
+{
+"creature": "utah-lake-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Isaac Fox is chased to shore",
+"year": 1864,
+"place": "Utah Lake, Provo, Utah",
+"lat": 40.234,
+"lon": -111.72
+},
+{
+"creature": "utah-lake-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Bishop Price's stovepipe serpent",
+"year": 1871,
+"place": "Goshen, Utah",
+"lat": 39.953,
+"lon": -111.9008
+},
+{
+"creature": "utah-lake-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "A seal-shaped animal near Mosida",
+"year": 1921,
+"place": "Mosida, Utah",
+"lat": 40.1272,
+"lon": -111.9566
 }
 ]

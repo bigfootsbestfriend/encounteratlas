@@ -558,5 +558,25 @@
  "Svínavatn, Iceland": [
   65.535,
   -20.1
+ ],
+ "Rondout, Kingston, New York": [
+  41.917,
+  -73.982
+ ],
+ "Beeren Island, Hudson River, New York": [
+  42.49,
+  -73.79
+ ],
+ "Monument Point, Great Salt Lake, Utah": [
+  41.66,
+  -112.92
+ ],
+ "Stansbury Island, Great Salt Lake, Utah": [
+  40.88,
+  -112.5
+ ],
+ "Utah Lake, Provo, Utah": [
+  40.234,
+  -111.72
  ]
 }
