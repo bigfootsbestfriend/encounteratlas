@@ -56,6 +56,7 @@ PLACE_ALIASES = {
     'indian house lake': (56.25, -64.70), 'saint john': (45.273, -66.063),
     'gimili rcaf station': 'gimli', 'gimili': 'gimli', 'gimli rcaf station': 'gimli', 'port arthur': (48.382, -89.246),
     'port harrison': (58.453, -78.102), 'caledor east': 'caledon east', 'curling east': 'corner brook', 'curling': 'corner brook',
+    'philadelphia airport': (39.872, -75.241), 'north dayton': 'dayton',
     'riga': (56.946, 24.106), 'winnepeg': 'winnipeg',
     'stalingrad': 'volgograd', 'leningrad': 'saint petersburg', 'sverdlovsk': 'yekaterinburg', 'gorky': 'nizhniy novgorod',
 }
@@ -146,7 +147,7 @@ def load_geonames():
         lat, lon, cc, a1, pop = float(p[4]), float(p[5]), p[8], p[10], int(p[14] or 0)
         rec = (pop, lat, lon, name)
         names = {norm(name), norm(asciiname)}
-        names |= {norm(a) for a in alts.split(',') if a and len(a) < 40 and a.isascii()}
+        names |= {norm(a) for a in alts.split(',') if a and len(a) < 40}
         for n in names:
             if n:
                 by_place[(cc, a1, n)].append(rec)
@@ -244,6 +245,7 @@ def main():
         cc = a1 = None
         precision = 'none'
         place, region_name = rest, ''
+        orig_place = ''
         cm = COORD_RE.search(rest)
         if cm:
             la = int(cm.group(1)) + int(cm.group(2)) / 60
@@ -278,12 +280,13 @@ def main():
                 # the province or state sits before the country (or in brackets after it).
                 paren = re.search(r'\(([^)]+)\)', parts[-1]) if parts else None
                 trials = [(paren.group(1), place)] if paren else []
-                trials.append((place, ''))  # "Ontario, Canada": the place is the province
+                trials.append((place, place))  # "Ontario, Canada" / "Tokyo, Japan": the province, and maybe a town of that name in it
                 pp = [x.strip() for x in place.split(',') if x.strip()]
                 if len(pp) >= 2:
                     trials.append((pp[-1], ', '.join(pp[:-1])))
                 ws = place.split()
                 trials += [(' '.join(ws[-k:]), ' '.join(ws[:-k])) for k in (3, 2, 1) if len(ws) > k]
+                orig_place = place
                 for reg, rest_place in trials:
                     rk = region_key(reg)
                     rk = REGION_ALIASES.get(rk, rk)
@@ -305,7 +308,10 @@ def main():
                 # First candidate whose point lies inside the named province/state/country wins.
                 ussr = bool(re.search(r'u\.?s\.?s\.?r|soviet', rest, re.I))
                 seen_pts = []
-                for cand in place_candidates(place) + [c + '#full' for c in place_candidates(place) if isinstance(c, str)]:
+                cands = place_candidates(place)
+                if orig_place and orig_place != place:
+                    cands += [c for c in place_candidates(orig_place) if c not in cands]  # "New Delhi" when "Delhi" was read as the state
+                for cand in [x for c in cands for x in ((c,) if isinstance(c, tuple) else (c, c + '#full'))]:
                     if isinstance(cand, tuple):
                         pt = cand
                     else:
