@@ -1930,6 +1930,196 @@
   ]
  },
  {
+  "id": "1890-white-sulphur-beast",
+  "k": "creature",
+  "title": "An unknown night beast at White Sulphur",
+  "date": "1890-01",
+  "town": "White Sulphur",
+  "state": "Kentucky",
+  "place": "White Sulphur, Kentucky",
+  "creature": "",
+  "summary": "Something seen only at night around White Sulphur attacked dogs and bit a farmer's fat hogs, which died showing signs of rabies. Those who glimpsed it called it a hyena, a tiger or a wildcat, and dogs refused to leave the houses.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "Iowa County Democrat.",
+    "place": "Mineral Point, Wis.",
+    "date": "1890-01-24",
+    "page": "4",
+    "lccn": "sn86086852",
+    "url": "https://www.loc.gov/resource/sn86086852/1890-01-24/ed-1/?sp=134"
+   },
+   {
+    "paper": "Wood County Reporter.",
+    "place": "Grand Rapids, Wis.",
+    "date": "1890-01-30",
+    "page": "5",
+    "lccn": "sn85033078",
+    "url": "https://www.loc.gov/resource/sn85033078/1890-01-30/ed-1/?sp=612"
+   }
+  ],
+  "lat": 38.2051,
+  "lon": -84.7022,
+  "approx": true
+ },
+ {
+  "id": "1890-twin-lakes-serpent",
+  "k": "sea-serpent",
+  "title": "A giant snake rears up in Twin Lakes",
+  "date": "1890-05",
+  "town": "Salisbury",
+  "state": "Connecticut",
+  "place": "Twin Lakes, Salisbury, Connecticut",
+  "creature": "",
+  "summary": "A fisherman from South Egremont, Massachusetts, said what he took for a blackened stump in 75 feet of water moved, left a wake and reared a flat, two-foot head six feet out of the lake, with a body ten to twelve inches thick.",
+  "quote": "",
+  "hoax": "",
+  "fixed": true,
+  "lat": 42.035,
+  "lon": -73.405,
+  "approx": false,
+  "papers": [
+   {
+    "paper": "Lancaster Daily Intelligencer.",
+    "place": "Lancaster, Pa.",
+    "date": "1890-05-17",
+    "page": "6",
+    "lccn": "sn83032300",
+    "url": "https://www.loc.gov/resource/sn83032300/1890-05-17/ed-1/?sp=862"
+   }
+  ]
+ },
+ {
+  "id": "1890-pleasant-grove-overflow-serpent",
+  "k": "sea-serpent",
+  "title": "A serpent in the Sacramento overflow",
+  "date": "1890-08",
+  "town": "Pleasant Grove",
+  "state": "California",
+  "place": "The overflow east of Pritchard's Lake, near Pleasant Grove, California",
+  "creature": "",
+  "summary": "Ranchers around Pleasant Grove, north of Sacramento, said a serpent over 40 feet long was seen in the flood overflow near Pritchard's Lake, and on land too. The keeper of a duck-shooting club on the lake said he had found strange tracks and lost many chickens.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "Sacramento Daily Record-union.",
+    "place": "Sacramento",
+    "date": "1890-08-28",
+    "page": "2",
+    "lccn": "sn82014381",
+    "url": "https://www.loc.gov/resource/sn82014381/1890-08-28/ed-1/?sp=141"
+   },
+   {
+    "paper": "The Morning Call",
+    "place": "",
+    "date": "1890-08-28",
+    "page": "8",
+    "lccn": "sn94052989",
+    "url": "https://www.loc.gov/resource/sn94052989/1890-08-28/ed-1/?sp=255"
+   },
+   {
+    "paper": "Sacramento Daily Record-union.",
+    "place": "Sacramento",
+    "date": "1890-08-29",
+    "page": "3",
+    "lccn": "sn82014381",
+    "url": "https://www.loc.gov/resource/sn82014381/1890-08-29/ed-1/?sp=146"
+   }
+  ],
+  "lat": 38.8238,
+  "lon": -121.4839,
+  "approx": true
+ },
+ {
+  "id": "1890-fish-trap-lake-monster",
+  "k": "sea-serpent",
+  "title": "Five anglers rocked by the Fish Trap Lake monster",
+  "date": "1890-09",
+  "town": "Galena",
+  "state": "Illinois",
+  "place": "Fish Trap Lake, below Galena, Illinois",
+  "creature": "",
+  "summary": "Five men trolling on Fish Trap Lake, below Galena, said the calm water suddenly boiled and their boat heaved and rocked as a huge serpent-like fish surfaced. They linked it to a similar monster reported there about ten years before.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "Los Angeles Herald.",
+    "place": "Los Angeles",
+    "date": "1890-09-27",
+    "page": "7",
+    "lccn": "sn84025968",
+    "url": "https://www.loc.gov/resource/sn84025968/1890-09-27/ed-1/?sp=221"
+   },
+   {
+    "paper": "Bismarck Weekly Tribune.",
+    "place": "Bismarck, Dakota",
+    "date": "1890-10-03",
+    "page": "1",
+    "lccn": "sn85042588",
+    "url": "https://www.loc.gov/resource/sn85042588/1890-10-03/ed-1/?sp=342"
+   },
+   {
+    "paper": "The Wichita Daily Eagle.",
+    "place": "Wichita, Kan.",
+    "date": "1890-10-03",
+    "page": "6",
+    "lccn": "sn82014635",
+    "url": "https://www.loc.gov/resource/sn82014635/1890-10-03/ed-1/?sp=269"
+   }
+  ],
+  "lat": 42.4167,
+  "lon": -90.429,
+  "approx": true
+ },
+ {
+  "id": "1890-brant-rock-lassoed-serpent",
+  "k": "sea-serpent",
+  "title": "A serpent lassoed off Brant Rock",
+  "date": "1890-09",
+  "town": "Marshfield",
+  "state": "Massachusetts",
+  "place": "Off Brant Rock, Marshfield, Massachusetts",
+  "creature": "sea-serpent",
+  "summary": "A father and son out in a boat off Brant Rock said they chased a long, snake-like animal and got a rope around its head while a crowd watched from the beach. A second man rowed out, and the two fired charge after charge into its head with little effect as it towed them along.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "Wheeling Register.",
+    "place": "Wheeling, W. Va.",
+    "date": "1890-09-29",
+    "page": "1",
+    "lccn": "sn86092518",
+    "url": "https://www.loc.gov/resource/sn86092518/1890-09-29/ed-1/?sp=312"
+   },
+   {
+    "paper": "The Wheeling Daily Intelligencer.",
+    "place": "Wheeling, W. Va.",
+    "date": "1890-09-29",
+    "page": "1",
+    "lccn": "sn84026844",
+    "url": "https://www.loc.gov/resource/sn84026844/1890-09-29/ed-1/?sp=927"
+   },
+   {
+    "paper": "The Morning Call.",
+    "place": "San Francisco",
+    "date": "1890-10-06",
+    "page": "8",
+    "lccn": "sn94052989",
+    "url": "https://www.loc.gov/resource/sn94052989/1890-10-06/ed-1/?sp=59"
+   }
+  ],
+  "lat": 42.0918,
+  "lon": -70.7056,
+  "approx": false
+ },
+ {
   "id": "1891-hayward-ill-wild-man",
   "k": "wild-man",
   "title": "A strange creature prowls a Chicago suburb",
@@ -1954,6 +2144,59 @@
   ],
   "lat": 41.85,
   "lon": -87.65,
+  "approx": true
+ },
+ {
+  "id": "1890-henry-county-mexican-lion",
+  "k": "creature",
+  "title": "Coon hunters kill a mystery beast in Henry County",
+  "date": "1890-12",
+  "town": "Clinton",
+  "state": "Missouri",
+  "place": "Eastern Henry County, Missouri",
+  "creature": "",
+  "summary": "After weeks of crippled and killed livestock and a man chased by an animal bigger than a big dog, coon hunters' hounds ran down a beast. The men finished it with stones and an axe. It was five feet three inches long, and they called it a \"Mexican lion\", likely a cougar.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "The Sedalia Weekly Bazoo.",
+    "place": "Sedalia, Mo.",
+    "date": "1890-12-09",
+    "page": "2",
+    "lccn": "sn90061066",
+    "url": "https://www.loc.gov/resource/sn90061066/1890-12-09/ed-1/?sp=672"
+   }
+  ],
+  "lat": 38.3686,
+  "lon": -93.7783,
+  "approx": true
+ },
+ {
+  "id": "1890-coatesville-ghost-light",
+  "k": "phantom-light",
+  "title": "A rolling ball of fire near Coatesville",
+  "date": "1890-12",
+  "town": "Coatesville",
+  "state": "Missouri",
+  "place": "Half a mile south of Coatesville, Missouri, near the Chariton River",
+  "creature": "",
+  "summary": "Every evening around nine a light like a train's headlight rolled across the railroad near Coatesville, rose fifty feet, stopped in an old orchard and graveyard and sank into the ground. As many as fifty people watched it at once. Spiritualists blamed the dead in the graveyard.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "Deseret Evening News.",
+    "place": "Great Salt Lake City",
+    "date": "1890-12-19",
+    "page": "5",
+    "lccn": "sn83045555",
+    "url": "https://www.loc.gov/resource/sn83045555/1890-12-19/ed-1/?sp=133"
+   }
+  ],
+  "lat": 38.363,
+  "lon": -92.086,
   "approx": true
  },
  {
@@ -2661,6 +2904,304 @@
   ],
   "lat": 41.3948,
   "lon": -73.454,
+  "approx": false
+ },
+ {
+  "id": "1893-long-valley-wild-man",
+  "k": "wild-man",
+  "title": "The wild man of Long Valley, Idaho",
+  "date": "1893-03",
+  "town": "Cascade",
+  "state": "Idaho",
+  "place": "Mountains around Long Valley, Boise County, Idaho",
+  "creature": "",
+  "summary": "A sheepherder hid in a tree and watched a man with knee-length matted brown hair, in tattered overalls, kill a grouse with a thrown stick and eat it raw. Chased on horseback, he outran the horse over the rocks. Papers suspected an escaped asylum patient.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "Waterbury Evening Democrat",
+    "place": "",
+    "date": "1893-03-20",
+    "page": "2",
+    "lccn": "sn94053256",
+    "url": "https://www.loc.gov/resource/sn94053256/1893-03-20/ed-1/?sp=276"
+   },
+   {
+    "paper": "Iuka Reporter",
+    "place": "Iuka, Miss.",
+    "date": "1893-04-20",
+    "page": "3",
+    "lccn": "sn87065215",
+    "url": "https://www.loc.gov/resource/sn87065215/1893-04-20/ed-1/?sp=786"
+   },
+   {
+    "paper": "The Helena Independent.",
+    "place": "Helena, Mont.",
+    "date": "1893-06-20",
+    "page": "2",
+    "lccn": "sn83025308",
+    "url": "https://www.loc.gov/resource/sn83025308/1893-06-20/ed-1/?sp=235"
+   }
+  ],
+  "lat": 44.5163,
+  "lon": -116.0418,
+  "approx": true
+ },
+ {
+  "id": "1893-bass-lake-monster",
+  "k": "sea-serpent",
+  "title": "The Cedar Bass Lake monster",
+  "date": "1893-05",
+  "town": "Knox",
+  "state": "Indiana",
+  "place": "Bass Lake (Cedar Bass Lake), southeast of Knox, Indiana",
+  "creature": "",
+  "summary": "After years of torn nets, a capsized rowboat and a steamer tugged by its anchor line, a fishing party from Knox (including the lawyer who had defended President Garfield's assassin) hooked something that ran out a thousand feet of line. Passengers on the little steamer City of Kokomo said the animal surged up under the bow and nearly swamped them.",
+  "quote": "",
+  "hoax": "",
+  "fixed": true,
+  "lat": 41.215,
+  "lon": -86.595,
+  "approx": false,
+  "papers": [
+   {
+    "paper": "Fort Worth Gazette.",
+    "place": "Fort Worth, Tex.",
+    "date": "1893-05-15",
+    "page": "12",
+    "lccn": "sn86071158",
+    "url": "https://www.loc.gov/resource/sn86071158/1893-05-15/ed-1/?sp=166"
+   },
+   {
+    "paper": "The Indianapolis Journal.",
+    "place": "Indianapolis",
+    "date": "1893-05-27",
+    "page": "5",
+    "lccn": "sn82015679",
+    "url": "https://www.loc.gov/resource/sn82015679/1893-05-27/ed-1/?sp=255"
+   },
+   {
+    "paper": "The Evening Herald.",
+    "place": "Shenandoah, Pa.",
+    "date": "1893-06-22",
+    "page": "2",
+    "lccn": "sn87078000",
+    "url": "https://www.loc.gov/resource/sn87078000/1893-06-22/ed-1/?sp=619"
+   }
+  ]
+ },
+ {
+  "id": "1893-provincetown-weir-monster",
+  "k": "sea-serpent",
+  "title": "Provincetown fishermen kill a 'sea serpent'",
+  "date": "1893-05",
+  "town": "Provincetown",
+  "state": "Massachusetts",
+  "place": "Beach Point weir, Provincetown, Massachusetts",
+  "creature": "sea-serpent",
+  "summary": "Weir fishermen found their fish trap churning yellow and a mass of dark ridges filling it: a single eel-shaped animal nearly thirty feet long, which they killed after a fight. Papers announced the sea serpent captured; it was most likely a large shark or other fish.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "The Providence News",
+    "place": "Providence",
+    "date": "1893-05-05",
+    "page": "6",
+    "lccn": "sn91070630",
+    "url": "https://www.loc.gov/resource/sn91070630/1893-05-05/ed-1/?sp=159"
+   },
+   {
+    "paper": "The World.",
+    "place": "Martinsburg, W. Va.",
+    "date": "1893-05-06",
+    "page": "1",
+    "lccn": "sn85059538",
+    "url": "https://www.loc.gov/resource/sn85059538/1893-05-06/ed-1/?sp=431"
+   },
+   {
+    "paper": "The Indianapolis Journal.",
+    "place": "Indianapolis",
+    "date": "1893-05-06",
+    "page": "7",
+    "lccn": "sn82015679",
+    "url": "https://www.loc.gov/resource/sn82015679/1893-05-06/ed-1/?sp=57"
+   },
+   {
+    "paper": "The Roanoke Times.",
+    "place": "Roanoke, Va.",
+    "date": "1893-05-07",
+    "page": "7",
+    "lccn": "sn86071868",
+    "url": "https://www.loc.gov/resource/sn86071868/1893-05-07/ed-1/?sp=167"
+   },
+   {
+    "paper": "The Morning News.",
+    "place": "Savannah, Ga.",
+    "date": "1893-05-09",
+    "page": "6",
+    "lccn": "sn86063034",
+    "url": "https://www.loc.gov/resource/sn86063034/1893-05-09/ed-1/?sp=882"
+   },
+   {
+    "paper": "The Indiana State Sentinel.",
+    "place": "Indianapolis",
+    "date": "1893-05-10",
+    "page": "6",
+    "lccn": "sn87056600",
+    "url": "https://www.loc.gov/resource/sn87056600/1893-05-10/ed-1/?sp=225"
+   },
+   {
+    "paper": "Eagle River Review.",
+    "place": "Eagle River, Wis.",
+    "date": "1893-05-11",
+    "page": "3",
+    "lccn": "sn85040614",
+    "url": "https://www.loc.gov/resource/sn85040614/1893-05-11/ed-1/?sp=536"
+   }
+  ],
+  "lat": 42.053,
+  "lon": -70.1864,
+  "approx": false
+ },
+ {
+  "id": "1893-marrowstone-point-serpent",
+  "k": "sea-serpent",
+  "title": "The steamer Edith meets a serpent in Puget Sound",
+  "date": "1893-06",
+  "town": "Port Townsend",
+  "state": "Washington",
+  "place": "Off Marrowstone Point, Puget Sound, Washington",
+  "creature": "sea-serpent",
+  "summary": "Crew and passengers of the steamer Edith watched for nearly half an hour as a head like a huge snake's, as big as a man's body, rose five feet out of the water off Marrowstone Point, turning from side to side and opening its mouth. It dived and came up on the other side of the boat.",
+  "quote": "",
+  "hoax": "",
+  "fixed": true,
+  "lat": 48.1,
+  "lon": -122.69,
+  "approx": false,
+  "papers": [
+   {
+    "paper": "The Seattle Post-intelligencer.",
+    "place": "Seattle, Wash. Terr.",
+    "date": "1893-06-12",
+    "page": "8",
+    "lccn": "sn83045604",
+    "url": "https://www.loc.gov/resource/sn83045604/1893-06-12/ed-1/?sp=281"
+   },
+   {
+    "paper": "The Hawaiian Star.",
+    "place": "Honolulu",
+    "date": "1893-06-22",
+    "page": "4",
+    "lccn": "sn82015415",
+    "url": "https://www.loc.gov/resource/sn82015415/1893-06-22/ed-1/?sp=439"
+   },
+   {
+    "paper": "Washington Standard.",
+    "place": "Olympia, Wash. Territory",
+    "date": "1893-06-23",
+    "page": "1",
+    "lccn": "sn84022770",
+    "url": "https://www.loc.gov/resource/sn84022770/1893-06-23/ed-1/?sp=608"
+   }
+  ]
+ },
+ {
+  "id": "1893-olathe-hairy-man",
+  "k": "wild-man",
+  "title": "A seven-foot hairy 'half man' near Olathe",
+  "date": "1893-06",
+  "town": "Olathe",
+  "state": "Kansas",
+  "place": "Along Cedar Creek near Olathe, Johnson County, Kansas",
+  "creature": "bigfoot",
+  "summary": "People along Cedar Creek described a naked creature about seven feet tall covered in brown hair, standing stooped with its long arms crossed and moving fast with a swinging gait. One man said it chased him for a mile, a dairy farmer blamed it for two dead cows and a calf, and an armed party searched the woods.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "The Morning News.",
+    "place": "Savannah, Ga.",
+    "date": "1893-06-23",
+    "page": "2",
+    "lccn": "sn86063034",
+    "url": "https://www.loc.gov/resource/sn86063034/1893-06-23/ed-1/?sp=198"
+   },
+   {
+    "paper": "The Kimball Graphic",
+    "place": "Kimball, Brule County, Dakota",
+    "date": "1893-06-24",
+    "page": "1",
+    "lccn": "sn99068076",
+    "url": "https://www.loc.gov/resource/sn99068076/1893-06-24/ed-1/?sp=226"
+   },
+   {
+    "paper": "The Evening Call.",
+    "place": "Topeka, Kan.",
+    "date": "1893-06-27",
+    "page": "1",
+    "lccn": "sn85032047",
+    "url": "https://www.loc.gov/resource/sn85032047/1893-06-27/ed-1/?sp=1"
+   }
+  ],
+  "lat": 38.8814,
+  "lon": -94.8191,
+  "approx": true
+ },
+ {
+  "id": "1893-circleville-giant-snake",
+  "k": "creature",
+  "title": "A snake as thick as a man across the road",
+  "date": "1893-07",
+  "town": "Circleville",
+  "state": "New York",
+  "place": "Near Circleville, Orange County, New York",
+  "creature": "",
+  "summary": "Two boys walking near Circleville took a log across the road for a log until it glistened, brown, yellow and white, and began to move. A neighbour said a huge snake had lived in a cave near his place for years, and men organized a hunt.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "San Antonio Daily Light.",
+    "place": "San Antonio, Tex.",
+    "date": "1893-07-25",
+    "page": "1",
+    "lccn": "sn86090439",
+    "url": "https://www.loc.gov/resource/sn86090439/1893-07-25/ed-1/?sp=164"
+   }
+  ],
+  "lat": 41.5143,
+  "lon": -74.3835,
+  "approx": false
+ },
+ {
+  "id": "1893-sodus-point-lake-ontario",
+  "k": "sea-serpent",
+  "title": "A tug captain slows for a monster off Sodus Point",
+  "date": "1893-08",
+  "town": "Sodus Point",
+  "state": "New York",
+  "place": "Lake Ontario off Sodus Point, New York",
+  "creature": "",
+  "summary": "Returning from a fishing trip with railroad officials, the captain of the tug Cornelia felt the boat roll and saw a huge object moving alongside at half the tug's speed. He rang to slow down for a better look, and it dived into water forty or fifty fathoms deep.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "The Sun",
+    "place": "",
+    "date": "1893-08-20",
+    "page": "9",
+    "lccn": "sn83030272",
+    "url": "https://www.loc.gov/resource/sn83030272/1893-08-20/ed-1/?sp=47"
+   }
+  ],
+  "lat": 43.2717,
+  "lon": -76.9891,
   "approx": false
  },
  {
@@ -6779,6 +7320,437 @@
   ],
   "lat": 40.4779,
   "lon": -74.2907,
+  "approx": false
+ },
+ {
+  "id": "1907-darby-gorilla",
+  "k": "wild-man",
+  "title": "The Delaware County 'gorilla'",
+  "date": "1907-01",
+  "town": "Darby",
+  "state": "Pennsylvania",
+  "place": "Darby and Sharon Hill, Delaware County, Pennsylvania",
+  "creature": "",
+  "summary": "For weeks people around Darby said a dark-haired, ape-like thing that ran upright and then on all fours jumped out at them on country roads. In April a Philadelphia detective said it was a disturbed local man wearing a bearskin, his hair smeared with phosphorus.",
+  "quote": "",
+  "hoax": "A detective said it was a man in a bearskin.",
+  "papers": [
+   {
+    "paper": "Barbour County Index.",
+    "place": "Medicine Lodge, Kan.",
+    "date": "1907-01-02",
+    "page": "7",
+    "lccn": "sn82015080",
+    "url": "https://www.loc.gov/resource/sn82015080/1907-01-02/ed-1/?sp=254"
+   },
+   {
+    "paper": "The Beaver Herald.",
+    "place": "Beaver, O.T.",
+    "date": "1907-02-07",
+    "page": "1",
+    "lccn": "sn93066071",
+    "url": "https://www.loc.gov/resource/sn93066071/1907-02-07/ed-1/?sp=842"
+   },
+   {
+    "paper": "Los Angeles Herald",
+    "place": "",
+    "date": "1907-04-14",
+    "page": "22",
+    "lccn": "sn85042462",
+    "url": "https://www.loc.gov/resource/sn85042462/1907-04-14/ed-1/?sp=807"
+   }
+  ],
+  "lat": 39.9184,
+  "lon": -75.2591,
+  "approx": false
+ },
+ {
+  "id": "1907-laurel-run-ape",
+  "k": "wild-man",
+  "title": "An 'enormous ape' on the Laurel Run road",
+  "date": "1907-01",
+  "town": "Laurel Run",
+  "state": "Pennsylvania",
+  "place": "Mountain road between Georgetown and Laurel Run, near Wilkes-Barre, Pennsylvania",
+  "creature": "",
+  "summary": "People on the mountain road between Georgetown and Laurel Run fled from an animal that came out of the brush. Some said it was an enormous ape; others said a bear down from the Bear Creek woods.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "River Falls Journal.",
+    "place": "River Falls, Pierce County, Wis.",
+    "date": "1907-01-03",
+    "page": "6",
+    "lccn": "sn85033255",
+    "url": "https://www.loc.gov/resource/sn85033255/1907-01-03/ed-1/?sp=84"
+   }
+  ],
+  "lat": 41.2223,
+  "lon": -75.863,
+  "approx": false
+ },
+ {
+  "id": "1907-lamberton-beast",
+  "k": "creature",
+  "title": "Blazing eyes in a Lamberton barnyard",
+  "date": "1907-02",
+  "town": "Lamberton",
+  "state": "Minnesota",
+  "place": "Farms around Lamberton, and later Mankato, Minnesota",
+  "creature": "",
+  "summary": "Something killed sheep and a colt around Lamberton; the local vet saw two blazing eyes and a huge shadowy shape and galloped off to rouse the neighbours. Days later near Mankato a steer was found with its back torn open, and papers decided the culprit was a mountain lion.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "New Ulm Review",
+    "place": "New Ulm, Brown County, Minn.",
+    "date": "1907-02-27",
+    "page": "1",
+    "lccn": "sn89081128",
+    "url": "https://www.loc.gov/resource/sn89081128/1907-02-27/ed-1/?sp=71"
+   },
+   {
+    "paper": "The Mankato Free Press.",
+    "place": "Mankato, Blue Earth County, Minn.",
+    "date": "1907-03-01",
+    "page": "1",
+    "lccn": "sn83016589",
+    "url": "https://www.loc.gov/resource/sn83016589/1907-03-01/ed-1/?sp=55"
+   }
+  ],
+  "lat": 44.2311,
+  "lon": -95.2642,
+  "approx": false
+ },
+ {
+  "id": "1907-ocean-city-propeller-monster",
+  "k": "sea-serpent",
+  "title": "A 100-foot monster snaps a propeller off Ocean City",
+  "date": "1907-03",
+  "town": "Ocean City",
+  "state": "New Jersey",
+  "place": "Atlantic Ocean about seven miles off Ocean City, New Jersey",
+  "creature": "sea-serpent",
+  "summary": "The captain of a fishing launch said that while they looked over a wreck offshore, they hit a monster about 100 feet long that tore away their propeller. It blew like a whale, but its spout was blood red. He and his crew of six offered to swear to it.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "New-York Tribune.",
+    "place": "New York",
+    "date": "1907-03-02",
+    "page": "16",
+    "lccn": "sn83030214",
+    "url": "https://www.loc.gov/resource/sn83030214/1907-03-02/ed-1/?sp=31"
+   },
+   {
+    "paper": "The Free Lance",
+    "place": "Fredericksburg, Va.",
+    "date": "1907-03-05",
+    "page": "1",
+    "lccn": "sn87060165",
+    "url": "https://www.loc.gov/resource/sn87060165/1907-03-05/ed-1/?sp=735"
+   },
+   {
+    "paper": "Smyrna Times",
+    "place": "",
+    "date": "1907-03-06",
+    "page": "2",
+    "lccn": "sn84020422",
+    "url": "https://www.loc.gov/resource/sn84020422/1907-03-06/ed-1/?sp=647"
+   }
+  ],
+  "lat": 39.2776,
+  "lon": -74.5746,
+  "approx": false
+ },
+ {
+  "id": "1907-long-beach-horned-serpent",
+  "k": "sea-serpent",
+  "title": "A horned 'young sea serpent' in the Long Beach surf",
+  "date": "1907-03-12",
+  "town": "Long Beach",
+  "state": "California",
+  "place": "Surf in front of the Long Beach bathhouse, California",
+  "creature": "sea-serpent",
+  "summary": "Something about fifteen feet long with three horn-like bristles on its head and a tail split into three barbed points played in the breakers in front of the lifesaving station for half an hour, leaping half out of the water twice.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "Los Angeles Herald",
+    "place": "",
+    "date": "1907-03-12",
+    "page": "9",
+    "lccn": "sn85042462",
+    "url": "https://www.loc.gov/resource/sn85042462/1907-03-12/ed-1/?sp=210"
+   }
+  ],
+  "lat": 33.767,
+  "lon": -118.1892,
+  "approx": false
+ },
+ {
+  "id": "1907-glendeane-light",
+  "k": "phantom-light",
+  "title": "A cone of light that drifted around a farmhouse",
+  "date": "1907-04-10",
+  "town": "Glendeane",
+  "state": "Kentucky",
+  "place": "Glendeane, Breckinridge County, Kentucky",
+  "creature": "ufo-orbs",
+  "summary": "On a dark, misty night a cone-shaped light as big as a corn shock moved like a skiff on waves from a vacant cabin to a neighbour's house, hung there fifteen minutes, came closer and seemed to have something dark like a person inside. Three named neighbours wrote to the paper asking what it was.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "The Breckenridge News",
+    "place": "Cloverport, Ky.",
+    "date": "1907-05-08",
+    "page": "1",
+    "lccn": "sn86069309",
+    "url": "https://www.loc.gov/resource/sn86069309/1907-05-08/ed-1/?sp=156"
+   }
+  ],
+  "lat": 37.88,
+  "lon": -85.287,
+  "approx": true
+ },
+ {
+  "id": "1907-braxton-county-eagle",
+  "k": "giant-bird",
+  "title": "A huge eagle tries to carry off a boy",
+  "date": "1907-05",
+  "town": "Confluence",
+  "state": "West Virginia",
+  "place": "Near Confluence, Braxton County, West Virginia",
+  "creature": "thunderbird",
+  "summary": "A merchant's eight-year-old son was playing a little way from his father and brother when a bald eagle, said to be the biggest ever seen there, swooped on him. The boy tore loose and screamed, and the bird flew off to the mountains.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "The Fairmont West Virginian",
+    "place": "Fairmont, W. Va.",
+    "date": "1907-05-14",
+    "page": "5",
+    "lccn": "sn86092557",
+    "url": "https://www.loc.gov/resource/sn86092557/1907-05-14/ed-1/?sp=324"
+   }
+  ],
+  "lat": 38.788,
+  "lon": -80.836,
+  "approx": true
+ },
+ {
+  "id": "1907-walker-lake-serpent",
+  "k": "sea-serpent",
+  "title": "A serpent in Walker Lake, Nevada",
+  "date": "1907-05",
+  "town": "Schurz",
+  "state": "Nevada",
+  "place": "Walker Lake, near Schurz, Nevada",
+  "creature": "",
+  "summary": "An engineer said he watched a black, square-headed animal tear through Walker Lake throwing spray for ten minutes. Later two miners said they rowed toward what looked like a man in a skin and saw a creature they put at 80 feet long. The papers noted that Paiute people by the lake had long spoken of one.",
+  "quote": "",
+  "hoax": "",
+  "fixed": true,
+  "lat": 38.7,
+  "lon": -118.72,
+  "approx": false,
+  "papers": [
+   {
+    "paper": "The White Pine News.",
+    "place": "Ely, Nev.",
+    "date": "1907-06-01",
+    "page": "1",
+    "lccn": "sn86076249",
+    "url": "https://www.loc.gov/resource/sn86076249/1907-06-01/ed-1/?sp=646"
+   },
+   {
+    "paper": "Carson City Daily Appeal.",
+    "place": "Carson City, Nev.",
+    "date": "1907-07-13",
+    "page": "1",
+    "lccn": "sn86076241",
+    "url": "https://www.loc.gov/resource/sn86076241/1907-07-13/ed-1/?sp=14"
+   },
+   {
+    "paper": "The Washington Herald",
+    "place": "",
+    "date": "1907-09-22",
+    "page": "28",
+    "lccn": "sn83045433",
+    "url": "https://www.loc.gov/resource/sn83045433/1907-09-22/ed-1/?sp=155"
+   },
+   {
+    "paper": "Virginia Gazette.",
+    "place": "Williamsburg, Va.",
+    "date": "1907-10-05",
+    "page": "5",
+    "lccn": "sn86071985",
+    "url": "https://www.loc.gov/resource/sn86071985/1907-10-05/ed-1/?sp=505"
+   },
+   {
+    "paper": "The Marion Daily Mirror",
+    "place": "Marion, Ohio",
+    "date": "1907-10-07",
+    "page": "1",
+    "lccn": "sn88077573",
+    "url": "https://www.loc.gov/resource/sn88077573/1907-10-07/ed-1/?sp=35"
+   },
+   {
+    "paper": "Gilpin Observer",
+    "place": "",
+    "date": "1907-10-10",
+    "page": "3",
+    "lccn": "sn90051548",
+    "url": "https://www.loc.gov/resource/sn90051548/1907-10-10/ed-1/?sp=199"
+   },
+   {
+    "paper": "The Prescott Daily News",
+    "place": "",
+    "date": "1907-10-12",
+    "page": "3",
+    "lccn": "sn90050307",
+    "url": "https://www.loc.gov/resource/sn90050307/1907-10-12/ed-1/?sp=575"
+   },
+   {
+    "paper": "Tazewell Republican.",
+    "place": "Tazewell, Va.",
+    "date": "1907-10-17",
+    "page": "3",
+    "lccn": "sn95079154",
+    "url": "https://www.loc.gov/resource/sn95079154/1907-10-17/ed-1/?sp=173"
+   },
+   {
+    "paper": "",
+    "place": "",
+    "date": "1907-10-25",
+    "page": "1",
+    "lccn": "sn92066979",
+    "url": "https://www.loc.gov/resource/sn92066979/1907-10-25/ed-1/?sp=908"
+   },
+   {
+    "paper": "The Logan Republican.",
+    "place": "Logan, Utah",
+    "date": "1907-11-02",
+    "page": "6",
+    "lccn": "sn85058246",
+    "url": "https://www.loc.gov/resource/sn85058246/1907-11-02/ed-1/?sp=345"
+   },
+   {
+    "paper": "The Delta Independent",
+    "place": "",
+    "date": "1907-11-15",
+    "page": "7",
+    "lccn": "sn86063206",
+    "url": "https://www.loc.gov/resource/sn86063206/1907-11-15/ed-1/?sp=1057"
+   }
+  ]
+ },
+ {
+  "id": "1907-valley-nebraska-snake",
+  "k": "creature",
+  "title": "A 40-foot snake throws a farmer twenty feet",
+  "date": "1907-07",
+  "town": "Valley",
+  "state": "Nebraska",
+  "place": "Near Ages Lake, east of Valley, Nebraska",
+  "creature": "",
+  "summary": "Two farmers walking through tall grass to bathe in a lake said a snake 40 feet long and a foot thick rose under one of them, threw him twenty feet and broke two ribs, then charged off to the lake bellowing like a bull. Locals had told of a big snake there for twenty years.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "The Washington Herald",
+    "place": "",
+    "date": "1907-07-24",
+    "page": "1",
+    "lccn": "sn83045433",
+    "url": "https://www.loc.gov/resource/sn83045433/1907-07-24/ed-1/?sp=187"
+   },
+   {
+    "paper": "The Manning Times.",
+    "place": "Manning, Clarendon County, S.C.",
+    "date": "1907-07-31",
+    "page": "6",
+    "lccn": "sn86063760",
+    "url": "https://www.loc.gov/resource/sn86063760/1907-07-31/ed-1/?sp=12"
+   },
+   {
+    "paper": "The Hartford Herald.",
+    "place": "Hartford, Ky.",
+    "date": "1907-07-31",
+    "page": "7",
+    "lccn": "sn84037890",
+    "url": "https://www.loc.gov/resource/sn84037890/1907-07-31/ed-1/?sp=267"
+   },
+   {
+    "paper": "The Times and Democrat.",
+    "place": "Orangeburg, S.C.",
+    "date": "1907-08-01",
+    "page": "1",
+    "lccn": "sn86063756",
+    "url": "https://www.loc.gov/resource/sn86063756/1907-08-01/ed-1/?sp=12"
+   },
+   {
+    "paper": "The Marlboro Democrat.",
+    "place": "Bennettsville, S.C.",
+    "date": "1907-08-02",
+    "page": "5",
+    "lccn": "sn92065637",
+    "url": "https://www.loc.gov/resource/sn92065637/1907-08-02/ed-1/?sp=438"
+   },
+   {
+    "paper": "The Daily Alaskan",
+    "place": "",
+    "date": "1907-08-15",
+    "page": "2",
+    "lccn": "sn82014189",
+    "url": "https://www.loc.gov/resource/sn82014189/1907-08-15/ed-1/?sp=447"
+   }
+  ],
+  "lat": 41.3128,
+  "lon": -96.3461,
+  "approx": true
+ },
+ {
+  "id": "1907-cornfield-point-serpent",
+  "k": "sea-serpent",
+  "title": "A captain swears on his Bible to a serpent",
+  "date": "1907-07-31",
+  "town": "Old Saybrook",
+  "state": "Connecticut",
+  "place": "Surf off Cornfield Point light, Old Saybrook, Connecticut",
+  "creature": "sea-serpent",
+  "summary": "Captain Jim Sherman of the Annie D. said he saw a sea serpent with a head like an alligator's, several feet around, in the surf off Cornfield Point. When friends laughed he pulled out a pocket Bible and swore to it; he said it headed for Long Island.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "Evening Star.",
+    "place": "Washington, D.C.",
+    "date": "1907-08-01",
+    "page": "8",
+    "lccn": "sn83045462",
+    "url": "https://www.loc.gov/resource/sn83045462/1907-08-01/ed-1/?sp=548"
+   },
+   {
+    "paper": "The News-democrat",
+    "place": "Providence, R.I.",
+    "date": "1907-08-01",
+    "page": "1",
+    "lccn": "sn91070633",
+    "url": "https://www.loc.gov/resource/sn91070633/1907-08-01/ed-1/?sp=64"
+   }
+  ],
+  "lat": 41.2918,
+  "lon": -72.3762,
   "approx": false
  },
  {

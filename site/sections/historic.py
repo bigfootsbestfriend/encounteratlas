@@ -65,6 +65,11 @@ def build(ctx):
     for c in cases:
         if c.get('creature') and c['creature'] not in ctx.by_slug:
             c['creature'] = ''
+        for pp in c['papers']:  # a few LCCNs have no title in American Stories
+            if not pp['paper'].strip():
+                pp['paper'] = 'Unnamed newspaper'
+            if not pp.get('place', '').strip():
+                pp['place'] = 'place not recorded'
     cases.sort(key=lambda c: (c['date'], c['id']))
     H(ctx, cases).run()
 
