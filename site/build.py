@@ -3,7 +3,7 @@
 Inputs: data/creatures.json (hand-written), data/bluebook.json (collector/bluebook.py),
 data/military.json (hand-written). Output: plain HTML pages + a few JSON/GeoJSON files.
 """
-import html, json, os, re, shutil, sys, urllib.parse
+import datetime, html, json, os, re, shutil, sys, urllib.parse
 from collections import Counter, defaultdict
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
@@ -944,6 +944,25 @@ def build_home(creatures, n_points, bluebook, military):
     famous_slugs = {f['creature'] for f in json.load(open(fam_path))} if os.path.exists(fam_path) else set()
     cu_path = os.path.join(ROOT, 'data', 'ufo_cases_canada.json')
     n_canada = len(json.load(open(cu_path))) if os.path.exists(cu_path) else 0
+    # "This month in old newspapers": built server-side (the site rebuilds daily), five reports from this month, spread over the years.
+    hp = os.path.join(ROOT, 'data', 'historic.json')
+    hist = json.load(open(hp, encoding='utf-8')) if os.path.exists(hp) else []
+    mon = datetime.date.today().month
+    this_m = sorted((x for x in hist if x['date'][5:7] == f'{mon:02d}'), key=lambda x: x['date'])
+    if len(this_m) > 5:
+        this_m = [this_m[round(i * (len(this_m) - 1) / 4)] for i in range(5)]
+    HPAGE = {'airship': 'airships-1896-1897', 'airship-1909': 'phantom-airships-1909', 'wild-man': 'wild-men', 'sea-serpent': 'sea-serpents',
+             'jersey-devil': 'jersey-devil-1909', 'giant-bird': 'giant-birds', 'phantom-light': 'phantom-lights', 'creature': 'strange-creatures'}
+    news_html = ''.join(f'<li><span class="yr">{x["date"][:4]}</span><span><a href="{url("/history/" + HPAGE.get(x["k"], "") + "/")}#h-{esc(x["id"])}">'
+                        f'<strong>{esc(x["title"])}</strong></a><br><span class="muted">{esc(x["place"])}</span></span></li>' for x in this_m)
+    n_myst = len(json.load(open(os.path.join(ROOT, 'data', 'mysteries.json')))) if os.path.exists(os.path.join(ROOT, 'data', 'mysteries.json')) else 0
+    n_places = len(json.load(open(os.path.join(ROOT, 'data', 'places.json')))) if os.path.exists(os.path.join(ROOT, 'data', 'places.json')) else 0
+    explore = [('/history/', 'newspaper', f'{len(hist)} reports in old newspapers'), ('/mysteries/', 'q-unsure', f'{n_myst} unsolved mysteries'),
+               ('/places/', 'museum', f'{n_places} places to visit'), ('/tools/was-it-a-planet/', 'e-planet', 'Was it a planet?'),
+               ('/tools/what-did-i-see/', 'q-sky', 'What did I see? quiz'), ('/tools/size-comparison/', 'footprint', 'How big is it?'),
+               ('/guides/', 'expedition', 'Field guides'), ('/podcasts/', 'recorder', 'Podcasts')]
+    explore_html = ''.join(f'<a class="tile" href="{url(u)}">{icon(i)}<span>{esc(t)}</span></a>' for u, i, t in explore
+                           if os.path.exists(os.path.join(STATIC, 'icons', i + '.svg')))
     featured = [c for c in creatures if c['slug'] in ('bigfoot', 'dogman', 'mothman', 'loch-ness-monster', 'chupacabra',
                                                        'ufo-tic-tac', 'jersey-devil', 'flatwoods-monster', 'fairies')]
     cards = ''.join(creature_card(c) for c in featured)
@@ -990,6 +1009,12 @@ def build_home(creatures, n_points, bluebook, military):
   <p class="lede-dark">Every creature has its other names, what witnesses report and the cases that made it famous.</p>
   <div class="crit-grid home-crits">{cards}</div>
   <p><a href="{url('/creatures/')}">See all {len(creatures)} creatures</a></p>
+  {f"""<h2>This month in old newspapers</h2>
+  <p class="lede-dark">Sea serpents, wild men and phantom airships reported in {MONTHS[mon]}, from American papers printed before 1927.</p>
+  <ol class="timeline cases">{news_html}</ol>
+  <p><a href="{url('/history/')}">All {len(hist)} old newspaper reports</a></p>""" if news_html else ''}
+  <h2>Keep exploring</h2>
+  <nav class="tiles home-explore" aria-label="More to explore">{explore_html}</nav>
 </div></div>
 <div class="band band-dark"><div class="wrap split split-3">
   <div>
