@@ -120,7 +120,7 @@ EA_API = os.environ.get('EA_API', '').rstrip('/')  # report Worker; empty until 
 MAP_API = f' data-api="{EA_API}"' if EA_API else ''
 UFO_MENU = [('/ufo/', 'UFO sightings'), ('/ufo/blue-book/', 'Air Force Blue Book files'), ('/ufo/releases/', 'Official releases'),
             ('/ufo/countries/', 'UFO files by country'), ('/military/', 'Military encounters')]
-RES_MENU = [('/places/', 'Places to visit'), ('/guides/', 'Field guides'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts')]
+RES_MENU = [('/places/', 'Places to visit'), ('/guides/', 'Field guides'), ('/gear/', 'Field gear'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts')]
 NAV = [('/map/', 'Map'), ('/creatures/', 'Creatures'), ('UFOs', UFO_MENU)] + ([('/reports/', 'Reports')] if EA_API else []) + [
     ('/encounters/', 'Encounters'), ('/mysteries/', 'Mysteries'), ('/history/', 'History'), ('Resources', RES_MENU)]
 
@@ -187,7 +187,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
   <div class="foot-in">
     <p class="foot-brand"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</p>
     <p>Sightings, creatures and official files, mapped. Reports are what witnesses say they saw. We don't claim they're real, and we don't claim they're not.</p>
-    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{url('/privacy/')}">Privacy policy</a></p>
+    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/gear/')}">Field gear</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{url('/privacy/')}">Privacy policy</a></p>
     <p class="small">Air Force case files: US National Archives, Record Group 341. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>
   </div>
 </footer>
@@ -424,7 +424,7 @@ def build_creatures(creatures, by_slug):
             chips = ''.join(f'<a class="md-chip" href="{esc(amz(q))}" rel="sponsored nofollow noopener" target="_blank">{esc(n)}</a>' for n, q, _ in gear)
             out += (f'<h3>Gear for the field</h3><div class="md-chips">{chips}'
                     f'<a class="md-chip md-merch" href="{esc(amz(("UFO" if c["cat"] == "ufo" else c["name"]) + " shirt"))}" rel="sponsored nofollow noopener" target="_blank">'
-                    f'{esc("UFO" if c["cat"] == "ufo" else c["name"])} shirts and gifts</a></div>')
+                    f'{esc("UFO" if c["cat"] == "ufo" else c["name"])} shirts and gifts</a><a class="md-chip" href="{url("/gear/")}">All field gear</a></div>')
         elif kind(c) == 'folklore' and c['cat'] == 'fae':
             out += (f'<h3>Shop</h3><div class="md-chips"><a class="md-chip md-merch" href="{esc(amz(c["name"] + " gifts"))}" rel="sponsored nofollow noopener" target="_blank">'
                     f'{esc(c["name"])} gifts and decor</a></div>')
@@ -903,6 +903,8 @@ def build_static_pages():
     <li>Who else saw it</li>
   </ul>
   <p>Take photos of tracks with something for scale, like a boot or a phone. Don't post your exact location publicly if it's private land.</p>
+  <h2>What to bring next time</h2>
+  <p>A trail camera, a red-light headlamp and an audio recorder catch most of what people miss. See <a href="{url('/gear/')}">field gear for investigators</a>.</p>
 </div></div>''', 'Report a Bigfoot, Dogman, UFO or other strange encounter.'))
     write('/about/', page('/about/', 'About and sources', f'''
 <section class="band band-dark"><div class="wrap"><h1>About Encounter Atlas</h1>

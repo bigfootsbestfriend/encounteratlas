@@ -97,8 +97,39 @@ def build(ctx):
         g['_mins'] = max(2, round(g['_words'] / 230))
         stats.append((g['slug'], g['_words']))
 
+    GEAR_LINKS = {  # (guide, section id) -> (gear section, what it covers)
+        ('bigfoot-expedition', 'gear'): ('', 'every item on this list, with why it matters'),
+        ('bigfoot-expedition', 'cameras'): ('trail-cameras', 'trail cameras, security boxes and batteries'),
+        ('bigfoot-expedition', 'audio'): ('audio', 'recorders and parabolic mics'),
+        ('bigfoot-expedition', 'night'): ('night-vision', 'thermal and night vision'),
+        ('bigfoot-expedition', 'safety'): ('camping', 'first aid, bear spray and satellite messengers'),
+        ('casting-tracks', 'materials'): ('casting', 'dental stone, plaster and scale rulers'),
+        ('casting-tracks', 'kit'): ('casting', 'the casting kit'),
+        ('dogman-and-night-encounters', 'document'): ('night-vision', 'thermal and night vision'),
+        ('dogman-and-night-encounters', 'safety'): ('camping', 'safety gear'),
+        ('skywatching', 'tools'): ('skywatching', 'planispheres, astronomy binoculars and telescopes'),
+        ('skywatching', 'camera'): ('skywatching', 'tripods for night shots'),
+        ('trail-cameras', 'choose'): ('trail-cameras', 'trail cameras worth buying'),
+        ('trail-cameras', 'power'): ('trail-cameras', 'lithium batteries and high-endurance cards'),
+        ('trail-cameras', 'theft'): ('trail-cameras', 'security boxes and cable locks'),
+        ('how-to-report', 'evidence'): ('audio', 'recorders and cameras'),
+    }
+
+    def gear_links(html_src, slug):
+        # Add a short "Gear for this" line at the end of each matching section (just before the next <h2>, or the end).
+        heads = [(m.start(), m.group(1)) for m in re.finditer(r'<h2 id="([^"]+)"', html_src)]
+        for k, (pos, sid) in reversed(list(enumerate(heads))):
+            if (slug, sid) not in GEAR_LINKS:
+                continue
+            anchor, what = GEAR_LINKS[(slug, sid)]
+            end = heads[k + 1][0] if k + 1 < len(heads) else len(html_src)
+            link = (f'<p class="g-gearlink">{ctx.icon("q-pin", "ico ico-inline")} Gear for this: '
+                    f'<a href="{ctx.url("/gear/")}{"#" + anchor if anchor else ""}">{ctx.esc(what)}</a></p>\n')
+            html_src = html_src[:end] + link + html_src[end:]
+        return html_src
+
     for g in guides:
-        body_html = render(g['_src'], g['slug'])
+        body_html = gear_links(render(g['_src'], g['slug']), g['slug'])
         rel = ''.join(card(by_slug[s]) for s in g.get('related', []) if s in by_slug)
         crits = ''.join(ctx.creature_card(ctx.by_slug[s]) for s in g.get('creatures', []) if s in ctx.by_slug)
         printable = ('<span class="g-chip">Printable checklists</span>' if g.get('printable') else '')

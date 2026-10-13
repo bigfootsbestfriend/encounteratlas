@@ -199,6 +199,8 @@ def build(ctx):
   <h2>Write it down while it's fresh</h2>
   {tips}
   <p>Photograph tracks with something for scale, like a boot or a phone.</p>
+  <h2>What to bring next time</h2>
+  <p>A trail camera, a red-light headlamp and an audio recorder catch most of what people miss. See <a href="{url('/gear/')}">field gear for investigators</a>.</p>
   <h2>What happens next</h2>
   <p>A moderator checks every report. Once it's live, anyone with an account can vote <strong>Real</strong>, <strong>Hoax</strong> or <strong>Misidentified</strong>. Votes are community opinion, not a verdict.</p>
 </aside>

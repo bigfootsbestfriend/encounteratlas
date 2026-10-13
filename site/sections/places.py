@@ -267,7 +267,7 @@ class Builder:
   {self.grouped_lists(self.P)}
   <p class="empty" hidden>Nothing matches that yet. Know a place we should add? <a href="{self.u('/report/')}">Tell us</a>.</p>
 </div></div>
-{self.cta()}'''
+{self.cta()}<div class="band band-mist"><div class="wrap"><p class="g-gearlink">Heading out? See <a href="{c.url('/gear/')}">field gear for investigators</a>: trail cameras, thermal, binoculars and safety kit.</p></div></div>'''
         c.write('/places/', c.page('/places/', 'Bigfoot museums, UFO festivals and cryptid attractions to visit', body,
                                    f'{cnt["museum"]} cryptid and UFO museums, {cnt["festival"]} festivals, {cnt["attraction"]} roadside attractions and '
                                    f'{cnt["expedition"]} expeditions in the US, Canada and beyond, mapped with dates, prices and sources.',
@@ -515,7 +515,7 @@ class Builder:
     </div>
   </div>
 </div></div>
-{self.cta()}'''
+{self.cta()}<div class="band band-mist"><div class="wrap"><p class="g-gearlink">Heading out? See <a href="{c.url('/gear/')}">field gear for investigators</a>: trail cameras, thermal, binoculars and safety kit.</p></div></div>'''
         c.write('/expeditions/', c.page('/expeditions/', 'Bigfoot expeditions, UFO tours and cryptid night hikes', body,
                                         'Guided Bigfoot expeditions, Area 51 and Sedona UFO tours, Loch Ness sonar cruises and Bigfoot night hikes, with prices.',
                                         body_class='places', head_extra=self.map_head))

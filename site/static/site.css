@@ -537,3 +537,15 @@ a.md-book:hover { box-shadow: 0 0 0 2px var(--lantern); color: var(--ink); }
 .md-merch { background: var(--lantern); border-color: var(--lantern); }
 .md-disc { margin: 1.4rem 0 0; font-size: .88rem; color: var(--muted-l); }
 .md-disc a { color: #7A4E00; }
+
+/* Field gear hub */
+.gr-toc { margin: 0 0 1rem; }
+.gr-sec { padding: 1.2rem 0 .4rem; scroll-margin-top: 80px; }
+.gr-sec h2 { display: flex; align-items: center; gap: .6rem; }
+.gr-ico { flex: none; width: 42px; height: 42px; border-radius: 50%; background: var(--spruce); color: var(--lantern); display: grid; place-items: center; }
+.gr-ico .ico { width: 26px; height: 26px; }
+.gr-why { color: var(--muted-l); margin: 0 0 .8rem; max-width: 62ch; }
+.gr-apps { margin: .9rem 0 0; color: var(--ink); }
+.gr-apps a, .gr-page .gr-why a { color: #7A4E00; }
+.g-gearlink { background: #fff; border-left: 4px solid var(--lantern); border-radius: 0 var(--r-sm) var(--r-sm) 0; padding: .6rem .9rem; color: var(--ink); }
+.g-gearlink a { color: #7A4E00; font-weight: 700; }
