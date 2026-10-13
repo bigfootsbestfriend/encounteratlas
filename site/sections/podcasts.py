@@ -214,7 +214,8 @@ def build(ctx):
   <p class="pod-count" aria-live="polite"><span id="pcount">{len(shows)}</span> shows</p>
   <div class="pod-grid">{''.join(card(s) for s in shows)}</div>
   <p class="empty" hidden>No show matches that. Try a broader word, or clear the topic filter.</p>
-  <p class="small muted">Show details come from Apple Podcasts and each show's own feed, updated {esc(fmt_date(updated))}. Every show has an RSS link you can paste into any podcast app. Know a show we missed? <a href="{url('/report/')}">Tell us</a>.</p>
+  <p class="small muted">Show details come from Apple Podcasts and each show's own feed, updated {esc(fmt_date(updated))}. Every show has an RSS link you can paste into any podcast app. Know a show we missed? <a href="{url('/contact/')}">Tell us</a>.</p>
+  <p class="md-listen">Run out of episodes? <a href="https://www.amazon.com/hz/audible/mlp?tag=encountersatlas-20" rel="sponsored nofollow noopener" target="_blank">Try Audible free</a> for cryptid and UFO audiobooks. <a class="md-aff" href="{url('/privacy/')}#affiliate">(affiliate link)</a></p>
 </div></div>
 {f"""<section class="band band-dark"><div class="wrap">
   <h2>Episodes about one creature</h2>

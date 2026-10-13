@@ -276,6 +276,8 @@ p { margin: 0 0 1em; }
   .map-frame { height: 65vh; }
   .map-full-bar { padding: .5rem .6rem; }
   .timeline.cases li { grid-template-columns: 6.5rem 1fr; }
+  /* Phones: year above the entry, so the text gets the full width */
+  .timeline:not(.cases) li { grid-template-columns: 1fr; gap: .15rem; }
 }
 @media (min-width: 1000px) { .tiles { grid-template-columns: repeat(8, 1fr); } .tile { flex-direction: column; align-items: flex-start; } }
 @media (min-width: 601px) and (max-width: 999px) { .tiles { grid-template-columns: repeat(4, 1fr); } }
@@ -551,3 +553,13 @@ a.md-book:hover { box-shadow: 0 0 0 2px var(--lantern); color: var(--ink); }
 .g-gearlink a { color: #7A4E00; font-weight: 700; }
 .md-aff { font: 600 .8rem var(--body); color: var(--muted-l); vertical-align: middle; margin-left: .3rem; white-space: nowrap; }
 .gr-aff { margin: -.4rem 0 .6rem; } .gr-aff .md-aff { color: var(--muted-d); margin: 0; }
+
+/* Creature pages: "On this page" jump links under the summary */
+.jump { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+.jump a { display: inline-flex; align-items: center; min-height: 36px; padding: .3rem .85rem; border-radius: 999px; font-size: .88rem; font-weight: 600;
+  color: var(--muted-d); border: 1px solid var(--spruce-3); text-decoration: none; background: rgba(255,255,255,.03); }
+.jump a:hover { color: var(--lantern-2); border-color: var(--lantern); }
+[id] { scroll-margin-top: 1rem; }
+@media (min-width: 761px) { .split-3 { grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); } }
+.md-listen { margin: .3rem 0 1.2rem; font-size: .95rem; }
+.md-listen a { font-weight: 600; }

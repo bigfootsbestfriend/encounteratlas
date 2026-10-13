@@ -106,6 +106,7 @@ def build(ctx):
   <section class="gr-sec" id="reading"><h2><span class="gr-ico">{ctx.icon('folder')}</span>Books and documentaries</h2>
     <p class="gr-why">The best general reads, sceptical and believing. Every creature page also lists books about that creature.</p>
     <div class="md-grid">{bcards}</div>
+    <p class="md-listen">Prefer to listen? <a href="https://www.amazon.com/hz/audible/mlp?tag={TAG}" {SPONSORED}>Try Audible free</a> for audiobooks on long drives and stakeouts.</p>
     <h3>Documentaries</h3><div class="md-grid">{dcards}</div></section>
 
 </div></div>'''

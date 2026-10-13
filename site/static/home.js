@@ -84,13 +84,21 @@
     };
     document.addEventListener('ea:located', async (e) => {
       const ll = e.detail;
-      const [feats, famous] = await Promise.all([loadBB(), fetch(BASE + '/data/famous.geojson').then((r) => r.json()).then((d) => d.features).catch(() => [])]);
+      const [feats, famous, canada] = await Promise.all([loadBB(), fetch(BASE + '/data/famous.geojson').then((r) => r.json()).then((d) => d.features).catch(() => []),
+        fetch(BASE + '/data/ufo_canada.geojson').then((r) => r.json()).then((d) => d.features).catch(() => [])]);
       const rows = [];
+      // Canadian UFO Survey towns: one row per town, so a city with 300 reports doesn't fill the list
+      for (const f of canada) if (f.properties.a === 0) rows.push([km(ll, f.geometry.coordinates), `<a href="${esc(f.properties.u)}">UFO reports in ${esc(f.properties.t)}: ${f.properties.n}</a>`, 'since 1989', 'ca']);
       for (const f of famous) rows.push([km(ll, f.geometry.coordinates), `<a href="${BASE}/creatures/${esc(f.properties.s)}/">${esc(f.properties.n)}: ${esc(f.properties.t)}</a>`, f.properties.y || '']);
       for (const f of feats) if (f.properties.a === 0) rows.push([km(ll, f.geometry.coordinates), `<a href="${caseLink(f.properties)}" rel="noopener" target="_blank">UFO report: ${esc(f.properties.t)}</a>`, f.properties.w]);
       rows.sort((x, y) => x[0] - y[0]);
-      const mi = (k) => (k * 0.621371 < 1 ? 'under a mile' : `${Math.round(k * 0.621371)} mi`);
-      near.querySelector('.near-list').innerHTML = rows.slice(0, 8).map(([k, link, when]) =>
+      // Miles for US visitors, kilometres for everyone else (Canada included)
+      const usa = /-US$/i.test(navigator.language || '') && !/^America\/(Toronto|Montreal|Vancouver|Edmonton|Calgary|Winnipeg|Regina|Swift_Current|Halifax|Moncton|Glace_Bay|Goose_Bay|St_Johns|Whitehorse|Dawson|Dawson_Creek|Fort_Nelson|Creston|Yellowknife|Inuvik|Iqaluit|Rankin_Inlet|Cambridge_Bay|Resolute|Pangnirtung|Atikokan|Thunder_Bay|Nipigon|Rainy_River|Blanc-Sablon)$/.test(Intl.DateTimeFormat().resolvedOptions().timeZone || '');
+      const mi = (k) => (usa ? (k * 0.621371 < 1 ? 'under a mile' : `${Math.round(k * 0.621371)} mi`) : (k < 1 ? 'under 1 km' : `${Math.round(k)} km`));
+      // At most 3 Canadian-town rows, so famous cases and Air Force files still show
+      let nca = 0;
+      const top = rows.filter((r) => r[3] !== 'ca' || ++nca <= 3).slice(0, 8);
+      near.querySelector('.near-list').innerHTML = top.map(([k, link, when]) =>
         `<li><span class="yr">${mi(k)}</span><span>${link}${when ? ` <small>${esc(when)}</small>` : ''}</span></li>`).join('');
       near.hidden = false;
       near.scrollIntoView({ behavior: 'smooth', block: 'nearest' });

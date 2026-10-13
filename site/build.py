@@ -189,7 +189,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
     <p>Sightings, creatures and official files, mapped. Reports are what witnesses say they saw. We don't claim they're real, and we don't claim they're not.</p>
     <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/gear/')}">Gear</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{url('/privacy/')}">Privacy policy</a></p>
     <p class="small">As an Amazon Associate we earn from qualifying purchases. <a href="{url('/privacy/')}#affiliate">About our affiliate links</a>.</p>
-    <p class="small">Air Force case files: US National Archives, Record Group 341. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>
+    <p class="small">Air Force case files: US National Archives, Record Group 341. Canadian sightings: the Canadian UFO Survey, Ufology Research. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>
   </div>
 </footer>
 {beacon}
@@ -356,7 +356,7 @@ def build_creatures(creatures, by_slug):
         cards = ''.join(f'<a class="cg-card" href="{url("/guides/" + g["slug"] + "/")}"><span class="cg-ico tone-{g.get("tone", "other")}">{icon(g["icon"])}</span>'
                         f'<span><span class="cg-kick">{esc(g.get("kicker") or "Field guide")}</span><b>{esc(g.get("short") or g["title"])}</b>'
                         f'<small>{esc(g.get("blurb") or "")}</small><span class="cg-go">Read the guide{" · printable checklist" if g.get("printable") else ""}</span></span></a>' for g in gs)
-        return (f'<section class="band band-dark cg-band"><div class="wrap"><h2>{"Out where the stories are told?" if kind(c) == "folklore" else "Watching the skies?" if kind(c) == "ufo" else "Going looking for the " + esc(c["name"]) + "?"}</h2>'
+        return (f'<section class="band band-dark cg-band" id="guides"><div class="wrap"><h2>{"Out where the stories are told?" if kind(c) == "folklore" else "Watching the skies?" if kind(c) == "ufo" else "Going looking for the " + esc(c["name"]) + "?"}</h2>'
                 f'<p class="lede-dark">Our field guides cover where to go, what to bring and how to come back with evidence that holds up.</p>'
                 f'<div class="cg-grid">{cards}</div><p class="cg-all"><a href="{url("/guides/")}">All field guides</a></p></div></section>')
 
@@ -377,6 +377,7 @@ def build_creatures(creatures, by_slug):
                   ('Track casting plaster', 'plaster casting kit animal tracks', 'track'), ('Digital audio recorder', 'digital audio recorder', 'mic')],
     }
     AMZ_TAG = 'encountersatlas-20'
+    AUDIBLE = 'https://www.amazon.com/hz/audible/mlp?tag=' + AMZ_TAG  # Audible free-trial page (Associates bounty)
 
     def amz(q, index=''):
         return ('https://www.amazon.com/s?' + urllib.parse.urlencode({'k': q, **({'i': index} if index else {}), 'tag': AMZ_TAG}))
@@ -413,6 +414,9 @@ def build_creatures(creatures, by_slug):
                 out += (f'<h3>{"More good reads" if spec else "General books on " + ("UFOs" if c["cat"] in ("ufo", "entity") else "fairy lore" if c["cat"] == "fae" else "cryptids")}</h3>'
                         f'{"" if spec else "<p class=md-note>No book is devoted to this one yet, so here are the best general guides.</p>"}'
                         f'<div class="md-grid">{"".join(book_card(b, i + len(spec)) for i, b in enumerate(general))}</div>')
+        if spec or general:
+            out += (f'<p class="md-listen">Prefer to listen? <a href="{AUDIBLE}" rel="sponsored nofollow noopener" target="_blank">Try Audible free</a> '
+                    f'and hear cryptid and UFO books on the drive to the trailhead.</p>')
         if docs:
             cards = ''.join(f'<div class="md-doc"><span class="md-ico">{icon("ufo-film")}</span><span class="md-txt"><b>{esc(d["title"])}</b>'
                             f'<small>{d["year"]} · {esc(d["blurb"])}</small>'
@@ -431,7 +435,7 @@ def build_creatures(creatures, by_slug):
                     f'{esc(c["name"])} gifts and decor</a></div>')
         if not out:
             return ''
-        return (f'<section class="band band-mist md-band"><div class="wrap"><h2>Read, watch and gear up <a class="md-aff" href="{url("/privacy/")}#affiliate">(affiliate links)</a></h2>{out}'
+        return (f'<section class="band band-mist md-band" id="books"><div class="wrap"><h2>Read, watch and gear up <a class="md-aff" href="{url("/privacy/")}#affiliate">(affiliate links)</a></h2>{out}'
                 f'</div></section>')
 
     COUNTRIES = load('countries.json') or {}
@@ -550,6 +554,10 @@ def build_creatures(creatures, by_slug):
         if c['cat'] == 'ufo':
             ufo_note = (f'<p class="callout">{icon("folder", "ico ico-inline")} Browse 10,622 US Air Force Project Blue Book '
                         f'case files on the <a href="{url("/map/")}">map</a> or <a href="{url("/ufo/blue-book/")}">by state</a>.</p>')
+        gb, mb = (guide_band(c) if kind(c) != 'single' else ''), media_band(c)
+        jumps = [('#cases', 'Timeline' if kind(c) == 'single' else 'Famous cases') if cases else None, ('#modern', 'Modern reports') if modern else None,
+                 ('#facts', 'Facts'), ('#guides', 'Field guides') if gb else None, ('#books', 'Books and gear') if mb else None, ('#related', 'Similar creatures')]
+        jump = '<nav class="jump" aria-label="On this page">' + ''.join(f'<a href="{h}">{t}</a>' for h, t in filter(None, jumps)) + '</nav>'
         body = f'''
 <section class="band band-dark creature-head cat-{c['cat']}">
   <div class="wrap creature-head-in">
@@ -560,6 +568,7 @@ def build_creatures(creatures, by_slug):
       {aka}
       <p class="lede">{esc(c['summary'])}</p>
       {f'<p class="lede-story"><a href="{first_story[0]}">Read the full story: {esc(first_story[1])}</a></p>' if first_story else ''}
+      {jump}
     </div>
   </div>
 </section>
@@ -570,12 +579,12 @@ def build_creatures(creatures, by_slug):
     {ufo_note}
     <h2>{ {'single': 'What was shown or claimed', 'folklore': 'What the stories say'}.get(kind(c), 'What witnesses report') }</h2>
     <ul class="signs">{signs}</ul>
-    {f'<h2>{"Timeline" if kind(c) == "single" else "Famous cases"}</h2><ol class="timeline">{cases}</ol>' if cases else ''}
-    {f'<h2>Modern reports</h2><ol class="timeline">{modern}</ol>' if modern else ''}
+    {f'<h2 id="cases">{"Timeline" if kind(c) == "single" else "Famous cases"}</h2><ol class="timeline">{cases}</ol>' if cases else ''}
+    {f'<h2 id="modern">Modern reports</h2><ol class="timeline">{modern}</ol>' if modern else ''}
     {seen_box(c)}
   </article>
   <aside class="side">
-    <div class="facts">
+    <div class="facts" id="facts">
       <dl>{facts}</dl>
       {f'<p class="more"><a href="{wiki}" rel="noopener">Read more on Wikipedia</a></p>' if wiki else ''}
     </div>
@@ -583,9 +592,9 @@ def build_creatures(creatures, by_slug):
   </aside>
 </div>
 </div>
-{guide_band(c) if kind(c) != 'single' else ''}
-{media_band(c)}
-<div class="band band-mist">{related_groups(c)}</div>'''
+{gb}
+{mb}
+<div class="band band-mist" id="related">{related_groups(c)}</div>'''
         write(f'/creatures/{c["slug"]}/', page(f'/creatures/{c["slug"]}/', f'{c["name"]}: ' + {'single': 'the story, facts and other names', 'folklore': 'stories, facts and other names'}.get(kind(c), 'sightings, facts and other names'),
                                                body, f'{c["summary"]} Also called {", ".join(c["aliases"][:4])}.'
                                                if c['aliases'] else c['summary']))
@@ -810,6 +819,8 @@ def build_search_index(creatures, bluebook, military):
 def build_home(creatures, n_points, bluebook, military):
     fam_path = os.path.join(ROOT, 'data', 'famous_geo.json')
     famous_slugs = {f['creature'] for f in json.load(open(fam_path))} if os.path.exists(fam_path) else set()
+    cu_path = os.path.join(ROOT, 'data', 'ufo_cases_canada.json')
+    n_canada = len(json.load(open(cu_path))) if os.path.exists(cu_path) else 0
     featured = [c for c in creatures if c['slug'] in ('bigfoot', 'dogman', 'mothman', 'loch-ness-monster', 'chupacabra',
                                                        'ufo-tic-tac', 'jersey-devil', 'flatwoods-monster', 'fairies')]
     cards = ''.join(creature_card(c) for c in featured)
@@ -821,7 +832,7 @@ def build_home(creatures, n_points, bluebook, military):
 <section class="home-hero">
   <div class="wrap">
     <h1>Every strange thing, on one map</h1>
-    <p class="lede">Bigfoot, Dogman, lake monsters, UFOs and what the military saw. {len(creatures)} creatures, {len(bluebook):,} Air Force files, and soon, your reports.</p>
+    <p class="lede">Bigfoot, Dogman, lake monsters, UFOs and what the military saw. {len(creatures)} creatures, {len(bluebook):,} Air Force files, {n_canada:,} Canadian sightings, and soon, your reports.</p>
     <div class="search" data-index="{url('/data/search.json')}">
       <label class="visually-hidden" for="home-q">Search</label>
       <input id="home-q" type="search" placeholder="Search: Sasquatch, Ohio, Roswell..." autocomplete="off">
@@ -856,12 +867,18 @@ def build_home(creatures, n_points, bluebook, military):
   <div class="crit-grid home-crits">{cards}</div>
   <p><a href="{url('/creatures/')}">See all {len(creatures)} creatures</a></p>
 </div></div>
-<div class="band band-dark"><div class="wrap split">
+<div class="band band-dark"><div class="wrap split split-3">
   <div>
     {icon('folder', 'ico ico-lg')}
     <h2>The Air Force kept files</h2>
     <p>Project Blue Book collected {len(bluebook):,} UFO reports between 1947 and 1969. Find the ones from your state, read the original scans, and see where they cluster.</p>
     <p><a class="btn" href="{url('/ufo/blue-book/')}">Open the Air Force files</a></p>
+  </div>
+  <div>
+    {icon('ufo-globe', 'ico ico-lg')}
+    <h2>Canada's UFO sightings</h2>
+    <p>{n_canada:,} reports from every province and territory since 1989, from the Canadian UFO Survey. See your town's sightings and the ones nobody could explain.</p>
+    <p><a class="btn" href="{url('/ufo/canada/')}">Open the Canada map</a></p>
   </div>
   <div>
     {icon('military', 'ico ico-lg')}
@@ -914,6 +931,7 @@ def build_static_pages():
 <h2>Sources</h2>
 <ul>
 <li><strong>Project Blue Book case files</strong>, US Air Force, 1947 to 1969. US National Archives, Record Group 341, microfilm T1206. US federal records, no copyright in the United States. Places were matched automatically from the folder titles; dots marked “approximate” are placed at the state or country, not the exact spot.</li>
+<li><strong>Canadian UFO sightings, 1989 to 2025</strong>: the Canadian UFO Survey, compiled each year by Ufology Research (Winnipeg) from reports to police, airports, the military, researchers and UFO groups. We left out reports the survey received from MUFON, NUFORC and Enigma Labs. Ratings (explained, unexplained...) are the survey's; notes are lightly tidied. Places were matched to towns with GeoNames.</li>
 <li><strong>Place names</strong>: GeoNames, licensed CC BY 4.0.</li>
 <li><strong>Map tiles</strong>: OpenFreeMap, built on OpenMapTiles and OpenStreetMap data.</li>
 <li><strong>Creature entries</strong> are written by us from published accounts. Each links to further reading.</li>
