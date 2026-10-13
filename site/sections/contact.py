@@ -104,7 +104,8 @@ the official UFO files and the close-encounter stories, and they send in sightin
 <div class="owner-card">
   <picture><source srcset="{U('/static/img/mike-johnston.webp')}" type="image/webp"><img src="{U('/static/img/mike-johnston.png')}" alt="Mike Johnston" width="160" height="160"></picture>
   <div><h2>Who's behind it</h2>
-  <p>Encounter Atlas is built and run by <strong>Mike Johnston</strong>, a Canadian web developer with a long-running interest in Bigfoot, lake monsters and UFOs.</p></div>
+  <p>Encounter Atlas is built and run by <strong>Mike Johnston</strong>, a Canadian web developer with a long-running interest in Bigfoot, lake monsters and UFOs.</p>
+  {ctx.social_row('social owner-social')}</div>
 </div>
 <section class="owner-contact" aria-labelledby="reach-mike"><h2 id="reach-mike">Get in touch with Mike</h2>
 {_form(ctx, 'general', compact=True)}

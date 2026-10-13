@@ -646,3 +646,11 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 .owner-contact { margin: -1rem 0 2.2rem; }
 .owner-contact h2 { margin-top: 0; }
 .contact-form.compact .step { margin: .4rem 0 .6rem; }
+/* Official social accounts: round icon links (footer, About) */
+.social { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+.social a { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: var(--lichen); border: 1px solid #2B4A3D; }
+.social a:hover { color: #1185FE; border-color: currentColor; background: rgba(255,255,255,.04); }
+.social a:focus-visible { outline: 3px solid var(--lantern); outline-offset: 2px; }
+.owner-social { margin: .8rem 0 0; }
+.owner-social a { color: var(--spruce); border-color: var(--mist-2); background: #fff; }
+.owner-social a:hover { color: #1185FE; }

@@ -11,7 +11,7 @@ OUT = os.environ.get('OUT_DIR') or os.path.join(ROOT, '_site')
 STATIC = os.path.join(ROOT, 'site', 'static')
 SITE_URL = os.environ.get('SITE_URL', 'https://encounteratlas.com').rstrip('/')
 BASE = os.environ.get('BASE_PATH', '').rstrip('/')  # '/encounteratlas' on the GitHub Pages preview
-LAUNCHED = False  # noindex everywhere until Mike has reviewed the site
+LAUNCHED = True  # launched 2026-10-13 (Mike: "launch the site")
 CF_BEACON = os.environ.get('CF_BEACON', '')
 
 CATS = {
@@ -139,15 +139,33 @@ def nav_html(path):
     return out
 
 
+# Official social accounts: (name, url, svg path, viewBox). Add a row when Mike opens an account; nothing is shown for ones that don't exist.
+SOCIAL = [
+    ('Bluesky', 'https://bsky.app/profile/encounteratlas.com', '0 0 600 530',
+     'm135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-.0174-2.9357-1.1937.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z'),
+]
+
+
+def social_row(cls='social'):
+    """Icon links to the official accounts (footer and About page)."""
+    if not SOCIAL:
+        return ''
+    links = ''.join(f'<a href="{u}" rel="me noopener" aria-label="Encounter Atlas on {n}" title="{n}">'
+                    f'<svg viewBox="{vb}" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="{d}"/></svg></a>' for n, u, vb, d in SOCIAL)
+    return f'<p class="{cls}">{links}</p>'
+
+
 def ld_json(path, title, body):
     """Structured data: BreadcrumbList from the page's own crumb line, and WebSite on the home page."""
     out = []
     if path == '/':
         out.append({'@context': 'https://schema.org', '@type': 'WebSite', 'name': 'Encounter Atlas', 'url': SITE_URL + '/'})
+        out.append({'@context': 'https://schema.org', '@type': 'Organization', 'name': 'Encounter Atlas', 'url': SITE_URL + '/',
+                    'logo': SITE_URL + '/static/app-512.png', 'sameAs': [u for _, u, _, _ in SOCIAL]})
     if path == '/about/':
         out.append({'@context': 'https://schema.org', '@type': 'AboutPage', 'url': SITE_URL + '/about/', 'mainEntity': {
             '@type': 'Person', 'name': 'Mike Johnston', 'image': SITE_URL + '/static/img/mike-johnston.png', 'nationality': 'Canadian',
-            'jobTitle': 'Founder', 'worksFor': {'@type': 'Organization', 'name': 'Encounter Atlas', 'url': SITE_URL + '/'}}})
+            'jobTitle': 'Founder', 'worksFor': {'@type': 'Organization', 'name': 'Encounter Atlas', 'url': SITE_URL + '/', 'sameAs': [u for _, u, _, _ in SOCIAL]}}})
     m = re.search(r'<p class="crumb">(.*?)</p>', body, re.S)
     if m:
         items = [(html.unescape(re.sub(r'<[^>]+>', '', t)).strip(), h) for h, t in re.findall(r'<a href="([^"]+)"[^>]*>(.*?)</a>', m.group(1))]
@@ -212,6 +230,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
     <p class="foot-brand"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</p>
     <p>Sightings, creatures and official files, mapped. Reports are what witnesses say they saw. We don't claim they're real, and we don't claim they're not.</p>
     <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/gear/')}">Gear</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{url('/privacy/')}">Privacy policy</a></p>
+    {social_row('social foot-social')}
     <p class="small">As an Amazon Associate we earn from qualifying purchases. <a href="{url('/privacy/')}#affiliate">About our affiliate links</a>.</p>
     <p class="small">Air Force case files: US National Archives, Record Group 341. Canadian sightings: the Canadian UFO Survey, Ufology Research. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>
   </div>
@@ -1194,7 +1213,7 @@ def main():
     import importlib.util, types
     ctx = types.SimpleNamespace(ROOT=ROOT, OUT=OUT, STATIC=STATIC, SITE_URL=SITE_URL, BASE=BASE, page=page, write=write,
                                 url=url, esc=esc, icon=icon, crit_icon=crit_icon, slugify=slugify, badge=badge, creature_card=creature_card,
-                                creatures=creatures, by_slug=by_slug, bluebook=bluebook, military=military, CATS=CATS, MONTHS=MONTHS)
+                                social_row=social_row, creatures=creatures, by_slug=by_slug, bluebook=bluebook, military=military, CATS=CATS, MONTHS=MONTHS)
     sec_dir = os.path.join(ROOT, 'site', 'sections')
     for fn in sorted(os.listdir(sec_dir)) if os.path.isdir(sec_dir) else []:
         if fn.endswith('.py') and not fn.startswith('_'):
