@@ -3240,6 +3240,373 @@
   "approx": false
  },
  {
+  "id": "1892-brownsville-cave-gorilla",
+  "k": "wild-man",
+  "title": "A 'gorilla' prowls Brownsville from the caves",
+  "date": "1892-04",
+  "town": "Brownsville",
+  "state": "Kentucky",
+  "place": "Brownsville, Edmonson County, Kentucky, in the Mammoth Cave country",
+  "creature": "",
+  "summary": "People in Brownsville, surrounded by caverns, said a gorilla hid in the caves by day and walked the streets at night, and several claimed to have seen it. Everyone barred their doors after dark; papers guessed it had escaped from a travelling show.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "The Salt Lake Herald.",
+    "place": "Salt Lake City",
+    "date": "1892-04-12",
+    "page": "6",
+    "lccn": "sn85058130",
+    "url": "https://www.loc.gov/resource/sn85058130/1892-04-12/ed-1/?sp=228"
+   },
+   {
+    "paper": "The Camden Chronicle",
+    "place": "Camden, Tenn.",
+    "date": "1892-04-15",
+    "page": "4",
+    "lccn": "sn89058013",
+    "url": "https://www.loc.gov/resource/sn89058013/1892-04-15/ed-1/?sp=409"
+   }
+  ],
+  "lat": 37.1925,
+  "lon": -86.2678,
+  "approx": false
+ },
+ {
+  "id": "1892-willapa-river-serpent",
+  "k": "sea-serpent",
+  "title": "A 40-foot serpent in the Willapa River",
+  "date": "1892-05-12",
+  "town": "South Bend",
+  "state": "Washington",
+  "place": "Willapa River near South Bend, Washington",
+  "creature": "",
+  "summary": "Two couples out in a naphtha launch said a serpent forty feet long, its head four feet out of the water and eyes glaring, raced past them on the Willapa River.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "The Seattle Post-intelligencer.",
+    "place": "Seattle, Wash. Terr.",
+    "date": "1892-05-14",
+    "page": "2",
+    "lccn": "sn83045604",
+    "url": "https://www.loc.gov/resource/sn83045604/1892-05-14/ed-1/?sp=58"
+   }
+  ],
+  "lat": 46.6632,
+  "lon": -123.8046,
+  "approx": false
+ },
+ {
+  "id": "1892-daggett-desert-monster",
+  "k": "creature",
+  "title": "A giant reptile in the desert near Daggett",
+  "date": "1892-06",
+  "town": "Daggett",
+  "state": "California",
+  "place": "Desert about twenty miles from Daggett, California",
+  "creature": "",
+  "summary": "Two Daggett prospectors, on separate trips, said they saw a gigantic reptile in the desert toward Death Valley, and a man who called himself a researcher claimed to have seen it too and asked the Smithsonian to send a party to catch it. Papers called it a cousin of the sea serpent.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "The Yakima Herald.",
+    "place": "North Yakima, W.T.",
+    "date": "1892-06-02",
+    "page": "5",
+    "lccn": "sn88085523",
+    "url": "https://www.loc.gov/resource/sn88085523/1892-06-02/ed-1/?sp=870"
+   },
+   {
+    "paper": "Alexandria Gazette.",
+    "place": "Alexandria, D.C.",
+    "date": "1892-06-14",
+    "page": "1",
+    "lccn": "sn85025007",
+    "url": "https://www.loc.gov/resource/sn85025007/1892-06-14/ed-1/?sp=425"
+   },
+   {
+    "paper": "Iowa County Democrat.",
+    "place": "Mineral Point, Wis.",
+    "date": "1892-06-17",
+    "page": "7",
+    "lccn": "sn86086852",
+    "url": "https://www.loc.gov/resource/sn86086852/1892-06-17/ed-1/?sp=13"
+   },
+   {
+    "paper": "The Morning News.",
+    "place": "Savannah, Ga.",
+    "date": "1892-06-19",
+    "page": "5",
+    "lccn": "sn86063034",
+    "url": "https://www.loc.gov/resource/sn86063034/1892-06-19/ed-1/?sp=689"
+   },
+   {
+    "paper": "San Antonio Daily Light.",
+    "place": "San Antonio, Tex.",
+    "date": "1892-06-30",
+    "page": "1",
+    "lccn": "sn86090439",
+    "url": "https://www.loc.gov/resource/sn86090439/1892-06-30/ed-1/?sp=1242"
+   }
+  ],
+  "lat": 34.8633,
+  "lon": -116.8881,
+  "approx": true
+ },
+ {
+  "id": "1892-russian-river-screamer",
+  "k": "sea-serpent",
+  "title": "A screaming thing under the Cloverdale bridge",
+  "date": "1892-06",
+  "town": "Cloverdale",
+  "state": "California",
+  "place": "Russian River at the iron bridge, Cloverdale, California",
+  "creature": "",
+  "summary": "Young men on the iron bridge heard a strange noise and saw something churn down the dark Russian River toward them. It let out a scream unlike anything they knew, reared about ten feet out of the water with a bellow, and passed under the bridge, leaving an odd smell. It had been reported upriver toward Ukiah two weeks earlier.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "The Morning Call",
+    "place": "",
+    "date": "1892-06-23",
+    "page": "1",
+    "lccn": "sn94052989",
+    "url": "https://www.loc.gov/resource/sn94052989/1892-06-23/ed-1/?sp=505"
+   }
+  ],
+  "lat": 38.8055,
+  "lon": -123.0172,
+  "approx": false
+ },
+ {
+  "id": "1892-lake-erie-madeline-downing",
+  "k": "sea-serpent",
+  "title": "A schooner captain's Lake Erie serpent",
+  "date": "1892-07",
+  "town": "Erie",
+  "state": "Pennsylvania",
+  "place": "Lake Erie, about 16 miles above the Dummy light",
+  "creature": "",
+  "summary": "The captain of the schooner Madeline Downing saw the lake lashed to foam ahead and, coming close, a dark brown snake 30 feet or more long with a large head held four feet up, sparkling eyes and fins big enough to help it swim. He thought it could crush a yawl boat.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "New-York Tribune.",
+    "place": "New York",
+    "date": "1892-07-10",
+    "page": "13",
+    "lccn": "sn83030214",
+    "url": "https://www.loc.gov/resource/sn83030214/1892-07-10/ed-1/?sp=143"
+   },
+   {
+    "paper": "New-York Tribune.",
+    "place": "New York",
+    "date": "1892-07-17",
+    "page": "13",
+    "lccn": "sn83030214",
+    "url": "https://www.loc.gov/resource/sn83030214/1892-07-17/ed-1/?sp=241"
+   },
+   {
+    "paper": "St. Paul Daily Globe.",
+    "place": "Saint Paul, Minn.",
+    "date": "1892-07-17",
+    "page": "5",
+    "lccn": "sn90059522",
+    "url": "https://www.loc.gov/resource/sn90059522/1892-07-17/ed-1/?sp=163"
+   },
+   {
+    "paper": "Pittsburg Dispatch.",
+    "place": "Pittsburg",
+    "date": "1892-07-18",
+    "page": "3",
+    "lccn": "sn84024546",
+    "url": "https://www.loc.gov/resource/sn84024546/1892-07-18/ed-1/?sp=240"
+   },
+   {
+    "paper": "Daily Tobacco Leaf-chronicle",
+    "place": "Clarksville, Tenn.",
+    "date": "1892-07-19",
+    "page": "3",
+    "lccn": "sn88061072",
+    "url": "https://www.loc.gov/resource/sn88061072/1892-07-19/ed-1/?sp=698"
+   },
+   {
+    "paper": "The Sun.",
+    "place": "New York",
+    "date": "1892-07-20",
+    "page": "10",
+    "lccn": "sn83030272",
+    "url": "https://www.loc.gov/resource/sn83030272/1892-07-20/ed-1/?sp=646"
+   },
+   {
+    "paper": "Democratic Northwest.",
+    "place": "Napoleon, Ohio",
+    "date": "1892-07-21",
+    "page": "1",
+    "lccn": "sn84028296",
+    "url": "https://www.loc.gov/resource/sn84028296/1892-07-21/ed-1/?sp=873"
+   },
+   {
+    "paper": "The Columbia Herald.",
+    "place": "Columbia, Tenn.",
+    "date": "1892-07-22",
+    "page": "4",
+    "lccn": "sn96091104",
+    "url": "https://www.loc.gov/resource/sn96091104/1892-07-22/ed-1/?sp=369"
+   },
+   {
+    "paper": "Essex County Herald.",
+    "place": "Guildhall, Vt.",
+    "date": "1892-07-22",
+    "page": "4",
+    "lccn": "sn84023416",
+    "url": "https://www.loc.gov/resource/sn84023416/1892-07-22/ed-1/?sp=523"
+   },
+   {
+    "paper": "The New Dominion.",
+    "place": "Morgantown, W. Va.",
+    "date": "1892-07-30",
+    "page": "1",
+    "lccn": "sn86092182",
+    "url": "https://www.loc.gov/resource/sn86092182/1892-07-30/ed-1/?sp=920"
+   },
+   {
+    "paper": "Los Angeles Herald",
+    "place": "",
+    "date": "1892-10-06",
+    "page": "5",
+    "lccn": "sn84025968",
+    "url": "https://www.loc.gov/resource/sn84025968/1892-10-06/ed-1/?sp=359"
+   }
+  ],
+  "lat": 42.1292,
+  "lon": -80.0851,
+  "approx": true
+ },
+ {
+  "id": "1892-nova-scotia-hill-snake",
+  "k": "creature",
+  "title": "The giant snake of Nova Scotia Hill",
+  "date": "1892-07",
+  "town": "Watertown",
+  "state": "Connecticut",
+  "place": "Nova Scotia Hill, near Waterbury, Connecticut",
+  "creature": "",
+  "summary": "Farmers on Nova Scotia Hill said a snake fifteen to thirty feet long had been seen several times over the years, always fleeing to a den under a huge rock and blamed for carrying off sheep. A Sunday walking party said they found a shed snakeskin ten feet long.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "Morning Journal and Courier",
+    "place": "",
+    "date": "1892-07-25",
+    "page": "4",
+    "lccn": "sn82015483",
+    "url": "https://www.loc.gov/resource/sn82015483/1892-07-25/ed-1/?sp=90"
+   },
+   {
+    "paper": "Idaho County Free Press.",
+    "place": "Grangeville, Idaho Territory",
+    "date": "1892-10-28",
+    "page": "2",
+    "lccn": "sn86091100",
+    "url": "https://www.loc.gov/resource/sn86091100/1892-10-28/ed-1/?sp=81"
+   }
+  ],
+  "lat": 41.6062,
+  "lon": -73.1182,
+  "approx": true
+ },
+ {
+  "id": "1892-lewis-county-hairy-giant",
+  "k": "wild-man",
+  "title": "A hairy giant throws rocks in Lewis County",
+  "date": "1892-07",
+  "town": "Vanceburg",
+  "state": "Kentucky",
+  "place": "Hills of Lewis County, Kentucky",
+  "creature": "bigfoot",
+  "summary": "A Vanceburg doctor said people in Lewis County were excited over a wild man of gigantic size, covered in thick hair, haunting the hills. A man who tried to talk to it was answered with a shower of rocks, and the doctor said he had seen it himself.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "Grand Rapids Herald.",
+    "place": "Grand Rapids, Mich.",
+    "date": "1892-08-03",
+    "page": "1",
+    "lccn": "sn83016672",
+    "url": "https://www.loc.gov/resource/sn83016672/1892-08-03/ed-1/?sp=558"
+   }
+  ],
+  "lat": 38.5992,
+  "lon": -83.3188,
+  "approx": true
+ },
+ {
+  "id": "1892-thompsons-lake-snake",
+  "k": "sea-serpent",
+  "title": "A 'log' turns into a giant snake at Thompson's Lake",
+  "date": "1892-08",
+  "town": "Havana",
+  "state": "Illinois",
+  "place": "Thompson's Lake, near Havana, Illinois",
+  "creature": "",
+  "summary": "Young people boating on Thompson's Lake fired a revolver at what they took for a log, and it turned into an immense snake that churned the water to foam. Locals guessed it had escaped from a menagerie two years before.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "Waterbury Evening Democrat",
+    "place": "",
+    "date": "1892-08-06",
+    "page": "2",
+    "lccn": "sn94053256",
+    "url": "https://www.loc.gov/resource/sn94053256/1892-08-06/ed-1/?sp=131"
+   }
+  ],
+  "lat": 40.3,
+  "lon": -90.061,
+  "approx": true
+ },
+ {
+  "id": "1892-knightstown-mill-race",
+  "k": "creature",
+  "title": "An alligator-headed swimmer in the Knightstown mill race",
+  "date": "1892-08",
+  "town": "Knightstown",
+  "state": "Indiana",
+  "place": "Church Milling Company race, Knightstown, Indiana",
+  "creature": "",
+  "summary": "Several people said they saw something about ten feet long, with a head like an alligator's and a flat tail, diving like a duck in the mill race. Four-pound fish were found bitten and torn, and the race was to be drained to catch it.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "The Indianapolis Journal.",
+    "place": "Indianapolis",
+    "date": "1892-08-20",
+    "page": "2",
+    "lccn": "sn82015679",
+    "url": "https://www.loc.gov/resource/sn82015679/1892-08-20/ed-1/?sp=484"
+   }
+  ],
+  "lat": 39.7956,
+  "lon": -85.5264,
+  "approx": false
+ },
+ {
   "id": "1893-long-valley-wild-man",
   "k": "wild-man",
   "title": "The wild man of Long Valley, Idaho",
@@ -7595,6 +7962,179 @@
   ],
   "lat": 40.8094,
   "lon": -94.3422,
+  "approx": true
+ },
+ {
+  "id": "1901-lake-kilby-hairy-face",
+  "k": "sea-serpent",
+  "title": "A creature with a hairy man's face in Lake Kilby",
+  "date": "1901-03",
+  "town": "Suffolk",
+  "state": "Virginia",
+  "place": "Lake Kilby, Suffolk, Virginia",
+  "creature": "",
+  "summary": "Returning from fishing, the president of Suffolk's city council and a companion saw something like a log come alive: an eight-foot body with a six-foot tail and a head shaped like a man's, with coal-black eyes, heavy brows and fuzzy yellow hair on the face. It rolled over and sank. The lake, the town's water supply, is dammed off from the river.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "The Evening Times.",
+    "place": "Washington, D.C.",
+    "date": "1901-03-20",
+    "page": "6",
+    "lccn": "sn84024441",
+    "url": "https://www.loc.gov/resource/sn84024441/1901-03-20/ed-1/?sp=178"
+   },
+   {
+    "paper": "The Savannah Morning News",
+    "place": "Savannah, Ga.",
+    "date": "1901-03-23",
+    "page": "7",
+    "lccn": "sn89053684",
+    "url": "https://www.loc.gov/resource/sn89053684/1901-03-23/ed-1/?sp=939"
+   }
+  ],
+  "lat": 36.7284,
+  "lon": -76.585,
+  "approx": false
+ },
+ {
+  "id": "1901-aiken-county-chained-beast",
+  "k": "creature",
+  "title": "A beast trailing a chain in Aiken County",
+  "date": "1901-05",
+  "town": "Ellenton",
+  "state": "South Carolina",
+  "place": "Upper Three Runs and Salley, Aiken County, South Carolina",
+  "creature": "",
+  "summary": "A fisherman on Upper Three Runs dropped his rod and ran from a large animal with a short length of chain hanging from its neck. People suspected an escaped circus tiger, though none had been reported, and from Salley came tracks like a dog's but with larger hind feet.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "The Savannah Morning News",
+    "place": "",
+    "date": "1901-05-03",
+    "page": "2",
+    "lccn": "sn89053684",
+    "url": "https://www.loc.gov/resource/sn89053684/1901-05-03/ed-1/?sp=22"
+   },
+   {
+    "paper": "Keowee Courier.",
+    "place": "Pickens Court House, S.C.",
+    "date": "1901-05-15",
+    "page": "4",
+    "lccn": "sn84026912",
+    "url": "https://www.loc.gov/resource/sn84026912/1901-05-15/ed-1/?sp=93"
+   }
+  ],
+  "lat": 33.22,
+  "lon": -81.75,
+  "approx": true,
+  "fixed": true
+ },
+ {
+  "id": "1901-mark-island-serpent",
+  "k": "sea-serpent",
+  "title": "A 90-minute look at a serpent off Mark Island",
+  "date": "1901-05",
+  "town": "Camden",
+  "state": "Maine",
+  "place": "Penobscot Bay off Mark Island, opposite Camden, Maine",
+  "creature": "sea-serpent",
+  "summary": "The master and mate of the schooner Kitty Lawry said they watched a sea serpent through a glass for 90 minutes off Mark Island. A doubting crewman changed his mind once he looked. More than eight feet of body thicker than a stovepipe showed when it raised its head.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "The Republican Journal.",
+    "place": "Belfast, Me.",
+    "date": "1901-05-23",
+    "page": "1",
+    "lccn": "sn78000873",
+    "url": "https://www.loc.gov/resource/sn78000873/1901-05-23/ed-1/?sp=175"
+   }
+  ],
+  "lat": 44.2098,
+  "lon": -69.0648,
+  "approx": false
+ },
+ {
+  "id": "1901-middlesboro-wild-woman",
+  "k": "wild-man",
+  "title": "A 'wild woman' leaps onto a farmer's horse",
+  "date": "1901-07",
+  "town": "Middlesboro",
+  "state": "Kentucky",
+  "place": "Taggart Creek near Middlesboro, Kentucky",
+  "creature": "",
+  "summary": "A farmer watering his team at night said a long-haired creature sprang nearly forty feet from a tree onto his horse, screaming and scratching, until he beat it off. Later three children said a figure in a stolen cotton dress chased them a mile with a club, and a search was organized.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "Americus Times-recorder.",
+    "place": "Americus, Ga.",
+    "date": "1901-07-26",
+    "page": "1",
+    "lccn": "sn89053204",
+    "url": "https://www.loc.gov/resource/sn89053204/1901-07-26/ed-1/?sp=65"
+   }
+  ],
+  "lat": 36.6084,
+  "lon": -83.7166,
+  "approx": false
+ },
+ {
+  "id": "1901-delmarva-gorilla",
+  "k": "wild-man",
+  "title": "An escaped 'gorilla' on the Eastern Shore",
+  "date": "1901-12",
+  "town": "Seaford",
+  "state": "Delaware",
+  "place": "Near Seaford and Bethel, Delaware, and along the Choptank River, Maryland",
+  "creature": "",
+  "summary": "Papers said a gorilla had escaped from a circus at Seaford in September. A cyclist near Bethel Camp Ground said it knocked him off his bicycle and punched him before he fired two shots and fled, and a man on the Choptank said he saw a strange animal go into a marsh thicket.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "The Wilmington Daily Republican",
+    "place": "",
+    "date": "1901-12-04",
+    "page": "4",
+    "lccn": "sn88053055",
+    "url": "https://www.loc.gov/resource/sn88053055/1901-12-04/ed-1/?sp=549"
+   },
+   {
+    "paper": "Evening Star",
+    "place": "",
+    "date": "1901-12-04",
+    "page": "12",
+    "lccn": "sn83045462",
+    "url": "https://www.loc.gov/resource/sn83045462/1901-12-04/ed-1/?sp=432"
+   },
+   {
+    "paper": "The Sun",
+    "place": "",
+    "date": "1901-12-05",
+    "page": "1",
+    "lccn": "sn88053087",
+    "url": "https://www.loc.gov/resource/sn88053087/1901-12-05/ed-1/?sp=1230"
+   },
+   {
+    "paper": "The Topeka State Journal",
+    "place": "",
+    "date": "1901-12-07",
+    "page": "12",
+    "lccn": "sn82016014",
+    "url": "https://www.loc.gov/resource/sn82016014/1901-12-07/ed-1/?sp=555"
+   }
+  ],
+  "lat": 38.6412,
+  "lon": -75.611,
   "approx": true
  },
  {
