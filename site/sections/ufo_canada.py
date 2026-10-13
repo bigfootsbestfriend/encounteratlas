@@ -204,7 +204,7 @@ def build(ctx):
   <p>Close encounters, radar cases and the strangest sightings the investigators could not explain, newest first.</p>
   {caselist(best, len(best), 'Search these cases: triangle, landed, Winnipeg...', limit=20, show_prov=True)}
   {about}
-  <p>More on Canada: <a href="{U('/ufo/countries/canada/')}">Canada's official UFO files</a> · <a href="{U('/ufo/blue-book/')}">US Air Force files that mention Canada</a> · <a href="{U('/report/')}">Report your own sighting</a></p>
+  <p>More on Canada: <a href="{U('/canada/')}">Canada's creatures and places to visit</a> · <a href="{U('/ufo/countries/canada/')}">Canada's official UFO files</a> · <a href="{U('/ufo/blue-book/')}">US Air Force files that mention Canada</a> · <a href="{U('/report/')}">Report your own sighting</a></p>
 </div></div>{js}'''
     ctx.write('/ufo/canada/', ctx.page('/ufo/canada/', 'UFO sightings in Canada: map of reports since 1989', body,
                                        f'Map of {n:,} UFO sightings in Canada from 1989 to {max(yc)}, by province and town, with {n_u:,} unexplained cases and close encounters.',
@@ -285,7 +285,7 @@ def build(ctx):
   <h2>Every report from {E(name)}</h2>
   {caselist(rs, len(rs), f'Search {len(rs):,} reports: triangle, orange, hovering...', link=False)}
   <p class="cu-cta"><a class="btn" href="{U('/report/')}">Seen something over {E(name)}? Report it</a>
-  <a class="btn btn-ghost" href="{U('/guides/skywatching/')}">How to tell a UFO from a plane or satellite</a></p>
+  <a class="btn btn-ghost-l" href="{U('/guides/skywatching/')}">How to tell a UFO from a plane or satellite</a></p>
   <h2>Nearby towns</h2><p class="md-chips">{nearby}</p>
   {about}
 </div></div>{js}'''

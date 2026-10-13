@@ -879,6 +879,7 @@ def build_home(creatures, n_points, bluebook, military):
     <h2>Canada's UFO sightings</h2>
     <p>{n_canada:,} reports from every province and territory since 1989, from the Canadian UFO Survey. See your town's sightings and the ones nobody could explain.</p>
     <p><a class="btn" href="{url('/ufo/canada/')}">Open the Canada map</a></p>
+    <p><a href="{url('/canada/')}">Sasquatch, lake monsters and more in Canada</a></p>
   </div>
   <div>
     {icon('military', 'ico ico-lg')}

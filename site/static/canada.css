@@ -1,0 +1,15 @@
+/* /canada/ landing page (site/sections/canada.py) */
+.cn-hero { background: radial-gradient(120% 80% at 85% 0%, rgba(214, 64, 52, .22), transparent 60%), var(--spruce); }
+.cn-jump { margin-top: 1.2rem; }
+.cn-hero .md-chip { min-height: 38px; background: rgba(255,255,255,.06); color: #E8ECDD; border-color: var(--spruce-3); }
+.cn-grid { list-style: none; padding: 0; margin: 0 0 1.4rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .8rem; }
+.cn-card { display: flex; flex-direction: column; gap: .2rem; height: 100%; padding: 1rem 1.1rem; background: #fff; border: 1px solid var(--mist-2);
+  border-top: 4px solid #D64034; border-radius: var(--r-md); color: var(--ink); text-decoration: none; }
+.cn-card:hover { box-shadow: 0 6px 18px rgba(0,0,0,.08); }
+.cn-card b { font: 700 1.05rem var(--display); color: var(--spruce); }
+.cn-card small { color: var(--muted-l); font-weight: 600; }
+.cn-card span { font-size: .92rem; }
+.cn-place { border-top-color: #9CC46B; }
+.cn-cta { margin: 2rem 0 .5rem; padding: 1.4rem 1.5rem; border-radius: var(--r-md); background: var(--spruce); color: #E8ECDD; }
+.cn-cta h2 { margin-top: 0; color: #F3F1DA; }
+.md-chip small { margin-left: .35rem; opacity: .65; font-weight: 600; }

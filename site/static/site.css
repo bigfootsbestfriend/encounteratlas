@@ -563,3 +563,14 @@ a.md-book:hover { box-shadow: 0 0 0 2px var(--lantern); color: var(--ink); }
 @media (min-width: 761px) { .split-3 { grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); } }
 .md-listen { margin: .3rem 0 1.2rem; font-size: .95rem; }
 .md-listen a { font-weight: 600; }
+/* Phones: creature-type chips in one sideways-scrolling row, so the map keeps most of the screen */
+@media (max-width: 600px) {
+  .catchips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; width: 100%; padding-bottom: .1rem;
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); }
+  .catchips::-webkit-scrollbar { display: none; }
+  .catchip { flex: none; }
+  .cfind { margin-top: .45rem; }
+}
+/* Outline button for light (mist) backgrounds */
+.btn-ghost-l { background: transparent; color: var(--spruce) !important; box-shadow: inset 0 0 0 2px var(--spruce); }
+.btn-ghost-l:hover { background: rgba(0,0,0,.05); }
