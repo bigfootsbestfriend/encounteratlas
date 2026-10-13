@@ -1930,6 +1930,339 @@
   ]
  },
  {
+  "id": "1888-anderson-varmint",
+  "k": "creature",
+  "title": "A bushy-tailed 'varmint' raids Anderson County farms",
+  "date": "1888-03",
+  "town": "Anderson",
+  "state": "South Carolina",
+  "place": "Near Deep Creek Grange Hall, Anderson County, South Carolina",
+  "creature": "",
+  "summary": "A dark animal with erect ears and a bushy tail, \"very much like a dog\", ate a pup, tried to get in through a farmhouse door and tore the ears and face off a pig in one night. The paper's correspondent was shown the mangled pig and the tracks.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "The Manning Times.",
+    "place": "Manning, Clarendon County, S.C.",
+    "date": "1888-04-11",
+    "page": "1",
+    "lccn": "sn86063760",
+    "url": "https://www.loc.gov/resource/sn86063760/1888-04-11/ed-1/?sp=113"
+   }
+  ],
+  "lat": 34.5034,
+  "lon": -82.6501,
+  "approx": true
+ },
+ {
+  "id": "1888-bartow-county-throat-stabber",
+  "k": "creature",
+  "title": "A copper-coloured killer of calves in Bartow County",
+  "date": "1888-04",
+  "town": "Cartersville",
+  "state": "Georgia",
+  "place": "Farms near Cartersville, Bartow County, Georgia",
+  "creature": "",
+  "summary": "Sheep, hogs and calves were found dead with only a small stab-like wound under the throat. A farmer hiding in his corn lot at dawn shot at a dark copper animal with a sharp, possum-like head and bead eyes as it crept, cat-like, up to a sleeping calf. It vanished, and armed bands searched for it.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "Butte Semi-weekly Miner.",
+    "place": "Butte, Mont.",
+    "date": "1888-04-18",
+    "page": "1",
+    "lccn": "sn84036034",
+    "url": "https://www.loc.gov/resource/sn84036034/1888-04-18/ed-1/?sp=54"
+   }
+  ],
+  "lat": 34.1653,
+  "lon": -84.8023,
+  "approx": true
+ },
+ {
+  "id": "1888-thunder-bay-hairy-serpent",
+  "k": "creature",
+  "title": "A 25-foot snake with a hairy head at Thunder Bay",
+  "date": "1888-06",
+  "town": "Alpena",
+  "state": "Michigan",
+  "place": "Farms along Thunder Bay near Alpena, Michigan",
+  "creature": "",
+  "summary": "A farmer found a foot-wide trail across his ploughed field to the bay, and his son, planting potatoes, fired twice at a black, yellow-spotted snake about 25 feet long with long black hair on its head. It went off as fast as a horse into the bay, and hair eight inches long was found where it passed under a fence.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "Evening Star.",
+    "place": "Washington, D.C.",
+    "date": "1888-06-20",
+    "page": "3",
+    "lccn": "sn83045462",
+    "url": "https://www.loc.gov/resource/sn83045462/1888-06-20/ed-1/?sp=591"
+   },
+   {
+    "paper": "Democratic Northwest.",
+    "place": "Napoleon, Ohio",
+    "date": "1888-06-21",
+    "page": "1",
+    "lccn": "sn84028296",
+    "url": "https://www.loc.gov/resource/sn84028296/1888-06-21/ed-1/?sp=949"
+   },
+   {
+    "paper": "Macon Beacon.",
+    "place": "Macon, Miss.",
+    "date": "1888-06-23",
+    "page": "1",
+    "lccn": "sn83016943",
+    "url": "https://www.loc.gov/resource/sn83016943/1888-06-23/ed-1/?sp=542"
+   },
+   {
+    "paper": "The Caldwell Tribune.",
+    "place": "Caldwell, Idaho Territory",
+    "date": "1888-09-01",
+    "page": "2",
+    "lccn": "sn86091092",
+    "url": "https://www.loc.gov/resource/sn86091092/1888-09-01/ed-1/?sp=142"
+   }
+  ],
+  "lat": 45.0617,
+  "lon": -83.4327,
+  "approx": true
+ },
+ {
+  "id": "1888-simcoe-island-serpent",
+  "k": "sea-serpent",
+  "title": "Four sailors see a serpent near Simcoe Island",
+  "date": "1888-06-10",
+  "town": "Cape Vincent",
+  "state": "New York",
+  "place": "St. Lawrence River near Simcoe Island, opposite Cape Vincent, New York",
+  "creature": "",
+  "summary": "Four men sailing from Wolfe Island said they saw a serpent about 80 feet long near Simcoe Island. Across the river in Cape Vincent the lawyer, customs collector and town supervisor debated the story at the post office, and three men set off to try to catch it.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "The Sun",
+    "place": "",
+    "date": "1888-06-17",
+    "page": "11",
+    "lccn": "sn83030272",
+    "url": "https://www.loc.gov/resource/sn83030272/1888-06-17/ed-1/?sp=623"
+   }
+  ],
+  "lat": 44.1278,
+  "lon": -76.333,
+  "approx": false
+ },
+ {
+  "id": "1888-point-judith-alligator-head",
+  "k": "sea-serpent",
+  "title": "An alligator-headed serpent off Point Judith",
+  "date": "1888-08-04",
+  "town": "Narragansett",
+  "state": "Rhode Island",
+  "place": "Two miles southwest of Point Judith, Rhode Island",
+  "creature": "sea-serpent",
+  "summary": "Two experienced sailors on a sloop said a head like an alligator's, with five-foot jaws, long teeth and eyes as big as a hat crown, passed within ten feet of them, with a stiff fin down its back and a body at least 70 feet long. It followed reports of a serpent off Watch Hill.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "Daily Kennebec Journal.",
+    "place": "Augusta, Me.",
+    "date": "1888-08-07",
+    "page": "1",
+    "lccn": "sn82014248",
+    "url": "https://www.loc.gov/resource/sn82014248/1888-08-07/ed-1/?sp=124"
+   },
+   {
+    "paper": "Daily Republican",
+    "place": "",
+    "date": "1888-08-07",
+    "page": "1",
+    "lccn": "sn84038114",
+    "url": "https://www.loc.gov/resource/sn84038114/1888-08-07/ed-1/?sp=137"
+   },
+   {
+    "paper": "New-York Tribune.",
+    "place": "New York",
+    "date": "1888-08-07",
+    "page": "1",
+    "lccn": "sn83030214",
+    "url": "https://www.loc.gov/resource/sn83030214/1888-08-07/ed-1/?sp=369"
+   },
+   {
+    "paper": "The Wheeling Daily Intelligencer.",
+    "place": "Wheeling, W. Va.",
+    "date": "1888-08-08",
+    "page": "1",
+    "lccn": "sn84026844",
+    "url": "https://www.loc.gov/resource/sn84026844/1888-08-08/ed-1/?sp=775"
+   },
+   {
+    "paper": "Richmond Dispatch.",
+    "place": "Richmond, Va.",
+    "date": "1888-08-08",
+    "page": "2",
+    "lccn": "sn85038614",
+    "url": "https://www.loc.gov/resource/sn85038614/1888-08-08/ed-1/?sp=162"
+   },
+   {
+    "paper": "The Delaware Ledger",
+    "place": "Newark, Del.",
+    "date": "1888-08-11",
+    "page": "3",
+    "lccn": "sn88053022",
+    "url": "https://www.loc.gov/resource/sn88053022/1888-08-11/ed-1/?sp=548"
+   }
+  ],
+  "lat": 41.4501,
+  "lon": -71.4495,
+  "approx": false
+ },
+ {
+  "id": "1888-georgetown-harbor-serpent",
+  "k": "sea-serpent",
+  "title": "A steamer captain studies a serpent in Georgetown harbour",
+  "date": "1888-09",
+  "town": "Georgetown",
+  "state": "South Carolina",
+  "place": "Georgetown harbour, between the port and the bar, South Carolina",
+  "creature": "sea-serpent",
+  "summary": "The captain of the steamer Planter said a tug passed within 200 yards of a dark, resting serpent about 50 feet long with a beak-like mouth and large oval head. Woken by the noise, it threw its tail into the air and made for the mud flats of Muddy Bay where the tug couldn't follow.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "Evening Star.",
+    "place": "Washington, D.C.",
+    "date": "1888-09-28",
+    "page": "4",
+    "lccn": "sn83045462",
+    "url": "https://www.loc.gov/resource/sn83045462/1888-09-28/ed-1/?sp=288"
+   },
+   {
+    "paper": "The Daily Morning Astorian.",
+    "place": "Astoria, Oregon",
+    "date": "1888-10-03",
+    "page": "1",
+    "lccn": "sn96061150",
+    "url": "https://www.loc.gov/resource/sn96061150/1888-10-03/ed-1/?sp=295"
+   },
+   {
+    "paper": "The Manning Times.",
+    "place": "Manning, Clarendon County, S.C.",
+    "date": "1888-10-03",
+    "page": "3",
+    "lccn": "sn86063760",
+    "url": "https://www.loc.gov/resource/sn86063760/1888-10-03/ed-1/?sp=219"
+   },
+   {
+    "paper": "The Atlanta Constitution.",
+    "place": "Atlanta, Ga.",
+    "date": "1888-10-09",
+    "page": "12",
+    "lccn": "sn89053706",
+    "url": "https://www.loc.gov/resource/sn89053706/1888-10-09/ed-1/?sp=542"
+   },
+   {
+    "paper": "New Ulm Weekly Review.",
+    "place": "New Ulm, Minn.",
+    "date": "1888-10-17",
+    "page": "3",
+    "lccn": "sn89064939",
+    "url": "https://www.loc.gov/resource/sn89064939/1888-10-17/ed-1/?sp=341"
+   }
+  ],
+  "lat": 33.3768,
+  "lon": -79.2945,
+  "approx": false
+ },
+ {
+  "id": "1888-umpqua-maned-serpent",
+  "k": "sea-serpent",
+  "title": "A maned serpent off the Umpqua River",
+  "date": "1888-10",
+  "town": "Reedsport",
+  "state": "Oregon",
+  "place": "Pacific Ocean off the mouth of the Umpqua River, Oregon",
+  "creature": "cadborosaurus",
+  "summary": "The captain of the coal bark Estrella, with his wife and crew watching, said an 80-foot serpent as thick as a barrel swam by 200 yards off with its head and ten feet of neck raised, the neck covered in coarse hair like a mane. He fired his rifle at it; the shots fell short.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "The State Rights Democrat.",
+    "place": "Albany, Linn County, Oregon",
+    "date": "1888-10-26",
+    "page": "4",
+    "lccn": "sn84022644",
+    "url": "https://www.loc.gov/resource/sn84022644/1888-10-26/ed-1/?sp=715"
+   },
+   {
+    "paper": "Daily Kennebec Journal.",
+    "place": "Augusta, Me.",
+    "date": "1888-12-07",
+    "page": "4",
+    "lccn": "sn82014248",
+    "url": "https://www.loc.gov/resource/sn82014248/1888-12-07/ed-1/?sp=543"
+   },
+   {
+    "paper": "Alma Record",
+    "place": "Alma, Mich.",
+    "date": "1888-12-14",
+    "page": "6",
+    "lccn": "sn85038709",
+    "url": "https://www.loc.gov/resource/sn85038709/1888-12-14/ed-1/?sp=99"
+   },
+   {
+    "paper": "Wichita Eagle.",
+    "place": "Wichita, Kan.",
+    "date": "1888-12-19",
+    "page": "6",
+    "lccn": "sn85032490",
+    "url": "https://www.loc.gov/resource/sn85032490/1888-12-19/ed-1/?sp=606"
+   }
+  ],
+  "lat": 43.7023,
+  "lon": -124.0968,
+  "approx": true
+ },
+ {
+  "id": "1888-great-bear-swamp-horned-beast",
+  "k": "creature",
+  "title": "A horned black beast in the Great Bear Swamp",
+  "date": "1888-11",
+  "town": "New Brunswick",
+  "state": "New Jersey",
+  "place": "Great Bear Swamp, New Jersey",
+  "creature": "",
+  "summary": "Farmers around the Great Bear Swamp lost sheep and hogs two winters running, finding only oddly shaped tracks. The one witness, a hired man the paper called of doubtful veracity, said it was a big black monster with horns, twice the size of a sheep. A Thanksgiving hunt was planned.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "The Indianapolis Journal.",
+    "place": "Indianapolis",
+    "date": "1888-11-28",
+    "page": "1",
+    "lccn": "sn82015679",
+    "url": "https://www.loc.gov/resource/sn82015679/1888-11-28/ed-1/?sp=265"
+   }
+  ],
+  "lat": 40.4862,
+  "lon": -74.4518,
+  "approx": true
+ },
+ {
   "id": "1890-white-sulphur-beast",
   "k": "creature",
   "title": "An unknown night beast at White Sulphur",
@@ -7080,6 +7413,191 @@
   "approx": true
  },
  {
+  "id": "1899-swampscott-serpent",
+  "k": "sea-serpent",
+  "title": "Swampscott fishermen row for their lives",
+  "date": "1899-02-09",
+  "town": "Swampscott",
+  "state": "Massachusetts",
+  "place": "Off Pig Rocks, Swampscott, Massachusetts",
+  "creature": "sea-serpent",
+  "summary": "A fisherman reached shore exhausted from rowing and said a serpent had come at his dory off Pig Rocks: long, scaly, barnacled and whitish, with a seal-like head, fangs and hissing breath. Two others said they had rowed in so hard from the same thing a day or two earlier that they fainted on the sand.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "Arizona Republican",
+    "place": "",
+    "date": "1899-02-10",
+    "page": "1",
+    "lccn": "sn84020558",
+    "url": "https://www.loc.gov/resource/sn84020558/1899-02-10/ed-1/?sp=86"
+   }
+  ],
+  "lat": 42.4709,
+  "lon": -70.9176,
+  "approx": false
+ },
+ {
+  "id": "1899-ship-john-light-arms",
+  "k": "sea-serpent",
+  "title": "A thing with arms rises off Ship John Light",
+  "date": "1899-05",
+  "town": "Bayside",
+  "state": "New Jersey",
+  "place": "Delaware Bay off Ship John Shoal Light, near Bayside, New Jersey",
+  "creature": "",
+  "summary": "Three sturgeon fishermen said a black creature with a lighter face reared eight feet out of the water a few feet from their boat, and that arms came out about three feet below its shoulders. One of them quit fishing and went home to Salem, and several boats were short of crew.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "The Times.",
+    "place": "Richmond, Va.",
+    "date": "1899-05-20",
+    "page": "7",
+    "lccn": "sn85034438",
+    "url": "https://www.loc.gov/resource/sn85034438/1899-05-20/ed-1/?sp=419"
+   },
+   {
+    "paper": "Alexandria Gazette.",
+    "place": "Alexandria, D.C.",
+    "date": "1899-05-20",
+    "page": "1",
+    "lccn": "sn85025007",
+    "url": "https://www.loc.gov/resource/sn85025007/1899-05-20/ed-1/?sp=233"
+   },
+   {
+    "paper": "Shenandoah Herald.",
+    "place": "Woodstock, Va.",
+    "date": "1899-05-26",
+    "page": "2",
+    "lccn": "sn85026941",
+    "url": "https://www.loc.gov/resource/sn85026941/1899-05-26/ed-1/?sp=490"
+   }
+  ],
+  "lat": 39.305,
+  "lon": -75.376,
+  "approx": false,
+  "fixed": true
+ },
+ {
+  "id": "1899-muscongus-pogy-serpent",
+  "k": "sea-serpent",
+  "title": "A serpent blamed for the vanished menhaden",
+  "date": "1899-06",
+  "town": "Bremen",
+  "state": "Maine",
+  "place": "Off Muscongus, Maine",
+  "creature": "sea-serpent",
+  "summary": "When the menhaden (pogy) fleet couldn't find a single school along the New England coast, the crew of a small Canadian smack insisted they had seen, sober and in daylight, a serpent over 60 feet long and as thick as a keg of nails, lashing the water to foam and carrying off the fish.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "The San Francisco Call",
+    "place": "",
+    "date": "1899-06-26",
+    "page": "4",
+    "lccn": "sn85066387",
+    "url": "https://www.loc.gov/resource/sn85066387/1899-06-26/ed-1/?sp=561"
+   }
+  ],
+  "lat": 44.0015,
+  "lon": -69.4287,
+  "approx": true
+ },
+ {
+  "id": "1899-vincentown-leeds-devil",
+  "k": "jersey-devil",
+  "title": "The Leeds Devil returns to the Pines",
+  "date": "1899-06",
+  "town": "Vincentown",
+  "state": "New Jersey",
+  "place": "The Pine Barrens near Vincentown, New Jersey",
+  "creature": "jersey-devil",
+  "summary": "Pine Barrens folk said the Leeds Devil, not clearly seen since it supposedly warned of the Civil War, was back: two men in separate settlements reported it at about the same time. Locals took it as an omen of disaster.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "The Saint Paul Globe",
+    "place": "",
+    "date": "1899-07-16",
+    "page": "31",
+    "lccn": "sn90059523",
+    "url": "https://www.loc.gov/resource/sn90059523/1899-07-16/ed-1/?sp=219"
+   }
+  ],
+  "lat": 39.934,
+  "lon": -74.7485,
+  "approx": false
+ },
+ {
+  "id": "1899-split-rock-champ",
+  "k": "sea-serpent",
+  "title": "Champ off Split Rock, 80 feet long",
+  "date": "1899-08",
+  "town": "Essex",
+  "state": "New York",
+  "place": "Lake Champlain between the Vermont shore and Split Rock",
+  "creature": "champ",
+  "summary": "A witness the Burlington News called entirely trustworthy saw a creature about 80 feet long swimming south half a mile away, where the lake is deepest. Its head was broad and flat like a hand on a table, its body a low arch and its broad tail tip stuck up out of the water. It sank in a boil of bubbles.",
+  "quote": "",
+  "hoax": "",
+  "fixed": true,
+  "lat": 44.27,
+  "lon": -73.3,
+  "approx": false,
+  "papers": [
+   {
+    "paper": "Middlebury Register",
+    "place": "Middlebury, Vt.",
+    "date": "1899-08-11",
+    "page": "4",
+    "lccn": "sn93063557",
+    "url": "https://www.loc.gov/resource/sn93063557/1899-08-11/ed-1/?sp=255"
+   }
+  ]
+ },
+ {
+  "id": "1899-diagonal-iowa-wild-man",
+  "k": "wild-man",
+  "title": "A seven-foot hairy giant at a farmhouse window",
+  "date": "1899-09",
+  "town": "Diagonal",
+  "state": "Iowa",
+  "place": "Sam Crooks farm, four miles from Diagonal, Iowa",
+  "creature": "bigfoot",
+  "summary": "Two women at a farmhouse near Diagonal looked up when the window went dark and saw a man-shaped being nearly seven feet tall, so overgrown with long black hair that no features showed. The mother fainted in the yard, and the creature stepped over her and blocked her daughter, who was carrying the baby. Days later a hired man near Macksburg said a hairy giant like a big ape chased him.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "Evening Times-Republican.",
+    "place": "Marshalltown, Iowa",
+    "date": "1899-09-30",
+    "page": "3",
+    "lccn": "sn85049554",
+    "url": "https://www.loc.gov/resource/sn85049554/1899-09-30/ed-1/?sp=426"
+   },
+   {
+    "paper": "Ottumwa Semi-weekly Courier.",
+    "place": "Ottumwa, Iowa",
+    "date": "1899-10-03",
+    "page": "3",
+    "lccn": "sn86061214",
+    "url": "https://www.loc.gov/resource/sn86061214/1899-10-03/ed-1/?sp=189"
+   }
+  ],
+  "lat": 40.8094,
+  "lon": -94.3422,
+  "approx": true
+ },
+ {
   "id": "1904-stansbury-island-monster",
   "k": "creature",
   "title": "A flying monster on Stansbury Island",
@@ -9130,6 +9648,226 @@
   ],
   "lat": 37.5538,
   "lon": -77.4603,
+  "approx": false
+ },
+ {
+  "id": "1921-pen-mar-gorilla",
+  "k": "wild-man",
+  "title": "The 'gorilla' of the South Mountain",
+  "date": "1921-01",
+  "town": "Pen Mar",
+  "state": "Maryland",
+  "place": "Near Pen Mar and Rouzerville, on the Maryland-Pennsylvania line",
+  "creature": "",
+  "summary": "For weeks papers reported a big ape, said to have escaped from a circus, in the mountains of southern Pennsylvania. A man walking through a field between Pen Mar and Rouzerville said he saw it in bright sunshine, and it was reported again near Dam No. 4 on the Potomac.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "Shepherdstown Register.",
+    "place": "Shepherdstown, Va.",
+    "date": "1921-02-03",
+    "page": "1",
+    "lccn": "sn84026824",
+    "url": "https://www.loc.gov/resource/sn84026824/1921-02-03/ed-1/?sp=451"
+   }
+  ],
+  "lat": 39.716,
+  "lon": -77.508,
+  "approx": false,
+  "fixed": true
+ },
+ {
+  "id": "1921-browns-mills-terror",
+  "k": "creature",
+  "title": "'The terror' of Hanover Farms",
+  "date": "1921-02",
+  "town": "Browns Mills",
+  "state": "New Jersey",
+  "place": "Hanover Farms, near Browns Mills, New Jersey",
+  "creature": "",
+  "summary": "A night animal that attacked dogs and frightened horses and cattle had mothers warning children that \"the terror\" would get them. Hunters reading its tracks guessed a small bear or a catamount, and two dogs that trailed it into a swamp came back yelping and would not track again.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "Evening Public Ledger.",
+    "place": "Philadelphia",
+    "date": "1921-02-05",
+    "page": "1",
+    "lccn": "sn83045211",
+    "url": "https://www.loc.gov/resource/sn83045211/1921-02-05/ed-1/?sp=1150"
+   }
+  ],
+  "lat": 39.9726,
+  "lon": -74.5829,
+  "approx": false
+ },
+ {
+  "id": "1921-centreville-gorilla-killed",
+  "k": "creature",
+  "title": "A farmer kills the Queen Anne's County 'gorilla'",
+  "date": "1921-02",
+  "town": "Centreville",
+  "state": "Maryland",
+  "place": "Walnut Ridge farm, near Centreville, Queen Anne's County, Maryland",
+  "creature": "",
+  "summary": "After days of stories about a ferocious \"gorilla\" near Centreville, a farmer killed it on his land. Rumour said he choked it with his bare hands; he said he shot it, and thought it was a cross between a bulldog and a Newfoundland.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "Evening Journal",
+    "place": "",
+    "date": "1921-02-21",
+    "page": "1",
+    "lccn": "sn85042354",
+    "url": "https://www.loc.gov/resource/sn85042354/1921-02-21/ed-1/?sp=821"
+   },
+   {
+    "paper": "Every Evening, Wilmington Daily Commercial",
+    "place": "",
+    "date": "1921-02-21",
+    "page": "1",
+    "lccn": "sn87062237",
+    "url": "https://www.loc.gov/resource/sn87062237/1921-02-21/ed-1/?sp=334"
+   }
+  ],
+  "lat": 39.0418,
+  "lon": -76.0663,
+  "approx": false
+ },
+ {
+  "id": "1921-english-indiana-white-beast",
+  "k": "creature",
+  "title": "A white-furred phantom beast near English",
+  "date": "1921-04",
+  "town": "English",
+  "state": "Indiana",
+  "place": "East of English, Crawford County, Indiana",
+  "creature": "",
+  "summary": "People east of English said an animal about three feet high with dull white fur, howling like a frightened fox, killed a farmer's cow and pig. Everyone who saw it ran, so nobody could describe it well, and farmers carried pitchforks or guns into the woods.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "The Seattle Star.",
+    "place": "Seattle, Wash.",
+    "date": "1921-04-15",
+    "page": "2",
+    "lccn": "sn87093407",
+    "url": "https://www.loc.gov/resource/sn87093407/1921-04-15/ed-1/?sp=190"
+   }
+  ],
+  "lat": 38.3345,
+  "lon": -86.4642,
+  "approx": false
+ },
+ {
+  "id": "1921-gettysburg-gorilla",
+  "k": "wild-man",
+  "title": "A shot 'gorilla' gets up and chases a man in Gettysburg",
+  "date": "1921-08",
+  "town": "Gettysburg",
+  "state": "Pennsylvania",
+  "place": "York Street, Gettysburg, Pennsylvania",
+  "creature": "",
+  "summary": "A woman on York Street saw a creature about four feet high moving along her back fence. A neighbour fired a shotgun and it dropped, but when he walked over it jumped up on its hind legs and chased him into the house, then headed off toward Biglerville.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "The Washington Times",
+    "place": "",
+    "date": "1921-08-11",
+    "page": "2",
+    "lccn": "sn84026749",
+    "url": "https://www.loc.gov/resource/sn84026749/1921-08-11/ed-1/?sp=541"
+   }
+  ],
+  "lat": 39.8309,
+  "lon": -77.2311,
+  "approx": false
+ },
+ {
+  "id": "1921-alkali-lake-monster",
+  "k": "sea-serpent",
+  "title": "The Alkali Lake monster of Hay Springs",
+  "date": "1921-08",
+  "town": "Hay Springs",
+  "state": "Nebraska",
+  "place": "Alkali Lake (Walgren Lake), six miles southeast of Hay Springs, Nebraska",
+  "creature": "walgren-lake-monster",
+  "summary": "People near Hay Springs said a creature about 20 feet long and as thick as a man lived in the alkali lake southeast of town, spouting water 20 feet high with a hiss like a locomotive. Bathers stopped going in and locals planned to catch it.",
+  "quote": "",
+  "hoax": "",
+  "fixed": true,
+  "lat": 42.637,
+  "lon": -102.627,
+  "approx": false,
+  "papers": [
+   {
+    "paper": "Omaha Daily Bee",
+    "place": "",
+    "date": "1921-08-03",
+    "page": "2",
+    "lccn": "sn99021999",
+    "url": "https://www.loc.gov/resource/sn99021999/1921-08-03/ed-1/?sp=748"
+   }
+  ]
+ },
+ {
+  "id": "1921-yankton-water-dog",
+  "k": "creature",
+  "title": "A puppy-faced 'water dog' bumps swimmers at Yankton",
+  "date": "1921-08",
+  "town": "Yankton",
+  "state": "South Dakota",
+  "place": "Where the James River meets the Missouri, near Yankton, South Dakota",
+  "creature": "",
+  "summary": "Swimmers said they ran into a four-foot animal with a puppy's head, small ears, a blunt snout, fiery eyes, a grey back, yellow belly and broad heavy tail. Fishermen called it a water dog; others thought it was an otter.",
+  "quote": "",
+  "hoax": "",
+  "near": true,
+  "papers": [
+   {
+    "paper": "The Madison Daily Leader.",
+    "place": "Madison, S.D.",
+    "date": "1921-08-01",
+    "page": "1",
+    "lccn": "sn99062034",
+    "url": "https://www.loc.gov/resource/sn99062034/1921-08-01/ed-1/?sp=1027"
+   }
+  ],
+  "lat": 42.8711,
+  "lon": -97.3973,
+  "approx": true
+ },
+ {
+  "id": "1921-elk-grove-ape",
+  "k": "wild-man",
+  "title": "A circus ape blamed in Elk Grove",
+  "date": "1921-11",
+  "town": "Elk Grove",
+  "state": "Wisconsin",
+  "place": "Elk Grove, Lafayette County, Wisconsin",
+  "creature": "",
+  "summary": "Farmers around Elk Grove drove their children to school after reports of a huge ape, said to have escaped from a circus at Platteville that summer, and blamed it for killing a cow. Hunters found nothing.",
+  "quote": "",
+  "hoax": "",
+  "papers": [
+   {
+    "paper": "Grant County Herald.",
+    "place": "Lancaster, Wis.",
+    "date": "1921-11-16",
+    "page": "1",
+    "lccn": "sn85033133",
+    "url": "https://www.loc.gov/resource/sn85033133/1921-11-16/ed-1/?sp=445"
+   }
+  ],
+  "lat": 42.6717,
+  "lon": -90.391,
   "approx": false
  }
 ]
