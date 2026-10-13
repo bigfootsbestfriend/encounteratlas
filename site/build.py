@@ -14,7 +14,8 @@ BASE = os.environ.get('BASE_PATH', '').rstrip('/')  # '/encounteratlas' on the G
 INDEXNOW_KEY = '929458a6bce349d1b445a459836d80fe'
 LAUNCHED = True  # launched 2026-10-13 (Mike: "launch the site")
 CF_BEACON = os.environ.get('CF_BEACON', '')
-GA_ID = os.environ.get('GA_ID', '')  # GA4 measurement ID; set in deploy.yml, empty for local and preview builds
+GA_ID = os.environ.get('GA_ID', '')
+CLICKY_ID = os.environ.get('CLICKY_ID', '')  # Clicky site ID; set in deploy.yml  # GA4 measurement ID; set in deploy.yml, empty for local and preview builds
 
 CATS = {
     'hominid': ('Hairy hominids', 'Upright, ape-like giants of the woods and mountains'),
@@ -160,6 +161,8 @@ def ga_tag():
                 f"gtag('js',new Date());gtag('config','{GA_ID}');"
                 "window.eaTrack=function(n,p){try{gtag('event',n,Object.assign({page_type:location.pathname.split('/')[1]||'home'},p||{}));}catch(e){}};</script>"
                 f'<script src="{url("/static/track.js")}" defer></script>')
+    if CLICKY_ID:
+        out += f'<script async data-id="{CLICKY_ID}" src="https://static.getclicky.com/js"></script>'
     if CF_BEACON:
         out += (f'<script defer src="https://static.cloudflareinsights.com/beacon.min.js" '
                 f'data-cf-beacon=\'{{"token": "{CF_BEACON}"}}\'></script>')
@@ -1140,7 +1143,7 @@ def build_static_pages():
 <h2>Just reading the site</h2>
 <ul>
 <li><strong>No ads and no account needed.</strong> You can read every page and use the map and tools without signing up.</li>
-<li id="analytics"><strong>Analytics:</strong> we use Google Analytics to count visits and see which pages and tools people use, so we know what to improve. It sets cookies and collects things like your approximate location, your device and browser, the pages you view and the buttons, filters and map choices you use. It never gets your name, your email address, or what you type into a report or message. Search words you type into the site's search boxes are counted so we can see what people look for. You can opt out with <a href="https://tools.google.com/dlpage/gaoptout">Google's opt-out add-on</a> or by blocking cookies, and the site works the same either way. See <a href="https://policies.google.com/technologies/partner-sites">how Google uses this data</a>.</li>
+<li id="analytics"><strong>Analytics:</strong> we use Google Analytics to count visits and see which pages and tools people use, so we know what to improve. It sets cookies and collects things like your approximate location, your device and browser, the pages you view and the buttons, filters and map choices you use. It never gets your name, your email address, or what you type into a report or message. Search words you type into the site's search boxes are counted so we can see what people look for. You can opt out with <a href="https://tools.google.com/dlpage/gaoptout">Google's opt-out add-on</a> or by blocking cookies, and the site works the same either way. See <a href="https://policies.google.com/technologies/partner-sites">how Google uses this data</a>. We also use Clicky to see how visitors move through the site. Like Google Analytics it sets cookies and sees the same kind of information, never your name, email or what you type into a form (<a href="https://clicky.com/terms/privacy">Clicky's privacy policy</a>). Blocking cookies opts you out of both. We also use Cloudflare Web Analytics, which sets no cookies and only gives us totals like page views and countries.</li>
 <li><strong>Things your browser remembers, not us:</strong> your sort choice on the creature index, and a draft of a report you haven't sent yet (stored only on your device so you don't lose them). Clearing your browser data removes them.</li>
 <li><strong>Other services the pages load:</strong> map tiles from OpenFreeMap, fonts from Google Fonts and code libraries from cdnjs and jsDelivr. The <a href="{url('/tools/was-it-a-planet/')}">Was it a planet?</a> tool also fetches the Space Station's orbit from Celestrak; the place you enter stays in your browser. Like any website, these see your IP address when they send the file. Witness videos only load from YouTube (in its privacy-enhanced mode) when you press play.</li>
 </ul>
@@ -1166,7 +1169,7 @@ def build_static_pages():
 <ul>
 <li><strong>Everyone:</strong> approved reports (story, date, approximate area, photo and video links, display name if you chose one) and vote totals.</li>
 <li><strong>Our moderators only:</strong> the exact location, your email address and the scrambled IP code, to check reports and stop abuse.</li>
-<li><strong>Service providers that run the site for us:</strong> Cloudflare (hosting for reports and the database), Resend (sends the sign-in emails and passes contact-form messages to our inbox), GitHub (hosts the public pages) and Google (Analytics; see above). They process data only to provide those services.</li>
+<li><strong>Service providers that run the site for us:</strong> Cloudflare (hosting for reports and the database), Resend (sends the sign-in emails and passes contact-form messages to our inbox), GitHub (hosts the public pages), and Google Analytics and Clicky (visitor statistics; see above). They process data only to provide those services.</li>
 <li>We don't sell or rent anyone's information, and we don't share it with advertisers or other sighting organisations.</li>
 </ul>
 
