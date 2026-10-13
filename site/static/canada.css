@@ -12,4 +12,4 @@
 .cn-place { border-top-color: #9CC46B; }
 .cn-cta { margin: 2rem 0 .5rem; padding: 1.4rem 1.5rem; border-radius: var(--r-md); background: var(--spruce); color: #E8ECDD; }
 .cn-cta h2 { margin-top: 0; color: #F3F1DA; }
-.md-chip small { margin-left: .35rem; opacity: .65; font-weight: 600; }
+.md-chip small { margin-left: .35rem; font-weight: 600; }

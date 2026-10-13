@@ -151,7 +151,7 @@ def build(ctx):
     def mapbox(sources, label, height='tall', fit=True, bounds=''):
         src = ','.join(U('/data/' + s + '.geojson') for s in sources)
         return (f'<div class="ua-map ua-map-{height}" data-geojson="{src}" data-fit="{1 if fit else 0}" '
-                f'data-bounds="{E(bounds)}" data-label="{E(label)}" role="img" aria-label="{E(label)}"></div>')
+                f'data-bounds="{E(bounds)}" data-label="{E(label)}" role="region" aria-label="{E(label)}"></div>')
 
     n_mapped = len(faa_feats) + len(pursue_feats)
     n_countries = len({r['country'] for r in releases})

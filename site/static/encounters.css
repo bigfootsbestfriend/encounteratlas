@@ -41,6 +41,6 @@
 .ce-more a { color: #7A4E00; }
 .ce-pns { display: flex; gap: .8rem; flex-wrap: wrap; margin: 2rem 0 1rem; }
 .ce-pn { flex: 1 1 16rem; padding: .9rem 1.1rem; background: #fff; border-radius: var(--r-md); text-decoration: none; font-weight: 700; }
-.ce-pn small { display: block; font-weight: 500; color: var(--muted-d); }
+.ce-pn small { display: block; font-weight: 500; color: var(--muted-l); }
 .ce-pn.next { text-align: right; }
 @media (max-width: 820px) { .ce-body { grid-template-columns: 1fr; } .ce-hero { align-items: flex-start; } .ce-hero .badge-md { width: 72px; height: 72px; } }

@@ -87,7 +87,7 @@ def build(ctx):
     def mapbox(src, label, bounds, cluster=True):
         towns = src == 'ufo_canada'
         return (f'<div class="cu-map" data-geojson="{U("/data/" + src + ".geojson")}" data-bounds="{bounds}" data-cluster="{1 if cluster else 0}" data-towns="{1 if towns else 0}" '
-                f'role="img" aria-label="{E(label)}"></div>' + (
+                f'role="region" aria-label="{E(label)}"></div>' + (
                 '<p class="cu-legend"><span><i class="cu-e-p"></i>Town (bigger = more reports)</span><span><i class="cu-e-u"></i>Many unexplained</span>'
                 '<span><i style="background:#8E8CF0"></i>Group of towns: tap to zoom in</span></p>' if towns else
                 '<p class="cu-legend"><span><i class="cu-e-u"></i>Unexplained</span><span><i class="cu-e-i"></i>Not enough information</span>'

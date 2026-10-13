@@ -948,6 +948,7 @@ def build_home(creatures, n_points, bluebook, military):
 <script src="{url('/static/home.js')}" defer></script>''', 'Search creatures, places, UFO files and encounters on Encounter Atlas.'))
     write('/map/', page('/map/', 'Encounter map', f'''
 <section class="map-full" aria-label="Encounter map">
+  <h1 class="visually-hidden">Encounter map</h1>
   <div class="map-full-bar">
     {filter_bar(creatures, famous_slugs)}
     <button type="button" class="btn btn-sm" data-locate>Near me</button>

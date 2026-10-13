@@ -591,3 +591,17 @@ a.md-book:hover { box-shadow: 0 0 0 2px var(--lantern); color: var(--ink); }
 }
 .also-links { list-style: none; padding: 0; margin: 0 0 1.2rem; display: grid; gap: .45rem; }
 .also-links a { font-weight: 600; }
+
+/* Accessibility pass (axe, Oct 2026): muted text on light cards uses the darker muted colour; no faded counts */
+.band-mist .case-src { color: var(--muted-l) !important; }
+.band-mist .ce-meta, .band-mist .ce-facts b, .band-mist .ce-facts small, .band-mist .ce-pn small,
+.band-mist .my-fig small, .band-mist .my-gsub, .ua-body .ce-meta { color: var(--muted-l); }
+.band-dark .aka, .cg-band .aka { color: var(--muted-d); }
+.md-chip small { opacity: 1; color: var(--muted-l); }
+.pl-n, .ce-chip span { opacity: 1 !important; }
+.hd.is-empty .hd-y { opacity: 1 !important; }
+.band-mist .rel-why, .band-mist .prev small, .band-mist .next small, .prev small, .next small { color: var(--muted-l); }
+.md-merch { color: #3D2700 !important; }
+.hc-dec-h .hc-n { opacity: 1; }
+.pl-date-m { background: #B8452C !important; }
+.pl-date.is-tba .pl-date-m { background: var(--muted-l) !important; }

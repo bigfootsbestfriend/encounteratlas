@@ -112,7 +112,7 @@
 .pl-mnavs { display: flex; gap: .4rem; overflow-x: auto; padding: .3rem .1rem .6rem; margin-top: .6rem; scrollbar-width: thin; }
 .pl-mnav { flex: none; display: flex; flex-direction: column; align-items: center; min-width: 58px; padding: .45rem .5rem; border-radius: 12px;
   background: var(--spruce-2); border: 1px solid var(--spruce-3); color: var(--lichen) !important; text-decoration: none; font-weight: 700; }
-.pl-mnav.is-empty { opacity: .5; }
+.pl-mnav.is-empty { opacity: .85; border-style: dashed; }
 .pl-mnav span:not(.ico) { font-size: .78rem; font-weight: 600; color: var(--muted-d); }
 .pl-mnav.is-now { background: var(--lantern); border-color: var(--lantern); color: var(--spruce) !important; }
 .pl-mnav.is-now span:not(.ico) { color: var(--spruce); }
@@ -131,7 +131,7 @@
 .pl-ev-meta { font-size: .9rem; color: var(--muted-l); }
 .pl-ev-st { font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; }
 .pl-ev.is-set .pl-ev-st { color: #9A3519; font-weight: 700; }
-.pl-ev.is-past { opacity: .6; }
+.pl-ev.is-past { background: #F2F4F1; } .pl-ev.is-past .pl-date-m { background: var(--muted-l) !important; }
 .pl-ev-links { font-size: .9rem; font-weight: 600; }
 .pl-ev-empty { color: var(--muted-l); font-style: italic; padding: .6rem 0; }
 
