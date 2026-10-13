@@ -118,7 +118,7 @@ def write(path, text):
 
 EA_API = os.environ.get('EA_API', '').rstrip('/')  # report Worker; empty until it's deployed
 MAP_API = f' data-api="{EA_API}"' if EA_API else ''
-UFO_MENU = [('/ufo/', 'UFO sightings'), ('/ufo/blue-book/', 'Air Force Blue Book files'), ('/ufo/releases/', 'Official releases'),
+UFO_MENU = [('/ufo/', 'UFO sightings'), ('/ufo/canada/', 'Canada sightings map'), ('/ufo/blue-book/', 'Air Force Blue Book files'), ('/ufo/releases/', 'Official releases'),
             ('/ufo/countries/', 'UFO files by country'), ('/military/', 'Military encounters')]
 RES_MENU = [('/places/', 'Places to visit'), ('/guides/', 'Field guides'), ('/gear/', 'Field gear'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts')]
 NAV = [('/map/', 'Map'), ('/creatures/', 'Creatures'), ('UFOs', UFO_MENU)] + ([('/reports/', 'Reports')] if EA_API else []) + [
@@ -638,6 +638,7 @@ def build_ufo(bluebook):
       <a class="tile" href="{url('/ufo/releases/')}">{icon('folder')}<span>Every official release, 13 countries</span></a>
       <a class="tile" href="{url('/ufo/files/pursue/')}">{icon('military')}<span>The Pentagon's 2026 files</span></a>
       <a class="tile" href="{url('/ufo/files/faa/')}">{icon('saucer')}<span>FAA pilot reports, 2007 to 2024</span></a>
+      <a class="tile" href="{url('/ufo/canada/')}">{icon('saucer')}<span>Canada sightings, 1989 to today</span></a>
       <a class="tile" href="{url('/ufo/countries/')}">{icon('ufo-globe') if os.path.exists(os.path.join(STATIC, 'icons', 'ufo-globe.svg')) else icon('saucer')}<span>UFO files by country</span></a>
       <a class="tile" href="{url('/encounters/')}">{icon('entity')}<span>Close encounters with beings</span></a>
     </nav>

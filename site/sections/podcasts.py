@@ -8,6 +8,18 @@ import json, os, re
 BLOCKED = re.compile(r'bfro\.net|nuforc\.org|mufon\.com|cryptidcatchers?\.|cryptidatlas\.|enigmalabs\.', re.I)
 from datetime import date
 
+# Descriptions are shown as plain text, but Mike doesn't want these organisations named either: swap in neutral words.
+_ORG_SUBS = [(re.compile(r'\b(?:mufon|nuforc)( investigator| field investigator)', re.I), r'UFO\1'),
+             (re.compile(r'\b(?:bfro)( expeditions?| investigators?| researchers?)', re.I), r'Bigfoot\1'),
+             (re.compile(r'\b(?:the )?(?:mufon|nuforc|mutual ufo network|national ufo reporting center)( \(case [\w-]+\))?', re.I), 'a UFO reporting group'),
+             (re.compile(r'\b(?:the )?(?:bfro|bigfoot field researchers organi[sz]ation)', re.I), 'a Bigfoot research group')]
+
+
+def scrub(t):
+    for rx, rep in _ORG_SUBS:
+        t = rx.sub(rep, t)
+    return re.sub(r'\ba a\b', 'a', t)
+
 # topic -> (page title noun, icon, colour class, intro, related creature categories or slugs)
 TOPIC_META = {
     'bigfoot': ('Bigfoot', 'bigfoot', 'hominid',
@@ -108,11 +120,11 @@ def build(ctx):
 
     def card(s):
         """Grid card for the hub directory."""
-        names = f'{s["name"]} {s["publisher"]} {s.get("about", "")}'.lower()
+        names = f'{s["name"]} {s["publisher"]} {scrub(s.get("about", ""))}'.lower()
         tags = ''.join(topic_chip(t, False) for t in s['topics'])
         last = (f'<p class="pod-last"><span>Newest:</span> <a href="{esc(s["last_ep"]["url"])}" rel="noopener">'
                 f'{esc(s["last_ep"]["title"])}</a></p>') if s.get('last_ep') and s['last_ep'].get('title') else ''
-        about = f'<p class="pod-about">{esc(s["about"])}</p>' if s.get('about') else ''
+        about = f'<p class="pod-about">{esc(scrub(s["about"]))}</p>' if s.get('about') else ''
         star = '<span class="pod-pick" title="Fan favourite">Fan favourite</span>' if s.get('notable') else ''
         return (f'<article class="pod" data-topics="{" ".join(s["topics"])}" data-names="{esc(names)}" '
                 f'data-eps="{s["episodes"]}" data-latest="{esc(s["latest"])}" data-score="{s["score"]}" data-active="{s.get("recent30", 0)}">'
@@ -128,7 +140,7 @@ def build(ctx):
         tags = ''.join(topic_chip(t) for t in s['topics'])
         last = (f'<p class="pod-last"><span>Newest:</span> <a href="{esc(s["last_ep"]["url"])}" rel="noopener">'
                 f'{esc(s["last_ep"]["title"])}</a></p>') if s.get('last_ep') and s['last_ep'].get('title') else ''
-        about = f'<p class="pod-about">{esc(s["about"])}</p>' if s.get('about') else ''
+        about = f'<p class="pod-about">{esc(scrub(s["about"]))}</p>' if s.get('about') else ''
         hot = f'<span class="pod-hot">{n_recent(s["recent30"])} new this month</span>' if s.get('recent30', 0) >= 4 else ''
         return (f'<li class="prow"><span class="prow-n">{n}</span><a class="prow-art" href="{esc(s["apple"])}" rel="noopener" '
                 f'tabindex="-1" aria-hidden="true">{img(s, 300, "", 160)}</a><div class="prow-body">'
@@ -259,10 +271,10 @@ def build(ctx):
         for e in eps:
             sh = show_by_id.get(e['show_id'])
             show_link = (f'<a href="{esc(sh["apple"])}" rel="noopener">{esc(e["show"])}</a>' if sh else esc(e['show']))
-            about = f'<p class="pep-about">{esc(e["about"])}</p>' if e.get('about') else ''
+            about = f'<p class="pep-about">{esc(scrub(e["about"]))}</p>' if e.get('about') else ''
             meta = ' · '.join(x for x in [fmt_date(e['date']), f'{e["mins"]} min' if e.get('mins') else ''] if x)
             items += (f'<li class="pep"><a class="pep-art" href="{esc(e["url"])}" rel="noopener" tabindex="-1" aria-hidden="true">'
-                      f'{img(e, 160, "", 96)}</a><div class="pep-body"><h3><a href="{esc(e["url"])}" rel="noopener">{esc(e["title"])}</a></h3>'
+                      f'{img(e, 160, "", 96)}</a><div class="pep-body"><h3><a href="{esc(e["url"])}" rel="noopener">{esc(scrub(e["title"]))}</a></h3>'
                       f'<p class="pep-show">{show_link} <span class="muted">{esc(meta)}</span></p>'
                       f'{about}'
                       f'<p class="pod-links"><a class="pod-apple" href="{esc(e["url"])}" rel="noopener">'

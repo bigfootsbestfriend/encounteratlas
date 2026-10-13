@@ -1,0 +1,31 @@
+/* Canada sightings pages (site/sections/ufo_canada.py). Builds on ufo_archive.css. */
+:root { --cu-u: #FF7A66; --cu-i: #B9B39A; --cu-p: #F2B33D; --cu-e: #4FB3A9; }
+.cu-mapband { padding-top: 0; }
+.cu-map { height: 520px; border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--spruce-3); background: #0F1F19; }
+@media (max-width: 720px) { .cu-map { height: 420px; } }
+.cu-legend { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin: .6rem 0 .2rem; font-size: .85rem; color: var(--muted-d); }
+.cu-legend i, .cu-evkey i { display: inline-block; width: .7rem; height: .7rem; border-radius: 50%; margin-right: .35rem; vertical-align: -.05rem; }
+.band-mist .cu-legend { color: var(--muted-l); }
+.cu-e-u { background: var(--cu-u); } .cu-e-i { background: var(--cu-i); } .cu-e-p { background: var(--cu-p); } .cu-e-e { background: var(--cu-e); }
+.cu-ev { font-size: .74rem; font-weight: 700; border-radius: 999px; padding: .1rem .55rem; color: #13261F; }
+.cu-note { margin: 0; }
+.cu-case strong a { color: inherit; }
+.cu-pgrid { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: .6rem; }
+.cu-pgrid a { display: flex; flex-direction: column; gap: .1rem; padding: .8rem 1rem; border-radius: var(--r-md); background: #fff; border: 1px solid var(--mist-2);
+  border-left: 5px solid var(--cu-p); text-decoration: none; color: var(--ink); height: 100%; }
+.cu-pgrid li:nth-child(4n+2) a { border-left-color: var(--cu-u); } .cu-pgrid li:nth-child(4n+3) a { border-left-color: var(--cu-e); } .cu-pgrid li:nth-child(4n+4) a { border-left-color: #B98ACB; }
+.cu-pgrid a:hover { box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+.cu-pgrid b { font: 700 1.08rem var(--display); color: var(--spruce); }
+.cu-pgrid span { font-weight: 600; } .cu-pgrid small { color: var(--muted-l); }
+.cu-two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.2rem; }
+@media (max-width: 820px) { .cu-two { grid-template-columns: 1fr; } }
+.cu-evbar { display: flex; height: 22px; border-radius: 999px; overflow: hidden; margin: .4rem 0 .6rem; }
+.cu-evbar span { min-width: 3px; }
+.cu-evkey { list-style: none; padding: 0; margin: 0 0 1rem; display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; font-size: .92rem; }
+.cu-hbars { list-style: none; padding: 0; margin: .4rem 0 .6rem; display: grid; gap: .35rem; }
+.cu-hbars li { display: grid; grid-template-columns: 7.5rem 1fr 3.2rem; align-items: center; gap: .6rem; font-size: .92rem; }
+.cu-hbars i { display: block; height: 14px; width: var(--w); background: linear-gradient(90deg, #8E8CF0, #B98ACB); border-radius: 999px; }
+.cu-hbars b { text-align: right; font-variant-numeric: tabular-nums; }
+.cu-cta { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.2rem 0; }
+.linkbtn { background: none; border: 0; padding: 0; color: var(--lantern-2); text-decoration: underline; cursor: pointer; font: inherit; }
+.cu-pop .pop-meta { margin: .1rem 0 .3rem; }

@@ -228,6 +228,35 @@
     pointer(id);
   }
 
+  // Canadian UFO Survey: one dot per town (n reports, nu unexplained), clustered; the popup links to the town page.
+  async function addCanada() {
+    const data = await fetch(BASE + '/data/ufo_canada.geojson').then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    if (!data || !data.features || !data.features.length) return;
+    map.addSource('cufos', { type: 'geojson', data, cluster: true, clusterRadius: 34, clusterMaxZoom: 8,
+      clusterProperties: { n: ['+', ['get', 'n']] } });
+    // Drawn under every other layer, small and faint, so famous cases and the Air Force files stay on top.
+    const under = map.getLayer('bb-approx') ? 'bb-approx' : undefined;
+    map.addLayer({ id: 'cufos-cl', type: 'circle', source: 'cufos', filter: ['has', 'point_count'], paint: {
+      'circle-color': '#C08BE8', 'circle-opacity': 0.35, 'circle-stroke-color': '#C08BE8', 'circle-stroke-width': 1, 'circle-stroke-opacity': 0.7,
+      'circle-radius': ['step', ['get', 'n'], 7, 50, 9, 300, 12, 1500, 15] } }, under);
+    map.addLayer({ id: 'cufos-pt', type: 'circle', source: 'cufos', filter: ['!', ['has', 'point_count']], paint: {
+      'circle-color': '#C08BE8', 'circle-opacity': ['case', ['==', ['get', 'a'], 1], 0.25, 0.55], 'circle-stroke-width': 0,
+      'circle-radius': ['interpolate', ['linear'], ['get', 'n'], 1, 2.5, 20, 4, 200, 7, 1000, 10] } }, under);
+    map.on('click', 'cufos-cl', async (e) => {
+      const f = e.features[0];
+      const z = await map.getSource('cufos').getClusterExpansionZoom(f.properties.cluster_id);
+      map.easeTo({ center: f.geometry.coordinates, zoom: z });
+    });
+    map.on('click', 'cufos-pt', (e) => {
+      const p = e.features[0].properties;
+      const nodes = [node('div', 'pop-kind', null, '<span>Canadian UFO Survey</span>'), node('p', 'pop-h', p.t + (p.a == 1 ? '' : ', ' + p.r)),
+        node('p', 'pop-meta', p.n + ' report' + (p.n == 1 ? '' : 's') + ' since 1989 · ' + p.nu + ' unexplained')];
+      nodes.push(link(p.u, /\/ufo\/canada\/[^/]+\/[^/]+\//.test(p.u) ? 'Read the reports' : 'Reports from ' + p.r));
+      popup(e.features[0].geometry.coordinates, nodes);
+    });
+    pointer('cufos-pt'); pointer('cufos-cl');
+  }
+
   // Unexplained mysteries (Tunguska, Dyatlov Pass...), coloured by type
   async function addMysteries() {
     const data = await fetch(BASE + '/data/mysteries.geojson').then((r) => (r.ok ? r.json() : null)).catch(() => null);
@@ -283,7 +312,7 @@
     const { type, cat, creature } = state;
     const narrowed = !!(cat || creature);
     const showUfoFiles = (type === 'all' || type === 'ufo') && (!narrowed || cat === 'ufo');
-    setVis(['bb-approx', 'bb-approx-n', 'bb-glow', 'bb-clusters', 'bb-count', 'bb-point', 'faa', 'pursue'], showUfoFiles);
+    setVis(['bb-approx', 'bb-approx-n', 'bb-glow', 'bb-clusters', 'bb-count', 'bb-point', 'faa', 'pursue', 'cufos-cl', 'cufos-pt'], showUfoFiles);
     setVis(['military'], (type === 'all' || type === 'military') && !narrowed);
     setVis(['places'], type === 'all' || type === 'places' || type === 'events');
     if (map.getLayer('places')) {
@@ -359,6 +388,7 @@
     await addBlueBook();
     await addOfficial('ufo_faa.geojson', 'faa', '#7FD3FF', 'FAA pilot report');
     await addOfficial('ufo_pursue.geojson', 'pursue', '#E07A5F', 'Pentagon UFO file');
+    await addCanada();
     await addPlaces();
     await addMilitary();
     await addMysteries();

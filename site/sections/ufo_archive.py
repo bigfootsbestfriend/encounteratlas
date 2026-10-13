@@ -450,6 +450,15 @@ def build(ctx):
             cases = (f'<h2>Case files by state</h2><p>Three official US datasets are mapped on this site: {len(ctx.bluebook):,} Air Force '
                      f'<a href="{U("/ufo/blue-book/")}">Project Blue Book</a> folders (1947 to 1969), {len(faa):,} <a href="{U("/ufo/files/faa/")}">FAA pilot reports</a> '
                      f'and the <a href="{U("/ufo/files/pursue/")}">PURSUE files</a>.</p><ul class="cols ua-states">{rows}</ul>')
+        if cc == 'ca':
+            cu = load(ctx, 'ufo_cases_canada.json', [])
+            if cu:
+                provs = Counter(r['prov'] for r in cu)
+                cases += (f'<h2>Sightings across Canada, mapped</h2><p>We have put {len(cu):,} Canadian UFO reports from 1989 to today on a map, '
+                          f'from the Canadian UFO Survey. {sum(1 for r in cu if r["eval"] == "u"):,} of them were never explained.</p>'
+                          f'<p><a class="btn" href="{U("/ufo/canada/")}">Open the Canada sightings map</a></p><p class="md-chips">'
+                          + ''.join(f'<a class="md-chip" href="{U("/ufo/canada/" + ctx.slugify(p) + "/")}">{E(p)} ({n:,})</a>' for p, n in provs.most_common())
+                          + '</p>')
         if pcs and cc != 'us':
             cases += (f'<h2>{E(name)} in the US government files</h2><p>{len(pcs)} of the Pentagon\'s 2026 PURSUE files concern events in {E(name)}.</p>'
                       f'<ul class="ua-pgrid ua-pgrid-sm">{"".join(pcard(o) for o in pcs)}</ul>')
