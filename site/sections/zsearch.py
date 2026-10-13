@@ -1,4 +1,4 @@
-"""Adds places, mysteries, guides and the main hub pages to the site search index (OUT/data/search.json).
+"""Adds places, mysteries, guides, old newspaper cases and the main hub pages to the site search index (OUT/data/search.json).
 
 Named zsearch.py so it runs after every other section (they load in alphabetical order) and the pages it points to exist.
 """
@@ -39,4 +39,15 @@ def build(ctx):
         add({'t': m['name'], 'a': m.get('place', ''), 'k': f'Mystery, {m.get("year") or ""}'.strip(', '), 'u': U('/mysteries/' + m['slug'] + '/'), 'i': 'q-dusk', 'c': 'other'})
     for g in load('guides.json'):
         add({'t': g['title'], 'a': g.get('short', '') + ' guide how to', 'k': 'Field guide', 'u': U('/guides/' + g['slug'] + '/'), 'i': g.get('icon') or 'expedition', 'c': 'hominid'})
+    HPAGE = {'airship': 'airships-1896-1897', 'airship-1909': 'phantom-airships-1909', 'wild-man': 'wild-men', 'sea-serpent': 'sea-serpents',
+             'jersey-devil': 'jersey-devil-1909', 'giant-bird': 'giant-birds', 'phantom-light': 'phantom-lights', 'creature': 'strange-creatures'}
+    for h in load('historic.json'):  # each old newspaper case, linked to its card (id="h-<id>") on the topic page
+        pg = '/history/' + HPAGE.get(h['k'], '') + '/'
+        u = U(pg) + '#h-' + h['id']
+        if u in have or not ok(pg):
+            continue
+        cr = ctx.by_slug.get(h.get('creature') or '', {}).get('name', '')
+        items.append({'t': h['title'], 'a': ' '.join(x for x in (h.get('town'), h.get('state'), h.get('place'), cr, 'newspaper') if x).lower(),
+                      'k': f'Old newspaper, {h["date"][:4]}, {h.get("town") or h.get("state")}', 'u': u, 'i': 'newspaper', 'c': 'other'})
+        have.add(u)
     json.dump(items, open(sp, 'w', encoding='utf-8'), separators=(',', ':'))

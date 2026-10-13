@@ -1,6 +1,6 @@
 // Encounter Atlas service worker: pages network-first (offline falls back to the last copy),
 // static files and map data cache-first. Map tiles are left to the browser cache.
-const V = 'ea-v51';
+const V = 'ea-v52';
 const BASE = new URL(self.registration.scope).pathname.replace(/\/$/, '');
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(V).then((c) => c.addAll([BASE + '/', BASE + '/map/', BASE + '/static/site.css', BASE + '/static/map.js'])).then(() => self.skipWaiting()));
