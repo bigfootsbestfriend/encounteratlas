@@ -30,6 +30,12 @@ AREAS = {
 OVERRIDES = {  # names the generic rules would get wrong
     'tbilisi georgia': (41.6941, 44.8337, 'GE', 'Georgia'),
     'washington virginia': (39.1157, -77.5636, 'US', 'Virginia'),  # FAA Washington Center sits in Leesburg
+    'boston new hampshire': (42.7654, -71.4676, 'US', 'New Hampshire'),  # FAA Boston Center (ZBW) is in Nashua, NH
+    'shemya alaska': (52.7231, 174.1135, 'US', 'Alaska'), 'mt augustine alaska': (59.3626, -153.4350, 'US', 'Alaska'),
+    'santa catalina california': (33.3879, -118.4163, 'US', 'California'), 'patuxent river maryland': (38.2860, -76.4116, 'US', 'Maryland'),
+    'schooley s mountain new jersey': (40.8015, -74.7821, 'US', 'New Jersey'), 'solberg new jersey': (40.5826, -74.7365, 'US', 'New Jersey'),
+    'bimini bahamas': (25.7271, -79.2647, 'BS', 'Bahamas'),
+    'stewart new york': (41.5041, -74.1048, 'US', 'New York'),  # Stewart International Airport (SWF), Newburgh
     'cockburn town turks and caicos islands': (21.4612, -71.1419, 'TC', 'Turks and Caicos Islands'),
 }
 NOT_PLACES = {'', 'n a', 'na', 'various', 'unknown', 'moon', 'low earth orbit', 'cislunar space', 'pacific time zone',
@@ -42,10 +48,14 @@ _G = None
 def tables():
     global _G
     if _G is None:
-        countries, country_names, admin1, us_abbr, by_place, centres = bluebook.load_geonames()
+        countries, country_names, admin1, admin1_cc, us_abbr, by_place, centres = bluebook.load_geonames()
+        from geo import Areas
+        areas = Areas()
+        # Region/country centres: Natural Earth label points (always inside the area), not an average of towns.
+        centres = {k: (areas.centre(k[0], k[1] or None) or v) for k, v in centres.items()}
         country_names.update({'ussr': 'RU', 'united states': 'US', 'u s': 'US', 'usa': 'US'})
         _G = dict(countries=countries, country_names=country_names, admin1=admin1, us_abbr=us_abbr,
-                  by_place=by_place, centres=centres)
+                  by_place=by_place, centres=centres, areas=areas)
     return _G
 
 
@@ -60,13 +70,19 @@ def _region(text):
 
 
 def _town(name, cc, a1=''):
+    """Best town of that name inside the state/province (or country); never one from another state."""
     g = tables()
     for cand in bluebook.place_candidates(name):
-        for key in ((cc, a1, cand), (cc, a1, cand + '#full'), (cc, '', cand)):
+        if isinstance(cand, tuple):
+            if g['areas'].inside(cand[0], cand[1], cc, a1 or None) is not False:
+                return cand
+            continue
+        for key in ((cc, a1, cand), (cc, a1, cand + '#full')):
             hits = g['by_place'].get(key)
             if hits:
                 pop, lat, lon, _ = max(hits)
-                return lat, lon
+                if g['areas'].inside(lat, lon, cc, a1 or None) is not False:
+                    return lat, lon
     return None
 
 

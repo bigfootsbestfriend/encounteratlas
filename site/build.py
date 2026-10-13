@@ -526,7 +526,7 @@ def region_slug(b):
     if b['cc'] == 'US' and b['a1']:
         return 'us-' + slugify(b['region'])
     if b['cc']:
-        return slugify(b['region'] or b['cc'])
+        return slugify(b.get('country') or b['region'] or b['cc'])
     return 'unknown'
 
 
@@ -537,7 +537,7 @@ def build_ufo(bluebook):
     names = {}
     for k, v in by_region.items():
         b = v[0]
-        names[k] = b['region'] if b['cc'] else 'Place unclear or at sea'
+        names[k] = (b['region'] if b['cc'] == 'US' else b.get('country') or b['region']) if b['cc'] else 'Place unclear or at sea'
     years = Counter(b['year'] for b in bluebook if b.get('year'))
     ymax = max(years.values())
     bars = ''
@@ -605,25 +605,31 @@ def build_ufo(bluebook):
 
 
 def build_map_data(bluebook):
-    """Compact GeoJSON for the map. Approximate (state/country-level) points get a small, stable
-    jitter so they don't stack into one dot."""
-    feats = []
-    for i, b in enumerate(bluebook):
+    """GeoJSON for the map. Files pinned to a place go in bluebook.geojson. Files that only name a state, province or
+    country are never drawn as a pin: they go in bluebook_approx.geojson as one faded "about N files somewhere in X"
+    ring per area, at a point inside it, linking to that area's list."""
+    feats, approx = [], {}
+    for b in bluebook:
         if b.get('lat') is None:
             continue
-        lat, lon = b['lat'], b['lon']
         if b['precision'] in ('region', 'country'):
-            r = 0.6 if b['precision'] == 'region' else 1.5
-            h = (b['id'] * 2654435761) % 2**32
-            lat += ((h & 0xffff) / 0xffff - 0.5) * r
-            lon += ((h >> 16) / 0xffff - 0.5) * r * 1.3
+            key = (b['cc'], b['a1'] if b['precision'] == 'region' else None)
+            a = approx.setdefault(key, {'lat': b['lat'], 'lon': b['lon'], 'n': 0, 'k': region_slug(b),
+                                        'name': b['region'] if b['precision'] == 'region' else (b.get('country') or b['region'])})
+            a['n'] += 1
+            continue
         when = f'{MONTHS[b["month"]][:3]} {b["year"]}' if b.get('month') and b.get('year') else (b.get('year') or '')
-        feats.append({'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [round(lon, 3), round(lat, 3)]},
+        feats.append({'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [round(b['lon'], 3), round(b['lat'], 3)]},
                       'properties': {'id': b['id'], 't': (b['place'] or b['region'] or '')[:60], 'r': b['region'] or '',
-                                     'w': str(when), 'y': b.get('year') or 0, 'a': 1 if b['precision'] in ('region', 'country') else 0}})
+                                     'w': str(when), 'y': b.get('year') or 0, 'a': 0}})
     os.makedirs(os.path.join(OUT, 'data'), exist_ok=True)
     with open(os.path.join(OUT, 'data', 'bluebook.geojson'), 'w') as f:
         json.dump({'type': 'FeatureCollection', 'features': feats}, f, separators=(',', ':'))
+    ap = [{'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [round(a['lon'], 3), round(a['lat'], 3)]},
+           'properties': {'n': a['n'], 't': a['name'], 'u': url(f'/ufo/blue-book/{a["k"]}/')}}
+          for a in sorted(approx.values(), key=lambda a: -a['n'])]
+    with open(os.path.join(OUT, 'data', 'bluebook_approx.geojson'), 'w') as f:
+        json.dump({'type': 'FeatureCollection', 'features': ap}, f, separators=(',', ':'))
     return len(feats)
 
 

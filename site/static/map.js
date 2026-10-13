@@ -93,6 +93,13 @@
   }
 
   const LAYERS = []; // {key, label, color, ids}
+  // Approximate records (a == 1) are drawn as a bigger, faded, hollow ring so they never read as an exact pin.
+  const APPROX_PAINT = (color, r0, r1) => ({
+    'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, ['case', ['==', ['get', 'a'], 1], r0 * 2.6, r0], 10, ['case', ['==', ['get', 'a'], 1], r1 * 3, r1]],
+    'circle-opacity': ['case', ['==', ['get', 'a'], 1], 0.1, 0.95],
+    'circle-stroke-color': ['case', ['==', ['get', 'a'], 1], color, '#13261F'],
+    'circle-stroke-opacity': ['case', ['==', ['get', 'a'], 1], 0.6, 1],
+    'circle-stroke-width': 1.5 });
 
   async function addBlueBook() {
     map.addSource('bluebook', { type: 'geojson', data: BASE + '/data/bluebook.geojson', cluster: true, clusterRadius: 38, clusterMaxZoom: 9 });
@@ -108,7 +115,7 @@
       'text-field': ['get', 'point_count_abbreviated'], 'text-size': 12, 'text-font': ['Noto Sans Bold'], 'text-allow-overlap': true, 'text-ignore-placement': true },
       paint: { 'text-color': '#13261F' } });
     map.addLayer({ id: 'bb-point', type: 'circle', source: 'bluebook', filter: ['!', ['has', 'point_count']], paint: {
-      'circle-color': ['case', ['==', ['get', 'a'], 1], '#B98A3A', '#F2B33D'],
+      'circle-color': '#F2B33D',
       'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 3, 10, 6],
       'circle-stroke-color': '#13261F', 'circle-stroke-width': 1.5 } });
     map.on('click', 'bb-clusters', async (e) => {
@@ -122,11 +129,26 @@
         node('p', 'pop-h', p.t || 'Unknown place'),
         node('p', 'pop-meta', [p.r && p.r !== p.t ? p.r : '', p.w].filter(Boolean).join(', ')),
         link('https://catalog.archives.gov/id/' + p.id, 'Read the Air Force file')];
-      if (p.a == 1) nodes.push(node('p', 'approx', 'Approximate: placed in the state or country, not the exact spot.'));
       popup(e.features[0].geometry.coordinates, nodes);
     });
-    pointer('bb-clusters'); pointer('bb-point');
-    LAYERS.push({ key: 'ufo-files', label: 'Air Force UFO files', color: '#F2B33D', ids: ['bb-glow', 'bb-clusters', 'bb-count', 'bb-point'] });
+    // Files that name only a state, province or country: one faded ring per area, never a pin.
+    map.addSource('bb-approx', { type: 'geojson', data: BASE + '/data/bluebook_approx.geojson' });
+    map.addLayer({ id: 'bb-approx', type: 'circle', source: 'bb-approx', paint: {
+      'circle-color': '#F2B33D', 'circle-opacity': 0.08,
+      'circle-radius': ['interpolate', ['linear'], ['zoom'], 2, ['interpolate', ['linear'], ['get', 'n'], 1, 9, 100, 18, 400, 26], 8, ['interpolate', ['linear'], ['get', 'n'], 1, 22, 100, 40, 400, 56]],
+      'circle-stroke-color': '#F2B33D', 'circle-stroke-opacity': 0.55, 'circle-stroke-width': 1.5 } }, 'bb-glow');
+    map.addLayer({ id: 'bb-approx-n', type: 'symbol', source: 'bb-approx', minzoom: 3, layout: {
+      'text-field': ['concat', '~', ['to-string', ['get', 'n']]], 'text-size': 11, 'text-font': ['Noto Sans Bold'], 'text-allow-overlap': false },
+      paint: { 'text-color': '#F2B33D', 'text-opacity': 0.75, 'text-halo-color': '#13261F', 'text-halo-width': 1.2 } });
+    map.on('click', 'bb-approx', (e) => {
+      const p = e.features[0].properties;
+      popup(e.features[0].geometry.coordinates, [node('div', 'pop-kind', null, SAUCER + '<span>Air Force UFO files, location approximate</span>'),
+        node('p', 'pop-h', p.n + (p.n == 1 ? ' file' : ' files') + ' somewhere in ' + p.t),
+        node('p', 'approx', 'Location approximate: these folders name only ' + p.t + ', not a town or base, so they are not pinned to a spot.'),
+        link(p.u, 'See the files')]);
+    });
+    pointer('bb-clusters'); pointer('bb-point'); pointer('bb-approx');
+    LAYERS.push({ key: 'ufo-files', label: 'Air Force UFO files', color: '#F2B33D', ids: ['bb-approx', 'bb-approx-n', 'bb-glow', 'bb-clusters', 'bb-count', 'bb-point'] });
   }
 
   async function addFamous() {
@@ -194,12 +216,12 @@
     if (!data || !data.features || !data.features.length) return;
     map.addSource(id, { type: 'geojson', data });
     map.addLayer({ id, type: 'circle', source: id, paint: {
-      'circle-color': color, 'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 3.5, 10, 7],
-      'circle-stroke-color': '#13261F', 'circle-stroke-width': 1.5, 'circle-opacity': ['case', ['==', ['get', 'a'], 1], 0.55, 0.95] } });
+      'circle-color': color, ...APPROX_PAINT(color, 3.5, 7) } });
     map.on('click', id, (e) => {
       const p = e.features[0].properties;
       const nodes = [node('div', 'pop-kind', null, '<span>' + label + (p.w ? ', ' + p.w : '') + '</span>'), node('p', 'pop-h', p.t || 'Report')];
-      if (p.r) nodes.push(node('p', 'pop-meta', p.r + (p.a == 1 ? ' (approximate spot)' : '')));
+      if (p.r) nodes.push(node('p', 'pop-meta', p.r));
+      if (p.a == 1) nodes.push(node('p', 'approx', 'Location approximate: the file names only the state, country or sea, so this ring marks the area, not the spot.'));
       if (p.u) nodes.push(link(p.u, 'Open the official file'));
       popup(e.features[0].geometry.coordinates, nodes);
     });
@@ -261,7 +283,7 @@
     const { type, cat, creature } = state;
     const narrowed = !!(cat || creature);
     const showUfoFiles = (type === 'all' || type === 'ufo') && (!narrowed || cat === 'ufo');
-    setVis(['bb-glow', 'bb-clusters', 'bb-count', 'bb-point', 'faa', 'pursue'], showUfoFiles);
+    setVis(['bb-approx', 'bb-approx-n', 'bb-glow', 'bb-clusters', 'bb-count', 'bb-point', 'faa', 'pursue'], showUfoFiles);
     setVis(['military'], (type === 'all' || type === 'military') && !narrowed);
     setVis(['places'], type === 'all' || type === 'places' || type === 'events');
     if (map.getLayer('places')) {

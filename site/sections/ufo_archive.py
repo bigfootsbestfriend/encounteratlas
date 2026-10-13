@@ -457,7 +457,7 @@ def build(ctx):
             cases += (f'<h2>PURSUE files placed in the United States</h2><ul class="ua-pgrid ua-pgrid-sm" data-filter-list data-limit="12">{"".join(pcard(o) for o in pcs)}</ul>'
                       f'<p class="ua-more"><button type="button" class="btn" data-more>Show more files</button></p>')
         if bb_cc.get(cc) and cc != 'us':
-            bb_slug = ctx.slugify(next(b['region'] for b in ctx.bluebook if (b.get('cc') or '').lower() == cc))
+            bb_slug = ctx.slugify(next(b.get('country') or b['region'] for b in ctx.bluebook if (b.get('cc') or '').lower() == cc))
             cases += f'<p>The US Air Force also logged <a href="{U("/ufo/blue-book/" + bb_slug + "/")}">{bb_cc[cc]} Blue Book case {"folder" if bb_cc[cc] == 1 else "folders"} from {E(name)}</a>.</p>'
         parts.append(cases)
         links = ''.join(f'<li>{ext(l["url"], l["name"])}</li>' for l in (c or {}).get('links', []))
