@@ -3,7 +3,7 @@ name = "encounters"
 main = "src/index.js"
 compatibility_date = "2025-09-01"
 # Uncomment once the api.encounteratlas.com DNS zone is on Cloudflare (DEPLOY.md step 6).
-# routes = [{ pattern = "api.encounteratlas.com", custom_domain = true }]
+routes = [{ pattern = "api.encounteratlas.com", custom_domain = true }]
 
 [vars]
 SITE = "https://encounteratlas.com"
@@ -21,7 +21,7 @@ TURNSTILE_SITEKEY = "0x4AAAAAAFVllt3qoQHw1hRp"
 binding = "DB"
 database_name = "encounters"
 # Replace with the id printed by `wrangler d1 create encounters` (DEPLOY.md step 2). Any value works locally.
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "55137f45-5eae-4b19-aff6-307856223ef0"
 
 # No R2 bucket: photo uploads are off for good (links only). The code treats a missing PHOTOS binding as "no photos".
 

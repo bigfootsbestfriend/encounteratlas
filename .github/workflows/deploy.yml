@@ -31,6 +31,7 @@ jobs:
         env:
           SITE_URL: ${{ vars.SITE_URL || 'https://encounteratlas.com' }}
           BASE_PATH: ${{ vars.BASE_PATH || '' }}
+          EA_API: ${{ vars.EA_API || 'https://api.encounteratlas.com' }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
