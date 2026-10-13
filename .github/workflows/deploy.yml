@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Daily rebuild so date-based pages stay current (upcoming events, "this month in the files").
+  schedule:
+    - cron: "17 9 * * *"
 
 permissions:
   contents: read

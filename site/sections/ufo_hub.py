@@ -65,6 +65,7 @@ def build(ctx):
   <h1>UFO sightings</h1>
   <p class="lede">What people have seen in the sky, from Kenneth Arnold's "flying saucers" to Canada's Falcon Lake burns, plus the official files governments have released. Seen something yourself? Add it to the map.</p>
   <p class="uh-btns"><a class="btn" href="{U('/report/?creature=ufo-saucer')}">Report a UFO sighting</a> <a class="btn btn-ghost" href="{U('/map/')}">Open the map</a></p>
+  <nav class="jump" aria-label="Explore the UFO files"><a href="{U('/ufo/canada/')}">Canada sightings map</a><a href="{U('/ufo/blue-book/')}">Air Force Blue Book files</a><a href="{U('/ufo/files/faa/')}">FAA pilot reports</a><a href="{U('/ufo/releases/')}">Official releases</a><a href="{U('/tools/was-it-a-planet/')}">Was it a planet?</a></nav>
 </div></section>
 <div class="band band-mist ce-list"><div class="wrap">
   <h2>Famous sightings</h2>
