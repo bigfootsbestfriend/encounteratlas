@@ -1093,26 +1093,6 @@ def build_static_pages():
   <h2>What to bring next time</h2>
   <p>A trail camera, a red-light headlamp and an audio recorder catch most of what people miss. See <a href="{url('/gear/')}">field gear for investigators</a>.</p>
 </div></div>''', 'Report a Bigfoot, Dogman, UFO or other strange encounter.'))
-    write('/about/', page('/about/', 'About and sources', f'''
-<section class="band band-dark"><div class="wrap"><h1>About Encounter Atlas</h1>
-<p class="lede">One place for strange sightings: creatures, UFOs and the official files, mapped and searchable.</p></div></section>
-<div class="band band-mist"><div class="wrap prose">
-<div class="owner-card">
-  <picture><source srcset="{url('/static/img/mike-johnston.webp')}" type="image/webp"><img src="{url('/static/img/mike-johnston.png')}" alt="Mike Johnston" width="160" height="160"></picture>
-  <div><h2>Who's behind it</h2>
-  <p>Encounter Atlas is built and run by <strong>Mike Johnston</strong>, a Canadian web developer with a long-running interest in Bigfoot, lake monsters and UFOs. Questions, corrections or a case we should add? <a href="{url('/contact/')}">Get in touch</a>.</p></div>
-</div>
-<h2>Sources</h2>
-<ul>
-<li><strong>Project Blue Book case files</strong>, US Air Force, 1947 to 1969. US National Archives, Record Group 341, microfilm T1206. US federal records, no copyright in the United States. Places were matched automatically from the folder titles; dots marked “approximate” are placed at the state or country, not the exact spot.</li>
-<li><strong>Canadian UFO sightings, 1989 to 2025</strong>: the Canadian UFO Survey, compiled each year by Ufology Research (Winnipeg) from reports to police, airports, the military, researchers and UFO groups. We left out reports the survey received from online UFO reporting sites. Ratings (explained, unexplained...) are the survey's; notes are lightly tidied. Places were matched to towns with GeoNames.</li>
-<li><strong>Place names</strong>: GeoNames, licensed CC BY 4.0.</li>
-<li><strong>Map tiles</strong>: OpenFreeMap, built on OpenMapTiles and OpenStreetMap data.</li>
-<li><strong>Creature entries</strong> are written by us from published accounts. Each links to further reading.</li>
-</ul>
-<h2>Our stance</h2>
-<p>We collect reports and evidence and let you decide. A report on this site means someone said they saw something, not that it's proven.</p>
-</div></div>''', 'Sources and approach behind Encounter Atlas.'))
     write('/privacy/', page('/privacy/', 'Privacy', f'''
 <section class="band band-dark"><div class="wrap"><h1>Privacy</h1>
 <p class="lede">What we keep when you use Encounter Atlas or send us a report, who can see it, and how to get it removed. Short version: your exact location, your email address and your IP address are never made public.</p></div></section>

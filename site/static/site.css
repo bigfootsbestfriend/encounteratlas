@@ -643,3 +643,6 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 .owner-card p { margin-bottom: 0; }
 @media (max-width: 560px) { .owner-card { flex-direction: column; text-align: center; } .owner-card img { width: 140px; height: 140px; } }
 .owner-card picture { flex: none; display: block; }
+.owner-contact { margin: -1rem 0 2.2rem; }
+.owner-contact h2 { margin-top: 0; }
+.contact-form.compact .step { margin: .4rem 0 .6rem; }

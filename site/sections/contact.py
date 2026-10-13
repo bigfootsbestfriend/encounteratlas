@@ -1,4 +1,6 @@
-"""Contact (/contact/) and Advertise with us (/advertise/).
+"""Contact (/contact/), Advertise with us (/advertise/) and About (/about/, with a short "Get in touch with Mike" form).
+
+All three share one form (_form); compact=True drops the topic picker for the About page.
 
 The form posts to the reports Worker (/api/contact), which emails hello@ with reply-to set to the sender and stores nothing.
 Until the Worker is live (EA_API unset in the build) the pages show the email address instead of the form.
@@ -11,11 +13,26 @@ TOPICS = [('general', 'General question'), ('advertise', 'Advertising or sponsor
           ('takedown', 'Takedown or privacy request'), ('press', 'Press')]
 
 
-def _form(ctx, topic):
+def _form(ctx, topic, compact=False):
     api = os.environ.get('EA_API', '').rstrip('/')
     if not api:
         return (f'<div class="step"><p>Email us at <a href="mailto:{EMAIL}">{EMAIL}</a>. '
                 'A contact form is coming soon.</p></div>')
+    if compact:
+        return f'''<form class="rep-form contact-form compact" novalidate>
+  <fieldset class="step">
+    <input type="hidden" name="topic" value="{topic}">
+    <div class="row2">
+      <div class="field"><label for="c-name">Your name <span class="hint">(optional)</span></label><input id="c-name" name="name" maxlength="100" autocomplete="name"></div>
+      <div class="field"><label for="c-email">Your email</label><input id="c-email" name="email" type="email" maxlength="254" autocomplete="email" required></div>
+    </div>
+    <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" name="message" rows="4" maxlength="5000" required></textarea></div>
+    <div class="hp" aria-hidden="true"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></div>
+    <div class="ts-slot"></div>
+    <p><button class="btn" type="submit">Send to Mike</button></p>
+    <p class="c-msg" role="status" aria-live="polite"></p>
+  </fieldset>
+</form>'''
     opts = ''.join(f'<option value="{k}"{" selected" if k == topic else ""}>{ctx.esc(v)}</option>' for k, v in TOPICS)
     return f'''<form class="rep-form contact-form" novalidate>
   <fieldset class="step">
@@ -79,3 +96,27 @@ the official UFO files and the close-encounter stories, and they send in sightin
 </div>
 <div class="wrap narrow">{_form(ctx, 'advertise')}</div></div>''',
         'Advertise on Encounter Atlas: sponsored creature pages, podcast and book features, gear and events for cryptid and UFO fans.', head_extra=_head(ctx)))
+
+    ctx.write('/about/', ctx.page('/about/', 'About and sources', f'''
+<section class="band band-dark"><div class="wrap"><h1>About Encounter Atlas</h1>
+<p class="lede">One place for strange sightings: creatures, UFOs and the official files, mapped and searchable.</p></div></section>
+<div class="band band-mist"><div class="wrap prose">
+<div class="owner-card">
+  <picture><source srcset="{U('/static/img/mike-johnston.webp')}" type="image/webp"><img src="{U('/static/img/mike-johnston.png')}" alt="Mike Johnston" width="160" height="160"></picture>
+  <div><h2>Who's behind it</h2>
+  <p>Encounter Atlas is built and run by <strong>Mike Johnston</strong>, a Canadian web developer with a long-running interest in Bigfoot, lake monsters and UFOs.</p></div>
+</div>
+<section class="owner-contact" aria-labelledby="reach-mike"><h2 id="reach-mike">Get in touch with Mike</h2>
+{_form(ctx, 'general', compact=True)}
+<p class="small">Your email is only used to reply. See our <a href="{U('/privacy/')}">privacy policy</a>.</p></section>
+<h2>Sources</h2>
+<ul>
+<li><strong>Project Blue Book case files</strong>, US Air Force, 1947 to 1969. US National Archives, Record Group 341, microfilm T1206. US federal records, no copyright in the United States. Places were matched automatically from the folder titles; dots marked “approximate” are placed at the state or country, not the exact spot.</li>
+<li><strong>Canadian UFO sightings, 1989 to 2025</strong>: the Canadian UFO Survey, compiled each year by Ufology Research (Winnipeg) from reports to police, airports, the military, researchers and UFO groups. We left out reports the survey received from online UFO reporting sites. Ratings (explained, unexplained...) are the survey's; notes are lightly tidied. Places were matched to towns with GeoNames.</li>
+<li><strong>Place names</strong>: GeoNames, licensed CC BY 4.0.</li>
+<li><strong>Map tiles</strong>: OpenFreeMap, built on OpenMapTiles and OpenStreetMap data.</li>
+<li><strong>Creature entries</strong> are written by us from published accounts. Each links to further reading.</li>
+</ul>
+<h2>Our stance</h2>
+<p>We collect reports and evidence and let you decide. A report on this site means someone said they saw something, not that it's proven.</p>
+</div></div>''', 'Who runs Encounter Atlas, how to reach Mike, and the sources behind the site.', head_extra=_head(ctx)))
