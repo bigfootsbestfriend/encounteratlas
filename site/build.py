@@ -178,6 +178,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <header class="top">
   <a class="brand" href="{url('/')}"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</a>
   <nav class="nav" aria-label="Main">{nav}</nav>
+  <a class="search-btn" href="{url('/search/')}" aria-label="Search the site"{' aria-current="page"' if path == '/search/' else ''}><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></a>
   <a class="report-btn" href="{url('/report/')}"{' aria-current="page"' if path.startswith('/report/') else ''}><span class="rb-dot" aria-hidden="true"></span><span class="rb-long">Report an encounter</span><span class="rb-short" aria-hidden="true">Report</span></a>
 </header>
 <main id="main">
@@ -892,6 +893,18 @@ def build_home(creatures, n_points, bluebook, military):
     write('/', page('/', 'Encounter Atlas: Bigfoot, UFO and cryptid sightings mapped', body,
                     'A map of Bigfoot, Dogman, UFO and cryptid encounters, a searchable creature index, and the US Air Force Project Blue Book files.',
                     body_class='home', head_extra=map_head()))
+    write('/search/', page('/search/', 'Search', f'''
+<section class="band band-dark search-page"><div class="wrap">
+  <h1>Search Encounter Atlas</h1>
+  <div class="search search-big" data-index="{url('/data/search.json')}" data-limit="40">
+    <label class="visually-hidden" for="home-q">Search</label>
+    <input id="home-q" type="search" placeholder="Creature, town, state, province, case..." autocomplete="off" autofocus>
+    <ul class="search-results" hidden></ul>
+  </div>
+  <p class="search-tips">Try a creature (Mothman, Ogopogo), a place (Ohio, Edmonton, Lake Champlain) or a case (Roswell, Falcon Lake).</p>
+  <nav class="tiles" aria-label="Browse by type">{tiles}</nav>
+</div></section>
+<script src="{url('/static/home.js')}" defer></script>''', 'Search creatures, places, UFO files and encounters on Encounter Atlas.'))
     write('/map/', page('/map/', 'Encounter map', f'''
 <section class="map-full" aria-label="Encounter map">
   <div class="map-full-bar">
