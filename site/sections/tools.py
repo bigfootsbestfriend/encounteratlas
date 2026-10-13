@@ -304,7 +304,16 @@ class Tools:
 <div class="band band-mist"><div class="wrap">
   <div class="tool-cards">
     <a class="tool-card tool-card-id" href="{c.url('/tools/what-did-i-see/')}">
-      <span class="tool-art" aria-hidden="true">{self.icon('eyeshine')}</span>
+      <span class="tool-art" aria-hidden="true"><svg class="tool-scene" viewBox="0 0 520 190" preserveAspectRatio="xMidYMax slice">
+        <defs><linearGradient id="ts-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2E3B66"/><stop offset="1" stop-color="#8C5C52"/></linearGradient>
+        <linearGradient id="ts-beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F3E3B8" stop-opacity=".75"/><stop offset="1" stop-color="#F3E3B8" stop-opacity="0"/></linearGradient></defs>
+        <rect width="520" height="190" fill="url(#ts-sky)"/><circle cx="420" cy="46" r="22" fill="#F3E3B8" opacity=".9"/>
+        <path d="M0 140L60 108 110 126 170 92 240 124 300 100 370 128 430 104 520 132V190H0Z" fill="#5E4A3A" opacity=".5"/>
+        <path d="M0 172L16 132 32 172 44 122 60 172 300 172 316 116 332 172 346 128 362 172 376 110 392 172 406 126 420 172 436 118 452 172 468 130 484 172 500 120 520 168V190H0Z" fill="#1E3A2F"/>
+        <path d="M150 112L372 80 372 176Z" fill="url(#ts-beam)"/>
+        <image href="{c.url('/static/art/bigfoot.svg')}" x="330" y="64" width="112" height="112" opacity=".92"/>
+        <image href="{c.url('/static/art/pic-dg-figure.svg')}" x="88" y="92" width="80" height="80"/>
+      </svg></span>
       <span class="tool-txt"><span class="tool-kicker">7 questions, about a minute</span>
       <span class="tool-name">What did I see?</span>
       <span class="tool-sum">Tap through where you were, how big it was, how it moved and what you heard. See which reports sound most like yours, and the everyday things that fool people most.</span>
@@ -395,6 +404,12 @@ class Tools:
   </div>
 </section>
 <div class="band band-mist id-band"><div class="wrap">
+  <section class="prose id-how id-how-top">
+    <h2>How the matching works</h2>
+    <p>Each answer adds points to creatures whose descriptions fit: where they are reported, how big witnesses say they are, how they move, what people hear and see. Region counts most, because many creatures belong to one lake, swamp or county. The result is a list of reports that sound like yours, not proof of anything. We don't claim any of these creatures are real, and we don't claim they're not.</p>
+    <p>Browse the full <a href="{c.url('/creatures/')}">creature index</a>, or compare sizes with the <a href="{c.url('/tools/size-comparison/')}">size comparison</a>.</p>
+  </section>
+
   <div class="idq" id="idq">
     <div class="idq-bar js-only" hidden>
       <button type="button" class="idq-back" aria-label="Back to the previous question">Back</button>
@@ -412,11 +427,6 @@ class Tools:
     <div class="mix-grid">{mix}</div>
   </section>
 
-  <section class="prose id-how">
-    <h2>How the matching works</h2>
-    <p>Each answer adds points to creatures whose descriptions fit: where they are reported, how big witnesses say they are, how they move, what people hear and see. Region counts most, because many creatures belong to one lake, swamp or county. The result is a list of reports that sound like yours, not proof of anything. We don't claim any of these creatures are real, and we don't claim they're not.</p>
-    <p>Browse the full <a href="{c.url('/creatures/')}">creature index</a>, or compare sizes with the <a href="{c.url('/tools/size-comparison/')}">size comparison</a>.</p>
-  </section>
 </div></div>
 {self.jsdata(data, 'idq-data')}
 <script src="{c.url('/static/identify.js')}" defer></script>'''

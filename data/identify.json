@@ -994,7 +994,7 @@
   {
    "id": "bear",
    "name": "A bear standing up",
-   "icon": "q-quad",
+   "icon": "e-bear",
    "tells": "Bears stand on their hind legs for a few seconds to sniff or look, then drop back down. Look for rounded ears, a long snout and short back legs. A standing black bear is 5 to 6 ft; a grizzly can top 8 ft.",
    "fits": [
     "woods",
@@ -1032,7 +1032,7 @@
   {
    "id": "deer",
    "name": "Deer eyeshine",
-   "icon": "eyeshine",
+   "icon": "q-still",
    "tells": "Pale green or white eyes about 3 to 4 ft off the ground, often in twos and threes, that blink out when the animal turns. Deer also give a loud, startling snort.",
    "fits": [
     "woods",
@@ -1050,7 +1050,7 @@
   {
    "id": "small-eyes",
    "name": "Raccoon, possum, fox or coyote eyes",
-   "icon": "eyeshine",
+   "icon": "e-raccoon",
    "tells": "Small, close-set eyes low to the ground that look orange or red in a torch beam. Coyotes yip and howl in groups; a fox's scream sounds alarmingly human.",
    "fits": [
     "woods",
@@ -1087,7 +1087,7 @@
   {
    "id": "owl",
    "name": "An owl",
-   "icon": "q-fly",
+   "icon": "owl",
    "tells": "Silent wingbeats, a broad pale face that can look human in a light, and eyes that reflect. Barn owls give a long, rasping scream; great horned owls stand nearly 2 ft tall with a 4 to 5 ft wingspan.",
    "fits": [
     "woods",
@@ -1108,7 +1108,7 @@
   {
    "id": "heron",
    "name": "A heron or crane",
-   "icon": "q-fly",
+   "icon": "e-heron",
    "tells": "Long legs, a long neck folded back in flight and slow, heavy wingbeats. A great blue heron stands about 4 ft tall with a 6 ft wingspan and gives a harsh croak. Sandhill cranes are just as tall and call loudly in flocks.",
    "fits": [
     "water",
@@ -1145,7 +1145,7 @@
   {
    "id": "fish",
    "name": "A big fish or seal",
-   "icon": "q-splash",
+   "icon": "bigfish",
    "tells": "Sturgeon can pass 6 ft and leap clear of the water. Seals and sea lions travel far up rivers and lakes. A dark head that rises, looks around and sinks is often a seal.",
    "fits": [
     "water",
@@ -1161,7 +1161,7 @@
   {
    "id": "starlink",
    "name": "A Starlink satellite train",
-   "icon": "q-sky",
+   "icon": "e-starlink",
    "tells": "A straight line of evenly spaced lights moving together across the sky, usually an hour or two after sunset or before sunrise. They fade out one by one as they leave sunlight.",
    "fits": [
     "sky",
@@ -1177,7 +1177,7 @@
   {
    "id": "satellite",
    "name": "A satellite or the space station",
-   "icon": "q-sky",
+   "icon": "e-satellite",
    "tells": "A steady point of light, no blinking, gliding smoothly across the sky in a few minutes. It can fade or vanish mid-sky when it passes into Earth's shadow. The space station is brighter than any star.",
    "fits": [
     "sky",
@@ -1193,7 +1193,7 @@
   {
    "id": "venus",
    "name": "Venus, Jupiter or a bright star",
-   "icon": "q-night",
+   "icon": "e-planet",
    "tells": "Very bright and steady, low in the west after sunset or in the east before dawn. It seems to follow your car and can flicker red and green near the horizon. It's in the same place the next night.",
    "fits": [
     "sky",
@@ -1227,7 +1227,7 @@
   {
    "id": "drone",
    "name": "A drone",
-   "icon": "q-hum",
+   "icon": "e-drone",
    "tells": "Red, green and white lights, sharp stops, sudden direction changes and a thin, high whine when it comes close. Drones often fly in the evening near towns, farms and parks.",
    "fits": [
     "sky",
@@ -1244,7 +1244,7 @@
   {
    "id": "lanterns",
    "name": "Sky lanterns or flares",
-   "icon": "orbs",
+   "icon": "e-lantern",
    "tells": "Orange, flickering lights drifting together on the wind, rising slowly and then winking out. Parachute flares from military ranges hang in a row and sink slowly for several minutes.",
    "fits": [
     "sky",

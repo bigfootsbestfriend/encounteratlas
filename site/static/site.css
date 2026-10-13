@@ -373,7 +373,15 @@ body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
   .nav a, .nav-dd summary { font-size: .88rem; padding: .4rem .5rem; }
   .report-btn { padding: .5rem .85rem; font-size: .9rem; }
 }
-@media (max-width: 1220px) {
+@media (min-width: 901px) and (max-width: 1220px) {
+  .top { gap: .4rem; }
+  .brand { font-size: 1.05rem; }
+  .nav a, .nav-dd summary { font-size: .86rem; padding: .4rem .45rem; }
+  .nav { gap: 0; }
+  .report-btn { padding: .5rem .8rem; font-size: .88rem; }
+  .rb-long { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .rb-short { display: inline; }
+}
+@media (max-width: 900px) {
   .top { flex-wrap: wrap; padding-bottom: .4rem; row-gap: .3rem; }
   .top .nav { order: 3; margin-left: 0; }
   .report-btn { order: 2; margin-left: auto; padding: .5rem .85rem; font-size: .9rem; }
@@ -478,7 +486,7 @@ body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
 .dd-menu { position: absolute; z-index: 60; top: calc(100% + .35rem); left: 0; min-width: 14rem; display: flex; flex-direction: column; gap: .1rem;
   padding: .4rem; background: #13261F; border: 1px solid var(--spruce-3); border-radius: 14px; box-shadow: 0 14px 34px rgba(0,0,0,.45); }
 .dd-menu a { border-radius: 10px !important; padding: .6rem .8rem !important; }
-@media (max-width: 1220px) {
+@media (max-width: 900px) {
   .nav { flex-wrap: wrap; overflow: visible; -webkit-mask-image: none; mask-image: none; padding-right: 0; row-gap: .15rem; }
 
 }
@@ -494,3 +502,10 @@ body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
 .crit-meta { display: flex; flex-wrap: wrap; gap: .25rem .7rem; margin-top: .45rem; font-size: .8rem; color: var(--muted-d); }
 .cm-n { font-weight: 700; color: #7A4E00; }
 .cm-loc { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+
+/* Full map page: always-visible way out */
+.map-exit { position: absolute; z-index: 5; top: 10px; right: 10px; display: inline-flex; align-items: center; gap: .45rem; padding: .55rem .9rem;
+  border-radius: 999px; background: #F3F1DA; color: #13261F !important; font: 700 .9rem "Public Sans", sans-serif; text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0,0,0,.4); }
+.map-exit:hover { background: #fff; }
+.map-exit:focus-visible { outline: 3px solid var(--lantern); outline-offset: 2px; }

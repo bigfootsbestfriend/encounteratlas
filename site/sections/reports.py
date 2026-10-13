@@ -115,7 +115,7 @@ def build(ctx):
     <ul class="place-results" data-place-results hidden></ul>
     <div class="rep-map" id="rep-map" aria-label="Map: tap to set where it happened"></div>
     <p class="loc-status" data-loc-status>No spot set yet.</p>
-    <p class="privacy"><strong>Your exact spot stays private.</strong> The public map only shows an area about 5 km across, and only moderators see the pin. The place name you type is public, so keep it general on private land.</p>
+    <p class="privacy"><strong>Your exact spot stays private.</strong> The public map only shows an area about 5 km across, and only moderators see the pin. The place name you type is public, so keep it general on private land. <a href="{ctx.url('/privacy/')}">How we handle your information</a>.</p>
     <input type="hidden" name="lat"><input type="hidden" name="lon"><input type="hidden" name="loc_source" value="map">
     <p class="err" data-err="location"></p>
   </fieldset>

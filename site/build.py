@@ -187,7 +187,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
   <div class="foot-in">
     <p class="foot-brand"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</p>
     <p>Sightings, creatures and official files, mapped. Reports are what witnesses say they saw. We don't claim they're real, and we don't claim they're not.</p>
-    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/report/')}">Report an encounter</a></p>
+    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/privacy/')}">Privacy</a></p>
     <p class="small">Air Force case files: US National Archives, Record Group 341. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>
   </div>
 </footer>
@@ -796,7 +796,8 @@ def build_home(creatures, n_points, bluebook, military):
     {filter_bar(creatures, famous_slugs)}
     <button type="button" class="btn btn-sm" data-locate>Near me</button>
   </div>
-  <div class="map-frame full"><div id="map" class="map" data-base="{BASE}"{MAP_API}></div></div>
+  <div class="map-frame full"><div id="map" class="map" data-base="{BASE}"{MAP_API}></div>
+    <a class="map-exit" href="{url('/')}" hidden><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Exit full map</a></div>
 </section>''', 'Map of Bigfoot, Dogman, UFO and cryptid encounters, military cases and every US Air Force Project Blue Book file.',
                         body_class='mapper', head_extra=map_head()))
 
@@ -834,6 +835,59 @@ def build_static_pages():
 <h2>Our stance</h2>
 <p>We collect reports and evidence and let you decide. A report on this site means someone said they saw something, not that it's proven.</p>
 </div></div>''', 'Sources and approach behind Encounter Atlas.'))
+    write('/privacy/', page('/privacy/', 'Privacy', f'''
+<section class="band band-dark"><div class="wrap"><h1>Privacy</h1>
+<p class="lede">What we keep when you use Encounter Atlas or send us a report, who can see it, and how to get it removed. Short version: your exact location, your email address and your IP address are never made public.</p></div></section>
+<div class="band band-mist"><div class="wrap prose">
+<p class="small">Last updated: October 12, 2026.</p>
+
+<h2>Just reading the site</h2>
+<ul>
+<li><strong>No ads, no tracking cookies, no account needed.</strong> You can read every page and use the map and tools without signing up.</li>
+<li><strong>Visitor counts:</strong> we don't run visitor analytics right now. If we add them, we'll use a cookie-free service that only shows totals, like page views and countries, and we'll update this page first.</li>
+<li><strong>Things your browser remembers, not us:</strong> your sort choice on the creature index, and a draft of a report you haven't sent yet (text and photos, stored only on your device so you don't lose them). Clearing your browser data removes them.</li>
+<li><strong>Other services the pages load:</strong> map tiles from OpenFreeMap, fonts from Google Fonts and code libraries from cdnjs. Like any website, these see your IP address when they send the file. Witness videos only load from YouTube (in its privacy-enhanced mode) when you press play.</li>
+</ul>
+
+<h2>Sending a report</h2>
+<p>When you report an encounter we keep what you type and choose: the date and time, what you saw, the story, sounds, smells, how many people were there, any photos and video links, and where it happened.</p>
+<ul>
+<li><strong>Your exact location is private.</strong> Only our moderators see the exact spot. The public map shows the report on a grid of about 5 km (3 miles), never the exact point, so nobody can find your home or a private spot from it.</li>
+<li><strong>Photos are cleaned.</strong> We remove the hidden data cameras add to photos (EXIF), including GPS coordinates and the phone model, and we re-save every image before it's stored. The original file you uploaded is not kept.</li>
+<li><strong>Your name is optional.</strong> Reports are anonymous unless you choose to show a display name.</li>
+<li><strong>Every report is checked by a person</strong> before it appears on the site, and we can turn down reports that break our rules.</li>
+<li><strong>Spam protection:</strong> forms use Cloudflare Turnstile to check you're not a bot, and we store a scrambled one-way code made from your IP address (not the address itself) to spot floods of fake reports or votes.</li>
+</ul>
+
+<h2>Accounts and voting</h2>
+<ul>
+<li>Signing in uses a one-time link sent to your email. We keep your email address and, if you choose one, a display name. There's no password for us to lose.</li>
+<li>Your email is never shown on the site, never sold and never added to a mailing list. We only use it to sign you in and, if we need to, to contact you about one of your reports.</li>
+<li>When you vote "real or hoax", we keep the vote, the account that cast it and the scrambled IP code, so each account counts once and vote-stuffing can be caught. Results are shown as totals, never as who voted what.</li>
+</ul>
+
+<h2>Who can see what</h2>
+<ul>
+<li><strong>Everyone:</strong> approved reports (story, date, approximate area, photos, video links, display name if you chose one) and vote totals.</li>
+<li><strong>Our moderators only:</strong> the exact location, your email address and the scrambled IP code, to check reports and stop abuse.</li>
+<li><strong>Service providers that run the site for us:</strong> Cloudflare (hosting for reports, photos and the database), Resend (sends the sign-in emails) and GitHub (hosts the public pages). They process data only to provide those services.</li>
+<li>We don't sell or rent anyone's information, and we don't share it with advertisers or other sighting organisations.</li>
+</ul>
+
+<h2>Removing your report or account</h2>
+<ul>
+<li>If you sent a report while signed in, you can edit or withdraw it yourself from the report page. Withdrawing deletes its photos straight away.</li>
+<li>To remove a report sent without an account, delete your account, or ask what we hold about you, email <a href="mailto:hello@encounteratlas.com">hello@encounteratlas.com</a>. We reply within 30 days.</li>
+<li>Sign-ins expire after 90 days on a device, and you can sign out at any time.</li>
+</ul>
+
+<h2>Children</h2>
+<p>Encounter Atlas is meant for adults and teens. If you're under 13, please ask a parent or guardian to send a report for you.</p>
+
+<h2>Changes</h2>
+<p>If we change how we handle your information, we'll update this page and the date at the top.</p>
+<p>See also: <a href="{url('/about/')}">About and sources</a>.</p>
+</div></div>''', 'What Encounter Atlas keeps when you read the site or send a report, who can see it, and how to have it removed.'))
     write('/404.html', page('/404.html', 'Page not found', f'''
 <section class="band band-dark"><div class="wrap"><h1>Nothing out here</h1>
 <p class="lede">That page doesn't exist, or it wandered off into the woods.</p>

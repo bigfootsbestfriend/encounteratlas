@@ -22,6 +22,15 @@
     attributionControl: { compact: true },
   });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
+  // Full map page: a clear way back to wherever the visitor came from (home page "Full screen" button, creature pages...)
+  const exit = document.querySelector('.map-exit');
+  if (exit) {
+    let ref = null; try { ref = document.referrer && new URL(document.referrer); } catch (e) { /* bad referrer */ }
+    const fromSite = ref && ref.host === location.host && !ref.pathname.endsWith('/map/');
+    if (fromSite) { exit.href = ref.href; exit.addEventListener('click', (e) => { if (history.length > 1) { e.preventDefault(); history.back(); } }); }
+    exit.hidden = false;
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !document.querySelector('.maplibregl-popup')) exit.click(); });
+  }
 
   function tint() {
     for (const layer of map.getStyle().layers) {
