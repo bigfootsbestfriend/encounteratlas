@@ -296,5 +296,25 @@ pub = await call('GET', `/api/reports/${PID}`);
 gj = await call('GET', '/api/reports.geojson');
 ok(wd.status === 200 && pub.status === 404 && !gj.data.features.some((f) => f.properties.id === PID), 'owner can withdraw; gone from API and map');
 
+section('Living traditions');
+r = await call('POST', '/api/reports', { form: reportForm({ ...baseReport, creature: 'wendigo' }), session: A.session, ip: '10.7.7.7' });
+const WID = r.data.id;
+await mod('approve', WID, {}, COOKIE);
+pub = await call('GET', `/api/reports/${WID}`);
+const regionLat = Math.round(Math.round(EXACT.lat / 0.9) * 0.9 * 1e4) / 1e4;
+ok(pub.status === 200 && pub.data.report.lat === regionLat, 'wendigo report mapped to a ~100 km region cell only',
+  JSON.stringify(pub.data.report && [pub.data.report.lat, pub.data.report.lon]));
+
+section('Contact form');
+r = await call('POST', '/api/contact', { body: { email: 'nope', message: 'Hello there, a question.', turnstile: 'XXXX.DUMMY.TOKEN' }, ip: '10.9.9.9' });
+ok(r.status === 400 && r.data.state === 'email', 'contact: bad email rejected');
+r = await call('POST', '/api/contact', { body: { email: 'reader@example.test', message: 'hi', turnstile: 'XXXX.DUMMY.TOKEN' }, ip: '10.9.9.9' });
+ok(r.status === 400 && r.data.state === 'message', 'contact: too-short message rejected');
+r = await call('POST', '/api/contact', { body: { email: 'reader@example.test', topic: 'advertise', message: 'We would like to sponsor the Bigfoot page.', turnstile: 'XXXX.DUMMY.TOKEN' }, ip: '10.9.9.9' });
+ok(r.status === 200 && r.data.state === 'ok', 'contact: valid message accepted');
+for (let i = 0; i < 3; i++) r = await call('POST', '/api/contact', { body: { email: `r${i}@example.test`, message: 'Another message here.', turnstile: 'XXXX.DUMMY.TOKEN' }, ip: '10.9.9.9' });
+r = await call('POST', '/api/contact', { body: { email: 'r9@example.test', message: 'One too many messages.', turnstile: 'XXXX.DUMMY.TOKEN' }, ip: '10.9.9.9' });
+ok(r.status === 429, 'contact: 5th message in an hour from one IP refused');
+
 console.log(`\n${pass} passed, ${failed} failed`);
 process.exit(failed ? 1 : 0);

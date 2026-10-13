@@ -187,7 +187,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
   <div class="foot-in">
     <p class="foot-brand"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</p>
     <p>Sightings, creatures and official files, mapped. Reports are what witnesses say they saw. We don't claim they're real, and we don't claim they're not.</p>
-    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/privacy/')}">Privacy</a></p>
+    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{url('/privacy/')}">Privacy policy</a></p>
     <p class="small">Air Force case files: US National Archives, Record Group 341. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>
   </div>
 </footer>
@@ -368,9 +368,9 @@ def build_creatures(creatures, by_slug):
             famous_details.update(d)
 
     KINDS = load('creature_kinds.json') or {}
-    # Folklore hybrid (proposed to Mike, NOT approved yet): stories first, then modern claimed sightings, and both
-    # actions in the box. Living traditions get a respect note, and their reports are shown at region precision only.
-    FOLK_HYBRID = False
+    # Folklore hybrid (Mike approved 2026-10-12): stories first, then modern claimed sightings, and both
+    # actions in the box. Living traditions get a respect note, and their reports are shown at region precision only (enforced by the Worker's LIVING_TRADITIONS; keep both lists in sync).
+    FOLK_HYBRID = True
     LIVING_TRADITIONS = {'skinwalker', 'menk', 'wendigo', 'kushtaka', 'pukwudgie', 'menehune', 'yunwi-tsunsdi', 'mannegishi',
                          'makiawisug', 'nimerigar', 'tokoloshe', 'mami-wata', 'inkanyamba', 'alux', 'mamlambo'}
 
@@ -870,7 +870,7 @@ def build_static_pages():
 <ul>
 <li><strong>Everyone:</strong> approved reports (story, date, approximate area, photo and video links, display name if you chose one) and vote totals.</li>
 <li><strong>Our moderators only:</strong> the exact location, your email address and the scrambled IP code, to check reports and stop abuse.</li>
-<li><strong>Service providers that run the site for us:</strong> Cloudflare (hosting for reports and the database), Resend (sends the sign-in emails) and GitHub (hosts the public pages). They process data only to provide those services.</li>
+<li><strong>Service providers that run the site for us:</strong> Cloudflare (hosting for reports and the database), Resend (sends the sign-in emails and passes contact-form messages to our inbox) and GitHub (hosts the public pages). They process data only to provide those services.</li>
 <li>We don't sell or rent anyone's information, and we don't share it with advertisers or other sighting organisations.</li>
 </ul>
 

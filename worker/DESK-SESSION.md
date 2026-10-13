@@ -8,7 +8,7 @@ DNS and domain changes trigger a permission prompt in Claude's session, so Mike 
 (or adds the records himself in the Cloudflare dashboard).
 
 ## 0. Before starting (Claude, 1 min)
-- `cd worker && npm test`: should say 66 passed.
+- `cd worker && npm test`: should say 71 passed.
 - Check the Cloudflare API token can edit Workers, D1 and Turnstile for account f400124b…
   If it can't, Mike adds those permissions at dash.cloudflare.com → My Profile → API Tokens → edit token.
 
@@ -42,3 +42,10 @@ DNS and domain changes trigger a permission prompt in Claude's session, so Mike 
 ## 6. Before launch (separate approval)
 - Privacy page: done (/privacy/).
 - DMCA agent (copyright.gov/dmca-directory, $6): optional now that nothing is uploaded. The hello@ address on /privacy/ handles takedown requests.
+
+## Checks not to miss
+- **Living traditions are region-only.** Reports on skinwalker, wendigo, menk and the other `LIVING_TRADITIONS` creatures are mapped
+  to a ~100 km cell, never the ~5 km one (worker/src/index.js `fuzz(..., region)`; the test "wendigo report mapped to a ~100 km region cell only").
+  After deploy, file one test report on a living-tradition creature and check the public pin sits on the region cell. Keep the list
+  in sync with `LIVING_TRADITIONS` in site/build.py.
+- **Contact form** (/contact/, /advertise/) goes live with the Worker. Send one test message and check it arrives at hello@ with reply-to set.

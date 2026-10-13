@@ -99,12 +99,37 @@ async function api(req, env, url, ctx) {
   if (p === '/api/votes' && m === 'GET') return getVotes(req, env, url);
   if (p === '/api/votes' && m === 'POST') return castVote(req, env);
   if (p === '/api/flag' && m === 'POST') return flag(req, env);
+  if (p === '/api/contact' && m === 'POST') return contact(req, env);
   return json({ state: 'not_found' }, 404);
 }
 
 async function body(req) {
   if (Number(req.headers.get('content-length') || 0) > 64 * 1024) fail(413, 'too_big');
   return req.json().catch(() => fail(400, 'bad_json'));
+}
+
+// ---------------- contact form ----------------
+
+export const TOPICS = { general: 'General', advertise: 'Advertising', correction: 'Correction or source', takedown: 'Takedown or privacy', press: 'Press' };
+
+// Emails the message to CONTACT_TO (default hello@) with reply-to set to the sender. Nothing is stored except rate-limit rows.
+async function contact(req, env) {
+  const b = await body(req);
+  if (line(b.website, 100)) return json({ state: 'ok' });  // honeypot: bots fill the hidden field
+  const name = line(b.name, 100), email = line(b.email, 254).toLowerCase(), message = para(b.message, 5000);
+  const topic = TOPICS[b.topic] ? b.topic : 'general';
+  if (!EMAIL.test(email)) fail(400, 'email');
+  if (message.length < 10) fail(400, 'message');
+  const ip = clientIp(req, env);
+  if (!(await turnstileOk(env, b.turnstile, ip))) fail(403, 'turnstile');
+  const iph = await hash(env, ip);
+  if (await rateLimited(env, [[`contact|ip|${iph}`, 4, 3600], [`contact|em|${await hash(env, email)}`, 6, 86400]])) fail(429, 'slow');
+  const res = await sendEmail(env, {
+    to: [env.CONTACT_TO || 'hello@encounteratlas.com'], reply_to: email,
+    subject: `[Encounter Atlas] ${TOPICS[topic]}: ${name || email}`,
+    text: `From: ${name || '(no name)'} <${email}>\nTopic: ${TOPICS[topic]}\n\n${message}`,
+  });
+  return json({ state: 'ok', ...(res.logged ? { logged: true } : {}) });
 }
 
 // ---------------- accounts ----------------
@@ -208,8 +233,11 @@ export async function weightFor(env, u) {
 
 // ~5 km grid: the public point is the centre of the cell the real point falls in, so it can't be
 // averaged back out across edits the way random jitter can.
-export function fuzz(lat, lon) {
-  const step = 0.045; // ~5 km of latitude
+// Living traditions (site/build.py LIVING_TRADITIONS) are only mapped to the nearest region: a ~100 km grid.
+export const LIVING_TRADITIONS = new Set(['skinwalker', 'menk', 'wendigo', 'kushtaka', 'pukwudgie', 'menehune', 'yunwi-tsunsdi', 'mannegishi',
+  'makiawisug', 'nimerigar', 'tokoloshe', 'mami-wata', 'inkanyamba', 'alux', 'mamlambo']);
+export function fuzz(lat, lon, region = false) {
+  const step = region ? 0.9 : 0.045; // ~100 km or ~5 km of latitude
   const plat = Math.round(lat / step) * step;
   const lstep = step / Math.max(0.15, Math.cos((plat * Math.PI) / 180));
   let plon = Math.round(lon / lstep) * lstep;
@@ -292,7 +320,7 @@ function readFields(d) {
     else if (!r.links.some((x) => x.url === n.url)) r.links.push(n);
   });
   if (Object.keys(bad).length) fail(400, 'invalid', { fields: bad });
-  [r.pub_lat, r.pub_lon] = fuzz(r.lat, r.lon);
+  [r.pub_lat, r.pub_lon] = fuzz(r.lat, r.lon, LIVING_TRADITIONS.has(r.creature));
   return r;
 }
 
