@@ -111,6 +111,7 @@ export async function turnstileOk(env, token, ip) {
   if (ip && ip !== '0.0.0.0') body.append('remoteip', ip);
   const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body });
   const d = await res.json().catch(() => ({}));
+  if (d.success !== true) console.log(`turnstile rejected: ${JSON.stringify(d['error-codes'] || [])} host=${d.hostname || ''}`);
   return d.success === true;
 }
 

@@ -32,6 +32,7 @@ jobs:
           SITE_URL: ${{ vars.SITE_URL || 'https://encounteratlas.com' }}
           BASE_PATH: ${{ vars.BASE_PATH || '' }}
           EA_API: ${{ vars.EA_API || 'https://api.encounteratlas.com' }}
+          TURNSTILE_SITEKEY: ${{ vars.TURNSTILE_SITEKEY || '0x4AAAAAAFVllt3qoQHw1hRp' }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
