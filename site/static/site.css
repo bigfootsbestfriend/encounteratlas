@@ -654,3 +654,4 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 .owner-social { margin: .8rem 0 0; }
 .owner-social a { color: var(--spruce); border-color: var(--mist-2); background: #fff; }
 .owner-social a:hover { color: #1185FE; }
+.social a[data-net="facebook"]:hover { color: #1877F2; }

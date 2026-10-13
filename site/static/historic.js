@@ -56,6 +56,8 @@
     zoom: window.innerWidth < 720 ? 2.4 : 3.3, minZoom: 1.5, maxZoom: 13,
     attributionControl: { compact: true }, cooperativeGestures: window.innerWidth < 720,
   });
+  // The basemap's town dots ask for a sprite icon (circle-11) the style doesn't ship: give it a blank one, no console noise.
+  map.on('styleimagemissing', (e) => { if (!map.hasImage(e.id)) map.addImage(e.id, { width: 1, height: 1, data: new Uint8Array(4) }); });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
 
   function tint() {
@@ -89,9 +91,9 @@
     map.addSource('hc', { type: 'geojson', data: { type: 'FeatureCollection', features: all } });
     map.addLayer({ id: 'hc-glow', type: 'circle', source: 'hc', paint: {
       'circle-color': colour, 'circle-opacity': 0.22, 'circle-blur': 0.6,
-      'circle-radius': ['interpolate', ['linear'], ['zoom'], 2, 9, 9, 18] } });
+      'circle-radius': ['interpolate', ['linear'], ['zoom'], 2, 11, 9, 20] } });
     map.addLayer({ id: 'hc-pins', type: 'circle', source: 'hc', paint: {
-      'circle-color': colour, 'circle-radius': ['interpolate', ['linear'], ['zoom'], 2, 4.5, 9, 8],
+      'circle-color': colour, 'circle-radius': ['interpolate', ['linear'], ['zoom'], 2, 6, 9, 9],
       'circle-stroke-color': '#13261F', 'circle-stroke-width': 1.5,
       'circle-opacity': ['case', ['==', ['get', 'a'], 1], 0.75, 1] } });
 

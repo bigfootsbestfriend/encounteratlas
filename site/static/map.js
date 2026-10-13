@@ -21,6 +21,8 @@
     maxZoom: 15,
     attributionControl: { compact: true },
   });
+  // The basemap's town dots ask for a sprite icon (circle-11) the style doesn't ship: give it a blank one, no console noise.
+  map.on('styleimagemissing', (e) => { if (!map.hasImage(e.id)) map.addImage(e.id, { width: 1, height: 1, data: new Uint8Array(4) }); });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
   // Full map page: a clear way back to wherever the visitor came from (home page "Full screen" button, creature pages...)
   const exit = document.querySelector('.map-exit');
@@ -314,6 +316,7 @@
     const showUfoFiles = (type === 'all' || type === 'ufo') && (!narrowed || cat === 'ufo');
     setVis(['bb-approx', 'bb-approx-n', 'bb-glow', 'bb-clusters', 'bb-count', 'bb-point', 'faa', 'pursue', 'cufos-cl', 'cufos-pt'], showUfoFiles);
     setVis(['military'], (type === 'all' || type === 'military') && !narrowed);
+    setVis(['mysteries'], type === 'all' && !narrowed);  // mystery places aren't tied to a creature or type
     setVis(['places'], type === 'all' || type === 'places' || type === 'events');
     if (map.getLayer('places')) {
       const slugs = cat ? [...document.querySelectorAll('.cchip')].filter((b) => b.dataset.cat === cat).map((b) => b.dataset.creature) : null;

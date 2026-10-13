@@ -126,6 +126,8 @@
       zoom: opts.zoom || (window.innerWidth < 720 ? 2.4 : 3), minZoom: 1.5, maxZoom: opts.maxZoom || 15,
       attributionControl: { compact: true }, cooperativeGestures: !!opts.cooperative,
     });
+    // The basemap's town dots ask for a sprite icon (circle-11) the style doesn't ship: give it a blank one, no console noise.
+    map.on('styleimagemissing', (e) => { if (!map.hasImage(e.id)) map.addImage(e.id, { width: 1, height: 1, data: new Uint8Array(4) }); });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
     map.on('load', () => {
       // Start with the attribution collapsed to its (i) button so it doesn't cover small maps.

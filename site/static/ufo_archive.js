@@ -83,6 +83,8 @@
       bounds: b.length === 4 && b.every((x) => !isNaN(x)) ? [[b[0], b[1]], [b[2], b[3]]] : [[-130, 20], [-60, 52]],
       attributionControl: { compact: true }, cooperativeGestures: true,
     });
+    // The basemap's town dots ask for a sprite icon (circle-11) the style doesn't ship: give it a blank one, no console noise.
+    map.on('styleimagemissing', (e) => { if (!map.hasImage(e.id)) map.addImage(e.id, { width: 1, height: 1, data: new Uint8Array(4) }); });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
     map.on('load', async () => {
       tint(map);

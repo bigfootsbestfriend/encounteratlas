@@ -27,6 +27,8 @@
     const focus = el.dataset.focus;
     const map = new maplibregl.Map({ container: el, style: 'https://tiles.openfreemap.org/styles/dark', center: [-40, 30], zoom: 1.2,
       attributionControl: { compact: true }, cooperativeGestures: !!focus });
+    // The basemap's town dots ask for a sprite icon (circle-11) the style doesn't ship: give it a blank one, no console noise.
+    map.on('styleimagemissing', (e) => { if (!map.hasImage(e.id)) map.addImage(e.id, { width: 1, height: 1, data: new Uint8Array(4) }); });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
     map.on('load', async () => {
       const data = await fetch(el.dataset.geojson).then((r) => r.json()).catch(() => null);
