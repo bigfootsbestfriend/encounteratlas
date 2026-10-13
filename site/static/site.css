@@ -607,3 +607,8 @@ a.md-book:hover { box-shadow: 0 0 0 2px var(--lantern); color: var(--ink); }
 .pl-date.is-tba .pl-date-m { background: var(--muted-l) !important; }
 .home-where { margin: -.6rem 0 1.4rem; color: var(--muted-d); font-size: .95rem; }
 .home-where a { color: var(--lantern-2); font-weight: 600; }
+/* 404 page: search box and trail chips */
+.nf-search { display: flex; gap: .5rem; max-width: 520px; margin: 1.2rem 0; }
+.nf-search input { flex: 1; min-width: 0; min-height: 44px; padding: .5rem .9rem; border-radius: 10px; border: 1px solid var(--spruce-3); background: rgba(255,255,255,.07); color: #E8ECDD; font: inherit; }
+.nf-search input::placeholder { color: #A9B98F; }
+.band-dark .md-chip { background: rgba(255,255,255,.06); color: #E8ECDD; border-color: var(--spruce-3); }

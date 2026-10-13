@@ -14,6 +14,18 @@
     let index = null;
     let active = -1;
     const load = () => index || (index = fetch(box.dataset.index).then((r) => r.json()));
+    const dist = (a, b, cap) => { // Levenshtein distance, giving up once every cell in a row passes cap
+      if (Math.abs(a.length - b.length) > cap) return cap + 1;
+      let prev = Array.from({ length: b.length + 1 }, (_, j) => j);
+      for (let i = 1; i <= a.length; i++) {
+        const cur = [i];
+        let low = i;
+        for (let j = 1; j <= b.length; j++) { cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); low = Math.min(low, cur[j]); }
+        if (low > cap) return cap + 1;
+        prev = cur;
+      }
+      return prev[b.length];
+    };
     const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
     async function run() {
       const q = norm(input.value.trim());
@@ -25,11 +37,25 @@
         let s = t.startsWith(q) ? 0 : t.includes(q) ? 1 : a.split(' ').some((w) => w.startsWith(q)) ? 2 : a.includes(q) ? 3 : -1;
         if (s >= 0) scored.push([s, t.length, it]);
       }
+      let fuzzy = false;
+      if (!scored.length && q.length >= 4) { // typo fallback: nearest names within a small edit distance ("ogopogoo", "chupacabre")
+        const qw = q.split(/\s+/).length, max = q.length <= 5 ? 1 : q.length <= 9 ? 2 : 3;
+        for (const it of items) {
+          const ws = (norm(it.t) + ' ' + norm(it.a || '')).split(/[^a-z0-9']+/).filter(Boolean);
+          let best = max + 1;
+          for (let i = 0; i + qw <= ws.length && best; i++) {
+            best = Math.min(best, dist(q, ws.slice(i, i + qw).join(' '), best));
+            if (qw === 1 && i + 2 <= ws.length) best = Math.min(best, dist(q, ws[i] + ws[i + 1], best)); // "lochness" -> "loch ness"
+          }
+          if (best <= max) scored.push([best, norm(it.t).length, it]);
+        }
+        fuzzy = scored.length > 0;
+      }
       scored.sort((x, y) => x[0] - y[0] || x[1] - y[1]);
       active = -1;
-      list.innerHTML = scored.length
+      list.innerHTML = (fuzzy ? `<li class="none">No exact match for "${esc(input.value.trim())}". Did you mean:</li>` : '') + (scored.length
         ? scored.slice(0, +box.dataset.limit || 8).map(([, , it]) => `<li><a href="${esc(it.u)}" class="cat-${esc(it.c)}"><span class="mask-ico" style="--m:url('${BASE}/static/${it.i.startsWith('art/') ? '' : 'icons/'}${esc(it.i)}.svg')"></span><span><b>${esc(it.t)}</b><small>${esc(it.k)}</small></span></a></li>`).join('')
-        : `<li class="none">Nothing matches "${esc(input.value.trim())}". Try another name, a state or a country.</li>`;
+        : `<li class="none">Nothing matches "${esc(input.value.trim())}". Try another name, a state or a country.</li>`);
       list.hidden = false;
     }
     input.addEventListener('focus', load, { once: true });

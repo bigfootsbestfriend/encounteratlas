@@ -1111,8 +1111,19 @@ def build_static_pages():
 </div></div>''', 'What Encounter Atlas keeps when you read the site or send a report, who can see it, and how to have it removed.'))
     write('/404.html', page('/404.html', 'Page not found', f'''
 <section class="band band-dark"><div class="wrap"><h1>Nothing out here</h1>
-<p class="lede">That page doesn't exist, or it wandered off into the woods.</p>
-<p><a class="btn" href="{url('/')}">Back to the map</a></p></div></section>''', canonical=False))
+<p class="lede">That page doesn't exist, or it wandered off into the woods. Try a search, or pick a trail below.</p>
+<form class="nf-search" action="{url('/search/')}" method="get" role="search">
+  <label for="nf-q" class="visually-hidden">Search the site</label>
+  <input id="nf-q" name="q" type="search" placeholder="Bigfoot, Ogopogo, Roswell..." autocomplete="off">
+  <button class="btn" type="submit">Search</button>
+</form>
+<p class="md-chips"><a class="md-chip" href="{url('/')}">Home</a><a class="md-chip" href="{url('/map/')}">Map</a><a class="md-chip" href="{url('/creatures/')}">Creatures</a>
+<a class="md-chip" href="{url('/ufo/')}">UFOs</a><a class="md-chip" href="{url('/places/')}">Places to visit</a><a class="md-chip" href="{url('/report/')}">Report an encounter</a></p>
+<script>(function () {{ // guess search words from the missing address: /creatures/ogopogoo/ -> "ogopogoo"
+  var w = location.pathname.split('/').filter(Boolean).pop() || '';
+  w = decodeURIComponent(w).replace(/\.html?$/, '').replace(/[-_]+/g, ' ').trim();
+  if (w && w.length < 60) document.getElementById('nf-q').value = w;
+}})();</script></div></section>''', canonical=False))
 
 
 def main():
