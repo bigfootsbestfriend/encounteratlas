@@ -3188,5 +3188,95 @@
 "place": "Kaolinovy, Chelyabinsk Oblast",
 "lat": 55.7,
 "lon": 60.55
+},
+{
+"creature": "mugwump",
+"cat": "aquatic",
+"icon": "lake",
+"name": "A couple see it swimming",
+"year": 1978,
+"place": "Lake Timiskaming, New Liskeard, Ontario",
+"lat": 47.51,
+"lon": -79.68
+},
+{
+"creature": "mugwump",
+"cat": "aquatic",
+"icon": "lake",
+"name": "The mayor's newspaper story",
+"year": 1979,
+"place": "Lake Timiskaming, New Liskeard, Ontario",
+"lat": 47.51,
+"lon": -79.68
+},
+{
+"creature": "mugwump",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Ice fishers meet its eye",
+"year": 1982,
+"place": "Lake Timiskaming, New Liskeard, Ontario",
+"lat": 47.51,
+"lon": -79.68
+},
+{
+"creature": "pend-oreille-paddler",
+"cat": "aquatic",
+"icon": "lake",
+"name": "First reports from the lake",
+"year": 1944,
+"place": "Lake Pend Oreille, Sandpoint, Idaho",
+"lat": 48.2766,
+"lon": -116.5535
+},
+{
+"creature": "pend-oreille-paddler",
+"cat": "aquatic",
+"icon": "lake",
+"name": "The papier-m\u00e2ch\u00e9 catfish",
+"year": 1984,
+"place": "Lake Pend Oreille, Sandpoint, Idaho",
+"lat": 48.2766,
+"lon": -116.5535
+},
+{
+"creature": "pend-oreille-paddler",
+"cat": "aquatic",
+"icon": "lake",
+"name": "A teacher chases a grey shape",
+"year": 1985,
+"place": "Lake Pend Oreille, Sandpoint, Idaho",
+"lat": 48.2766,
+"lon": -116.5535
+},
+{
+"creature": "walgren-lake-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Old Jules mentions the monster",
+"year": 1935,
+"place": "Walgren Lake, Hay Springs, Nebraska",
+"lat": 42.64,
+"lon": -102.63
+},
+{
+"creature": "walgren-lake-monster",
+"cat": "aquatic",
+"icon": "lake",
+"name": "The tall-tale version",
+"year": 1938,
+"place": "Walgren Lake, Hay Springs, Nebraska",
+"lat": 42.64,
+"lon": -102.63
+},
+{
+"creature": "fur-bearing-trout",
+"cat": "aquatic",
+"icon": "bigfish",
+"name": "A shaggy trout washes ashore",
+"year": 1854,
+"place": "Sv\u00ednavatn, Iceland",
+"lat": 65.535,
+"lon": -20.1
 }
 ]
