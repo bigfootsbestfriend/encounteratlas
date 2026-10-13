@@ -509,3 +509,31 @@ body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
   box-shadow: 0 4px 14px rgba(0,0,0,.4); }
 .map-exit:hover { background: #fff; }
 .map-exit:focus-visible { outline: 3px solid var(--lantern); outline-offset: 2px; }
+
+/* Read, watch and gear up (creature pages; Amazon Associates links) */
+.md-band { padding: 2.2rem 0 1.6rem; border-top: 1px solid var(--mist-2); }
+.md-band h2 { margin: 0 0 .4rem; color: var(--spruce); }
+.md-band h3 { font: 700 1.15rem/1.3 var(--display); color: var(--spruce); margin: 1.4rem 0 .6rem; }
+.md-note { color: var(--muted-l); margin: -.2rem 0 .7rem; }
+.md-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: .8rem; }
+.md-book, .md-doc { display: flex; gap: .85rem; background: #fff; border-radius: var(--r-md); padding: .9rem 1rem; color: var(--ink);
+  text-decoration: none; box-shadow: 0 1px 0 var(--mist-2); min-width: 0; }
+a.md-book:hover { box-shadow: 0 0 0 2px var(--lantern); color: var(--ink); }
+.md-spine { flex: none; width: 14px; border-radius: 3px; background: var(--c-hominid); box-shadow: inset -3px 0 0 rgba(0,0,0,.15); }
+.tone-1 .md-spine { background: var(--c-aquatic); } .tone-2 .md-spine { background: var(--c-ufo); }
+.tone-3 .md-spine { background: var(--c-canid); } .tone-4 .md-spine { background: var(--c-fae); }
+.md-txt { display: flex; flex-direction: column; gap: .15rem; min-width: 0; }
+.md-txt b { font: 700 1rem/1.3 var(--display); color: var(--spruce); overflow-wrap: anywhere; }
+.md-txt small { color: var(--muted-l); font-size: .9rem; }
+.md-go { margin-top: auto; padding-top: .35rem; font-weight: 700; font-size: .92rem; color: #7A4E00; }
+.md-ico { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--c-ufo); display: grid; place-items: center; color: var(--spruce); }
+.md-ico .ico { width: 24px; height: 24px; }
+.md-links { display: flex; flex-wrap: wrap; gap: .3rem .9rem; padding-top: .35rem; font-size: .92rem; font-weight: 700; }
+.md-links a { color: #7A4E00; }
+.md-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.md-chip { display: inline-flex; align-items: center; min-height: 44px; padding: .45rem 1rem; border-radius: 999px; background: #fff; color: var(--spruce);
+  font-weight: 700; text-decoration: none; border: 2px solid var(--mist-2); }
+.md-chip:hover { border-color: var(--lantern); color: var(--spruce); }
+.md-merch { background: var(--lantern); border-color: var(--lantern); }
+.md-disc { margin: 1.4rem 0 0; font-size: .88rem; color: var(--muted-l); }
+.md-disc a { color: #7A4E00; }

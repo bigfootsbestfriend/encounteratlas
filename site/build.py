@@ -3,7 +3,7 @@
 Inputs: data/creatures.json (hand-written), data/bluebook.json (collector/bluebook.py),
 data/military.json (hand-written). Output: plain HTML pages + a few JSON/GeoJSON files.
 """
-import html, json, os, re, shutil, sys
+import html, json, os, re, shutil, sys, urllib.parse
 from collections import Counter, defaultdict
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
@@ -358,6 +358,81 @@ def build_creatures(creatures, by_slug):
                 f'<p class="lede-dark">Our field guides cover where to go, what to bring and how to come back with evidence that holds up.</p>'
                 f'<div class="cg-grid">{cards}</div><p class="cg-all"><a href="{url("/guides/")}">All field guides</a></p></div></section>')
 
+    # Books, documentaries and gear (Amazon Associates). Every book/documentary is checked to exist first
+    # (tools/verify_media.py -> data/media.json). Living traditions get no shopping at all.
+    MEDIA = load('media.json') or {'books': [], 'docs': []}
+    for _d in MEDIA['docs']:
+        _b = re.sub(r'^\d{4} ', '', _d['blurb'])
+        _d['blurb'] = _b[:1].upper() + _b[1:]
+    CANDS = {(b['t'], b['a']): b for b in (load('media_candidates.json') or {}).get('books', [])}
+    GROUPS = {'hominid': ['@hominid'], 'aquatic': ['@lake', '@sea'], 'ufo': ['@ufo'], 'entity': ['@ufo'], 'fae': ['@fae']}
+    GEAR = {
+        'ufo': [('Astronomy binoculars', 'astronomy binoculars', 'binoculars'), ('Planisphere star finder', 'planisphere star chart', 'stars'),
+                ('Phone tripod for night shots', 'phone tripod night sky', 'tripod'), ('Red-light headlamp', 'red light headlamp astronomy', 'lamp')],
+        'aquatic': [('Waterproof binoculars', 'waterproof binoculars', 'binoculars'), ('Waterproof action camera', 'waterproof action camera', 'camera'),
+                    ('Phone telephoto lens', 'phone telephoto lens', 'camera'), ('Dry bag', 'dry bag', 'pack')],
+        'woods': [('Trail camera', 'trail camera', 'camera'), ('Thermal monocular', 'thermal monocular', 'binoculars'),
+                  ('Track casting plaster', 'plaster casting kit animal tracks', 'track'), ('Digital audio recorder', 'digital audio recorder', 'mic')],
+    }
+    AMZ_TAG = 'encountersatlas-20'
+
+    def amz(q, index=''):
+        return ('https://www.amazon.com/s?' + urllib.parse.urlencode({'k': q, **({'i': index} if index else {}), 'tag': AMZ_TAG}))
+
+    def media_band(c):
+        sl = c['slug']
+        if sl in LIVING_TRADITIONS:
+            return ''
+        groups = GROUPS.get(c['cat'], [])
+        spec = [b for b in MEDIA['books'] if sl in b['for']][:6]
+        general = []
+        if len(spec) < 3:
+            general = [b for b in MEDIA['books'] if any(g in b['for'] for g in groups) and b not in spec]
+            general += [b for b in MEDIA['books'] if '@general' in b['for'] and b not in spec and b not in general]
+            general = general[:max(0, 3 - len(spec))]
+        docs = [d for d in MEDIA['docs'] if sl in d['for']]
+        docs += [d for d in MEDIA['docs'] if any(g in d['for'] for g in groups) and d not in docs]
+        docs = docs[:3]
+
+        def book_card(b, i):
+            cand = next((v for (bt, ba), v in CANDS.items() if v['for'] == b['for'] and ba.lower() in b['author'].lower()), None)
+            title = cand['t'] if cand else b['title']
+            author = b['author'].split(',')[0] if ', ' not in b['author'] or b['author'].count(',') > 1 else b['author']
+            if re.match(r'^[A-Z][a-z]+, [A-Z]', author):  # "Owen, David" -> "David Owen"
+                author = ' '.join(reversed(author.split(', ', 1)))
+            href = amz(f'{title} {author.split(",")[0]}', 'stripbooks')
+            return (f'<a class="md-book tone-{i % 5}" href="{esc(href)}" rel="sponsored nofollow noopener" target="_blank">'
+                    f'<span class="md-spine" aria-hidden="true"></span><span class="md-txt"><b>{esc(title)}</b><small>{esc(author)}</small>'
+                    f'<span class="md-go">Find it on Amazon</span></span></a>')
+        out = ''
+        if spec or general:
+            out += f'<h3>Books about the {esc(c["name"])}</h3><div class="md-grid">{"".join(book_card(b, i) for i, b in enumerate(spec))}</div>' if spec else ''
+            if general:
+                out += (f'<h3>{"More good reads" if spec else "General books on " + ("UFOs" if c["cat"] in ("ufo", "entity") else "fairy lore" if c["cat"] == "fae" else "cryptids")}</h3>'
+                        f'{"" if spec else "<p class=md-note>No book is devoted to this one yet, so here are the best general guides.</p>"}'
+                        f'<div class="md-grid">{"".join(book_card(b, i + len(spec)) for i, b in enumerate(general))}</div>')
+        if docs:
+            cards = ''.join(f'<div class="md-doc"><span class="md-ico">{icon("ufo-film")}</span><span class="md-txt"><b>{esc(d["title"])}</b>'
+                            f'<small>{d["year"]} · {esc(d["blurb"])}</small>'
+                            f'<span class="md-links"><a href="{esc(amz(d["title"] + " " + str(d["year"]), "instant-video"))}" rel="sponsored nofollow noopener" target="_blank">Watch on Amazon</a>'
+                            f'<a href="https://www.justwatch.com/us/search?q={urllib.parse.quote(d["title"])}" rel="noopener nofollow" target="_blank">Where to stream</a>'
+                            f'<a href="{esc(d["wiki"])}" rel="noopener" target="_blank">About it</a></span></span></div>' for d in docs)
+            out += f'<h3>Watch</h3><div class="md-grid">{cards}</div>'
+        if kind(c) not in ('single', 'folklore'):
+            gear = GEAR['ufo' if c['cat'] in ('ufo', 'entity') else 'aquatic' if c['cat'] == 'aquatic' else 'woods']
+            chips = ''.join(f'<a class="md-chip" href="{esc(amz(q))}" rel="sponsored nofollow noopener" target="_blank">{esc(n)}</a>' for n, q, _ in gear)
+            out += (f'<h3>Gear for the field</h3><div class="md-chips">{chips}'
+                    f'<a class="md-chip md-merch" href="{esc(amz(("UFO" if c["cat"] == "ufo" else c["name"]) + " shirt"))}" rel="sponsored nofollow noopener" target="_blank">'
+                    f'{esc("UFO" if c["cat"] == "ufo" else c["name"])} shirts and gifts</a></div>')
+        elif kind(c) == 'folklore' and c['cat'] == 'fae':
+            out += (f'<h3>Shop</h3><div class="md-chips"><a class="md-chip md-merch" href="{esc(amz(c["name"] + " gifts"))}" rel="sponsored nofollow noopener" target="_blank">'
+                    f'{esc(c["name"])} gifts and decor</a></div>')
+        if not out:
+            return ''
+        return (f'<section class="band band-mist md-band"><div class="wrap"><h2>Read, watch and gear up</h2>{out}'
+                f'<p class="md-disc">As an Amazon Associate we earn from qualifying purchases. These links go to Amazon.com; buying through them '
+                f'costs you nothing extra and helps keep Encounter Atlas running. <a href="{url("/privacy/")}#affiliate">More about our links</a>.</p></div></section>')
+
     COUNTRIES = load('countries.json') or {}
     if isinstance(COUNTRIES, list):
         COUNTRIES = {}
@@ -508,6 +583,7 @@ def build_creatures(creatures, by_slug):
 </div>
 </div>
 {guide_band(c) if kind(c) != 'single' else ''}
+{media_band(c)}
 <div class="band band-mist">{related_groups(c)}</div>'''
         write(f'/creatures/{c["slug"]}/', page(f'/creatures/{c["slug"]}/', f'{c["name"]}: ' + {'single': 'the story, facts and other names', 'folklore': 'stories, facts and other names'}.get(kind(c), 'sightings, facts and other names'),
                                                body, f'{c["summary"]} Also called {", ".join(c["aliases"][:4])}.'
@@ -887,6 +963,9 @@ def build_static_pages():
 <li>Sign-ins expire after 90 days on a device, and you can sign out at any time.</li>
 </ul>
 
+<h2 id="affiliate">Affiliate links</h2>
+<p>Some links on creature pages (books, documentaries, gear and shirts) go to Amazon.com. As an Amazon Associate we earn from qualifying purchases. It costs you nothing extra, and it never decides what we write: books are listed because they're about the creature, not because of a deal. These links are marked as sponsored for search engines.</p>
+<p>When you click one, Amazon may set its own cookies to credit the sale to us. That happens on Amazon's site, under <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=GX7NJQ4ZB8MHFRNJ" rel="noopener">Amazon's privacy notice</a>. We don't get your name, address or what else you buy, only order totals.</p>
 <h2>Children</h2>
 <p>Encounter Atlas is meant for adults and teens. If you're under 13, please ask a parent or guardian to send a report for you.</p>
 

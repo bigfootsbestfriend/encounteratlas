@@ -1,0 +1,918 @@
+{
+ "books": [
+  {
+   "title": "Cryptozoology A to Z: The Encyclopedia of Loch Monsters, Sasquatch, Chupacabras & Other Authentic Mysteries of Nature",
+   "author": "Loren Coleman, Jerome Clark",
+   "year": 2008,
+   "isbn10": "1439564779",
+   "ol": "https://openlibrary.org/works/OL17653453W",
+   "for": [
+    "@general"
+   ]
+  },
+  {
+   "title": "The field guide to Bigfoot, Yeti, and other mystery primates worldwide",
+   "author": "Loren Coleman, Patrick Huyghe",
+   "year": 1999,
+   "isbn10": "0380802635",
+   "ol": "https://openlibrary.org/works/OL4777305W",
+   "for": [
+    "@hominid",
+    "bigfoot",
+    "yeti",
+    "yowie",
+    "almas",
+    "yeren",
+    "orang-pendek",
+    "skunk-ape"
+   ]
+  },
+  {
+   "title": "The Field Guide to Lake Monsters, Sea Serpents, and Other Mystery Denizens of the Deep",
+   "author": "Loren Coleman",
+   "year": 2009,
+   "isbn10": "1101152621",
+   "ol": "https://openlibrary.org/works/OL15177162W",
+   "for": [
+    "@lake",
+    "sea-serpent"
+   ]
+  },
+  {
+   "title": "On the Track of Unknown Animals",
+   "author": "Bernard Heuvelmans",
+   "year": 1959,
+   "isbn10": "0809074516",
+   "ol": "https://openlibrary.org/works/OL31365387W",
+   "for": [
+    "@general",
+    "mokele-mbembe",
+    "nandi-bear",
+    "kongamato"
+   ]
+  },
+  {
+   "title": "Abominable science!",
+   "author": "Daniel Loxton",
+   "year": 2013,
+   "isbn10": "0231526814",
+   "ol": "https://openlibrary.org/works/OL17827780W",
+   "for": [
+    "@general",
+    "bigfoot",
+    "yeti",
+    "loch-ness-monster",
+    "mokele-mbembe",
+    "sea-serpent"
+   ]
+  },
+  {
+   "title": "The beasts that hide from man",
+   "author": "Karl Shuker",
+   "year": 2003,
+   "isbn10": "1931044643",
+   "ol": "https://openlibrary.org/works/OL2418144W",
+   "for": [
+    "@general"
+   ]
+  },
+  {
+   "title": "American monsters",
+   "author": "Linda S. Godfrey",
+   "year": 2014,
+   "isbn10": "1665292245",
+   "ol": "https://openlibrary.org/works/OL19986705W",
+   "for": [
+    "@us",
+    "dogman",
+    "thunderbird"
+   ]
+  },
+  {
+   "title": "Sasquatch",
+   "author": "Jeff Meldrum",
+   "year": 2006,
+   "isbn10": "1429913770",
+   "ol": "https://openlibrary.org/works/OL8514705W",
+   "for": [
+    "bigfoot"
+   ]
+  },
+  {
+   "title": "Sasquatch",
+   "author": "John Willison Green",
+   "year": 1978,
+   "isbn10": "0888390181",
+   "ol": "https://openlibrary.org/works/OL5857035W",
+   "for": [
+    "bigfoot"
+   ]
+  },
+  {
+   "title": "Bigfoot",
+   "author": "John Russell Napier",
+   "year": 1974,
+   "isbn10": "0425025462",
+   "ol": "https://openlibrary.org/works/OL20650940W",
+   "for": [
+    "bigfoot",
+    "yeti"
+   ]
+  },
+  {
+   "title": "The Making of Bigfoot",
+   "author": "Greg Long",
+   "year": 2004,
+   "isbn10": "1591021391",
+   "ol": "https://openlibrary.org/works/OL4543256W",
+   "for": [
+    "bigfoot"
+   ]
+  },
+  {
+   "title": "Bigfoot",
+   "author": "Joshua Blu Buhs",
+   "year": 2009,
+   "isbn10": "0226502155",
+   "ol": "https://openlibrary.org/works/OL5708583W",
+   "for": [
+    "bigfoot"
+   ]
+  },
+  {
+   "title": "My Quest for the Yeti",
+   "author": "Reinhold Messner",
+   "year": 2000,
+   "isbn10": "031227078X",
+   "ol": "https://openlibrary.org/works/OL67708W",
+   "for": [
+    "yeti"
+   ]
+  },
+  {
+   "title": "Yeti",
+   "author": "Daniel C. Taylor",
+   "year": 2017,
+   "isbn10": "0199469385",
+   "ol": "https://openlibrary.org/works/OL21152862W",
+   "for": [
+    "yeti"
+   ]
+  },
+  {
+   "title": "The yowie",
+   "author": "Tony Healy, Paul Cropper",
+   "year": 2006,
+   "isbn10": "1933665165",
+   "ol": "https://openlibrary.org/works/OL23433391W",
+   "for": [
+    "yowie"
+   ]
+  },
+  {
+   "title": "The Beast of Boggy Creek",
+   "author": "Lyle Blackburn",
+   "year": 2012,
+   "isbn10": "1933665572",
+   "ol": "https://openlibrary.org/works/OL26146018W",
+   "for": [
+    "fouke-monster"
+   ]
+  },
+  {
+   "title": "Beyond Boggy Creek",
+   "author": "Lyle Blackburn",
+   "year": 2017,
+   "isbn10": "1938398688",
+   "ol": "https://openlibrary.org/works/OL20181020W",
+   "for": [
+    "fouke-monster",
+    "skunk-ape",
+    "honey-island-swamp-monster"
+   ]
+  },
+  {
+   "title": "Momo",
+   "author": "Lyle Blackburn",
+   "year": 2019,
+   "isbn10": "1734920637",
+   "ol": "https://openlibrary.org/works/OL24339492W",
+   "for": [
+    "momo"
+   ]
+  },
+  {
+   "title": "Still Living?",
+   "author": "Myra Shackley",
+   "year": 1986,
+   "isbn10": "0500274061",
+   "ol": "https://openlibrary.org/works/OL8264600W",
+   "for": [
+    "almas",
+    "yeti",
+    "yeren"
+   ]
+  },
+  {
+   "title": "The Beast of Bray Road: Tailing Wisconsin's Werewolf",
+   "author": "Linda S. Godfrey",
+   "year": 2003,
+   "isbn10": "1879483912",
+   "ol": "https://openlibrary.org/works/OL5967312W",
+   "for": [
+    "beast-of-bray-road",
+    "dogman"
+   ]
+  },
+  {
+   "title": "Hunting the American Werewolf",
+   "author": "Linda S. Godfrey",
+   "year": 2006,
+   "isbn10": "1931599661",
+   "ol": "https://openlibrary.org/works/OL5967313W",
+   "for": [
+    "dogman",
+    "beast-of-bray-road",
+    "wolfman-of-defiance"
+   ]
+  },
+  {
+   "title": "Real wolfmen",
+   "author": "Linda S. Godfrey",
+   "year": 2012,
+   "isbn10": "1585429082",
+   "ol": "https://openlibrary.org/works/OL16637527W",
+   "for": [
+    "dogman",
+    "wolfman-of-defiance",
+    "shunka-warakin"
+   ]
+  },
+  {
+   "title": "The Mothman Prophecies",
+   "author": "John A. Keel",
+   "year": 1975,
+   "isbn10": "0340824468",
+   "ol": "https://openlibrary.org/works/OL468122W",
+   "for": [
+    "mothman",
+    "indrid-cold",
+    "men-in-black"
+   ]
+  },
+  {
+   "title": "Mothman",
+   "author": "Jeff Wamsley",
+   "year": 2005,
+   "isbn10": "0976436809",
+   "ol": "https://openlibrary.org/works/OL8820579W",
+   "for": [
+    "mothman"
+   ]
+  },
+  {
+   "title": "They knew too much about flying saucers",
+   "author": "Gray Barker",
+   "year": 1956,
+   "isbn10": "1881532100",
+   "ol": "https://openlibrary.org/works/OL3349081W",
+   "for": [
+    "men-in-black",
+    "flatwoods-monster"
+   ]
+  },
+  {
+   "title": "Thunderbirds",
+   "author": "Mark A. Hall",
+   "year": 2004,
+   "isbn10": "193104497X",
+   "ol": "https://openlibrary.org/works/OL8407493W",
+   "for": [
+    "thunderbird",
+    "big-bird"
+   ]
+  },
+  {
+   "title": "The Jersey Devil",
+   "author": "James F. McCloy",
+   "year": 1976,
+   "isbn10": "1935628437",
+   "ol": "https://openlibrary.org/works/OL1856364W",
+   "for": [
+    "jersey-devil"
+   ]
+  },
+  {
+   "title": "Tracking the chupacabra",
+   "author": "Benjamin Radford",
+   "year": 2011,
+   "isbn10": "0826350151",
+   "ol": "https://openlibrary.org/works/OL16189001W",
+   "for": [
+    "chupacabra"
+   ]
+  },
+  {
+   "title": "Loch Ness monster",
+   "author": "Tim Dinsdale",
+   "year": 1961,
+   "isbn10": "0710073143",
+   "ol": "https://openlibrary.org/works/OL6446771W",
+   "for": [
+    "loch-ness-monster"
+   ]
+  },
+  {
+   "title": "A monstrous commotion",
+   "author": "Gareth Williams",
+   "year": 2015,
+   "isbn10": "1409158748",
+   "ol": "https://openlibrary.org/works/OL20883971W",
+   "for": [
+    "loch-ness-monster"
+   ]
+  },
+  {
+   "title": "The monsters of Loch Ness",
+   "author": "Roy P. Mackal",
+   "year": 1976,
+   "isbn10": "0486230945",
+   "ol": "https://openlibrary.org/works/OL4974826W",
+   "for": [
+    "loch-ness-monster",
+    "morag"
+   ]
+  },
+  {
+   "title": "Ogopogo",
+   "author": "Mary Moon",
+   "year": 1977,
+   "isbn10": "0888941080",
+   "ol": "https://openlibrary.org/works/OL5247432W",
+   "for": [
+    "ogopogo"
+   ]
+  },
+  {
+   "title": "Ogopogo",
+   "author": "Arlene Gaal",
+   "year": 1955,
+   "isbn10": "0888399871",
+   "ol": "https://openlibrary.org/works/OL9582001W",
+   "for": [
+    "ogopogo"
+   ]
+  },
+  {
+   "title": "Champ, beyond the legend",
+   "author": "Joseph W. Zarzynski",
+   "year": 1984,
+   "isbn10": "0916885003",
+   "ol": "https://openlibrary.org/works/OL4654751W",
+   "for": [
+    "champ"
+   ]
+  },
+  {
+   "title": "The untold story of Champ",
+   "author": "Robert E. Bartholomew",
+   "year": 2012,
+   "isbn10": "1438444842",
+   "ol": "https://openlibrary.org/works/OL16521425W",
+   "for": [
+    "champ"
+   ]
+  },
+  {
+   "title": "Cadborosaurus",
+   "author": "Paul H. LeBlond, Paul H. Leblond",
+   "year": 1995,
+   "isbn10": "0920663338",
+   "ol": "https://openlibrary.org/works/OL3184380W",
+   "for": [
+    "cadborosaurus",
+    "sea-serpent"
+   ]
+  },
+  {
+   "title": "The Braxton County Monster",
+   "author": "Frank C. Feschino",
+   "year": 2004,
+   "isbn10": "189185237X",
+   "ol": "https://openlibrary.org/works/OL8910498W",
+   "for": [
+    "flatwoods-monster"
+   ]
+  },
+  {
+   "title": "Monsters of the Gévaudan",
+   "author": "Jay M. Smith",
+   "year": 2011,
+   "isbn10": "0674047168",
+   "ol": "https://openlibrary.org/works/OL16988451W",
+   "for": [
+    "beast-of-gevaudan"
+   ]
+  },
+  {
+   "title": "The Last Tasmanian Tiger",
+   "author": "Robert Paddle",
+   "year": 2000,
+   "isbn10": "0521531543",
+   "ol": "https://openlibrary.org/works/OL8324008W",
+   "for": [
+    "thylacine"
+   ]
+  },
+  {
+   "title": "Thylacine",
+   "author": "Owen, David",
+   "year": 2003,
+   "isbn10": "1742694195",
+   "ol": "https://openlibrary.org/works/OL35730944W",
+   "for": [
+    "thylacine"
+   ]
+  },
+  {
+   "title": "The Great Sea-Serpent",
+   "author": "A. C. Oudemans",
+   "year": 1892,
+   "isbn10": "1602060126",
+   "ol": "https://openlibrary.org/works/OL8951276W",
+   "for": [
+    "sea-serpent"
+   ]
+  },
+  {
+   "title": "In the Wake of the Sea-Serpents",
+   "author": "Bernard Heuvelmans",
+   "year": 1968,
+   "isbn10": "0809058154",
+   "ol": "https://openlibrary.org/works/OL20983352W",
+   "for": [
+    "sea-serpent",
+    "stellers-sea-ape"
+   ]
+  },
+  {
+   "title": "Monsters of the Sea",
+   "author": "Richard Ellis",
+   "year": 1994,
+   "isbn10": "0679406395",
+   "ol": "https://openlibrary.org/works/OL1841208W",
+   "for": [
+    "@sea",
+    "kraken",
+    "mermaid",
+    "globster",
+    "sea-monk",
+    "bishop-fish"
+   ]
+  },
+  {
+   "title": "The search for the giant squid",
+   "author": "Richard Ellis",
+   "year": 1998,
+   "isbn10": "0140286764",
+   "ol": "https://openlibrary.org/works/OL1841209W",
+   "for": [
+    "kraken"
+   ]
+  },
+  {
+   "title": "Kraken",
+   "author": "Williams, Wendy",
+   "year": 2010,
+   "isbn10": "0810984652",
+   "ol": "https://openlibrary.org/works/OL16010656W",
+   "for": [
+    "kraken"
+   ]
+  },
+  {
+   "title": "The UFO experience",
+   "author": "J. Allen Hynek",
+   "year": 1972,
+   "isbn10": "0345273613",
+   "ol": "https://openlibrary.org/works/OL1842462W",
+   "for": [
+    "@ufo",
+    "ufo-saucer",
+    "ufo-orbs"
+   ]
+  },
+  {
+   "title": "The Report on Unidentified Flying Objects",
+   "author": "Edward J. Ruppelt",
+   "year": 1956,
+   "isbn10": "1644395908",
+   "ol": "https://openlibrary.org/works/OL7507738W",
+   "for": [
+    "@ufo",
+    "ufo-saucer",
+    "green-fireballs"
+   ]
+  },
+  {
+   "title": "UFOs",
+   "author": "Leslie Kean, Heather Henderson",
+   "year": 2010,
+   "isbn10": "1441776192",
+   "ol": "https://openlibrary.org/works/OL16211143W",
+   "for": [
+    "@ufo",
+    "ufo-tic-tac",
+    "ufo-triangle"
+   ]
+  },
+  {
+   "title": "In Plain Sight",
+   "author": "Ross Coulthart",
+   "year": 2021,
+   "isbn10": "1460759060",
+   "ol": "https://openlibrary.org/works/OL25475827W",
+   "for": [
+    "ufo-tic-tac",
+    "ufo-crash"
+   ]
+  },
+  {
+   "title": "Passport to Magonia: from folklore to flying saucers",
+   "author": "Jacques Vallee, Vallee",
+   "year": 1969,
+   "isbn10": "0987422480",
+   "ol": "https://openlibrary.org/works/OL2298939W",
+   "for": [
+    "@ufo",
+    "mystery-airships",
+    "fairies"
+   ]
+  },
+  {
+   "title": "The Roswell incident",
+   "author": "Charles Berlitz, William I. Moore",
+   "year": 1988,
+   "isbn10": "1387475614",
+   "ol": "https://openlibrary.org/works/OL16614106W",
+   "for": [
+    "ufo-crash"
+   ]
+  },
+  {
+   "title": "The Interrupted Journey",
+   "author": "John Grant Fuller",
+   "year": 1966,
+   "isbn10": "0898459729",
+   "ol": "https://openlibrary.org/works/OL4313389W",
+   "for": [
+    "alien-abduction",
+    "grey-aliens"
+   ]
+  },
+  {
+   "title": "Missing Time",
+   "author": "Budd Hopkins",
+   "year": 1981,
+   "isbn10": "0345353358",
+   "ol": "https://openlibrary.org/works/OL3283663W",
+   "for": [
+    "alien-abduction",
+    "grey-aliens"
+   ]
+  },
+  {
+   "title": "Communion: a true story",
+   "author": "Whitley Strieber",
+   "year": 1985,
+   "isbn10": "0688070868",
+   "ol": "https://openlibrary.org/works/OL1874531W",
+   "for": [
+    "alien-abduction",
+    "grey-aliens"
+   ]
+  },
+  {
+   "title": "The Phoenix Lights",
+   "author": "Lynne D. Kitei M.D., Gary E. Schwartz Ph.D.",
+   "year": 2017,
+   "isbn10": "1943625778",
+   "ol": "https://openlibrary.org/works/OL24828585W",
+   "for": [
+    "ufo-triangle",
+    "ufo-boomerang"
+   ]
+  },
+  {
+   "title": "Hunt for the skinwalker",
+   "author": "Colm A. Kelleher",
+   "year": 2005,
+   "isbn10": "1416526935",
+   "ol": "https://openlibrary.org/works/OL5850693W",
+   "for": [
+    "skinwalker-ranch"
+   ]
+  },
+  {
+   "title": "Stalking The Herd Examining The Cattle Mutilation Mystery",
+   "author": "Christopher O'Brien",
+   "year": 2013,
+   "isbn10": "1939149061",
+   "ol": "https://openlibrary.org/works/OL17523216W",
+   "for": [
+    "cattle-mutilation"
+   ]
+  },
+  {
+   "title": "Round in circles",
+   "author": "Jim Schnabel",
+   "year": 1993,
+   "isbn10": "1591021103",
+   "ol": "https://openlibrary.org/works/OL2825562W",
+   "for": [
+    "crop-circles"
+   ]
+  },
+  {
+   "title": "The great airship mystery: a UFO of the 1890s",
+   "author": "Daniel Cohen",
+   "year": 1981,
+   "isbn10": "0396079903",
+   "ol": "https://openlibrary.org/works/OL15218568W",
+   "for": [
+    "mystery-airships"
+   ]
+  },
+  {
+   "title": "Flying saucers have landed",
+   "author": "Desmond Leslie, George Adamski",
+   "year": 1953,
+   "isbn10": "0854351809",
+   "ol": "https://openlibrary.org/works/OL7115265W",
+   "for": [
+    "nordic-aliens"
+   ]
+  },
+  {
+   "title": "An Encyclopedia of Fairies",
+   "author": "Katharine Mary Briggs",
+   "year": 1976,
+   "isbn10": "0394409183",
+   "ol": "https://openlibrary.org/works/OL3834602W",
+   "for": [
+    "@fae",
+    "fairies",
+    "brownies",
+    "pixies",
+    "hob",
+    "leprechaun",
+    "puca",
+    "redcap",
+    "spriggans",
+    "knockers",
+    "hobgoblin",
+    "goblins",
+    "selkie",
+    "merrow",
+    "barghest",
+    "black-shuck"
+   ]
+  },
+  {
+   "title": "The fairy-faith in Celtic countries",
+   "author": "W. Y. Evans-Wentz",
+   "year": 1911,
+   "isbn10": "1595478787",
+   "ol": "https://openlibrary.org/works/OL4538663W",
+   "for": [
+    "@fae",
+    "fairies",
+    "tylwyth-teg",
+    "pixies",
+    "leprechaun"
+   ]
+  },
+  {
+   "title": "Faeries",
+   "author": "Brian Froud",
+   "year": 1978,
+   "isbn10": "0330257560",
+   "ol": "https://openlibrary.org/works/OL1921852W",
+   "for": [
+    "@fae",
+    "fairies",
+    "gnomes"
+   ]
+  },
+  {
+   "title": "The Book of Yōkai: Mysterious Creatures of Japanese Folklore",
+   "author": "Michael Dylan Foster",
+   "year": 2015,
+   "isbn10": "0520271025",
+   "ol": "https://openlibrary.org/works/OL19340460W",
+   "for": [
+    "kappa",
+    "tsuchinoko",
+    "ningyo",
+    "amabie"
+   ]
+  },
+  {
+   "title": "The Night Parade of One Hundred Demons",
+   "author": "Matthew Meyer",
+   "year": 2012,
+   "isbn10": "0985218428",
+   "ol": "https://openlibrary.org/works/OL20867360W",
+   "for": [
+    "kappa",
+    "ningyo"
+   ]
+  },
+  {
+   "title": "The People of the Sea",
+   "author": "David Thomson",
+   "year": 1965,
+   "isbn10": "1402894147",
+   "ol": "https://openlibrary.org/works/OL20130927W",
+   "for": [
+    "selkie",
+    "finfolk",
+    "blue-men-of-the-minch"
+   ]
+  },
+  {
+   "title": "Merpeople",
+   "author": "Vaughn Scribner",
+   "year": 2020,
+   "isbn10": "1789143144",
+   "ol": "https://openlibrary.org/works/OL21909200W",
+   "for": [
+    "mermaid",
+    "merrow",
+    "rusalka"
+   ]
+  },
+  {
+   "title": "Fearsome creatures of the lumberwoods",
+   "author": "William T. Cox",
+   "year": 1910,
+   "isbn10": "1430464453",
+   "ol": "https://openlibrary.org/works/OL4486824W",
+   "for": [
+    "hodag",
+    "hoop-snake",
+    "jackalope",
+    "wampus-cat",
+    "snallygaster"
+   ]
+  },
+  {
+   "title": "Gef!",
+   "author": "Christopher Josiffe",
+   "year": 2017,
+   "isbn10": "1907222480",
+   "ol": "https://openlibrary.org/works/OL20891898W",
+   "for": [
+    "gef"
+   ]
+  },
+  {
+   "title": "The owlman and others",
+   "author": "Jonathan Downes",
+   "year": 1999,
+   "isbn10": "0952441764",
+   "ol": "https://openlibrary.org/works/OL8771934W",
+   "for": [
+    "owlman"
+   ]
+  },
+  {
+   "title": "Mystery Big Cats",
+   "author": "Merrily Harpur",
+   "year": 2021,
+   "isbn10": "1906069182",
+   "ol": "https://openlibrary.org/works/OL29043618W",
+   "for": [
+    "beast-of-bodmin",
+    "beast-of-exmoor",
+    "queensland-tiger",
+    "tantanoola-tiger"
+   ]
+  },
+  {
+   "title": "The Big Grey Man of Ben Macdhui",
+   "author": "Affleck Gray",
+   "year": 1970,
+   "isbn10": "0948403136",
+   "ol": "https://openlibrary.org/works/OL5048638W",
+   "for": [
+    "big-grey-man"
+   ]
+  },
+  {
+   "title": "In witch-bound Africa",
+   "author": "Frank H. Melland",
+   "year": 1923,
+   "isbn10": "1136905367",
+   "ol": "https://openlibrary.org/works/OL10610737W",
+   "for": [
+    "kongamato"
+   ]
+  },
+  {
+   "title": "The Van Meter visitor",
+   "author": "Chad Lewis",
+   "year": 2013,
+   "isbn10": "0982431465",
+   "ol": "https://openlibrary.org/works/OL28756759W",
+   "for": [
+    "van-meter-visitor"
+   ]
+  }
+ ],
+ "docs": [
+  {
+   "title": "The Legend of Boggy Creek",
+   "year": 1972,
+   "wiki": "https://en.wikipedia.org/wiki/The_Legend_of_Boggy_Creek",
+   "blurb": "1972 American docudrama horror film",
+   "for": [
+    "fouke-monster"
+   ]
+  },
+  {
+   "title": "Sasquatch",
+   "year": 2021,
+   "wiki": "https://en.wikipedia.org/wiki/Sasquatch_(TV_series)",
+   "blurb": "2021 American true crime docuseries",
+   "for": [
+    "bigfoot"
+   ]
+  },
+  {
+   "title": "Finding Bigfoot",
+   "year": 2011,
+   "wiki": "https://en.wikipedia.org/wiki/Finding_Bigfoot",
+   "blurb": "Animal Planet TV series",
+   "for": [
+    "bigfoot"
+   ]
+  },
+  {
+   "title": "MonsterQuest",
+   "year": 2007,
+   "wiki": "https://en.wikipedia.org/wiki/MonsterQuest",
+   "blurb": "2007 American TV series or program",
+   "for": [
+    "@general"
+   ]
+  },
+  {
+   "title": "The Phenomenon",
+   "year": 2020,
+   "wiki": "https://en.wikipedia.org/wiki/The_Phenomenon_(film)",
+   "blurb": "2020 documentary film about UFOs",
+   "for": [
+    "@ufo",
+    "ufo-saucer"
+   ]
+  },
+  {
+   "title": "Out of the Blue",
+   "year": 2003,
+   "wiki": "https://en.wikipedia.org/wiki/Out_of_the_Blue_(2003_film)",
+   "blurb": "2003 American film",
+   "for": [
+    "@ufo"
+   ]
+  },
+  {
+   "title": "Unidentified: Inside America's UFO Investigation",
+   "year": 2019,
+   "wiki": "https://en.wikipedia.org/wiki/Unidentified%3A_Inside_America's_UFO_Investigation",
+   "blurb": "2019 American TV series or program",
+   "for": [
+    "ufo-tic-tac",
+    "@ufo"
+   ]
+  },
+  {
+   "title": "The Secret of Skinwalker Ranch",
+   "year": 2020,
+   "wiki": "https://en.wikipedia.org/wiki/The_Secret_of_Skinwalker_Ranch",
+   "blurb": "American reality television series",
+   "for": [
+    "skinwalker-ranch"
+   ]
+  },
+  {
+   "title": "Hellier",
+   "year": 2019,
+   "wiki": "https://en.wikipedia.org/wiki/Hellier_(TV_series)",
+   "blurb": "2019 American TV series or program",
+   "for": [
+    "hopkinsville-goblins"
+   ]
+  }
+ ]
+}
