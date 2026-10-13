@@ -291,6 +291,13 @@ class Tools:
         s = json.dumps(obj, separators=(',', ':'), ensure_ascii=False).replace('</', '<\\/')
         return f'<script type="application/json" id="{id_}">{s}</script>'
 
+    def jsfile(self, obj, id_, name):
+        """Big data goes in OUT/data/<name> (cached by the browser) instead of inline; the page keeps a pointer."""
+        os.makedirs(os.path.join(self.c.OUT, 'data'), exist_ok=True)
+        with open(os.path.join(self.c.OUT, 'data', name), 'w', encoding='utf-8') as f:
+            json.dump(obj, f, separators=(',', ':'), ensure_ascii=False)
+        return f'<script type="application/json" id="{id_}" data-src="{self.c.url("/data/" + name)}"></script>'
+
     # ------------------------------------------------------------ hub
     def hub(self):
         c = self.c
@@ -484,7 +491,9 @@ class Tools:
                      f'<td class="basis">{c.esc(e["basis"])}</td></tr>')
         lefts = ''.join(f'<li><a href="{c.url("/creatures/" + s + "/")}">{c.esc(by[s]["name"])}</a>: {c.esc(why)}</li>'
                         for s, why in sorted(left.items(), key=lambda kv: by[kv[0]]['name'].lower()))
-        cdata = {'items': items, 'icons': icon_src, 'def': default, 'base': c.url('')}
+        # Silhouettes are not shipped in the page data: compare.js fetches the SVG file of each creature picked
+        # (static/art/<slug>.svg), which keeps this page small (it used to inline 3 MB of paths).
+        cdata = {'items': items, 'def': default, 'base': c.url('')}
         names = ', '.join(by[s]['name'] for s in default)
         body = f'''
 <section class="band band-dark tool-head">

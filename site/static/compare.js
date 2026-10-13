@@ -2,6 +2,16 @@
 // render_wall), keeps ?c=slug,slug in the URL, and sorts the static size table.
 (() => {
   const D = JSON.parse(document.getElementById('cmp-data').textContent);
+  // Silhouettes load on demand from their SVG files (same clean-up as tools.py does for the first drawing).
+  const ICONS = {};
+  const loadIcon = (i) => ICONS[i] ? Promise.resolve() : fetch(D.base + '/static/' + (i.startsWith('art/') ? '' : 'icons/') + i + '.svg')
+    .then((r) => r.text()).then((t) => { ICONS[i] = t.replace(/^\s*<svg[^>]*>|<\/svg>\s*$/g, '').replace(/fill="#[0-9A-Fa-f]{3,6}"/g, 'fill="currentColor"'); });
+  let gen = 0;
+  async function render() {
+    const my = ++gen;
+    await Promise.all(['human', ...picks].map((k) => loadIcon(D.items[k].i))).catch(() => {});
+    if (my === gen) draw();
+  }
   const box = document.querySelector('.cmp-svg');
   const legend = document.getElementById('cmp-legend');
   const cap = document.getElementById('cmp-cap');
@@ -41,7 +51,7 @@
     fig.forEach((f, idx) => {
       const { it } = f; const [bx, by, bw, bh] = it.b; const kk = f.s * px;
       const cx = L + colW * (idx + 0.5);
-      o.push(`<g class="fig cat-${it.cat}" transform="translate(${g(cx - (bx + bw / 2) * kk)} ${g(gy - (by + bh) * kk)}) scale(${kk.toFixed(4)})" fill="currentColor" stroke-linecap="round" stroke-linejoin="round">${D.icons[it.i]}</g>`);
+      o.push(`<g class="fig cat-${it.cat}" transform="translate(${g(cx - (bx + bw / 2) * kk)} ${g(gy - (by + bh) * kk)}) scale(${kk.toFixed(4)})" fill="currentColor" stroke-linecap="round" stroke-linejoin="round">${ICONS[it.i] || ''}</g>`);
       const w = f.w * px, h = f.h * px;
       const range = it.lo !== it.hi ? `${it.lo}–${it.hi} ft` : `${it.lo} ft`;
       if (it.f === 'h') {
@@ -75,7 +85,7 @@
     const u = new URL(location.href);
     u.searchParams.set('c', picks.join(','));
     history.replaceState(null, '', u.pathname + '?c=' + picks.join(',') + u.hash);
-    draw();
+    render();
   }
 
   document.querySelector('.pchips').addEventListener('click', (e) => {
@@ -101,8 +111,8 @@
     chips.forEach((c) => { c.hidden = v && !c.dataset.names.includes(v); });
   });
   let rt;
-  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
-  draw();
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(render, 150); });
+  render();
 
   // sortable table
   const tbl = document.getElementById('size-tbl');

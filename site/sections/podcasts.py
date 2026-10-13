@@ -120,7 +120,7 @@ def build(ctx):
 
     def card(s):
         """Grid card for the hub directory."""
-        names = f'{s["name"]} {s["publisher"]} {scrub(s.get("about", ""))}'.lower()
+        names = f'{s["name"]} {s["publisher"]} {scrub(s.get("about", ""))[:200]}'.lower()
         tags = ''.join(topic_chip(t, False) for t in s['topics'])
         last = (f'<p class="pod-last"><span>Newest:</span> <a href="{esc(s["last_ep"]["url"])}" rel="noopener">'
                 f'{esc(s["last_ep"]["title"])}</a></p>') if s.get('last_ep') and s['last_ep'].get('title') else ''
