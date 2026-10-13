@@ -1057,10 +1057,12 @@ def build_home(creatures, n_points, bluebook, military):
 <section class="map-full" aria-label="Encounter map">
   <h1 class="visually-hidden">Encounter map</h1>
   <div class="map-full-bar">
-    {filter_bar(creatures, famous_slugs)}
+    <button type="button" class="mf-toggle" aria-expanded="false" aria-controls="mf-panel"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2 4h12M4.5 8h7M7 12h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Filters</span><span class="mf-now">Everything</span></button>
     <button type="button" class="btn btn-sm" data-locate>Near me</button>
   </div>
-  <div class="map-frame full"><div id="map" class="map" data-base="{BASE}"{MAP_API}></div>
+  <div class="map-frame full">
+    <div id="mf-panel" class="mf-panel" hidden>{filter_bar(creatures, famous_slugs)}<button type="button" class="btn btn-sm mf-done">Show the map</button></div>
+    <div id="map" class="map" data-base="{BASE}"{MAP_API}></div>
     <a class="map-exit" href="{url('/')}" hidden><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Exit full map</a></div>
 </section>''', 'Map of Bigfoot, Dogman, UFO and cryptid encounters, military cases and every US Air Force Project Blue Book file.',
                         body_class='mapper', head_extra=map_head()))

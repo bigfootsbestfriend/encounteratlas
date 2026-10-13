@@ -344,6 +344,7 @@
     const openCat = cat || (creature && (document.querySelector(`.cchip[data-creature="${creature}"]`) || { dataset: {} }).dataset.cat) || '';
     document.querySelectorAll('.catchip').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.cat === openCat)));
     showChips(openCat);
+    label();
     const q = new URLSearchParams();
     if (type !== 'all') q.set('type', type);
     if (cat) q.set('cat', cat);
@@ -356,29 +357,48 @@
         const b = new maplibregl.LngLatBounds();
         pts.forEach((x) => b.extend(x.geometry.coordinates));
         // Worldwide groups (Bigfoot to Yowie) stay on the default view rather than zooming out to mid-Atlantic.
-        if (b.getEast() - b.getWest() < 150) map.fitBounds(b, { padding: 70, maxZoom: 7 });
+        if (b.getEast() - b.getWest() < 150) map.fitBounds(b, { padding: 70, maxZoom: 7 }); else map.flyTo({ ...HOME_VIEW, duration: 800 });
       }
     }
+  }
+  // Full map page: the filters sit in a drawer over the map. The bar button says what's showing; picking something closes it.
+  const panel = document.getElementById('mf-panel'), toggle = document.querySelector('.mf-toggle'), now = document.querySelector('.mf-now');
+  function drawer(open) {
+    if (!panel) return;
+    panel.hidden = !open; toggle.setAttribute('aria-expanded', String(open));
+  }
+  if (panel) {
+    toggle.addEventListener('click', () => drawer(panel.hidden));
+    panel.querySelector('.mf-done').addEventListener('click', () => drawer(false));
+    map.on('mousedown', () => drawer(false)); map.on('touchstart', () => drawer(false));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !panel.hidden) { e.stopImmediatePropagation(); drawer(false); toggle.focus(); } }, true);
+  }
+  function label() {
+    if (!now) return;
+    const { type, cat, creature } = state;
+    const pick = (sel) => { const b = document.querySelector(sel); return b ? b.querySelector(':scope > span:last-of-type').textContent : ''; };
+    now.textContent = (creature && pick(`.cchip[data-creature="${creature}"]`)) || (cat && pick(`.catchip[data-cat="${cat}"]`))
+      || (type !== 'all' && (document.querySelector(`.tchip[data-type="${type}"]`) || {}).textContent) || 'Everything';
   }
   // A clear way back after picking a creature: a button on the map that shows everything at the starting view.
   const reset = document.createElement('button');
   reset.type = 'button'; reset.className = 'map-reset'; reset.textContent = 'Show everything'; reset.hidden = true;
   el.parentElement.append(reset);
-  function showAll() { state.type = 'all'; state.cat = ''; state.creature = ''; apply(false); map.flyTo({ ...HOME_VIEW, duration: 800 }); }
+  function showAll() { drawer(false); state.type = 'all'; state.cat = ''; state.creature = ''; apply(false); map.flyTo({ ...HOME_VIEW, duration: 800 }); }
   reset.addEventListener('click', showAll);
   document.querySelectorAll('.tchip').forEach((b) => b.addEventListener('click', () => {
     if (b.dataset.type === 'all') return showAll();
-    state.type = b.dataset.type; state.cat = ''; state.creature = ''; apply(false);
+    state.type = b.dataset.type; state.cat = ''; state.creature = ''; apply(false); drawer(false);
   }));
   document.querySelectorAll('.cchip').forEach((b) => b.addEventListener('click', () => {
     if (state.creature === b.dataset.creature) { state.creature = ''; state.cat = b.dataset.cat; apply(false); return; }
-    state.creature = b.dataset.creature; state.cat = ''; state.type = 'all'; apply(true);
+    state.creature = b.dataset.creature; state.cat = ''; state.type = 'all'; apply(true); drawer(false);
   }));
   // Category chips open that group's creatures (and filter the map to it); clicking again closes it.
   document.querySelectorAll('.catchip').forEach((b) => b.addEventListener('click', () => {
     const open = b.getAttribute('aria-pressed') === 'true';
     if (find) find.value = '';
-    state.creature = ''; state.type = 'all'; state.cat = open ? '' : b.dataset.cat; apply(!open);
+    state.creature = ''; state.type = 'all'; state.cat = open ? '' : b.dataset.cat; apply(!open); if (!open) drawer(false);
   }));
   if (find) find.addEventListener('input', () => showChips(state.cat || ''));
 

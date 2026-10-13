@@ -615,3 +615,24 @@ a.md-book:hover { box-shadow: 0 0 0 2px var(--lantern); color: var(--ink); }
 .nf-search input::placeholder { color: #A9B98F; }
 .band-dark .md-chip { background: rgba(255,255,255,.06); color: #E8ECDD; border-color: var(--spruce-3); }
 .home-explore { margin: .8rem 0 1.6rem; }
+/* Full map page: filters live in a drawer over the map, so the map keeps the screen (Fold/phones/desktop alike) */
+body.mapper .map-full-bar { display: flex; align-items: center; gap: .6rem; padding: .5rem 1rem; }
+body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-left: auto; }
+.mf-toggle { display: inline-flex; align-items: center; gap: .5rem; min-width: 0; min-height: 40px; padding: .4rem .95rem; border-radius: 999px;
+  border: 1.5px solid #3A5A4C; background: #1A3229; color: #F3F1DA; font: 700 .95rem var(--body); cursor: pointer; }
+.mf-toggle:hover, .mf-toggle[aria-expanded="true"] { border-color: var(--lantern); }
+.mf-toggle:focus-visible { outline: 3px solid var(--lantern); outline-offset: 2px; }
+.mf-toggle svg { flex: none; }
+.mf-now { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; color: var(--lichen); }
+.mf-now::before { content: "· "; }
+.mf-panel { position: absolute; z-index: 6; top: 0; left: 0; right: 0; max-height: calc(100% - 64px); overflow-y: auto; overscroll-behavior: contain;
+  padding: .7rem 1rem 1rem; background: var(--spruce); box-shadow: 0 10px 24px rgba(0,0,0,.5); border-radius: 0 0 16px 16px; }
+.mf-panel[hidden] { display: none; }
+.mf-panel .filters { margin-top: 0; }
+.mf-panel .cchips { max-height: none; overflow: visible; }
+.mf-done { margin-top: .8rem; }
+.map-frame.full .map-reset { top: 58px; }
+@media (min-width: 900px) { .mf-panel { top: 10px; left: 56px; right: auto; width: min(760px, calc(100% - 240px)); border-radius: 16px; } }
+@media (max-width: 600px) { body.mapper .map-full-bar { padding: .45rem .6rem; } .mf-toggle { font-size: .9rem; padding: .35rem .8rem; } }
+.mf-panel .tchips, .mf-panel .catchips { flex-wrap: wrap; overflow: visible; margin-right: 0; padding-right: 0; -webkit-mask-image: none; mask-image: none; }
+.mf-done { position: sticky; bottom: 0; box-shadow: 0 -6px 14px var(--spruce), 0 4px 12px rgba(0,0,0,.35); }
