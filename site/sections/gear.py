@@ -96,6 +96,7 @@ def build(ctx):
 <section class="band band-dark"><div class="wrap">
   <p class="crumb"><a href="{U('/guides/')}">Field guides</a> / Gear</p>
   <h1>Field gear for investigators</h1>
+  <p class="gr-aff"><a class="md-aff" href="{U('/privacy/')}#affiliate">(affiliate links)</a></p>
   <p class="lede">What to pack for a night in the woods, a lake watch or a skywatch, and why each thing earns its place. Read the
   <a href="{U('/guides/')}">field guides</a> for how to use it.</p>
 </div></section>
@@ -106,8 +107,7 @@ def build(ctx):
     <p class="gr-why">The best general reads, sceptical and believing. Every creature page also lists books about that creature.</p>
     <div class="md-grid">{bcards}</div>
     <h3>Documentaries</h3><div class="md-grid">{dcards}</div></section>
-  <p class="md-disc">As an Amazon Associate we earn from qualifying purchases. Gear links go to Amazon searches so you see current models and prices;
-  we don't take payment to list anything. <a href="{U('/privacy/')}#affiliate">More about our links</a>.</p>
+
 </div></div>'''
     ctx.write('/gear/', ctx.page('/gear/', 'Field gear for cryptid and UFO investigators', body,
                                  'Trail cameras, thermal and night vision, audio recorders, track casting, binoculars, skywatching and safety gear '

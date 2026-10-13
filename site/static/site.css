@@ -549,3 +549,5 @@ a.md-book:hover { box-shadow: 0 0 0 2px var(--lantern); color: var(--ink); }
 .gr-apps a, .gr-page .gr-why a { color: #7A4E00; }
 .g-gearlink { background: #fff; border-left: 4px solid var(--lantern); border-radius: 0 var(--r-sm) var(--r-sm) 0; padding: .6rem .9rem; color: var(--ink); }
 .g-gearlink a { color: #7A4E00; font-weight: 700; }
+.md-aff { font: 600 .8rem var(--body); color: var(--muted-l); vertical-align: middle; margin-left: .3rem; white-space: nowrap; }
+.gr-aff { margin: -.4rem 0 .6rem; } .gr-aff .md-aff { color: var(--muted-d); margin: 0; }

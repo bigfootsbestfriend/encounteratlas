@@ -187,7 +187,8 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
   <div class="foot-in">
     <p class="foot-brand"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</p>
     <p>Sightings, creatures and official files, mapped. Reports are what witnesses say they saw. We don't claim they're real, and we don't claim they're not.</p>
-    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/gear/')}">Field gear</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{url('/privacy/')}">Privacy policy</a></p>
+    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/gear/')}">Gear</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{url('/privacy/')}">Privacy policy</a></p>
+    <p class="small">As an Amazon Associate we earn from qualifying purchases. <a href="{url('/privacy/')}#affiliate">About our affiliate links</a>.</p>
     <p class="small">Air Force case files: US National Archives, Record Group 341. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>
   </div>
 </footer>
@@ -430,9 +431,8 @@ def build_creatures(creatures, by_slug):
                     f'{esc(c["name"])} gifts and decor</a></div>')
         if not out:
             return ''
-        return (f'<section class="band band-mist md-band"><div class="wrap"><h2>Read, watch and gear up</h2>{out}'
-                f'<p class="md-disc">As an Amazon Associate we earn from qualifying purchases. These links go to Amazon.com; buying through them '
-                f'costs you nothing extra and helps keep Encounter Atlas running. <a href="{url("/privacy/")}#affiliate">More about our links</a>.</p></div></section>')
+        return (f'<section class="band band-mist md-band"><div class="wrap"><h2>Read, watch and gear up <a class="md-aff" href="{url("/privacy/")}#affiliate">(affiliate links)</a></h2>{out}'
+                f'</div></section>')
 
     COUNTRIES = load('countries.json') or {}
     if isinstance(COUNTRIES, list):
