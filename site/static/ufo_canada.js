@@ -1,6 +1,6 @@
 // Canada sightings maps (site/sections/ufo_canada.py): clustered dots coloured by the survey's verdict.
 (function () {
-  const COL = ['match', ['get', 'e'], 'u', '#FF7A66', 'p', '#F2B33D', 'e', '#4FB3A9', '#B9B39A'];
+  const COL = ['match', ['get', 'e'], 'u', '#FF7A66', 'p', '#F2B33D', 'e', '#4FB3A9', 'bb', '#F2B33D', '#B9B39A'];
   const EV = { u: 'Unexplained', p: 'Possibly explained', e: 'Explained', i: 'Not enough information' };
   const MONTHS = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const fmt = (d) => { const p = (d || '').split('-'); return p.length === 3 ? `${MONTHS[+p[1]]} ${+p[2]}, ${p[0]}` : p.length === 2 ? `${MONTHS[+p[1]]} ${p[0]}` : p[0]; };
@@ -72,14 +72,16 @@
           return;
         }
         const div = el('div', 'pop cu-pop');
-        div.append(el('div', 'pop-kind', fs.length > 1 ? `${fs.length} reports here` : 'UFO report'), el('p', 'pop-h', p0.t + (p0.r ? ', ' + p0.r : '')));
+        div.append(el('div', 'pop-kind', fs.length > 1 ? `${fs.length} ${p0.lk ? 'files' : 'reports'} here` : (p0.lk ? 'Air Force case file' : 'UFO report')), el('p', 'pop-h', p0.t + (p0.r ? ', ' + p0.r : '')));
         for (const f of fs.slice(0, fs.length > 1 ? 6 : 1)) {
           const p = f.properties;
-          div.append(el('p', 'pop-meta', [fmt(p.w), p.k, p.h, EV[p.e]].filter(Boolean).join(' · ')));
+          if (!p0.lk) div.append(el('p', 'pop-meta', [fmt(p.w), p.k, p.h, EV[p.e]].filter(Boolean).join(' · ')));
           if (p.d && fs.length === 1) div.append(el('p', 'pop-d', p.d));
         }
         if (p0.a == 1) div.append(el('p', 'approx', 'Approximate: the town was not found, so this marks the province.'));
-        if (p0.u) { const a = el('a', '', `All reports from ${p0.t}`); a.href = p0.u; div.append(a); }
+        if (p0.lk) { // Blue Book: one link per file listed
+          for (const f of fs.slice(0, 6)) { const a = el('a', '', `${fmt(f.properties.w) || 'Undated'}: ${p0.lk}`); a.href = f.properties.u; a.target = '_blank'; a.rel = 'noopener'; div.append(el('p', 'pop-meta'), a); }
+        } else if (p0.u) { const a = el('a', '', `All reports from ${p0.t}`); a.href = p0.u; div.append(a); }
         new maplibregl.Popup({ maxWidth: '300px' }).setLngLat(fs[0].geometry.coordinates).setDOMContent(div).addTo(map);
       });
     });

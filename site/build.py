@@ -713,8 +713,42 @@ def build_ufo(bluebook, BY_SLUG):
                     + ''.join(creature_card(BY_SLUG[sl]) for sl in crit) + '</div>')
         return out
 
+    os.makedirs(os.path.join(OUT, 'data', 'bb'), exist_ok=True)
+    bb_head = (f'<link rel="stylesheet" href="{url("/static/ufo_canada.css")}">'
+               '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.css">'
+               '<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.js" defer></script>'
+               f'<script src="{url("/static/ufo_canada.js")}" defer></script>')
+
+    def bb_extras(k, cases, nm):
+        """Map of the files pinned to a town, a by-year chart and the places with the most files."""
+        pts = [b for b in cases if b.get('lat') is not None and b['precision'] not in ('region', 'country')]
+        out = ''
+        if len(pts) >= 3:
+            feats = [{'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [round(b['lon'], 4), round(b['lat'], 4)]},
+                      'properties': {'t': b['place'] or nm, 'w': (f'{b["year"]}-{b["month"]:02d}' if b.get('month') else str(b['year'] or '')),
+                                     'e': 'bb', 'a': 0, 'u': f'https://catalog.archives.gov/id/{b["id"]}', 'lk': 'open the file'}} for b in pts]
+            with open(os.path.join(OUT, 'data', 'bb', k + '.geojson'), 'w') as f:
+                json.dump({'type': 'FeatureCollection', 'features': feats}, f, separators=(',', ':'))
+            xs, ys = sorted(b['lon'] for b in pts), sorted(b['lat'] for b in pts)
+            lo, hi = len(xs) // 50, len(xs) - 1 - len(xs) // 50
+            bounds = f'{xs[lo] - .5:.2f},{ys[lo] - .4:.2f},{xs[hi] + .5:.2f},{ys[hi] + .4:.2f}'
+            out += (f'<div class="cu-map" data-geojson="{url("/data/bb/" + k + ".geojson")}" data-bounds="{bounds}" data-cluster="{1 if len(pts) > 150 else 0}" '
+                    f'data-towns="0" role="region" aria-label="Map of Air Force UFO files in {esc(nm)}"></div>'
+                    f'<p class="small muted">{len(pts):,} of {len(cases):,} files are pinned to a town; tap a dot to open the file.</p>')
+        ys_ = Counter(b['year'] for b in cases if b.get('year'))
+        if sum(ys_.values()) >= 10:
+            mx = max(ys_.values())
+            out += ('<h2>Files by year</h2><div class="bars" role="img" aria-label="Bar chart of files per year">' +
+                    ''.join(f'<div class="bar" style="--h:{round(100 * ys_.get(y, 0) / mx)}%" title="{y}: {ys_.get(y, 0)} files"><span class="bar-n">{ys_.get(y, 0)}</span>'
+                            f'<span class="bar-y">&#8217;{str(y)[2:]}</span></div>' for y in range(1947, 1970)) + '</div>')
+        towns = Counter(b['place'] for b in pts if b.get('place'))
+        if len(towns) >= 5:
+            out += ('<h2>Places with the most files</h2><ul class="cols">' +
+                    ''.join(f'<li>{esc(t)} <span class="muted">{n}</span></li>' for t, n in towns.most_common(24)) + '</ul>')
+        return out + '<h2>Every file</h2>'
+
     for k, cases in by_region.items():
-        cases = sorted(cases, key=lambda b: (b['year'] or 0, b['month'] or 0))
+        cases = sorted(cases, key=lambda b: (b['year'] is None, b['year'] or 0, b['month'] or 0))  # undated files last
         nm = names[k] if k != 'unknown' else 'Place unclear or unreadable'
         ys = Counter(b['year'] for b in cases if b.get('year'))
         peak = f' The busiest year was {max(ys, key=ys.get)}, with {max(ys.values())} reports.' if ys else ''
@@ -727,12 +761,14 @@ def build_ufo(bluebook, BY_SLUG):
   <p><a class="btn" href="{url('/map/')}">See them on the map</a></p>
 </div></section>
 <div class="band band-mist"><div class="wrap">
+  {bb_extras(k, cases, nm) if k != 'unknown' else ''}
   <ol class="timeline cases">{items}</ol>
   <p class="small">Links open the original folder at the US National Archives.</p>
   {also(k, cases[0]) if k != 'unknown' else ''}
 </div></div>'''
         write(f'/ufo/blue-book/{k}/', page(f'/ufo/blue-book/{k}/', f'UFO sightings in {nm}: {len(cases):,} Air Force Blue Book files',
-                                           body, f'{len(cases):,} US Air Force Project Blue Book UFO case files from {nm}, with dates, places and links to the scanned originals.'))
+                                           body, f'{len(cases):,} US Air Force Project Blue Book UFO case files from {nm}, with dates, places and links to the scanned originals.',
+                                           head_extra=bb_head))
 
 
 def build_map_data(bluebook):
