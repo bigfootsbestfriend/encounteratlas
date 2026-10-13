@@ -167,10 +167,10 @@ def build(ctx):
     y0 = min(int(r['date'][:4]) for r in cases)
     yc = Counter(int(r['date'][:4]) for r in cases)
     peak = max(yc, key=yc.get)
-    provs = sorted(by_prov.items(), key=lambda kv: -len(kv[1]))
+    provs = sorted(by_prov.items(), key=lambda kv: (-len(kv[1]), kv[0]))
     pgrid = ''.join(f'<li><a href="{U("/ufo/canada/" + pslug[pv] + "/")}"><b>{E(pv)}</b><span>{len(rs):,} reports</span>'
                     f'<small>{sum(1 for r in rs if r["eval"] == "u"):,} unexplained</small></a></li>' for pv, rs in provs)
-    top_towns = sorted(town_pages, key=lambda k: -towns[k])[:36]
+    top_towns = sorted(town_pages, key=lambda k: (-towns[k], k))[:36]
     tlist = ''.join(f'<li><a href="{U(f"/ufo/canada/{pslug[k[0]]}/{tslug[k]}/")}">{E(town_name[k])}</a> <span class="muted">{towns[k]:,}</span></li>'
                     for k in top_towns)
     best = hilite(cases, 60)
@@ -244,7 +244,7 @@ def build(ctx):
     # --- /ufo/canada/<province>/ -----------------------------------------------------------------
     for pv, rs in provs:
         pu = sum(1 for r in rs if r['eval'] == 'u')
-        ptowns = sorted((k for k in towns if k[0] == pv), key=lambda k: -towns[k])
+        ptowns = sorted((k for k in towns if k[0] == pv), key=lambda k: (-towns[k], k))
         def tlink(k):
             return f'<a href="{U(f"/ufo/canada/{pslug[k[0]]}/{tslug[k]}/")}">{E(town_name[k])}</a>' if k in town_pages else E(town_name[k])
         tl = ''.join(f'<li>{tlink(k)} <span class="muted">{towns[k]:,}</span></li>' for k in ptowns[:60])

@@ -20,6 +20,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.changed.outputs.urls }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -29,10 +31,23 @@ jobs:
       - name: Build site
         run: python3 site/build.py
         env:
+          PYTHONHASHSEED: "0"  # same set order every build, so unchanged pages stay byte-identical (IndexNow diff)
           SITE_URL: ${{ vars.SITE_URL || 'https://encounteratlas.com' }}
           BASE_PATH: ${{ vars.BASE_PATH || '' }}
           EA_API: ${{ vars.EA_API || 'https://api.encounteratlas.com' }}
           TURNSTILE_SITEKEY: ${{ vars.TURNSTILE_SITEKEY || '0x4AAAAAAFVllt3qoQHw1hRp' }}
+      # IndexNow: list the pages that differ from the live site (new or edited) before deploying; pinged after the deploy.
+      # Skipped on BASE_PATH preview builds and before launch (site/indexnow.py checks both).
+      - name: List pages that changed (compared with the live site, before deploying)
+        id: changed
+        continue-on-error: true
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://encounteratlas.com' }}
+          BASE_PATH: ${{ vars.BASE_PATH || '' }}
+        run: |
+          python3 site/indexnow.py diff > changed.txt
+          echo "$(wc -l < changed.txt) changed pages"
+          { echo "urls<<EOF"; cat changed.txt; echo "EOF"; } >> "$GITHUB_OUTPUT"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
@@ -45,3 +60,13 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+        if: needs.build.outputs.changed != ''
+      - name: Tell IndexNow (Bing and others) about changed pages
+        if: needs.build.outputs.changed != ''
+        continue-on-error: true
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://encounteratlas.com' }}
+          BASE_PATH: ${{ vars.BASE_PATH || '' }}
+          CHANGED: ${{ needs.build.outputs.changed }}
+        run: printf '%s\n' "$CHANGED" | python3 site/indexnow.py ping
