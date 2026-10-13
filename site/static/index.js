@@ -6,11 +6,13 @@
   const chips = [...document.querySelectorAll('.chip')];
   const empty = document.querySelector('.empty');
   let cat = '';
+  const whSel = document.getElementById('where');
+  let wh = '';
   function apply() {
     const term = q.value.trim().toLowerCase();
     let shown = 0;
     for (const c of cards) {
-      const ok = (!term || c.dataset.names.includes(term)) && (!cat || c.dataset.cat === cat);
+      const ok = (!term || c.dataset.names.includes(term)) && (!cat || c.dataset.cat === cat) && (!wh || (c.dataset.w || '').split(' ').includes(wh));
       c.hidden = !ok;
       if (ok) shown++;
     }
@@ -18,6 +20,7 @@
     empty.hidden = shown > 0;
   }
   q.addEventListener('input', apply);
+  if (whSel) whSel.addEventListener('change', () => { wh = whSel.value; apply(); });
   chips.forEach((chip) => chip.addEventListener('click', () => {
     cat = cat === chip.dataset.filter ? '' : chip.dataset.filter;
     chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.filter === cat)));
@@ -46,6 +49,9 @@
     let saved = null; try { saved = localStorage.getItem('ea-sort'); } catch (e) { /* storage blocked */ }
     if (saved && SORTS[saved] && saved !== 'most') { sel.value = saved; sortAll(); }
   }
-  const pre = new URLSearchParams(location.search).get('q');
-  if (pre) { q.value = pre; apply(); }
+  const params = new URLSearchParams(location.search);
+  const pre = params.get('q'), preW = params.get('where');
+  if (preW && whSel && whSel.querySelector(`option[value="${CSS.escape(preW)}"]`)) { whSel.value = wh = preW; }
+  if (pre) q.value = pre;
+  if (pre || wh) apply();
 })();

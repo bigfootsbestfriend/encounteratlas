@@ -136,6 +136,7 @@ p { margin: 0 0 1em; }
 .home-crits { container-type: inline-size; }
 @container (min-width: 600px) and (max-width: 929px) { .home-crits > .crit:nth-child(9) { display: none; } }
 .crit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: .9rem; margin: 1rem 0 1.4rem; }
+.crit[hidden], .cat-group[hidden] { display: none; } /* filters on /creatures/ hide cards; .crit is flex */
 .crit { display: flex; gap: 1rem; align-items: flex-start; padding: .9rem 1rem; background: #fff; border-radius: var(--r-md);
   color: var(--ink) !important; text-decoration: none; border: 1px solid var(--mist-2); transition: border-color .15s, transform .15s; }
 .crit:hover { border-color: var(--spruce); transform: translateY(-2px); }

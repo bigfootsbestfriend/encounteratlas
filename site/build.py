@@ -285,6 +285,14 @@ def build_creatures(creatures, by_slug):
     sizes = (jload('sizes.json') or {}).get('sizes', {}) if isinstance(jload('sizes.json'), dict) else {}
     hist = Counter(x.get('creature') for x in jload('historic.json') if x.get('creature'))
     close_n = Counter(s for x in jload('close_encounters.json') for s in x.get('creatures', []))
+    WHERE = [('ca', 'Canada'), ('us', 'United States'), ('latam', 'Mexico, Central and South America'), ('eu', 'Europe'),
+             ('af', 'Africa'), ('as', 'Asia'), ('oc', 'Australia and the Pacific'), ('world', 'Worldwide')]
+
+    def where(cc):  # filter key for the "Where" menu
+        if cc in ('CA', 'US'):
+            return cc.lower()
+        cont = (countries.get(cc) or ['', ''])[1]
+        return {'EU': 'eu', 'AF': 'af', 'AS': 'as', 'OC': 'oc', 'SA': 'latam', 'NA': 'latam'}.get(cont, 'world')
     keys = {}
     for c in creatures:
         yrs = [f['year'] for f in c['famous'] if isinstance(f.get('year'), int)]
@@ -294,7 +302,10 @@ def build_creatures(creatures, by_slug):
         cname = (countries.get(cc) or [cc])[0] if cc else 'Worldwide'
         keys[c['slug']] = {'n': len(c['famous']) + close_n[c['slug']] + hist[c['slug']], 'first': first,
                            'last': max(yrs) if yrs else 0, 'size': (sizes.get(c['slug']) or {}).get('draw', 0),
+                           'w': ' '.join(sorted({where(x) for x in c['cc']})) or 'world',
                            'loc': (cname + ' ' + c['region']).lower(), 'place': c['region'] if cname in c['region'] or cname == 'Worldwide' else f'{c["region"]}, {cname}'}
+    wn = Counter(w for k in keys.values() for w in k['w'].split())
+    where_opts = ''.join(f'<option value="{k}">{esc(lab)} ({wn[k]})</option>' for k, lab in WHERE if wn[k])
     sections = ''
     for k, (label, blurb) in CATS.items():
         if not groups[k]:
@@ -312,6 +323,8 @@ def build_creatures(creatures, by_slug):
       <input id="q" type="search" placeholder="Search by name, nickname or place" autocomplete="off">
     </div>
     <div class="chips" role="group" aria-label="Filter by type">{chips}</div>
+    <div class="sort-row"><label for="where">Where</label>
+      <select id="where"><option value="">Anywhere ({len(creatures)})</option>{where_opts}</select></div>
     <div class="sort-row"><label for="sort">Sort each group by</label>
       <select id="sort">
         <option value="most">Most sightings</option><option value="fewest">Fewest sightings</option>
