@@ -27,7 +27,7 @@ approval, the text search ran over **American Stories** instead:
   https://huggingface.co/datasets/dell-research-harvard/AmericanStories
 - Licence: **CC BY 4.0** (attribution required; given here and in the /history/ page footers).
 - It is article-level OCR of the same Chronicling America scans. We streamed only these years: **1839, 1869,
-  1884, 1891, 1896, 1897 and 1909**. We kept matching articles in a local cache and never stored the full
+  1884, 1886, 1891, 1896, 1897, 1904, 1909 and 1912**. We kept matching articles in a local cache and never stored the full
   archives.
 
 We use American Stories only to *find* pages. We don't republish its OCR text. What appears on the site:

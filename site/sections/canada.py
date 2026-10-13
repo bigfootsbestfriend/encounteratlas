@@ -64,6 +64,7 @@ def build(ctx):
   <h2 id="creatures">Creatures reported in Canada</h2>
   <p>From the Sasquatch of the BC coast to {E(", ".join(c["name"] for c in lakes[:4]))} and the rest of the lake monsters.</p>
   <div class="crit-grid">{''.join(ctx.creature_card(c) for c in crit)}</div>
+  <p><a class="btn btn-ghost-l" href="{U('/creatures/?where=ca')}">Sort and filter them in the creature index</a></p>
 
   {('<h2>By province</h2><p class="md-chips">' + ''.join(f'<a class="md-chip" href="{U(p)}">{E(n)}</a>' for k, (p, n) in sorted(getattr(ctx, 'regions', {}).items(), key=lambda kv: kv[1][1]) if k.startswith('CA.')) + '</p>') if any(k.startswith('CA.') for k in getattr(ctx, 'regions', {})) else ''}
   <h2 id="ufo">UFO sightings by province</h2>

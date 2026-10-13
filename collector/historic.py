@@ -259,7 +259,7 @@ def cmd_assemble(picks_path):
 def cmd_geo():
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import bluebook as bb
-    countries, country_names, admin1, us_abbr, by_place, centres = bb.load_geonames()
+    countries, country_names, admin1, _admin1_cc, us_abbr, by_place, centres = bb.load_geonames()
     cases = json.load(open(OUT, encoding='utf-8'))
     stats = defaultdict(int)
     for c in cases:
