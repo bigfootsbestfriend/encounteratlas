@@ -617,7 +617,7 @@ def region_slug(b):
     return 'unknown'
 
 
-def build_ufo(bluebook):
+def build_ufo(bluebook, BY_SLUG):
     by_region = defaultdict(list)
     for b in bluebook:
         by_region[region_slug(b)].append(b)
@@ -671,6 +671,46 @@ def build_ufo(bluebook):
 </div></div>'''
     write('/ufo/blue-book/', page('/ufo/blue-book/', 'Project Blue Book UFO files by state, year and map', body,
                         f'All {len(bluebook):,} US Air Force Project Blue Book UFO case files (1947-1969), mapped and listed by state and country.'))
+    # "Also in <place>": the rest of the site for the same state or country (creatures, places, newspapers, FAA, Canada)
+    sys.path.insert(0, os.path.join(ROOT, 'collector'))
+    from geo import Areas
+    areas = Areas()
+    ld = lambda f: json.load(open(os.path.join(ROOT, 'data', f), encoding='utf-8')) if os.path.exists(os.path.join(ROOT, 'data', f)) else []
+    fam_at = defaultdict(list)
+    for f in ld('famous_geo.json'):
+        if f['creature'] in BY_SLUG:
+            cc, a1 = areas.where(f['lat'], f['lon'])
+            fam_at[(cc, a1)].append(f)
+            fam_at[(cc, None)].append(f)
+    place_regions = Counter(x['region'] for x in ld('places.json') if x.get('region'))
+    hist_states = Counter(h['state'] for h in ld('historic.json') if h.get('state'))
+    faa_states = Counter(r['region'] for r in ld('ufo_cases_faa.json') if r.get('region') and r.get('cc') == 'US')
+
+    def also(k, sample):
+        cc, a1, nm = sample['cc'], (sample.get('a1') if sample['cc'] == 'US' else None), names[k]
+        if not cc:
+            return ''
+        fam = fam_at.get((cc, a1), [])
+        crit = list(dict.fromkeys(f['creature'] for f in fam))[:8]
+        links = []
+        if cc == 'US' and place_regions.get(nm):
+            links.append((url('/places/' + slugify(nm) + '/'), f'{place_regions[nm]} place{"s" if place_regions[nm] != 1 else ""} to visit in {nm}'))
+        if cc == 'US' and hist_states.get(nm, 0) >= 5:  # historic.py makes a state page from 5 reports
+            links.append((url('/history/' + slugify(nm) + '/'), f'{hist_states[nm]} old newspaper report{"s" if hist_states[nm] != 1 else ""} from {nm}'))
+        if cc == 'US' and faa_states.get(nm):
+            links.append((url('/ufo/files/faa/' + slugify(nm) + '/'), f'{faa_states[nm]} FAA pilot report{"s" if faa_states[nm] != 1 else ""} over {nm}'))
+        if cc == 'CA':
+            links += [(url('/ufo/canada/'), 'Canadian UFO sightings since 1989, by province and town'), (url('/canada/'), 'Creatures and places in Canada')]
+        if not crit and not links:
+            return ''
+        out = f'<h2>Also in {esc(nm)}</h2>'
+        if links:
+            out += '<ul class="also-links">' + ''.join(f'<li><a href="{u}">{esc(t)}</a></li>' for u, t in links) + '</ul>'
+        if crit:
+            out += (f'<h3>Creatures with famous cases in {esc(nm)}</h3><div class="crit-grid">'
+                    + ''.join(creature_card(BY_SLUG[sl]) for sl in crit) + '</div>')
+        return out
+
     for k, cases in by_region.items():
         cases = sorted(cases, key=lambda b: (b['year'] or 0, b['month'] or 0))
         nm = names[k] if k != 'unknown' else 'Place unclear or unreadable'
@@ -687,6 +727,7 @@ def build_ufo(bluebook):
 <div class="band band-mist"><div class="wrap">
   <ol class="timeline cases">{items}</ol>
   <p class="small">Links open the original folder at the US National Archives.</p>
+  {also(k, cases[0]) if k != 'unknown' else ''}
 </div></div>'''
         write(f'/ufo/blue-book/{k}/', page(f'/ufo/blue-book/{k}/', f'UFO sightings in {nm}: {len(cases):,} Air Force Blue Book files',
                                            body, f'{len(cases):,} US Air Force Project Blue Book UFO case files from {nm}, with dates, places and links to the scanned originals.'))
@@ -1035,7 +1076,7 @@ def main():
     build_layer_data(creatures, military)
     build_home(creatures, n_points, bluebook, military)
     build_creatures(creatures, by_slug)
-    build_ufo(bluebook)
+    build_ufo(bluebook, by_slug)
     build_military(military)
     build_static_pages()
     # Each site/sections/*.py module owns one part of the site (places, podcasts, ...) and exposes

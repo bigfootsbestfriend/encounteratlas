@@ -589,3 +589,5 @@ a.md-book:hover { box-shadow: 0 0 0 2px var(--lantern); color: var(--ink); }
   .search-btn { width: 34px; height: 34px; } .search-btn svg { width: 17px; height: 17px; }
   .report-btn { padding: .45rem .75rem; }
 }
+.also-links { list-style: none; padding: 0; margin: 0 0 1.2rem; display: grid; gap: .45rem; }
+.also-links a { font-weight: 600; }

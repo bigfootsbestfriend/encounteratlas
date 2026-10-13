@@ -210,6 +210,35 @@ def build(ctx):
                                        f'Map of {n:,} UFO sightings in Canada from 1989 to {max(yc)}, by province and town, with {n_u:,} unexplained cases and close encounters.',
                                        head_extra=css))
 
+    # --- "Also in <province>": creatures with famous cases there and places to visit -----------------
+    import sys
+    sys.path.insert(0, os.path.join(ctx.ROOT, 'collector'))
+    from geo import Areas
+    areas = Areas()
+    ld = lambda f: json.load(open(os.path.join(ctx.ROOT, 'data', f), encoding='utf-8')) if os.path.exists(os.path.join(ctx.ROOT, 'data', f)) else []
+    fam_a1 = defaultdict(list)
+    for f in ld('famous_geo.json'):
+        if f['creature'] in ctx.by_slug and areas.inside(f['lat'], f['lon'], 'CA', slack=0):
+            cc, a1 = areas.where(f['lat'], f['lon'])
+            if cc == 'CA' and a1:
+                fam_a1[a1].append(f)
+    places_pv = defaultdict(list)
+    for x in ld('places.json'):
+        if x.get('country') == 'CA' and x.get('region'):
+            places_pv[x['region']].append(x)
+
+    def also(pv, a1):
+        crit = list(dict.fromkeys(f['creature'] for f in fam_a1.get(a1, [])))
+        pl = places_pv.get(pv, [])
+        if not crit and not pl:
+            return f'<p>More from Canada: <a href="{U("/canada/")}">creatures, famous cases and places to visit</a>.</p>'
+        out = f'<h2>Also in {E(pv)}</h2>'
+        if crit:
+            out += f'<div class="crit-grid">{"".join(ctx.creature_card(ctx.by_slug[c]) for c in crit)}</div>'
+        if pl:
+            out += ('<p>Places to visit: ' + ' · '.join(f'<a href="{U("/places/" + x["slug"] + "/")}">{E(x["name"])}</a>' for x in pl) + '</p>')
+        return out + f'<p><a href="{U("/canada/")}">Everything in Canada</a></p>'
+
     # --- /ufo/canada/<province>/ -----------------------------------------------------------------
     for pv, rs in provs:
         pu = sum(1 for r in rs if r['eval'] == 'u')
@@ -244,6 +273,7 @@ def build(ctx):
   <h2>Latest reports from {E(pv)}</h2>
   <p>The {min(len(rs), PROV_LIST):,} most recent{f" of {len(rs):,}" if len(rs) > PROV_LIST else ""}. Every report is on the map above, and each town in the list has its own page.</p>
   {caselist(rs[:PROV_LIST], len(rs), f'Search the latest {min(len(rs), PROV_LIST):,} reports: town, triangle, orange...')}
+  {also(pv, rs[0]['a1'])}
   {about}
   <h2>Other provinces and territories</h2><p class="md-chips">{others}</p>
 </div></div>{js}'''
