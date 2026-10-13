@@ -238,7 +238,8 @@ def build(ctx):
             out += f'<div class="crit-grid">{"".join(ctx.creature_card(ctx.by_slug[c]) for c in crit)}</div>'
         if pl:
             out += ('<p>Places to visit: ' + ' · '.join(f'<a href="{U("/places/" + x["slug"] + "/")}">{E(x["name"])}</a>' for x in pl) + '</p>')
-        return out + f'<p><a href="{U("/canada/")}">Everything in Canada</a></p>'
+        hub = next((p for k, (p, n) in getattr(ctx, 'regions', {}).items() if n == pv and k.startswith('CA.')), None)
+        return out + (f'<p><a href="{U(hub)}">Everything in {E(pv)}</a> · ' if hub else '<p>') + f'<a href="{U("/canada/")}">Everything in Canada</a></p>'
 
     # --- /ufo/canada/<province>/ -----------------------------------------------------------------
     for pv, rs in provs:

@@ -120,7 +120,7 @@ EA_API = os.environ.get('EA_API', '').rstrip('/')  # report Worker; empty until 
 MAP_API = f' data-api="{EA_API}"' if EA_API else ''
 UFO_MENU = [('/ufo/', 'UFO sightings'), ('/ufo/canada/', 'Canada sightings map'), ('/ufo/blue-book/', 'Air Force Blue Book files'), ('/ufo/releases/', 'Official releases'),
             ('/ufo/countries/', 'UFO files by country'), ('/military/', 'Military encounters')]
-RES_MENU = [('/places/', 'Places to visit'), ('/guides/', 'Field guides'), ('/gear/', 'Field gear'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts')]
+RES_MENU = [('/us/', 'By state or province'), ('/places/', 'Places to visit'), ('/guides/', 'Field guides'), ('/gear/', 'Field gear'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts')]
 NAV = [('/map/', 'Map'), ('/creatures/', 'Creatures'), ('UFOs', UFO_MENU)] + ([('/reports/', 'Reports')] if EA_API else []) + [
     ('/encounters/', 'Encounters'), ('/mysteries/', 'Mysteries'), ('/history/', 'History'), ('Resources', RES_MENU)]
 
@@ -701,6 +701,8 @@ def build_ufo(bluebook, BY_SLUG):
             links.append((url('/ufo/files/faa/' + slugify(nm) + '/'), f'{faa_states[nm]} FAA pilot report{"s" if faa_states[nm] != 1 else ""} over {nm}'))
         if cc == 'CA':
             links += [(url('/ufo/canada/'), 'Canadian UFO sightings since 1989, by province and town'), (url('/canada/'), 'Creatures and places in Canada')]
+        if cc == 'US':
+            links.append((url('/us/'), 'Creatures, famous cases and places, state by state'))
         if not crit and not links:
             return ''
         out = f'<h2>Also in {esc(nm)}</h2>'

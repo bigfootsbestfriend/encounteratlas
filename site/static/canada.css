@@ -13,3 +13,5 @@
 .cn-cta { margin: 2rem 0 .5rem; padding: 1.4rem 1.5rem; border-radius: var(--r-md); background: var(--spruce); color: #E8ECDD; }
 .cn-cta h2 { margin-top: 0; color: #F3F1DA; }
 .md-chip small { margin-left: .35rem; font-weight: 600; }
+.st-grid a { border-left-color: #8E8CF0; }
+.cn-card, .cn-card span { color: var(--ink) !important; }

@@ -65,6 +65,7 @@ def build(ctx):
   <p>From the Sasquatch of the BC coast to {E(", ".join(c["name"] for c in lakes[:4]))} and the rest of the lake monsters.</p>
   <div class="crit-grid">{''.join(ctx.creature_card(c) for c in crit)}</div>
 
+  {('<h2>By province</h2><p class="md-chips">' + ''.join(f'<a class="md-chip" href="{U(p)}">{E(n)}</a>' for k, (p, n) in sorted(getattr(ctx, 'regions', {}).items(), key=lambda kv: kv[1][1]) if k.startswith('CA.')) + '</p>') if any(k.startswith('CA.') for k in getattr(ctx, 'regions', {})) else ''}
   <h2 id="ufo">UFO sightings by province</h2>
   <p>{len(cu):,} reports since 1989, mapped town by town. See what was seen over your town and which reports nobody could explain.</p>
   <p class="md-chips">{prov_chips}</p>
