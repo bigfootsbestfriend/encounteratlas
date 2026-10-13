@@ -305,7 +305,7 @@ class Tools:
 <section class="band band-dark tool-head">
   <div class="wrap">
     <h1>Field tools</h1>
-    <p class="lede">Two quick tools for the trail and the kitchen table. Work out what you might have seen, or line the creatures up against a person.</p>
+    <p class="lede">Quick tools for the trail and the kitchen table. Work out what you might have seen, check whether that light was a planet, or line the creatures up against a person.</p>
   </div>
 </section>
 <div class="band band-mist"><div class="wrap">
@@ -333,9 +333,23 @@ class Tools:
       <span class="tool-sum">Stand Bigfoot, Mothman or a lake monster against a 6 ft person on a measuring wall, in feet and metres. Every size comes with where the number came from.</span>
       <span class="tool-go">Compare sizes</span></span>
     </a>
+    <a class="tool-card tool-card-sky" href="{c.url('/tools/was-it-a-planet/')}">
+      <span class="tool-art" aria-hidden="true"><svg class="tool-scene" viewBox="0 0 520 190" preserveAspectRatio="xMidYMax slice">
+        <defs><linearGradient id="ts-night" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B1730"/><stop offset="1" stop-color="#3B3F6E"/></linearGradient></defs>
+        <rect width="520" height="190" fill="url(#ts-night)"/>
+        <circle cx="70" cy="40" r="1.6" fill="#fff"/><circle cx="160" cy="26" r="1.2" fill="#fff"/><circle cx="250" cy="58" r="1.4" fill="#fff"/><circle cx="330" cy="22" r="1.1" fill="#fff"/><circle cx="470" cy="48" r="1.5" fill="#fff"/>
+        <circle cx="390" cy="96" r="7" fill="#F7E7B0"/><circle cx="390" cy="96" r="22" fill="#F7E7B0" opacity=".18"/>
+        <path d="M120 70 150 64 180 58 210 52 240 46" stroke="#DCE6FF" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 26"/>
+        <path d="M0 160L70 138 140 152 220 128 300 150 380 132 460 150 520 140V190H0Z" fill="#13261F"/>
+      </svg></span>
+      <span class="tool-txt"><span class="tool-kicker">Date, place, direction</span>
+      <span class="tool-name">Was it a planet?</span>
+      <span class="tool-sum">Enter when and where you saw a strange light. See which planets, bright stars, the Moon or the Space Station were in that part of the sky.</span>
+      <span class="tool-go">Check the sky</span></span>
+    </a>
   </div>
 </div></div>'''
-        c.write('/tools/', c.page('/tools/', 'Field tools: identify a sighting and compare cryptid sizes', body,
+        c.write('/tools/', c.page('/tools/', 'Field tools: identify a sighting, check the sky and compare cryptid sizes', body,
                                   'Free tools: a quick "What did I see?" identifier for strange sightings, and a cryptid size comparison against a 6 ft person.',
                                   body_class='tools', head_extra=self.head))
 

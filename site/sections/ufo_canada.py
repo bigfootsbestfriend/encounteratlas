@@ -191,7 +191,8 @@ def build(ctx):
   <ul class="cu-pgrid">{pgrid}</ul>
   <div class="cu-two">
     <section><h2>How the reports were rated</h2>{evbar(cases)}
-      <p>Most sightings turn out to have an ordinary cause, often a plane, a bright planet or a satellite. The survey marks a report <b>unexplained</b> only when the investigators ran out of explanations.</p></section>
+      <p>Most sightings turn out to have an ordinary cause, often a plane, a bright planet or a satellite. The survey marks a report <b>unexplained</b> only when the investigators ran out of explanations.
+      Saw something yourself? <a href="{U('/tools/was-it-a-planet/')}">Check whether it was a planet</a>.</p></section>
     <section><h2>What people saw</h2>{shapes(cases)}<p class="small muted">Not counted: plain points of light, the most common report by far.</p></section>
   </div>
   <h2>Reports by year</h2>
