@@ -28,7 +28,7 @@ const HEAD = {
   'cache-control': 'no-store',
   'x-content-type-options': 'nosniff',
   'x-frame-options': 'DENY',
-  'referrer-policy': 'no-referrer',
+  'referrer-policy': 'same-origin',  // no-referrer made Chrome send Origin: null on form posts
   'content-security-policy': "default-src 'none'; img-src 'self' https://img.youtube.com; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'",
 };
 
@@ -36,7 +36,9 @@ export async function handleMod(req, env, url) {
   const p = url.pathname;
   if (req.method === 'POST') {
     const o = req.headers.get('origin');
-    if (o !== url.origin) return new Response('Bad origin', { status: 403 });
+    // Same-origin form posts: Origin matches, or (older/privacy-mode browsers) Origin is null but Fetch Metadata says same-origin.
+    const same = o === url.origin || (o === 'null' && req.headers.get('sec-fetch-site') === 'same-origin');
+    if (!same) return new Response('Bad origin', { status: 403 });
   }
   if (p === '/mod/login' && req.method === 'POST') {
     const f = await req.formData();
