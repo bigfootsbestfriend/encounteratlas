@@ -19,7 +19,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 150  # ~1,100 throttled iTunes calls (3 s apart) with no cache on the runner: about an hour
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -37,6 +37,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/podcasts.json data/podcasts_episodes.json
           git commit -m "Weekly podcast refresh"
+          git pull --rebase origin main  # main may have moved during the long collect
           git push
           echo "changed=1" >> "$GITHUB_OUTPUT"
       - name: Deploy
