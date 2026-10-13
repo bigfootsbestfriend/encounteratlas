@@ -139,6 +139,24 @@ def nav_html(path):
     return out
 
 
+def ld_json(path, title, body):
+    """Structured data: BreadcrumbList from the page's own crumb line, and WebSite on the home page."""
+    out = []
+    if path == '/':
+        out.append({'@context': 'https://schema.org', '@type': 'WebSite', 'name': 'Encounter Atlas', 'url': SITE_URL + '/'})
+    m = re.search(r'<p class="crumb">(.*?)</p>', body, re.S)
+    if m:
+        items = [(html.unescape(re.sub(r'<[^>]+>', '', t)).strip(), h) for h, t in re.findall(r'<a href="([^"]+)"[^>]*>(.*?)</a>', m.group(1))]
+        h1 = re.search(r'<h1[^>]*>(.*?)</h1>', body, re.S)
+        last = html.unescape(re.sub(r'<[^>]+>', '', h1.group(1))).strip() if h1 else title  # the page itself
+        crumbs = [(n, h) for n, h in items if n and h != url(path)] + [(last, path)]
+        if len(crumbs) >= 2:
+            abs_ = lambda h: SITE_URL + (h[len(BASE):] if BASE and h.startswith(BASE) else h)
+            out.append({'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
+                {'@type': 'ListItem', 'position': i + 1, 'name': n, 'item': abs_(h)} for i, (n, h) in enumerate(crumbs)]})
+    return ''.join('<script type="application/ld+json">' + json.dumps(o, ensure_ascii=False).replace('</', '<\\/') + '</script>' for o in out)
+
+
 def page(path, title, body, desc='', body_class='', head_extra='', canonical=True):
     full_title = title if title.startswith('Encounter Atlas') else f'{title} | Encounter Atlas'
     nav = nav_html(path)
@@ -170,6 +188,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{url('/static/site.css')}">
 {head_extra}
+{ld_json(path, title, body)}
 </head>
 <body class="{body_class}">
 <a class="skip" href="#main">Skip to content</a>
@@ -918,6 +937,7 @@ def build_home(creatures, n_points, bluebook, military):
       <input id="home-q" type="search" placeholder="Search: Sasquatch, Ohio, Roswell..." autocomplete="off">
       <ul class="search-results" hidden></ul>
     </div>
+    <p class="home-where">Or browse where you live: <a href="{url('/us/')}">US states</a> · <a href="{url('/canada/')}">Canada</a></p>
     <nav class="tiles" aria-label="Browse by type">{tiles}</nav>
   </div>
 </section>
