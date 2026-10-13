@@ -15,7 +15,7 @@ OWNER_EMAIL = ""
 # Contact-form messages go here (reply-to is the sender). Default hello@encounteratlas.com (Cloudflare Email Routing).
 # CONTACT_TO = ""
 # Turnstile site key (public); the secret is a Worker secret.
-TURNSTILE_SITEKEY = "1x00000000000000000000AA"
+TURNSTILE_SITEKEY = "0x4AAAAAAFVllt3qoQHw1hRp"
 
 [[d1_databases]]
 binding = "DB"
