@@ -350,6 +350,7 @@ def build_creatures(creatures, by_slug):
     guides = load('guides.json')
     fam_geo = Counter(f['creature'] for f in load('famous_geo.json'))
     close_enc = load('close_encounters.json')
+    historic = load('historic.json')
     CAT_GUIDES = {'hominid': ['bigfoot-expedition', 'casting-tracks', 'trail-cameras'], 'canid': ['dogman-and-night-encounters', 'trail-cameras'],
                   'ufo': ['skywatching'], 'winged': ['dogman-and-night-encounters'], 'aquatic': [], 'entity': ['dogman-and-night-encounters'], 'fae': [], 'other': []}
     PLACE_KIND = {'museum': 'Museum', 'festival': 'Festival', 'attraction': 'Roadside stop', 'expedition': 'Tour'}
@@ -369,6 +370,16 @@ def build_creatures(creatures, by_slug):
         if ce:
             items = ''.join(f'<li><a href="{url("/encounters/" + x["slug"] + "/")}">{esc(x["name"])}</a><small>{esc(x["place"])}, {x["year"]}</small></li>' for x in ce)
             out += f'<div class="next-block"><h3>Close encounters</h3><ul class="next-list">{items}</ul></div>'
+        hs = sorted((x for x in historic if x.get('creature') == c['slug']), key=lambda x: x['date'])
+        if hs:  # old newspaper reports (site/sections/historic.py); cards there have id="h-<id>"
+            HPAGE = {'airship': 'airships-1896-1897', 'airship-1909': 'phantom-airships-1909', 'wild-man': 'wild-men', 'sea-serpent': 'sea-serpents',
+                     'jersey-devil': 'jersey-devil-1909', 'giant-bird': 'giant-birds', 'phantom-light': 'phantom-lights', 'creature': 'strange-creatures'}
+            pick = hs if len(hs) <= 6 else hs[:3] + hs[-3:]  # oldest and newest
+            items = ''.join(f'<li><a href="{url("/history/" + HPAGE.get(x["k"], "") + "/")}#h-{esc(x["id"])}">{esc(x["title"])}</a>'
+                            f'<small>{esc(x["town"] or x["place"])}, {x["date"][:4]}</small></li>' for x in pick)
+            more = (f'<p class="next-more"><a href="{url("/history/" + HPAGE.get(hs[0]["k"], "") + "/")}">{len(hs)} reports in all: see the history pages</a></p>'
+                    if len(hs) > 6 else '')
+            out += f'<div class="next-block"><h3>In old newspapers</h3><ul class="next-list">{items}</ul>{more}</div>'
         pl = [x for x in places if c['slug'] in (x.get('creatures') or [])][:6]
         if pl:
             items = ''.join(f'<li><a href="{url("/places/" + x["slug"] + "/")}">{esc(x["name"])}</a>'
