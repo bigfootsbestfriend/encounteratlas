@@ -1,3 +1,5 @@
 time,slug,model,status,prompt_tok,thought_tok,text_tok,image_tok,usd
 2026-10-13T12:50:53.245Z,fur-bearing-trout,gemini-3.1-flash-image,200,141,0,0,1120,0.0673
 2026-10-13T12:51:11.620Z,north-shore-monster,gemini-3.1-flash-image,200,140,0,0,1120,0.0673
+2026-10-14T11:32:45.232Z,wendigo,gemini-3.1-flash-image,200,160,0,0,1120,0.0673
+2026-10-14T11:32:55.129Z,skinwalker,gemini-3.1-flash-image,200,158,0,0,1120,0.0673
