@@ -678,10 +678,12 @@ def build_creatures(creatures, by_slug):
         cards = ''.join(f'<a class="ws-card" href="{url("/stories/" + x["id"] + "/")}"><b>{esc(x["title"])}</b>'
                         f'<span class="ws-meta">{esc(x["place"])} · {esc(x["when"])}</span><span class="ws-dek">{esc(x["dek"])}</span>'
                         f'<span class="ws-go">Read the story · {max(1, round(sum(len(p.split()) for p in x["body"]) / 230))} min</span></a>'
-                        for x in sts)
+                        for x in sts[:6])
+        more = (f'<p class="ws-more"><a class="btn btn-quiet" href="{url("/stories/?c=" + c["slug"])}">Read all {len(sts)} {esc(c["name"])} stories</a></p>'
+                if len(sts) > 6 else '')
         return (f'<h2 id="witness">Witness stories</h2><p class="ws-intro">First-hand accounts people have shared publicly, '
                 f'retold in full and credited to them. <a href="{url("/stories/")}">All witness stories</a></p>'
-                f'<div class="ws-grid">{cards}</div>')
+                f'<div class="ws-grid">{cards}</div>{more}')
 
     def papers_section(c):
         ps = sorted(c.get('papers', []), key=lambda x: x['year'])
@@ -733,6 +735,15 @@ def build_creatures(creatures, by_slug):
         jumps = [('#witness', 'Witness stories') if WITNESS.get(c['slug']) else None, ('#cases', 'Timeline' if kind(c) == 'single' else 'Famous cases') if cases else None, ('#modern', 'Modern reports') if modern else None, ('#papers', 'Old newspapers') if c.get('papers') else None,
                  ('#facts', 'Facts'), ('#guides', 'Field guides') if gb else None, ('#books', 'Books and gear') if mb else None, ('#related', 'Similar creatures')]
         jump = '<nav class="jump" aria-label="On this page">' + ''.join(f'<a href="{h}">{t}</a>' for h, t in filter(None, jumps)) + '</nav>'
+        nws = len(WITNESS.get(c['slug'], []))
+        reads = (f'<a href="{url("/stories/?c=" + c["slug"])}">{"Read " + str(nws) + " witness " + ("story" if nws == 1 else "stories") if nws else "Read witness stories"}</a>')
+        if EA_API:
+            # Filled in by creature.js once this creature has approved reader reports.
+            reads += f'<a href="{url("/reports/?creature=" + c["slug"])}" data-rr-link hidden>Reader reports</a>'
+        reads = f'<p class="crit-reads">{reads}</p>'
+        rr_sec = (f'<section id="reader" class="rr-sec" data-rr="{c["slug"]}" data-api="{EA_API}" hidden><h2>Reader reports</h2>'
+                  f'<p class="ws-intro">Encounters sent in by our readers and checked by a moderator.</p><div class="rr-list"></div>'
+                  f'<p><a href="{url("/reports/?creature=" + c["slug"])}">All {esc(c["name"])} reports</a></p></section>') if EA_API else ''
         body = f'''
 <section class="band band-dark creature-head cat-{c['cat']}">
   <div class="wrap creature-head-in">
@@ -744,6 +755,7 @@ def build_creatures(creatures, by_slug):
       <p class="lede">{esc(c['summary'])}</p>
       {f'<p class="lede-story"><a href="{first_story[0]}">Read the full story: {esc(first_story[1])}</a></p>' if first_story else ''}
       {jump}
+      {reads}
     </div>
   </div>
 </section>
@@ -755,6 +767,7 @@ def build_creatures(creatures, by_slug):
     <h2>{ {'single': 'What was shown or claimed', 'folklore': 'What the stories say'}.get(kind(c), 'What witnesses report') }</h2>
     <ul class="signs">{signs}</ul>
     {witness_section(c)}
+    {rr_sec}
     {f'<h2 id="cases">{"Timeline" if kind(c) == "single" else "Famous cases"}</h2><ol class="timeline">{cases}</ol>' if cases else ''}
     {f'<h2 id="modern">Modern reports</h2><ol class="timeline">{modern}</ol>' if modern else ''}
     {papers_section(c)}
@@ -775,7 +788,8 @@ def build_creatures(creatures, by_slug):
 <div class="band band-mist nl-band"><div class="wrap">{signup_box('c', 'Get strange news, once a week', 'New ' + c['name'] + ' and cryptid reports, a creature of the week and what the old newspapers said this week. One short email on Thursdays, unsubscribe in one click.')}</div></div>'''
         write(f'/creatures/{c["slug"]}/', page(f'/creatures/{c["slug"]}/', f'{c["name"]}: ' + {'single': 'the story, facts and other names', 'folklore': 'stories, facts and other names'}.get(kind(c), 'sightings, facts and other names'),
                                                body, f'{c["summary"]} Also called {", ".join(c["aliases"][:4])}.'
-                                               if c['aliases'] else c['summary']))
+                                               if c['aliases'] else c['summary'],
+                                               head_extra=f'<script src="{url("/static/creature.js")}" defer></script>' if EA_API else ''))
 
 
 def case_line(b):

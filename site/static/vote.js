@@ -418,6 +418,7 @@
       if (og.children.length) sel.append(og);
     }
     sel.append(h('option', { value: 'other', text: 'Something else' }));
+    if (qs.get('creature') && [...sel.options].some((o) => o.value === qs.get('creature'))) sel.value = qs.get('creature');
     const grid = h('div', { class: 'rep-cards' });
     const more = h('button', { type: 'button', class: 'btn btn-quiet', hidden: true, text: 'Show older reports' });
     const status = h('p', { class: 'loading', text: 'Loading reports...' });

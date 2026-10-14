@@ -11,6 +11,8 @@ short quotes. Anyone can ask for their story to be changed or removed through /c
 import json, os, re
 
 WPM = 230
+FILTERS_AT = int(os.environ.get('WS_FILTERS_AT', '40'))  # show setting/place/sort filters once there are this many
+SETTINGS = {'home': 'At home', 'camp': 'Camping', 'road': 'On the road', 'outdoors': 'In the woods', 'work': 'At work'}
 
 
 def minutes(st):
@@ -87,23 +89,47 @@ def build(ctx):
                                                    st['dek'], head_extra=head))
 
     # Hub: newest encounters first, chips to filter by creature (all cards are in the HTML; JS only hides).
+    # Once there are FILTERS_AT stories, a second row adds setting, place and sort. ?c=, ?s=, ?w= and ?o= preselect them.
     order = sorted(stories, key=lambda x: -x['year'])
     counts = sorted(by_c.items(), key=lambda kv: (-len(kv[1]), ctx.by_slug[kv[0]]['name']))
     chips = ''.join(f'<button type="button" class="chip" data-c="{k}">{e(ctx.by_slug[k]["name"])} <span>{len(v)}</span></button>'
                     for k, v in counts)
-    cards = ''.join(f'<div data-c="{x["creature"]}">{card(ctx, x)}</div>' for x in order)
+    cards = ''.join(f'<div data-c="{x["creature"]}" data-s="{x.get("setting", "")}" data-w="{e(x.get("country", ""))}|{e(x.get("region", ""))}" '
+                    f'data-y="{x["year"]}" data-m="{sum(len(p.split()) for p in x["body"])}">{card(ctx, x)}</div>' for x in order)
+    more = ''
+    if len(stories) >= FILTERS_AT:
+        n_set = {k: sum(1 for x in stories if x.get('setting') == k) for k in SETTINGS}
+        set_chips = ''.join(f'<button type="button" class="chip" data-s="{k}">{v} <span>{n_set[k]}</span></button>'
+                            for k, v in SETTINGS.items() if n_set[k])
+        by_country = {}
+        for x in stories:
+            if x.get('country'):
+                by_country.setdefault(x['country'], {}).setdefault(x.get('region', ''), 0)
+                by_country[x['country']][x.get('region', '')] += 1
+        opts = '<option value="">Anywhere</option>'
+        for co, regs in sorted(by_country.items(), key=lambda kv: (kv[0] != 'United States', kv[0])):
+            tot = sum(regs.values())
+            opts += f'<option value="{e(co)}|">{e(co)} ({tot})</option>'
+            if len(regs) > 1:
+                opts += ''.join(f'<option value="{e(co)}|{e(r)}">&nbsp;&nbsp;{e(r)} ({n})</option>' for r, n in sorted(regs.items()) if r)
+        more = f'''
+  <div class="ws-filters">
+    <div class="chips ws-set" role="group" aria-label="Filter by setting"><button type="button" class="chip on" data-s="">Anywhere <span>{len(stories)}</span></button>{set_chips}</div>
+    <label class="ws-sel">Where <select data-w>{opts}</select></label>
+    <label class="ws-sel">Sort <select data-o><option value="new">Newest encounter</option><option value="old">Oldest encounter</option><option value="long">Longest read</option><option value="short">Shortest read</option></select></label>
+  </div>'''
     body = f'''
 <section class="band band-dark"><div class="wrap">
   <h1>Witness stories</h1>
   <p class="lede">{len(stories)} first-hand accounts people have shared publicly, retold in full: what they saw, where, and what happened next. Each one credits the person who told it and links the original.</p>
-  <div class="chips ws-chips" role="group" aria-label="Filter by creature"><button type="button" class="chip on" data-c="">All <span>{len(stories)}</span></button>{chips}</div>
+  <div class="chips ws-chips" role="group" aria-label="Filter by creature"><button type="button" class="chip on" data-c="">All <span>{len(stories)}</span></button>{chips}</div>{more}
 </div></section>
 <div class="band band-mist"><div class="wrap">
+  <p class="ws-count" data-count hidden></p>
   <div class="ws-grid ws-hub">{cards}</div>
   <p class="small">We can't verify these accounts and don't claim they're true or false. Your own story belongs here too: <a href="{u('/report/')}">report an encounter</a>.</p>
 </div></div>
-<script>(()=>{{const b=[...document.querySelectorAll('.ws-chips .chip')],c=[...document.querySelectorAll('.ws-hub>[data-c]')];
-b.forEach(x=>x.addEventListener('click',()=>{{b.forEach(y=>y.classList.toggle('on',y===x));c.forEach(d=>d.hidden=!!x.dataset.c&&d.dataset.c!==x.dataset.c);}}));}})();</script>'''
+<script src="{u('/static/stories.js')}" defer></script>'''
     ctx.write('/stories/', ctx.page('/stories/', 'Witness stories: first-hand Bigfoot, Dogman and cryptid encounters', body,
                                     f'{len(stories)} first-hand cryptid and creature encounters, retold in full and credited to the people who lived them.',
                                     head_extra=head))

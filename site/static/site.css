@@ -684,3 +684,9 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 .ws-crit .ico { width: 18px; height: 18px; }
 .ws-intro { margin-top: -.3rem; }
 .prose .ws-grid { max-width: none; font-size: 1rem; }
+/* Creature header: links to the witness stories and reader reports for this creature */
+.crit-reads { display: flex; flex-wrap: wrap; gap: .5rem; margin: .9rem 0 0; }
+.crit-reads a { display: inline-block; padding: .4rem .85rem; border-radius: 999px; background: var(--lantern); color: var(--spruce); font-weight: 700; text-decoration: none; font-size: .95rem; }
+.crit-reads a:hover { filter: brightness(1.05); text-decoration: underline; }
+.crit-reads a[hidden] { display: none; }
+.ws-more { margin: 1rem 0 0; }
