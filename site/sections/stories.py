@@ -39,6 +39,24 @@ def card(ctx, st, show_creature=True):
             f'<span class="ws-go">Read the story · {minutes(st)} min</span></a>')
 
 
+ZOOM_LABEL = {9: 'a few miles', 8: 'about 10 miles', 7: 'about 25 miles'}
+
+
+def where(ctx, st, c):
+    """A small map of the rough area. Many of these are people's homes, so it's always a soft circle, never a pin."""
+    if not st.get('geo'):
+        return ''
+    lat, lon, z = st['geo']
+    e, u = ctx.esc, ctx.url
+    near = (f'The circle marks the rough area, within {ZOOM_LABEL[z]}, not an exact spot.' if z in ZOOM_LABEL
+            else "The account doesn't say exactly where, so the circle is only a rough guide.")
+    at = f'{lat:.2f},{lon:.2f},{min(z, 8)}'
+    return (f'<section class="ws-where cat-{c["cat"]}">'
+            f'<div class="ws-map" data-ws-map="{lat},{lon},{z}" role="img" aria-label="Map showing the rough area: {e(st["place"])}"></div>'
+            f'<p><strong>Where it happened.</strong> {e(st["place"])}. {near} '
+            f'<a href="{u("/map/?at=" + at)}">See other sightings nearby</a></p></section>')
+
+
 def build(ctx):
     stories = load(ctx)
     if not stories:
@@ -64,6 +82,7 @@ def build(ctx):
                      if same else '')
         body = f'''
 <section class="band band-dark ws-head cat-{c['cat']}"><div class="wrap narrow">
+  <a class="ws-art" href="{u('/creatures/' + c['slug'] + '/')}" tabindex="-1" aria-hidden="true">{ctx.crit_icon(c, 'ico ws-art-ico')}</a>
   <p class="crumb"><a href="{u('/stories/')}">Witness stories</a> / <a href="{u('/creatures/' + c['slug'] + '/')}">{e(c['name'])}</a></p>
   <h1>{e(st['title'])}</h1>
   <p class="lede">{e(st['dek'])}</p>
@@ -81,6 +100,7 @@ def build(ctx):
       correct it, or take it down.</p>
     </aside>
   </article>
+  {where(ctx, st, c)}
   <div class="ws-vote" data-vote-item="s:{st['id']}"></div>
   <script type="application/json" id="ea-config">{cfg}</script>
   <section class="seen-box cat-{c['cat']}">{ctx.crit_icon(c)}<div>

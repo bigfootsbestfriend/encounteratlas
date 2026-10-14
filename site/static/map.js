@@ -10,6 +10,11 @@
   const params = new URLSearchParams(location.search);
 
   const HOME_VIEW = { center: window.innerWidth < 720 ? [-98, 44] : [-98, 41], zoom: window.innerWidth < 720 ? 2.6 : 3.4 };
+  // ?at=lat,lon,zoom (from witness story pages) opens the map on that area.
+  const at = (params.get('at') || '').split(',').map(Number);
+  if (at.length >= 2 && at.every(Number.isFinite) && Math.abs(at[0]) <= 90 && Math.abs(at[1]) <= 180) {
+    HOME_VIEW.center = [at[1], at[0]]; HOME_VIEW.zoom = Math.min(Math.max(at[2] || 7, 3), 9);
+  }
   const fullPage = location.pathname.endsWith('/map/');
   const map = new maplibregl.Map({
     container: el,

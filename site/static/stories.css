@@ -17,3 +17,19 @@
 .ws-count { font-weight: 600; margin: 0 0 1rem; }
 .ws-vote { margin: 0 0 1.5rem; }
 .ws-vote [hidden] { display: none !important; }
+
+/* Story header: the creature's poster silhouette, in its category colour, beside the title. */
+.ws-head .wrap.narrow { position: relative; }
+.ws-art { float: right; width: clamp(96px, 22vw, 190px); aspect-ratio: 1; margin: .2rem 0 .6rem 1.2rem; opacity: .92;
+  shape-outside: circle(50%); }
+.ws-art .ws-art-ico { display: block; width: 100%; height: 100%; }
+.ws-head .ws-byline { clear: both; }
+@media (max-width: 560px) { .ws-art { width: 88px; margin-left: .8rem; opacity: .85; } }
+
+/* Where it happened: a small map with a soft circle (never a pin). */
+.ws-where { margin: 1.8rem 0 1.6rem; border-radius: 14px; overflow: hidden; background: var(--spruce, #13261F); color: #E6ECE6; }
+.ws-map { height: 240px; background: #1a2e27 radial-gradient(circle at 50% 50%, rgba(255,255,255,.06), transparent 60%); }
+.ws-where p { margin: 0; padding: .85rem 1.1rem 1rem; font-size: .95rem; line-height: 1.5; }
+.ws-where a { color: #F2B33D; }
+.ws-where-nomap .ws-map { display: none; }
+@media (max-width: 560px) { .ws-map { height: 190px; } }
