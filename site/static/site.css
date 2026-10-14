@@ -434,7 +434,7 @@ body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
   .tchip { font-size: .85rem; } .cfind-in { max-width: none; }
 }
 /* Creature pages: full-story link under the summary, case summaries and sources, guide band, related groups */
-.lede-story { margin: .4rem 0 0; } .lede-story a { color: var(--lantern); font-weight: 700; }
+.lede-story { margin: .4rem 0 1.5rem; } .lede-story a { color: var(--lantern); font-weight: 700; }
 .case-sum { margin: .45rem 0 .3rem; font-size: .98rem; line-height: 1.55; color: var(--ink); }
 .case-links { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin: .2rem 0 0; font-size: .92rem; }
 .case-links .full-story { font-weight: 700; }

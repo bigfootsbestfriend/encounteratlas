@@ -6026,6 +6026,46 @@
   "wiki": "West Virginia folklore"
  },
  {
+  "slug": "alabama-white-thang",
+  "name": "Alabama White Thang",
+  "aliases": [
+   "White Thang",
+   "Alabama White Thing",
+   "Slough Thing",
+   "White Thing of Alabama"
+  ],
+  "cat": "hominid",
+  "icon": "skunkape",
+  "region": "North Alabama, especially between Morgan, Etowah and Jefferson counties",
+  "cc": [
+   "US"
+  ],
+  "first": "Told in north Alabama since at least the early 1930s, with some accounts going back to the early 1900s",
+  "summary": "A tall, white-haired creature of north Alabama that screams like a woman or a crying baby. \"Thang\" is how locals say \"thing\".",
+  "body": [
+   "The White Thang is north Alabama's own monster. The name is just the local way of saying \"thing\", and people across the region have been telling stories about it for generations. Most sightings fall in a rough triangle between Morgan, Etowah and Jefferson counties, with places like Walnut Grove, Moody's Chapel, Happy Hollow and the Wheeler Wildlife Refuge coming up again and again.",
+   "The most common description is a big, hairy, white or pale creature that stands on two legs, often put at around eight feet tall, sometimes with glowing red eyes. It's known for its cry, a high-pitched scream that people compare to a woman screaming or a baby crying. But the stories don't all agree. Some witnesses describe something more cat-like that runs on all fours, and over the years it's been compared to a white lion, a bear, a wolf, and even a kangaroo with a cat's head. It's said to be fast, able to jump fences and climb trees, and gone in the blink of an eye.",
+   "In Courtland, in northern Lawrence County, it goes by another name: the Slough Thing, after the marshy slough along Big Nance Creek where it's supposed to live. The town's mayor, Linda Peebles, has said her own mother ran into it near the creek during the Depression in the early 1930s.",
+   "Nobody knows what it is. Guesses range from an albino animal or escaped exotic cat to something supernatural. It's often called a white Bigfoot, but plenty of Alabamians will tell you that's not quite right. It's also not the same creature as West Virginia's White Thing, a separate legend of a shaggy, dog-like beast with a similar scream."
+  ],
+  "signs": [
+   "Pale or white hair",
+   "A scream like a woman or a crying baby",
+   "Upright and very tall, or fast on all fours",
+   "Glowing red eyes at night"
+  ],
+  "size": "Often said to be about 8 ft tall (reported)",
+  "habitat": "Woods, fields, creek bottoms and sloughs of north Alabama",
+  "famous": [],
+  "related": [
+   "white-thing",
+   "bigfoot",
+   "skunk-ape",
+   "wampus-cat"
+  ],
+  "wiki": ""
+ },
+ {
   "slug": "white-thing",
   "name": "White Thing",
   "aliases": [
@@ -6044,7 +6084,7 @@
   "body": [
    "The White Thing is a West Virginia legend of a pale, shaggy animal that moves on all fours and lets out a scream like a woman in pain. Stories place it on lonely roads and hollows at night, where it frightens people walking or riding home.",
    "Its best-known telling comes from a student in Ruth Ann Musick's folklore classes at Fairmont State, which she printed in her 1965 collection The Telltale Lilac Bush and Other West Virginia Ghost Tales. In that story a woman riding home from church hears the cry before a white beast appears.",
-   "Later accounts from Mason and Kanawha counties describe a white-furred, dog-headed animal, and many writers treat it as the same creature as, or an ancestor of, the modern Sheepsquatch legend."
+   "Later accounts from Mason and Kanawha counties describe a white-furred, dog-headed animal, and many writers treat it as the same creature as, or an ancestor of, the modern Sheepsquatch legend. It's a different legend from the Alabama White Thang, a tall, pale creature of north Alabama that's usually seen upright."
   ],
   "signs": [
    "A white, shaggy animal on all fours",
@@ -6061,6 +6101,7 @@
    }
   ],
   "related": [
+   "alabama-white-thang",
    "sheepsquatch",
    "grafton-monster",
    "mothman",

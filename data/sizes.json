@@ -115,6 +115,7 @@
     "the-rake": {"dim": "height", "lo": 5.5, "hi": 6.5, "draw": 6.0, "basis": "Described as \"Human-sized, often crouched (in the stories)\". We drew it at 5.5 to 6.5 ft tall, a typical human."},
     "hat-man": {"dim": "height", "lo": 5.5, "hi": 8.1, "draw": 6.8, "basis": "Described as \"Human-sized or taller (reported)\". We drew it at 5.5 to 8.1 ft tall, a typical human."},
     "snarly-yow": {"dim": "shoulder", "lo": 2.5, "hi": 3, "draw": 2.8, "basis": "Described as \"Large dog, sometimes said to grow (in the stories)\". We drew it at 2.5 to 3 ft at the shoulder, a typical large dog."},
+    "alabama-white-thang": {"dim": "height", "lo": 7.0, "hi": 8.0, "draw": 8.0, "basis": "Usually described as about 8 ft tall when upright; descriptions vary a lot."},
     "white-thing": {"dim": "shoulder", "lo": 2.5, "hi": 3, "draw": 2.8, "basis": "Described as \"Large dog-sized or bigger (reported)\". We drew it at 2.5 to 3 ft at the shoulder, a typical large dog."},
     "ninki-nanka": {"dim": "length", "lo": 30.0, "hi": 30.0, "draw": 30.0, "basis": "Witness reports usually say 30 ft long."},
     "grootslang": {"dim": "length", "lo": 40.0, "hi": 50.0, "draw": 45.0, "basis": "Witness reports usually say 40 to 50 ft long."},
