@@ -7,7 +7,7 @@ Also writes /data/places.geojson for the main map's "Places to visit" layer.
 Data: data/places.json. Every entry was checked by hand against the source URL stored with it.
 Event dates: `start`/`end` are the announced dates (if any); `month`/`when` describe the usual timing.
 """
-import json, math, os
+import json, math, os, re
 from collections import defaultdict
 from datetime import date
 
@@ -212,7 +212,21 @@ class Builder:
             d = {'@context': 'https://schema.org', '@type': 'Event', 'name': p['name'], 'description': p['summary'],
                  'startDate': p['start'], 'endDate': p['end'] or p['start'], 'location': loc,
                  'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
-                 'eventStatus': 'https://schema.org/EventScheduled'}
+                 'eventStatus': 'https://schema.org/EventScheduled',
+                 'image': self.c.SITE_URL + '/static/og.png'}
+            link = p.get('url') or p.get('source')
+            if link:
+                # we don't know the organizing group's legal name; the festival itself is the closest honest answer
+                d['organizer'] = {'@type': 'Organization', 'name': p['name'], 'url': link}
+                offer = {'@type': 'Offer', 'url': link, 'availability': 'https://schema.org/InStock'}
+                cur = {'US': 'USD', 'CA': 'CAD', 'GB': 'GBP', 'AU': 'AUD'}.get(p['country'])
+                pr = p.get('price') or ''
+                m = re.search(r'\$(\d+)', pr)
+                if cur and pr.lower().startswith('free'):
+                    offer.update(price=0, priceCurrency=cur)
+                elif cur and m and not re.search(r'parking|\(20\d\d\)', pr):
+                    offer.update(price=int(m.group(1)), priceCurrency=cur)
+                d['offers'] = offer
         else:
             kind = {'museum': 'Museum', 'attraction': 'TouristAttraction', 'expedition': 'TouristTrip'}[p['type']]
             d = {'@context': 'https://schema.org', '@type': kind, 'name': p['name'], 'description': p['summary']}
