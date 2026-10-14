@@ -9,6 +9,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'design', 'art-src')
 OUT = os.path.join(ROOT, 'site', 'static', 'art')
 INK = '#14211B'
+PALE = {'alabama-white-thang': '#F1ECDD'}  # creatures known for their white coat stand out pale on the poster
 
 slugs = {c['slug'] for c in json.load(open(os.path.join(ROOT, 'data', 'creatures.json')))}
 os.makedirs(OUT, exist_ok=True)
@@ -20,7 +21,7 @@ for slug in sorted(slugs):
         continue
     svg = open(src).read()
     svg = re.sub(r'\s(width|height)="[^"]*"', '', svg, count=2)
-    svg = re.sub(r'fill="#0{3,6}"', f'fill="{INK}"', svg)
+    svg = re.sub(r'fill="#0{3,6}"', f'fill="{PALE.get(slug, INK)}"', svg)
     open(os.path.join(OUT, slug + '.svg'), 'w').write(svg)
     done.append(slug)
 print(f'published {len(done)}; no art yet for {len(missing)}: {", ".join(missing)}')
