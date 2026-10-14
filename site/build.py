@@ -124,7 +124,7 @@ EA_API = os.environ.get('EA_API', '').rstrip('/')  # report Worker; empty until 
 MAP_API = f' data-api="{EA_API}"' if EA_API else ''
 UFO_MENU = [('/ufo/', 'UFO sightings'), ('/ufo/canada/', 'Canada sightings map'), ('/ufo/blue-book/', 'Air Force Blue Book files'), ('/ufo/releases/', 'Official releases'),
             ('/ufo/countries/', 'UFO files by country'), ('/military/', 'Military encounters')]
-RES_MENU = [('/us/', 'By state or province'), ('/places/', 'Places to visit'), ('/guides/', 'Field guides'), ('/gear/', 'Field gear'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts')]
+RES_MENU = [('/stories/', 'Witness stories'), ('/us/', 'By state or province'), ('/places/', 'Places to visit'), ('/guides/', 'Field guides'), ('/gear/', 'Field gear'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts')]
 NAV = [('/map/', 'Map'), ('/creatures/', 'Creatures'), ('UFOs', UFO_MENU)] + ([('/reports/', 'Reports')] if EA_API else []) + [
     ('/encounters/', 'Encounters'), ('/mysteries/', 'Mysteries'), ('/history/', 'History'), ('Resources', RES_MENU)]
 
@@ -254,7 +254,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
   <div class="foot-in">
     <p class="foot-brand"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</p>
     <p>Sightings, creatures and official files, mapped. Reports are what witnesses say they saw. We don't claim they're real, and we don't claim they're not.</p>
-    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/gear/')}">Gear</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/newsletter/')}">Weekly email</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{url('/privacy/')}">Privacy policy</a></p>
+    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/stories/')}">Witness stories</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/gear/')}">Gear</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/newsletter/')}">Weekly email</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{url('/privacy/')}">Privacy policy</a></p>
     {social_row('social foot-social')}
     <p class="small">As an Amazon Associate we earn from qualifying purchases. <a href="{url('/privacy/')}#affiliate">About our affiliate links</a>.</p>
     <p class="small">Air Force case files: US National Archives, Record Group 341. Canadian sightings: the Canadian UFO Survey, Ufology Research. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>
@@ -656,6 +656,31 @@ def build_creatures(creatures, by_slug):
                     f'<div class="crit-grid">{"".join(creature_card(o) for o in nearby)}</div>')
         return f'<div class="wrap rel-wrap">{out}</div>' if out else ''
 
+    WITNESS = {}
+    for st in load('witness_stories.json'):
+        WITNESS.setdefault(st['creature'], []).append(st)
+
+    def witness_section(c):
+        sts = sorted(WITNESS.get(c['slug'], []), key=lambda x: -x['year'])
+        if not sts:
+            return ''
+        cards = ''.join(f'<a class="ws-card" href="{url("/stories/" + x["id"] + "/")}"><b>{esc(x["title"])}</b>'
+                        f'<span class="ws-meta">{esc(x["place"])} · {esc(x["when"])}</span><span class="ws-dek">{esc(x["dek"])}</span>'
+                        f'<span class="ws-go">Read the story · {max(1, round(sum(len(p.split()) for p in x["body"]) / 230))} min</span></a>'
+                        for x in sts)
+        return (f'<h2 id="witness">Witness stories</h2><p class="ws-intro">First-hand accounts people have shared publicly, '
+                f'retold in full and credited to them. <a href="{url("/stories/")}">All witness stories</a></p>'
+                f'<div class="ws-grid">{cards}</div>')
+
+    def papers_section(c):
+        ps = sorted(c.get('papers', []), key=lambda x: x['year'])
+        if not ps:
+            return ''
+        items = ''.join(f'<li><span class="yr">{x["year"]}</span><span><strong>{esc(x["name"])}</strong><br><span class="muted">{esc(x["place"])}</span>'
+                        f'<p class="case-sum">{esc(x["summary"])}</p><p class="case-links"><a class="case-src" href="{esc(x["source_url"])}" rel="noopener">'
+                        f'Source: {esc(x["source_title"])}</a></p></span></li>' for x in ps)
+        return f'<h2 id="papers">In the old newspapers</h2><ol class="timeline">{items}</ol>'
+
     def case_item(c, f):
         d = famous_details.get(c['slug'] + '|' + f['name']) or {}
         story = story_url(c['slug'], f['year'])
@@ -694,7 +719,7 @@ def build_creatures(creatures, by_slug):
             ufo_note = (f'<p class="callout">{icon("folder", "ico ico-inline")} Browse 10,622 US Air Force Project Blue Book '
                         f'case files on the <a href="{url("/map/")}">map</a> or <a href="{url("/ufo/blue-book/")}">by state</a>.</p>')
         gb, mb = (guide_band(c) if kind(c) != 'single' else ''), media_band(c)
-        jumps = [('#cases', 'Timeline' if kind(c) == 'single' else 'Famous cases') if cases else None, ('#modern', 'Modern reports') if modern else None,
+        jumps = [('#witness', 'Witness stories') if WITNESS.get(c['slug']) else None, ('#cases', 'Timeline' if kind(c) == 'single' else 'Famous cases') if cases else None, ('#modern', 'Modern reports') if modern else None, ('#papers', 'Old newspapers') if c.get('papers') else None,
                  ('#facts', 'Facts'), ('#guides', 'Field guides') if gb else None, ('#books', 'Books and gear') if mb else None, ('#related', 'Similar creatures')]
         jump = '<nav class="jump" aria-label="On this page">' + ''.join(f'<a href="{h}">{t}</a>' for h, t in filter(None, jumps)) + '</nav>'
         body = f'''
@@ -718,8 +743,10 @@ def build_creatures(creatures, by_slug):
     {ufo_note}
     <h2>{ {'single': 'What was shown or claimed', 'folklore': 'What the stories say'}.get(kind(c), 'What witnesses report') }</h2>
     <ul class="signs">{signs}</ul>
+    {witness_section(c)}
     {f'<h2 id="cases">{"Timeline" if kind(c) == "single" else "Famous cases"}</h2><ol class="timeline">{cases}</ol>' if cases else ''}
     {f'<h2 id="modern">Modern reports</h2><ol class="timeline">{modern}</ol>' if modern else ''}
+    {papers_section(c)}
     {seen_box(c)}
   </article>
   <aside class="side">
@@ -1276,7 +1303,9 @@ def merge_stories(creatures):
             continue
         have = {f['name'] for f in c['famous']}
         for st in stories:
-            if st['name'] not in have:
+            if st.get('kind') == 'newspaper':  # shown in their own "In the old newspapers" list, not the case timeline
+                c.setdefault('papers', []).append(st)
+            elif st['name'] not in have:
                 c['famous'].append({'name': st['name'], 'year': st['year'], 'place': st['place']})
                 STORY_DETAILS[slug + '|' + st['name']] = {k: st[k] for k in ('summary', 'source_title', 'source_url') if st.get(k)}
 

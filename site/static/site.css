@@ -670,3 +670,17 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 /* Under 900px the nav wraps onto extra rows (three with a phone's larger text setting), so a pinned header
    would cover a third of the screen. Let it scroll away there; it stays pinned on wider screens. */
 @media (max-width: 900px) { .top { position: relative; } .facts { top: 12px; } }
+
+/* Witness story cards (creature pages, /stories/) */
+.ws-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .9rem; margin: .8rem 0 1.6rem; }
+.ws-card { display: flex; flex-direction: column; gap: .3rem; padding: 1rem 1.1rem; background: #fff; border: 1px solid var(--mist-2);
+  border-top: 4px solid var(--lantern); border-radius: var(--r-md); color: var(--ink) !important; text-decoration: none; line-height: 1.4; }
+.ws-card:hover { border-color: var(--spruce-3); box-shadow: 0 6px 18px rgba(19,38,31,.12); }
+.ws-card b { font: 700 1.12rem/1.25 var(--display); }
+.ws-meta { font-size: .85rem; color: var(--muted-l); }
+.ws-dek { font-size: .95rem; }
+.ws-go { margin-top: auto; padding-top: .3rem; font-weight: 700; font-size: .9rem; color: #7A4E00; }
+.ws-crit { display: inline-flex; align-items: center; gap: .35rem; font-size: .8rem; font-weight: 700; color: var(--muted-l); }
+.ws-crit .ico { width: 18px; height: 18px; }
+.ws-intro { margin-top: -.3rem; }
+.prose .ws-grid { max-width: none; font-size: 1rem; }
