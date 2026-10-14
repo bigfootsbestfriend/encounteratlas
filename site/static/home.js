@@ -98,7 +98,7 @@
         const p = f.properties;
         const where = p.t === p.r || !p.r ? p.t : `${p.t}, ${p.r}`;
         return `<li><span class="yr">${esc(p.w)}</span><span><a href="${caseLink(p)}" rel="noopener" target="_blank">${esc(where)}</a></span></li>`;
-      }).join('') + `<li><span class="yr"></span><span>${hits.length.toLocaleString()} reports in all from ${LONG[m]}s</span></li>`;
+      }).join('') + `<li><span class="yr"></span><span><a href="${BASE}/ufo/blue-book/">All ${hits.length.toLocaleString()} ${LONG[m]} reports in the Air Force files</a></span></li>`;
     }).catch(() => { monthBox.hidden = true; });
   }
 
