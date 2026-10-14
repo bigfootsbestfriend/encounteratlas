@@ -217,6 +217,7 @@ def build(ctx):
   <div class="wrap">
     <h1>Recent encounters</h1>
     <p class="lede">What people say they saw, checked by a moderator and pinned to within about 5 km. Read them, then vote: real, hoax or misidentified.</p>
+    <p class="lede-story"><a href="{url('/stories/')}">Prefer a longer read? Witness stories: first-hand accounts retold in full</a></p>
     <div class="map-actions"><a class="btn" href="{url('/report/')}">Report an encounter</a><a class="btn btn-ghost" href="{url('/reports/?me=1')}" data-acct>Your reports</a></div>
   </div>
 </section>
