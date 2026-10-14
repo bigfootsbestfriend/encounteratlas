@@ -215,7 +215,7 @@ def ld_json(path, title, body):
     return ''.join('<script type="application/ld+json">' + json.dumps(o, ensure_ascii=False).replace('</', '<\\/') + '</script>' for o in out)
 
 
-def page(path, title, body, desc='', body_class='', head_extra='', canonical=True):
+def page(path, title, body, desc='', body_class='', head_extra='', canonical=True, og_image=''):
     full_title = title if title.startswith('Encounter Atlas') else f'{title} | Encounter Atlas'
     nav = nav_html(path)
     robots = '' if LAUNCHED else '<meta name="robots" content="noindex">'
@@ -238,7 +238,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <meta property="og:title" content="{esc(full_title)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{SITE_URL}{path}">
-<meta property="og:image" content="{SITE_URL}/static/og.png">
+<meta property="og:image" content="{SITE_URL}{og_image or '/static/og.png'}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

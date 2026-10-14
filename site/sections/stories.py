@@ -8,7 +8,8 @@ Data: data/witness_stories.json, a list of
 Each story credits the person who told it and links the original post. Nothing is copied word for word except
 short quotes. Anyone can ask for their story to be changed or removed through /contact/.
 """
-import json, os, re
+import json
+import os, re
 
 WPM = 230
 FILTERS_AT = int(os.environ.get('WS_FILTERS_AT', '40'))  # show setting/place/sort filters once there are this many
@@ -55,6 +56,12 @@ def where(ctx, st, c):
             f'<div class="ws-map" data-ws-map="{lat},{lon},{z}" role="img" aria-label="Map showing the rough area: {e(st["place"])}"></div>'
             f'<p><strong>Where it happened.</strong> {e(st["place"])}. {near} '
             f'<a href="{u("/map/?at=" + at)}">See other sightings nearby</a></p></section>')
+
+
+def og_image(st):
+    """Per-story share card from tools/story_og.py, when it has been rendered."""
+    rel = f'/static/og/stories/{st["id"]}.jpg'
+    return rel if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', rel.lstrip('/'))) else ''
 
 
 def build(ctx):
@@ -115,7 +122,8 @@ def build(ctx):
   {ctx.signup_box('ws', 'A new story every week', 'Witness stories, old-newspaper monsters and a creature of the week. One short email on Thursdays, unsubscribe in one click.')}
 </div></div>'''
         ctx.write(f'/stories/{st["id"]}/', ctx.page(f'/stories/{st["id"]}/', f'{st["title"]}: a {c["name"]} encounter', body,
-                                                   st['dek'], head_extra=vote_head + f'<script src="{u("/static/stories.js")}" defer></script>'))
+                                                   st['dek'], head_extra=vote_head + f'<script src="{u("/static/stories.js")}" defer></script>',
+                                                   og_image=og_image(st)))
 
     # Hub: newest encounters first, chips to filter by creature (all cards are in the HTML; JS only hides).
     # Once there are FILTERS_AT stories, a second row adds setting, place and sort. ?c=, ?s=, ?w= and ?o= preselect them.
