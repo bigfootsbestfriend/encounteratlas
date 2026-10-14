@@ -3,7 +3,7 @@
 Inputs: data/creatures.json (hand-written), data/bluebook.json (collector/bluebook.py),
 data/military.json (hand-written). Output: plain HTML pages + a few JSON/GeoJSON files.
 """
-import datetime, html, json, os, re, shutil, sys, urllib.parse
+import hashlib, datetime, html, json, os, re, shutil, sys, urllib.parse
 from collections import Counter, defaultdict
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
@@ -41,7 +41,18 @@ def slugify(s):
     return re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')
 
 
+_VER = {}
+
+
 def url(path):
+    # CSS and JS get a content-hash query so browsers and the service worker (cache-first for /static/)
+    # fetch a changed file at once instead of serving yesterday's copy.
+    if path.startswith('/static/') and path.endswith(('.css', '.js')):
+        if path not in _VER:
+            f = os.path.join(STATIC, path[len('/static/'):])
+            _VER[path] = hashlib.md5(open(f, 'rb').read()).hexdigest()[:8] if os.path.exists(f) else ''
+        if _VER[path]:
+            return f'{BASE}{path}?v={_VER[path]}'
     return BASE + path
 
 
