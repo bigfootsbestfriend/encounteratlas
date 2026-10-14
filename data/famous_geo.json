@@ -50,26 +50,6 @@
 "lon": -121.6
 },
 {
-"creature": "bigfoot",
-"cat": "hominid",
-"icon": "bigfoot",
-"name": "A crouching figure by the cabin near Randle",
-"year": 1998,
-"place": "Near Randle, Washington",
-"lat": 46.5351,
-"lon": -121.957
-},
-{
-"creature": "bigfoot",
-"cat": "hominid",
-"icon": "bigfoot",
-"name": "Rocks thrown at a tent near Hoopa",
-"year": 2014,
-"place": "Near Hoopa, Humboldt County, California",
-"lat": 41.0504,
-"lon": -123.6742
-},
-{
 "creature": "kussie",
 "cat": "aquatic",
 "icon": "lake",
@@ -198,16 +178,6 @@
 "place": "Brindabella Ranges, Australian Capital Territory",
 "lat": -35.4,
 "lon": 148.8
-},
-{
-"creature": "yowie",
-"cat": "hominid",
-"icon": "hominid",
-"name": "Something sniffing at the shed windows",
-"year": 1998,
-"place": "Pillar Valley, New South Wales",
-"lat": -29.77,
-"lon": 153.1
 },
 {
 "creature": "skunk-ape",
@@ -500,26 +470,6 @@
 "lon": -85.6826
 },
 {
-"creature": "dogman",
-"cat": "canid",
-"icon": "dogman",
-"name": "Between the tobacco barns",
-"year": 2006,
-"place": "Central Kentucky",
-"lat": 37.8,
-"lon": -84.9
-},
-{
-"creature": "dogman",
-"cat": "canid",
-"icon": "dogman",
-"name": "It stood up at the Escambia River bridge",
-"year": 2004,
-"place": "Escambia River, Florida Panhandle",
-"lat": 30.6,
-"lon": -87.2
-},
-{
 "creature": "rougarou",
 "cat": "canid",
 "icon": "rougarou",
@@ -683,16 +633,6 @@
 "creature": "thunderbird",
 "cat": "winged",
 "icon": "thunderbird",
-"name": "A bird that walked like a man",
-"year": 2023,
-"place": "North of Lexington, Kentucky",
-"lat": 37.9887,
-"lon": -84.4777
-},
-{
-"creature": "thunderbird",
-"cat": "winged",
-"icon": "thunderbird",
 "name": "Ahead of a storm over Highway 3",
 "year": 2026,
 "place": "Southeast Houston, Texas",
@@ -728,6 +668,46 @@
 "place": "Burlington, New Jersey",
 "lat": 40.0712,
 "lon": -74.8649
+},
+{
+"creature": "jersey-devil",
+"cat": "winged",
+"icon": "winged",
+"name": "Hoof prints in pairs at Groveville and Trenton",
+"year": 1909,
+"place": "Groveville, Trenton and Mount Holly, New Jersey",
+"lat": 40.1698,
+"lon": -74.6715
+},
+{
+"creature": "jersey-devil",
+"cat": "winged",
+"icon": "winged",
+"name": "A 'Jersey devil' found dead near Kinkora",
+"year": 1909,
+"place": "Kinkora, Burlington County, New Jersey",
+"lat": 40.1176,
+"lon": -74.7552
+},
+{
+"creature": "jersey-devil",
+"cat": "winged",
+"icon": "winged",
+"name": "Red wings over Hightown, Virginia",
+"year": 1910,
+"place": "Hightown, Highland/Augusta County area, Virginia",
+"lat": 38.5265,
+"lon": -78.8039
+},
+{
+"creature": "jersey-devil",
+"cat": "winged",
+"icon": "winged",
+"name": "The Leeds devil 'turned up again'",
+"year": 1887,
+"place": "Burlington County, New Jersey (and Mulberry, North Carolina)",
+"lat": 36.0957,
+"lon": -79.4378
 },
 {
 "creature": "owlman",
@@ -888,6 +868,16 @@
 "place": "Peachland, British Columbia",
 "lat": 49.7686,
 "lon": -119.7463
+},
+{
+"creature": "ogopogo",
+"cat": "aquatic",
+"icon": "lake",
+"name": "Girl Guides see a 45-foot creature in Otter Bay",
+"year": 1928,
+"place": "Otter Bay, Okanagan Lake, near Vernon, British Columbia",
+"lat": 49.8466,
+"lon": -119.5189
 },
 {
 "creature": "champ",
@@ -1068,6 +1058,16 @@
 "place": "Nushagak Bay, Alaska",
 "lat": 58.7,
 "lon": -158.6
+},
+{
+"creature": "cadborosaurus",
+"cat": "aquatic",
+"icon": "serpent",
+"name": "The camel-headed serpent gets a name",
+"year": 1933,
+"place": "Cadboro Point and Chemainus River, Vancouver Island, British Columbia",
+"lat": 49.6506,
+"lon": -125.4494
 },
 {
 "creature": "bear-lake-monster",
@@ -2790,6 +2790,26 @@
 "lon": -83.9207
 },
 {
+"creature": "wampus-cat",
+"cat": "other",
+"icon": "bigcat",
+"name": "The York County varmint",
+"year": 1921,
+"place": "York County, South Carolina, and Mecklenburg and Gaston counties, North Carolina",
+"lat": 36.1318,
+"lon": -79.4125
+},
+{
+"creature": "wampus-cat",
+"cat": "other",
+"icon": "bigcat",
+"name": "A 'willapus-wampus' near Emory University",
+"year": 1923,
+"place": "Clairmont Avenue near Emory University, Atlanta, Georgia",
+"lat": 33.749,
+"lon": -84.388
+},
+{
 "creature": "hodag",
 "cat": "other",
 "icon": "hodag",
@@ -2808,6 +2828,16 @@
 "place": "Rhinelander, Wisconsin",
 "lat": 45.6366,
 "lon": -89.4121
+},
+{
+"creature": "hodag",
+"cat": "other",
+"icon": "hodag",
+"name": "A 'real hodag' at Lake Minnetonka",
+"year": 1903,
+"place": "Lake Minnetonka, Minnesota",
+"lat": 44.915,
+"lon": -93.6414
 },
 {
 "creature": "tsuchinoko",
