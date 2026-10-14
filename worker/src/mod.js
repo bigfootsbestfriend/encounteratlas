@@ -80,10 +80,11 @@ async function queue(env, view) {
     for (const it of items) {
       const t = await tally(env, it.item, null, true);
       const held = await env.DB.prepare('SELECT COUNT(*) AS n FROM votes WHERE item = ?1 AND held = 1 AND voided = 0').bind(it.item).first();
-      const pid = it.item.split(':')[0] === 'p'
+      const story = it.item.startsWith('s:') ? it.item.slice(2) : null;
+      const pid = story ? null : it.item.split(':')[0] === 'p'
         ? (await env.DB.prepare('SELECT r.pid FROM photos ph JOIN reports r ON r.id = ph.report_id WHERE ph.id = ?1').bind(it.item.slice(2)).first())?.pid
         : it.item.split(':')[1];
-      out.flagged.push({ ...it, tally: t, held: held.n, pid });
+      out.flagged.push({ ...it, tally: t, held: held.n, pid, story });
     }
     return out;
   }
@@ -172,7 +173,7 @@ async function dashboard(env, url) {
 ${it.flag ? `<span class="tag">${esc(it.flag)}</span>` : ''}${it.ai_flags ? `<span class="tag ai">AI flags: ${it.ai_flags}</span>` : ''}</h2>
 <p>${esc(it.flag_note)} <span class="muted">${when(it.flagged_at)}</span></p>
 <p>${t.n} counted votes${it.held ? `, <b>${it.held} held</b>` : ''}. ${esc(res)}</p>
-<p>${it.pid ? `Report: <a href="${esc(env.SITE)}/reports/?id=${esc(it.pid)}" target="_blank" rel="noopener">${esc(it.pid)}</a>` : ''}</p>
+<p>${it.pid ? `Report: <a href="${esc(env.SITE)}/reports/?id=${esc(it.pid)}" target="_blank" rel="noopener">${esc(it.pid)}</a>` : ''}${it.story ? `Witness story: <a href="${esc(env.SITE)}/stories/${esc(it.story)}/" target="_blank" rel="noopener">${esc(it.story)}</a>` : ''}</p>
 <div class="acts">${btn('unfreeze', it.item, 'Unfreeze + clear', view)}${btn('clear', it.item, 'Clear flag only', view, '', 'ghost')}
 ${it.held ? btn('release_held', it.item, 'Count held votes', view, '', 'ghost') + btn('void_held', it.item, 'Void held votes', view, '', 'ghost') : ''}
 ${btn('void_recent', it.item, 'Void votes from last', view, '<input name="minutes" type="number" value="60" min="5" max="10080" aria-label="minutes"> min ', 'ghost')}

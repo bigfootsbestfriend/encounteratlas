@@ -12,6 +12,9 @@ import json, os, re
 
 WPM = 230
 FILTERS_AT = int(os.environ.get('WS_FILTERS_AT', '40'))  # show setting/place/sort filters once there are this many
+# Same Worker and Turnstile settings as sections/reports.py: story pages carry the Real-or-hoax vote widget (vote.js).
+API = os.environ.get('EA_API', 'https://api.encounteratlas.com').rstrip('/')
+SITEKEY = os.environ.get('TURNSTILE_SITEKEY', '1x00000000000000000000AA')
 SETTINGS = {'home': 'At home', 'camp': 'Camping', 'road': 'On the road', 'outdoors': 'In the woods', 'work': 'At work'}
 
 
@@ -42,6 +45,10 @@ def build(ctx):
         return
     e, u = ctx.esc, ctx.url
     head = f'<link rel="stylesheet" href="{u("/static/stories.css")}">'
+    vote_head = (head + f'<link rel="stylesheet" href="{u("/static/report.css")}">'
+                 f'<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>'
+                 f'<script src="{u("/static/vote.js")}" defer></script>')
+    cfg = json.dumps({'api': API, 'base': ctx.BASE, 'sitekey': SITEKEY}, separators=(',', ':')).replace('</', '<\\/')
     by_c = {}
     for st in stories:
         by_c.setdefault(st['creature'], []).append(st)
@@ -74,6 +81,8 @@ def build(ctx):
       correct it, or take it down.</p>
     </aside>
   </article>
+  <div class="ws-vote" data-vote-item="s:{st['id']}"></div>
+  <script type="application/json" id="ea-config">{cfg}</script>
   <section class="seen-box cat-{c['cat']}">{ctx.crit_icon(c)}<div>
     <h2>Had an experience like this?</h2>
     <p>Tell us what happened. Every report is read by a person before it goes on the map, and you can stay anonymous.</p>
@@ -86,7 +95,7 @@ def build(ctx):
   {ctx.signup_box('ws', 'A new story every week', 'Witness stories, old-newspaper monsters and a creature of the week. One short email on Thursdays, unsubscribe in one click.')}
 </div></div>'''
         ctx.write(f'/stories/{st["id"]}/', ctx.page(f'/stories/{st["id"]}/', f'{st["title"]}: a {c["name"]} encounter', body,
-                                                   st['dek'], head_extra=head))
+                                                   st['dek'], head_extra=vote_head + f'<script src="{u("/static/stories.js")}" defer></script>'))
 
     # Hub: newest encounters first, chips to filter by creature (all cards are in the HTML; JS only hides).
     # Once there are FILTERS_AT stories, a second row adds setting, place and sort. ?c=, ?s=, ?w= and ?o= preselect them.

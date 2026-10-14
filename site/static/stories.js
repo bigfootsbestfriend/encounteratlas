@@ -47,3 +47,17 @@
   if (oSel) oSel.addEventListener('change', () => { st.o = oSel.value; apply(true); });
   if (st.c || st.s || st.w || st.o !== 'new') apply(false);
 })();
+
+// Story pages: Real / Hoax / Misidentified vote (vote.js sets window.EA).
+(() => {
+  const box = document.querySelector('[data-vote-item]');
+  if (!box) return;
+  const start = async () => {
+    const { loadTallies, voteWidget } = window.EA;
+    const item = box.dataset.voteItem;
+    try { await loadTallies([item]); } catch (e) { /* show the widget anyway */ }
+    box.replaceChildren(voteWidget(item, { label: 'Real, hoax or misidentified?' }));
+  };
+  if (window.EA) start();
+  else window.addEventListener('load', () => window.EA && start());
+})();

@@ -305,6 +305,15 @@ const regionLat = Math.round(Math.round(EXACT.lat / 0.9) * 0.9 * 1e4) / 1e4;
 ok(pub.status === 200 && pub.data.report.lat === regionLat, 'wendigo report mapped to a ~100 km region cell only',
   JSON.stringify(pub.data.report && [pub.data.report.lat, pub.data.report.lon]));
 
+section('Witness story votes');
+{
+  const sv = await signIn('storyvoter');
+  r = await call('POST', '/api/votes', { body: { item: 's:randle-cabin-1998', choice: 'real', turnstile: 'x' }, session: sv.session, ip: freshIp() });
+  ok(r.status === 200 && r.data.n === 1, 'vote on a witness story counts', JSON.stringify(r.data));
+  r = await call('GET', '/api/votes?items=s:randle-cabin-1998,s:Bad_Id,s:x');
+  ok(r.status === 200 && r.data.items.length === 1 && r.data.items[0].n === 1, 'story tally returned; malformed story ids ignored', JSON.stringify(r.data));
+}
+
 section('Contact form');
 r = await call('POST', '/api/contact', { body: { email: 'nope', message: 'Hello there, a question.', turnstile: 'XXXX.DUMMY.TOKEN' }, ip: '10.9.9.9' });
 ok(r.status === 400 && r.data.state === 'email', 'contact: bad email rejected');

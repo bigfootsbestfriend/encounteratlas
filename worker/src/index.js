@@ -554,6 +554,8 @@ export async function resolveItem(env, item, any = false) {
     return env.DB.prepare(`SELECT r.id, r.pid FROM photos ph JOIN reports r ON r.id = ph.report_id WHERE ph.id = ?1 AND ph.removed = 0${st}`)
       .bind(m[1]).first();
   }
+  // Witness stories (site/sections/stories.py): ids are slugs. Unknown ids just collect votes nobody sees.
+  if ((m = /^s:([a-z0-9][a-z0-9-]{2,79})$/.exec(item))) return { id: 0, pid: null, story: m[1] };
   if ((m = /^v:([a-z0-9]{10}):([0-4])$/.exec(item))) {
     const r = await env.DB.prepare(`SELECT r.id, r.pid, r.videos FROM reports r WHERE r.pid = ?1${st}`).bind(m[1]).first();
     return r && JSON.parse(r.videos).length > Number(m[2]) ? r : null;

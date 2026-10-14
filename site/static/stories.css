@@ -15,3 +15,5 @@
 .ws-sel { color: var(--lichen); font-size: .95rem; display: inline-flex; gap: .4rem; align-items: center; }
 .ws-sel select { font: inherit; padding: .35rem .5rem; border-radius: var(--r-md); border: 1px solid var(--mist-2); background: #fff; color: var(--spruce); }
 .ws-count { font-weight: 600; margin: 0 0 1rem; }
+.ws-vote { margin: 0 0 1.5rem; }
+.ws-vote [hidden] { display: none !important; }
