@@ -4,3 +4,6 @@ time,slug,model,status,prompt_tok,thought_tok,text_tok,image_tok,usd
 2026-10-14T11:32:45.232Z,wendigo,gemini-3.1-flash-image,200,160,0,0,1120,0.0673
 2026-10-14T11:32:55.129Z,skinwalker,gemini-3.1-flash-image,200,158,0,0,1120,0.0673
 2026-10-14T11:37:41.467Z,alabama-white-thang,gemini-3.1-flash-image,200,146,0,0,1120,0.0673
+2026-10-14T11:42:28.863Z,illus-wendigo,gemini-3.1-flash-image,503,0,0,0,0,0.0000
+2026-10-14T11:42:41.971Z,illus-alabama-white-thang,gemini-3.1-flash-image,200,170,0,0,1120,0.0673
+2026-10-14T11:42:56.288Z,illus-wendigo,gemini-3.1-flash-image,200,169,0,0,1120,0.0673

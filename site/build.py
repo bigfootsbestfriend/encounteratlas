@@ -360,6 +360,14 @@ def poster(c):
             f'<rect x="6" y="6" width="188" height="188" rx="10" fill="none" stroke="#F3E3B8" stroke-width="4"/></svg>')
 
 
+def illus(c):
+    """A painted illustration (site/static/illus/<slug>.webp) takes the poster's place when we have one."""
+    if not os.path.exists(os.path.join(STATIC, 'illus', c['slug'] + '.webp')):
+        return ''
+    return (f'<img class="poster illus" src="{url("/static/illus/" + c["slug"] + ".webp")}" width="1000" height="1000" '
+            f'alt="Illustration of the {esc(c["name"])}" fetchpriority="high">')
+
+
 def creature_card(c, sort=None):
     """sort: on the creature index, a dict of sort keys (n sightings, loc, size, first and last year) shown as a meta line."""
     aka = f'<span class="aka">aka {esc(", ".join(c["aliases"][:2]))}</span>' if c['aliases'] else ''
@@ -747,7 +755,7 @@ def build_creatures(creatures, by_slug):
         body = f'''
 <section class="band band-dark creature-head cat-{c['cat']}">
   <div class="wrap creature-head-in">
-    {poster(c) if c.get('art') else badge(c, 'xl')}
+    {illus(c) or (poster(c) if c.get('art') else badge(c, 'xl'))}
     <div>
       <p class="crumb"><a href="{url('/creatures/')}">Creature index</a> / {esc(CATS[c['cat']][0])}</p>
       <h1>{esc(c['name'])}</h1>
