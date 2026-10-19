@@ -103,3 +103,14 @@ CREATE TABLE IF NOT EXISTS used_links (
   nonce TEXT PRIMARY KEY,
   at INTEGER NOT NULL DEFAULT (unixepoch())
 );
+
+-- Emails sent to a reporter from /mod (automatic approve/reject notes and Mike's replies).
+CREATE TABLE IF NOT EXISTS mod_messages (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  report_id INTEGER NOT NULL REFERENCES reports(id),
+  kind TEXT NOT NULL,                       -- approved | rejected | reply
+  body TEXT NOT NULL DEFAULT '',
+  ok INTEGER NOT NULL DEFAULT 1,            -- 0 when Resend refused it
+  at INTEGER NOT NULL DEFAULT (unixepoch())
+);
+CREATE INDEX IF NOT EXISTS mod_messages_report ON mod_messages (report_id, at);

@@ -325,5 +325,28 @@ for (let i = 0; i < 3; i++) r = await call('POST', '/api/contact', { body: { ema
 r = await call('POST', '/api/contact', { body: { email: 'r9@example.test', message: 'One too many messages.', turnstile: 'XXXX.DUMMY.TOKEN' }, ip: '10.9.9.9' });
 ok(r.status === 429, 'contact: 5th message in an hour from one IP refused');
 
+section('Moderator emails to the reporter');
+{
+  const cookie = await modLogin();
+  let s = await call('POST', '/api/reports', { form: reportForm({ ...baseReport, email: 'witness@example.test' }), ip: '10.77.0.1' });
+  ok(s.status === 201, 'report with an email (no account) accepted', JSON.stringify(s.data));
+  const pid = s.data.id;
+  let a = await mod('approve', pid, { note: 'Great detail, thanks!' }, cookie);
+  ok(a.status === 200 && /emailed the reporter/.test(a.data.done), 'approve emails the reporter', JSON.stringify(a.data));
+  a = await mod('approve', pid, {}, cookie);
+  ok(!/emailed/.test(a.data.done), 'approving again sends nothing');
+  a = await mod('reply', pid, { message: 'Could you tell me more about the sounds?' }, cookie);
+  ok(a.status === 200 && /emailed the reporter/.test(a.data.done), 'reply is emailed', JSON.stringify(a.data));
+  a = await mod('reply', pid, { message: '   ' }, cookie);
+  const q = await queue(cookie, 'recent');
+  const card = q.reports.find((x) => x.pid === pid);
+  ok(card && card.messages.length === 2 && card.messages[1].kind === 'reply', 'card shows the approval email + reply', JSON.stringify(card && card.messages));
+  s = await call('POST', '/api/reports', { form: reportForm({ ...baseReport }), ip: '10.77.0.2' });
+  a = await mod('reply', s.data.id, { message: 'Hello?' }, cookie);
+  ok(/no email on file/.test(a.data.done), 'reply to a report with no email is refused politely');
+  const html = await (await fetch(`${API}/mod?view=recent`, { headers: { cookie } })).text();
+  ok(html.includes('Send reply') && html.includes('witness@example.test'), 'mod page shows the reply box');
+}
+
 console.log(`\n${pass} passed, ${failed} failed`);
 process.exit(failed ? 1 : 0);

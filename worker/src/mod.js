@@ -4,7 +4,7 @@
 
 import { CREATURES } from './creatures.js';
 import { tally } from './index.js';
-import { json, sign, verify, hash, clientIp, rateLimited, esc, now } from './util.js';
+import { json, sign, verify, hash, clientIp, rateLimited, esc, now, sendEmail, emailLayout, para } from './util.js';
 
 const COOKIE = 'ea_mod';
 const HOURS = 12;
@@ -97,7 +97,8 @@ async function queue(env, view) {
   for (const r of rows) {
     const photos = (await env.DB.prepare('SELECT id, w, h, bytes FROM photos WHERE report_id = ?1 AND removed = 0 ORDER BY idx').bind(r.id).all()).results;
     for (const ph of photos) ph.url = `/img/${ph.id}.jpg?k=${encodeURIComponent(await sign(env, `i|${ph.id}|${now()}`))}`;
-    out.reports.push({ ...r, videos: JSON.parse(r.videos), links: JSON.parse(r.links || '[]'), photos });
+    const messages = (await env.DB.prepare('SELECT kind, body, ok, at FROM mod_messages WHERE report_id = ?1 ORDER BY at').bind(r.id).all()).results;
+    out.reports.push({ ...r, videos: JSON.parse(r.videos), links: JSON.parse(r.links || '[]'), photos, messages });
   }
   return out;
 }
@@ -112,11 +113,17 @@ async function action(req, env, url) {
   let done = '';
   if (act === 'approve' || act === 'reject') {
     const st = act === 'approve' ? 'approved' : 'rejected';
+    const before = await reporter(env, id);
     const r = await D.prepare(
       `UPDATE reports SET status = ?2, mod_note = ?3, approved_at = CASE WHEN ?2 = 'approved' THEN unixepoch() ELSE approved_at END
        WHERE pid = ?1 AND status != 'withdrawn' RETURNING pid`,
     ).bind(id, st, note).first();
     done = r ? `${st} ${id}` : 'not found';
+    if (r && before && before.status !== st && f.get('notify') !== '0') done += ' · ' + await mailReporter(env, before, st, note);
+  } else if (act === 'reply') {
+    const msg = para(f.get('message'), 4000);
+    if (!msg) return new Response(null, { status: 303, headers: { location: `/mod?view=${back}&done=${encodeURIComponent('empty reply, nothing sent')}` } });
+    done = `reply to ${id}: ` + await mailReporter(env, await reporter(env, id), 'reply', msg);
   } else if (act === 'remove_photo') {
     const r = await D.prepare('UPDATE photos SET removed = 1 WHERE id = ?1 RETURNING id').bind(id).first();
     if (r && env.PHOTOS) await env.PHOTOS.delete(`p/${id}.jpg`);
@@ -142,6 +149,58 @@ async function action(req, env, url) {
   }
   if ((req.headers.get('accept') || '').includes('application/json')) return json({ state: 'ok', done });
   return new Response(null, { status: 303, headers: { location: `/mod?view=${back}&done=${encodeURIComponent(done)}` } });
+}
+
+
+// ---------------- emails to the reporter ----------------
+// Approve / reject send an automatic note; "Reply" sends Mike's own message. Every email is logged in
+// mod_messages so the card shows what the reporter has been told. Replies come back to hello@ (reply_to).
+async function reporter(env, pid) {
+  return env.DB.prepare(
+    `SELECT r.id, r.pid, r.status, r.creature, r.other_what, r.seen_date, r.place, u.email
+     FROM reports r LEFT JOIN users u ON u.id = r.user_id WHERE r.pid = ?1`,
+  ).bind(pid).first();
+}
+
+async function mailReporter(env, r, kind, message) {
+  if (!r || !r.email) return 'no email on file';
+  const what = r.creature === 'other' ? (r.other_what || 'your sighting') : (CREATURES[r.creature] || r.creature);
+  const about = `${what}, ${r.seen_date}${r.place ? `, ${r.place}` : ''}`;
+  const url = `${env.SITE}/reports/?id=${encodeURIComponent(r.pid)}`;
+  const msgHtml = message ? esc(message).replace(/\n/g, '<br>') : '';
+  const m = {
+    approved: {
+      subject: 'Your encounter report is live',
+      heading: 'Your report is on the map',
+      paras: [`Thanks for sharing your encounter (<strong>${esc(about)}</strong>). It has been checked and is now live on Encounter Atlas, where other readers can see it and vote.`].concat(msgHtml ? [msgHtml] : []),
+      button: { href: url, label: 'See your report' },
+      text: `Thanks for sharing your encounter (${about}). It's now live on Encounter Atlas.${message ? '\n\n' + message : ''}\n\n${url}`,
+    },
+    rejected: {
+      subject: 'About your encounter report',
+      heading: "We couldn't publish your report",
+      paras: [`Thanks for sending your encounter (<strong>${esc(about)}</strong>). We weren't able to publish it this time.`]
+        .concat(msgHtml ? [`<strong>Why:</strong> ${msgHtml}`] : [])
+        .concat(['You can sign in from the link in your first email to edit it and send it again, or just reply to this email.']),
+      text: `Thanks for sending your encounter (${about}). We weren't able to publish it this time.${message ? '\n\nWhy: ' + message : ''}\n\nYou can edit it and send it again, or just reply to this email.`,
+    },
+    reply: {
+      subject: `About your encounter report: ${what}`,
+      heading: 'About your encounter report',
+      paras: [msgHtml, `<span style="color:#5D6B62">Your report: ${esc(about)}</span>`],
+      text: `${message}\n\nYour report: ${about}`,
+    },
+  }[kind];
+  let ok = 1;
+  try {
+    await sendEmail(env, { to: [r.email], reply_to: env.CONTACT_TO || 'hello@encounteratlas.com', subject: m.subject,
+      ...emailLayout({ preheader: m.subject, heading: m.heading, paras: m.paras, button: m.button || null, text: m.text }) });
+  } catch (e) {
+    console.error(e);
+    ok = 0;
+  }
+  await env.DB.prepare('INSERT INTO mod_messages (report_id, kind, body, ok) VALUES (?1, ?2, ?3, ?4)').bind(r.id, kind, message || '', ok).run();
+  return ok ? `emailed the reporter` : 'email FAILED (logged)';
 }
 
 const when = (t) => (t ? new Date(t * 1000).toISOString().slice(0, 16).replace('T', ' ') + ' UTC' : '');
@@ -188,6 +247,8 @@ ${it.pid ? btn('reject', it.pid, 'Unpublish report', view, '<input name="note" p
       // Photo links open in a new tab with no referrer; check them before approving (they're on other people's servers).
       const lks = r.links.map((l) => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer nofollow">photo on ${esc(l.host)}: ${esc(l.url)}</a></li>`).join('');
       const vids = r.videos.map((v) => `<li><a href="${esc(v.url)}" target="_blank" rel="noopener noreferrer">${esc(v.p)}: ${esc(v.url)}</a></li>`).join('');
+      const label = { approved: 'Approval email', rejected: 'Rejection email', reply: 'Your reply' };
+      const hist = r.messages.length ? `<div class="hist"><b>Emails to the reporter</b>${r.messages.map((m) => `<div class="msg${m.ok ? '' : ' bad'}"><span class="muted">${label[m.kind] || m.kind} · ${when(m.at)}${m.ok ? '' : ' · FAILED'}</span>${m.body ? `<div>${esc(m.body)}</div>` : ''}</div>`).join('')}</div>` : '';
       const osm = `https://www.openstreetmap.org/?mlat=${r.lat}&mlon=${r.lon}#map=14/${r.lat}/${r.lon}`;
       html += `<article class="card"><h2>${esc(what)} <span class="muted">${esc(r.pid)}</span></h2>
 <dl><dt>When</dt><dd>${esc(r.seen_date)} ${esc(r.seen_time)}${r.date_approx ? ' (approximate)' : ''}</dd>
@@ -198,9 +259,13 @@ ${it.pid ? btn('reject', it.pid, 'Unpublish report', view, '<input name="note" p
 <dt>Sent</dt><dd>${when(r.created)}${r.updated > r.created + 5 ? `, edited ${when(r.updated)}` : ''}</dd></dl>
 <div class="story">${esc(r.story)}</div>
 ${photos ? `<div class="photos">${photos}</div>` : ''}${lks ? `<p><b>Photo links</b> (open each one and check it before approving)</p><ul>${lks}</ul>` : ''}${vids ? `<ul>${vids}</ul>` : ''}
-<div class="acts">${r.status !== 'approved' ? btn('approve', r.pid, 'Approve', view, '<input name="note" placeholder="note (optional)" aria-label="note">') : ''}
-${r.status !== 'rejected' ? btn('reject', r.pid, r.status === 'approved' ? 'Unpublish' : 'Reject', view, '<input name="note" placeholder="reason (shown to the reporter)" aria-label="reason">', 'red') : ''}
-${r.status === 'approved' ? `<a href="${esc(env.SITE)}/reports/?id=${esc(r.pid)}" target="_blank" rel="noopener">View on site</a>` : ''}</div></article>`;
+${hist}<div class="acts">${r.status !== 'approved' ? btn('approve', r.pid, r.email ? 'Approve + email them' : 'Approve', view, '<input name="note" placeholder="note to them (optional)" aria-label="note">') : ''}
+${r.status !== 'rejected' ? btn('reject', r.pid, r.status === 'approved' ? 'Unpublish' : 'Reject', view, `<input name="note" placeholder="reason${r.email ? ' (emailed to them)' : ''}" aria-label="reason">`, 'red') : ''}
+${r.status === 'approved' ? `<a href="${esc(env.SITE)}/reports/?id=${esc(r.pid)}" target="_blank" rel="noopener">View on site</a>` : ''}</div>
+${r.email ? `<form method="post" action="/mod/action" class="reply"><input type="hidden" name="act" value="reply"><input type="hidden" name="id" value="${esc(r.pid)}"><input type="hidden" name="back" value="${view}">
+<label for="rp-${esc(r.pid)}"><b>Reply to ${esc(r.email)}</b> <span class="muted">(sent from hello@encounteratlas.com; their answer comes back to you)</span></label>
+<textarea id="rp-${esc(r.pid)}" name="message" rows="4" maxlength="4000" placeholder="Write your message…" required></textarea><button>Send reply</button></form>`
+  : '<p class="muted">No email on this report, so you can\'t reply.</p>'}</article>`;
     }
   }
   return page('Moderation', html);
@@ -222,7 +287,7 @@ button.ghost{background:#fff;box-shadow:inset 0 0 0 2px #13261F}button.red{backg
 input{font:inherit;padding:6px 8px;border:1px solid #B9C7BE;border-radius:6px}input[type=number]{width:5em}
 .tag{font-size:.75rem;background:#13261F;color:#C9D3A4;padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}.tag.red{background:#E5483B;color:#fff}
 .tag.ai{background:#8E8CF0;color:#13261F}.muted{color:#4D6157;font-weight:400;font-size:.9rem}.done{background:#13261F;color:#C9D3A4;padding:8px 12px;border-radius:8px}
-.err{color:#B3261E;font-weight:700}.login{display:flex;gap:10px;flex-wrap:wrap;align-items:end}a{color:#7A4E00}
+.err{color:#B3261E;font-weight:700}.reply{display:grid;gap:6px;margin-top:12px;border-top:1px solid #D3DED7;padding-top:12px}.reply textarea{font:inherit;padding:8px;border:1px solid #B9C7BE;border-radius:6px;resize:vertical}.reply button{justify-self:start}.hist{background:#F4F7F5;border-radius:8px;padding:8px 12px;margin:0 0 10px;font-size:.93rem}.msg{margin-top:6px;white-space:pre-wrap}.msg.bad{color:#B3261E}.login{display:flex;gap:10px;flex-wrap:wrap;align-items:end}a{color:#7A4E00}
 </style></head><body><main>${inner}</main></body></html>`, { status, headers: HEAD });
 }
 
