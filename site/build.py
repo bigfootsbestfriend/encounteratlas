@@ -133,7 +133,7 @@ def write(path, text):
 
 EA_API = os.environ.get('EA_API', '').rstrip('/')  # report Worker; empty until it's deployed
 MAP_API = f' data-api="{EA_API}"' if EA_API else ''
-UFO_MENU = [('/ufo/', 'UFO sightings'), ('/ufo/canada/', 'Canada sightings map'), ('/ufo/blue-book/', 'Air Force Blue Book files'), ('/ufo/releases/', 'Official releases'),
+UFO_MENU = [('/ufo/', 'UFO sightings'), ('/ufo/cases/', 'Famous cases worldwide'), ('/ufo/canada/', 'Canada sightings map'), ('/ufo/blue-book/', 'Air Force Blue Book files'), ('/ufo/releases/', 'Official releases'),
             ('/ufo/countries/', 'UFO files by country'), ('/military/', 'Military encounters')]
 RES_MENU = [('/us/', 'By state or province'), ('/places/', 'Places to visit'), ('/guides/', 'Field guides'), ('/gear/', 'Field gear'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts')]
 NAV = [('/map/', 'Map'), ('/creatures/', 'Creatures'), ('UFOs', UFO_MENU)] + [('Reports', ([('/reports/', 'Reader reports')] if EA_API else []) + [('/stories/', 'Witness stories'), ('/report/', 'Report an encounter')])] + [
@@ -297,16 +297,23 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 
 
 def signup_box(uid, title='Strange news, once a week', text=None):
-    """Weekly email signup (single opt-in). The newsletter Worker sends people back to /newsletter/#confirmed."""
-    text = text or ('This week in the old newspapers, a creature of the week and the newest reader reports. '
-                    'One short email on Thursdays, unsubscribe in one click.')
-    return f'''<section class="signup" id="signup-{uid}"><h2>{esc(title)}</h2>
-<p>{esc(text)}</p>
+    """Weekly email signup (single opt-in). The newsletter Worker sends people back to /newsletter/#confirmed.
+    A dark card with three creature silhouettes, what's in each email, and a short email field (signup.js tracks it)."""
+    text = text or 'One short email every Thursday, free, for cryptid and UFO fans everywhere.'
+    art = ''.join(f'<img src="{url("/static/art/" + a + ".svg")}" alt="" width="64" height="64" loading="lazy">' for a in ('bigfoot', 'ufo-saucer', 'mothman'))
+    return f'''<section class="signup" id="signup-{uid}">
+<div class="su-art" aria-hidden="true">{art}</div>
+<div class="su-main"><h2>{esc(title)}</h2>
+<p class="su-lede">{esc(text)}</p>
+<ul class="su-list"><li><b>From the old newspapers</b> monster and airship stories printed this week, 100+ years ago</li>
+<li><b>Creature of the week</b> one cryptid, its best cases and where it is seen</li>
+<li><b>New reader reports</b> fresh sightings sent in from around the world</li></ul>
 <form action="{NEWSLETTER_API}/subscribe" method="post" data-nl><input type="hidden" name="site" value="encounteratlas">
 <input class="visually-hidden" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
 <label for="email-{uid}" class="visually-hidden">Email address</label>
-<input id="email-{uid}" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
-<button type="submit" class="btn">Sign me up</button></form></section>'''
+<input id="email-{uid}" name="email" type="email" required placeholder="Your email address" autocomplete="email">
+<button type="submit" class="btn">Send me the weekly email</button></form>
+<p class="su-fine">No spam, never shared. Unsubscribe in one click.</p></div></section>'''
 
 
 # How the "Seen ...?" box names a creature. Proper names take no article ("Seen Bigfoot?"), kinds of animal
@@ -867,6 +874,7 @@ def build_ufo(bluebook, BY_SLUG):
       <a class="tile" href="{url('/ufo/canada/')}">{icon('saucer')}<span>Canada sightings, 1989 to today</span></a>
       <a class="tile" href="{url('/ufo/countries/')}">{icon('ufo-globe') if os.path.exists(os.path.join(STATIC, 'icons', 'ufo-globe.svg')) else icon('saucer')}<span>UFO files by country</span></a>
       <a class="tile" href="{url('/encounters/')}">{icon('entity')}<span>Close encounters with beings</span></a>
+      <a class="tile" href="{url('/ufo/cases/')}">{icon('saucer')}<span>Famous cases worldwide</span></a>
     </nav>
     <p><a class="btn" href="{url('/map/')}">Open the map</a></p>
   </div>

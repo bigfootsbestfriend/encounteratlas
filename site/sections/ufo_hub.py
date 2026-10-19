@@ -76,7 +76,7 @@ def build(ctx):
   <div class="uh-two">
     <div class="uh-box"><h2>Sightings from readers</h2>{reader}<p><a href="{U('/report/?creature=ufo-saucer')}">Report what you saw</a></p></div>
     <div class="uh-box"><h2>Close encounters</h2><p>When witnesses said they saw the occupants, not just the craft.</p><ul class="next-list">{close_html}</ul>
-      <p><a href="{U('/encounters/')}">All {len(close)} close encounters</a></p></div>
+      <p><a href="{U('/encounters/')}">All {len(close)} close encounters</a> · <a href="{U('/ufo/cases/')}">Famous UFO cases worldwide</a></p></div>
   </div>
   <h2>Official files</h2>
   <p>What governments, air forces and aviation agencies wrote down, with links to the original scans.</p>

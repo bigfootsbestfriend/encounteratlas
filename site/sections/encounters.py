@@ -9,7 +9,8 @@ MON = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augu
 STATUS = {'unexplained': ('Unexplained', 'No accepted explanation'), 'disputed': ('Disputed', 'Explanations offered, still argued over'),
           'explained': ('Explained', 'Most investigators accept an explanation'), 'hoax': ('Hoax', 'Admitted or proven hoax')}
 COUNTRY = {'US': 'United States', 'FR': 'France', 'BR': 'Brazil', 'ZW': 'Zimbabwe', 'AU': 'Australia', 'PG': 'Papua New Guinea',
-           'RU': 'Russia', 'SU': 'USSR'}
+           'RU': 'Russia', 'SU': 'USSR', 'CA': 'Canada', 'GB': 'United Kingdom', 'DE': 'Germany', 'CH': 'Switzerland', 'SE': 'Sweden',
+           'BE': 'Belgium', 'NZ': 'New Zealand'}
 
 
 def build(ctx):
@@ -33,6 +34,8 @@ def dateline(d):
 
 
 class E:
+    BASE, GEO, LABEL = '/encounters/', 'encounters.geojson', 'Close encounters'
+
     def __init__(self, ctx, cases):
         self.c, self.cases = ctx, cases
         self.u, self.e = ctx.url, ctx.esc
@@ -48,7 +51,7 @@ class E:
             self.case(x)
 
     def url(self, x):
-        return self.u('/encounters/' + x['slug'] + '/')
+        return self.u(self.BASE + x['slug'] + '/')
 
     def mark(self, x):
         """The case's first related creature's silhouette, else a grey alien."""
@@ -72,7 +75,7 @@ class E:
                   'properties': {'s': x['slug'], 'n': x['name'], 'd': dateline(x['date']), 'p': x['place'], 'st': x['status'],
                                  'u': self.url(x)}} for x in self.cases]
         os.makedirs(os.path.join(self.c.OUT, 'data'), exist_ok=True)
-        with open(os.path.join(self.c.OUT, 'data', 'encounters.geojson'), 'w', encoding='utf-8') as f:
+        with open(os.path.join(self.c.OUT, 'data', self.GEO), 'w', encoding='utf-8') as f:
             json.dump({'type': 'FeatureCollection', 'features': feats}, f, separators=(',', ':'), ensure_ascii=False)
 
     def hub(self):
@@ -126,7 +129,7 @@ class E:
 <section class="band band-dark ce-head"><div class="wrap ce-hero">
   {self.mark(x)}
   <div>
-    <p class="crumb"><a href="{self.u('/encounters/')}">Close encounters</a> / {e(str(x['year']))}</p>
+    <p class="crumb"><a href="{self.u(self.BASE)}">{self.LABEL}</a> / {e(str(x['year']))}</p>
     <h1>{e(x['name'])}</h1>
     <p class="ce-when">{e(dateline(x['date']))} · {e(x['place'])}</p>
     <p class="lede">{e(x['summary'])}</p>
@@ -141,7 +144,7 @@ class E:
       <p><b>Witnesses</b>{e(x['witnesses'])}</p>
       <p><b>Where</b>{e(x['place'])}{'' if country in x['place'] else ', ' + e(country)}</p>
     </div>
-    <div class="map-frame ce-mini"><div id="ce-map" class="map" data-geojson="{self.u('/data/encounters.geojson')}" data-focus="{x['slug']}"></div></div>
+    <div class="map-frame ce-mini"><div id="ce-map" class="map" data-geojson="{self.u('/data/' + self.GEO)}" data-focus="{x['slug']}"></div></div>
   </aside>
 </div></div>
 <div class="band ce-more"><div class="wrap">
@@ -149,7 +152,7 @@ class E:
   {f'<h2>Related creatures</h2><div class="crit-grid">{crs}</div>' if crs else ''}
   <h2>Sources</h2><ul class="ce-src">{src}</ul>
   <nav class="ce-pns" aria-label="More cases">{pn}</nav>
-  <p><a href="{self.u('/encounters/')}">All {len(self.cases)} close encounters</a></p>
+  <p><a href="{self.u(self.BASE)}">All {len(self.cases)} {self.LABEL.lower()}</a></p>
 </div></div>'''
-        c.write('/encounters/' + x['slug'] + '/', c.page('/encounters/' + x['slug'] + '/', f'{x["name"]} ({x["year"]})', body,
+        c.write(self.BASE + x['slug'] + '/', c.page(self.BASE + x['slug'] + '/', f'{x["name"]} ({x["year"]})', body,
                                                          x['summary'], body_class='encounters', head_extra=self.head))

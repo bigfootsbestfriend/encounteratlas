@@ -61,6 +61,11 @@ def build(ctx):
         if d:
             ev[d[5:]].append((int(d[:4]), 'Close encounter', x['name'], x.get('place', ''), url(f'/encounters/{x["slug"]}/'), x.get('summary', '')))
 
+    for x in load('famous_cases.json'):
+        d = full(x.get('date'))
+        if d:
+            ev[d[5:]].append((int(d[:4]), 'Famous UFO case', x['name'], x.get('place', ''), url(f'/ufo/cases/{x["slug"]}/'), x.get('summary', '')))
+
     cu = defaultdict(list)
     for x in load('ufo_cases_canada.json'):
         d = full(x.get('date'))
