@@ -15,6 +15,7 @@ INDEXNOW_KEY = '929458a6bce349d1b445a459836d80fe'
 NEWSLETTER_API = 'https://newsletter.crossplayguide.workers.dev'  # shared Worker (repo: newsletter); sites.json key 'encounteratlas'
 LAUNCHED = True  # launched 2026-10-13 (Mike: "launch the site")
 CF_BEACON = os.environ.get('CF_BEACON', '')
+CLARITY_ID = os.environ.get('CLARITY_ID', '')  # Microsoft Clarity project (free heatmaps + session replays); set in deploy.yml
 GA_ID = os.environ.get('GA_ID', '')
 CLICKY_ID = os.environ.get('CLICKY_ID', '')  # Clicky site ID; set in deploy.yml  # GA4 measurement ID; set in deploy.yml, empty for local and preview builds
 
@@ -133,11 +134,26 @@ def write(path, text):
 
 EA_API = os.environ.get('EA_API', '').rstrip('/')  # report Worker; empty until it's deployed
 MAP_API = f' data-api="{EA_API}"' if EA_API else ''
-UFO_MENU = [('/ufo/', 'UFO sightings'), ('/ufo/cases/', 'Famous cases worldwide'), ('/ufo/canada/', 'Canada sightings map'), ('/ufo/blue-book/', 'Air Force Blue Book files'), ('/ufo/releases/', 'Official releases'),
-            ('/ufo/countries/', 'UFO files by country'), ('/military/', 'Military encounters')]
-RES_MENU = [('/us/', 'By state or province'), ('/places/', 'Places to visit'), ('/guides/', 'Field guides'), ('/gear/', 'Field gear'), ('/books/', 'Books'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts')]
-NAV = [('/map/', 'Map'), ('/creatures/', 'Creatures'), ('UFOs', UFO_MENU)] + [('Reports', ([('/reports/', 'Reader reports')] if EA_API else []) + [('/stories/', 'Witness stories'), ('/report/', 'Report an encounter')])] + [
-    ('/encounters/', 'Encounters'), ('/mysteries/', 'Mysteries'), ('/history/', 'History'), ('Resources', RES_MENU)]
+UFO_MENU = [('/ufo/', 'UFO sightings'), ('/ufo/cases/', 'Famous cases worldwide'), ('/ufo/canada/', 'Canada sightings map'), ('/ufo/blue-book/', 'Air Force Blue Book files'),
+            ('/ufo/releases/', 'Official releases'), ('/ufo/countries/', 'UFO files by country'), ('/military/', 'Military encounters')]
+STORY_MENU = ([('/reports/', 'Reader reports')] if EA_API else []) + [('/stories/', 'Witness stories'), ('/encounters/', 'Close encounters'), ('/report/', 'Report an encounter')]
+EXPLORE_MENU = [('/mysteries/', 'Mysteries'), ('/history/', 'Old newspaper stories'), ('/on-this-day/', 'On this day'), ('/compare/', 'Creature comparisons'),
+                ('/us/', 'By state or province'), ('/places/', 'Places to visit')]
+RES_MENU = [('/guides/', 'Field guides'), ('/gear/', 'Field gear'), ('/books/', 'Books'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts'), ('/newsletter/', 'Weekly email')]
+# Six top-level items (Mike, 2026-10-18: the eight-item menu wrapped into three rows on phones). Under 960px the
+# same groups open from one Menu button instead (mobile_menu()).
+NAV = [('/map/', 'Map'), ('/creatures/', 'Creatures'), ('UFOs', UFO_MENU), ('Stories', STORY_MENU), ('Explore', EXPLORE_MENU), ('More', RES_MENU)]
+
+
+def mobile_menu(path):
+    """The phone menu: one <details> panel with every group, big tap targets. Works without JS."""
+    cur = lambda q: ' aria-current="page"' if path == q or (q != '/' and path.startswith(q)) else ''
+    top = ''.join(f'<a class="mm-big" href="{url(q)}"{cur(q)}>{esc(n)}</a>' for q, n in NAV if not isinstance(n, list))
+    groups = ''.join(f'<div class="mm-group"><p class="mm-h">{esc(p)}</p>' + ''.join(f'<a href="{url(q)}"{cur(q)}>{esc(m)}</a>' for q, m in n) + '</div>'
+                     for p, n in NAV if isinstance(n, list))
+    return (f'<details class="mm" data-area="mobile-menu"><summary aria-label="Menu"><svg viewBox="0 0 20 14" width="20" height="14" aria-hidden="true">'
+            '<path d="M1 1h18M1 7h18M1 13h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Menu</span></summary>'
+            f'<div class="mm-panel"><div class="mm-top">{top}</div><div class="mm-groups">{groups}</div></div></details>')
 
 
 def nav_html(path):
@@ -174,6 +190,10 @@ def ga_tag():
                 f"gtag('js',new Date());gtag('config','{GA_ID}');"
                 "window.eaTrack=function(n,p){try{gtag('event',n,Object.assign({page_type:location.pathname.split('/')[1]||'home'},p||{}));}catch(e){}};</script>"
                 f'<script src="{url("/static/track.js")}" defer></script>')
+    if CLARITY_ID:
+        out += ('<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};'
+                't=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);'
+                f'}})(window,document,"clarity","script","{CLARITY_ID}");</script>')
     if CLICKY_ID:
         out += f'<script async data-id="{CLICKY_ID}" src="https://static.getclicky.com/js"></script>'
     if CF_BEACON:
@@ -271,9 +291,10 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 {'' if path == '/map/' else HELLO}
 <header class="top">
   <a class="brand" href="{url('/')}"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</a>
-  <nav class="nav" aria-label="Main">{nav}</nav>
+  <nav class="nav" aria-label="Main" data-area="main-menu">{nav}</nav>
   <a class="search-btn" href="{url('/search/')}" aria-label="Search the site"{' aria-current="page"' if path == '/search/' else ''}><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></a>
   <a class="report-btn" href="{url('/report/')}"{' aria-current="page"' if path.startswith('/report/') else ''}><span class="rb-dot" aria-hidden="true"></span><span class="rb-long">Report an encounter</span><span class="rb-short" aria-hidden="true">Report</span></a>
+  {mobile_menu(path)}
 </header>
 <main id="main">
 {body}
@@ -291,7 +312,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <script src="{url('/static/amz.js')}" defer></script>
 <script src="{url('/static/signup.js')}" defer></script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('{url('/sw.js')}');</script>
-<script>(function(){{const dd=[...document.querySelectorAll('.nav-dd')];dd.forEach(d=>d.addEventListener('toggle',()=>{{if(d.open)dd.forEach(o=>{{if(o!==d)o.open=false;}});}}));document.addEventListener('click',e=>{{dd.forEach(d=>{{if(d.open&&!d.contains(e.target))d.open=false;}});}});document.addEventListener('keydown',e=>{{if(e.key==='Escape')dd.forEach(d=>{{if(d.open){{d.open=false;d.querySelector('summary').focus();}}}});}});}})();</script>
+<script>(function(){{const dd=[...document.querySelectorAll('.nav-dd, .mm')];dd.forEach(d=>d.addEventListener('toggle',()=>{{if(d.open)dd.forEach(o=>{{if(o!==d)o.open=false;}});}}));document.addEventListener('click',e=>{{dd.forEach(d=>{{if(d.open&&!d.contains(e.target))d.open=false;}});}});document.addEventListener('keydown',e=>{{if(e.key==='Escape')dd.forEach(d=>{{if(d.open){{d.open=false;d.querySelector('summary').focus();}}}});}});}})();</script>
 </body>
 </html>
 '''
