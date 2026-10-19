@@ -7,3 +7,6 @@ time,slug,model,status,prompt_tok,thought_tok,text_tok,image_tok,usd
 2026-10-14T11:42:28.863Z,illus-wendigo,gemini-3.1-flash-image,503,0,0,0,0,0.0000
 2026-10-14T11:42:41.971Z,illus-alabama-white-thang,gemini-3.1-flash-image,200,170,0,0,1120,0.0673
 2026-10-14T11:42:56.288Z,illus-wendigo,gemini-3.1-flash-image,200,169,0,0,1120,0.0673
+2026-10-17T04:07:02.251493Z,magpie-files-icon,gemini-3.1-flash-image,200,144,0,0,1120,0.0673
+2026-10-19T03:58:01.673Z,unknown-shape,gemini-3.1-flash-image,200,131,0,0,1120,0.0673
+2026-10-19T03:58:20.699Z,unknown-shape,gemini-3.1-flash-image,200,137,0,0,1120,0.0673

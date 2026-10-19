@@ -106,6 +106,43 @@
     t = t[0].toUpperCase() + t.slice(1);
     return t.length <= n ? t : t.slice(0, n).replace(/\s+\S*$/, '') + '…';
   }
+
+  // Park-poster frame (same as the creature pages, built from build.py poster()): dusk sky, moon, ridge, pines and
+  // the creature's silhouette. "Something else" reports use the question mark in the pines.
+  const POSTER_SKY = { hominid: ['#E3A649', '#B5532F'], canid: ['#3B4C6B', '#1B2A3A'], winged: ['#3B4C6B', '#1B2A3A'], aquatic: ['#E8B04A', '#C8693A'],
+    entity: ['#3B4C6B', '#1B2A3A'], ufo: ['#2E3E5C', '#141E2E'], fae: ['#C97B9A', '#4A2E4F'], other: ['#3B4C6B', '#1B2A3A'] };
+  let posterN = 0;
+  function poster(slug, other, cls = 'rposter') {
+    const c = creature(slug, other);
+    const art = c.icon && c.icon.startsWith('art/') ? c.icon : 'art/unknown-shape';
+    const [a, b] = POSTER_SKY[c.cat] || POSTER_SKY.other;
+    const id = 'rsky' + (++posterN), wet = c.cat === 'aquatic';
+    const ground = wet ? '<rect y="160" width="200" height="40" fill="#2B4A55"/>'
+      : '<path d="M0 182L14 146 28 182 40 138 54 182 146 182 160 132 174 182 188 142 200 182V200H0Z" fill="#1E3A2F"/>';
+    const span = h('span', { class: cls, 'aria-hidden': 'true' });
+    span.innerHTML = `<svg viewBox="0 0 200 200"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient>` +
+      `<clipPath id="c${id}"><rect x="6" y="6" width="188" height="188" rx="10"/></clipPath></defs><g clip-path="url(#c${id})"><rect width="200" height="200" fill="url(#${id})"/>` +
+      `<circle cx="150" cy="52" r="24" fill="#F3E3B8" opacity=".9"/><path d="M0 152L30 120 55 138 85 104 120 134 150 110 200 142V200H0Z" fill="#5E4A3A" opacity=".5"/>${ground}` +
+      `<image href="${BASE}/static/${art}.svg" x="22" y="${wet ? 34 : 26}" width="160" height="160"/></g><rect x="6" y="6" width="188" height="188" rx="10" fill="none" stroke="#F3E3B8" stroke-width="4"/></svg>`;
+    return span;
+  }
+  // Map pin: the silhouette on its category colour with a lantern ring (reader reports), as a MapLibre image.
+  async function addPin(map, id, slug) {
+    if (map.hasImage(id)) return;
+    const c = creature(slug);
+    const art = c.icon && c.icon.startsWith('art/') ? c.icon : 'art/unknown-shape';
+    const svg = (await fetch(`${BASE}/static/${art}.svg`).then((r) => r.text()).catch(() => '')).replace('<svg ', '<svg width="64" height="64" ');
+    const img = new Image();
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    await img.decode().catch(() => {});
+    const px = 88, cv = document.createElement('canvas');
+    cv.width = cv.height = px;
+    const g = cv.getContext('2d');
+    g.beginPath(); g.arc(px / 2, px / 2, px / 2 - 4, 0, Math.PI * 2);
+    g.fillStyle = CAT_COLORS[c.cat] || CAT_COLORS.other; g.fill(); g.lineWidth = 7; g.strokeStyle = '#F2B33D'; g.stroke();
+    try { g.drawImage(img, px * 0.17, px * 0.17, px * 0.66, px * 0.66); } catch (e) { /* art failed to load */ }
+    if (!map.hasImage(id)) map.addImage(id, g.getImageData(0, 0, px, px), { pixelRatio: 2 });
+  }
   function title(r) {
     const c = creature(r.creature, r.other_what);
     const what = r.creature === 'other' ? r.other_what || 'Something strange' : c.name;
@@ -367,7 +404,7 @@
 
   // ---------- /reports/ views ----------
   const root = document.getElementById('ea-reports');
-  window.EA = { cfg, API, BASE, h, api, store, session, user, signOut, human, resetHuman, creature, badge, title, fmtDate, makeMap, areaLayer, circle, signinBox, voteWidget, loadTallies, CAT_COLORS, page };
+  window.EA = { poster, addPin, cfg, API, BASE, h, api, store, session, user, signOut, human, resetHuman, creature, badge, title, fmtDate, makeMap, areaLayer, circle, signinBox, voteWidget, loadTallies, CAT_COLORS, page };
   if (!root) return;
 
   const qs = new URLSearchParams(location.search);
@@ -387,26 +424,24 @@
     head.append(mapEl);
     const map = makeMap(mapEl, { cooperative: true });
     if (map) {
-      map.on('load', () => {
-        map.addSource('reports', { type: 'geojson', data: API + '/api/reports.geojson', cluster: true, clusterRadius: 36, clusterMaxZoom: 10 });
+      map.on('load', async () => {
+        const g = await fetch(API + '/api/reports.geojson').then((r) => r.json()).catch(() => ({ type: 'FeatureCollection', features: [] }));
+        // Creature pins are drawn before the layer exists, so every pin shows on first paint.
+        await Promise.all([...new Set(g.features.map((f) => f.properties.c))].map((c) => addPin(map, 'rr-' + c, c)));
+        map.addSource('reports', { type: 'geojson', data: g, cluster: true, clusterRadius: 36, clusterMaxZoom: 10 });
         // Start zoomed to fit every report, so pins in the far north or overseas aren't off screen.
-        fetch(API + '/api/reports.geojson').then((r) => r.json()).then((g) => {
-          const pts = (g.features || []).map((f) => f.geometry.coordinates);
-          if (!pts.length) return;
+        const pts = g.features.map((f) => f.geometry.coordinates);
+        if (pts.length) {
           const lons = pts.map((c) => c[0]), lats = pts.map((c) => c[1]);
           map.fitBounds([[Math.min(...lons), Math.min(...lats)], [Math.max(...lons), Math.max(...lats)]], { padding: 60, maxZoom: 6, duration: 0 });
-        }).catch(() => {});
-        const colorExpr = ['match', ['get', 'c']];
-        for (const [slug, c] of Object.entries(meta.creatures)) colorExpr.push(slug, CAT_COLORS[c.c] || '#E0C36A');
-        colorExpr.push('#E0C36A');
+        }
         map.addLayer({ id: 'rc', type: 'circle', source: 'reports', filter: ['has', 'point_count'], paint: {
           'circle-color': '#F2B33D', 'circle-radius': ['interpolate', ['linear'], ['get', 'point_count'], 2, 12, 50, 20],
           'circle-stroke-color': '#13261F', 'circle-stroke-width': 2 } });
         map.addLayer({ id: 'rn', type: 'symbol', source: 'reports', filter: ['has', 'point_count'],
           layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-size': 12, 'text-font': ['Noto Sans Bold'] }, paint: { 'text-color': '#13261F' } });
-        map.addLayer({ id: 'rp', type: 'circle', source: 'reports', filter: ['!', ['has', 'point_count']], paint: {
-          'circle-color': colorExpr, 'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 6, 10, 10],
-          'circle-stroke-color': '#13261F', 'circle-stroke-width': 2, 'circle-opacity': 0.95 } });
+        map.addLayer({ id: 'rp', type: 'symbol', source: 'reports', filter: ['!', ['has', 'point_count']], layout: {
+          'icon-image': ['concat', 'rr-', ['get', 'c']], 'icon-size': ['interpolate', ['linear'], ['zoom'], 2, 0.7, 8, 1], 'icon-allow-overlap': true } });
         map.on('click', 'rc', async (e) => {
           const f = e.features[0];
           const z = await map.getSource('reports').getClusterExpansionZoom(f.properties.cluster_id);
@@ -467,7 +502,7 @@
 
   function card(x) {
     const c = creature(x.creature, x.other_what);
-    const pic = h('div', { class: `rc-img rc-noimg cat-${c.cat}` }, badge(x.creature, 'md', x.other_what));
+    const pic = h('div', { class: `rc-img rc-noimg cat-${c.cat}` }, poster(x.creature, x.other_what));
     const bits = [x.n_links ? `${x.n_links} photo link${x.n_links > 1 ? 's' : ''}` : '', x.n_videos ? `${x.n_videos} video${x.n_videos > 1 ? 's' : ''}` : '', x.witnesses > 1 ? `${x.witnesses} witnesses` : ''].filter(Boolean);
     return h('a', { class: 'rcard', href: page('?id=' + x.id) }, pic,
       h('span', { class: 'rc-body' },
@@ -494,7 +529,7 @@
     const d = dark();
     d.classList.add('rep-detail-head');
     d.replaceChildren(
-      h('div', { class: 'creature-head-in' }, badge(R.creature, 'lg', R.other_what),
+      h('div', { class: 'creature-head-in' }, poster(R.creature, R.other_what, 'rposter rposter-lg'),
         h('div', {}, h('p', { class: 'crumb' }, h('a', { href: page(), text: 'Encounters' }), ' / ', c.name),
           h('h1', { text: title(R) }),
           h('p', { class: 'lede', text: fmtDate(R.seen_date, R.seen_time, R.date_approx) }))));

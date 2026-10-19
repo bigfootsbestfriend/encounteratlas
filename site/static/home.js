@@ -133,3 +133,50 @@
     });
   }
 })();
+
+// Home page: "Latest reader reports" box. Shows the three newest approved reports with the creature poster;
+// the pill counts how many went up in the last 7 days. Hidden when there are none.
+(() => {
+  const sec = document.querySelector('.new-reports');
+  if (!sec || !sec.dataset.api) return;
+  const BASE = sec.dataset.base || '';
+  const SKY = { hominid: ['#E3A649', '#B5532F'], canid: ['#3B4C6B', '#1B2A3A'], winged: ['#3B4C6B', '#1B2A3A'], aquatic: ['#E8B04A', '#C8693A'],
+    entity: ['#3B4C6B', '#1B2A3A'], ufo: ['#2E3E5C', '#141E2E'], fae: ['#C97B9A', '#4A2E4F'], other: ['#3B4C6B', '#1B2A3A'] };
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const place = (p) => { p = String(p || '').trim(); return p && p === p.toLowerCase() ? p.replace(/(^|[\s-])(\p{L})/gu, (m, a, b) => a + b.toUpperCase()) : p; };
+  const ago = (t) => { const d = Math.floor((Date.now() / 1000 - t) / 86400); return d < 1 ? 'today' : d === 1 ? 'yesterday' : d < 30 ? `${d} days ago` : ''; };
+  let n = 0;
+  function poster(art, cat) {
+    const [a, b] = SKY[cat] || SKY.other, id = 'nrsky' + (++n), wet = cat === 'aquatic';
+    const ground = wet ? '<rect y="160" width="200" height="40" fill="#2B4A55"/>'
+      : '<path d="M0 182L14 146 28 182 40 138 54 182 146 182 160 132 174 182 188 142 200 182V200H0Z" fill="#1E3A2F"/>';
+    return `<svg viewBox="0 0 200 200" aria-hidden="true"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient>` +
+      `<clipPath id="c${id}"><rect x="6" y="6" width="188" height="188" rx="10"/></clipPath></defs><g clip-path="url(#c${id})"><rect width="200" height="200" fill="url(#${id})"/>` +
+      `<circle cx="150" cy="52" r="24" fill="#F3E3B8" opacity=".9"/><path d="M0 152L30 120 55 138 85 104 120 134 150 110 200 142V200H0Z" fill="#5E4A3A" opacity=".5"/>${ground}` +
+      `<image href="${BASE}/static/${art}.svg" x="22" y="${wet ? 34 : 26}" width="160" height="160"/></g><rect x="6" y="6" width="188" height="188" rx="10" fill="none" stroke="#F3E3B8" stroke-width="4"/></svg>`;
+  }
+  Promise.all([
+    fetch(sec.dataset.api + '/api/reports?limit=3').then((r) => (r.ok ? r.json() : null)),
+    fetch(sec.dataset.index).then((r) => r.json()).catch(() => []),
+  ]).then(([d, idx]) => {
+    if (!d || !d.reports || !d.reports.length) return;
+    const art = {};
+    for (const x of idx) { const m = /\/creatures\/([^/]+)\/$/.exec(x.u || ''); if (m) art[m[1]] = { i: x.i, c: x.c, t: x.t }; }
+    const week = Date.now() / 1000 - 7 * 86400;
+    const fresh = d.reports.filter((x) => x.approved_at > week).length;
+    if (fresh) sec.querySelector('[data-nr-count]').textContent = `${fresh}${d.next && fresh === d.reports.length ? '+' : ''} new this week`;
+    sec.querySelector('.nr-list').innerHTML = d.reports.map((x) => {
+      const a = art[x.creature] || { i: 'art/unknown-shape', c: 'other', t: 'Something else' };
+      const icon = String(a.i).startsWith('art/') ? a.i : 'art/unknown-shape';
+      const what = x.creature === 'other' ? (x.other_what || 'Something strange') : a.t;
+      const where = place(x.place);
+      const isNew = x.approved_at > week;
+      return `<a class="nr-card" href="${BASE}/reports/?id=${encodeURIComponent(x.id)}">
+        <span class="nr-art">${poster(icon, a.c)}${isNew ? '<span class="nr-new">New</span>' : ''}</span>
+        <span class="nr-body"><span class="nr-what">${esc(what.length > 60 ? what.slice(0, 58) + '…' : what)}</span>
+        <span class="nr-where">${esc(where || 'Place not named')}${ago(x.approved_at) ? ' · added ' + ago(x.approved_at) : ''}</span>
+        <span class="nr-snip">${esc(x.snippet)}</span><span class="nr-go">Read the report</span></span></a>`;
+    }).join('');
+    sec.hidden = false;
+  }).catch(() => {});
+})();

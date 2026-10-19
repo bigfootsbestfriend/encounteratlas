@@ -61,7 +61,7 @@
     if (!svgCache[name]) svgCache[name] = fetch(BASE + (name.startsWith('art/') ? '/static/' : '/static/icons/') + name + '.svg').then((r) => r.text()).catch(() => '');
     return svgCache[name];
   }
-  async function addBadge(id, name, color, size = 44) {
+  async function addBadge(id, name, color, size = 44, ring = '') {
     if (map.hasImage(id)) return;
     let svg = await iconSvg(name);
     svg = svg.replace(/currentColor/g, color).replace(/var\(--eye,[^)]*\)/g, '#F2B33D').replace(/var\(--eye-red,[^)]*\)/g, '#FF5A44')
@@ -75,7 +75,7 @@
     g.beginPath(); g.arc(px / 2, px / 2, px / 2 - 3, 0, Math.PI * 2);
     // Park-poster silhouettes: dark creature on a disc of its category colour; old icons: coloured icon on dark disc
     const art = name.startsWith('art/');
-    g.fillStyle = art ? color : '#13261F'; g.fill(); g.lineWidth = 4; g.strokeStyle = art ? '#13261F' : color; g.stroke();
+    g.fillStyle = art ? color : '#13261F'; g.fill(); g.lineWidth = ring ? 7 : 4; g.strokeStyle = ring || (art ? '#13261F' : color); g.stroke();
     const pad = px * 0.17;
     try { g.drawImage(img, pad, pad, px - 2 * pad, px - 2 * pad); } catch (e) { /* icon failed to load */ }
     map.addImage(id, g.getImageData(0, 0, px, px), { pixelRatio: 2 });
@@ -286,10 +286,21 @@
     if (!api) return;
     const data = await fetch(api + '/api/reports.geojson').then((r) => (r.ok ? r.json() : null)).catch(() => null);
     if (!data || !data.features || !data.features.length) return;
+    // Reader reports: the creature's silhouette on its category colour, with a lantern-yellow ring so they
+    // stand apart from famous cases. "Something else" reports get the question-mark-in-the-pines art.
+    const idx = await fetch(BASE + '/data/search.json').then((r) => r.json()).catch(() => []);
+    const art = {};
+    for (const x of idx) { const m = /^\/creatures\/([^/]+)\/$/.exec(x.u || ''); if (m) art[m[1]] = { i: x.i, c: x.c }; }
+    for (const f of data.features) {
+      const a = art[f.properties.c] || { i: 'art/unknown-shape', c: 'other' };
+      f.properties.img = 'rr-' + a.i + '-' + a.c;
+      f.properties.ic = a.i; f.properties.cc = a.c;
+    }
+    const kinds = new Set(data.features.map((f) => f.properties.ic + '|' + f.properties.cc));
+    await Promise.all([...kinds].map((k) => { const [i, c] = k.split('|'); return addBadge('rr-' + i + '-' + c, i, CAT[c] || '#E0C36A', 44, '#F2B33D'); }));
     map.addSource('reports', { type: 'geojson', data });
-    map.addLayer({ id: 'reports', type: 'circle', source: 'reports', paint: {
-      'circle-color': '#F3F1E4', 'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 4.5, 10, 8],
-      'circle-stroke-color': '#F2B33D', 'circle-stroke-width': 2.5 } });
+    map.addLayer({ id: 'reports', type: 'symbol', source: 'reports', layout: {
+      'icon-image': ['get', 'img'], 'icon-size': ['interpolate', ['linear'], ['zoom'], 2, 0.62, 8, 1], 'icon-allow-overlap': true } });
     map.on('click', 'reports', (e) => {
       const p = e.features[0].properties;
       popup(e.features[0].geometry.coordinates, [node('div', 'pop-kind', null, '<span>Reader report' + (p.d ? ', ' + p.d : '') + '</span>'),

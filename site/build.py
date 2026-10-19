@@ -1122,7 +1122,7 @@ def build_home(creatures, n_points, bluebook, military):
 <section class="home-hero">
   <div class="wrap">
     <h1>Every strange thing, on one map</h1>
-    <p class="lede">Bigfoot, Dogman, lake monsters, UFOs and what the military saw. {len(creatures)} creatures, {len(bluebook):,} Air Force files, {n_canada:,} Canadian sightings, and soon, your reports.</p>
+    <p class="lede">Bigfoot, Dogman, lake monsters, UFOs and what the military saw. {len(creatures)} creatures, {len(bluebook):,} Air Force files, {n_canada:,} Canadian sightings, and reports from readers like you.</p>
     <div class="search" data-index="{url('/data/search.json')}">
       <label class="visually-hidden" for="home-q">Search</label>
       <input id="home-q" type="search" placeholder="Search: Sasquatch, Ohio, Roswell..." autocomplete="off">
@@ -1132,6 +1132,14 @@ def build_home(creatures, n_points, bluebook, military):
     <nav class="tiles" aria-label="Browse by type">{tiles}</nav>
   </div>
 </section>
+{f'''<section class="new-reports" data-api="{EA_API}" data-base="{url('')}" data-index="{url('/data/search.json')}" aria-labelledby="nr-h" hidden>
+  <div class="wrap">
+    <div class="nr-head"><div><p class="nr-pill"><span class="nr-dot" aria-hidden="true"></span><span data-nr-count>New from readers</span></p>
+      <h2 id="nr-h">Latest reader reports</h2></div>
+      <p class="nr-actions"><a class="btn btn-sm" href="{url('/reports/')}">See all reports</a> <a class="btn btn-sm btn-ghost" href="{url('/report/')}">Report yours</a></p></div>
+    <div class="nr-list"></div>
+  </div>
+</section>''' if EA_API else ''}
 <section class="map-block" aria-label="Encounter map">
   <div class="wrap">
     <div class="map-block-head">

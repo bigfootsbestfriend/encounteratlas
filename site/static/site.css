@@ -691,3 +691,24 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 .crit-reads a[hidden] { display: none; }
 .ws-more { margin: 1rem 0 0; }
 .pop-story { margin: .2rem 0 .5rem; font-size: .92rem; line-height: 1.45; color: #DCE3D2; font-style: italic; }
+
+/* Home: latest reader reports */
+.new-reports { background: #1B3229; border-top: 1px solid rgba(242,179,61,.25); border-bottom: 1px solid rgba(242,179,61,.25); padding: 28px 0 32px; }
+.nr-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.nr-head h2 { margin: 4px 0 0; color: #F3F1DA; }
+.nr-pill { display: inline-flex; align-items: center; gap: 8px; margin: 0; background: #F2B33D; color: #13261F; font-weight: 700; font-size: .85rem; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: .04em; }
+.nr-dot { width: 9px; height: 9px; border-radius: 50%; background: #D8352A; box-shadow: 0 0 0 0 rgba(216,53,42,.6); animation: nr-pulse 1.8s infinite; }
+@keyframes nr-pulse { 70% { box-shadow: 0 0 0 9px rgba(216,53,42,0); } 100% { box-shadow: 0 0 0 0 rgba(216,53,42,0); } }
+@media (prefers-reduced-motion: reduce) { .nr-dot { animation: none; } }
+.nr-actions { margin: 0; display: flex; gap: 8px; flex-wrap: wrap; }
+.nr-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.nr-card { display: flex; gap: 14px; background: #F6F0E2; color: #1F2A24; border-radius: 14px; padding: 12px; text-decoration: none; transition: transform .15s; }
+.nr-card:hover { transform: translateY(-2px); }
+.nr-art { position: relative; flex: none; width: 92px; height: 92px; }
+.nr-art svg { width: 100%; height: 100%; display: block; }
+.nr-new { position: absolute; top: -6px; left: -6px; background: #D8352A; color: #fff; font: 700 .7rem/1 var(--sans, system-ui); padding: 4px 7px; border-radius: 99px; text-transform: uppercase; letter-spacing: .05em; }
+.nr-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.nr-what { font: 700 1.02rem/1.25 var(--display); color: #13261F; }
+.nr-where { font-size: .85rem; color: #5D6B62; }
+.nr-snip { font-size: .9rem; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.nr-go { margin-top: auto; font-weight: 700; color: #8A5A00; text-decoration: underline; font-size: .9rem; }
