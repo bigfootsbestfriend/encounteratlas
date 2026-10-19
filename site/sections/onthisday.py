@@ -134,7 +134,8 @@ def build(ctx):
             desc = (f'UFO sightings, monster reports and mysteries that happened on {name}: ' +
                     '; '.join(f'{t} ({y})' for y, _, t, _, _, _ in items[:3]) if items else
                     f'UFO sightings and strange events on {name}, including {len(cases)} Canadian UFO reports.')
-            ctx.write(path(m, d), ctx.page(path(m, d), f'{name} in strange history: UFOs, monsters and mysteries', body, desc[:300], head_extra=head))
+            ctx.write(path(m, d), ctx.page(path(m, d), f'{name} in strange history: UFOs, monsters and mysteries', body, desc[:300], head_extra=head,
+                                          noindex=not items))  # days with only survey counts are too thin for Google
 
     months = ''
     for m in range(1, 13):

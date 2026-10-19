@@ -230,10 +230,11 @@ HELLO = f'''<div class="hello" id="hello" role="region" aria-label="Weekly email
 <script>try{{const s=localStorage;if(s.getItem('ea-subbed')||Date.now()-(+s.getItem('ea-hello')||0)<12096e5)document.getElementById('hello').remove();}}catch(e){{}}</script>'''
 
 
-def page(path, title, body, desc='', body_class='', head_extra='', canonical=True, og_image=''):
+def page(path, title, body, desc='', body_class='', head_extra='', canonical=True, og_image='', noindex=False):
     full_title = title if title.startswith('Encounter Atlas') else f'{title} | Encounter Atlas'
     nav = nav_html(path)
-    robots = '' if LAUNCHED else '<meta name="robots" content="noindex">'
+    # noindex=True for thin template pages (useful to visitors, not worth Google's index): kept out of the sitemap too.
+    robots = '<meta name="robots" content="noindex">' if not LAUNCHED else ('<meta name="robots" content="noindex,follow">' if noindex else '')
     beacon = ga_tag()
     canon = f'<link rel="canonical" href="{SITE_URL}{path}">' if canonical else ''
     return f'''<!doctype html>
@@ -973,6 +974,7 @@ def build_ufo(bluebook, BY_SLUG):
 
     # US city pages: any town with CITY_MIN or more files pinned to it gets its own page under its state.
     CITY_MIN = 8
+    CITY_INDEX_MIN = 15  # smaller town pages stay up for visitors but are noindexed (Google's scaled-content rules)
     places_all = json.load(open(os.path.join(ROOT, 'data', 'places.json')))
     places_all = places_all if isinstance(places_all, list) else places_all.get('places', [])
     city_pages = {}
@@ -1054,7 +1056,8 @@ def build_ufo(bluebook, BY_SLUG):
   <p><a href="{url(f'/ufo/blue-book/{k}/')}">All {esc(nm)} files</a> · <a href="{url('/ufo/')}">UFO sightings hub</a> · <a href="{url('/reports/')}">Recent reader reports</a></p>
 </div></div>'''
         write(f'/ufo/blue-book/{k}/{sl}/', page(f'/ufo/blue-book/{k}/{sl}/', f'UFO sightings in {pl}, {nm}: {len(cases)} Air Force files',
-                                                body, f'{len(cases)} Project Blue Book UFO files from {pl}, {nm} (1947 to 1969), with dates and links to the scanned originals.'))
+                                                body, f'{len(cases)} Project Blue Book UFO files from {pl}, {nm} (1947 to 1969), with dates and links to the scanned originals.',
+                                                noindex=len(cases) < CITY_INDEX_MIN and (k, sl) not in CITY_NOTES))
 
     for k, cases in by_region.items():
         cases = sorted(cases, key=lambda b: (b['year'] is None, b['year'] or 0, b['month'] or 0))  # undated files last
@@ -1525,7 +1528,7 @@ def main():
     pages = []
     for d, _, files in os.walk(OUT):
         for fn in files:
-            if fn == 'index.html':
+            if fn == 'index.html' and 'content="noindex' not in open(os.path.join(d, fn), encoding='utf-8').read(3000):
                 pages.append('/' + os.path.relpath(d, OUT).replace('.', '').strip('/') + '/')
     pages = sorted(p.replace('//', '/') for p in pages)
     with open(os.path.join(OUT, 'sitemap.xml'), 'w') as f:
