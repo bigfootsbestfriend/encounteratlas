@@ -1,0 +1,32 @@
+/* Creature comparison pages (/compare/) */
+.cmp-hero { display: flex; align-items: center; gap: clamp(.8rem, 3vw, 2rem); margin: .4rem 0 1.2rem; }
+.cmp-hero a { display: flex; flex-direction: column; align-items: center; gap: .4rem; color: #F3F1DA; text-decoration: none; font-weight: 700; }
+.cmp-poster { width: clamp(110px, 22vw, 168px); height: auto; display: block; filter: drop-shadow(0 8px 18px rgba(0,0,0,.35)); }
+.cmp-vs { font: 700 clamp(1.4rem, 4vw, 2.4rem) var(--display); color: #F2B33D; }
+.cmp-body h2 { margin-top: 2rem; }
+.cmp-table { background: #fff; border: 1px solid var(--mist-2, #cfd9d3); border-radius: 12px; overflow: hidden; }
+.cmp-row { display: grid; grid-template-columns: 9rem 1fr 1fr; gap: 1rem; padding: .7rem 1rem; border-top: 1px solid var(--mist, #e4ebe6); font-size: .95rem; line-height: 1.45; }
+.cmp-row:first-child { border-top: 0; }
+.cmp-headrow { background: #13261F; color: #F3F1DA; font-weight: 700; }
+.cmp-k { font-weight: 700; color: #4D6157; }
+@media (max-width: 640px) {
+  .cmp-row { grid-template-columns: 1fr 1fr; }
+  .cmp-row .cmp-k, .cmp-headrow span:first-child { grid-column: 1 / -1; }
+  .cmp-headrow span:first-child { display: none; }
+}
+.cmp-diffs { padding-left: 1.2rem; }
+.cmp-diffs li { margin-bottom: .7rem; line-height: 1.55; }
+.cmp-tell { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.cmp-tell > div { background: #fff; border-radius: 12px; padding: .9rem 1.1rem; border: 1px solid var(--mist-2, #cfd9d3); }
+.cmp-tell h3 { margin: 0 0 .4rem; font-size: 1.05rem; }
+.cmp-tell ul { margin: 0; padding-left: 1.1rem; }
+@media (max-width: 640px) { .cmp-tell { grid-template-columns: 1fr; } }
+.cmp-cta { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-top: 1.5rem; }
+.cmp-more { columns: 2; padding-left: 1.2rem; }
+.cmp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.cmp-card { display: flex; flex-direction: column; gap: .35rem; background: #fff; border: 1px solid var(--mist-2, #cfd9d3); border-radius: 14px; padding: 1rem; text-decoration: none; color: inherit; transition: transform .15s; }
+.cmp-card:hover { transform: translateY(-2px); border-color: #13261F; }
+.cmp-pair { display: flex; gap: .4rem; }
+.cmp-pair .cmp-poster { width: 50%; filter: none; }
+.cmp-card b { font: 700 1.1rem var(--display); }
+.cmp-card small { color: #4D6157; line-height: 1.45; }

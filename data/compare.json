@@ -1,0 +1,162 @@
+[
+  {
+    "a": "bigfoot", "b": "yeti",
+    "intro": "Both are huge, hairy, upright apes that leave giant footprints, so people often use the names as if they were the same animal. They come from opposite sides of the world, though, and the stories about them are quite different.",
+    "diffs": [
+      "Where: Bigfoot lives in North American forests, usually near water. The Yeti lives in the Himalaya, in snowy valleys 12,000 feet and higher.",
+      "Look: Bigfoot is usually described as dark brown or black and 7 to 9 feet tall. Yeti descriptions vary much more, from child-sized to over 8 feet, with reddish, grey or white fur.",
+      "Where the stories come from: Bigfoot draws on Indigenous names like Sasq'ets and the 1958 Bluff Creek headlines. The Yeti comes from Sherpa and Tibetan tradition, and the name 'Abominable Snowman' was coined after a 1921 Everest expedition.",
+      "Evidence people point to: for Bigfoot, the 1967 Patterson-Gimlin film and thousands of footprint casts. For the Yeti, footprints photographed in the snow by mountaineers, like Eric Shipton's in 1951."
+    ],
+    "same": "Some enthusiasts think they are related populations of one unknown ape that crossed the Bering land bridge. Most scientists don't think either exists. DNA tests on hair said to be from Yetis have come back as bears, and no Bigfoot body or bone has ever been found.",
+    "tell": [
+      ["You were in a North American forest, near a river or lake", "You were high in the mountains of Nepal, Tibet or Bhutan"],
+      ["Dark brown or black hair, very tall and broad", "Reddish, grey or pale hair, often seen on snow"],
+      ["Wood knocks, whoops and howls at night", "High-pitched whistles or cries"]
+    ]
+  },
+  {
+    "a": "bigfoot", "b": "skunk-ape",
+    "intro": "The Skunk Ape is often called Florida's Bigfoot. It is reported in the swamps of the Everglades and Big Cypress rather than mountain forests, and it is best known for one thing above all: the smell.",
+    "diffs": [
+      "Where: Bigfoot is reported across North America, most in the Pacific Northwest. Skunk Ape reports come almost only from Florida's swamps.",
+      "Size: the Skunk Ape is usually described as smaller, around 5 to 7 feet, compared with Bigfoot's 7 to 9.",
+      "Smell: some Bigfoot witnesses mention a bad smell. For the Skunk Ape it's the defining feature: rotten eggs, skunk or a dead animal.",
+      "Habitat: cypress swamp, hammocks and sawgrass instead of mixed forest and mountains."
+    ],
+    "same": "Many researchers treat the Skunk Ape as a regional name for Bigfoot, the way people in the South also talk about the 'wood booger' or the Fouke Monster. Others think the hot, wet swamps would need a different animal. Like Bigfoot, there's no body or confirmed DNA.",
+    "tell": [
+      ["Mountain or northern forest", "Swamp, Everglades or Big Cypress"],
+      ["7 to 9 feet tall, massive shoulders", "5 to 7 feet, often seen crossing roads at night"],
+      ["Smell is mentioned sometimes", "An overwhelming stink is the first thing people notice"]
+    ]
+  },
+  {
+    "a": "bigfoot", "b": "yowie",
+    "intro": "The Yowie is Australia's big hairy man of the bush. Reports sound a lot like Bigfoot, but the Yowie has its own long history in Aboriginal stories and in settler accounts of 'hairy men' from the 1800s.",
+    "diffs": [
+      "Where: Bigfoot is in North America. The Yowie is reported in eastern Australia: the Blue Mountains, Queensland's Gold Coast hinterland and the Great Dividing Range.",
+      "Size: Yowie reports cover a wider range, from about 6 feet to 10 feet.",
+      "Behaviour: Yowie witnesses often describe rocks thrown at their camp and deep grunts and screams in the bush.",
+      "Where the stories come from: Aboriginal traditions with many local names, such as Doolagahl, plus colonial newspaper reports from the 1800s."
+    ],
+    "same": "The two stories grew up independently on different continents. That's part of why enthusiasts find the Yowie interesting: very similar 'hairy man' descriptions from places with no contact. Sceptics point out that Australia has no native apes at all, which makes a large primate even harder to explain there.",
+    "tell": [
+      ["North American forest", "Australian bush or rainforest gully"],
+      ["Wood knocks and whoops", "Grunts, screams and thrown rocks"],
+      ["Usually 7 to 9 feet", "Anywhere from 6 to 10 feet"]
+    ]
+  },
+  {
+    "a": "dogman", "b": "skinwalker",
+    "intro": "Both get described online as something dog-like walking on two legs, so the stories get mixed up. They are completely different things. Dogman is a modern Midwest cryptid. Skinwalkers come from Diné (Navajo) belief and are not an animal at all.",
+    "diffs": [
+      "What it is: Dogman is described as a creature, an upright canine. In Diné belief a skinwalker (yee naaldlooshii) is a person, a witch who has done great evil and is said to take animal form.",
+      "Where: Dogman reports centre on Michigan and Wisconsin, with more across the Midwest and South. Skinwalker stories belong to the Navajo homeland in Arizona, New Mexico and Utah.",
+      "Origin: Dogman folklore comes from Wexford County, Michigan and became famous through a 1987 radio song. Skinwalker belief is far older and is part of a living tradition.",
+      "Signs: Dogman witnesses describe amber eyeshine at head height and growls. Modern skinwalker stories focus on mimicked voices and animals that move like people."
+    ],
+    "same": "No. They come from different places, different cultures and different kinds of story. Many Diné people prefer that skinwalkers aren't discussed casually or turned into monster entertainment, so treat those stories with respect.",
+    "tell": [
+      ["Michigan, Wisconsin or elsewhere in the Midwest", "The Four Corners region"],
+      ["A huge upright dog or wolf shape, often near farms and back roads", "Something that seemed to copy a voice, or an animal that moved wrong"],
+      ["A creature sighting", "A story bound up with Diné belief"]
+    ]
+  },
+  {
+    "a": "skinwalker", "b": "wendigo",
+    "intro": "Skinwalkers and the Wendigo are both known from Indigenous traditions, and both have been reshaped by internet horror stories. They belong to different nations, far apart, and mean very different things.",
+    "diffs": [
+      "Whose tradition: skinwalkers come from Diné (Navajo) belief in the Southwest. The Wendigo (Windigo, Witiko, Wīhtikōw) comes from Algonquian-speaking peoples of the northern forests and Great Lakes, such as the Cree and Ojibwe.",
+      "What it is: a skinwalker is a person who has turned to witchcraft. The Wendigo is a spirit of winter and hunger tied to greed and cannibalism, and in some stories a person can become one.",
+      "Setting: desert and back roads of the Four Corners, compared with frozen boreal forest in winter.",
+      "Modern image: online, the Wendigo is often drawn with deer antlers and a skull. That look comes from recent pop culture, not from the traditional stories."
+    ],
+    "same": "No. Mixing them up is a common mistake. Both are part of living traditions that are still meaningful to the people they belong to, so we share them respectfully and don't treat them as interchangeable monsters.",
+    "tell": [
+      ["Southwest desert, Navajo country", "Northern forest, Canada or the Great Lakes"],
+      ["Mimicked voices, animals moving like people", "Bitter cold, dread, a tall gaunt figure in winter woods"],
+      ["Linked to witchcraft", "Linked to hunger, greed and winter"]
+    ]
+  },
+  {
+    "a": "mothman", "b": "owlman",
+    "intro": "Both are tall, winged, red-eyed figures from the 1960s and 70s, and both are tied to one small place. Mothman haunted Point Pleasant, West Virginia. Owlman was seen around a churchyard in Cornwall, England, ten years later.",
+    "diffs": [
+      "Where and when: Mothman was first reported on November 15, 1966, near Point Pleasant. Owlman was first reported in April 1976 at Mawnan, Cornwall.",
+      "Look: Mothman is described as a man-sized figure with a 10-foot wingspan and huge glowing red eyes. Owlman has pointed ears, grey feathers and black, pincer-like claws.",
+      "Behaviour: Mothman was said to chase cars at high speed without flapping. Owlman was mostly seen hovering or standing in the trees by the church.",
+      "Legacy: Mothman became linked to the 1967 Silver Bridge collapse and now has a festival and statue. Owlman stayed a local mystery."
+    ],
+    "same": "They're separate stories, but some writers group them as 'winged humanoids'. Sceptics suggest a large owl for both: a barred owl or snowy owl caught in headlights can look startlingly big, with eyes that reflect red.",
+    "tell": [
+      ["West Virginia or the Ohio River valley", "Cornwall, England"],
+      ["Huge wingspan, flew alongside a car", "Owl-like face with pointed ears"],
+      ["Red eyes glowing in headlights", "Grey feathers and black claws"]
+    ]
+  },
+  {
+    "a": "loch-ness-monster", "b": "ogopogo",
+    "intro": "Nessie and Ogopogo are the world's two most famous lake monsters, one in a Scottish loch and one in a deep lake in British Columbia. Both are described as long, dark animals with humps, but the details differ.",
+    "diffs": [
+      "Where: Loch Ness in the Scottish Highlands, compared with Okanagan Lake in BC's Okanagan Valley.",
+      "Look: Nessie is usually a long neck and small head, like a plesiosaur. Ogopogo is more serpent-like: several humps in a line and a horse- or goat-like head.",
+      "Size: Nessie estimates run 20 to 40 feet. Ogopogo is often said to be 40 to 50 feet.",
+      "History: Nessie goes back to St Columba's 'water beast' in 565 AD, but the modern legend began in 1933. Ogopogo grew from Syilx (Okanagan) traditions of N'ha-a-itk and settler reports from the 1870s."
+    ],
+    "same": "They're separate legends, but they share explanations offered by sceptics: boat wakes, swimming deer or moose, floating logs and standing waves on calm days. A 2018 DNA survey of Loch Ness found lots of eel DNA and no reptile DNA.",
+    "tell": [
+      ["Scotland", "British Columbia"],
+      ["Long neck rising out of the water", "Row of humps, serpent-like"],
+      ["Small head", "Head like a horse or goat"]
+    ]
+  },
+  {
+    "a": "grey-aliens", "b": "nordic-aliens",
+    "intro": "Greys and Nordics are the two best-known 'types' of alien in UFO lore. Greys belong to abduction stories. Nordics belong to the friendly 'space brothers' of the 1950s contactee movement.",
+    "diffs": [
+      "Look: Greys are short (3 to 4 feet), hairless and grey, with large black almond eyes. Nordics are tall, human-looking people with long fair hair.",
+      "The kind of story: Greys appear in abduction accounts, often at night in a bedroom or on a lonely road. Nordics appear in friendly contact meetings, usually with calm warnings about war or the environment.",
+      "Famous cases: the 1961 Betty and Barney Hill abduction made the Grey famous. George Adamski said he met a Nordic in the California desert on November 20, 1952.",
+      "Mood: Grey encounters are usually frightening and clinical. Nordic encounters are described as peaceful."
+    ],
+    "same": "UFO researchers usually treat them as different groups. Sceptics see both as products of their time: the Nordic matched 1950s fears about the atomic bomb, and the Grey grew out of 1960s and 70s abduction stories and their portrayal on TV and film.",
+    "tell": [
+      ["Short, grey, big black eyes", "Tall, human-looking, fair hair"],
+      ["Taken against your will, missing time", "A calm conversation with a message"],
+      ["Night, bedroom or lonely road", "Desert landing site or arranged meeting"]
+    ]
+  },
+  {
+    "a": "ufo-saucer", "b": "ufo-triangle",
+    "intro": "The flying saucer was the classic UFO shape of the 1940s to 60s. Since the 1980s, more and more people have reported something else: huge, silent black triangles with lights at the corners.",
+    "diffs": [
+      "Shape: a saucer is a metallic disc, sometimes with a dome. A black triangle is a dark shape you often see only by the stars it blocks out, with three or more bright lights at the corners.",
+      "Movement: saucers are often described as very fast, darting or hovering. Triangles are usually described as slow and silent.",
+      "When: saucers took off after Kenneth Arnold's sighting near Mount Rainier on June 24, 1947. Triangle reports grew through the 1980s, with famous waves over Belgium in 1989 to 1990 and Arizona in 1997.",
+      "Size: both are reported at every size, but triangles are often said to be hundreds of feet across."
+    ],
+    "same": "They are different shapes, though both appear in the same official files. Explanations differ too: many saucer reports were later matched to balloons and aircraft. Many triangle reports are now thought to be military aircraft, blimps, flares or formations of lights.",
+    "tell": [
+      ["Round, metallic, sometimes shiny in daylight", "Dark, flat, three lights in a triangle"],
+      ["Fast, darting or hovering", "Slow, low and silent"],
+      ["Classic 1950s look", "Mostly reported since the 1980s"]
+    ]
+  },
+  {
+    "a": "shadow-people", "b": "hat-man",
+    "intro": "The Hat Man is the most famous kind of shadow person. Both are dark human shapes seen at night, but the Hat Man has a distinctive look and a reputation of his own.",
+    "diffs": [
+      "Look: shadow people are usually a solid black human outline with no features. The Hat Man wears a wide-brimmed hat, sometimes a long coat, and has no visible face.",
+      "Where: both are seen in bedrooms and hallways at night. The Hat Man is often standing in a doorway or at the foot of the bed.",
+      "Feeling: shadow people are often glimpsed at the corner of the eye and then gone. The Hat Man tends to stand and watch, and many people describe deep dread.",
+      "History: shadow people were popularised on Coast to Coast AM radio in 2001. The Hat Man was described online from the late 2000s."
+    ],
+    "same": "Many people think the Hat Man is one specific kind of shadow person. Doctors link many of these experiences to sleep paralysis, when you wake up but can't move yet and the dreaming brain keeps producing images. That doesn't make them any less frightening.",
+    "tell": [
+      ["Featureless dark outline, glimpsed then gone", "A clear brimmed hat on the silhouette"],
+      ["Anywhere, often at the edge of vision", "Doorway or foot of the bed"],
+      ["Brief", "Stands and watches while you can't move"]
+    ]
+  }
+]
