@@ -215,6 +215,21 @@ def ld_json(path, title, body):
     return ''.join('<script type="application/ld+json">' + json.dumps(o, ensure_ascii=False).replace('</', '<\\/') + '</script>' for o in out)
 
 
+# Weekly email bar above the header on every page but the full-screen map. Closing it hides it for 14 days
+# (static/signup.js); the inline script removes it before paint for people who closed it or already signed up.
+HELLO = f'''<div class="hello" id="hello" role="region" aria-label="Weekly email">
+  <form class="hello-in" action="{NEWSLETTER_API}/subscribe" method="post" data-nl>
+    <p class="hello-txt"><b>Strange news, once a week.</b> <span>Monsters from the old newspapers, a creature of the week and new reader reports.</span></p>
+    <input type="hidden" name="site" value="encounteratlas"><input class="visually-hidden" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <label for="hello-email" class="visually-hidden">Email address</label>
+    <input id="hello-email" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
+    <button type="submit" class="btn btn-sm">Sign me up</button>
+  </form>
+  <button type="button" class="hello-x" aria-label="Close">&times;</button>
+</div>
+<script>try{{const s=localStorage;if(s.getItem('ea-subbed')||Date.now()-(+s.getItem('ea-hello')||0)<12096e5)document.getElementById('hello').remove();}}catch(e){{}}</script>'''
+
+
 def page(path, title, body, desc='', body_class='', head_extra='', canonical=True, og_image=''):
     full_title = title if title.startswith('Encounter Atlas') else f'{title} | Encounter Atlas'
     nav = nav_html(path)
@@ -252,6 +267,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <a class="skip" href="#main">Skip to content</a>
 <div class="print-brand" aria-hidden="true"><img src="{url('/static/logo-mark.svg')}" alt="" width="44" height="44"><div><b>Encounter Atlas</b><span>Cryptids, UFOs and close encounters, mapped</span></div><span class="pb-url">encounteratlas.com</span></div>
 <div class="print-foot" aria-hidden="true">Printed from encounteratlas.com{esc(path)} · Free to print and share · Report what you saw at encounteratlas.com/report</div>
+{'' if path == '/map/' else HELLO}
 <header class="top">
   <a class="brand" href="{url('/')}"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</a>
   <nav class="nav" aria-label="Main">{nav}</nav>
@@ -272,6 +288,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
   </div>
 </footer>
 <script src="{url('/static/amz.js')}" defer></script>
+<script src="{url('/static/signup.js')}" defer></script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('{url('/sw.js')}');</script>
 <script>(function(){{const dd=[...document.querySelectorAll('.nav-dd')];dd.forEach(d=>d.addEventListener('toggle',()=>{{if(d.open)dd.forEach(o=>{{if(o!==d)o.open=false;}});}}));document.addEventListener('click',e=>{{dd.forEach(d=>{{if(d.open&&!d.contains(e.target))d.open=false;}});}});document.addEventListener('keydown',e=>{{if(e.key==='Escape')dd.forEach(d=>{{if(d.open){{d.open=false;d.querySelector('summary').focus();}}}});}});}})();</script>
 </body>
@@ -280,12 +297,12 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 
 
 def signup_box(uid, title='Strange news, once a week', text=None):
-    """Weekly email signup (double opt-in). The newsletter Worker sends people back to /newsletter/#check."""
+    """Weekly email signup (single opt-in). The newsletter Worker sends people back to /newsletter/#confirmed."""
     text = text or ('This week in the old newspapers, a creature of the week and the newest reader reports. '
                     'One short email on Thursdays, unsubscribe in one click.')
     return f'''<section class="signup" id="signup-{uid}"><h2>{esc(title)}</h2>
 <p>{esc(text)}</p>
-<form action="{NEWSLETTER_API}/subscribe" method="post"><input type="hidden" name="site" value="encounteratlas">
+<form action="{NEWSLETTER_API}/subscribe" method="post" data-nl><input type="hidden" name="site" value="encounteratlas">
 <input class="visually-hidden" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
 <label for="email-{uid}" class="visually-hidden">Email address</label>
 <input id="email-{uid}" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
@@ -1239,6 +1256,7 @@ def build_home(creatures, n_points, bluebook, military):
     <div class="nr-list"></div>
   </div>
 </section>''' if EA_API else ''}
+<div class="band band-mist nl-band home-nl"><div class="wrap">{signup_box('home')}</div></div>
 <section class="map-block" aria-label="Encounter map">
   <div class="wrap">
     <div class="map-block-head">
@@ -1270,7 +1288,6 @@ def build_home(creatures, n_points, bluebook, military):
   <p><a href="{url('/history/')}">All {len(hist)} old newspaper reports</a></p>""" if news_html else ''}
   <h2>Keep exploring</h2>
   <nav class="tiles home-explore" aria-label="More to explore">{explore_html}</nav>
-  {signup_box('home')}
 </div></div>
 <div class="band band-dark"><div class="wrap split split-3">
   <div>

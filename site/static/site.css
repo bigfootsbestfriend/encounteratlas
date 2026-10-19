@@ -722,3 +722,33 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 .fchips a:hover { border-color: var(--spruce, #13261F); }
 .cmp-links { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; padding: 0; margin: 0 0 1rem; }
 .cmp-links a { display: inline-block; background: #fff; border: 1px solid var(--mist-2, #cfd9d3); border-radius: 99px; padding: .35rem .9rem; font-weight: 700; text-decoration: none; }
+
+/* Weekly email: the hello bar above the header on every page, and the slide-in card (static/signup.js) */
+.hello { position: relative; background: var(--lantern); color: var(--ink); padding: .45rem 2.6rem .45rem 1rem; }
+.hello-in { display: flex; align-items: center; justify-content: center; gap: .5rem .7rem; flex-wrap: nowrap; max-width: 1180px; margin: 0 auto; }
+.hello-txt { margin: 0; font-size: .95rem; line-height: 1.35; min-width: 0; }
+@media (max-width: 1100px) { .hello-txt span { display: none; } }
+.hello input[type=email] { width: 15rem; max-width: 100%; font: .95rem var(--body); padding: .4rem .7rem; border: 1px solid rgba(19,38,31,.35); border-radius: 999px; background: #fff; color: var(--ink); }
+.hello .btn { background: var(--spruce); color: #F3F1DA !important; border: 0; cursor: pointer; flex: none; }
+.hello .btn:hover { background: var(--spruce-3); }
+.hello-x { position: absolute; right: .4rem; top: 50%; transform: translateY(-50%); background: none; border: 0; font-size: 1.5rem; line-height: 1; padding: .3rem .5rem; color: var(--ink); cursor: pointer; }
+.hello-done { margin: 0; font-weight: 700; text-align: center; }
+@media (max-width: 760px) {
+  .hello { padding: .45rem 2.4rem .5rem .8rem; }
+  .hello-txt span { display: none; }
+  .hello-in { justify-content: flex-start; flex-wrap: wrap; }
+  .hello-txt { flex: 1 0 100%; }
+  .hello input[type=email] { flex: 1 1 10rem; width: auto; }
+}
+.nl-slide { position: fixed; right: 1rem; bottom: 1rem; z-index: 30; width: min(360px, calc(100vw - 2rem)); background: var(--spruce); color: #F3F1DA;
+  border: 2px solid var(--lantern); border-radius: 14px; padding: 1rem 1.1rem; box-shadow: 0 12px 34px rgba(0,0,0,.35);
+  transform: translateY(130%); transition: transform .35s ease; }
+.nl-slide.in { transform: none; }
+.nl-slide h2 { margin: 0 1.6rem .3rem 0; font-size: 1.2rem; color: var(--lantern-2); }
+.nl-slide p { margin: 0 0 .7rem; font-size: .92rem; line-height: 1.45; color: var(--lichen); }
+.nl-slide form { display: flex; gap: .4rem; flex-wrap: wrap; }
+.nl-slide input[type=email] { flex: 1 1 160px; min-width: 0; font: .95rem var(--body); padding: .5rem .7rem; border: 0; border-radius: 10px; }
+.nl-slide .btn { border: 0; cursor: pointer; }
+.nl-slide .hello-x { top: .9rem; transform: none; color: #F3F1DA; }
+@media (max-width: 560px) { .nl-slide { right: .5rem; left: .5rem; bottom: .5rem; width: auto; } }
+@media print { .hello, .nl-slide { display: none !important; } }
