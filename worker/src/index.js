@@ -462,16 +462,22 @@ async function listReports(env, url) {
   return json({ reports, next: more ? reports[reports.length - 1].approved_at : null }, 200, { 'cache-control': 'public, max-age=60' });
 }
 
+// First ~160 characters of the story, cut at a word, for map popups.
+function snip(t) {
+  t = String(t || '').replace(/\s+/g, ' ').trim();
+  return t.length <= 160 ? t : t.slice(0, 160).replace(/\s+\S*$/, '') + '…';
+}
+
 async function geojson(env) {
   const rows = (await env.DB.prepare(
-    `SELECT pid, creature, other_what, seen_date, place, pub_lat, pub_lon FROM reports WHERE status = 'approved'
-     ORDER BY approved_at DESC LIMIT 20000`,
+    `SELECT pid, creature, other_what, seen_date, place, pub_lat, pub_lon, substr(story, 1, 220) AS story FROM reports
+     WHERE status = 'approved' ORDER BY approved_at DESC LIMIT 20000`,
   ).all()).results;
   const features = rows.map((r) => ({
     type: 'Feature',
     geometry: { type: 'Point', coordinates: [r.pub_lon, r.pub_lat] },
     properties: { id: r.pid, c: r.creature, n: r.creature === 'other' ? r.other_what : CREATURES[r.creature] || '',
-      t: r.place, d: r.seen_date },
+      t: r.place, d: r.seen_date, s: snip(r.story) },
   }));
   return json({ type: 'FeatureCollection', features }, 200, { 'cache-control': 'public, max-age=300' });
 }

@@ -690,3 +690,4 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 .crit-reads a:hover { filter: brightness(1.05); text-decoration: underline; }
 .crit-reads a[hidden] { display: none; }
 .ws-more { margin: 1rem 0 0; }
+.pop-story { margin: .2rem 0 .5rem; font-size: .92rem; line-height: 1.45; color: #DCE3D2; font-style: italic; }

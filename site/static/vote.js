@@ -96,9 +96,20 @@
     else b.append(h('span', { class: 'q', 'aria-hidden': 'true', text: '?' }));
     return b;
   }
+  // Readers often type places in lower case ("boya lake"): capitalise each word unless they used capitals.
+  function placeName(p) {
+    p = String(p || '').trim();
+    return p && p === p.toLowerCase() ? p.replace(/(^|[\s-])(\p{L})/gu, (m, a, b) => a + b.toUpperCase()) : p;
+  }
+  function short(t, n = 70) {
+    t = String(t || 'Something strange').trim();
+    t = t[0].toUpperCase() + t.slice(1);
+    return t.length <= n ? t : t.slice(0, n).replace(/\s+\S*$/, '') + '…';
+  }
   function title(r) {
     const c = creature(r.creature, r.other_what);
     const what = r.creature === 'other' ? r.other_what || 'Something strange' : c.name;
+    r = { ...r, place: placeName(r.place) };
     if (!r.place) return `${what} encounter`;
     // "Near Index, WA" / "Outside Asheville" already say where: don't write "near Near Index".
     if (/^(near|outside|by|at|in|around|off|on|above|over)\s/i.test(r.place)) return `${what} ${r.place[0].toLowerCase()}${r.place.slice(1)}`;
@@ -378,6 +389,13 @@
     if (map) {
       map.on('load', () => {
         map.addSource('reports', { type: 'geojson', data: API + '/api/reports.geojson', cluster: true, clusterRadius: 36, clusterMaxZoom: 10 });
+        // Start zoomed to fit every report, so pins in the far north or overseas aren't off screen.
+        fetch(API + '/api/reports.geojson').then((r) => r.json()).then((g) => {
+          const pts = (g.features || []).map((f) => f.geometry.coordinates);
+          if (!pts.length) return;
+          const lons = pts.map((c) => c[0]), lats = pts.map((c) => c[1]);
+          map.fitBounds([[Math.min(...lons), Math.min(...lats)], [Math.max(...lons), Math.max(...lats)]], { padding: 60, maxZoom: 6, duration: 0 });
+        }).catch(() => {});
         const colorExpr = ['match', ['get', 'c']];
         for (const [slug, c] of Object.entries(meta.creatures)) colorExpr.push(slug, CAT_COLORS[c.c] || '#E0C36A');
         colorExpr.push('#E0C36A');
@@ -396,11 +414,12 @@
         });
         map.on('click', 'rp', (e) => {
           const p = e.features[0].properties;
-          const div = h('div', { class: 'pop' }, h('p', { class: 'pop-h', text: p.n || 'Encounter' }),
-            h('p', { style: 'margin:0 0 .4rem', text: [p.t, p.d].filter(Boolean).join(', ') }),
-            h('a', { href: page('?id=' + p.id), text: 'Read the report' }),
+          const div = h('div', { class: 'pop' }, h('p', { class: 'pop-h', text: title({ creature: p.c, other_what: p.n, place: placeName(p.t) }) }),
+            h('p', { style: 'margin:0 0 .4rem', text: fmtDate(p.d, '', false) }),
+            p.s ? h('p', { class: 'pop-story', text: '“' + p.s + '”' }) : '',
+            h('a', { href: page('?id=' + p.id), text: 'Read the full report' }),
             h('p', { class: 'approx', style: 'margin:.4rem 0 0', text: 'Shown within about 5 km.' }));
-          new maplibregl.Popup({ maxWidth: '280px' }).setLngLat(e.features[0].geometry.coordinates).setDOMContent(div).addTo(map);
+          new maplibregl.Popup({ maxWidth: '300px' }).setLngLat(e.features[0].geometry.coordinates).setDOMContent(div).addTo(map);
         });
         for (const id of ['rc', 'rp']) {
           map.on('mouseenter', id, () => { map.getCanvas().style.cursor = 'pointer'; });
@@ -452,8 +471,9 @@
     const bits = [x.n_links ? `${x.n_links} photo link${x.n_links > 1 ? 's' : ''}` : '', x.n_videos ? `${x.n_videos} video${x.n_videos > 1 ? 's' : ''}` : '', x.witnesses > 1 ? `${x.witnesses} witnesses` : ''].filter(Boolean);
     return h('a', { class: 'rcard', href: page('?id=' + x.id) }, pic,
       h('span', { class: 'rc-body' },
-        h('span', { class: 'rc-kind' }, h('span', { class: `dot cat-${c.cat}` }), c.name),
-        h('span', { class: 'rc-title', text: x.place || 'Place not named' }),
+        h('span', { class: 'rc-kind' }, h('span', { class: `dot cat-${c.cat}` }), x.creature === 'other' ? 'Something else' : c.name),
+        h('span', { class: 'rc-title', text: x.creature === 'other' ? short(x.other_what) : (placeName(x.place) || 'Place not named') }),
+        x.creature === 'other' && x.place ? h('span', { class: 'rc-date', text: placeName(x.place) }) : '',
         h('span', { class: 'rc-date', text: fmtDate(x.seen_date, '', x.date_approx) }),
         h('span', { class: 'rc-snip', text: x.snippet }),
         bits.length ? h('span', { class: 'rc-meta', text: bits.join(' · ') }) : ''));
@@ -513,7 +533,7 @@
     const add = (k, v) => { if (v) facts.append(h('div', {}, h('dt', { text: k }), h('dd', {}, v))); };
     add('What', R.creature === 'other' ? R.other_what : h('a', { href: `${BASE}/creatures/${R.creature}/`, text: c.name }));
     add('When', fmtDate(R.seen_date, R.seen_time, R.date_approx));
-    add('Where', (R.place ? R.place + '. ' : '') + 'Shown within about 5 km.');
+    add('Where', (R.place ? placeName(R.place) + '. ' : '') + 'Shown within about 5 km.');
     add('How long', R.duration);
     add('Witnesses', String(R.witnesses));
     add('Reported by', R.name || 'Anonymous');
