@@ -8,7 +8,8 @@
    "ol": "https://openlibrary.org/works/OL17653453W",
    "for": [
     "@general"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The field guide to Bigfoot, Yeti, and other mystery primates worldwide",
@@ -25,7 +26,8 @@
     "yeren",
     "orang-pendek",
     "skunk-ape"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The Field Guide to Lake Monsters, Sea Serpents, and Other Mystery Denizens of the Deep",
@@ -36,7 +38,8 @@
    "for": [
     "@lake",
     "sea-serpent"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "On the Track of Unknown Animals",
@@ -49,7 +52,8 @@
     "mokele-mbembe",
     "nandi-bear",
     "kongamato"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "Abominable science!",
@@ -64,7 +68,8 @@
     "loch-ness-monster",
     "mokele-mbembe",
     "sea-serpent"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The beasts that hide from man",
@@ -74,7 +79,8 @@
    "ol": "https://openlibrary.org/works/OL2418144W",
    "for": [
     "@general"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "American monsters",
@@ -86,7 +92,8 @@
     "@us",
     "dogman",
     "thunderbird"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Sasquatch",
@@ -96,7 +103,8 @@
    "ol": "https://openlibrary.org/works/OL8514705W",
    "for": [
     "bigfoot"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "Sasquatch",
@@ -106,7 +114,8 @@
    "ol": "https://openlibrary.org/works/OL5857035W",
    "for": [
     "bigfoot"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Bigfoot",
@@ -117,7 +126,8 @@
    "for": [
     "bigfoot",
     "yeti"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The Making of Bigfoot",
@@ -127,7 +137,8 @@
    "ol": "https://openlibrary.org/works/OL4543256W",
    "for": [
     "bigfoot"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Bigfoot",
@@ -137,7 +148,8 @@
    "ol": "https://openlibrary.org/works/OL5708583W",
    "for": [
     "bigfoot"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "My Quest for the Yeti",
@@ -147,7 +159,8 @@
    "ol": "https://openlibrary.org/works/OL67708W",
    "for": [
     "yeti"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Yeti",
@@ -157,7 +170,8 @@
    "ol": "https://openlibrary.org/works/OL21152862W",
    "for": [
     "yeti"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "The yowie",
@@ -167,7 +181,8 @@
    "ol": "https://openlibrary.org/works/OL23433391W",
    "for": [
     "yowie"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The Beast of Boggy Creek",
@@ -177,7 +192,8 @@
    "ol": "https://openlibrary.org/works/OL26146018W",
    "for": [
     "fouke-monster"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Beyond Boggy Creek",
@@ -189,7 +205,8 @@
     "fouke-monster",
     "skunk-ape",
     "honey-island-swamp-monster"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Momo",
@@ -199,7 +216,8 @@
    "ol": "https://openlibrary.org/works/OL24339492W",
    "for": [
     "momo"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Still Living?",
@@ -211,7 +229,8 @@
     "almas",
     "yeti",
     "yeren"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "The Beast of Bray Road: Tailing Wisconsin's Werewolf",
@@ -222,7 +241,8 @@
    "for": [
     "beast-of-bray-road",
     "dogman"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Hunting the American Werewolf",
@@ -234,7 +254,8 @@
     "dogman",
     "beast-of-bray-road",
     "wolfman-of-defiance"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Real wolfmen",
@@ -246,7 +267,8 @@
     "dogman",
     "wolfman-of-defiance",
     "shunka-warakin"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "The Mothman Prophecies",
@@ -258,7 +280,8 @@
     "mothman",
     "indrid-cold",
     "men-in-black"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Mothman",
@@ -268,7 +291,8 @@
    "ol": "https://openlibrary.org/works/OL8820579W",
    "for": [
     "mothman"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "They knew too much about flying saucers",
@@ -279,7 +303,8 @@
    "for": [
     "men-in-black",
     "flatwoods-monster"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Thunderbirds",
@@ -290,7 +315,8 @@
    "for": [
     "thunderbird",
     "big-bird"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The Jersey Devil",
@@ -300,7 +326,8 @@
    "ol": "https://openlibrary.org/works/OL1856364W",
    "for": [
     "jersey-devil"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "Tracking the chupacabra",
@@ -310,7 +337,8 @@
    "ol": "https://openlibrary.org/works/OL16189001W",
    "for": [
     "chupacabra"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Loch Ness monster",
@@ -320,7 +348,8 @@
    "ol": "https://openlibrary.org/works/OL6446771W",
    "for": [
     "loch-ness-monster"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "A monstrous commotion",
@@ -330,7 +359,8 @@
    "ol": "https://openlibrary.org/works/OL20883971W",
    "for": [
     "loch-ness-monster"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The monsters of Loch Ness",
@@ -341,7 +371,8 @@
    "for": [
     "loch-ness-monster",
     "morag"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Ogopogo",
@@ -351,7 +382,8 @@
    "ol": "https://openlibrary.org/works/OL5247432W",
    "for": [
     "ogopogo"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Ogopogo",
@@ -361,7 +393,8 @@
    "ol": "https://openlibrary.org/works/OL9582001W",
    "for": [
     "ogopogo"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Champ, beyond the legend",
@@ -371,7 +404,8 @@
    "ol": "https://openlibrary.org/works/OL4654751W",
    "for": [
     "champ"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The untold story of Champ",
@@ -381,7 +415,8 @@
    "ol": "https://openlibrary.org/works/OL16521425W",
    "for": [
     "champ"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Cadborosaurus",
@@ -392,7 +427,8 @@
    "for": [
     "cadborosaurus",
     "sea-serpent"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The Braxton County Monster",
@@ -402,7 +438,8 @@
    "ol": "https://openlibrary.org/works/OL8910498W",
    "for": [
     "flatwoods-monster"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "Monsters of the Gévaudan",
@@ -412,7 +449,8 @@
    "ol": "https://openlibrary.org/works/OL16988451W",
    "for": [
     "beast-of-gevaudan"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The Last Tasmanian Tiger",
@@ -422,7 +460,8 @@
    "ol": "https://openlibrary.org/works/OL8324008W",
    "for": [
     "thylacine"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Thylacine",
@@ -432,7 +471,8 @@
    "ol": "https://openlibrary.org/works/OL35730944W",
    "for": [
     "thylacine"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "The Great Sea-Serpent",
@@ -442,7 +482,8 @@
    "ol": "https://openlibrary.org/works/OL8951276W",
    "for": [
     "sea-serpent"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "In the Wake of the Sea-Serpents",
@@ -453,7 +494,8 @@
    "for": [
     "sea-serpent",
     "stellers-sea-ape"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Monsters of the Sea",
@@ -468,7 +510,8 @@
     "globster",
     "sea-monk",
     "bishop-fish"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The search for the giant squid",
@@ -478,7 +521,8 @@
    "ol": "https://openlibrary.org/works/OL1841209W",
    "for": [
     "kraken"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Kraken",
@@ -488,7 +532,8 @@
    "ol": "https://openlibrary.org/works/OL16010656W",
    "for": [
     "kraken"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The UFO experience",
@@ -500,7 +545,8 @@
     "@ufo",
     "ufo-saucer",
     "ufo-orbs"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "The Report on Unidentified Flying Objects",
@@ -512,7 +558,8 @@
     "@ufo",
     "ufo-saucer",
     "green-fireballs"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "UFOs",
@@ -524,7 +571,8 @@
     "@ufo",
     "ufo-tic-tac",
     "ufo-triangle"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "In Plain Sight",
@@ -535,7 +583,8 @@
    "for": [
     "ufo-tic-tac",
     "ufo-crash"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "Passport to Magonia: from folklore to flying saucers",
@@ -547,7 +596,8 @@
     "@ufo",
     "mystery-airships",
     "fairies"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The Roswell incident",
@@ -557,7 +607,8 @@
    "ol": "https://openlibrary.org/works/OL16614106W",
    "for": [
     "ufo-crash"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "The Interrupted Journey",
@@ -568,7 +619,8 @@
    "for": [
     "alien-abduction",
     "grey-aliens"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Missing Time",
@@ -579,7 +631,8 @@
    "for": [
     "alien-abduction",
     "grey-aliens"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Communion: a true story",
@@ -590,7 +643,8 @@
    "for": [
     "alien-abduction",
     "grey-aliens"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The Phoenix Lights",
@@ -601,7 +655,8 @@
    "for": [
     "ufo-triangle",
     "ufo-boomerang"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Hunt for the skinwalker",
@@ -611,7 +666,8 @@
    "ol": "https://openlibrary.org/works/OL5850693W",
    "for": [
     "skinwalker-ranch"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "Stalking The Herd Examining The Cattle Mutilation Mystery",
@@ -621,7 +677,8 @@
    "ol": "https://openlibrary.org/works/OL17523216W",
    "for": [
     "cattle-mutilation"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Round in circles",
@@ -631,7 +688,8 @@
    "ol": "https://openlibrary.org/works/OL2825562W",
    "for": [
     "crop-circles"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The great airship mystery: a UFO of the 1890s",
@@ -641,7 +699,8 @@
    "ol": "https://openlibrary.org/works/OL15218568W",
    "for": [
     "mystery-airships"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Flying saucers have landed",
@@ -651,7 +710,8 @@
    "ol": "https://openlibrary.org/works/OL7115265W",
    "for": [
     "nordic-aliens"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "An Encyclopedia of Fairies",
@@ -676,7 +736,8 @@
     "merrow",
     "barghest",
     "black-shuck"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The fairy-faith in Celtic countries",
@@ -690,7 +751,8 @@
     "tylwyth-teg",
     "pixies",
     "leprechaun"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Faeries",
@@ -702,7 +764,8 @@
     "@fae",
     "fairies",
     "gnomes"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The Book of Yōkai: Mysterious Creatures of Japanese Folklore",
@@ -715,7 +778,8 @@
     "tsuchinoko",
     "ningyo",
     "amabie"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The Night Parade of One Hundred Demons",
@@ -726,7 +790,8 @@
    "for": [
     "kappa",
     "ningyo"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The People of the Sea",
@@ -738,7 +803,8 @@
     "selkie",
     "finfolk",
     "blue-men-of-the-minch"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "Merpeople",
@@ -750,7 +816,8 @@
     "mermaid",
     "merrow",
     "rusalka"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "Fearsome creatures of the lumberwoods",
@@ -764,7 +831,8 @@
     "jackalope",
     "wampus-cat",
     "snallygaster"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Gef!",
@@ -774,7 +842,8 @@
    "ol": "https://openlibrary.org/works/OL20891898W",
    "for": [
     "gef"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "The owlman and others",
@@ -784,7 +853,8 @@
    "ol": "https://openlibrary.org/works/OL8771934W",
    "for": [
     "owlman"
-   ]
+   ],
+   "cover": true
   },
   {
    "title": "Mystery Big Cats",
@@ -797,7 +867,8 @@
     "beast-of-exmoor",
     "queensland-tiger",
     "tantanoola-tiger"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "The Big Grey Man of Ben Macdhui",
@@ -807,7 +878,8 @@
    "ol": "https://openlibrary.org/works/OL5048638W",
    "for": [
     "big-grey-man"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "In witch-bound Africa",
@@ -817,7 +889,8 @@
    "ol": "https://openlibrary.org/works/OL10610737W",
    "for": [
     "kongamato"
-   ]
+   ],
+   "cover": false
   },
   {
    "title": "The Van Meter visitor",
@@ -827,7 +900,8 @@
    "ol": "https://openlibrary.org/works/OL28756759W",
    "for": [
     "van-meter-visitor"
-   ]
+   ],
+   "cover": true
   }
  ],
  "docs": [
