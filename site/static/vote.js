@@ -575,7 +575,7 @@
     const mapEl = h('div', { class: 'mini-map', 'aria-label': 'Approximate area' });
     const aside = h('aside', { class: 'facts' }, mapEl, facts,
       h('p', { class: 'more' }, h('a', { href: `${BASE}/report/`, text: 'Seen something too? Report it' })));
-    mist().replaceChildren(h('div', { class: 'creature-body' }, art, aside));
+    mist().replaceChildren(h('div', { class: 'creature-body rep-body' }, art, aside));
     const map = makeMap(mapEl, { center: [R.lon, R.lat], zoom: 9.5, maxZoom: 11, cooperative: true });
     if (map) map.on('load', () => areaLayer(map, 'area', R.lon, R.lat, 3));
     await loadTallies(items);

@@ -235,3 +235,5 @@
 .rposter svg { width: 100%; height: 100%; display: block; }
 .rposter-lg { width: 168px; height: 168px; flex: none; }
 .rc-img.rc-noimg { aspect-ratio: 16 / 10; }
+/* Phones: the reader's story comes first, then the map and details (creature pages keep facts first). */
+@media (max-width: 860px) { .rep-body .facts { order: 0; } .rposter-lg { width: 104px; height: 104px; } }
