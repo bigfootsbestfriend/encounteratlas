@@ -18,7 +18,7 @@ TYPES = {  # key: (singular, plural, icon)
     'expedition': ('Expedition or tour', 'Expeditions and tours', 'expedition'),
 }
 COUNTRY = {'US': 'United States', 'CA': 'Canada', 'GB': 'United Kingdom', 'AU': 'Australia', 'JP': 'Japan',
-           'NP': 'Nepal', 'BR': 'Brazil', 'SE': 'Sweden', 'AR': 'Argentina'}
+           'NP': 'Nepal', 'BR': 'Brazil', 'SE': 'Sweden', 'AR': 'Argentina', 'IE': 'Ireland', 'FR': 'France', 'NO': 'Norway', 'IM': 'Isle of Man'}
 ABBR = {'Alabama': 'AL', 'Alaska': 'AK', 'Arizona': 'AZ', 'Arkansas': 'AR', 'California': 'CA', 'Colorado': 'CO',
         'Connecticut': 'CT', 'Delaware': 'DE', 'Florida': 'FL', 'Georgia': 'GA', 'Hawaii': 'HI', 'Idaho': 'ID',
         'Illinois': 'IL', 'Indiana': 'IN', 'Iowa': 'IA', 'Kansas': 'KS', 'Kentucky': 'KY', 'Louisiana': 'LA',
@@ -362,7 +362,8 @@ class Builder:
 </div></div>'''
             c.write(f'/places/{k}/', c.page(f'/places/{k}/', f'{h1}: museums, festivals and roadside stops', body,
                                             f'{h1}: {names}{" and more" if len(pl) > 4 else ""}. Addresses, dates, prices and a map.',
-                                            body_class='places', head_extra=self.map_head))
+                                            body_class='places', head_extra=self.map_head,
+                                            noindex=len(pl) < 3))  # one- or two-place regions are too thin for Google
 
     def nearest(self, p, n=4):
         if p['lat'] is None:
