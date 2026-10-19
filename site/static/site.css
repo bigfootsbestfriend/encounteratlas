@@ -712,3 +712,11 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 .nr-where { font-size: .85rem; color: #5D6B62; }
 .nr-snip { font-size: .9rem; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .nr-go { margin-top: auto; font-weight: 700; color: #8A5A00; text-decoration: underline; font-size: .9rem; }
+
+/* Blue Book city pages: files grouped by year */
+.file-years { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: .4rem 1.4rem; margin: .5rem 0 1rem; }
+.fy h3 { font-size: 1rem; margin: .6rem 0 .25rem; }
+.fy h3 .muted { font: 400 .85rem var(--sans, system-ui); }
+.fchips { display: flex; flex-wrap: wrap; gap: .3rem; margin: 0; }
+.fchips a { font-size: .85rem; padding: .15rem .55rem; border-radius: 99px; background: #fff; border: 1px solid var(--mist-2, #cfd9d3); text-decoration: none; }
+.fchips a:hover { border-color: var(--spruce, #13261F); }

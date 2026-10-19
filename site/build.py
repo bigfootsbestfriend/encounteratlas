@@ -938,12 +938,102 @@ def build_ufo(bluebook, BY_SLUG):
                     ''.join(f'<li>{esc(t)} <span class="muted">{n}</span></li>' for t, n in towns.most_common(24)) + '</ul>')
         return out + '<h2>Every file</h2>'
 
+    # US city pages: any town with CITY_MIN or more files pinned to it gets its own page under its state.
+    CITY_MIN = 8
+    places_all = json.load(open(os.path.join(ROOT, 'data', 'places.json')))
+    places_all = places_all if isinstance(places_all, list) else places_all.get('places', [])
+    city_pages = {}
+    for k, cases in by_region.items():
+        if not k.startswith('us-'):
+            continue
+        cnt = Counter(b['place'] for b in cases if b.get('precision') == 'place' and b.get('place') and b.get('lat') is not None)
+        city_pages[k] = sorted(((pl, slugify(pl), n) for pl, n in cnt.items() if n >= CITY_MIN and slugify(pl)), key=lambda x: -x[2])
+
+    def km(a, b, c, d):
+        import math
+        p1, p2 = math.radians(a), math.radians(c)
+        h = math.sin((p2 - p1) / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(math.radians(d - b) / 2) ** 2
+        return 6371 * 2 * math.asin(math.sqrt(h))
+
+    CITY_NOTES = {
+        ('us-ohio', 'dayton'): 'Dayton has more files than anywhere else for a simple reason: Project Blue Book was run from '
+                               'Wright-Patterson Air Force Base, just outside the city. Local sightings were easy to report in person, '
+                               'and the base itself logged reports from its own staff.',
+        ('us-ohio', 'kettering'): 'Kettering sits next to Dayton and Wright-Patterson Air Force Base, where Project Blue Book had its office.',
+        ('us-new-mexico', 'albuquerque'): 'Albuquerque is home to Kirtland Air Force Base and the Sandia nuclear weapons labs, '
+                                          'and New Mexico\'s test ranges kept the skies busy with rockets, balloons and jets through the Blue Book years.',
+        ('us-district-of-columbia', 'washington'): 'In July 1952 radar operators at Washington National Airport and Andrews Air Force Base tracked unknown '
+                                                    'targets over the capital on two weekends running, and jets were scrambled to chase them. '
+                                                    'The "Washington flap" made front pages around the world.',
+    }
+
+    def file_years(cases):
+        """Files grouped by year as small month links (a city page would otherwise repeat the town name hundreds of times)."""
+        by = defaultdict(list)
+        for b in cases:
+            by[b.get('year')].append(b)
+        out = ''
+        for y in sorted(by, key=lambda v: (v is None, v or 0)):
+            fs = sorted(by[y], key=lambda b: b.get('month') or 13)
+            links = ''.join(f'<a href="https://catalog.archives.gov/id/{b["id"]}" rel="noopener">{MONTHS[b["month"]][:3] if b.get("month") else "File"}</a>' for b in fs)
+            out += f'<div class="fy"><h3>{y or "Date unknown"} <span class="muted">{len(fs)} file{"s" if len(fs) != 1 else ""}</span></h3><p class="fchips">{links}</p></div>'
+        return out
+
+    def city_page(k, nm, pl, sl, cases):
+        cases = sorted(cases, key=lambda b: (b['year'] is None, b['year'] or 0, b['month'] or 0))
+        ys = Counter(b['year'] for b in cases if b.get('year'))
+        peak = f' The busiest year was {max(ys, key=ys.get)}, with {max(ys.values())} files.' if ys else ''
+        span = f' The files run from {min(ys)} to {max(ys)}.' if len(ys) > 1 else ''
+        lat = sum(b['lat'] for b in cases) / len(cases)
+        lon = sum(b['lon'] for b in cases) / len(cases)
+        note = CITY_NOTES.get((k, sl), '')
+        chart = ''
+        if sum(ys.values()) >= 8:
+            mx = max(ys.values())
+            chart = ('<h2>Files by year</h2><div class="bars" role="img" aria-label="Bar chart of files per year">' +
+                     ''.join(f'<div class="bar" style="--h:{round(100 * ys.get(y, 0) / mx)}%" title="{y}: {ys.get(y, 0)} files"><span class="bar-n">{ys.get(y, 0)}</span>'
+                             f'<span class="bar-y">&#8217;{str(y)[2:]}</span></div>' for y in range(1947, 1970)) + '</div>')
+        months = Counter(b['month'] for b in cases if b.get('month'))
+        busiest_m = f' Most were filed in {MONTHS[max(months, key=months.get)]}.' if len(months) >= 3 else ''
+        near = sorted(((km(lat, lon, x['lat'], x['lon']), x) for x in places_all if x.get('lat') is not None and x.get('lon') is not None), key=lambda t: t[0])
+        near = [(d, x) for d, x in near if d <= 150][:6]
+        near_html = ('<h2>Strange places to visit nearby</h2><ul class="also-links">' +
+                     ''.join(f'<li><a href="{url("/places/" + x["slug"] + "/")}">{esc(x["name"])}</a> <span class="muted">{esc(x.get("city") or "")}, about {round(d)} km away</span></li>' for d, x in near)
+                     + '</ul>') if near else ''
+        others = [(p2, s2, n2) for p2, s2, n2 in city_pages[k] if s2 != sl][:12]
+        others_html = ('<h2>Other towns in ' + esc(nm) + ' with Air Force files</h2><ul class="cols">' +
+                       ''.join(f'<li><a href="{url(f"/ufo/blue-book/{k}/{s2}/")}">{esc(p2)}</a> <span class="muted">{n2}</span></li>' for p2, s2, n2 in others) + '</ul>') if others else ''
+        body = f'''
+<section class="band band-dark"><div class="wrap">
+  <p class="crumb"><a href="{url('/ufo/')}">UFOs</a> / <a href="{url('/ufo/blue-book/')}">Project Blue Book</a> / <a href="{url(f'/ufo/blue-book/{k}/')}">{esc(nm)}</a></p>
+  <h1>UFO sightings in {esc(pl)}, {esc(nm)}: Air Force files</h1>
+  <p class="lede">{len(cases)} US Air Force Project Blue Book case files name {esc(pl)}.{span}{peak}{busiest_m}</p>
+  <p><a class="btn" href="{url('/map/?type=ufo')}">See them on the map</a> <a class="btn btn-ghost" href="{url('/report/')}">Seen something here? Report it</a></p>
+</div></section>
+<div class="band band-mist"><div class="wrap">
+  {f'<p class="lede-note">{esc(note)}</p>' if note else ''}
+  {chart}
+  <h2>Every file from {esc(pl)}</h2>
+  <div class="file-years">{file_years(cases)}</div>
+  <p class="small">Each link opens the original scanned folder at the US National Archives (Record Group 341). Blue Book closed in 1969, so there are no files after that year.</p>
+  {near_html}
+  {others_html}
+  <p><a href="{url(f'/ufo/blue-book/{k}/')}">All {esc(nm)} files</a> · <a href="{url('/ufo/')}">UFO sightings hub</a> · <a href="{url('/reports/')}">Recent reader reports</a></p>
+</div></div>'''
+        write(f'/ufo/blue-book/{k}/{sl}/', page(f'/ufo/blue-book/{k}/{sl}/', f'UFO sightings in {pl}, {nm}: {len(cases)} Air Force files',
+                                                body, f'{len(cases)} Project Blue Book UFO files from {pl}, {nm} (1947 to 1969), with dates and links to the scanned originals.'))
+
     for k, cases in by_region.items():
         cases = sorted(cases, key=lambda b: (b['year'] is None, b['year'] or 0, b['month'] or 0))  # undated files last
         nm = names[k] if k != 'unknown' else 'Place unclear or unreadable'
         ys = Counter(b['year'] for b in cases if b.get('year'))
         peak = f' The busiest year was {max(ys, key=ys.get)}, with {max(ys.values())} reports.' if ys else ''
         items = ''.join(case_line(b) for b in cases)
+        cps = city_pages.get(k, [])
+        city_links = ('<h2>Towns with their own page</h2><ul class="cols">' +
+                      ''.join(f'<li><a href="{url(f"/ufo/blue-book/{k}/{s2}/")}">{esc(p2)}</a> <span class="muted">{n2}</span></li>' for p2, s2, n2 in cps) + '</ul>') if cps else ''
+        for p2, s2, n2 in cps:
+            city_page(k, nm, p2, s2, [b for b in cases if b.get('precision') == 'place' and b.get('place') == p2 and b.get('lat') is not None])
         body = f'''
 <section class="band band-dark"><div class="wrap">
   <p class="crumb"><a href="{url('/ufo/')}">UFOs</a> / <a href="{url('/ufo/blue-book/')}">Project Blue Book</a></p>
@@ -952,6 +1042,7 @@ def build_ufo(bluebook, BY_SLUG):
   <p><a class="btn" href="{url('/map/')}">See them on the map</a></p>
 </div></section>
 <div class="band band-mist"><div class="wrap">
+  {city_links}
   {bb_extras(k, cases, nm) if k != 'unknown' else ''}
   <ol class="timeline cases">{items}</ol>
   <p class="small">Links open the original folder at the US National Archives.</p>
