@@ -10,7 +10,7 @@ STATUS = {'unexplained': ('Unexplained', 'No accepted explanation'), 'disputed':
           'explained': ('Explained', 'Most investigators accept an explanation'), 'hoax': ('Hoax', 'Admitted or proven hoax')}
 COUNTRY = {'US': 'United States', 'FR': 'France', 'BR': 'Brazil', 'ZW': 'Zimbabwe', 'AU': 'Australia', 'PG': 'Papua New Guinea',
            'RU': 'Russia', 'SU': 'USSR', 'CA': 'Canada', 'GB': 'United Kingdom', 'DE': 'Germany', 'CH': 'Switzerland', 'SE': 'Sweden',
-           'BE': 'Belgium', 'NZ': 'New Zealand'}
+           'BE': 'Belgium', 'NZ': 'New Zealand', 'MX': 'Mexico', 'IT': 'Italy', 'ES': 'Spain'}
 
 
 def build(ctx):
