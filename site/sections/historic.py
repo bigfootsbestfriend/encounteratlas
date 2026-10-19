@@ -1,10 +1,10 @@
-"""Historic encounters: strange-creature, sea-serpent, wild-man and airship reports from US newspapers before 1927.
+"""Historic encounters: strange-creature, sea-serpent, wild-man and airship reports from old US and New Zealand newspapers.
 
 Pages: /history/ (intro, decade strip, topic chips, map, every case), /history/<topic>/ (timeline per topic),
 /history/<state>/ (states with 5+ cases). Writes /data/historic.geojson.
 
 Data: data/historic.json (collector/historic.py). Summaries are our own words; each case cites the newspaper
-pages (Library of Congress, Chronicling America) it came from. Sources and licences: data/historic_SOURCES.md.
+pages (Library of Congress Chronicling America; National Library of New Zealand Papers Past) it came from. Sources and licences: data/historic_SOURCES.md.
 """
 import json, os
 from collections import Counter, defaultdict
@@ -26,7 +26,8 @@ TOPIC_INTRO = {
                'that newspapers printed with a wink.',
     'airship-1909': 'In 1909, with real aeroplanes in the news, night lights were again taken for secret airships: over the '
                     'Salton Sea in June, around San Francisco Bay in August and across New England in December, after a '
-                    'Worcester businessman claimed he had flown to New York and back by night.',
+                    'Worcester businessman claimed he had flown to New York and back by night. In New Zealand the same winter, '
+                    'Otago and Southland spent late July and early August watching for a "scareship".',
     'wild-man': 'Nineteenth-century papers loved a "wild man of the woods": a hairy figure seen by hunters, farmers or '
                 'children, usually never caught. Some turned out to be escaped asylum patients or hermits; others are '
                 'remembered today as early Bigfoot-type stories.',
@@ -53,7 +54,9 @@ DECADES = list(range(1830, 1930, 10))
 SOURCE_NOTE = ('Newspaper pages: Library of Congress, <a href="https://www.loc.gov/collections/chronicling-america/" rel="noopener">'
                'Chronicling America</a> (US newspapers published before 1927 are in the public domain). Text search: '
                '<a href="https://huggingface.co/datasets/dell-research-harvard/AmericanStories" rel="noopener">American Stories</a> '
-               '(Dell, Bryan, Carlson and others, CC BY 4.0). Summaries are our own. Place data: GeoNames (CC BY 4.0).')
+               '(Dell, Bryan, Carlson and others, CC BY 4.0). New Zealand pages: National Library of New Zealand, '
+               '<a href="https://paperspast.natlib.govt.nz/" rel="noopener">Papers Past</a>, found through the '
+               '<a href="https://digitalnz.org/" rel="noopener">DigitalNZ</a> API. Summaries are our own. Place data: GeoNames (CC BY 4.0).')
 
 
 def build(ctx):
@@ -91,6 +94,8 @@ class H:
         for x in cases:
             if x.get('state') in STATE_NAMES:
                 self.states[x['state']].append(x)
+            elif x.get('country') == 'NZ':
+                self.states['New Zealand'].append(x)
         self.state_pages = {s: v for s, v in self.states.items() if len(v) >= 5}
         self.css = (f'<link rel="preconnect" href="https://fonts.googleapis.com">'
                     f'<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">'
@@ -130,7 +135,7 @@ class H:
         carried = ''
         if more:
             items = ''.join(f'<li><a href="{e(p["url"])}" rel="noopener">{e(p["paper"])}</a>'
-                            f'{", " + e(p["place"]) if p.get("place") else ""}, {e(dateline(p["date"]))}, p. {e(p["page"])}</li>'
+                            f'{", " + e(p["place"]) if p.get("place") else ""}, {e(dateline(p["date"]))}{", p. " + e(p["page"]) if p.get("page") else ""}</li>'
                             for p in x['papers'][1:])
             carried = (f'<details class="hc-more"><summary>Also printed in {more} other paper{"s" if more > 1 else ""}</summary>'
                        f'<ul>{items}</ul></details>')
@@ -138,7 +143,7 @@ class H:
         names = ' '.join([x['title'], x.get('place', ''), x.get('state', ''), TOPICS[k][1]] + [p['paper'] for p in x['papers']]).lower()
         return f'''<article class="hc t-{k}" id="h-{e(x['id'])}" data-k="{k}" data-dec="{x['date'][:3]}0" data-names="{e(names)}">
   <header class="hc-mast"><span class="hc-paper">{e(p0['paper'])}</span><span class="hc-rule"></span>
-    <span class="hc-dateline">{e(p0.get('place') or '')}{' · ' if p0.get('place') else ''}{e(dateline(p0['date']))} · Page {e(p0['page'])}</span></header>
+    <span class="hc-dateline">{e(p0.get('place') or '')}{' · ' if p0.get('place') else ''}{e(dateline(p0['date']))}{' · Page ' + e(p0['page']) if p0.get('page') else ''}</span></header>
   <h3 class="hc-title">{e(x['title'])}</h3>
   <p class="hc-where">{c.icon('q-pin', 'ico')}<span>{e(x['place'])}{approx} · {e(dateline(x['date']))}</span></p>
   <p class="hc-sum">{e(x['summary'])}</p>
@@ -176,9 +181,9 @@ class H:
                 f'data-base="{self.c.BASE}" {attrs}></div></div>')
 
     def source_box(self):
-        return (f'<aside class="hc-source"><h2>Where these come from</h2><p>Every case is a newspaper report printed in the United States '
-                f'before 1927, so the pages are in the public domain. We read the original page, wrote a short summary in plain English '
-                f'and link the scan at the Library of Congress so you can read it yourself. When the same story was reprinted in many '
+        return (f'<aside class="hc-source"><h2>Where these come from</h2><p>Every case is an old newspaper report: US papers printed before 1927 '
+                f'(public domain) and New Zealand papers from Papers Past. We read the original page, wrote a short summary in plain English '
+                f'and link the page at the Library of Congress or Papers Past so you can read it yourself. When the same story was reprinted in many '
                 f'papers, it is one case with every paper we found listed under it.</p>'
                 f'<p>Old papers printed jokes, hoaxes and tall tales as news. Where the paper itself or later reporting says a story was '
                 f'made up, we mark it. Nothing here proves any creature exists. Map pins mark where the event was said to happen, not '
@@ -200,7 +205,7 @@ class H:
             return ''
         items = ''.join(f'<li><a href="{self.u("/history/" + self.c.slugify(s) + "/")}">{self.e(s)}</a> '
                         f'<span class="muted">{len(v)}</span></li>' for s, v in sorted(self.state_pages.items()))
-        return f'<h2>By state</h2><ul class="cols">{items}</ul>'
+        return f'<h2>By state or country</h2><ul class="cols">{items}</ul>'
 
     def timeline(self, cases, show_topic=False):
         out, last = '', None
@@ -229,7 +234,7 @@ class H:
     def hub(self):
         e, c = self.e, self.c
         n = len(self.cases)
-        papers = len({p['lccn'] for x in self.cases for p in x['papers']})
+        papers = len({p.get('lccn') or p['paper'] for x in self.cases for p in x['papers']})
         y0, y1 = self.cases[0]['date'][:4], self.cases[-1]['date'][:4]
         by_dec = defaultdict(list)
         for x in self.cases:
@@ -241,7 +246,7 @@ class H:
 <section class="band band-dark hc-head"><div class="wrap">
   <p class="crumb">Historic encounters</p>
   <h1>Monsters in the old newspapers</h1>
-  <p class="lede">{n} strange-creature, sea-serpent, wild-man and mystery-airship reports from {papers} American newspapers, {y0} to {y1}. Each one is summarised in plain English and links to the original page at the Library of Congress.</p>
+  <p class="lede">{n} strange-creature, sea-serpent, wild-man and mystery-airship reports from {papers} newspapers in the United States and New Zealand, {y0} to {y1}. Each one is summarised in plain English and links to the original page at the Library of Congress or Papers Past.</p>
   {self.decade_strip(self.cases)}
   {self.chips(self.cases)}
   {self.map_block()}
@@ -256,7 +261,7 @@ class H:
   {self.source_box()}
 </div></div>'''
         c.write('/history/', c.page('/history/', 'Historic monster, sea serpent and airship reports from old newspapers', body,
-                                    f'{n} historic encounter reports from US newspapers, {y0} to {y1}: wild men, sea serpents, the '
+                                    f'{n} historic encounter reports from US and New Zealand newspapers, {y0} to {y1}: wild men, sea serpents, the '
                                     f'1896-97 mystery airships and the 1909 Jersey Devil, each linked to the original page.',
                                     body_class='historic', head_extra=self.head))
 
@@ -307,7 +312,7 @@ class H:
 </div></section>
 <div class="band band-mist"><div class="wrap">
   {self.timeline(cs, show_topic=True)}
-  {f'<h2>Other states</h2><ul class="cols">{others}</ul>' if others else ''}
+  {f'<h2>Other states and countries</h2><ul class="cols">{others}</ul>' if others else ''}
   <p><a class="btn" href="{self.u('/history/')}">All historic encounters</a></p>
   <p class="small muted">{SOURCE_NOTE}</p>
 </div></div>'''

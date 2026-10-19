@@ -58,3 +58,8 @@ We use American Stories only to *find* pages. We don't republish its OCR text. W
 ## Not used
 
 No data from, or links to, BFRO, NUFORC, MUFON or any other sighting organisation or encounter map.
+
+## New Zealand (added 2026-10-19)
+
+- Papers Past, National Library of New Zealand: https://paperspast.natlib.govt.nz/ . Articles found through the DigitalNZ API (https://digitalnz.org/developers) and read in full. Each case links the original article; summaries are our own, hand-written in a small batch.
+- Entries carry `"country": "NZ"` and `"state": "<region>, New Zealand"`; `page` is blank because Papers Past links go straight to the article. The Kermadec pin uses longitude 182.08 (not -177.92) so maps don't stretch across the date line.

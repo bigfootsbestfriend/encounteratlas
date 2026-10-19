@@ -10409,5 +10409,439 @@
   "lat": 42.6717,
   "lon": -90.391,
   "approx": false
+ },
+ {
+  "id": "1909-kelso-schoolchildren-airship",
+  "k": "airship-1909",
+  "title": "Kelso schoolchildren see a boat-shaped airship circle the school",
+  "date": "1909-07-23",
+  "town": "Kelso",
+  "state": "Otago, New Zealand",
+  "near": true,
+  "place": "Kelso, West Otago, New Zealand",
+  "summary": "After weeks of talk about a light moving among the hills near Stirling, word reached Kelso that at noon one Friday some schoolchildren and others had watched a machine shaped like a boat, with what looked like a man seated in it, come from the Blue Mountains, circle high over the school and go back the way it came. Police and locals were soon searching the district.",
+  "quote": "",
+  "hoax": "The Mataura Ensign's Kelso correspondent thought the whole thing a myth and said the children's sketches matched pictures in a recent magazine.",
+  "creature": "mystery-airships",
+  "lat": -45.902,
+  "lon": 169.243,
+  "approx": true,
+  "papers": [
+   {
+    "paper": "Poverty Bay Herald",
+    "place": "Gisborne",
+    "date": "1909-07-27",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/PBH19090727.2.7"
+   },
+   {
+    "paper": "Feilding Star",
+    "place": "Feilding",
+    "date": "1909-07-30",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/FS19090730.2.32"
+   },
+   {
+    "paper": "Mataura Ensign",
+    "place": "Gore",
+    "date": "1909-07-29",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/ME19090729.2.21.1"
+   }
+  ],
+  "country": "NZ"
+ },
+ {
+  "id": "1909-gore-mataura-airship-light",
+  "k": "airship-1909",
+  "title": "Forty people walking home from the pictures see the Gore light",
+  "date": "1909-07-28",
+  "town": "Gore",
+  "state": "Southland, New Zealand",
+  "place": "Gore and Mataura, Southland, New Zealand",
+  "summary": "Between 7 and 8 p.m., several Gore residents watched a light travel fast to the southwest, at one point seeming to hang over Edendale. Later that night about 40 Mataura people coming home from a picture show saw a light in the western sky near Glenham heading toward Winton. The same evening about 200 people in the streets of Invercargill watched a moving light drift south.",
+  "quote": "",
+  "hoax": "Papers suggested fire balloons, which a fireworks dealer said he had been selling in unusual numbers.",
+  "creature": "mystery-airships",
+  "lat": -46.098,
+  "lon": 168.944,
+  "papers": [
+   {
+    "paper": "Mataura Ensign",
+    "place": "Gore",
+    "date": "1909-07-29",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/ME19090729.2.21.1"
+   }
+  ],
+  "country": "NZ"
+ },
+ {
+  "id": "1909-dunedin-knox-college-noise",
+  "k": "airship-1909",
+  "title": "A Dunedin man is woken by a noise like an anchor chain",
+  "date": "1909-07-28",
+  "town": "Dunedin",
+  "state": "Otago, New Zealand",
+  "place": "North East Valley, Dunedin, New Zealand",
+  "summary": "John McNeill of North East Valley woke at about 2 a.m. to a noise he first took for an earthquake. Going outside, he saw something floating up past Knox College. He said he had not heard any of the airship rumours before that night.",
+  "quote": "like a ship dragging her anchor up",
+  "hoax": "",
+  "creature": "mystery-airships",
+  "lat": -45.853,
+  "lon": 170.514,
+  "papers": [
+   {
+    "paper": "Evening Post",
+    "place": "Wellington",
+    "date": "1909-07-29",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/EP19090729.2.120"
+   }
+  ],
+  "country": "NZ"
+ },
+ {
+  "id": "1909-port-hills-cone-airship",
+  "k": "airship-1909",
+  "title": "A young man and his mother watch a cone over the Port Hills",
+  "date": "1909-07-28",
+  "town": "Christchurch",
+  "state": "Canterbury, New Zealand",
+  "near": true,
+  "place": "Port Hills, Christchurch, New Zealand",
+  "summary": "Just after noon, a young man tending a grass fire on the Port Hills noticed a cone-shaped object in a clear sky, higher than the hills. His mother thought it looked like an airship. It drifted south, came back north and finally went off to the southwest after about five minutes. He felt it was under control.",
+  "quote": "",
+  "hoax": "",
+  "creature": "mystery-airships",
+  "lat": -43.59,
+  "lon": 172.66,
+  "approx": true,
+  "papers": [
+   {
+    "paper": "Colonist",
+    "place": "Nelson",
+    "date": "1909-07-30",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/TC19090730.2.35"
+   },
+   {
+    "paper": "Poverty Bay Herald",
+    "place": "Gisborne",
+    "date": "1909-07-30",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/PBH19090730.2.3"
+   }
+  ],
+  "country": "NZ"
+ },
+ {
+  "id": "1909-mount-roskill-fire-balloon",
+  "k": "airship-1909",
+  "title": "Auckland's airship turns out to be a paper fire balloon",
+  "date": "1909-07-28",
+  "town": "Auckland",
+  "state": "Auckland, New Zealand",
+  "place": "Mount Roskill, Auckland, New Zealand",
+  "summary": "For several nights, Auckland suburbs had puzzled over fast-moving lights. Then for most of an hour a big flare hung over Mount Roskill, hundreds turned out, and as it came closer it was plainly a coloured paper fire balloon. The local constable watched it drift from Arch Hill toward Mount Eden, and a fireworks dealer said he had sold a lot of them lately.",
+  "quote": "",
+  "hoax": "Explained at the time as fire balloons released at night.",
+  "creature": "mystery-airships",
+  "lat": -36.912,
+  "lon": 174.737,
+  "papers": [
+   {
+    "paper": "Poverty Bay Herald",
+    "place": "Gisborne",
+    "date": "1909-07-30",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/PBH19090730.2.3"
+   },
+   {
+    "paper": "Mataura Ensign",
+    "place": "Gore",
+    "date": "1909-07-29",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/ME19090729.2.21.1"
+   }
+  ],
+  "country": "NZ"
+ },
+ {
+  "id": "1909-kauroo-hill-airship",
+  "k": "airship-1909",
+  "title": "Restless horses and a flat-topped boat over Kauroo Hill",
+  "date": "1909-07-29",
+  "town": "Kauroo Hill",
+  "state": "Otago, New Zealand",
+  "near": true,
+  "place": "Kauroo Hill, Kakanui Range, North Otago, New Zealand",
+  "summary": "Lights had been seen for several nights around the Kakanui Range, with crowds watching through field glasses. At 8 a.m. H. D. Bailey, a settler and brother of the local magistrate, noticed his horses were restless, looked up and saw a shape like a boat with a flat top moving at 30 miles an hour or more. By the time he fetched his glasses it had gone over the hills. People at Maheno said they saw it too.",
+  "quote": "a shape like a boat with a flat top",
+  "hoax": "",
+  "creature": "mystery-airships",
+  "lat": -45.05,
+  "lon": 170.72,
+  "approx": true,
+  "papers": [
+   {
+    "paper": "Otago Witness",
+    "place": "Dunedin",
+    "date": "1909-08-04",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/OW19090804.2.168"
+   },
+   {
+    "paper": "Feilding Star",
+    "place": "Feilding",
+    "date": "1909-07-30",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/FS19090730.2.32"
+   },
+   {
+    "paper": "Colonist",
+    "place": "Nelson",
+    "date": "1909-07-30",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/TC19090730.2.35"
+   }
+  ],
+  "country": "NZ"
+ },
+ {
+  "id": "1909-gore-dredge-hands-airship",
+  "k": "airship-1909",
+  "title": "Night-shift dredge hands see two figures on board",
+  "date": "1909-07-30",
+  "town": "Gore",
+  "state": "Southland, New Zealand",
+  "near": true,
+  "place": "Gold dredge near Gore, Southland, New Zealand",
+  "summary": "Two hands on the night shift of a gold dredge near Gore said that at 5 a.m. an airship came down through the mist, circled close by with a light at each end, and that two figures were plainly visible on board. Then it shot upward with a yellow glare and headed off to the southeast.",
+  "quote": "",
+  "hoax": "",
+  "creature": "mystery-airships",
+  "lat": -46.11,
+  "lon": 168.95,
+  "approx": true,
+  "papers": [
+   {
+    "paper": "Wairarapa Daily Times",
+    "place": "Masterton",
+    "date": "1909-07-31",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/WDT19090731.2.15.14.1"
+   }
+  ],
+  "country": "NZ"
+ },
+ {
+  "id": "1909-timaru-harbourmaster-light",
+  "k": "airship-1909",
+  "title": "Timaru's harbourmaster calls the airship a sailor's light",
+  "date": "1909-07-30",
+  "town": "Timaru",
+  "state": "Canterbury, New Zealand",
+  "place": "Timaru, South Canterbury, New Zealand",
+  "summary": "The light said to be an airship passed over Timaru at 10 p.m. Captain Tait, the harbourmaster, saw it and said it was nothing more than the kind of glowing ball sailors call a jack-o'-lantern, common in foggy weather.",
+  "quote": "a ball of concentrated electricity",
+  "hoax": "The harbourmaster's explanation: a natural light seen in fog.",
+  "creature": "mystery-airships",
+  "lat": -44.396,
+  "lon": 171.255,
+  "papers": [
+   {
+    "paper": "Wairarapa Daily Times",
+    "place": "Masterton",
+    "date": "1909-07-31",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/WDT19090731.2.15.14.1"
+   }
+  ],
+  "country": "NZ"
+ },
+ {
+  "id": "1909-kaikoura-torpedo-airship",
+  "k": "airship-1909",
+  "title": "A grey torpedo with three men aboard over Kaikoura",
+  "date": "1909-07",
+  "town": "Kaikoura",
+  "state": "Canterbury, New Zealand",
+  "place": "Kaikoura, New Zealand",
+  "summary": "A Waipawa resident described seeing an airship over Kaikoura the week before: grey, shaped like a torpedo, carrying two bright lights and three men, one of whom shouted down in a foreign language. The machine seemed under perfect control. Nobody else came forward to back the story.",
+  "quote": "",
+  "hoax": "Printed as \"circumstantial but uncorroborated\" by the press agency itself.",
+  "creature": "mystery-airships",
+  "lat": -42.4,
+  "lon": 173.68,
+  "papers": [
+   {
+    "paper": "Colonist",
+    "place": "Nelson",
+    "date": "1909-08-06",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/TC19090806.2.43"
+   }
+  ],
+  "country": "NZ"
+ },
+ {
+  "id": "1863-mokihinui-living-moa",
+  "k": "creature",
+  "title": "A road worker on the Mokihinui sees a bird taller than a man",
+  "date": "1863-01",
+  "town": "Mokihinui",
+  "state": "West Coast, New Zealand",
+  "near": true,
+  "place": "Mokihinui, north of the Buller River, New Zealand",
+  "summary": "Hugh Cottier, new to the colony and with no idea a giant bird might exist, was walking by a creek his crew planned to bridge when he saw a huge bird pecking at the ground about 200 feet away. He put its head at about eight feet up: long strong legs, brown plumage like a weka's, short round wings, a nearly bare neck and red rings under the eyes. He ran for a gun, but it was gone when he got back. Nelson's provincial engineer took down the account and drew a sketch Cottier corrected.",
+  "quote": "as large as a calf",
+  "hoax": "Moa had been extinct for centuries by then, and no living bird was ever found.",
+  "creature": "",
+  "lat": -41.53,
+  "lon": 171.94,
+  "approx": true,
+  "papers": [
+   {
+    "paper": "Colonist",
+    "place": "Nelson",
+    "date": "1863-05-12",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/TC18630512.2.39"
+   }
+  ],
+  "country": "NZ"
+ },
+ {
+  "id": "1873-waiau-living-moa",
+  "k": "creature",
+  "title": "A shepherd's dog flushes a giant grey bird near the Waiau",
+  "date": "1873-03",
+  "town": "Waiau",
+  "state": "Southland, New Zealand",
+  "near": true,
+  "place": "West side of the Waiau River, Southland, New Zealand",
+  "summary": "A runholder on the west side of the Waiau said he had often seen huge tracks at the back of his run, by the bush that runs to the west coast. Then his shepherd's dog started a very large bird out of the manuka scrub. It ran to the top of a terrace, turned on the dog and sent it back to the shepherd's heels, then stood for about ten minutes bending its long neck up and down like a black swan. It was described as much taller and more upright than an emu, silvery grey with greenish streaks.",
+  "quote": "",
+  "hoax": "Moa had been extinct for centuries by then, and no living bird was ever found.",
+  "creature": "",
+  "lat": -45.95,
+  "lon": 167.7,
+  "approx": true,
+  "papers": [
+   {
+    "paper": "Otago Daily Times",
+    "place": "Dunedin",
+    "date": "1873-03-27",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/ODT18730327.2.7"
+   }
+  ],
+  "country": "NZ"
+ },
+ {
+  "id": "1874-browning-pass-moas-captured",
+  "k": "creature",
+  "title": "A letter claims two live moas were roped at Browning Pass",
+  "date": "1874-09",
+  "town": "Browning Pass",
+  "state": "Canterbury, New Zealand",
+  "place": "Browning Pass, Southern Alps, New Zealand",
+  "summary": "A letter signed R. K. M. Smythe, printed by the Christchurch Press and the Star, told how dogs bailed up two giant birds, a mother and a chick, at the head of a gully near Browning Pass. The writer said he lassoed the big one with a tether rope, tied it to a birch for two days and planned to bring both to Christchurch.",
+  "quote": "",
+  "hoax": "No moa ever arrived in Christchurch. The paper itself said it would not be surprised to hear the story fall apart, and it reads like a deliberate leg-pull.",
+  "creature": "",
+  "lat": -42.93,
+  "lon": 171.33,
+  "approx": true,
+  "papers": [
+   {
+    "paper": "Star",
+    "place": "Christchurch",
+    "date": "1874-10-02",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/TS18741002.2.9"
+   }
+  ],
+  "country": "NZ"
+ },
+ {
+  "id": "1892-medora-poor-knights-serpent",
+  "k": "sea-serpent",
+  "title": "The schooner Medora nearly runs over a striped sea serpent",
+  "date": "1892-05",
+  "town": "Poor Knights Islands",
+  "state": "Northland, New Zealand",
+  "place": "Between the Poor Knights Islands and Cape Brett, New Zealand",
+  "summary": "J. A. Subritzky of Awanui wrote that his son, captain of the schooner Medora, passed within about 12 feet of a sea serpent between the Poor Knights and Cape Brett. It lifted its head and part of its body to look at the ship but made no move to attack. It was nearly black to a yellow, dark-striped tail with a fin on each side of the tip, and the captain put it at about 90 feet long. The captain had not wanted his father to send the story in.",
+  "quote": "people will only say it is nonsense",
+  "hoax": "",
+  "creature": "sea-serpent",
+  "lat": -35.33,
+  "lon": 174.3,
+  "approx": true,
+  "papers": [
+   {
+    "paper": "Auckland Star",
+    "place": "Auckland",
+    "date": "1892-05-07",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/AS18920507.2.27"
+   }
+  ],
+  "country": "NZ"
+ },
+ {
+  "id": "1893-timaru-steamer-serpent",
+  "k": "sea-serpent",
+  "title": "Steamer officers see a head 14 feet out of the water off Timaru",
+  "date": "1893-10",
+  "town": "Timaru",
+  "state": "Canterbury, New Zealand",
+  "near": true,
+  "place": "Off the coast south of Timaru, New Zealand",
+  "summary": "A press agency report said the officers of a passing steamer had seen a sea serpent a few miles south of Timaru within the past fortnight. It raised a snake-like head fourteen feet above the water.",
+  "quote": "",
+  "hoax": "",
+  "creature": "sea-serpent",
+  "lat": -44.5,
+  "lon": 171.3,
+  "approx": true,
+  "papers": [
+   {
+    "paper": "Star",
+    "place": "Christchurch",
+    "date": "1893-10-20",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/TS18931020.2.42"
+   }
+  ],
+  "country": "NZ"
+ },
+ {
+  "id": "1906-taviuni-kermadec-serpent",
+  "k": "sea-serpent",
+  "title": "The Taviuni meets a red sea serpent off the Kermadecs, twice",
+  "date": "1906-05",
+  "town": "Kermadec Islands",
+  "state": "New Zealand",
+  "place": "Off the Kermadec Islands, New Zealand",
+  "summary": "The officers of the steamer Taviuni, back in Auckland from the Cook Islands, said they had seen a sea serpent near the Kermadecs on both the outward and the homeward run, about 60 miles apart. It was reddish, about 60 feet long, with a head like a gurnard, and it stayed close to the ship for some time each time.",
+  "quote": "",
+  "hoax": "",
+  "creature": "sea-serpent",
+  "lat": -29.27,
+  "lon": 182.08,
+  "approx": true,
+  "papers": [
+   {
+    "paper": "Northern Advocate",
+    "place": "Whangarei",
+    "date": "1906-05-11",
+    "page": "",
+    "url": "https://paperspast.natlib.govt.nz/newspapers/NA19060511.2.18.2"
+   }
+  ],
+  "country": "NZ"
  }
 ]
