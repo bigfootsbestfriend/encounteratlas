@@ -1,0 +1,25 @@
+/* On this day */
+.otd-nav { display: flex; gap: .5rem; flex-wrap: wrap; }
+.otd-list { list-style: none; padding: 0; margin: 0 0 2rem; }
+.otd-list li { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--mist-2, #cfd9d3); }
+.otd-list li:first-child { border-top: 0; }
+.otd-yr { font: 700 1.5rem var(--display); color: #8A5A00; }
+.otd-kind { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #4D6157; }
+.otd-list h3 { margin: .1rem 0 .2rem; font-size: 1.15rem; }
+.otd-list p { margin: .2rem 0; line-height: 1.5; }
+.otd-where { color: #4D6157; font-size: .92rem; }
+.otd-cu { background: #fff; border: 1px solid var(--mist-2, #cfd9d3); border-radius: 14px; padding: 1rem 1.2rem; margin: 0 0 1.5rem; }
+.otd-cu h2 { margin-top: 0; }
+.otd-cases { padding-left: 1.1rem; }
+.otd-cases li { margin-bottom: .5rem; line-height: 1.45; }
+.otd-note { font-style: italic; color: #4D6157; }
+.otd-bb { font-size: .98rem; }
+.otd-cal { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.2rem; }
+.otd-month { background: #fff; border: 1px solid var(--mist-2, #cfd9d3); border-radius: 14px; padding: .8rem 1rem 1rem; }
+.otd-month h2 { margin: 0 0 .5rem; font-size: 1.15rem; }
+.otd-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.otd-days a { text-align: center; padding: .3rem 0; border-radius: 6px; text-decoration: none; color: #4D6157; font-size: .9rem; }
+.otd-days a:hover { background: #E4EBE6; }
+.otd-days a.has { color: #13261F; font-weight: 800; background: #F6F0E2; }
+.otd-days a.today { background: #F2B33D; color: #13261F; font-weight: 800; outline: 2px solid #13261F; }
+@media (max-width: 560px) { .otd-list li { grid-template-columns: 1fr; gap: .2rem; } }

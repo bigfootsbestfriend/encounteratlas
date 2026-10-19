@@ -180,3 +180,11 @@
     sec.hidden = false;
   }).catch(() => {});
 })();
+
+// "What happened on this day" link in the hero points straight at today's page.
+(() => {
+  const a = document.querySelector('[data-otd-today]'); if (!a) return;
+  const t = new Date(), m = t.toLocaleDateString('en-US', { month: 'long' });
+  a.href = a.getAttribute('href') + m.toLowerCase() + '-' + t.getDate() + '/';
+  a.textContent = 'What happened on ' + m + ' ' + t.getDate();
+})();
