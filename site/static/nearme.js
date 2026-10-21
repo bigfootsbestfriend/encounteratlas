@@ -287,8 +287,19 @@
     return n;
   }
 
+  // The report form opens on this area (?at=), so a reader near the map can file what they saw in two taps.
+  const reportHere = () => CFG.report + '?' + new URLSearchParams({ at: `${S.lat},${S.lng}`, ...(S.label && S.label !== 'you' ? { place: S.label } : {}) });
   function render(reps, arch) {
     results.replaceChildren();
+    const bar = el('p', 'nm-actions');
+    bar.append(a(reportHere(), 'Report a sighting from here', 'btn nm-report'));
+    if (remembered()) {
+      const forget = el('button', 'nm-forget', 'Forget this place');
+      forget.type = 'button';
+      forget.addEventListener('click', () => { try { localStorage.removeItem(KEY); } catch (e) { /* storage blocked */ } forget.remove(); });
+      bar.append(forget);
+    }
+    results.append(bar);
     const where = S.label === 'you' ? 'you' : S.label;
     const h = el('h2', 'nm-res-h', reps.length ? `${reps.length} reader report${reps.length === 1 ? '' : 's'} within ${dist(S.km)} of ${where}` : '');
     if (reps.length) {
@@ -308,7 +319,7 @@
       const box = el('div', 'nm-empty');
       box.append(el('p', 'nm-empty-h', arch.length ? 'No reader reports here yet. Here\'s what the archives show.' : 'No reader reports here yet.'));
       const nudge = el('p', 'nm-nudge');
-      nudge.append('Seen something around here? ', a(CFG.report, 'Report it'), ' and it could be the first pin on this map.');
+      nudge.append('Seen something around here? ', a(reportHere(), 'Report it'), ' and it could be the first pin on this map.');
       box.append(nudge);
       results.append(box);
     }
@@ -337,8 +348,15 @@
   }
 
   // ---------- search ----------
+  // Last place and filters, on this device only, so the app reopens where the reader left off.
+  const KEY = 'ea-near';
+  function remember() {
+    try { localStorage.setItem(KEY, JSON.stringify({ lat: S.lat, lng: S.lng, label: S.label, km: S.km, mi: S.mi, unit: S.unit, cat: S.cat, days: S.days })); } catch (e) { /* private mode */ }
+  }
+  function remembered() { try { return !!localStorage.getItem(KEY); } catch (e) { return false; } }
   async function search() {
     if (S.lat == null) { say('Use your location or pick a place to see what\'s been reported nearby.'); return; }
+    remember();
     const my = ++seq;
     say(`Looking within ${dist(S.km)} of ${S.label === 'you' ? 'you' : S.label}...`);
     const mp = ensureMap();
@@ -360,5 +378,41 @@
       geometry: { type: 'Point', coordinates: [near(f.geometry.coordinates[0]), f.geometry.coordinates[1]] } })) });
     const d = (S.km / R_KM) * (180 / Math.PI), cos = Math.max(0.1, Math.cos((S.lat * Math.PI) / 180));
     map.fitBounds([[S.lng - d / cos, Math.max(-85, S.lat - d)], [S.lng + d / cos, Math.min(85, S.lat + d)]], { padding: 24, duration: 600 });
+  }
+
+  // Install: only offered when the browser says the site is installable (Chrome/Edge fire beforeinstallprompt), never
+  // as a pop-up. iPhone Safari has no such event, so it gets a one-line Add to Home Screen tip. Hidden inside the app.
+  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  let installEvt = null;
+  window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); installEvt = e; if (!standalone) $('nm-install').hidden = false; });
+  window.addEventListener('appinstalled', () => { $('nm-install').hidden = true; track('app_installed', {}); });
+  $('nm-install-btn').addEventListener('click', async () => {
+    if (!installEvt) return;
+    installEvt.prompt();
+    const choice = await installEvt.userChoice.catch(() => null);
+    track('app_install_prompt', { outcome: choice ? choice.outcome : 'unknown' });
+    installEvt = null; $('nm-install').hidden = true;
+  });
+  if (!standalone && /iPhone|iPad|iPod/.test(navigator.userAgent) && !/CriOS|FxiOS|EdgiOS/.test(navigator.userAgent)) $('nm-ios').hidden = false;
+
+  // Returning visitor (and the installed app): reopen the last place with the same filters. Search engines have no
+  // saved place, so they always get the plain page.
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { saved = null; }
+  if (saved && Number.isFinite(saved.lat) && Number.isFinite(saved.lng)) {
+    Object.assign(S, { lat: saved.lat, lng: saved.lng, label: saved.label === 'you' ? 'your last location' : saved.label || 'your last place', cat: saved.cat || '', days: saved.days || 30,
+      unit: saved.unit === 'mi' ? 'mi' : 'km' });
+    if (S.unit === 'mi') {
+      $('nm-unit').setAttribute('aria-pressed', 'true'); $('nm-unit').textContent = 'Show km';
+      document.querySelectorAll('#nm-radius .u-km').forEach((x) => { x.hidden = true; });
+      document.querySelectorAll('#nm-radius .u-mi').forEach((x) => { x.hidden = false; });
+    }
+    const rb = document.querySelector(S.unit === 'mi' ? `#nm-radius [data-mi="${saved.mi}"]` : `#nm-radius [data-km="${saved.km}"]`);
+    if (rb) { press($('nm-radius'), rb); S.km = S.unit === 'mi' ? Math.round(Number(rb.dataset.mi) * KM_PER_MI) : Number(rb.dataset.km); S.mi = Number(rb.dataset.mi); }
+    const cb = document.querySelector(`#nm-cat [data-cat="${CSS.escape(S.cat)}"]`), db = document.querySelector(`#nm-days [data-days="${S.days}"]`);
+    if (cb) press($('nm-cat'), cb);
+    if (db) press($('nm-days'), db);
+    if (S.label !== 'you') place.value = S.label;
+    search();
   }
 })();

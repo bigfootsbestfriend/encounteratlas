@@ -349,8 +349,18 @@
       fill(d);
       $('[data-draft-banner]').hidden = false;
     }
+    // Arriving from /near-me/ (?at=lat,lon&place=...): open the map on that area so the reader can tap the exact
+    // spot. It is a town or a rounded location, not where they saw it, so no pin is set.
+    const qs = new URLSearchParams(location.search);
+    const at = (qs.get('at') || '').split(',').map(Number);
+    if (at.length === 2 && at.every(Number.isFinite) && Math.abs(at[0]) <= 90 && Math.abs(at[1]) <= 180 && !(d && d.lat !== '' && d.lat != null)) {
+      if (map) map.jumpTo({ center: [at[1], at[0]], zoom: 10 });
+      const pl = (qs.get('place') || '').slice(0, 120);
+      if (pl && !$('#place').value) $('#place').value = pl;
+      status.textContent = 'The map is on ' + (pl || 'the area you picked') + '. Tap where it happened, or drag the map to find the spot.';
+    }
     // Arriving from a creature page (?creature=bigfoot): preselect it unless a draft already chose one.
-    const pre = new URLSearchParams(location.search).get('creature');
+    const pre = qs.get('creature');
     const r = pre && !(d && d.creature) && form.querySelector(`input[name=creature][value="${CSS.escape(pre)}"]`);
     if (r) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); }
   }

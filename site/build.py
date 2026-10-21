@@ -1538,12 +1538,19 @@ def main():
                     raise
                 print(f'warning: section {fn} skipped: {e!r}', file=sys.stderr)
     with open(os.path.join(OUT, 'manifest.webmanifest'), 'w') as f:
-        json.dump({'name': 'Encounter Atlas', 'short_name': 'Encounters', 'start_url': BASE + '/map/', 'display': 'standalone',
-                   'background_color': '#13261F', 'theme_color': '#13261F',
-                   'description': 'Report and explore Bigfoot, Dogman, UFO and cryptid encounters on a live map.',
-                   'icons': [{'src': BASE + '/static/app-192.png', 'sizes': '192x192', 'type': 'image/png'},
-                             {'src': BASE + '/static/app-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'any maskable'},
-                             {'src': BASE + '/static/favicon.svg', 'sizes': 'any', 'type': 'image/svg+xml'}]}, f)
+        # The app (installed PWA, later the Play Store TWA) opens on /near-me/. id stays fixed so installs survive start_url changes.
+        json.dump({'id': BASE + '/near-me/', 'name': 'Encounter Atlas', 'short_name': 'Encounters', 'start_url': BASE + '/near-me/?source=app',
+                   'scope': BASE + '/', 'display': 'standalone', 'orientation': 'any',
+                   'background_color': '#13261F', 'theme_color': '#13261F', 'lang': 'en', 'categories': ['entertainment', 'lifestyle', 'travel'],
+                   'description': 'See and report Bigfoot, Dogman, UFO and cryptid sightings near you, anywhere in the world.',
+                   'icons': [{'src': BASE + '/static/app-192.png', 'sizes': '192x192', 'type': 'image/png', 'purpose': 'any'},
+                             {'src': BASE + '/static/app-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'any'},
+                             {'src': BASE + '/static/app-maskable-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'},
+                             {'src': BASE + '/static/favicon.svg', 'sizes': 'any', 'type': 'image/svg+xml'}],
+                   'shortcuts': [{'name': 'Report an encounter', 'short_name': 'Report', 'url': BASE + '/report/?source=app',
+                                  'icons': [{'src': BASE + '/static/app-192.png', 'sizes': '192x192', 'type': 'image/png'}]},
+                                 {'name': 'Full encounter map', 'short_name': 'Map', 'url': BASE + '/map/?source=app',
+                                  'icons': [{'src': BASE + '/static/app-192.png', 'sizes': '192x192', 'type': 'image/png'}]}]}, f)
     shutil.copy(os.path.join(ROOT, 'site', 'sw.js'), os.path.join(OUT, 'sw.js'))
     if BASE == '':
         open(os.path.join(OUT, 'CNAME'), 'w').write(SITE_URL.split('//')[1] + '\n')

@@ -98,6 +98,9 @@ def build(ctx):
     <h1>UFO and cryptid sightings near me</h1>
     <p class="lede">See what people have reported around you: Bigfoot, Dogman, lake monsters, strange lights and UFOs. Use your location or pick a
     town anywhere in the world. You'll get reader reports from the last few weeks, plus {total:,} official UFO files and survey sightings from the archives.</p>
+    <p class="nm-install" id="nm-install" hidden><button type="button" class="btn btn-ghost" id="nm-install-btn">Install the app</button>
+      <span>Opens straight to this page, full screen, and works with a weak signal.</span></p>
+    <p class="nm-install nm-ios" id="nm-ios" hidden>On iPhone: tap Share, then <b>Add to Home Screen</b> to keep this as an app.</p>
   </div>
 </section>
 <section class="nm-tool" data-area="near-me-tool" aria-label="Search near a place">

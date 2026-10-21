@@ -95,3 +95,11 @@
 .nm-card .badge-sm { width: 48px; height: 48px; flex: none; }
 .nm-card .badge-sm .ico { width: 72%; height: 72%; }
 .nm-card .badge-sm .q { font: 700 1.4rem var(--display); color: var(--c-other); }
+/* After a search: report from here (opens the report form on this area) and forget the remembered place. */
+.nm-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; margin: 0 0 1rem; }
+.nm-report { min-height: 48px; }
+.nm-forget { background: none; border: 0; color: var(--muted-d); text-decoration: underline; font: 600 .9rem var(--body); min-height: 44px; cursor: pointer; padding: 0 .3rem; }
+.nm-install { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; margin: 1rem 0 0; font-size: .95rem; }
+.nm-install[hidden] { display: none; }
+.nm-install .btn { min-height: 48px; cursor: pointer; }
+.nm-ios { color: var(--lichen); }
