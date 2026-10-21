@@ -137,7 +137,7 @@ MAP_API = f' data-api="{EA_API}"' if EA_API else ''
 UFO_MENU = [('/ufo/', 'UFO sightings'), ('/ufo/cases/', 'Famous cases worldwide'), ('/ufo/canada/', 'Canada sightings map'), ('/ufo/blue-book/', 'Air Force Blue Book files'),
             ('/ufo/releases/', 'Official releases'), ('/ufo/countries/', 'UFO files by country'), ('/military/', 'Military encounters')]
 STORY_MENU = ([('/reports/', 'Reader reports')] if EA_API else []) + [('/stories/', 'Witness stories'), ('/encounters/', 'Close encounters'), ('/report/', 'Report an encounter')]
-EXPLORE_MENU = [('/mysteries/', 'Mysteries'), ('/history/', 'Old newspaper stories'), ('/on-this-day/', 'On this day'), ('/compare/', 'Creature comparisons'),
+EXPLORE_MENU = [('/near-me/', 'Sightings near me'), ('/mysteries/', 'Mysteries'), ('/history/', 'Old newspaper stories'), ('/on-this-day/', 'On this day'), ('/compare/', 'Creature comparisons'),
                 ('/us/', 'By state or province'), ('/places/', 'Places to visit')]
 RES_MENU = [('/guides/', 'Field guides'), ('/gear/', 'Field gear'), ('/books/', 'Books'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts'), ('/newsletter/', 'Weekly email')]
 # Six top-level items (Mike, 2026-10-18: the eight-item menu wrapped into three rows on phones). Under 960px the
@@ -250,7 +250,7 @@ HELLO = f'''<div class="hello" id="hello" role="region" aria-label="Weekly email
 <script>try{{const s=localStorage;if(s.getItem('ea-subbed')||Date.now()-(+s.getItem('ea-hello')||0)<12096e5)document.getElementById('hello').remove();}}catch(e){{}}</script>'''
 
 
-def page(path, title, body, desc='', body_class='', head_extra='', canonical=True, og_image='', noindex=False):
+def page(path, title, body, desc='', body_class='', head_extra='', canonical=True, og_image='', noindex=False, viewport_fit=False):
     full_title = title if title.startswith('Encounter Atlas') else f'{title} | Encounter Atlas'
     nav = nav_html(path)
     # noindex=True for thin template pages (useful to visitors, not worth Google's index): kept out of the sitemap too.
@@ -261,7 +261,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1{", viewport-fit=cover" if viewport_fit else ""}">
 <title>{esc(full_title)}</title>
 <meta name="description" content="{esc(desc)}">
 {robots}{canon}
@@ -288,7 +288,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <a class="skip" href="#main">Skip to content</a>
 <div class="print-brand" aria-hidden="true"><img src="{url('/static/logo-mark.svg')}" alt="" width="44" height="44"><div><b>Encounter Atlas</b><span>Cryptids, UFOs and close encounters, mapped</span></div><span class="pb-url">encounteratlas.com</span></div>
 <div class="print-foot" aria-hidden="true">Printed from encounteratlas.com{esc(path)} · Free to print and share · Report what you saw at encounteratlas.com/report</div>
-{'' if path == '/map/' else HELLO}
+{'' if path in ('/map/', '/near-me/') else HELLO}
 <header class="top">
   <a class="brand" href="{url('/')}"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</a>
   <nav class="nav" aria-label="Main" data-area="main-menu">{nav}</nav>

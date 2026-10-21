@@ -1,24 +1,23 @@
-"""Archive layers for the field app's "Near me" map, split into 5-degree static JSON tiles.
+"""Archive layers for the /near-me/ map (the site and the app), split into 5-degree static JSON tiles.
 
 Reads the map GeoJSON that site/build.py already wrote to _site/data/ (so the competitor scrub, the Blue Book
-approximate-location rule and the geocoding checks are the same as on the site) and writes, by default, to
-app-data/near-me/ (gitignored; nothing here is published on encounteratlas.com):
+approximate-location rule and the geocoding checks are the same as on the full map) and writes _site/data/near/:
 
   index.json                    tile list, per-layer counts and a source/licence note for every dataset
-  tiles/<lat0>_<lon0>.json      FeatureCollection for lat0..lat0+5, lon0..lon0+5 (south-west corner, floored)
+  <lat0>_<lon0>.json            FeatureCollection for lat0..lat0+5, lon0..lon0+5 (south-west corner, floored)
 
 Each feature has properties.src: bluebook | bluebook_approx | faa | pursue | canada.
 bluebook_approx are the faded "about N files somewhere in X" rings, never pins.
 
-  python3 site/build.py && python3 tools/near_me_tiles.py [--out DIR]
+site/sections/z_near_me.py calls build_tiles() during every build; run this file alone to rebuild just the tiles:
+  python3 tools/near_me_tiles.py [--out DIR]
 """
-import argparse, json, math, os, re, sys
+import argparse, json, math, os, re
 from collections import Counter, defaultdict
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 SRC = os.path.join(ROOT, '_site', 'data')
 STEP = 5
-SITE = 'https://encounteratlas.com'
 
 LAYERS = {
     'bluebook': ('bluebook.geojson', 'Project Blue Book (US Air Force, 1947 to 1969)',
@@ -42,33 +41,26 @@ def tile_key(lon, lat):
     return f'{la}_{lo}'
 
 
-def absolute(props):
-    # Site-relative links (/ufo/canada/ontario/) become full URLs for the app.
-    return {k: (SITE + v if isinstance(v, str) and v.startswith('/') and k == 'u' else v) for k, v in props.items()}
-
-
-def main():
-    ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
-    ap.add_argument('--out', default=os.path.join(ROOT, 'app-data', 'near-me'))
-    args = ap.parse_args()
+def build_tiles(src_dir=SRC, out_dir=os.path.join(SRC, 'near')):
+    """Returns (number of tiles, Counter of features per layer)."""
     tiles, counts = defaultdict(list), Counter()
     for src, (fn, _, _) in LAYERS.items():
-        path = os.path.join(SRC, fn)
+        path = os.path.join(src_dir, fn)
         if not os.path.exists(path):
-            sys.exit(f'{path} missing: run python3 site/build.py first')
+            raise FileNotFoundError(f'{path} missing: run python3 site/build.py first')
         for f in json.load(open(path))['features']:
             lon, lat = f['geometry']['coordinates'][:2]
-            props = absolute(f.get('properties') or {})
+            props = dict(f.get('properties') or {})
             props['src'] = src
             feat = {'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [round(lon, 4), round(lat, 4)]}, 'properties': props}
             if BLOCKED.search(json.dumps(feat)):
-                sys.exit(f'blocked source name in {fn}: {json.dumps(feat)[:200]}')
+                raise ValueError(f'blocked source name in {fn}: {json.dumps(feat)[:200]}')
             tiles[tile_key(lon, lat)].append(feat)
             counts[src] += 1
-    tdir = os.path.join(args.out, 'tiles')
+    tdir = out_dir
     os.makedirs(tdir, exist_ok=True)
     for old in os.listdir(tdir):
-        if old.endswith('.json') and old[:-5] not in tiles:
+        if old.endswith('.json') and old != 'index.json' and old[:-5] not in tiles:
             os.remove(os.path.join(tdir, old))
     for k, feats in tiles.items():
         with open(os.path.join(tdir, k + '.json'), 'w') as fh:
@@ -79,9 +71,17 @@ def main():
         'layers': {k: {'title': t, 'source': s, 'count': counts[k]} for k, (_, t, s) in LAYERS.items()},
         'tiles': {k: Counter(f['properties']['src'] for f in v) for k, v in sorted(tiles.items())},
     }
-    with open(os.path.join(args.out, 'index.json'), 'w') as fh:
-        json.dump(index, fh, indent=1)
-    print(f'{len(tiles)} tiles, {sum(counts.values())} features ({dict(counts)}) -> {os.path.relpath(args.out, ROOT)}')
+    with open(os.path.join(tdir, 'index.json'), 'w') as fh:
+        json.dump(index, fh, separators=(',', ':'))
+    return len(tiles), counts
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
+    ap.add_argument('--out', default=os.path.join(SRC, 'near'))
+    args = ap.parse_args()
+    n, counts = build_tiles(SRC, args.out)
+    print(f'{n} tiles, {sum(counts.values())} features ({dict(counts)}) -> {os.path.relpath(args.out, ROOT)}')
 
 
 if __name__ == '__main__':

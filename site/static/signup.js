@@ -17,7 +17,7 @@
   const hello = document.getElementById('hello');
   if (hello) hello.querySelector('.hello-x').addEventListener('click', () => { store('ea-hello', String(Date.now())); hello.remove(); });
 
-  if (subbed() || Date.now() - (+store('ea-slide') || 0) < DAYS14 || location.pathname.indexOf('/newsletter/') !== -1) return;
+  if (subbed() || Date.now() - (+store('ea-slide') || 0) < DAYS14 || /\/(newsletter|near-me)\//.test(location.pathname)) return; // near-me: the app's home, it has its own signup box
   const api = document.querySelector('form[data-nl]');
   if (!api) return;
   const card = document.createElement('aside');

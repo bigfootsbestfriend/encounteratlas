@@ -1,0 +1,97 @@
+/* /near-me/: the site page and the app's home screen. Mobile first; 48px tap targets; safe areas for a full-screen
+   app window (viewport-fit=cover on this page only). */
+.nearme .top { padding-top: max(.6rem, env(safe-area-inset-top)); padding-left: max(1rem, env(safe-area-inset-left)); padding-right: max(1rem, env(safe-area-inset-right)); }
+.nearme .wrap { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+.nearme .foot { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
+.nearme .foot-in { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+
+.nm-hero { background: var(--spruce); color: var(--lichen); padding: 1.6rem 0 .4rem; }
+.nm-hero h1 { margin: 0 0 .5rem; font-size: clamp(1.7rem, 6vw, 2.6rem); color: #F3F1DA; }
+.nm-hero .lede { font-size: 1.05rem; margin: 0; }
+
+.nm-tool { background: var(--spruce); color: var(--lichen); padding: 1.1rem 0 1.6rem; }
+.nm-where { display: grid; gap: .9rem; }
+.nm-locate { width: 100%; justify-content: center; min-height: 56px; font-size: 1.1rem; border: 0; cursor: pointer; }
+.nm-label { display: block; font-weight: 600; margin-bottom: .35rem; }
+.nm-pick-row { display: flex; gap: .5rem; }
+.nm-pick input { flex: 1; min-width: 0; min-height: 52px; font: 1.05rem var(--body); padding: 0 1rem; border-radius: 999px;
+  border: 2px solid var(--spruce-3); background: #0E1D18; color: #F3F1DA; }
+.nm-pick input:focus { outline: none; border-color: var(--lantern); }
+.nm-go { min-height: 52px; min-width: 72px; justify-content: center; cursor: pointer; border: 0; }
+.nm-status { min-height: 1.4em; margin: .8rem 0 0; color: #F3F1DA; font-weight: 600; }
+.nm-status:empty { margin: 0; min-height: 0; }
+
+.nm-filters { display: grid; gap: .85rem; margin-top: 1.1rem; }
+.nm-row { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .6rem; }
+.nm-row-h { flex: 0 0 100%; font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted-d); }
+.nm-opts { display: flex; flex-wrap: wrap; gap: .45rem; }
+.nm-opt, .nm-unit { min-height: 44px; padding: 0 1rem; border-radius: 999px; font: 600 .95rem var(--body); cursor: pointer;
+  color: var(--lichen); background: var(--spruce-2); border: 1px solid var(--spruce-3); touch-action: manipulation; }
+.nm-opt[aria-pressed="true"] { background: var(--lichen); color: var(--spruce); border-color: var(--lichen); }
+.nm-opt.cat-ufo[aria-pressed="true"] { background: var(--c-ufo); border-color: var(--c-ufo); }
+.nm-opt.cat-creature[aria-pressed="true"] { background: var(--c-hominid); border-color: var(--c-hominid); }
+.nm-opt.cat-other[aria-pressed="true"] { background: var(--c-other); border-color: var(--c-other); }
+.nm-unit { background: transparent; border-style: dashed; }
+.nm-opt:focus-visible, .nm-unit:focus-visible, .nm-locate:focus-visible, .nm-go:focus-visible { outline: 3px solid var(--lantern); outline-offset: 2px; }
+
+.nm-mapwrap { margin-top: 1.2rem; }
+.nm-map { height: min(62vh, 520px); min-height: 320px; background: #0F1F19; }
+.nm-legend { display: flex; flex-wrap: wrap; gap: .35rem 1rem; margin: .6rem 0 0; padding: 0 max(16px, env(safe-area-inset-left)); font-size: .82rem; color: var(--muted-d); }
+.lg::before { content: ""; display: inline-block; width: .75em; height: .75em; border-radius: 50%; margin-right: .35em; vertical-align: -.05em; background: var(--c, #F2B33D); }
+.lg-rep { --c: #D9A05B; } .lg-rep::before { box-shadow: 0 0 0 2px #F6F0E2; }
+.lg-bb { --c: #F2B33D; } .lg-faa { --c: #7FD3FF; } .lg-pur { --c: #E07A5F; } .lg-ca { --c: #C08BE8; }
+.lg-ring::before { background: rgba(242, 179, 61, .12); box-shadow: inset 0 0 0 1.5px rgba(242, 179, 61, .6); }
+
+.nm-results:empty { display: none; }
+.nm-results { margin-top: 1.2rem; }
+.nm-res-h { font-size: 1.3rem; color: #F3F1DA; margin: 0 0 .8rem; }
+.nm-res-h:empty { display: none; }
+.nm-res-h3 { font-size: 1.05rem; color: #F3F1DA; margin: 1.4rem 0 .6rem; }
+.nm-empty { background: var(--spruce-2); border: 1px solid var(--spruce-3); border-radius: var(--r-md); padding: 1rem 1.1rem; }
+.nm-empty-h { margin: 0 0 .4rem; font: 700 1.15rem var(--display); color: #F3F1DA; }
+.nm-nudge { margin: 0; } .nm-nudge a { color: var(--lantern); font-weight: 700; }
+.nm-arch-counts { display: flex; flex-wrap: wrap; gap: .45rem; margin: 0 0 .8rem; }
+.nm-pill { font-size: .88rem; font-weight: 600; padding: .3rem .75rem; border-radius: 999px; background: var(--spruce-2); border: 1px solid var(--c); color: #F3F1DA; }
+.nm-arch { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
+.nm-arch li { display: grid; gap: .1rem; padding: .55rem .8rem; border-left: 4px solid var(--c); background: var(--spruce-2); border-radius: 0 var(--r-sm) var(--r-sm) 0; }
+.nm-arch b { color: #F3F1DA; font-weight: 600; }
+
+.nm-cards { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .7rem; }
+.nm-card a { display: flex; gap: .8rem; align-items: flex-start; padding: .85rem 1rem; min-height: 48px; border-radius: var(--r-md);
+  background: #fff; color: var(--ink) !important; text-decoration: none; border: 1px solid #D3DCD6; }
+.nm-card a:hover { border-color: var(--lantern); }
+.nm-cards-live .nm-card a { background: var(--spruce-2); border-color: var(--spruce-3); color: var(--lichen) !important; }
+.nm-cards-live .nm-card b { color: #F3F1DA; }
+.nm-card-body { display: grid; gap: .15rem; min-width: 0; }
+.nm-card b { font: 700 1.1rem var(--display); color: var(--spruce); }
+.nm-meta { font-size: .88rem; color: var(--muted-l); }
+.nm-cards-live .nm-meta, .nm-arch .nm-meta { color: var(--muted-d); }
+.nm-snip { font-size: .95rem; line-height: 1.45; overflow-wrap: anywhere; }
+.nm-dot { flex: none; width: 14px; height: 14px; margin-top: .35rem; border-radius: 50%; box-shadow: 0 0 0 2px #F6F0E2; }
+.nm-none { margin-top: 1rem; }
+.nm-cta { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.2rem; }
+
+.nm-hubs h3 { font-size: 1rem; margin: 1.2rem 0 .5rem; color: #F3F1DA; }
+.nm-chips { display: flex; flex-wrap: wrap; gap: .45rem; margin: 0; }
+.nm-chip { display: inline-flex; align-items: center; min-height: 44px; padding: 0 .95rem; border-radius: 999px; font-weight: 600; font-size: .95rem;
+  background: var(--spruce-2); border: 1px solid var(--spruce-3); color: var(--lichen) !important; text-decoration: none; }
+.nm-chip:hover { border-color: var(--lantern); }
+.nm-src { padding-left: 1.1rem; display: grid; gap: .5rem; }
+
+@media (min-width: 720px) {
+  .nm-hero { padding-top: 2.4rem; }
+  .nm-where { grid-template-columns: auto 1fr; align-items: end; }
+  .nm-locate { width: auto; padding: 0 1.4rem; }
+  .nm-row-h { flex: 0 0 6.5rem; }
+  .nm-cards { grid-template-columns: repeat(2, 1fr); }
+  .nm-map { border-radius: var(--r-md); }
+  .nm-mapwrap { max-width: 1120px; margin-left: auto; margin-right: auto; padding: 0 clamp(16px, 3vw, 28px); }
+  .nm-legend { padding: 0; }
+}
+@media (min-width: 1000px) { .nm-cards:not(.nm-cards-live) { grid-template-columns: repeat(3, 1fr); } }
+/* Installed app, full screen: no browser bar, so give the map more of the screen. */
+@media (display-mode: standalone), (display-mode: fullscreen) { .nm-map { height: 68vh; } }
+/* Creature badges in the report cards (badge-sm sizes live in report.css, which this page doesn't load). */
+.nm-card .badge-sm { width: 48px; height: 48px; flex: none; }
+.nm-card .badge-sm .ico { width: 72%; height: 72%; }
+.nm-card .badge-sm .q { font: 700 1.4rem var(--display); color: var(--c-other); }
