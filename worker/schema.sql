@@ -114,3 +114,7 @@ CREATE TABLE IF NOT EXISTS mod_messages (
   at INTEGER NOT NULL DEFAULT (unixepoch())
 );
 CREATE INDEX IF NOT EXISTS mod_messages_report ON mod_messages (report_id, at);
+
+-- /v1/reports/nearby: bounding box on the public point, newest sighting first.
+CREATE INDEX IF NOT EXISTS reports_geo ON reports (status, pub_lat, pub_lon);
+CREATE INDEX IF NOT EXISTS reports_seen ON reports (status, seen_date, pid);

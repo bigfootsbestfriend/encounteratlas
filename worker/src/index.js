@@ -10,6 +10,8 @@
 //   POST /api/reports      multipart: data=<JSON> (videos + photo links inside; file uploads refused)   new report (pending)
 //   GET  /api/reports?limit&before&creature   recent approved reports (summaries)
 //   GET  /api/reports.geojson             approved reports, public (~5 km) points only
+//   GET  /v1/reports/nearby?lat&lng&radius_km&days&category&limit&cursor   field app: approved reports near a point
+//                                         (public cell centres rounded to 0.01 deg, no links; 60/min per IP)
 //   GET  /api/reports/<pid>               an approved report, or your own in any status (Bearer)
 //   PATCH /api/reports/<pid>              (owner) edit text/location/videos, remove photos -> back to pending
 //   DELETE /api/reports/<pid>             (owner) withdraw
@@ -22,6 +24,7 @@
 import { CREATURES } from './creatures.js';
 import { sanitizeJpeg, BadImage } from './jpeg.js';
 import { handleMod } from './mod.js';
+import { nearby } from './nearby.js';
 import {
   HttpError, fail, json, sign, verify, hash, randomId, randomPid, clientIp, network, int, rateLimited, turnstileOk,
   sendEmail, emailLayout, line, para, esc, now,
@@ -44,7 +47,7 @@ export default {
     try {
       if (p === '/mod' || p.startsWith('/mod/')) return await handleMod(req, env, url);
       if (p.startsWith('/img/')) return await image(env, p, url);
-      if (!p.startsWith('/api/')) return new Response('Not found', { status: 404 });
+      if (!p.startsWith('/api/') && !p.startsWith('/v1/')) return new Response('Not found', { status: 404 });
       if (req.method === 'OPTIONS') return cors(req, env, new Response(null, { status: 204 }));
       return cors(req, env, await api(req, env, url, ctx));
     } catch (err) {
@@ -92,6 +95,7 @@ async function api(req, env, url, ctx) {
   if (p === '/api/reports' && m === 'POST') return submit(req, env, ctx);
   if (p === '/api/reports' && m === 'GET') return listReports(env, url);
   if (p === '/api/reports.geojson' && m === 'GET') return geojson(env);
+  if (p === '/v1/reports/nearby' && m === 'GET') return nearby(req, env, url, ctx);
   const rm = p.match(/^\/api\/reports\/([a-z0-9]{10})$/);
   if (rm && m === 'GET') return getReport(req, env, rm[1]);
   if (rm && m === 'PATCH') return editReport(req, env, rm[1]);

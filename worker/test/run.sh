@@ -16,3 +16,4 @@ WR=$!
 trap 'kill $WR 2>/dev/null; wait $WR 2>/dev/null || true' EXIT
 for i in $(seq 1 60); do curl -sf "http://127.0.0.1:$PORT/api/config" > /dev/null && break; sleep 0.5; done
 API="http://127.0.0.1:$PORT" PERSIST="$STATE" node test/api.test.mjs
+API="http://127.0.0.1:$PORT" node test/nearby.test.mjs
