@@ -10,11 +10,11 @@
 .nm-hero .lede { font-size: 1.05rem; margin: 0; }
 
 .nm-tool { background: var(--spruce); color: var(--lichen); padding: 1.1rem 0 1.6rem; }
-.nm-where { display: grid; gap: .9rem; }
+.nm-where { display: grid; grid-template-columns: minmax(0, 1fr); gap: .9rem; }
 .nm-locate { width: 100%; justify-content: center; min-height: 56px; font-size: 1.1rem; border: 0; cursor: pointer; }
 .nm-label { display: block; font-weight: 600; margin-bottom: .35rem; }
 .nm-pick-row { display: flex; gap: .5rem; }
-.nm-pick input { flex: 1; min-width: 0; min-height: 52px; font: 1.05rem var(--body); padding: 0 1rem; border-radius: 999px;
+.nm-pick input { flex: 1; min-width: 0; width: 100%; min-height: 52px; font: 1.05rem var(--body); padding: 0 1rem; border-radius: 999px;
   border: 2px solid var(--spruce-3); background: #0E1D18; color: #F3F1DA; }
 .nm-pick input:focus { outline: none; border-color: var(--lantern); }
 .nm-go { min-height: 52px; min-width: 72px; justify-content: center; cursor: pointer; border: 0; }
@@ -80,7 +80,7 @@
 
 @media (min-width: 720px) {
   .nm-hero { padding-top: 2.4rem; }
-  .nm-where { grid-template-columns: auto 1fr; align-items: end; }
+  .nm-where { grid-template-columns: auto minmax(0, 1fr); align-items: end; }
   .nm-locate { width: auto; padding: 0 1.4rem; }
   .nm-row-h { flex: 0 0 6.5rem; }
   .nm-cards { grid-template-columns: repeat(2, 1fr); }
