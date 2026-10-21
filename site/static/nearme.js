@@ -118,10 +118,34 @@
   async function reports() {
     const q = new URLSearchParams({ lat: S.lat, lng: S.lng, radius_km: Math.min(250, Math.max(5, S.km)), days: S.days, limit: 100 });
     if (S.cat) q.set('category', S.cat);
-    const r = await fetch(CFG.api + '/v1/reports/nearby?' + q);
-    if (r.status === 429) throw new Error('slow');
-    if (!r.ok) throw new Error('api');
-    return (await r.json()).reports || [];
+    if (!noEndpoint) {
+      const r = await fetch(CFG.api + '/v1/reports/nearby?' + q).catch(() => null);
+      if (r && r.status === 429) throw new Error('slow');
+      if (r && r.ok) return (await r.json()).reports || [];
+      // A Worker without /v1/reports/nearby answers 404 with no CORS header, which the browser reports as a failed
+      // fetch: use the feed for the rest of this visit.
+      if (!r || r.status === 404) noEndpoint = true;
+    }
+    try { return await fromFeed(); } catch (e) { feed = null; throw new Error('api'); }
+  }
+  let noEndpoint = false;
+  // Fallback: the public reports feed the full map uses (approved only, public ~5 km cell, ~100 km for living
+  // traditions, first ~160 characters of the story, no links). Same filters and output as the endpoint.
+  let feed = null;
+  async function fromFeed() {
+    feed = feed || fetch(CFG.api + '/api/reports.geojson').then((r) => (r.ok ? r.json() : { features: [] }));
+    const since = new Date(Date.now() - S.days * 86400e3).toISOString().slice(0, 10);
+    const out = [];
+    for (const f of (await feed).features) {
+      const p = f.properties, cat = p.c === 'other' ? 'other' : CFG.ufo.includes(p.c) ? 'ufo' : 'creature';
+      if ((p.d || '') < since || (S.cat && S.cat !== cat)) continue;
+      const lat = round2(f.geometry.coordinates[1]), lng = round2(f.geometry.coordinates[0]);
+      const km = hav(S.lat, S.lng, lat, lng);
+      if (km > S.km) continue;
+      out.push({ id: p.id, category: cat, creature: p.c, creature_name: p.n, seen_date: p.d, place: p.t, lat, lng,
+        precision_km: CFG.living.includes(p.c) ? 100 : 5, distance_km: Math.round(km), summary: p.s });
+    }
+    return out.sort((x, y) => (y.seen_date || '').localeCompare(x.seen_date || ''));
   }
   const tileCache = new Map();
   let tileIndex = null; // which 5-degree squares have any archive files, so empty ones are never requested

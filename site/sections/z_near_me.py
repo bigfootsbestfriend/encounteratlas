@@ -10,7 +10,7 @@ static/nearme.js acts only when a control is used: "Use my location", "Pick a pl
 outside geocoder), radius (km or miles), category and time chips. Then the map shows reader reports from the
 Worker's /v1/reports/nearby plus the archive layers from data/near/<lat0>_<lon0>.json (5-degree tiles).
 """
-import datetime, json, os, sys, urllib.request
+import datetime, json, os, re, sys, urllib.request
 
 API = os.environ.get('EA_API', 'https://api.encounteratlas.com').rstrip('/')
 MAPLIBRE = '4.7.1'
@@ -80,8 +80,14 @@ def build(ctx):
                    for c, n in CATS)
     days = ''.join(f'<button type="button" class="nm-opt" data-days="{d}" aria-pressed="{"true" if d == 30 else "false"}">{E(n)}</button>' for d, n in DAYS)
     total = sum(counts.values())
+    # For the fallback to /api/reports.geojson (nearme.js fromFeed): UFO slugs for the category filter, and the
+    # Worker's LIVING_TRADITIONS (read from its source, the list that decides the ~100 km public point).
+    worker_src = open(os.path.join(ctx.ROOT, 'worker', 'src', 'index.js'), encoding='utf-8').read()
+    living = re.findall(r"'([a-z0-9-]+)'", re.search(r'LIVING_TRADITIONS = new Set\(\[(.*?)\]\)', worker_src, re.S).group(1))
     cfg = json.dumps({'api': API, 'base': ctx.BASE, 'tiles': U('/data/near/'), 'cities': U('/data/cities.json'),
-                      'report': U('/report/'), 'reports': U('/reports/?id=')}, separators=(',', ':')).replace('</', '<\\/')
+                      'report': U('/report/'), 'reports': U('/reports/?id='),
+                      'ufo': [c['slug'] for c in ctx.creatures if c['cat'] == 'ufo'], 'living': living},
+                     separators=(',', ':')).replace('</', '<\\/')
     sources = ''.join(f'<li><b>{E(t)}</b> ({counts[k]:,} on this map). {E(s.split(" Credit by name")[0].split(" Rows from")[0])}</li>'
                       for k, (_, t, s) in LAYERS.items() if k != 'bluebook_approx')
 
