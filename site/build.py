@@ -312,6 +312,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <script src="{url('/static/amz.js')}" defer></script>
 <script src="{url('/static/signup.js')}" defer></script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('{url('/sw.js')}');</script>
+<script>document.addEventListener('click',e=>{{const a=e.target.closest&&e.target.closest('a[href]');if(a&&/^https?:/.test(a.href)&&!/(^|[.])encounteratlas[.]com$/.test(a.hostname)&&a.host!==location.host&&!a.target){{a.target='_blank';a.rel=((a.rel||'')+' noopener').trim();}}}},true);</script>
 <script>(function(){{const dd=[...document.querySelectorAll('.nav-dd, .mm')];dd.forEach(d=>d.addEventListener('toggle',()=>{{if(d.open)dd.forEach(o=>{{if(o!==d)o.open=false;}});}}));document.addEventListener('click',e=>{{dd.forEach(d=>{{if(d.open&&!d.contains(e.target))d.open=false;}});}});document.addEventListener('keydown',e=>{{if(e.key==='Escape')dd.forEach(d=>{{if(d.open){{d.open=false;d.querySelector('summary').focus();}}}});}});}})();</script>
 </body>
 </html>
