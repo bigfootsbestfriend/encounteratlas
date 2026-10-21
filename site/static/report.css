@@ -140,8 +140,8 @@
 .reports-map { height: clamp(280px, 42vh, 440px); border-radius: var(--r-md); overflow: hidden; margin-top: 1.4rem; background: #0E1D18; border: 1px solid var(--spruce-3); }
 .list-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem 1rem; margin-bottom: 1rem; }
 .list-bar h2 { margin: 0; }
-.filter { display: flex; align-items: center; gap: .5rem; font-weight: 700; }
-.filter select { width: auto; min-width: 200px; }
+.filter { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; font-weight: 700; min-width: 0; max-width: 100%; }
+.filter select { width: auto; min-width: min(200px, 100%); max-width: 100%; flex: 1 1 auto; }
 .loading { color: var(--muted-l); font-size: 1.05rem; }
 .rep-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; margin-bottom: 1.4rem; }
 .rcard { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--mist-2); border-radius: var(--r-md); overflow: hidden;

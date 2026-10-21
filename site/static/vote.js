@@ -74,7 +74,8 @@
       const rec = { waiters: [resolve] };
       widgets.set(slot, rec);
       rec.id = ts.render(slot, {
-        sitekey: cfg.sitekey, size: 'flexible', theme: 'light',
+        // 'flexible' is at least 300px wide: on small phones the form is narrower, so use the compact box there.
+        sitekey: cfg.sitekey, size: (slot.getBoundingClientRect().width || slot.parentElement.getBoundingClientRect().width || 999) < 300 ? 'compact' : 'flexible', theme: 'light',
         callback: (token) => { const ws = rec.waiters.splice(0); ws.forEach((f) => f(token)); },
       });
     });

@@ -276,3 +276,4 @@
 .g-rec li a { font-weight: 700; color: #7A4E00; }
 .g-rec li span { font-size: .88rem; color: var(--muted-l); }
 .g-rec-all { margin: .7rem 0 0; font-weight: 700; } .g-rec-all a { color: #7A4E00; }
+@media (max-width: 360px) { .g-hub-icons { grid-template-columns: repeat(6, 40px); gap: 6px; } .g-hub-icons > span { width: 40px; height: 40px; } }

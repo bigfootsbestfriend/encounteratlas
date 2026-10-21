@@ -31,7 +31,8 @@ h3 { font-size: 1.2rem; }
 p { margin: 0 0 1em; }
 .skip { position: absolute; left: -999px; top: 0; background: var(--lantern); color: var(--spruce); padding: .5em 1em; z-index: 99; }
 .skip:focus { left: 8px; top: 8px; }
-.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* Pinned to the corner of the nearest positioned box: unpinned, a hidden label near the right edge stretched the page sideways on 320px phones. */
+.visually-hidden { position: absolute; left: 0; top: 0; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
 .small { font-size: .875rem; }
 .muted { color: var(--muted-d); }
 .band-mist .muted { color: var(--muted-l); }
@@ -281,7 +282,9 @@ p { margin: 0 0 1em; }
   .timeline:not(.cases) li { grid-template-columns: 1fr; gap: .15rem; }
 }
 @media (min-width: 1000px) { .tiles { grid-template-columns: repeat(8, 1fr); } .tile { flex-direction: column; align-items: flex-start; } }
-@media (min-width: 601px) and (max-width: 999px) { .tiles { grid-template-columns: repeat(4, 1fr); } }
+/* Columns never narrower than an icon + "encounters" (four at 640px pushed the page sideways). */
+@media (min-width: 601px) and (max-width: 999px) { .tiles { grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr)); } }
+@media (max-width: 360px) { .tiles { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .5rem; } .tile { min-width: 0; hyphens: auto; overflow-wrap: break-word; } }
 @media (max-width: 600px) { .map-frame { max-height: 560px; } .search input { font-size: 1rem; } }
 
 /* Creature pages: what-next sidebar and the "Seen one?" panel */
@@ -359,7 +362,7 @@ body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
 .brand { flex: none; }
 .nav { min-width: 0; }
 /* Report an encounter: on every page, top right, the brightest thing in the header */
-.report-btn { flex: none; display: inline-flex; align-items: center; gap: .5rem; padding: .6rem 1.05rem; border-radius: 999px;
+.report-btn { position: relative; flex: none; display: inline-flex; align-items: center; gap: .5rem; padding: .6rem 1.05rem; border-radius: 999px;
   background: var(--lantern); color: #13261F !important; font: 800 .98rem "Public Sans", sans-serif; text-decoration: none; white-space: nowrap;
   box-shadow: 0 0 0 3px rgba(242, 179, 61, .22), 0 6px 18px rgba(0, 0, 0, .35); }
 .report-btn:hover { background: #FFC85A; }
@@ -370,7 +373,8 @@ body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
 @keyframes rb-pulse { 50% { box-shadow: 0 0 0 6px rgba(192, 48, 31, 0); } }
 .top .nav { margin-left: auto; }
 .rb-short { display: none; }
-@media (max-width: 480px) { .rb-long { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .rb-short { display: inline; } }
+/* Up to 640px the header holds logo + search + Report + Menu on one row, so the short label is needed (the long one pushed the Menu button off screen at 480-560px). */
+@media (max-width: 640px) { .rb-long { position: absolute; left: 0; top: 0; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; } .rb-short { display: inline; } }
 @media (min-width: 1221px) and (max-width: 1440px) {
   .top { gap: .6rem; }
   .brand { font-size: 1.15rem; }
@@ -383,7 +387,7 @@ body.mapper .map-full { flex: 1; height: auto; min-height: 0; width: 100%; }
   .nav a, .nav-dd summary { font-size: .86rem; padding: .4rem .45rem; }
   .nav { gap: 0; }
   .report-btn { padding: .5rem .8rem; font-size: .88rem; }
-  .rb-long { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .rb-short { display: inline; }
+  .rb-long { position: absolute; left: 0; top: 0; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; } .rb-short { display: inline; }
 }
 @media (max-width: 900px) {
   .top { flex-wrap: wrap; padding-bottom: .4rem; row-gap: .3rem; }
@@ -792,9 +796,19 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
   .mm a[aria-current] { color: var(--lantern-2); font-weight: 700; }
   .mm .mm-big[aria-current] { background: var(--lichen); color: var(--spruce); }
 }
-@media (max-width: 420px) {
+@media (max-width: 520px) {
   .mm summary span { display: none; }
   .mm summary { padding: .55rem .7rem; }
   .top .brand { font-size: 1rem; }
 }
+@media (max-width: 370px) {
+  .top { gap: .35rem; padding-left: .6rem; padding-right: .6rem; }
+  .top .brand { font-size: .9rem; gap: .4rem; }
+  .top .brand .mark { width: 32px; height: 32px; }
+  .top .report-btn { padding: .45rem .6rem; }
+}
 @media print { .mm { display: none !important; } }
+
+/* Long option text (e.g. the creature index sort) must never widen the page on small phones. */
+select { max-width: 100%; }
+@media (max-width: 480px) { .md-aff { white-space: normal; } }
