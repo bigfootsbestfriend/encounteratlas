@@ -123,7 +123,7 @@ def build(ctx):
         names = f'{s["name"]} {s["publisher"]} {scrub(s.get("about", ""))[:200]}'.lower()
         tags = ''.join(topic_chip(t, False) for t in s['topics'])
         last = (f'<p class="pod-last"><span>Newest:</span> <a href="{esc(s["last_ep"]["url"])}" rel="noopener">'
-                f'{esc(s["last_ep"]["title"])}</a></p>') if s.get('last_ep') and s['last_ep'].get('title') else ''
+                f'{esc(scrub(s["last_ep"]["title"]))}</a></p>') if s.get('last_ep') and s['last_ep'].get('title') else ''
         about = f'<p class="pod-about">{esc(scrub(s["about"]))}</p>' if s.get('about') else ''
         star = '<span class="pod-pick" title="Fan favourite">Fan favourite</span>' if s.get('notable') else ''
         return (f'<article class="pod" data-topics="{" ".join(s["topics"])}" data-names="{esc(names)}" '
@@ -139,7 +139,7 @@ def build(ctx):
         """Ranked row for topic pages."""
         tags = ''.join(topic_chip(t) for t in s['topics'])
         last = (f'<p class="pod-last"><span>Newest:</span> <a href="{esc(s["last_ep"]["url"])}" rel="noopener">'
-                f'{esc(s["last_ep"]["title"])}</a></p>') if s.get('last_ep') and s['last_ep'].get('title') else ''
+                f'{esc(scrub(s["last_ep"]["title"]))}</a></p>') if s.get('last_ep') and s['last_ep'].get('title') else ''
         about = f'<p class="pod-about">{esc(scrub(s["about"]))}</p>' if s.get('about') else ''
         hot = f'<span class="pod-hot">{n_recent(s["recent30"])} new this month</span>' if s.get('recent30', 0) >= 4 else ''
         return (f'<li class="prow"><span class="prow-n">{n}</span><a class="prow-art" href="{esc(s["apple"])}" rel="noopener" '
