@@ -108,6 +108,18 @@
     for (const m of marks) if (pct >= m - 2 && !hit.has(m)) { hit.add(m); send("scroll_depth", { percent: m }); }
   }, { passive: true });
 
+  // Field app: a tap on a sighting alert lands with ?source=alert; the first launch of the installed app (Play Store
+  // app or home-screen web app) counts once per device as app_install.
+  const qs = new URLSearchParams(location.search);
+  if (qs.get("source") === "alert") send("alert_open", {});
+  try {
+    const mode = sessionStorage.getItem("ea-mode");
+    if ((mode === "twa" || mode === "pwa") && !localStorage.getItem("ea-app-opened")) {
+      localStorage.setItem("ea-app-opened", mode);
+      send("app_install", { how: mode });
+    }
+  } catch {}
+
   document.addEventListener("copy", (ev) => send("ui_copy", { area: areaOf(ev.target.nodeType === 1 ? ev.target : ev.target.parentElement || document.body) }));
   addEventListener("beforeprint", () => send("ui_print", {}));
 })();

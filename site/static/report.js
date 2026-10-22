@@ -1,5 +1,8 @@
 // Report form: creature picker, GPS / map tap / place search, photo and video LINKS (we never take uploads),
 // a local draft (localStorage), Turnstile, and edit mode (?edit=<id>) for your own reports.
+// Field app additions: "Use my location" rounds to 0.01 deg (about 1 km) before anything is sent; UFO reports
+// get a "Was it a planet?" step (skycore.js) before sending; a report written with no signal is queued on the
+// device and sent when the connection is back (Turnstile still runs then, so it goes the normal way to /mod).
 // Needs vote.js (window.EA) loaded first.
 (function () {
   const form = document.getElementById('report-form');
@@ -92,7 +95,9 @@
     b.disabled = true;
     navigator.geolocation.getCurrentPosition((pos) => {
       b.textContent = label; b.disabled = false;
-      setPoint(pos.coords.latitude, pos.coords.longitude, 'gps', true);
+      // Rounded to 0.01 deg (about 1 km) on the device: the exact GPS fix never leaves the phone.
+      setPoint(Math.round(pos.coords.latitude * 100) / 100, Math.round(pos.coords.longitude * 100) / 100, 'gps', true);
+      window.eaTrack && eaTrack('report_locate', {});
     }, (err) => {
       b.textContent = label; b.disabled = false;
       status.textContent = err.code === 1 ? 'Location is blocked. Allow it in your browser settings, or tap the map.' : 'Couldn\'t get a GPS fix. Try again in the open, or tap the map.';
@@ -257,11 +262,105 @@
   }
 
   form.addEventListener('input', () => window.eaTrack && eaTrack('report_start', { edit: editId ? 'yes' : 'no' }), { once: true });
+  // ---------- "Was it a planet?" (UFO reports with a time) ----------
+  // Runs once per report, before the spam check. "Yes, that explains it" ends here: nothing is sent.
+  let sky = null; // null = not checked yet; otherwise what goes to the Worker as sky_check
+  const isUfo = (slug) => { const r = form.querySelector(`input[name=creature][value="${CSS.escape(slug)}"]`); return !!(r && r.closest('.pick-group')?.dataset.group === 'ufo'); };
+  const skyBox = h('div', { class: 'sky-step', hidden: true, 'data-area': 'sky-check', tabindex: '-1' });
+  $('.send').before(skyBox);
+  form.addEventListener('change', (e) => { if (['creature', 'seen_date', 'seen_time'].includes(e.target.name)) { sky = null; skyBox.hidden = true; } });
+  async function skyStep(d) {
+    if (editId || sky || !isUfo(d.creature) || !d.seen_time || d.lat === '' || !window.eaSky || navigator.onLine === false) return true;
+    msg.textContent = 'Checking what was in the sky...';
+    const when = new Date(`${d.seen_date}T${d.seen_time}`);
+    const found = await Promise.race([eaSky.lined(when, +d.lat, +d.lon).catch(() => []), new Promise((r) => setTimeout(() => r(null), 8000))]);
+    msg.textContent = '';
+    if (!found || !found.length) { sky = { candidates: [], answer: 'none' }; return true; }
+    skyBox.replaceChildren(
+      h('h3', { text: 'Could this be what you saw?' }),
+      h('p', { text: `At ${d.seen_time} on ${d.seen_date}, this was in the sky where you were:` }),
+      h('ul', {}, found.slice(0, 3).map((x) => h('li', {}, h('b', { text: x.name }), ` (${x.where}). ${x.why}`))),
+      h('p', { class: 'sky-acts' },
+        h('button', { type: 'button', class: 'btn', text: 'Yes, that explains it', onclick: () => {
+          window.eaTrack && eaTrack('planet_match', { object: found[0].name });
+          clearDraft();
+          form.hidden = true;
+          const box = document.querySelector('[data-done]');
+          box.querySelector('h2').textContent = 'Mystery solved.';
+          box.querySelector('[data-done-msg]').textContent = `Thanks for checking. ${found[0].name} fools a lot of people, including pilots. Nothing was sent.`;
+          box.hidden = false; box.focus();
+        } }),
+        h('button', { type: 'button', class: 'btn btn-quiet', text: 'No, send my report', onclick: () => {
+          sky = { candidates: found.map((x) => x.name), answer: 'no' };
+          skyBox.hidden = true;
+          form.requestSubmit();
+        } })),
+    );
+    skyBox.hidden = false;
+    skyBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return false;
+  }
+
+  // ---------- no signal: queue on this device, send when back online ----------
+  const QUEUE = 'ea-report-queue';
+  const queue = () => { try { return JSON.parse(store.get(QUEUE) || '[]'); } catch (x) { return []; } };
+  const setQueue = (q) => (q.length ? store.set(QUEUE, JSON.stringify(q)) : store.del(QUEUE));
+  function enqueue(d) {
+    delete d.turnstile; delete d.website;
+    setQueue([...queue(), { d, at: Date.now() }]);
+    clearDraft();
+    // Background Sync (Chrome, Android): the service worker wakes when the connection is back and brings the
+    // form up to send it (the spam check needs a page). Elsewhere it goes the next time this page or the app opens.
+    if (navigator.serviceWorker) navigator.serviceWorker.ready.then((reg) => reg.sync && reg.sync.register('ea-send-reports')).catch(() => {});
+    window.eaTrack && eaTrack('report_queued', {});
+    form.hidden = true;
+    const box = document.querySelector('[data-done]');
+    box.querySelector('h2').textContent = 'Queued on this phone.';
+    box.querySelector('[data-done-msg]').textContent = 'There\'s no signal, so your report is saved here. It sends when you\'re back online: just open Encounter Atlas again with signal. Don\'t clear your browser data before then.';
+    box.hidden = false; box.focus();
+  }
+  const qbar = h('p', { class: 'queue-bar', hidden: true, role: 'status', 'aria-live': 'polite' });
+  form.before(qbar);
+  let sending = false;
+  async function sendQueued() {
+    const q = queue();
+    if (editId || sending || !q.length) { qbar.hidden = !q.length || !!editId; return; }
+    qbar.hidden = false;
+    if (navigator.onLine === false) { qbar.textContent = `Queued: ${q.length} report${q.length === 1 ? '' : 's'} waiting for signal.`; return; }
+    sending = true;
+    qbar.textContent = `Sending ${q.length} queued report${q.length === 1 ? '' : 's'}... (spam check first)`;
+    const left = [];
+    let sent = 0;
+    for (const item of q) {
+      let t;
+      try { t = await EA.human(tsSlot); } catch (x) { left.push(item); continue; }
+      const fd = new FormData();
+      const body = { ...item.d, turnstile: t };
+      if (EA.session()) delete body.email;
+      fd.append('data', JSON.stringify(body));
+      const r = await api('/api/reports', { method: 'POST', form: fd });
+      EA.resetHuman(tsSlot);
+      if (r.status === 201 || r.status === 200) { sent++; window.eaTrack && eaTrack('report_submit', { creature: item.d.creature || '', queued: 'yes' }); }
+      else if (r.status === 400 && r.data.fields && !form.hidden) { fill(item.d); showBad(r.data.fields); } // needs fixing: back in the form
+      else left.push(item);
+    }
+    setQueue(left);
+    sending = false;
+    qbar.textContent = sent ? `Sent: ${sent} queued report${sent === 1 ? '' : 's'} went to the moderators.${left.length ? ` ${left.length} still waiting.` : ''}`
+      : left.length ? `Queued: ${left.length} report${left.length === 1 ? '' : 's'} still waiting. We'll try again when the connection is steadier.` : '';
+    qbar.hidden = !qbar.textContent;
+  }
+  window.addEventListener('online', sendQueued);
+  if (navigator.serviceWorker) navigator.serviceWorker.addEventListener('message', (e) => { if (e.data && e.data.type === 'send-queued') sendQueued(); });
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const d = collect();
     const bad = check(d);
     if (Object.keys(bad).length) { showBad(bad); return; }
+    if (!editId && navigator.onLine === false) { enqueue(d); return; }
+    if (!(await skyStep(d))) return;
+    if (sky) d.sky_check = sky;
     submitBtn.disabled = true;
     let r;
     if (editId) {
@@ -269,13 +368,14 @@
       r = await api('/api/reports/' + editId, { method: 'PATCH', body: d });
     } else {
       msg.textContent = 'Quick spam check...';
-      try { d.turnstile = await EA.human(tsSlot); } catch (err) { msg.textContent = 'The spam check didn\'t load. Your draft is saved; try again when you have signal.'; submitBtn.disabled = false; return; }
+      try { d.turnstile = await EA.human(tsSlot); } catch (err) { submitBtn.disabled = false; enqueue(d); return; }
       if (EA.session()) delete d.email;
       const fd = new FormData();
       fd.append('data', JSON.stringify(d));
       msg.textContent = 'Sending your report...';
       r = await api('/api/reports', { method: 'POST', form: fd });
       EA.resetHuman(tsSlot);
+      if (r.status === 0) { submitBtn.disabled = false; enqueue(d); return; }
     }
     submitBtn.disabled = false;
     if (r.status === 200 || r.status === 201) { window.eaTrack && eaTrack(editId ? 'report_edit' : 'report_submit', { creature: d.creature || '' }); return done(r.data, d); }
@@ -343,6 +443,7 @@
 
   if (editId) startEdit();
   else {
+    sendQueued();
     let d = null;
     try { d = JSON.parse(store.get(DRAFT) || 'null'); } catch (e) { d = null; }
     if (d && (d.story || d.creature || d.lat !== '')) {

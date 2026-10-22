@@ -7,3 +7,6 @@ MOD_PASSWORD=letmein-local
 TURNSTILE_SECRET=1x0000000000000000000000000000000AA
 SITE=http://127.0.0.1:8825
 EXTRA_ORIGINS=http://localhost:8825
+# Push: log instead of sending (tests read the log). MOD_PUSH_KEY signs the notification Approve / Reject buttons.
+PUSH_MODE=log
+MOD_PUSH_KEY=local-mod-push-key-not-for-production

@@ -16,6 +16,8 @@ OWNER_EMAIL = "mike@thekitchenmagpie.com"
 # CONTACT_TO = ""
 # Turnstile site key (public); the secret is a Worker secret.
 TURNSTILE_SITEKEY = "0x4AAAAAAFVllt3qoQHw1hRp"
+# Web Push (sighting alerts + Mike's moderation notifications). Public key; the site build ships the same one.
+VAPID_PUBLIC = "BPaFWQPvUMGNqYf2Fav8xdz3pa7SIWmdDmsLtroeHp4vThhyIVxKAlKAW3zWSuHkORIuPtla_ftBIb38dwsgIRk"
 
 [[d1_databases]]
 binding = "DB"
@@ -33,4 +35,6 @@ crons = ["17 4 * * *"]   # daily: prune rate-limit rows and used sign-in links
 #   MOD_PASSWORD       password for the /mod moderation page
 #   TURNSTILE_SECRET   secret key of the Turnstile widget
 #   RESEND_API_KEY     Resend key (sending access) for sign-in emails
+#   VAPID_PRIVATE      Web Push signing key (JWK JSON); copy in ~/.config/kitchen-magpie/encounteratlas-vapid.env
+#   MOD_PUSH_KEY       signs the Approve / Reject buttons on Mike's moderation notifications (same file)
 # Local development uses .dev.vars instead (see .dev.vars.example).

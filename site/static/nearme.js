@@ -50,6 +50,7 @@
     press($('nm-radius'), b);
     S.km = S.unit === 'mi' ? Math.round(Number(b.dataset.mi) * KM_PER_MI) : Number(b.dataset.km);
     S.mi = Number(b.dataset.mi);
+    track('nearme_filter', { filter: 'radius', value: S.unit === 'mi' ? S.mi + ' mi' : S.km + ' km' });
     search();
   });
   $('nm-unit').addEventListener('click', (e) => {
@@ -61,15 +62,16 @@
     document.querySelectorAll('#nm-radius .u-mi').forEach((x) => { x.hidden = S.unit === 'km'; });
     const on = document.querySelector('#nm-radius [aria-pressed="true"]');
     S.km = S.unit === 'mi' ? Math.round(Number(on.dataset.mi) * KM_PER_MI) : Number(on.dataset.km);
+    track('nearme_filter', { filter: 'units', value: S.unit });
     search();
   });
   $('nm-cat').addEventListener('click', (e) => {
     const b = e.target.closest('button'); if (!b) return;
-    press($('nm-cat'), b); S.cat = b.dataset.cat; search();
+    press($('nm-cat'), b); S.cat = b.dataset.cat; track('nearme_filter', { filter: 'category', value: S.cat || 'all' }); search();
   });
   $('nm-days').addEventListener('click', (e) => {
     const b = e.target.closest('button'); if (!b) return;
-    press($('nm-days'), b); S.days = Number(b.dataset.days); search();
+    press($('nm-days'), b); S.days = Number(b.dataset.days); track('nearme_filter', { filter: 'days', value: String(S.days) }); search();
   });
 
   $('nm-locate').addEventListener('click', () => {
@@ -80,6 +82,7 @@
       S.lat = round2(p.coords.latitude); S.lng = round2(p.coords.longitude); S.label = 'you';
       $('nm-place').value = '';
       track('near_search', { how: 'location' });
+      track('nearme_locate', {});
       search();
     }, (err) => {
       say(err && err.code === 1 ? 'Location is blocked. Allow it in your browser settings, or pick a place instead.' : 'Couldn\'t find your location. Pick a place instead.');
@@ -364,6 +367,7 @@
   async function search() {
     if (S.lat == null) { say('Use your location or pick a place to see what\'s been reported nearby.'); return; }
     remember();
+    alertUi();
     const my = ++seq;
     say(`Looking within ${dist(S.km)} of ${S.label === 'you' ? 'you' : S.label}...`);
     const mp = ensureMap();
@@ -387,12 +391,114 @@
     map.fitBounds([[S.lng - d / cos, Math.max(-85, S.lat - d)], [S.lng + d / cos, Math.min(85, S.lat + d)]], { padding: 24, duration: 600 });
   }
 
+  // ---------- sighting alerts (Web Push for the saved area) ----------
+  // The subscription id and its manage token live only on this device. Alerts follow the saved place, never the
+  // phone's position. Turnstile runs once, when alerts are first turned on.
+  const AKEY = 'ea-alert';
+  const ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  const standaloneNow = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  const alertSaved = () => { try { return JSON.parse(localStorage.getItem(AKEY) || 'null'); } catch (e) { return null; } };
+  const alertSt = (t) => { $('nm-alert-st').textContent = t; };
+  const u8 = (b) => Uint8Array.from(atob((b + '==='.slice((b.length + 3) % 4)).replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0));
+  const b64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  const radiusKm = () => Math.min(250, Math.max(5, S.km));
+  function alertUi() {
+    if (!CFG.vapid || S.lat == null) return;
+    $('nm-alert').hidden = false;
+    const a = alertSaved();
+    const here = a && Math.abs(a.lat - S.lat) < 0.005 && Math.abs(a.lng - S.lng) < 0.005 && a.radius_km === radiusKm() && a.categories === (S.cat || '');
+    $('nm-alert-btn').textContent = !a ? 'Alert me about new reports here' : here ? 'Turn off alerts' : 'Move my alerts here';
+    $('nm-alert-btn').dataset.mode = !a ? 'on' : here ? 'off' : 'move';
+    if (a) alertSt(`Alerts are on for ${a.label || 'your saved place'} (${a.units === 'mi' ? Math.round(a.radius_km / KM_PER_MI) + ' mi' : a.radius_km + ' km'}).`);
+    else alertSt('');
+  }
+  let tsLoad = null;
+  const turnstileToken = () => {
+    tsLoad = tsLoad || new Promise((res, rej) => {
+      if (window.turnstile) return res();
+      const sc = document.createElement('script');
+      sc.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; sc.async = true; sc.onload = res; sc.onerror = rej;
+      document.head.append(sc);
+    });
+    return tsLoad.then(() => new Promise((res) => {
+      const slot = $('nm-alert-ts');
+      slot.replaceChildren();
+      window.turnstile.render(slot, { sitekey: CFG.sitekey, size: 'compact', theme: 'light', callback: (t) => res(t) });
+    }));
+  };
+  const post = (path, body) => fetch(CFG.api + path, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) })
+    .then(async (r) => ({ status: r.status, data: await r.json().catch(() => ({})) })).catch(() => ({ status: 0, data: { state: 'offline' } }));
+  $('nm-alert-btn').addEventListener('click', async (e) => {
+    const b = e.currentTarget, mode = b.dataset.mode;
+    if (ios && !standaloneNow()) { alertSt('On iPhone, add this page to your Home Screen first (Share, then Add to Home Screen), then open it from there and tap this again.'); return; }
+    if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) { alertSt('This browser can\'t show notifications. Try Chrome, Edge, Firefox or Safari on a newer phone.'); return; }
+    b.disabled = true;
+    try {
+      const a = alertSaved();
+      const area = { lat: S.lat, lng: S.lng, radius_km: radiusKm(), categories: S.cat || '', units: S.unit };
+      const label = S.label === 'you' ? 'your location' : S.label;
+      if (mode === 'off' && a) {
+        alertSt('Turning alerts off...');
+        await post('/v1/push/unsubscribe', { id: a.id, manage_token: a.manage_token });
+        const reg = await navigator.serviceWorker.ready, sub = await reg.pushManager.getSubscription();
+        if (sub) await sub.unsubscribe();
+        localStorage.removeItem(AKEY);
+        track('alert_unsubscribe', {});
+        alertUi(); alertSt('Alerts are off. Nothing more will be sent.');
+        return;
+      }
+      if (mode === 'move' && a) {
+        alertSt('Moving your alerts...');
+        const r = await post('/v1/push/update', { id: a.id, manage_token: a.manage_token, ...area });
+        if (r.status === 200) {
+          localStorage.setItem(AKEY, JSON.stringify({ ...a, ...area, label }));
+          track('alert_subscribe', { how: 'move', radius_km: area.radius_km, category: area.categories || 'all' });
+          alertUi(); return;
+        }
+        if (r.status !== 404) throw new Error(r.status === 0 ? 'No connection. Try again with signal.' : 'That didn\'t work. Try again in a minute.');
+        localStorage.removeItem(AKEY); // the subscription is gone on our side: sign up again below
+      }
+      alertSt('Asking for permission to send notifications...');
+      if (await Notification.requestPermission() !== 'granted') throw new Error('Notifications are blocked for this site. Allow them in your browser or phone settings, then try again.');
+      const reg = await navigator.serviceWorker.ready;
+      const sub = (await reg.pushManager.getSubscription()) || await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: u8(CFG.vapid) });
+      alertSt('Quick spam check...');
+      const token = await turnstileToken();
+      const r = await post('/v1/push/subscribe', { endpoint: sub.endpoint, p256dh: b64(sub.getKey('p256dh')), auth: b64(sub.getKey('auth')), ...area, turnstile: token });
+      $('nm-alert-ts').replaceChildren();
+      if (r.status !== 201) throw new Error(r.status === 0 ? 'No connection. Try again with signal.' : r.data.state === 'slow' ? 'Too many tries. Wait an hour.' : 'That didn\'t work. Try again in a minute.');
+      localStorage.setItem(AKEY, JSON.stringify({ id: r.data.id, manage_token: r.data.manage_token, ...area, label }));
+      track('alert_subscribe', { how: 'new', radius_km: area.radius_km, category: area.categories || 'all' });
+      alertUi();
+    } catch (err) {
+      alertSt(err.message || 'That didn\'t work. Try again.');
+    } finally { b.disabled = false; }
+  });
+
+  // A report written with no signal on the report form waits on this device: offer to send it from here too.
+  function queuedBanner() {
+    let n = 0;
+    try { n = JSON.parse(localStorage.getItem('ea-report-queue') || '[]').length; } catch (e) { n = 0; }
+    let bar = $('nm-queued');
+    if (!n) { if (bar) bar.remove(); return; }
+    if (!bar) {
+      bar = document.createElement('p'); bar.id = 'nm-queued'; bar.className = 'nm-queued';
+      $('nm-status').before(bar);
+    }
+    bar.innerHTML = '';
+    const a = document.createElement('a'); a.href = CFG.report + '?source=queued'; a.className = 'btn'; a.textContent = 'Send it now';
+    bar.append(`You have ${n} report${n === 1 ? '' : 's'} waiting to send. `, a);
+  }
+  queuedBanner();
+  window.addEventListener('online', queuedBanner);
+  if (navigator.serviceWorker) navigator.serviceWorker.addEventListener('message', (e) => { if (e.data && e.data.type === 'send-queued') queuedBanner(); });
+
   // Install: only offered when the browser says the site is installable (Chrome/Edge fire beforeinstallprompt), never
   // as a pop-up. iPhone Safari has no such event, so it gets a one-line Add to Home Screen tip. Hidden inside the app.
   const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
   let installEvt = null;
   window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); installEvt = e; if (!standalone) $('nm-install').hidden = false; });
-  window.addEventListener('appinstalled', () => { $('nm-install').hidden = true; track('app_installed', {}); });
+  window.addEventListener('appinstalled', () => { $('nm-install').hidden = true; track('app_installed', {}); track('app_install', { how: 'prompt' }); });
   $('nm-install-btn').addEventListener('click', async () => {
     if (!installEvt) return;
     installEvt.prompt();

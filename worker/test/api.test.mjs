@@ -40,7 +40,9 @@ async function signIn(label = 'user') {
 }
 
 function sql(command) {
-  return execFileSync('npx', ['-y', 'wrangler@4', 'd1', 'execute', 'encounters', '--local', '--persist-to', PERSIST, '--json', '--command', command],
+  // WR_CMD (from run.sh) when npx is slow to resolve wrangler@4.
+  const [bin, ...pre] = (process.env.WR_CMD || 'npx -y wrangler@4').split(' ');
+  return execFileSync(bin, [...pre, 'd1', 'execute', 'encounters', '--local', '--persist-to', PERSIST, '--json', '--command', command],
     { cwd: new URL('..', here), encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
 }
 

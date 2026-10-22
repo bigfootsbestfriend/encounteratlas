@@ -237,3 +237,12 @@
 .rc-img.rc-noimg { aspect-ratio: 16 / 10; }
 /* Phones: the reader's story comes first, then the map and details (creature pages keep facts first). */
 @media (max-width: 860px) { .rep-body .facts { order: 0; } .rposter-lg { width: 104px; height: 104px; } }
+
+/* "Was it a planet?" step (UFO reports) and the no-signal queue */
+.sky-step { background: #fff; border: 2px solid var(--lantern); border-radius: var(--r-md); padding: 1rem clamp(1rem, 3vw, 1.5rem); margin: 0 0 1.1rem; }
+.sky-step h3 { margin: 0 0 .4rem; font: 700 1.3rem/1.2 var(--display); color: var(--spruce); }
+.sky-step ul { margin: .4rem 0 .8rem; padding-left: 1.2rem; }
+.sky-step li { margin: 0 0 .4rem; }
+.sky-acts { display: flex; flex-wrap: wrap; gap: .6rem; margin: 0; }
+.sky-acts .btn { min-height: 48px; }
+.queue-bar { background: var(--spruce); color: var(--lantern); border-radius: var(--r-md); padding: .8rem 1rem; margin: 0 0 1rem; font-weight: 700; }

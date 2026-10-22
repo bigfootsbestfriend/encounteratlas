@@ -12,6 +12,7 @@
 //   GET  /api/reports.geojson             approved reports, public (~5 km) points only
 //   GET  /v1/reports/nearby?lat&lng&radius_km&days&category&limit&cursor   field app: approved reports near a point
 //                                         (public cell centres rounded to 0.01 deg, no links; 60/min per IP)
+//   POST /v1/push/subscribe|update|unsubscribe   sighting alerts for a saved area (push.js)
 //   GET  /api/reports/<pid>               an approved report, or your own in any status (Bearer)
 //   PATCH /api/reports/<pid>              (owner) edit text/location/videos, remove photos -> back to pending
 //   DELETE /api/reports/<pid>             (owner) withdraw
@@ -24,7 +25,8 @@
 import { CREATURES } from './creatures.js';
 import { sanitizeJpeg, BadImage } from './jpeg.js';
 import { handleMod } from './mod.js';
-import { nearby } from './nearby.js';
+import { nearby, category } from './nearby.js';
+import { pushApi, notifyMods, BLOCKED } from './push.js';
 import {
   HttpError, fail, json, sign, verify, hash, randomId, randomPid, clientIp, network, int, rateLimited, turnstileOk,
   sendEmail, emailLayout, line, para, esc, now,
@@ -45,7 +47,7 @@ export default {
     const url = new URL(req.url);
     const p = url.pathname;
     try {
-      if (p === '/mod' || p.startsWith('/mod/')) return await handleMod(req, env, url);
+      if (p === '/mod' || p.startsWith('/mod/')) return await handleMod(req, env, url, ctx);
       if (p.startsWith('/img/')) return await image(env, p, url);
       if (!p.startsWith('/api/') && !p.startsWith('/v1/')) return new Response('Not found', { status: 404 });
       if (req.method === 'OPTIONS') return cors(req, env, new Response(null, { status: 204 }));
@@ -96,6 +98,7 @@ async function api(req, env, url, ctx) {
   if (p === '/api/reports' && m === 'GET') return listReports(env, url);
   if (p === '/api/reports.geojson' && m === 'GET') return geojson(env);
   if (p === '/v1/reports/nearby' && m === 'GET') return nearby(req, env, url, ctx);
+  if (p.startsWith('/v1/push/') && m === 'POST') return pushApi(req, env, p, ctx, body);
   const rm = p.match(/^\/api\/reports\/([a-z0-9]{10})$/);
   if (rm && m === 'GET') return getReport(req, env, rm[1]);
   if (rm && m === 'PATCH') return editReport(req, env, rm[1]);
@@ -330,9 +333,23 @@ function readFields(d) {
     if (!n) bad.links = 'Photo links must be full https:// web addresses';
     else if (!r.links.some((x) => x.url === n.url)) r.links.push(n);
   });
+  // Links to other sighting databases and competitor hubs never reach /mod (Mike's rule): ask for their own words.
+  if (r.links.some((l) => BLOCKED.test(l.host)) || BLOCKED.test(r.story) || BLOCKED.test(r.place)) {
+    const msg = 'Links to other sighting databases can\'t be used here. Please remove it and tell it in your own words.';
+    if (r.links.some((l) => BLOCKED.test(l.host))) bad.links = msg; else bad.story = msg;
+  }
+  r.sky = skyCheck(d.sky_check, r.creature);
   if (Object.keys(bad).length) fail(400, 'invalid', { fields: bad });
   [r.pub_lat, r.pub_lon] = fuzz(r.lat, r.lon, LIVING_TRADITIONS.has(r.creature));
   return r;
+}
+
+// "Was it a planet?" result from the form (UFO reports only): which bright things lined up, and the witness's answer.
+function skyCheck(v, creature) {
+  if (!v || typeof v !== 'object' || category(creature) !== 'ufo') return null;
+  const candidates = (Array.isArray(v.candidates) ? v.candidates : []).map((c) => line(c, 40)).filter(Boolean).slice(0, 6);
+  const answer = v.answer === 'no' && candidates.length ? 'no' : 'none';
+  return JSON.stringify({ candidates, answer });
 }
 
 // A public https web address on a real hostname (no IPs, no localhost, no credentials), max 500 chars.
@@ -383,6 +400,8 @@ async function submit(req, env, ctx) {
   ).bind(pid, uid, f.creature, f.other_what, f.seen_date, f.seen_time, f.date_approx, f.lat, f.lon, f.pub_lat, f.pub_lon,
     f.loc_source, f.place, f.story, f.duration, f.sounds, f.smells, f.witnesses, f.display_name, f.anonymous,
     JSON.stringify(f.videos), iph, JSON.stringify(f.links)).first();
+  if (f.sky) await env.DB.prepare('INSERT INTO report_sky (report_id, data) VALUES (?1, ?2)').bind(row.id, f.sky).run();
+  ctx.waitUntil(notifyMods(env, pid, new URL(req.url).origin).catch((e) => console.error(e)));
   let extra = {};
   if (!user && email) extra = await mailLink(env, email, pid, 'report').catch((e) => (console.error(e), {}));
   if (env.OWNER_EMAIL) {

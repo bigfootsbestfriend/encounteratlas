@@ -187,7 +187,13 @@ def ga_tag():
     if GA_ID:
         out += (f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>'
                 "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}"
-                f"gtag('js',new Date());gtag('config','{GA_ID}');"
+                # app_mode (GA4 custom dimension): twa = the Play Store app, pwa = installed from the browser, web = a tab.
+                # Remembered per session, since only the app's first page carries ?source=twa / ?source=pwa.
+                "var eaMode=(function(){try{var q=new URLSearchParams(location.search).get('source'),s=sessionStorage;"
+                "if(q==='twa'||document.referrer.indexOf('android-app://')===0)s.setItem('ea-mode','twa');"
+                "else if(q==='pwa'||q==='app')s.setItem('ea-mode','pwa');"
+                "return s.getItem('ea-mode')||(matchMedia('(display-mode: standalone)').matches||navigator.standalone?'pwa':'web');}catch(e){return 'web';}})();"
+                f"gtag('js',new Date());gtag('set',{{app_mode:eaMode}});gtag('config','{GA_ID}',{{app_mode:eaMode}});"
                 "window.eaTrack=function(n,p){try{gtag('event',n,Object.assign({page_type:location.pathname.split('/')[1]||'home'},p||{}));}catch(e){}};</script>"
                 f'<script src="{url("/static/track.js")}" defer></script>')
     if CLARITY_ID:
@@ -1399,13 +1405,13 @@ def build_static_pages():
 <section class="band band-dark"><div class="wrap"><h1>Privacy</h1>
 <p class="lede">What we keep when you use Encounter Atlas or send us a report, who can see it, and how to get it removed. Short version: your exact location, your email address and your IP address are never made public.</p></div></section>
 <div class="band band-mist"><div class="wrap prose">
-<p class="small">Last updated: October 13, 2026.</p>
+<p class="small">Last updated: October 21, 2026.</p>
 
 <h2>Just reading the site</h2>
 <ul>
 <li><strong>No ads and no account needed.</strong> You can read every page and use the map and tools without signing up.</li>
 <li id="analytics"><strong>Analytics:</strong> we use Google Analytics to count visits and see which pages and tools people use, so we know what to improve. It sets cookies and collects things like your approximate location, your device and browser, the pages you view and the buttons, filters and map choices you use. It never gets your name, your email address, or what you type into a report or message. Search words you type into the site's search boxes are counted so we can see what people look for. You can opt out with <a href="https://tools.google.com/dlpage/gaoptout">Google's opt-out add-on</a> or by blocking cookies, and the site works the same either way. See <a href="https://policies.google.com/technologies/partner-sites">how Google uses this data</a>. We also use Clicky to see how visitors move through the site. Like Google Analytics it sets cookies and sees the same kind of information, never your name, email or what you type into a form (<a href="https://clicky.com/terms/privacy">Clicky's privacy policy</a>). Blocking cookies opts you out of both.</li>
-<li><strong>Things your browser remembers, not us:</strong> your sort choice on the creature index, and a draft of a report you haven't sent yet (stored only on your device so you don't lose them). Clearing your browser data removes them.</li>
+<li><strong>Things your browser remembers, not us:</strong> your sort choice on the creature index, your last place on Near me, and a draft of a report you haven't sent yet (stored only on your device so you don't lose them). Clearing your browser data removes them.</li>
 <li><strong>Other services the pages load:</strong> map tiles from OpenFreeMap, fonts from Google Fonts and code libraries from cdnjs and jsDelivr. The <a href="{url('/tools/was-it-a-planet/')}">Was it a planet?</a> tool also fetches the Space Station's orbit from Celestrak; the place you enter stays in your browser. Like any website, these see your IP address when they send the file. Witness videos only load from YouTube (in its privacy-enhanced mode) when you press play.</li>
 </ul>
 
@@ -1419,6 +1425,24 @@ def build_static_pages():
 <li><strong>Spam protection:</strong> forms use Cloudflare Turnstile to check you're not a bot, and we store a scrambled one-way code made from your IP address (not the address itself) to spot floods of fake reports or votes.</li>
 </ul>
 
+<h2 id="location">Your location, only when you ask</h2>
+<ul>
+<li><strong>Near me and the app</strong> only ask for your location when you tap "Use my location". The phone rounds it to about 1 km before it's used, and we don't save it: it's only used to fetch the reports around that point. Picking a town instead uses a list built into the site, with no outside service.</li>
+<li><strong>On the report form</strong>, "Use my location" also rounds the point to about 1 km on your phone before it's sent. It's stored with the report like a spot you tap on the map (see above: only moderators see it, the public sees about 5 km).</li>
+<li><strong>We never track your location in the background.</strong> The app has no background location at all.</li>
+<li>Your last searched place and filters are remembered in your browser so the app reopens where you left off. "Forget this place" or clearing your browser data removes them.</li>
+<li>A report you write with no signal is kept in your browser until you're back online, then sent the normal way.</li>
+</ul>
+
+<h2 id="alerts">Sighting alerts (notifications)</h2>
+<ul>
+<li>If you turn on alerts, we store your browser's push address and keys (from Google, Mozilla, Apple or Microsoft, depending on your device), the place you saved rounded to about 1 km, your radius, which kinds of report you want and whether you use km or miles. We also note when we last sent you an alert, to keep it to three a day.</li>
+<li>That place is the only location we keep for alerts. It doesn't change unless you move your alerts.</li>
+<li>Alerts go through your browser maker's push service, which delivers the message but can't read it (it's encrypted).</li>
+<li>Turn them off with "Turn off alerts" on the <a href="{url('/near-me/')}">Near me</a> page, or by blocking notifications for this site. Either way we stop sending, and dead push addresses are switched off automatically.</li>
+<li>Push addresses are never sold or shared, and no account or email is needed.</li>
+</ul>
+
 <h2>Accounts and voting</h2>
 <ul>
 <li>Signing in uses a one-time link sent to your email. We keep your email address and, if you choose one, a display name. There's no password for us to lose.</li>
@@ -1430,7 +1454,7 @@ def build_static_pages():
 <ul>
 <li><strong>Everyone:</strong> approved reports (story, date, approximate area, photo and video links, display name if you chose one) and vote totals.</li>
 <li><strong>Our moderators only:</strong> the exact location, your email address and the scrambled IP code, to check reports and stop abuse.</li>
-<li><strong>Service providers that run the site for us:</strong> Cloudflare (hosting for reports and the database), Resend (sends the sign-in emails and passes contact-form messages to our inbox), GitHub (hosts the public pages), and Google Analytics and Clicky (visitor statistics; see above). They process data only to provide those services.</li>
+<li><strong>Service providers that run the site for us:</strong> Cloudflare (hosting for reports, alerts and the database), Resend (sends the sign-in emails and passes contact-form messages to our inbox), GitHub (hosts the public pages), and Google Analytics and Clicky (visitor statistics; see above). They process data only to provide those services.</li>
 <li>We don't sell or rent anyone's information, and we don't share it with advertisers or other sighting organisations.</li>
 </ul>
 
@@ -1539,7 +1563,7 @@ def main():
                 print(f'warning: section {fn} skipped: {e!r}', file=sys.stderr)
     with open(os.path.join(OUT, 'manifest.webmanifest'), 'w') as f:
         # The app (installed PWA, later the Play Store TWA) opens on /near-me/. id stays fixed so installs survive start_url changes.
-        json.dump({'id': BASE + '/near-me/', 'name': 'Encounter Atlas', 'short_name': 'Encounters', 'start_url': BASE + '/near-me/?source=app',
+        json.dump({'id': BASE + '/near-me/', 'name': 'Encounter Atlas', 'short_name': 'Encounters', 'start_url': BASE + '/near-me/?source=pwa',
                    'scope': BASE + '/', 'display': 'standalone', 'orientation': 'any',
                    'background_color': '#13261F', 'theme_color': '#13261F', 'lang': 'en', 'categories': ['entertainment', 'lifestyle', 'travel'],
                    'description': 'See and report Bigfoot, Dogman, UFO and cryptid sightings near you, anywhere in the world.',
@@ -1547,9 +1571,9 @@ def main():
                              {'src': BASE + '/static/app-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'any'},
                              {'src': BASE + '/static/app-maskable-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'},
                              {'src': BASE + '/static/favicon.svg', 'sizes': 'any', 'type': 'image/svg+xml'}],
-                   'shortcuts': [{'name': 'Report an encounter', 'short_name': 'Report', 'url': BASE + '/report/?source=app',
+                   'shortcuts': [{'name': 'Report an encounter', 'short_name': 'Report', 'url': BASE + '/report/?source=pwa',
                                   'icons': [{'src': BASE + '/static/app-192.png', 'sizes': '192x192', 'type': 'image/png'}]},
-                                 {'name': 'Full encounter map', 'short_name': 'Map', 'url': BASE + '/map/?source=app',
+                                 {'name': 'Full encounter map', 'short_name': 'Map', 'url': BASE + '/map/?source=pwa',
                                   'icons': [{'src': BASE + '/static/app-192.png', 'sizes': '192x192', 'type': 'image/png'}]}]}, f)
     shutil.copy(os.path.join(ROOT, 'site', 'sw.js'), os.path.join(OUT, 'sw.js'))
     if BASE == '':

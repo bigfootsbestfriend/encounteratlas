@@ -103,3 +103,16 @@
 .nm-install[hidden] { display: none; }
 .nm-install .btn { min-height: 48px; cursor: pointer; }
 .nm-ios { color: var(--lichen); }
+
+/* Sighting alerts + a report queued with no signal */
+.nm-alert { margin: .8rem 0 0; display: grid; gap: .4rem; justify-items: start; }
+.nm-alert[hidden] { display: none; }
+.nm-alert-btn { min-height: 48px; cursor: pointer; }
+.nm-alert-st { margin: 0; font-size: .95rem; }
+.nm-alert-st:empty, .nm-alert-ts:empty { display: none; }
+.nm-queued { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; background: var(--lantern); color: var(--spruce);
+  border-radius: 12px; padding: .7rem 1rem; margin: .8rem 0 0; font-weight: 700; }
+.nm-queued .btn { min-height: 44px; }
+.nm-push { margin: 0 0 1.5rem; }
+.nm-push h2 { margin-top: 0; }
+.nm-queued .btn { background: var(--spruce); color: var(--lantern); }

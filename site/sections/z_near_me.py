@@ -84,7 +84,11 @@ def build(ctx):
     # Worker's LIVING_TRADITIONS (read from its source, the list that decides the ~100 km public point).
     worker_src = open(os.path.join(ctx.ROOT, 'worker', 'src', 'index.js'), encoding='utf-8').read()
     living = re.findall(r"'([a-z0-9-]+)'", re.search(r'LIVING_TRADITIONS = new Set\(\[(.*?)\]\)', worker_src, re.S).group(1))
-    cfg = json.dumps({'api': API, 'base': ctx.BASE, 'tiles': U('/data/near/'), 'cities': U('/data/cities.json'),
+    # Web Push public key: the Worker's wrangler.toml is the one place it lives.
+    toml = open(os.path.join(ctx.ROOT, 'worker', 'wrangler.toml'), encoding='utf-8').read()
+    vm = re.search(r'^VAPID_PUBLIC\s*=\s*"([A-Za-z0-9_-]+)"', toml, re.M)
+    cfg = json.dumps({'api': API, 'base': ctx.BASE, 'vapid': vm.group(1) if vm else '',
+                      'sitekey': os.environ.get('TURNSTILE_SITEKEY', '1x00000000000000000000AA'), 'tiles': U('/data/near/'), 'cities': U('/data/cities.json'),
                       'report': U('/report/'), 'reports': U('/reports/?id='),
                       'ufo': [c['slug'] for c in ctx.creatures if c['cat'] == 'ufo'], 'living': living},
                      separators=(',', ':')).replace('</', '<\\/')
@@ -114,6 +118,11 @@ def build(ctx):
       </form>
     </div>
     <p class="nm-status" id="nm-status" role="status" aria-live="polite"></p>
+    <div class="nm-alert" id="nm-alert" hidden>
+      <button type="button" class="btn btn-ghost nm-alert-btn" id="nm-alert-btn">Alert me about new reports here</button>
+      <p class="nm-alert-st" id="nm-alert-st" role="status" aria-live="polite"></p>
+      <div class="nm-alert-ts" id="nm-alert-ts"></div>
+    </div>
     <div class="nm-filters">
       <div class="nm-row" role="group" aria-label="How far">
         <span class="nm-row-h">How far</span><div class="nm-opts" id="nm-radius">{radius}</div>
@@ -146,6 +155,13 @@ def build(ctx):
 </section>
 <section class="band band-mist" data-area="alerts">
   <div class="wrap nm-alerts">
+    <div class="nm-push" id="alerts">
+      <h2>Sighting alerts on your phone</h2>
+      <p>Pick a place above, then tap <b>Alert me about new reports here</b>. When a moderator approves a new report inside your circle,
+      your phone gets a notification, at most three a day. Alerts follow the place you saved, not where you are: we never track your location.
+      You can change the place or turn alerts off from this page at any time.</p>
+      <p class="nm-push-ios small">On iPhone, add this page to your Home Screen first (Share, then Add to Home Screen) and open it from there.</p>
+    </div>
     {ctx.signup_box('near-me', 'New sightings in your inbox', 'One short email every Thursday with the newest reader reports and strange stories from around the world. Free.')}
   </div>
 </section>

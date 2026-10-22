@@ -118,3 +118,33 @@ CREATE INDEX IF NOT EXISTS mod_messages_report ON mod_messages (report_id, at);
 -- /v1/reports/nearby: bounding box on the public point, newest sighting first.
 CREATE INDEX IF NOT EXISTS reports_geo ON reports (status, pub_lat, pub_lon);
 CREATE INDEX IF NOT EXISTS reports_seen ON reports (status, seen_date, pid);
+
+-- "Was it a planet?" result for UFO reports (the form runs the sky check before sending). JSON
+-- {candidates: ["Venus", ...], answer: 'no' | 'none'}: 'no' = something bright lined up but the witness said it wasn't that.
+CREATE TABLE IF NOT EXISTS report_sky (
+  report_id INTEGER PRIMARY KEY REFERENCES reports(id),
+  data TEXT NOT NULL
+);
+
+-- Web Push subscriptions. role '' = a reader's nearby-sightings alerts for a saved area (no background location on
+-- the web). role 'mod' = Mike's own devices: one notification per new pending report, with Approve / Reject buttons.
+-- The manage token only exists on the subscriber's device; we keep its HMAC.
+CREATE TABLE IF NOT EXISTS push_subs (
+  id TEXT PRIMARY KEY,
+  endpoint TEXT NOT NULL UNIQUE,
+  p256dh TEXT NOT NULL,
+  auth TEXT NOT NULL,
+  manage_token_hash TEXT NOT NULL,
+  lat REAL NOT NULL DEFAULT 0, lng REAL NOT NULL DEFAULT 0,   -- rounded to 0.01 deg
+  radius_km INTEGER NOT NULL DEFAULT 50,                      -- 5 to 250
+  categories TEXT NOT NULL DEFAULT '',                        -- comma list of ufo,creature,other; '' = all
+  units TEXT NOT NULL DEFAULT 'km',                           -- km | mi (alert text only)
+  role TEXT NOT NULL DEFAULT '',
+  created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now')),
+  last_sent_at TEXT NOT NULL DEFAULT '',
+  sent_today INTEGER NOT NULL DEFAULT 0,
+  sent_day TEXT NOT NULL DEFAULT '',                          -- UTC day sent_today counts for
+  fail_count INTEGER NOT NULL DEFAULT 0,
+  active INTEGER NOT NULL DEFAULT 1
+);
+CREATE INDEX IF NOT EXISTS push_subs_geo ON push_subs (active, role, lat, lng);

@@ -209,7 +209,7 @@ def build(ctx):
 {_config(ctx)}'''
     ctx.write('/report/', ctx.page('/report/', 'Report an encounter', form,
                                    'Report a Bigfoot, Dogman, UFO or other strange encounter. Your exact location stays private.',
-                                   body_class='reporting', head_extra=_head(ctx, f'<script src="{url("/static/report.js")}" defer></script>')))
+                                   body_class='reporting', head_extra=_head(ctx, f'<script src="{url("/static/skycore.js")}" defer></script><script src="{url("/static/report.js")}" defer></script>')))
 
     shell = f'''
 <div id="ea-reports" data-view="list">

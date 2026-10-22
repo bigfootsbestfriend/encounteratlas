@@ -5,6 +5,7 @@
 import { CREATURES } from './creatures.js';
 import { tally } from './index.js';
 import { json, sign, verify, hash, clientIp, rateLimited, esc, now, sendEmail, emailLayout, para } from './util.js';
+import { notifyNearby, checkActToken, registerMod, pushStats } from './push.js';
 
 const COOKIE = 'ea_mod';
 const HOURS = 12;
@@ -32,13 +33,26 @@ const HEAD = {
   'content-security-policy': "default-src 'none'; img-src 'self' https://img.youtube.com; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'",
 };
 
-export async function handleMod(req, env, url) {
+export async function handleMod(req, env, url, ctx) {
   const p = url.pathname;
+  // Service worker for Mike's moderation notifications (scope /mod/). Public, it holds nothing secret.
+  if (p === '/mod/sw.js' && req.method === 'GET') {
+    return new Response(MOD_SW, { headers: { 'content-type': 'text/javascript; charset=utf-8', 'cache-control': 'no-cache', 'service-worker-allowed': '/mod/' } });
+  }
   if (req.method === 'POST') {
     const o = req.headers.get('origin');
     // Same-origin form posts: Origin matches, or (older/privacy-mode browsers) Origin is null but Fetch Metadata says same-origin.
     const same = o === url.origin || (o === 'null' && req.headers.get('sec-fetch-site') === 'same-origin');
     if (!same) return new Response('Bad origin', { status: 403 });
+  }
+  // Approve / Reject from a notification: the button token (signed with MOD_PUSH_KEY, one report + one action) is the
+  // authority, because a service worker can't count on the 12-hour cookie still being alive.
+  if (p === '/mod/push-act' && req.method === 'POST') {
+    const b = await req.json().catch(() => ({}));
+    const act = b.act === 'approve' ? 'approve' : b.act === 'reject' ? 'reject' : '';
+    const pid = String(b.id || '');
+    if (!act || !/^[a-z0-9]{10}$/.test(pid) || !(await checkActToken(env, pid, act, b.t))) return json({ state: 'denied' }, 403);
+    return json(await setStatus(env, ctx, pid, act === 'approve' ? 'approved' : 'rejected', '', true));
   }
   if (p === '/mod/login' && req.method === 'POST') {
     const f = await req.formData();
@@ -58,7 +72,10 @@ export async function handleMod(req, env, url) {
   if (p === '/mod/logout' && req.method === 'POST') {
     return new Response(null, { status: 303, headers: { location: '/mod', 'set-cookie': `${COOKIE}=; Path=/mod; HttpOnly; Secure; SameSite=Strict; Max-Age=0` } });
   }
-  if (p === '/mod/action' && req.method === 'POST') return action(req, env, url);
+  if (p === '/mod/action' && req.method === 'POST') return action(req, env, url, ctx);
+  if (p === '/mod/push' && req.method === 'GET') return pushPage(env);
+  if (p === '/mod/push/register' && req.method === 'POST') return json(await registerMod(env, await req.json().catch(() => ({}))));
+  if (p === '/mod/push-stats') return json(await pushStats(env));
   if (p === '/mod/queue.json') return json(await queue(env, url.searchParams.get('view') || 'pending'));
   if (p === '/mod' && req.method === 'GET') return dashboard(env, url);
   return new Response('Not found', { status: 404 });
@@ -98,12 +115,13 @@ async function queue(env, view) {
     const photos = (await env.DB.prepare('SELECT id, w, h, bytes FROM photos WHERE report_id = ?1 AND removed = 0 ORDER BY idx').bind(r.id).all()).results;
     for (const ph of photos) ph.url = `/img/${ph.id}.jpg?k=${encodeURIComponent(await sign(env, `i|${ph.id}|${now()}`))}`;
     const messages = (await env.DB.prepare('SELECT kind, body, ok, at FROM mod_messages WHERE report_id = ?1 ORDER BY at').bind(r.id).all()).results;
-    out.reports.push({ ...r, videos: JSON.parse(r.videos), links: JSON.parse(r.links || '[]'), photos, messages });
+    const sky = await env.DB.prepare('SELECT data FROM report_sky WHERE report_id = ?1').bind(r.id).first();
+    out.reports.push({ ...r, videos: JSON.parse(r.videos), links: JSON.parse(r.links || '[]'), photos, messages, sky: sky ? JSON.parse(sky.data) : null });
   }
   return out;
 }
 
-async function action(req, env, url) {
+async function action(req, env, url, ctx) {
   const f = await req.formData();
   const act = String(f.get('act') || '');
   const id = String(f.get('id') || '');
@@ -112,14 +130,7 @@ async function action(req, env, url) {
   const D = env.DB;
   let done = '';
   if (act === 'approve' || act === 'reject') {
-    const st = act === 'approve' ? 'approved' : 'rejected';
-    const before = await reporter(env, id);
-    const r = await D.prepare(
-      `UPDATE reports SET status = ?2, mod_note = ?3, approved_at = CASE WHEN ?2 = 'approved' THEN unixepoch() ELSE approved_at END
-       WHERE pid = ?1 AND status != 'withdrawn' RETURNING pid`,
-    ).bind(id, st, note).first();
-    done = r ? `${st} ${id}` : 'not found';
-    if (r && before && before.status !== st && f.get('notify') !== '0') done += ' · ' + await mailReporter(env, before, st, note);
+    done = (await setStatus(env, ctx, id, act === 'approve' ? 'approved' : 'rejected', note, f.get('notify') !== '0')).done;
   } else if (act === 'reply') {
     const msg = para(f.get('message'), 4000);
     if (!msg) return new Response(null, { status: 303, headers: { location: `/mod?view=${back}&done=${encodeURIComponent('empty reply, nothing sent')}` } });
@@ -151,6 +162,79 @@ async function action(req, env, url) {
   return new Response(null, { status: 303, headers: { location: `/mod?view=${back}&done=${encodeURIComponent(done)}` } });
 }
 
+
+// Approve or reject (from the page or a notification button). Approving alerts nearby subscribers in the background.
+async function setStatus(env, ctx, id, st, note, notify) {
+  const before = await reporter(env, id);
+  const r = await env.DB.prepare(
+    `UPDATE reports SET status = ?2, mod_note = ?3, approved_at = CASE WHEN ?2 = 'approved' THEN unixepoch() ELSE approved_at END
+     WHERE pid = ?1 AND status != 'withdrawn' RETURNING pid`,
+  ).bind(id, st, note).first();
+  if (!r) return { state: 'not_found', done: 'not found' };
+  let done = `${st} ${id}`;
+  if (before && before.status !== st && notify) done += ' · ' + await mailReporter(env, before, st, note);
+  if (st === 'approved' && before && before.status !== 'approved' && ctx) ctx.waitUntil(notifyNearby(env, id).catch((e) => console.error(e)));
+  return { state: 'ok', done, status: st, was: before ? before.status : '' };
+}
+
+// /mod/push: turn on moderation notifications on this device. Behind the mod sign-in like the rest of /mod.
+function pushPage(env) {
+  const nonce = crypto.randomUUID().replace(/-/g, '');
+  const key = JSON.stringify(env.VAPID_PUBLIC || '');
+  const html = `<header><h1>Moderation alerts</h1><nav><a href="/mod">Back to the queue</a></nav></header>
+<article class="card"><p>Turn this on on your phone and every new report arrives as a notification with <b>Approve</b> and <b>Reject</b> buttons.
+Approving from the notification does exactly what the Approve button here does: the reporter gets their email and nearby alert subscribers are notified.</p>
+<p><button id="on">Turn on alerts on this device</button> <span id="st" class="muted"></span></p>
+<p class="muted">Open this page in Chrome on the phone (not inside the Encounter Atlas app). Turn it on once per device. The email for each new report keeps coming too.</p></article>
+<script nonce="${nonce}">
+const st = document.getElementById('st');
+const key = ${key};
+const u8 = (s) => Uint8Array.from(atob((s + '==='.slice((s.length + 3) % 4)).replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0));
+const b64 = (b) => btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+document.getElementById('on').addEventListener('click', async () => {
+  try {
+    if (!key) throw new Error('Push keys are not set up on the Worker yet.');
+    if (!('serviceWorker' in navigator) || !('PushManager' in window)) throw new Error('This browser has no push notifications.');
+    st.textContent = 'Asking for permission...';
+    if (await Notification.requestPermission() !== 'granted') throw new Error('Notifications are blocked for this site. Allow them in the browser settings.');
+    const reg = await navigator.serviceWorker.register('/mod/sw.js', { scope: '/mod/' });
+    await navigator.serviceWorker.ready;
+    const sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: u8(key) });
+    const r = await fetch('/mod/push/register', { method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ endpoint: sub.endpoint, p256dh: b64(sub.getKey('p256dh')), auth: b64(sub.getKey('auth')) }) });
+    if (!r.ok) throw new Error('The Worker refused it (' + r.status + '). Sign in again and retry.');
+    st.textContent = 'On. A test notification is on its way.';
+  } catch (e) { st.textContent = e.message; }
+});
+</script>`;
+  return page('Moderation alerts', html, 200, `'nonce-${nonce}'`);
+}
+
+const MOD_SW = `// Encounter Atlas moderation notifications (Mike's devices only).
+self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', (e) => e.waitUntil(self.clients.claim()));
+self.addEventListener('push', (e) => {
+  let d = {};
+  try { d = e.data.json(); } catch (x) { d = { title: 'Encounter Atlas', body: e.data ? e.data.text() : '' }; }
+  const opts = { body: d.body || '', tag: d.id ? 'mod-' + d.id : undefined, data: d, requireInteraction: d.kind === 'mod' };
+  if (d.kind === 'mod') opts.actions = [{ action: 'approve', title: 'Approve' }, { action: 'reject', title: 'Reject' }];
+  e.waitUntil(self.registration.showNotification(d.title || 'Encounter Atlas', opts));
+});
+self.addEventListener('notificationclick', (e) => {
+  const d = e.notification.data || {};
+  e.notification.close();
+  if (d.kind === 'mod' && (e.action === 'approve' || e.action === 'reject')) {
+    e.waitUntil(fetch('/mod/push-act', { method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ id: d.id, act: e.action, t: d[e.action] }) })
+      .then((r) => r.json().catch(() => ({})).then((j) => self.registration.showNotification(
+        r.ok ? (e.action === 'approve' ? 'Approved' : 'Rejected') : 'That didn\'t work',
+        { body: r.ok ? (j.done || '') : 'Open the queue to do it by hand.', tag: 'mod-' + d.id, data: { url: '/mod' } })))
+      .catch(() => self.registration.showNotification('No connection', { body: 'Open the queue to do it by hand.', tag: 'mod-' + d.id, data: { url: '/mod' } })));
+    return;
+  }
+  e.waitUntil(self.clients.openWindow(d.url || '/mod'));
+});
+`;
 
 // ---------------- emails to the reporter ----------------
 // Approve / reject send an automatic note; "Reply" sends Mike's own message. Every email is logged in
@@ -220,7 +304,7 @@ async function dashboard(env, url) {
   const tabs = [['pending', `Pending (${counts.pending})`], ['flagged', `Flagged votes (${counts.flagged})`], ['recent', 'Approved'], ['rejected', 'Rejected']]
     .map(([k, n]) => `<a href="/mod?view=${k}"${k === view ? ' class="on"' : ''}>${n}</a>`).join('');
   const done = url.searchParams.get('done');
-  let html = `<header><h1>Moderation</h1><nav>${tabs}</nav><form method="post" action="/mod/logout" class="inl"><button class="ghost">Sign out</button></form></header>`;
+  let html = `<header><h1>Moderation</h1><nav>${tabs}</nav><a href="/mod/push" class="muted">Phone alerts</a><form method="post" action="/mod/logout" class="inl"><button class="ghost">Sign out</button></form></header>`;
   if (done) html += `<p class="done">Done: ${esc(done)}</p>`;
   if (view === 'flagged') {
     if (!q.flagged.length) html += '<p>Nothing flagged.</p>';
@@ -256,6 +340,7 @@ ${it.pid ? btn('reject', it.pid, 'Unpublish report', view, '<input name="note" p
 <dt>Duration</dt><dd>${esc(r.duration)}</dd><dt>Witnesses</dt><dd>${r.witnesses}</dd>
 <dt>Sounds</dt><dd>${esc(r.sounds)}</dd><dt>Smells</dt><dd>${esc(r.smells)}</dd>
 <dt>By</dt><dd>${r.anonymous ? 'Anonymous publicly' : esc(r.display_name)} · ${r.email ? esc(r.email) + ` (account since ${when(r.u_created).slice(0, 10)})` : 'no email'} · ip ${esc(r.ip_hash.slice(0, 8))}</dd>
+${r.sky ? `<dt>Sky check</dt><dd>${r.sky.answer === 'no' ? `Lined up: ${esc(r.sky.candidates.join(', '))}. The witness said it wasn't that.` : 'Nothing bright lined up.'}</dd>` : ''}
 <dt>Sent</dt><dd>${when(r.created)}${r.updated > r.created + 5 ? `, edited ${when(r.updated)}` : ''}</dd></dl>
 <div class="story">${esc(r.story)}</div>
 ${photos ? `<div class="photos">${photos}</div>` : ''}${lks ? `<p><b>Photo links</b> (open each one and check it before approving)</p><ul>${lks}</ul>` : ''}${vids ? `<ul>${vids}</ul>` : ''}
@@ -271,7 +356,7 @@ ${r.email ? `<form method="post" action="/mod/action" class="reply"><input type=
   return page('Moderation', html);
 }
 
-function page(title, inner, status = 200) {
+function page(title, inner, status = 200, script = '') {
   return new Response(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex"><title>${esc(title)} | Encounter Atlas</title><style>
 body{margin:0;background:#E4EBE6;color:#15241E;font:16px/1.5 system-ui,sans-serif}main{max-width:980px;margin:0 auto;padding:16px}
@@ -288,6 +373,7 @@ input{font:inherit;padding:6px 8px;border:1px solid #B9C7BE;border-radius:6px}in
 .tag{font-size:.75rem;background:#13261F;color:#C9D3A4;padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}.tag.red{background:#E5483B;color:#fff}
 .tag.ai{background:#8E8CF0;color:#13261F}.muted{color:#4D6157;font-weight:400;font-size:.9rem}.done{background:#13261F;color:#C9D3A4;padding:8px 12px;border-radius:8px}
 .err{color:#B3261E;font-weight:700}.reply{display:grid;gap:6px;margin-top:12px;border-top:1px solid #D3DED7;padding-top:12px}.reply textarea{font:inherit;padding:8px;border:1px solid #B9C7BE;border-radius:6px;resize:vertical}.reply button{justify-self:start}.hist{background:#F4F7F5;border-radius:8px;padding:8px 12px;margin:0 0 10px;font-size:.93rem}.msg{margin-top:6px;white-space:pre-wrap}.msg.bad{color:#B3261E}.login{display:flex;gap:10px;flex-wrap:wrap;align-items:end}a{color:#7A4E00}
-</style></head><body><main>${inner}</main></body></html>`, { status, headers: HEAD });
+</style></head><body><main>${inner}</main></body></html>`, { status, headers: script
+  ? { ...HEAD, 'content-security-policy': HEAD['content-security-policy'] + `; script-src ${script}; connect-src 'self'; worker-src 'self'` } : HEAD });
 }
 
