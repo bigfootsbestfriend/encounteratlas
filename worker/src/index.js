@@ -27,6 +27,7 @@ import { sanitizeJpeg, BadImage } from './jpeg.js';
 import { handleMod } from './mod.js';
 import { nearby, category } from './nearby.js';
 import { pushApi, notifyMods, BLOCKED } from './push.js';
+import { privatizePlace, publicPlace } from './place.js';
 import {
   HttpError, fail, json, sign, verify, hash, randomId, randomPid, clientIp, network, int, rateLimited, turnstileOk,
   sendEmail, emailLayout, line, para, esc, now,
@@ -344,6 +345,12 @@ function readFields(d) {
   return r;
 }
 
+// A place that looks like a street address becomes its area, and the stored point is snapped (see place.js).
+async function withPrivatePlace(r) {
+  if (await privatizePlace(r)) [r.pub_lat, r.pub_lon] = fuzz(r.lat, r.lon, LIVING_TRADITIONS.has(r.creature));
+  return r;
+}
+
 // "Was it a planet?" result from the form (UFO reports only): which bright things lined up, and the witness's answer.
 function skyCheck(v, creature) {
   if (!v || typeof v !== 'object' || category(creature) !== 'ufo') return null;
@@ -375,7 +382,7 @@ async function submit(req, env, ctx) {
   const user = await session(req, env, false);
   const ip = clientIp(req, env);
   if (!(await turnstileOk(env, d.turnstile, ip))) fail(403, 'turnstile');
-  const f = readFields(d);
+  const f = await withPrivatePlace(readFields(d));
   const email = user ? '' : line(d.email, 254).toLowerCase();
   if (email && !EMAIL.test(email)) fail(400, 'invalid', { fields: { email: 'Check your email address' } });
 
@@ -427,7 +434,7 @@ function publicReport(env, r, photos) {
   return {
     id: r.pid, creature: r.creature, creature_name: CREATURES[r.creature] || '', other_what: r.other_what,
     seen_date: r.seen_date, seen_time: r.seen_time, date_approx: !!r.date_approx,
-    lat: r.pub_lat, lon: r.pub_lon, approx_km: 5, place: r.place,
+    lat: r.pub_lat, lon: r.pub_lon, approx_km: 5, place: publicPlace(r.place),
     story: r.story, duration: r.duration, sounds: r.sounds, smells: r.smells, witnesses: r.witnesses,
     name: r.anonymous ? null : r.display_name || null,
     photos: photos.map((p) => ({ id: p.id, url: photoUrl(env, p.id), w: p.w, h: p.h, item: `p:${p.id}` })),
@@ -476,7 +483,7 @@ async function listReports(env, url) {
   const more = rows.length > limit;
   const reports = rows.slice(0, limit).map((r) => ({
     id: r.pid, creature: r.creature, creature_name: CREATURES[r.creature] || '', other_what: r.other_what,
-    seen_date: r.seen_date, date_approx: !!r.date_approx, place: r.place, lat: r.pub_lat, lon: r.pub_lon,
+    seen_date: r.seen_date, date_approx: !!r.date_approx, place: publicPlace(r.place), lat: r.pub_lat, lon: r.pub_lon,
     snippet: r.story.length > 220 ? r.story.slice(0, 210).replace(/\s+\S*$/, '') + '…' : r.story,
     photo: r.photo ? photoUrl(env, r.photo) : null, n_photos: r.n_photos, n_videos: JSON.parse(r.videos).length,
     n_links: JSON.parse(r.links || '[]').length,
@@ -500,7 +507,7 @@ async function geojson(env) {
     type: 'Feature',
     geometry: { type: 'Point', coordinates: [r.pub_lon, r.pub_lat] },
     properties: { id: r.pid, c: r.creature, n: r.creature === 'other' ? r.other_what : CREATURES[r.creature] || '',
-      t: r.place, d: r.seen_date, s: snip(r.story) },
+      t: publicPlace(r.place), d: r.seen_date, s: snip(r.story) },
   }));
   return json({ type: 'FeatureCollection', features }, 200, { 'cache-control': 'public, max-age=300' });
 }
@@ -516,7 +523,7 @@ async function editReport(req, env, pid) {
   const { u, r } = await ownReport(req, env, pid);
   if (await rateLimited(env, [[`edit|u|${u.id}`, 20, 86400]])) fail(429, 'slow');
   const b = await body(req);
-  const f = readFields(b);
+  const f = await withPrivatePlace(readFields(b));
   const remove = Array.isArray(b.remove_photos) ? b.remove_photos.filter((x) => /^[0-9a-f]{24}$/.test(x)) : [];
   // Any edit goes back through moderation; the public sees nothing until it's approved again.
   await env.DB.prepare(

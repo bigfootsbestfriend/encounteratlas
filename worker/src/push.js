@@ -10,6 +10,7 @@ import { CREATURES } from './creatures.js';
 import { LIVING_TRADITIONS } from './index.js';
 import { haversineKm, category, publicPoint, summary } from './nearby.js';
 import { sendPush, validEndpoint, b64u } from './webpush.js';
+import { publicPlace } from './place.js';
 import { fail, json, hash, clientIp, rateLimited, turnstileOk, randomId, sendEmail, emailLayout, esc, line, now } from './util.js';
 
 export const DAILY_CAP = 3;
@@ -168,7 +169,7 @@ export async function notifyNearby(env, pid) {
   const name = what(r);
   const label = category(r.creature) === 'ufo' && name.toLowerCase().indexOf('ufo') === -1 ? `${name} (UFO)` : name;
   const site = String(env.SITE || 'https://encounteratlas.com').replace(/\/$/, '');
-  const body = clean(summary([r.place, r.story].filter(Boolean).join(': '), 140), 'Tap to read the report.');
+  const body = clean(summary([publicPlace(r.place), r.story].filter(Boolean).join(': '), 140), 'Tap to read the report.');
   return deliver(env, hits.map((x) => x.s), (s) => {
     const km = kmOf.get(s.id);
     const dist = s.units === 'mi' ? `${Math.max(1, Math.round(km / 1.609344))} mi` : `${Math.max(1, Math.round(km))} km`;

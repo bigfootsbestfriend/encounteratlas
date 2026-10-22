@@ -350,5 +350,17 @@ section('Moderator emails to the reporter');
   ok(html.includes('Send reply') && html.includes('witness@example.test'), 'mod page shows the reply box');
 }
 
+section('Street addresses are never public');
+{
+  const s = await call('POST', '/api/reports', { form: reportForm({ ...baseReport, place: 'Улица Дубровинского, 64', lat: '46.330688', lon: '48.027089' }), ip: '10.88.0.1' });
+  ok(s.status === 201, 'report with an address is accepted', JSON.stringify(s.data));
+  const row = JSON.parse(sql(`SELECT place, lat, lon FROM reports WHERE pid = '${s.data.id}'`))[0].results[0] || {};
+  ok(row.place && !/64|Дубровинского/i.test(row.place), 'stored place is the area, not the address', row.place);
+  ok(Math.abs(row.lat * 100 - Math.round(row.lat * 100)) < 1e-6 && Math.abs(row.lon * 100 - Math.round(row.lon * 100)) < 1e-6, 'stored point snapped to 0.01', `${row.lat},${row.lon}`);
+  sql(`UPDATE reports SET place = '42 Elm Street', status = 'approved' WHERE pid = '${s.data.id}'`);
+  const pub = await call('GET', `/api/reports/${s.data.id}`);
+  ok(!/Elm/.test(JSON.stringify(pub.data)), 'an older address-like place is hidden in the public feed', JSON.stringify(pub.data).slice(0, 200));
+}
+
 console.log(`\n${pass} passed, ${failed} failed`);
 process.exit(failed ? 1 : 0);

@@ -5,6 +5,7 @@
 import { CREATURES, UFO } from './creatures.js';
 import { fail, json, hash, clientIp, rateLimited, b64, unb64, enc } from './util.js';
 import { LIVING_TRADITIONS, fuzz } from './index.js';
+import { publicPlace } from './place.js';
 
 const R_KM = 6371.0088;
 const CATEGORIES = ['ufo', 'creature', 'other'];
@@ -160,7 +161,7 @@ export async function nearby(req, env, url, ctx) {
     creature_name: r.creature === 'other' ? r.other_what : CREATURES[r.creature] || '',
     seen_date: r.seen_date,
     date_approx: !!r.date_approx,
-    place: r.place,
+    place: publicPlace(r.place),
     lat: pt.lat,
     lng: pt.lon,
     precision_km: pt.precision_km,
