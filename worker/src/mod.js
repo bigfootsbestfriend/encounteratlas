@@ -59,15 +59,16 @@ export async function handleMod(req, env, url, ctx) {
     const ip = clientIp(req, env);
     if (await rateLimited(env, [[`modlogin|${await hash(env, ip)}`, 8, 900]])) return page('Slow down', '<p>Too many tries. Wait 15 minutes.</p>', 429);
     if (!env.MOD_PASSWORD || !(await sameSecret(env, String(f.get('password') || ''), env.MOD_PASSWORD))) {
-      return page('Moderation', loginForm('That password is wrong.'), 403);
+      return page('Moderation', loginForm('That password is wrong.', String(f.get('next') || '')), 403);
     }
     const tok = await sign(env, `m|${now()}`);
-    return new Response(null, { status: 303, headers: { location: '/mod',
+    const next = String(f.get('next') || '');
+    return new Response(null, { status: 303, headers: { location: NEXT_OK.has(next) ? next : '/mod',
       'set-cookie': `${COOKIE}=${encodeURIComponent(tok)}; Path=/mod; HttpOnly; Secure; SameSite=Strict; Max-Age=${HOURS * 3600}` } });
   }
   if (!(await isMod(req, env))) {
     if (p === '/mod/queue.json') return json({ state: 'signin' }, 401);
-    return page('Moderation', loginForm(), p === '/mod' ? 200 : 401);
+    return page('Moderation', loginForm('', p), p === '/mod' ? 200 : 401);
   }
   if (p === '/mod/logout' && req.method === 'POST') {
     return new Response(null, { status: 303, headers: { location: '/mod', 'set-cookie': `${COOKIE}=; Path=/mod; HttpOnly; Secure; SameSite=Strict; Max-Age=0` } });
@@ -81,9 +82,11 @@ export async function handleMod(req, env, url, ctx) {
   return new Response('Not found', { status: 404 });
 }
 
-function loginForm(msg = '') {
+// After signing in, go back to the /mod page that asked for it (e.g. /mod/push), never anywhere else.
+const NEXT_OK = new Set(['/mod', '/mod/push']);
+function loginForm(msg = '', next = '/mod') {
   return `<h1>Moderation</h1>${msg ? `<p class="err">${esc(msg)}</p>` : ''}
-<form method="post" action="/mod/login" class="login"><label>Password <input type="password" name="password" autocomplete="current-password" required autofocus></label>
+<form method="post" action="/mod/login" class="login"><input type="hidden" name="next" value="${NEXT_OK.has(next) ? next : '/mod'}"><label>Password <input type="password" name="password" autocomplete="current-password" required autofocus></label>
 <button>Sign in</button></form>`;
 }
 
