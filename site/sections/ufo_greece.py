@@ -1,7 +1,7 @@
 """Close encounters in Greece: /ufo/greece/ (48 CE3 cases, 1901 to 2007, with one from Cyprus).
 
 Data: data/ufo_cases_greece.json (collector/grufon.py), shared with Encounter Atlas by the Greek UFO Network (GRUFON)
-in October 2026. Credit GRUFON by name, no link (ask Mike before linking a sighting organisation). Stories are our own
+in October 2026. Credit GRUFON by name and link its site (Mike approved the link, 2026-10-21). Stories are our own
 retellings; the verdict line is GRUFON's. Writes OUT/data/ufo_greece.geojson for this page's map, the main map and Near me.
 The map reuses the Canada map script (ufo_canada.js) and its colours: unexplained red, possibly explained gold.
 """
@@ -9,6 +9,7 @@ import json, os, re
 from collections import Counter
 
 CREDIT = 'the Greek UFO Network (GRUFON)'
+GRUFON_LINK = '<a href="https://www.grufon.org/" target="_blank" rel="noopener">the Greek UFO Network (GRUFON)</a>'
 MONTHS = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 BEINGS = {'humanoid': 'Beings seen', 'strange': 'Strange figure', 'other': 'Craft or strange event'}
 
@@ -91,7 +92,7 @@ def build(ctx):
   <ol class="ua-faas" data-filter-list data-limit="{n}">{"".join(item(r) for r in cases)}</ol>
   <p class="empty" hidden>No case matches.</p>
   <h2>About this data</h2>
-  <p>These cases were shared with Encounter Atlas by {CREDIT}, which collects and investigates Greek UFO reports, from its catalogue of close encounters of the third kind (encounters where people say they saw beings). Thank you to GRUFON for sharing them.
+  <p>These cases were shared with Encounter Atlas by {GRUFON_LINK}, which collects and investigates Greek UFO reports, from its catalogue of close encounters of the third kind (encounters where people say they saw beings). Thank you to GRUFON for sharing them.
   We retold each description in our own words, left out witnesses' names, and moved a few dots that the catalogue had placed at a regional centre to the village named in the case.</p>
   <p>More: <a href="{U('/ufo/cases/')}">Famous UFO cases worldwide</a> · <a href="{U('/map/')}">The world map</a> · <a href="{U('/near-me/')}">Sightings near you</a> · <a href="{U('/report/')}">Report your own sighting</a></p>
 </div></div>{js}'''

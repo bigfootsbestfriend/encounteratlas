@@ -33,7 +33,7 @@ LAYERS = {
                'Rows from competitor groups are removed by collector/cufos.py.'),
     'greece': ('ufo_greece.geojson', 'Greek close encounters (1901 to 2007)',
                'Shared with Encounter Atlas by the Greek UFO Network (GRUFON), 2026-10-21, by email from the data owner. '
-               'Credit by name, no link. Retold in our own words by collector/grufon.py.'),
+               'Credit by name with a link to grufon.org (Mike, 2026-10-21). Retold in our own words by collector/grufon.py.'),
 }
 BLOCKED = re.compile(r'bfro|nuforc|mufon|enigma ?labs|cryptid ?(catchers|atlas)', re.I)
 
