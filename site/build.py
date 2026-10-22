@@ -188,9 +188,10 @@ def ga_tag():
         out += (f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>'
                 "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}"
                 # app_mode (GA4 custom dimension): twa = the Play Store app, pwa = installed from the browser, web = a tab.
-                # Remembered per session, since only the app's first page carries ?source=twa / ?source=pwa.
+                # Remembered per session, since only the app's first page carries ?source=twa / ?source=pwa. Only our own package's
+                # referrer counts: links opened from the Reddit app also arrive as android-app://com.reddit.frontpage.
                 "var eaMode=(function(){try{var q=new URLSearchParams(location.search).get('source'),s=sessionStorage;"
-                "if(q==='twa'||document.referrer.indexOf('android-app://')===0)s.setItem('ea-mode','twa');"
+                "if(q==='twa'||document.referrer.indexOf('android-app://com.encounteratlas.app')===0)s.setItem('ea-mode','twa');"
                 "else if(q==='pwa'||q==='app')s.setItem('ea-mode','pwa');"
                 "return s.getItem('ea-mode')||(matchMedia('(display-mode: standalone)').matches||navigator.standalone?'pwa':'web');}catch(e){return 'web';}})();"
                 f"gtag('js',new Date());gtag('set',{{app_mode:eaMode}});gtag('config','{GA_ID}',{{app_mode:eaMode}});"
