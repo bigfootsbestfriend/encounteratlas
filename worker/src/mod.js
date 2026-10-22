@@ -190,7 +190,7 @@ Approving from the notification does exactly what the Approve button here does: 
 const st = document.getElementById('st');
 const key = ${key};
 const u8 = (s) => Uint8Array.from(atob((s + '==='.slice((s.length + 3) % 4)).replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0));
-const b64 = (b) => btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const b64 = (b) => btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\\+/g, '-').replace(/\\//g, '_').replace(/=+$/, '');
 document.getElementById('on').addEventListener('click', async () => {
   try {
     if (!key) throw new Error('Push keys are not set up on the Worker yet.');
@@ -227,7 +227,7 @@ self.addEventListener('notificationclick', (e) => {
     e.waitUntil(fetch('/mod/push-act', { method: 'POST', headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ id: d.id, act: e.action, t: d[e.action] }) })
       .then((r) => r.json().catch(() => ({})).then((j) => self.registration.showNotification(
-        r.ok ? (e.action === 'approve' ? 'Approved' : 'Rejected') : 'That didn\'t work',
+        r.ok ? (e.action === 'approve' ? 'Approved' : 'Rejected') : "That didn't work",
         { body: r.ok ? (j.done || '') : 'Open the queue to do it by hand.', tag: 'mod-' + d.id, data: { url: '/mod' } })))
       .catch(() => self.registration.showNotification('No connection', { body: 'Open the queue to do it by hand.', tag: 'mod-' + d.id, data: { url: '/mod' } })));
     return;
