@@ -39,7 +39,7 @@
 .nm-legend { display: flex; flex-wrap: wrap; gap: .35rem 1rem; margin: .6rem 0 0; padding: 0 max(16px, env(safe-area-inset-left)); font-size: .82rem; color: var(--muted-d); }
 .lg::before { content: ""; display: inline-block; width: .75em; height: .75em; border-radius: 50%; margin-right: .35em; vertical-align: -.05em; background: var(--c, #F2B33D); }
 .lg-rep { --c: #D9A05B; } .lg-rep::before { box-shadow: 0 0 0 2px #F6F0E2; }
-.lg-bb { --c: #F2B33D; } .lg-faa { --c: #7FD3FF; } .lg-pur { --c: #E07A5F; } .lg-ca { --c: #C08BE8; }
+.lg-bb { --c: #F2B33D; } .lg-faa { --c: #7FD3FF; } .lg-pur { --c: #E07A5F; } .lg-ca { --c: #C08BE8; } .lg-gr { --c: #4FC3A1; }
 .lg-ring::before { background: rgba(242, 179, 61, .12); box-shadow: inset 0 0 0 1.5px rgba(242, 179, 61, .6); }
 
 .nm-results:empty { display: none; }

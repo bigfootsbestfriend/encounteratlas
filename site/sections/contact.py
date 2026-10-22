@@ -114,6 +114,7 @@ the official UFO files and the close-encounter stories, and they send in sightin
 <ul>
 <li><strong>Project Blue Book case files</strong>, US Air Force, 1947 to 1969. US National Archives, Record Group 341, microfilm T1206. US federal records, no copyright in the United States. Places were matched automatically from the folder titles; dots marked “approximate” are placed at the state or country, not the exact spot.</li>
 <li><strong>Canadian UFO sightings, 1989 to 2025</strong>: the Canadian UFO Survey, compiled each year by Ufology Research (Winnipeg) from reports to police, airports, the military, researchers and UFO groups. We left out reports the survey received from online UFO reporting sites. Ratings (explained, unexplained...) are the survey's; notes are lightly tidied. Places were matched to towns with GeoNames.</li>
+<li><strong>Close encounters in Greece, 1901 to 2007</strong>: shared with us by the Greek UFO Network (GRUFON) from its catalogue of close encounters of the third kind. Verdicts are GRUFON's; each case is retold in our own words, without witnesses' names.</li>
 <li><strong>Place names</strong>: GeoNames, licensed CC BY 4.0.</li>
 <li><strong>Map tiles</strong>: OpenFreeMap, built on OpenMapTiles and OpenStreetMap data.</li>
 <li><strong>Creature entries</strong> are written by us from published accounts. Each links to further reading.</li>

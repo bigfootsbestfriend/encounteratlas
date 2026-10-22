@@ -264,6 +264,24 @@
     pointer('cufos-pt'); pointer('cufos-cl');
   }
 
+  // Greek close encounters shared by GRUFON (site/sections/ufo_greece.py): one dot per case, linking to it on /ufo/greece/.
+  async function addGreece() {
+    const data = await fetch(BASE + '/data/ufo_greece.geojson').then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    if (!data || !data.features || !data.features.length) return;
+    map.addSource('greece', { type: 'geojson', data });
+    map.addLayer({ id: 'greece', type: 'circle', source: 'greece', paint: {
+      'circle-color': '#4FC3A1', 'circle-opacity': 0.85, 'circle-stroke-color': '#13261F', 'circle-stroke-width': 1,
+      'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 3.5, 10, 7] } });
+    map.on('click', 'greece', (e) => {
+      const p = e.features[0].properties;
+      const nodes = [node('div', 'pop-kind', null, '<span>Greek close encounter' + (p.w ? ', ' + p.w.slice(0, 4) : '') + '</span>'), node('p', 'pop-h', p.t + ', ' + p.r),
+        node('p', 'pop-meta', p.k + ' · ' + p.h)];
+      nodes.push(link(p.u, 'Read the case'));
+      popup(e.features[0].geometry.coordinates, nodes);
+    });
+    pointer('greece');
+  }
+
   // Unexplained mysteries (Tunguska, Dyatlov Pass...), coloured by type
   async function addMysteries() {
     const data = await fetch(BASE + '/data/mysteries.geojson').then((r) => (r.ok ? r.json() : null)).catch(() => null);
@@ -431,6 +449,7 @@
     await addOfficial('ufo_faa.geojson', 'faa', '#7FD3FF', 'FAA pilot report');
     await addOfficial('ufo_pursue.geojson', 'pursue', '#E07A5F', 'Pentagon UFO file');
     await addCanada();
+    await addGreece();
     await addPlaces();
     await addMilitary();
     await addMysteries();

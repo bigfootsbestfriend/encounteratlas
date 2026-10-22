@@ -15,9 +15,10 @@
     faa: { color: '#7FD3FF', label: 'FAA pilot report' },
     pursue: { color: '#E07A5F', label: 'Pentagon UFO file' },
     canada: { color: '#C08BE8', label: 'Canadian UFO Survey' },
+    greece: { color: '#4FC3A1', label: 'Greek close encounter (GRUFON)' },
   };
   const PILL = { bluebook: ['Air Force file', 'Air Force files'], faa: ['FAA pilot report', 'FAA pilot reports'], pursue: ['Pentagon file', 'Pentagon files'],
-    canada: ['Canadian UFO Survey town', 'Canadian UFO Survey towns'], bluebook_approx: ['area-only Air Force group', 'area-only Air Force groups'] };
+    canada: ['Canadian UFO Survey town', 'Canadian UFO Survey towns'], greece: ['Greek close encounter', 'Greek close encounters'], bluebook_approx: ['area-only Air Force group', 'area-only Air Force groups'] };
   const S = { lat: null, lng: null, label: '', km: 50, mi: 30, unit: 'km', cat: '', days: 30 };
   const status = $('nm-status'), results = $('nm-results');
   let map = null, mapReady = null, seq = 0;
@@ -217,7 +218,7 @@
             'circle-color': '#F2B33D', 'circle-opacity': 0.06, 'circle-stroke-color': '#F2B33D', 'circle-stroke-opacity': 0.5, 'circle-stroke-width': 1.5,
             'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 18, 8, 48] } });
           map.addLayer({ id: 'arch-pt', type: 'circle', source: 'archive', filter: ['!=', ['get', 'src'], 'bluebook_approx'], paint: {
-            'circle-color': ['match', ['get', 'src'], 'faa', ARCH.faa.color, 'pursue', ARCH.pursue.color, 'canada', ARCH.canada.color, ARCH.bluebook.color],
+            'circle-color': ['match', ['get', 'src'], 'faa', ARCH.faa.color, 'pursue', ARCH.pursue.color, 'canada', ARCH.canada.color, 'greece', ARCH.greece.color, ARCH.bluebook.color],
             'circle-radius': ['interpolate', ['linear'], ['zoom'], 4, ['case', ['==', ['get', 'a'], 1], 9, 4], 12, ['case', ['==', ['get', 'a'], 1], 22, 8]],
             'circle-opacity': ['case', ['==', ['get', 'a'], 1], 0.12, 0.85],
             'circle-stroke-color': ['case', ['==', ['get', 'a'], 1], '#F2B33D', '#13261F'], 'circle-stroke-width': 1.5 } });
@@ -278,6 +279,12 @@
       if (p.u) n.push(a(CFG.base + p.u, 'Read the reports'));
       return n;
     }
+    if (p.src === 'greece') {
+      n.push(el('p', 'pop-h', p.t + ', ' + p.r), el('p', 'pop-meta', p.k + ' · ' + p.h));
+      if (p.d) n.push(el('p', '', String(p.d)));
+      n.push(a(p.u, 'Read the case'));
+      return n;
+    }
     n.push(el('p', 'pop-h', p.src === 'pursue' && p.r ? p.r : p.t || 'Report'));
     if (p.r && p.src !== 'pursue' && p.r !== p.t) n.push(el('p', 'pop-meta', p.r));
     if (p.d) n.push(el('p', '', String(p.d).slice(0, 220)));
@@ -328,7 +335,7 @@
       for (const { f } of arch) counts[f.properties.src] = (counts[f.properties.src] || 0) + 1;
       results.append(el('h3', 'nm-res-h3', `From the archives, within ${dist(S.km)} (every year)`));
       const p = el('p', 'nm-arch-counts');
-      for (const k of ['bluebook', 'faa', 'pursue', 'canada', 'bluebook_approx']) {
+      for (const k of ['bluebook', 'faa', 'pursue', 'canada', 'greece', 'bluebook_approx']) {
         if (!counts[k]) continue;
         const c = el('span', 'nm-pill'); c.style.setProperty('--c', ARCH[k].color);
         c.textContent = `${counts[k].toLocaleString()} ${PILL[k][counts[k] === 1 ? 0 : 1]}`;

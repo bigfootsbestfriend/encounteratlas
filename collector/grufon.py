@@ -1,0 +1,151 @@
+"""Greek close encounters (CE3) shared by the Greek UFO Network (GRUFON): data/ufo_cases_greece.json.
+
+Source: a spreadsheet of 49 CE3 cases sent to Mike on 2026-10-21 by GRUFON's scientific consultant, offered for
+Encounter Atlas's map (location, time, classification, description, explanation). Permission by email from the data
+owner. Credit GRUFON by name; no link unless Mike approves one (hard rule: ask before linking a sighting organisation).
+
+Every case is retold here in our own words (no copied descriptions) and witness names are left out. Coordinates come
+from the sheet except where the sheet put a town at a generic point (central Athens, a regional capital) or the wrong
+place: those are moved to the named town and marked `fixed`. Run: python3 collector/grufon.py
+"""
+import json, os
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# GRUFON's verdict (IFO column) -> our label. None means GRUFON found no explanation.
+VERDICT = {None: 'No explanation found', 'fantastic': 'Doubtful story', 'hoax': 'Probably made up', 'dream': 'Possibly a dream',
+           'hallucination': 'Possibly a hallucination', 'illusion': 'Possibly an illusion', 'asc': 'Possibly an altered state of mind',
+           'earthship': 'Possibly a human space test'}
+
+# id, date, place, region, lat, lon, fixed, witnesses, beings ("humanoid" | "strange"), verdict, story, view
+CASES = [
+ ('GR_0504', '1901', 'Penteli', 'Attica', 38.0506, 23.8615, False, 1, 'humanoid', 'fantastic',
+  'A young shepherd said a big mushroom-shaped craft covered in lights came down near his flock. Two figures dressed like divers stepped out and, without speaking aloud, asked him to come away with them. He said no, they left, and he ran to the nearest village to tell everyone.',
+  'GRUFON notes the story has the classic shape of a close encounter but odd details for 1901, like the diving-suit clothes and the "telepathy", which may come from later retellings. It may be the same story as the 1939 Penteli shepherd case.'),
+ ('GR_0375', '1929-08', 'Krini', 'northern Greece', 40.379, 23.495, False, 1, 'humanoid', None,
+  'On the way home from the mill, a villager watched a dome-shaped object settle in a field. Three small white figures in hoods got out, chattering in a language he did not know, and hopped a fence as if it were nothing. Back in the village, his neighbours told him he had seen devils, or lost his mind.', ''),
+ ('GR_0498', '1936-07', 'Marousi', 'Attica', 37.9795, 23.7668, False, 6, 'humanoid', None,
+  'Children playing near the Hygeia Hospital one summer day saw a large silver egg resting on the ground about 100 to 150 metres away. Underneath it stood a small figure in a white suit with a glowing belt and long white hair, who waved at them. Then came a loud whistle, and the egg rose straight up in a cloud of dust until it was gone.', ''),
+ ('GR_0784', '1938-09', 'Nea Apollonia', 'Thessaloniki', 40.6257, 23.4405, False, 1, 'humanoid', None,
+  'A woodcutter in a lonely spot came face to face with two tall figures with big heads, red eyes and dark skin, dressed in what looked like army uniforms. Behind them stood a metal egg on three or four legs with a clear top half. When he shouted and raised his axe, they scrambled in through a hatch, something like a balloon puffed up at the back, and the craft shot straight up. Afterwards a strange little bottle of flammable liquid was found on the spot.', ''),
+ ('GR_0013', '1938', 'Malakasa', 'Attica', 38.2408, 23.8512, False, 10, 'humanoid', 'fantastic',
+  'The story goes that five or six green figures about two metres tall turned up in the village and handed the villagers a black tablet carved with unknown symbols. The local priest threw it down a well.',
+  'GRUFON says the story only surfaced in 1979, sent in by an anonymous reader with no confirmation, and is very likely invented.'),
+ ('GR_0380', '1938', 'Pialeia, Pindus mountains', 'Grevena', 39.6881, 21.0, False, 1, 'humanoid', None,
+  'Walking out to his field, a farmer heard a loud bang by the Holy Trinity chapel. A small figure about a metre tall, in black with a hood and a glowing face, stood in front of him, then walked into the chapel and was not seen again.', ''),
+ ('GR_0012', '1939-05', 'Penteli', 'Attica', 38.0499, 23.8603, False, 1, 'humanoid', 'fantastic',
+  'Early in May, a shepherd saw a glowing mushroom-shaped object hanging about ten metres above the trees, lighting up an area bigger than his sheepfold. He hid to watch. Two figures in diving suits came down on beams of light, came over to him and, without words, asked him to go with them. When he refused, they told him they had visited many times and would be back, then rose to the craft, which raced off leaving an orange streak.',
+  'GRUFON suggests cases like this may be hallucinations brought on by the electromagnetic fields that seem to come with the phenomenon.'),
+ ('GR_0785', '1939', 'Achladokampos', 'Peloponnese', 37.5227, 22.5811, False, 1, 'humanoid', None,
+  'A shepherd met a figure with an unusually large head that appeared out of nowhere, then vanished into thin air with a loud bang. The door of his sheepfold was found smashed to pieces.', ''),
+ ('GR_0453', '1942', 'Diamanto hill, near Missolonghi', 'Aetolia-Acarnania', 38.3, 21.45, False, 1, 'humanoid', None,
+  'A ten-year-old girl grazing sheep in the afternoon heard a strange sound and saw a silver object about three metres wide, like two plates joined together with antennas, drift over the trees and land about 150 metres away. A small figure in a suit and helmet walked around it in circles. She ran in a panic, and her sheepdog stayed terrified for hours.', ''),
+ ('CY_011', '1945', 'Marathounta, Paphos', 'Cyprus', 34.7768, 32.4245, False, 1, 'humanoid', None,
+  'Between 1945 and 1947, an eleven-year-old boy said he saw a metal craft like two barrels land and figures in blue uniforms step out. He went missing for a night and came back with a mark on his body. Later a silver egg-shaped craft came, and a stranger in a clear helmet spoke to him in the Cypriot dialect, took his little bag and promised to make him clever. Teachers and school inspectors were later amazed by his memory and his speed at maths.', ''),
+ ('GR_0294', '1946', 'Penteli', 'Attica', 38.0499, 23.8603, False, 1, 'humanoid', 'dream',
+  'Sometime between 1946 and 1948, a girl of six to eight had a "friendly child" who spoke to her without words. She said it put her to sleep and cut off a piece of her braid.',
+  'GRUFON says it is very hard to find anything showing the friend was physically real.'),
+ ('GR_0381', '1953-04-21', 'Ilioupoli', 'Attica', 37.9310, 23.7570, True, 1, 'strange', None,
+  'A witness in Ilioupoli saw a strange woman with huge eyes, a very thin waist and grey clothes, walking with a shadowy "dog". The next day a shepherd at Agios Nikolaos watched a shiny metal hut with windows land. Small men climbed out, one with an animal head. The same woman appeared, one of the small men bowed to her, she filled a golden plate with soil, and they all vanished with a bang.',
+  'GRUFON finds the amount of detail remembered so many years later the most interesting part of the case.'),
+ ('GR_0429', '1954-10-26', 'Antimachia', 'Kos', 36.8080, 27.0990, True, 3, 'strange', None,
+  'Two villagers watched a bright, basket-shaped object give off a blinding light and suddenly change direction. That same night a third man saw a "winged man" cross the sky over the village. He was so frightened he hid in a church for a long time. It may be the first winged-man report in Greece.', ''),
+ ('GR_0037', '1954-10-29', 'Antimachia', 'Kos', 36.8080, 27.0990, True, 2, 'strange', None,
+  'Three nights later an islander told the police that, out in the countryside, a winged figure shaped like a man had flown just a few metres over his head. Other people on Kos reported strange flying objects that same night.', ''),
+ ('GR_1007', '1954-11', 'Pontamos, Chalki', 'Dodecanese', 36.2227, 27.6043, False, 2, 'humanoid', 'hoax',
+  'Two people saw something streak across the sky and drop behind a hill near the cemetery. Going to look, they found small, stocky figures with thin arms and legs and odd heads, wearing sparkling necklaces and gazing at the moon. When they crept up on one, it vanished along with a disc that looked like a shooting star.',
+  'GRUFON thinks this is most likely a tall tale built around a meteor.'),
+ ('GR_0382', '1957-11', 'Viros', 'Corfu', 39.5833, 19.9167, False, 1, 'strange', None,
+  'A man in his garden heard a loud noise and saw the trees shake. A man of medium height in a white tunic and sandals, with a glowing face, stood before him and gave him a warning: the world would be destroyed in spite of all its progress, and he should spread the word everywhere. Then the stranger vanished.', ''),
+ ('GR_0383', '1957-11-18', 'Logkaki', 'Peloponnese', 37.25, 22.35, False, 1, 'strange', None,
+  'A driver saw a giant figure more than five metres tall appear in front of his car. It crossed the road in one stride and vanished. The driver was badly shaken for days.',
+  'The sheet dates it November 1957, but the account itself says it may have happened in January 1964.'),
+ ('GR_0032', '1970-05-20', 'Ilioupoli', 'Attica', 37.9310, 23.7570, True, 2, 'strange', 'dream',
+  'A woman saw round red lights over a church and waved. They came towards her house. That night, with the power out, she met a creature that changed from a grey wolf into a smaller cinnamon-coloured dog, with white eyes, a red tongue that threw sparks, a yellow glow around its head and a steady rhythmic sound. After they locked eyes, it turned into a dark cloud with human eyes and was gone.', ''),
+ ('GR_0673', '1975-03', 'Seli, near Veria', 'Imathia', 40.65, 22.2667, False, 1, 'humanoid', 'hoax',
+  'A goatherd said a spaceship landed near him and three beings came out to take samples from the animals. He and his dog went at them, throwing logs, but the visitors froze them in place with some kind of magnetic force. By the time other villagers and the rural police arrived, the craft had gone.',
+  'GRUFON says the description reads as made up.'),
+ ('GR_0384', '1976', 'Rhodes town', 'Rhodes', 36.4349, 28.2278, False, 1, 'strange', None,
+  'An experienced amateur astronomer was looking at the Moon through his telescope when a "flying figure" drifted slowly across the bright disc. It looked about human-sized, legs together and big wings held still, like a letter T, light brown and almost see-through. He guessed it was only tens or hundreds of metres away, and he had the strong feeling it was looking straight at him. A friend later said he saw something similar on Rhodes.', ''),
+ ('GR_0043_B', '1978-05', 'Tavros', 'Attica', 37.9630, 23.7030, True, 1, 'humanoid', 'dream',
+  'A seventeen-year-old woke at 2 a.m. unable to move and saw two women and a man, all close to two metres tall and dressed in dark clothes, come in through his closed second-floor balcony door. One of the women had sex with him, then all three left the same way, through the closed door.',
+  'GRUFON points out that being frozen in place during the visit suggests a dream.'),
+ ('GR_1200', '1978-08', 'Lysimachia', 'Aetolia-Acarnania', 38.5443, 21.339, False, 1, 'humanoid', None,
+  'A woman stringing tobacco leaves with her husband noticed a very short figure under a plane tree about 100 metres away: wide at the middle, big head, tight dark blue outfit. She ran to fetch her husband, but when they came back it was gone, in open ground with nowhere to hide. Children working in a tobacco field nearby said they saw the same figure up close, staring at them in silence.', ''),
+ ('GR_0385', '1978-08-06', 'Lefkochori', 'Elis', 37.8333, 21.4167, False, 1, 'strange', None,
+  'A truck driver on the road from Agioi Mavroi saw giant figures in his headlights. He tried to get away, but after 60 metres the engine died, the lights went out and the truck shook for about 15 seconds. Then everything came back on and he drove on.', ''),
+ ('GR_0870', '1978-11-12', 'Athens', 'Attica', 37.9833, 23.7333, False, 1, 'humanoid', 'asc',
+  'A 34-year-old man said a figure in a white robe appeared in his room in a flash of light and told him about Atlantis. The next year, after seeing three discs in the sky, he was visited by a thin, plant-like being with a huge skull, and later by a cat-like creature that sent him messages in his head about other civilisations before turning into a snake and vanishing.',
+  'GRUFON notes the original article gives few details and thinks the witness was most likely in an altered state of mind.'),
+ ('GR_0541', '1978', 'Thrapsano', 'Heraklion, Crete', 35.1880, 25.2860, True, 1, 'humanoid', None,
+  'A man out snail-hunting with his donkey north of the village saw a ring of light come down. Bright light flooded the area, along with voices, strange music and a repeating noise. Parting the tall grass, he saw figures about 1.7 metres tall with long glowing heads, bulging eyes, glowing mouths and hooves for feet, dancing in a circle. When they noticed him he ran, fell into a ravine, and spent the rest of the night praying in a chapel.', ''),
+ ('GR_0204', '1978', 'Milies', 'Pelion, Magnesia', 39.3290, 23.1520, True, 1, 'humanoid', None,
+  'Sometime in 1978 or 1979 a saucer was said to land outside the village and draw a crowd. Small dark beings with odd heads, pointed ears and slanting eyes climbed down a little ladder. A woman who visited the spot afterwards found the grass burned where it had stood. The witnesses say the authorities told them not to talk about it.',
+  'GRUFON finds the little ladder odd and thinks the story may have been embellished by the people who passed it on, not by the witness.'),
+ ('GR_0467', '1979-07-07', 'Sounion', 'Attica', 37.6503, 24.0246, True, 3, 'humanoid', None,
+  'At 1:30 a.m. near the Temple of Poseidon, a woman and two friends had their car radio and engine fail as a powerful spotlight lit them up. She felt pulled towards a landed metal craft seven or eight metres across with a clear dome, where she could see two figures moving about nervously. One of them waved to her before the craft rose straight up and disappeared.', ''),
+ ('GR_0040_A', '1980-01', 'Penteli', 'Attica', 38.0499, 23.8603, False, 4, 'humanoid', 'hallucination',
+  'A woman visiting a cave on Penteli with friends met two small figures. One, in yellowish clothes, came close and stared at her with bulging eyes, making a "ta-ta-ta" sound. She stood frozen with her hair on end until her friends pulled her away. Their locked car, left far down the hill, was somehow parked in front of the cave. She still gets headaches when she tries to remember it.',
+  'GRUFON notes the group had come straight from dinner, probably with drinks, and that alcohol plus local legends could explain the experience.'),
+ ('GR_0330', '1980-09', 'Lagkadas', 'Thessaloniki', 40.6333, 22.95, False, 1, 'strange', 'earthship',
+  'A farmer watched something like a parachute fall from the sky, and saw its "passengers" collected by a second, unknown object. The story claims ten NASA staff came to investigate, which would be unusual: the air force normally handles such cases.',
+  'GRUFON suggests it may have been a NASA or European space agency test.'),
+ ('GR_0842', '1986-07', 'Asterousia mountains', 'Heraklion, Crete', 35.1088, 25.1395, False, 3, 'strange', 'hoax',
+  'Three young hunters said a huge figure with dark grey bat wings flew low towards them. It had finger-like claws and a long beak, part human, part pterodactyl, and quickly vanished over the remote hills.', ''),
+ ('GR_0550', '1989-07-29', 'Chrysopetra', 'Kilkis', 41.0333, 22.7167, False, 1, 'strange', None,
+  'An eleven-year-old girl said a white cloud with a human figure three or four metres tall, taller than the house, came down with a deafening noise on the village dirt road. It left two enormous footprints, about 1.1 by 0.6 metres each. Police and the army came, and a team from the Aristotle University of Thessaloniki looked at the prints but could not explain them.', ''),
+ ('GR_0903', '1989-08', 'Mount Olympus', 'Pieria', 40.0856, 22.3586, False, 3, 'other', 'illusion',
+  'At about 2,300 metres, above a mountain refuge, three men saw an opening appear in a sheer rock face. One young man went in, while the other two were held back by a fear they could not explain. A day later the rock opened again and he came out, describing smooth-walled tunnels lit by a strange light, going down 150 to 180 metres.',
+  'GRUFON thinks a hallucination caused by thin air at that height is very likely.'),
+ ('GR_0091', '1989-10-14', 'Lardos', 'Rhodes', 36.0930, 28.0170, True, 1, 'strange', None,
+  'A couple on their way home saw a white, hairy creature shaped like a man, with wings instead of arms and some kind of device on its back. It had a round head and cat-like eyes and flew without flapping. It looked at them, then flew off towards Mount Tsambika. Rhodes had a wave of UFO sightings at the time.', ''),
+ ('GR_1115', '1989-11', 'Kefala', 'Kos', 36.8940, 27.2894, False, 2, 'other', None,
+  'A man on the shore at first took it for a fishing boat coming in. Closer up, he saw it was an odd-shaped craft with no lights and no propellers, unlike anything he had ever seen. He reported it two years later.',
+  'GRUFON notes it is one of many strange sightings reported on Kos.'),
+ ('GR_0283', '1990-06-15', 'Anthili, near Lamia', 'Phthiotis', 38.8333, 22.4167, False, 1, 'humanoid', None,
+  'A farmer checking his irrigation at 1 a.m. met a tall brown figure that moved like a robot. It shot two beams into his face that made his eyes sting, and then he saw a ball-shaped object rise into the sky. His cousin had seen a light fall from the sky earlier that night. The farmer could not account for 43 minutes.', ''),
+ ('GR_0072_A', '1994-08-10', 'Rhodes town', 'Rhodes', 36.4349, 28.2278, False, 1, 'other', None,
+  'At 3:30 a.m. a night guard at a fuel depot saw a red flashing light flying in an erratic way. It came within about 250 metres: a bell shape some eight metres across with three lights. When he shone his torch up at it, it flashed back. A week later two men in an old car sat watching him, in dark glasses and turtlenecks in the middle of a heatwave.', ''),
+ ('GR_0264', '1995-08-14', 'Agios Stefanos', 'Attica', 38.1420, 23.8590, True, 1, 'strange', 'hoax',
+  'A retired senior civil servant said a figure 2.5 metres tall stepped up to him: big hairy feet, a pinkish-white face, blue eyes, no neck and a tight cloak. It whispered in its own language, then asked him in Greek for directions to a water tank at Panagia. He pointed it towards the Anoixi road, and it simply vanished.',
+  'GRUFON says the case could also be folklore-style, and finds it strange the witness stayed so calm. The account needs checking.'),
+ ('GR_0222', '1997-04-24', 'near Kyparissia', 'Messenia', 37.0, 21.8333, False, 1, 'other', None,
+  'A man in the countryside noticed the animals acting oddly: his dog had run far from the house, the sheep were too scared to milk and the birds had gone quiet. Then he came across two strangers in a black jeep with Thessaloniki plates, in winter suits in the heat, who said they were waiting for someone in that empty spot.',
+  'GRUFON says it sounds like an X-Files episode, and memory may have changed it, since we do not know when it was first told.'),
+ ('GR_0022', '1998-09-14', 'Pangrati', 'Attica', 37.9680, 23.7420, True, 2, 'humanoid', None,
+  'Two friends saw a silent dark object that turned out to be an upright figure in something like a shiny spacesuit. It came down in the trees on Ardittos hill and climbed the slope in stiff little hops without bending its limbs. At the top it turned whitish, shrank to a bright dot and vanished after about ten minutes, moving steadily the whole time despite a strong wind.', ''),
+ ('GR_0130', '1999-12-31', 'Kavala', 'Eastern Macedonia', 40.9167, 24.4167, False, 1, 'other', None,
+  'At 4 p.m. on New Year\'s Eve, a witness watched something like a giant amoeba, about the size of a whale, drift over Kavala for 10 to 15 minutes. It looked like thick smoke or liquid, with a small sphere circling behind it. It floated silently from the port towards the university and disappeared behind the hills. Nobody else in the city seemed to notice.', ''),
+ ('GR_0388_A', '2001-06-24', 'Patras', 'Achaea', 38.2466, 21.7346, False, 1, 'strange', None,
+  'At 1:50 a.m. a man found a tall, thin figure about 1.9 metres tall in his home, in a tight blue suit with wavy patterns and blurry human features. It moved in big slow-motion leaps like a dancer, barely touching the floor, and showed up three times in different rooms before vanishing. He felt cold, heard nothing, smelled nothing, and had the feeling it was running from something.', ''),
+ ('GR_0221', '2001-08-26', 'Chamolia, Vravrona', 'Attica', 37.9218, 24.0137, False, 3, 'humanoid', None,
+  'At 10 p.m., three firefighters watched a disc about three metres wide land on an old helipad. As it came in, every electronic device they had stopped working. Three small figures, 80 to 90 centimetres tall in metallic suits, climbed out. The firefighters were amazed and frightened.', ''),
+ ('GR_0169', '2001', 'Filoti', 'Naxos', 37.0520, 25.4970, True, 5, 'strange', None,
+  'Shepherds in the hills saw a big glowing object land in a pasture at midnight. A creature the size of a bear, with a horse\'s head and hooves, bounded about in huge leaps. When it reached a herd of pigs it aimed a beam of light at them. Next morning four pigs were found badly burned all over, and a hunting dog cut in half.', ''),
+ ('GR_0615', '2002-08-07', 'Thessalian plain, near Trikala', 'Thessaly', 39.5833, 21.7167, False, 3, 'humanoid', None,
+  'Three UFO sightings came from the plain that night. The main one: around 3 a.m., a farmer saw a glowing object about ten metres long with thin little beings near it. It left a ten-metre circle with holes around the edge, flattened crops and about 30 small pits, as if soil had been sampled.', ''),
+ ('GR_0091_A', '2004', 'above Kymi', 'Evia', 38.6320, 24.1050, True, 1, 'strange', None,
+  'Driving at night on the empty road above Kymi, a 55-year-old man met a dark creature about 1.5 metres tall with big slit eyes, long arms and a thin body. It hopped around his car, screeching, then leapt into the thick trees and was gone.', ''),
+ ('GR_0397', '2005-06-23', 'Mount Olympus', 'Pieria', 40.0858, 22.3498, False, 3, 'humanoid', None,
+  'At 2 p.m., three people about 22 metres away watched a large craft land on the "Balcony of Zeus". It shifted from orange-blue to silver-grey, and 16 figures 1.65 to 1.8 metres tall came down a silent sliding ladder. Five minutes later they went back in and the craft left. The main witness says he has three photos.', ''),
+ ('GR_0665', '2006', 'Dikaia', 'Evros', 41.7061, 26.2974, False, 3, 'humanoid', 'hoax',
+  'Three soldiers on night patrol near the border said a diamond-shaped craft with flashing lights landed beside them. Eleven grey figures two metres tall, with big heads and six-fingered hands, came out. One spoke in what sounded like ancient Greek, saying they had come to help humanity in exchange for materials they use as fuel. It lasted 24 minutes and left the soldiers with bad headaches.',
+  'GRUFON thinks the report is probably fake. The sheet gives two dates for it, January and October 2006.'),
+ ('GR_0118', '2007-11-10', 'Tsoutsouras, Asterousia mountains', 'Heraklion, Crete', 35.1667, 25.2167, False, 1, 'humanoid', None,
+  'A local explorer said he saw a round craft come down and hover just above the ground. A ladder dropped, and people in strange clothes appeared in a dazzling light that turned night into day. They talked among themselves for a while, then left.', ''),
+]
+
+def main():
+    out = []
+    for (i, date, place, region, lat, lon, fixed, wit, beings, verdict, story, view) in CASES:
+        out.append({'id': i, 'date': date, 'year': int(date[:4]), 'place': place, 'region': region,
+                    'cc': 'CY' if region == 'Cyprus' else 'GR', 'lat': lat, 'lon': lon, 'coords_fixed': fixed,
+                    'witnesses': wit, 'beings': beings, 'verdict': VERDICT[verdict], 'explained': verdict is not None,
+                    'story': story, 'view': view})
+    out.sort(key=lambda r: r['date'])
+    p = os.path.join(ROOT, 'data', 'ufo_cases_greece.json')
+    json.dump(out, open(p, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    print(len(out), 'cases ->', os.path.relpath(p, ROOT))
+
+if __name__ == '__main__':
+    main()

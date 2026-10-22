@@ -52,6 +52,7 @@ def build(ctx):
               'with the exact spot hidden if the witness prefers.</p>')
     tiles = [('/ufo/blue-book/', 'folder', 'Air Force Blue Book files, 1947 to 1969'), ('/ufo/releases/', 'folder', 'Every official release, 13 countries'),
              ('/ufo/canada/', 'ufo-globe', 'Canada sightings map, 1989 to today'),
+             ('/ufo/greece/', 'saucer', 'Close encounters in Greece, 1901 to 2007'),
              ('/tools/was-it-a-planet/', 'e-planet', 'Was it a planet? Check the sky'),
              ('/ufo/files/pursue/', 'military', "The Pentagon's 2026 files"), ('/ufo/files/faa/', 'saucer', 'FAA pilot reports, 2007 to 2024'),
              ('/ufo/countries/', 'saucer', 'UFO files by country'), ('/military/', 'military', 'Military encounters')]

@@ -134,7 +134,7 @@ def write(path, text):
 
 EA_API = os.environ.get('EA_API', '').rstrip('/')  # report Worker; empty until it's deployed
 MAP_API = f' data-api="{EA_API}"' if EA_API else ''
-UFO_MENU = [('/ufo/', 'UFO sightings'), ('/ufo/cases/', 'Famous cases worldwide'), ('/ufo/canada/', 'Canada sightings map'), ('/ufo/blue-book/', 'Air Force Blue Book files'),
+UFO_MENU = [('/ufo/', 'UFO sightings'), ('/ufo/cases/', 'Famous cases worldwide'), ('/ufo/canada/', 'Canada sightings map'), ('/ufo/greece/', 'Greece close encounters'), ('/ufo/blue-book/', 'Air Force Blue Book files'),
             ('/ufo/releases/', 'Official releases'), ('/ufo/countries/', 'UFO files by country'), ('/military/', 'Military encounters')]
 STORY_MENU = ([('/reports/', 'Reader reports')] if EA_API else []) + [('/stories/', 'Witness stories'), ('/encounters/', 'Close encounters'), ('/report/', 'Report an encounter')]
 EXPLORE_MENU = [('/near-me/', 'Sightings near me'), ('/mysteries/', 'Mysteries'), ('/history/', 'Old newspaper stories'), ('/on-this-day/', 'On this day'), ('/compare/', 'Creature comparisons'),

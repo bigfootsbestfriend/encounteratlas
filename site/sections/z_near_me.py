@@ -125,7 +125,7 @@ def build(ctx):
   </div>
   <div class="nm-mapwrap" id="nm-mapwrap" hidden>
     <div id="nm-map" class="nm-map" aria-label="Map of sightings near the chosen place"></div>
-    <p class="nm-legend"><span class="lg lg-rep">Reader reports</span><span class="lg lg-bb">Air Force files</span><span class="lg lg-ring">Area only (faded ring)</span><span class="lg lg-faa">FAA pilot reports</span><span class="lg lg-pur">Pentagon files</span><span class="lg lg-ca">Canadian UFO Survey</span></p>
+    <p class="nm-legend"><span class="lg lg-rep">Reader reports</span><span class="lg lg-bb">Air Force files</span><span class="lg lg-ring">Area only (faded ring)</span><span class="lg lg-faa">FAA pilot reports</span><span class="lg lg-pur">Pentagon files</span><span class="lg lg-ca">Canadian UFO Survey</span><span class="lg lg-gr">Greek close encounters</span></p>
   </div>
   <div class="wrap"><div class="nm-results" id="nm-results" aria-live="polite"></div></div>
 </section>

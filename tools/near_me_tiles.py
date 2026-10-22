@@ -6,7 +6,7 @@ approximate-location rule and the geocoding checks are the same as on the full m
   index.json                    tile list, per-layer counts and a source/licence note for every dataset
   <lat0>_<lon0>.json            FeatureCollection for lat0..lat0+5, lon0..lon0+5 (south-west corner, floored)
 
-Each feature has properties.src: bluebook | bluebook_approx | faa | pursue | canada.
+Each feature has properties.src: bluebook | bluebook_approx | faa | pursue | canada | greece.
 bluebook_approx are the faded "about N files somewhere in X" rings, never pins.
 
 site/sections/z_near_me.py calls build_tiles() during every build; run this file alone to rebuild just the tiles:
@@ -31,6 +31,9 @@ LAYERS = {
     'canada': ('ufo_canada.geojson', 'Canadian UFO Survey (1989 to 2025), sightings per town',
                'Compiled by Ufology Research. Credit by name only, no link (Mike, 2026-10-12). '
                'Rows from competitor groups are removed by collector/cufos.py.'),
+    'greece': ('ufo_greece.geojson', 'Greek close encounters (1901 to 2007)',
+               'Shared with Encounter Atlas by the Greek UFO Network (GRUFON), 2026-10-21, by email from the data owner. '
+               'Credit by name, no link. Retold in our own words by collector/grufon.py.'),
 }
 BLOCKED = re.compile(r'bfro|nuforc|mufon|enigma ?labs|cryptid ?(catchers|atlas)', re.I)
 
