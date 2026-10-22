@@ -53,9 +53,10 @@ def build(ctx):
         what = r.get('creature_name') or r.get('other_what') or 'Something strange'
         badge = ctx.badge(c, 'sm') if c else '<span class="badge badge-sm cat-other"><span class="q" aria-hidden="true">?</span></span>'
         cat = c['cat'] if c else 'other'
-        where = r.get('place') or ''
+        # reports.py's coarse place (no street addresses, region only for living traditions) when it has one
+        where = getattr(ctx, 'report_where', {}).get(r['id'], r.get('place') or '')
         cards.append(
-            f'<li class="nm-card cat-{cat}"><a href="{U("/reports/?id=" + r["id"])}">{badge}<span class="nm-card-body">'
+            f'<li class="nm-card cat-{cat}"><a href="{U("/reports/" + r["id"] + "/")}">{badge}<span class="nm-card-body">'
             f'<b>{E(what)}</b><span class="nm-meta">{E(where + " · " if where else "")}{E(nice_date(r.get("seen_date")))}'
             f'{" (about)" if r.get("date_approx") else ""}</span>'
             f'<span class="nm-snip">{E(r.get("snippet") or "")}</span></span></a></li>')
@@ -89,7 +90,7 @@ def build(ctx):
     vm = re.search(r'^VAPID_PUBLIC\s*=\s*"([A-Za-z0-9_-]+)"', toml, re.M)
     cfg = json.dumps({'api': API, 'base': ctx.BASE, 'vapid': vm.group(1) if vm else '',
                       'sitekey': os.environ.get('TURNSTILE_SITEKEY', '1x00000000000000000000AA'), 'tiles': U('/data/near/'), 'cities': U('/data/cities.json'),
-                      'report': U('/report/'), 'reports': U('/reports/?id='),
+                      'report': U('/report/'), 'reports': U('/reports/'),
                       'ufo': [c['slug'] for c in ctx.creatures if c['cat'] == 'ufo'], 'living': living},
                      separators=(',', ':')).replace('</', '<\\/')
     sources = ''.join(f'<li><b>{E(t)}</b> ({counts[k]:,} on this map). {E(s.split(" Credit by name")[0].split(" Rows from")[0])}</li>'

@@ -143,7 +143,7 @@ def content(ctx):
                 if (x.get('approved_at') or 0) >= since:
                     what = x.get('creature_name') or x.get('other_what') or 'Something strange'
                     reports.append({'title': f'{what} near {x["place"]}' if x.get('place') else what,
-                                    'url': f'{S}/reports/?id={x["id"]}', 'note': x.get('snippet') or ''})
+                                    'url': f'{S}/reports/{x["id"]}/', 'note': x.get('snippet') or ''})
     except Exception as err:
         print(f'newsletter: reader reports skipped: {err!r}')
     if reports:

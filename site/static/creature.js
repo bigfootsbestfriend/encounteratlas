@@ -18,7 +18,7 @@
       for (const x of d.reports) {
         const a = document.createElement('a');
         a.className = 'ws-card';
-        a.href = `${reportsPage}?id=${encodeURIComponent(x.id)}`;
+        a.href = `${reportsPage}${encodeURIComponent(x.id)}/`;
         const b = document.createElement('b');
         b.textContent = x.place || 'Somewhere';
         const m = document.createElement('span');

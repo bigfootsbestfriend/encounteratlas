@@ -1488,7 +1488,15 @@ def build_static_pages():
 </form>
 <p class="md-chips"><a class="md-chip" href="{url('/')}">Home</a><a class="md-chip" href="{url('/map/')}">Map</a><a class="md-chip" href="{url('/creatures/')}">Creatures</a>
 <a class="md-chip" href="{url('/ufo/')}">UFOs</a><a class="md-chip" href="{url('/places/')}">Places to visit</a><a class="md-chip" href="{url('/report/')}">Report an encounter</a></p>
-<script>(function () {{ // guess search words from the missing address: /creatures/ogopogoo/ -> "ogopogoo"
+<script>(function () {{
+  // A reader report approved since the last build has no static page yet (site/sections/reports.py):
+  // show it from the API at /reports/?id= instead, keeping ?source= and #vote. static=0 stops a redirect loop.
+  var m = location.pathname.match(/[/]reports[/]([a-z0-9]{{10}})[/]?$/);
+  if (m) {{
+    var q = new URLSearchParams(location.search); q.set('id', m[1]); q.set('static', '0');
+    location.replace('{url('/reports/')}?' + q.toString() + location.hash); return;
+  }}
+  // guess search words from the missing address: /creatures/ogopogoo/ -> "ogopogoo"
   var w = location.pathname.split('/').filter(Boolean).pop() || '';
   w = decodeURIComponent(w).replace(/\.html?$/, '').replace(/[-_]+/g, ' ').trim();
   if (w && w.length < 60) document.getElementById('nf-q').value = w;

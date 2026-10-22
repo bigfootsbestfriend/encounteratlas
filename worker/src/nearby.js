@@ -154,7 +154,7 @@ export async function nearby(req, env, url, ctx) {
   const site = String(env.SITE || 'https://encounteratlas.com').replace(/\/$/, '');
   const reports = page.map(({ r, pt, km }) => ({
     id: r.pid,
-    url: `${site}/reports/?id=${r.pid}`,
+    url: `${site}/reports/${r.pid}/`,
     category: category(r.creature),
     creature: r.creature,
     creature_name: r.creature === 'other' ? r.other_what : CREATURES[r.creature] || '',

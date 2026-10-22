@@ -165,6 +165,9 @@
     return s;
   }
   const page = (q = '') => `${BASE}/reports/${q}`;
+  // Each approved report has a static page (site/sections/reports.py); one approved since the last build is sent on
+  // to /reports/?id= by 404.html.
+  const reportUrl = (id) => `${BASE}/reports/${encodeURIComponent(id)}/`;
 
   // ---------- map (same dark, forest-tinted look as the main map) ----------
   const CAT_COLORS = { hominid: '#D9A05B', canid: '#D0633F', winged: '#B98ACB', aquatic: '#4FB3A9', entity: '#9CC46B', fae: '#E58FB0', ufo: '#8E8CF0', other: '#E0C36A' };
@@ -405,7 +408,7 @@
 
   // ---------- /reports/ views ----------
   const root = document.getElementById('ea-reports');
-  window.EA = { poster, addPin, cfg, API, BASE, h, api, store, session, user, signOut, human, resetHuman, creature, badge, title, fmtDate, makeMap, areaLayer, circle, signinBox, voteWidget, loadTallies, CAT_COLORS, page };
+  window.EA = { reportUrl, poster, addPin, cfg, API, BASE, h, api, store, session, user, signOut, human, resetHuman, creature, badge, title, fmtDate, makeMap, areaLayer, circle, signinBox, voteWidget, loadTallies, CAT_COLORS, page };
   if (!root) return;
 
   const qs = new URLSearchParams(location.search);
@@ -453,7 +456,7 @@
           const div = h('div', { class: 'pop' }, h('p', { class: 'pop-h', text: title({ creature: p.c, other_what: p.n, place: placeName(p.t) }) }),
             h('p', { style: 'margin:0 0 .4rem', text: fmtDate(p.d, '', false) }),
             p.s ? h('p', { class: 'pop-story', text: '“' + p.s + '”' }) : '',
-            h('a', { href: page('?id=' + p.id), text: 'Read the full report' }),
+            h('a', { href: reportUrl(p.id), text: 'Read the full report' }),
             h('p', { class: 'approx', style: 'margin:.4rem 0 0', text: 'Shown within about 5 km.' }));
           new maplibregl.Popup({ maxWidth: '300px' }).setLngLat(e.features[0].geometry.coordinates).setDOMContent(div).addTo(map);
         });
@@ -505,7 +508,7 @@
     const c = creature(x.creature, x.other_what);
     const pic = h('div', { class: `rc-img rc-noimg cat-${c.cat}` }, poster(x.creature, x.other_what));
     const bits = [x.n_links ? `${x.n_links} photo link${x.n_links > 1 ? 's' : ''}` : '', x.n_videos ? `${x.n_videos} video${x.n_videos > 1 ? 's' : ''}` : '', x.witnesses > 1 ? `${x.witnesses} witnesses` : ''].filter(Boolean);
-    return h('a', { class: 'rcard', href: page('?id=' + x.id) }, pic,
+    return h('a', { class: 'rcard', href: reportUrl(x.id) }, pic,
       h('span', { class: 'rc-body' },
         h('span', { class: 'rc-kind' }, h('span', { class: `dot cat-${c.cat}` }), x.creature === 'other' ? 'Something else' : c.name),
         h('span', { class: 'rc-title', text: x.creature === 'other' ? short(x.other_what) : (placeName(x.place) || 'Place not named') }),
@@ -513,6 +516,18 @@
         h('span', { class: 'rc-date', text: fmtDate(x.seen_date, '', x.date_approx) }),
         h('span', { class: 'rc-snip', text: x.snippet }),
         bits.length ? h('span', { class: 'rc-meta', text: bits.join(' · ') }) : ''));
+  }
+
+  // Old links (emails, alerts, bookmarks) use /reports/?id=. If the static page exists, go there (keeping ?source= and
+  // the #vote anchor); if not (approved since the last build, or not public), render it here as before.
+  async function toStaticPage(id) {
+    if (!/^[a-z0-9]{10}$/.test(id) || qs.get('static') === '0') return false;
+    const res = await fetch(reportUrl(id), { method: 'HEAD', cache: 'no-store' }).catch(() => null);
+    if (!res || !res.ok) return false;
+    const q = new URLSearchParams(location.search);
+    q.delete('id');
+    location.replace(reportUrl(id) + (q.toString() ? '?' + q : '') + location.hash);
+    return true;
   }
 
   async function detailView(id) {
@@ -639,7 +654,7 @@
   }
 
   if (qs.get('signin')) handleSignin(qs.get('signin'));
-  else if (qs.get('id')) detailView(qs.get('id'));
+  else if (qs.get('id')) toStaticPage(qs.get('id')).then((moved) => moved || detailView(qs.get('id')));
   else if (qs.get('me')) meView();
   else listView();
 })();

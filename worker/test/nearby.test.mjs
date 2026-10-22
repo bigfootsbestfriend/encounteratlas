@@ -108,7 +108,7 @@ const keys = new Set(r.data.reports.flatMap((x) => Object.keys(x)));
 ok(!['links', 'videos', 'photos', 'exact', 'story', 'pub_lat', 'name', 'display_name'].some((k) => keys.has(k)), 'no links, videos, story text or names', [...keys].join(','));
 ok(!JSON.stringify(r.data).includes('example.com') && !JSON.stringify(r.data).includes('youtu'), 'submitted links never appear anywhere in the response');
 ok(ra.summary.length <= 280 && ra.summary.endsWith('…'), 'long story cut to a 280-character summary');
-ok(ra.url.endsWith(`/reports/?id=${A}`) && ra.category === 'creature' && ra.creature_name === 'Bigfoot', 'url, category and name');
+ok(ra.url.endsWith(`/reports/${A}/`) && ra.category === 'creature' && ra.creature_name === 'Bigfoot', 'url, category and name');
 
 section('Category');
 const cat = async (c) => mine((await near({ lat: EX.lat, lng: EX.lon, radius_km: 100, category: c, limit: 100 })).data.reports);

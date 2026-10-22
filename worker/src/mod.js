@@ -257,7 +257,7 @@ async function mailReporter(env, r, kind, message) {
   if (!r || !r.email) return 'no email on file';
   const what = r.creature === 'other' ? (r.other_what || 'your sighting') : (CREATURES[r.creature] || r.creature);
   const about = `${what}, ${r.seen_date}${r.place ? `, ${r.place}` : ''}`;
-  const url = `${env.SITE}/reports/?id=${encodeURIComponent(r.pid)}`;
+  const url = `${env.SITE}/reports/${encodeURIComponent(r.pid)}/`;  // static page (site/sections/reports.py); unbuilt pids fall back via 404.html
   const msgHtml = message ? esc(message).replace(/\n/g, '<br>') : '';
   const m = {
     approved: {
@@ -323,7 +323,7 @@ async function dashboard(env, url) {
 ${it.flag ? `<span class="tag">${esc(it.flag)}</span>` : ''}${it.ai_flags ? `<span class="tag ai">AI flags: ${it.ai_flags}</span>` : ''}</h2>
 <p>${esc(it.flag_note)} <span class="muted">${when(it.flagged_at)}</span></p>
 <p>${t.n} counted votes${it.held ? `, <b>${it.held} held</b>` : ''}. ${esc(res)}</p>
-<p>${it.pid ? `Report: <a href="${esc(env.SITE)}/reports/?id=${esc(it.pid)}" target="_blank" rel="noopener">${esc(it.pid)}</a>` : ''}${it.story ? `Witness story: <a href="${esc(env.SITE)}/stories/${esc(it.story)}/" target="_blank" rel="noopener">${esc(it.story)}</a>` : ''}</p>
+<p>${it.pid ? `Report: <a href="${esc(env.SITE)}/reports/${esc(it.pid)}/" target="_blank" rel="noopener">${esc(it.pid)}</a>` : ''}${it.story ? `Witness story: <a href="${esc(env.SITE)}/stories/${esc(it.story)}/" target="_blank" rel="noopener">${esc(it.story)}</a>` : ''}</p>
 <div class="acts">${btn('unfreeze', it.item, 'Unfreeze + clear', view)}${btn('clear', it.item, 'Clear flag only', view, '', 'ghost')}
 ${it.held ? btn('release_held', it.item, 'Count held votes', view, '', 'ghost') + btn('void_held', it.item, 'Void held votes', view, '', 'ghost') : ''}
 ${btn('void_recent', it.item, 'Void votes from last', view, '<input name="minutes" type="number" value="60" min="5" max="10080" aria-label="minutes"> min ', 'ghost')}
@@ -353,7 +353,7 @@ ${r.sky ? `<dt>Sky check</dt><dd>${r.sky.answer === 'no' ? `Lined up: ${esc(r.sk
 ${photos ? `<div class="photos">${photos}</div>` : ''}${lks ? `<p><b>Photo links</b> (open each one and check it before approving)</p><ul>${lks}</ul>` : ''}${vids ? `<ul>${vids}</ul>` : ''}
 ${hist}<div class="acts">${r.status !== 'approved' ? btn('approve', r.pid, r.email ? 'Approve + email them' : 'Approve', view, '<input name="note" placeholder="note to them (optional)" aria-label="note">') : ''}
 ${r.status !== 'rejected' ? btn('reject', r.pid, r.status === 'approved' ? 'Unpublish' : 'Reject', view, `<input name="note" placeholder="reason${r.email ? ' (emailed to them)' : ''}" aria-label="reason">`, 'red') : ''}
-${r.status === 'approved' ? `<a href="${esc(env.SITE)}/reports/?id=${esc(r.pid)}" target="_blank" rel="noopener">View on site</a>` : ''}</div>
+${r.status === 'approved' ? `<a href="${esc(env.SITE)}/reports/${esc(r.pid)}/" target="_blank" rel="noopener">View on site</a>` : ''}</div>
 ${r.email ? `<form method="post" action="/mod/action" class="reply"><input type="hidden" name="act" value="reply"><input type="hidden" name="id" value="${esc(r.pid)}"><input type="hidden" name="back" value="${view}">
 <label for="rp-${esc(r.pid)}"><b>Reply to ${esc(r.email)}</b> <span class="muted">(sent from hello@encounteratlas.com; their answer comes back to you)</span></label>
 <textarea id="rp-${esc(r.pid)}" name="message" rows="4" maxlength="4000" placeholder="Write your message…" required></textarea><button>Send reply</button></form>`

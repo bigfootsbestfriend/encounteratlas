@@ -264,7 +264,7 @@
     if (r.place) n.push(el('p', 'pop-meta', r.place + ' · ' + dist(r.distance_km) + ' away'));
     n.push(el('p', '', r.summary));
     if (r.precision_km >= 100) n.push(el('p', 'approx', 'Shown to the nearest region only, out of respect for a living tradition.'));
-    n.push(a(CFG.reports + encodeURIComponent(r.id), 'Read the report'));
+    n.push(a(CFG.reports + encodeURIComponent(r.id) + '/', 'Read the report'));
     return n;
   }
   function archiveNodes(p) {
@@ -316,7 +316,7 @@
       results.append(h);
       const ul = el('ul', 'nm-cards nm-cards-live');
       for (const r of reps) {
-        const li = el('li', 'nm-card'), link = a(CFG.reports + encodeURIComponent(r.id), null);
+        const li = el('li', 'nm-card'), link = a(CFG.reports + encodeURIComponent(r.id) + '/', null);
         const dot = el('span', 'nm-dot'); dot.style.background = REP[r.category] || REP.other;
         const body = el('span', 'nm-card-body');
         body.append(el('b', '', r.creature_name || 'Something strange'),

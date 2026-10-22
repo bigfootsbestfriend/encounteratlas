@@ -175,7 +175,7 @@ export async function notifyNearby(env, pid) {
     return {
       kind: 'alert', id: r.pid,
       title: clean(region ? `New ${label} report in your region` : `New ${label} report ${dist} away`, 'New report near you'),
-      body, url: `${site}/reports/?id=${r.pid}&source=alert`,
+      body, url: `${site}/reports/${r.pid}/?source=alert`,
     };
   });
 }

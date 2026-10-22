@@ -171,7 +171,7 @@
       const what = x.creature === 'other' ? (x.other_what || 'Something strange') : a.t;
       const where = place(x.place);
       const isNew = x.approved_at > week;
-      return `<a class="nr-card" href="${BASE}/reports/?id=${encodeURIComponent(x.id)}">
+      return `<a class="nr-card" href="${BASE}/reports/${encodeURIComponent(x.id)}/">
         <span class="nr-art">${poster(icon, a.c)}${isNew ? '<span class="nr-new">New</span>' : ''}</span>
         <span class="nr-body"><span class="nr-what">${esc(what.length > 60 ? what.slice(0, 58) + '…' : what)}</span>
         <span class="nr-where">${esc(where || 'Place not named')}${ago(x.approved_at) ? ' · added ' + ago(x.approved_at) : ''}</span>

@@ -17,6 +17,7 @@ def build(ctx):
     sys.path.insert(0, os.path.join(ctx.ROOT, 'collector'))
     from geo import Areas
     A = Areas()
+    ctx.areas = A  # reports.py reuses the loaded boundaries to name the region of each reader report
     names = load('admin1_us_ca.json')  # GeoNames admin1 names for the US and Canada (committed copy, CC BY 4.0)
     names.pop('US.DC', None)
 

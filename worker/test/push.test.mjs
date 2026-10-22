@@ -100,7 +100,7 @@ let sent = pushes().slice(n0).filter((p) => p.payload.kind === 'alert' && p.payl
 const to = (s) => sent.filter((p) => p.to === s.data.id);
 ok(to(all).length === 1 && to(ufo).length === 1 && to(far).length === 0, 'nearby subscribers alerted, far one not');
 ok(/^New .* report \d+ km away$/.test(to(all)[0]?.payload.title || '') && / mi away$/.test(to(ufo)[0]?.payload.title || ''), 'distance in each subscriber\'s units', JSON.stringify(sent.map((p) => p.payload.title)));
-ok(to(all)[0]?.payload.url.endsWith(`/reports/?id=${u1.data.id}&source=alert`), 'tap opens the report page');
+ok(to(all)[0]?.payload.url.endsWith(`/reports/${u1.data.id}/?source=alert`), 'tap opens the report page');
 let st = await (await fetch(API + '/mod/push-stats', { headers: { cookie: COOKIE } })).json();
 ok(st.mod_devices === 1 && st.active >= 4, 'push-stats counts', JSON.stringify(st));
 

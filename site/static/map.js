@@ -324,7 +324,7 @@
       popup(e.features[0].geometry.coordinates, [node('div', 'pop-kind', null, '<span>Reader report' + (p.d ? ', ' + p.d : '') + '</span>'),
         node('p', 'pop-h', (p.n || 'Something') + (p.t ? ' near ' + (p.t === p.t.toLowerCase() ? p.t.replace(/(^|\s)(\p{L})/gu, (m, a, b) => a + b.toUpperCase()) : p.t) : '')),
         ...(p.s ? [node('p', 'pop-meta', '“' + p.s + '”')] : []),
-        link(BASE + '/reports/?id=' + encodeURIComponent(p.id), 'Read the full report')]);
+        link(BASE + '/reports/' + encodeURIComponent(p.id) + '/', 'Read the full report')]);
     });
     pointer('reports');
   }
