@@ -33,6 +33,8 @@ const HEAD = {
   'content-security-policy': "default-src 'none'; img-src 'self' https://img.youtube.com; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'",
 };
 
+export const TEST_PID = 'testreport';
+
 export async function handleMod(req, env, url, ctx) {
   const p = url.pathname;
   // Service worker for Mike's moderation notifications (scope /mod/). Public, it holds nothing secret.
@@ -52,6 +54,8 @@ export async function handleMod(req, env, url, ctx) {
     const act = b.act === 'approve' ? 'approve' : b.act === 'reject' ? 'reject' : '';
     const pid = String(b.id || '');
     if (!act || !/^[a-z0-9]{10}$/.test(pid) || !(await checkActToken(env, pid, act, b.t))) return json({ state: 'denied' }, 403);
+    // Test notifications use this id: the signed button works end to end, but no report is touched.
+    if (pid === TEST_PID) return json({ state: 'ok', done: `Test only: ${act} works. No report was changed.` });
     return json(await setStatus(env, ctx, pid, act === 'approve' ? 'approved' : 'rejected', '', true));
   }
   if (p === '/mod/login' && req.method === 'POST') {
