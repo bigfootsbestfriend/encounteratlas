@@ -1566,9 +1566,22 @@ def main():
         f.write('</urlset>\n')
     # IndexNow (Bing, Yandex, Seznam, Naver): the key file proves we own the site when we ping changed URLs.
     open(os.path.join(OUT, INDEXNOW_KEY + '.txt'), 'w').write(INDEXNOW_KEY)
+    # Android app (Play Store Trusted Web Activity, package com.encounteratlas.app): proves the app and the site belong
+    # together so it opens full screen with no browser bar. First fingerprint = our upload key (sideloaded test APKs);
+    # add Play Console's app-signing key fingerprint once the app is uploaded there.
+    os.makedirs(os.path.join(OUT, '.well-known'), exist_ok=True)
+    with open(os.path.join(OUT, '.well-known', 'assetlinks.json'), 'w') as f:
+        json.dump([{'relation': ['delegate_permission/common.handle_all_urls'],
+                    'target': {'namespace': 'android_app', 'package_name': 'com.encounteratlas.app',
+                               'sha256_cert_fingerprints': APP_FINGERPRINTS}}], f)
     with open(os.path.join(OUT, 'robots.txt'), 'w') as f:
         f.write(f'User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n')
     print(f'built {len(pages)} pages, {n_points:,} map points', file=sys.stderr)
+
+
+APP_FINGERPRINTS = [
+    'E2:3A:78:F1:C2:82:AB:8D:C8:3E:3D:30:90:50:F2:D8:B4:53:E9:8F:93:36:54:5A:74:9A:3E:F5:47:76:19:BC',  # upload key
+]
 
 
 if __name__ == '__main__':
