@@ -1,0 +1,46 @@
+/* On the record: UFO hearings timeline, quote cards, people cards with coloured initials (builds on encounters.css) */
+.or-tabs { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.2rem; }
+.my-gsub { margin: -.4rem 0 1rem; color: var(--muted-l); }
+
+.or-qgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); gap: 1rem; margin-bottom: 1rem; }
+.or-q { margin: 1.4rem 0; padding: 1.1rem 1.3rem 1rem; background: #fff; border-radius: var(--r-md); border-left: 6px solid var(--t); }
+.or-qgrid .or-q { margin: 0; }
+.or-q blockquote { margin: 0; }
+.or-q blockquote p { margin: 0; font: 600 1.15rem/1.4 "Zilla Slab", serif; color: var(--spruce); }
+.or-q blockquote p::before { content: "\201C"; }
+.or-q blockquote p::after { content: "\201D"; }
+.or-q figcaption { margin-top: .6rem; font-size: .88rem; color: var(--muted-l); }
+.or-q figcaption a { font-weight: 700; }
+.or-qnote { font-style: italic; }
+
+.or-tl { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--mist-2); }
+.or-h { position: relative; padding: 0 0 1.2rem 1.4rem; }
+.or-h::before { content: ""; position: absolute; left: -9px; top: .45rem; width: 15px; height: 15px; border-radius: 50%; background: var(--lantern); box-shadow: 0 0 0 3px var(--mist); }
+.or-yr { display: block; font: 700 1.4rem/1 "Zilla Slab", serif; color: var(--spruce); margin-bottom: .45rem; }
+.or-hcard { background: #fff; border-radius: var(--r-md); border: 1px solid #D6DDD6; padding: 1rem 1.2rem; max-width: 52rem; }
+.or-hcard h3 { margin: .2rem 0 .3rem; font-size: 1.2rem; }
+.or-hcard p { margin: .35rem 0; line-height: 1.5; }
+.or-body { font-size: .9rem; color: var(--muted-l); }
+.or-who b { font-size: .88rem; margin-right: .3rem; }
+
+.or-chip { display: inline-block; margin: .15rem .2rem .15rem 0; padding: .3rem .65rem; border-radius: 999px; font: 600 .85rem/1.2 "Public Sans", sans-serif;
+  text-decoration: none; color: var(--spruce) !important; background: color-mix(in srgb, var(--t) 22%, #fff); border: 1px solid color-mix(in srgb, var(--t) 55%, #fff); }
+.or-chip:hover { background: color-mix(in srgb, var(--t) 40%, #fff); }
+
+.or-group h2 { display: flex; align-items: center; gap: .5rem; margin: 2rem 0 .8rem; }
+.or-group h2 span { font: 500 1rem "Public Sans", sans-serif; color: var(--muted-l); }
+.or-dot { width: .8rem; height: .8rem; border-radius: 50%; background: var(--t); }
+.or-pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: .8rem; }
+.or-pcard a { display: flex; gap: .9rem; align-items: flex-start; height: 100%; padding: 1rem; background: #fff; border-radius: var(--r-md);
+  border: 1px solid #D6DDD6; text-decoration: none; color: var(--ink); }
+.or-pcard a:hover { border-color: var(--spruce-3); }
+.or-pcard a:focus-visible { outline: 3px solid var(--lantern); outline-offset: 2px; }
+.or-pcard a > span:last-child { display: flex; flex-direction: column; gap: .25rem; }
+.or-side { font-size: .8rem; font-weight: 700; color: var(--spruce); }
+.or-side::before { content: ""; display: inline-block; width: .55rem; height: .55rem; border-radius: 50%; background: var(--t); margin-right: .35rem; }
+
+.or-av { flex: none; display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 50%; background: var(--t);
+  font: 700 1.05rem/1 "Zilla Slab", serif; color: var(--spruce); letter-spacing: .02em; }
+.or-av-lg { width: 6rem; height: 6rem; font-size: 2rem; box-shadow: 0 0 0 4px rgba(255,255,255,.15); }
+.or-phero { display: flex; gap: 1.4rem; align-items: center; }
+@media (max-width: 640px) { .or-av-lg { width: 4.2rem; height: 4.2rem; font-size: 1.4rem; } .or-phero { gap: 1rem; } }

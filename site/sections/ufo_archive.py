@@ -214,6 +214,9 @@ def build(ctx):
                                         head_extra=css))
 
     # --- /ufo/releases/<slug>/ -------------------------------------------------------------------
+    hp = os.path.join(ctx.ROOT, 'data', 'on_the_record.json')
+    hguide = {h['release']: '/ufo/hearings/' + h['slug'] + '/' for h in (json.load(open(hp, encoding='utf-8'))['hearings'] if os.path.exists(hp) else [])
+              if h.get('release') and h.get('page', True)}
     for r in releases:
         t = r['type']
         facts = [('Country', cpill(r['country'])), ('Released by', E(r['agency'])), ('Released', E(fmt_date(r.get('date')))),
@@ -248,7 +251,7 @@ def build(ctx):
       <p class="crumb"><a href="{U('/ufo/releases/')}">Official releases</a> / {cpill(r['country'], link=False)}</p>
       <h1>{E(r['title'])}</h1>
       <p class="lede">{E(r['summary'])}</p>
-      <p class="ua-cta"><a class="btn" href="{E(r['url'])}" rel="noopener">Open the official source<span aria-hidden="true"> &#8599;</span></a></p>
+      <p class="ua-cta"><a class="btn" href="{E(r['url'])}" rel="noopener">Open the official source<span aria-hidden="true"> &#8599;</span></a>{f' <a class="btn btn-ghost" href="{U(hguide[r["slug"]])}">Who testified and what they said</a>' if r['slug'] in hguide else ''}</p>
     </div>
   </div>
 </section>
