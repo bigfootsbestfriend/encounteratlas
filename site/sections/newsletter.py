@@ -108,6 +108,13 @@ def content(ctx):
     start = week_start()
     sections = []
 
+    # What's new on the site this issue: data/whats_new.json entries dated in the 7 days up to this issue's Thursday.
+    wp = os.path.join(ctx.ROOT, 'data', 'whats_new.json')
+    new = [x for x in (json.load(open(wp, encoding='utf-8')) if os.path.exists(wp) else [])
+           if start - datetime.timedelta(days=7) < datetime.date.fromisoformat(x['date']) <= start]
+    if new:
+        sections.append({'title': "What's new on Encounter Atlas", 'items': [{'title': x['title'], 'url': S + x['path'], 'note': x['note']} for x in new]})
+
     hist = json.load(open(os.path.join(ctx.ROOT, 'data', 'historic.json')))
     old = []
     for x in hist:
@@ -154,7 +161,8 @@ def content(ctx):
     lead = old[0][1]['title'] if old else None
     return {'site': 'encounteratlas', 'date': start.isoformat(),
             'subject': f'This week in strange history: {lead}' if lead else f'Creature of the week: {c["name"]}',
-            'intro': 'Here are the strange stories from this week in history, a creature to read up on, and what readers sent in.',
+            'intro': ('Here is what we added to the site this week, then the strange stories from this week in history, a creature to read up on, and what readers sent in.'
+                      if new else 'Here are the strange stories from this week in history, a creature to read up on, and what readers sent in.'),
             'sections': sections}
 
 
