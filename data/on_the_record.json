@@ -18,14 +18,29 @@
     "The hearing led straight to the Air Force contract with the University of Colorado, the study run by physicist Edward Condon that would report in 1969."
    ],
    "quotes": [
-    {"who": "l-mendel-rivers", "q": "We can't just write them off. There are too many responsible people who are concerned.", "src": "transcript"},
-    {"who": "j-allen-hynek", "q": "One is led to ask whether there might not indeed be a signal somewhere in the noise.", "src": "transcript"}
+    {
+     "who": "l-mendel-rivers",
+     "q": "We can't just write them off. There are too many responsible people who are concerned.",
+     "src": "transcript"
+    },
+    {
+     "who": "j-allen-hynek",
+     "q": "One is led to ask whether there might not indeed be a signal somewhere in the noise.",
+     "src": "transcript"
+    }
    ],
-   "witnesses": ["harold-brown", "j-allen-hynek", "hector-quintanilla"],
+   "witnesses": [
+    "harold-brown",
+    "j-allen-hynek",
+    "hector-quintanilla"
+   ],
    "outcome": "The Air Force set up an outside scientific study, which became the Condon Report.",
    "cases": [],
    "links": [
-    {"name": "Hearing record (GovInfo)", "url": "https://www.govinfo.gov/app/details/CHRG-89hhrg50066O"}
+    {
+     "name": "Hearing record (GovInfo)",
+     "url": "https://www.govinfo.gov/app/details/CHRG-89hhrg50066O"
+    }
    ]
   },
   {
@@ -45,14 +60,32 @@
     "Six months later the Condon Report concluded that further study was unlikely to add to science, and Project Blue Book closed in December 1969."
    ],
    "quotes": [
-    {"who": "james-mcdonald", "q": "I have interviewed several hundred witnesses in selected cases, and I am astonished at what I have found.", "src": "transcript"},
-    {"who": "carl-sagan", "q": "The question is very much an open one, and it is certainly too soon to harden attitudes and make any permanent contentions on the subject.", "src": "transcript"}
+    {
+     "who": "james-mcdonald",
+     "q": "I have interviewed several hundred witnesses in selected cases, and I am astonished at what I have found.",
+     "src": "transcript"
+    },
+    {
+     "who": "carl-sagan",
+     "q": "The question is very much an open one, and it is certainly too soon to harden attitudes and make any permanent contentions on the subject.",
+     "src": "transcript"
+    }
    ],
-   "witnesses": ["j-allen-hynek", "james-mcdonald", "carl-sagan", "robert-hall", "james-harder", "robert-baker"],
+   "witnesses": [
+    "j-allen-hynek",
+    "james-mcdonald",
+    "carl-sagan",
+    "robert-hall",
+    "james-harder",
+    "robert-baker"
+   ],
    "outcome": "No action followed. The Condon Report (1969) recommended against more study and Blue Book closed.",
    "cases": [],
    "links": [
-    {"name": "Hearing record (GovInfo)", "url": "https://www.govinfo.gov/app/details/CHRG-90hhrg97818"}
+    {
+     "name": "Hearing record (GovInfo)",
+     "url": "https://www.govinfo.gov/app/details/CHRG-90hhrg97818"
+    }
    ]
   },
   {
@@ -71,14 +104,27 @@
     "He also told the committee the task force had no material from any UAP and nothing that pointed to a non-terrestrial origin. Months later the Pentagon replaced the task force with the office that became AARO."
    ],
    "quotes": [
-    {"who": "scott-bray", "q": "I do not have an explanation for what this specific object is.", "src": "transcript"}
+    {
+     "who": "scott-bray",
+     "q": "I do not have an explanation for what this specific object is.",
+     "src": "transcript"
+    }
    ],
-   "witnesses": ["ronald-moultrie", "scott-bray"],
+   "witnesses": [
+    "ronald-moultrie",
+    "scott-bray"
+   ],
    "outcome": "Congress created AARO in the 2023 defence budget.",
    "cases": [],
    "links": [
-    {"name": "Hearing page (Congress.gov)", "url": "https://www.congress.gov/event/117th-congress/house-event/114761"},
-    {"name": "Transcript (PDF)", "url": "https://www.congress.gov/117/meeting/house/114761/documents/HHRG-117-IG05-Transcript-20220517.pdf"}
+    {
+     "name": "Hearing page (Congress.gov)",
+     "url": "https://www.congress.gov/event/117th-congress/house-event/114761"
+    },
+    {
+     "name": "Transcript (PDF)",
+     "url": "https://www.congress.gov/117/meeting/house/114761/documents/HHRG-117-IG05-Transcript-20220517.pdf"
+    }
    ]
   },
   {
@@ -97,15 +143,31 @@
     "Kirkpatrick also said AARO had found no credible evidence of extraterrestrial activity or of technology beyond known physics. He left the post at the end of 2023."
    ],
    "quotes": [
-    {"who": "sean-kirkpatrick", "q": "Only a very small percentage of UAP reports display signatures that could reasonably be described as 'anomalous.'", "src": "transcript"},
-    {"who": "sean-kirkpatrick", "q": "I will not close a case that I cannot defend the conclusions of.", "src": "transcript"}
+    {
+     "who": "sean-kirkpatrick",
+     "q": "Only a very small percentage of UAP reports display signatures that could reasonably be described as 'anomalous.'",
+     "src": "transcript"
+    },
+    {
+     "who": "sean-kirkpatrick",
+     "q": "I will not close a case that I cannot defend the conclusions of.",
+     "src": "transcript"
+    }
    ],
-   "witnesses": ["sean-kirkpatrick"],
+   "witnesses": [
+    "sean-kirkpatrick"
+   ],
    "outcome": "AARO went on to publish annual reports and its historical record review in 2024.",
    "cases": [],
    "links": [
-    {"name": "Hearing page (Senate Armed Services)", "url": "https://www.armed-services.senate.gov/hearings/to-receive-testimony-on-the-mission-activities-oversight-and-budget-of-the-all-domain-anomaly-resolution-office"},
-    {"name": "Hearing record (GovInfo)", "url": "https://www.govinfo.gov/app/details/CHRG-118shrg60390"}
+    {
+     "name": "Hearing page (Senate Armed Services)",
+     "url": "https://www.armed-services.senate.gov/hearings/to-receive-testimony-on-the-mission-activities-oversight-and-budget-of-the-all-domain-anomaly-resolution-office"
+    },
+    {
+     "name": "Hearing record (GovInfo)",
+     "url": "https://www.govinfo.gov/app/details/CHRG-118shrg60390"
+    }
    ]
   },
   {
@@ -124,17 +186,40 @@
     "The Pentagon denied Grusch's claims, and AARO's 2024 historical review said it found no evidence of such a programme. Members of Congress from both parties kept pushing for disclosure laws all the same."
    ],
    "quotes": [
-    {"who": "ryan-graves", "q": "A dark gray or a black cube inside of a clear sphere.", "src": "transcript"},
-    {"who": "david-grusch", "q": "I was informed in the course of my official duties of a multi-decade UAP crash retrieval and reverse engineering program.", "src": "transcript"},
-    {"who": "david-fravor", "q": "Sir, you are not going to believe this, but that thing is at your CAP point.", "src": "transcript", "note": "Fravor quoting the radar controller"}
+    {
+     "who": "ryan-graves",
+     "q": "A dark gray or a black cube inside of a clear sphere.",
+     "src": "transcript"
+    },
+    {
+     "who": "david-grusch",
+     "q": "I was informed in the course of my official duties of a multi-decade UAP crash retrieval and reverse engineering program.",
+     "src": "transcript"
+    },
+    {
+     "who": "david-fravor",
+     "q": "Sir, you are not going to believe this, but that thing is at your CAP point.",
+     "src": "transcript",
+     "note": "Fravor quoting the radar controller"
+    }
    ],
-   "witnesses": ["ryan-graves", "david-grusch", "david-fravor"],
+   "witnesses": [
+    "ryan-graves",
+    "david-grusch",
+    "david-fravor"
+   ],
    "outcome": "Led to the UAP Disclosure Act proposals and to AARO's historical record report.",
    "cases": [],
    "military": "Nimitz \"Tic Tac\"",
    "links": [
-    {"name": "Hearing page (House Oversight)", "url": "https://oversight.house.gov/hearing/unidentified-anomalous-phenomena-implications-on-national-security-public-safety-and-government-transparency/"},
-    {"name": "Hearing record (GovInfo)", "url": "https://www.govinfo.gov/app/details/CHRG-118hhrg53022"}
+    {
+     "name": "Hearing page (House Oversight)",
+     "url": "https://oversight.house.gov/hearing/unidentified-anomalous-phenomena-implications-on-national-security-public-safety-and-government-transparency/"
+    },
+    {
+     "name": "Hearing record (GovInfo)",
+     "url": "https://www.govinfo.gov/app/details/CHRG-118hhrg53022"
+    }
    ]
   },
   {
@@ -148,7 +233,9 @@
    "release": "mexico-congress-hearing-2023",
    "page": false,
    "summary": "The first UFO hearing in a national legislature outside the US. Remembered for two small mummified bodies presented as non-human, a claim scientists widely rejected.",
-   "witnesses": ["ryan-graves"],
+   "witnesses": [
+    "ryan-graves"
+   ],
    "links": []
   },
   {
@@ -167,32 +254,95 @@
     "The Pentagon disputes Elizondo's account of his role and his claims about recovered technology. The hearing ended with calls for a single office to handle reports and stronger protection for people who come forward."
    ],
    "quotes": [
-    {"who": "tim-gallaudet", "q": "URGENT SAFETY OF FLIGHT ISSUE.", "src": "written", "note": "the subject line of the 2015 Navy email, as Gallaudet recalls it"},
-    {"who": "luis-elizondo", "q": "Let me be clear: UAP are real.", "src": "written"}
+    {
+     "who": "tim-gallaudet",
+     "q": "URGENT SAFETY OF FLIGHT ISSUE.",
+     "src": "written",
+     "note": "the subject line of the 2015 Navy email, as Gallaudet recalls it"
+    },
+    {
+     "who": "luis-elizondo",
+     "q": "Let me be clear: UAP are real.",
+     "src": "written"
+    }
    ],
-   "witnesses": ["tim-gallaudet", "luis-elizondo", "mike-gold", "michael-shellenberger"],
+   "witnesses": [
+    "tim-gallaudet",
+    "luis-elizondo",
+    "mike-gold",
+    "michael-shellenberger"
+   ],
    "outcome": "No law passed, but the 2025 House task force picked up the thread.",
    "cases": [],
    "military": "Gimbal and GoFast videos",
    "links": [
-    {"name": "Hearing page (House Oversight)", "url": "https://oversight.house.gov/hearing/unidentified-anomalous-phenomena-exposing-the-truth/"}
+    {
+     "name": "Hearing page (House Oversight)",
+     "url": "https://oversight.house.gov/hearing/unidentified-anomalous-phenomena-exposing-the-truth/"
+    },
+    {
+     "name": "Written testimony: Tim Gallaudet (PDF)",
+     "url": "https://oversight.house.gov/wp-content/uploads/2024/11/Updated-Testimony-Gallaudet.pdf"
+    },
+    {
+     "name": "Written testimony: Luis Elizondo (PDF)",
+     "url": "https://oversight.house.gov/wp-content/uploads/2024/11/Written-Testimony-Elizondo.pdf"
+    },
+    {
+     "name": "Written testimony: Mike Gold (PDF)",
+     "url": "https://oversight.house.gov/wp-content/uploads/2024/11/Written-Testimony-Gold.pdf"
+    },
+    {
+     "name": "Written testimony: Michael Shellenberger (PDF)",
+     "url": "https://oversight.house.gov/wp-content/uploads/2024/11/Written-Testimony-Shellenberger.pdf"
+    }
    ]
   },
   {
    "slug": "2024-senate-aaro",
-   "title": "Senate Armed Services open hearing with AARO's director",
+   "title": "Senate hearing with AARO director Jon Kosloski",
    "short": "2024 Senate Armed Services",
    "date": "2024-11-19",
    "country": "us",
    "body": "Senate Armed Services Subcommittee on Emerging Threats and Capabilities",
    "chair": "Sen. Kirsten Gillibrand",
    "release": "hearing-2024-11-sasc-aaro",
-   "page": false,
-   "summary": "AARO director Jon Kosloski briefed senators in public on the FY2024 report and walked through example cases with slides, including some AARO had not solved.",
-   "witnesses": ["jon-kosloski"],
+   "summary": "AARO's director told senators his office had more than 1,600 reports, that most turn out to be balloons, drones, birds or satellites, and that a few are still very anomalous.",
+   "witnesses": [
+    "jon-kosloski"
+   ],
    "links": [
-    {"name": "Hearing transcript (PDF)", "url": "https://www.armed-services.senate.gov/download/11-19-24_-sub---transcript"}
-   ]
+    {
+     "name": "Hearing page (Senate Armed Services)",
+     "url": "https://www.armed-services.senate.gov/hearings/to-receive-testimony-on-the-activities-of-the-all-domain-anomaly-resolution-office"
+    },
+    {
+     "name": "Transcript (PDF)",
+     "url": "https://www.armed-services.senate.gov/imo/media/doc/11-19-24_-_sub_-_transcript.pdf"
+    },
+    {
+     "name": "Transcript (archived copy)",
+     "url": "https://web.archive.org/web/2025/https://www.armed-services.senate.gov/imo/media/doc/11-19-24_-_sub_-_transcript.pdf"
+    }
+   ],
+   "text": [
+    "Sen. Kirsten Gillibrand chaired the open session, with Sen. Joni Ernst as ranking member. Gillibrand opened with the drone incursions over Langley Air Force Base and other bases, and asked how AARO would handle cases it had parked in its archive for lack of data.",
+    "Dr. Jon Kosloski said AARO now held more than 1,600 UAP reports. He showed charts of what they turn out to be: mostly balloons and drones, with a growing number of satellite flares from big constellations such as Starlink. Most reports come from between 15,000 and 25,000 feet, which he said is mainly because that is where the military's sensors are.",
+    "He walked through example cases on slides, including one where an object seemed to fly through a volcanic plume until 3D modelling showed it was 170 metres away. He also said the office had found no verifiable evidence of anything extraterrestrial, and that some objects remain unexplained."
+   ],
+   "quotes": [
+    {
+     "who": "jon-kosloski",
+     "q": "To date, AARO has not discovered any verifiable evidence of extraterrestrial beings, activity, or technology.",
+     "src": "transcript"
+    },
+    {
+     "who": "jon-kosloski",
+     "q": "AARO does not believe every object is a bird, a balloon, or a UAV. We do have some very anomalous objects.",
+     "src": "transcript"
+    }
+   ],
+   "outcome": "AARO promised a public reporting form and updates on cases it is still studying, not only solved ones."
   },
   {
    "slug": "2025-house-task-force",
@@ -210,97 +360,412 @@
     "Dylan Borland, a former Air Force imagery analyst, described a silent triangle about 100 feet long over Langley Air Force Base in the summer of 2012. KLAS-TV reporter George Knapp, covering the subject since 1987, spoke about documents rather than sightings. Joe Spielberger of the Project On Government Oversight argued for stronger whistleblower protection."
    ],
    "quotes": [
-    {"who": "jeffrey-nuccetelli", "q": "We sent information up, but no guidance came down.", "src": "written"},
-    {"who": "george-knapp", "q": "Belief has nothing to do with it.", "src": "written"}
+    {
+     "who": "jeffrey-nuccetelli",
+     "q": "We sent information up, but no guidance came down.",
+     "src": "written"
+    },
+    {
+     "who": "george-knapp",
+     "q": "Belief has nothing to do with it.",
+     "src": "written"
+    }
    ],
-   "witnesses": ["jeffrey-nuccetelli", "alexandro-wiggins", "dylan-borland", "george-knapp", "joe-spielberger"],
+   "witnesses": [
+    "jeffrey-nuccetelli",
+    "alexandro-wiggins",
+    "dylan-borland",
+    "george-knapp",
+    "joe-spielberger"
+   ],
    "outcome": "Came months before the Pentagon's 2026 PURSUE file releases.",
    "cases": [],
    "links": [
-    {"name": "Hearing page (House Oversight)", "url": "https://oversight.house.gov/hearing/restoring-public-trust-through-uap-transparency-and-whistleblower-protection/"}
+    {
+     "name": "Hearing page (House Oversight)",
+     "url": "https://oversight.house.gov/hearing/restoring-public-trust-through-uap-transparency-and-whistleblower-protection/"
+    },
+    {
+     "name": "Written testimony: Jeffrey Nuccetelli (PDF)",
+     "url": "https://oversight.house.gov/wp-content/uploads/2025/09/Nuccetelli-Written-Testimony.pdf"
+    },
+    {
+     "name": "Written testimony: Alexandro Wiggins (PDF)",
+     "url": "https://oversight.house.gov/wp-content/uploads/2025/09/Wiggins-Written-Statement.pdf"
+    },
+    {
+     "name": "Written testimony: Dylan Borland (PDF)",
+     "url": "https://oversight.house.gov/wp-content/uploads/2025/09/Borland-Written-Testimony.pdf"
+    },
+    {
+     "name": "Written testimony: George Knapp (PDF)",
+     "url": "https://oversight.house.gov/wp-content/uploads/2025/09/George-Knapp-Written-Testimony.pdf"
+    },
+    {
+     "name": "Written testimony: Joe Spielberger (PDF)",
+     "url": "https://oversight.house.gov/wp-content/uploads/2025/09/Spielberger-Written-Testimony.pdf"
+    }
    ]
   }
  ],
  "people": [
-  {"slug": "j-allen-hynek", "name": "J. Allen Hynek", "role": "Astronomer, Blue Book science adviser", "years": "1910 to 1986", "country": "us", "side": "scientist",
-   "text": ["An astronomer at Ohio State and later Northwestern University, Hynek was hired by the Air Force in 1948 to explain sightings away. He stayed with Project Sign, Grudge and Blue Book for about 20 years and slowly came to think a small core of cases deserved real study.",
-            "He testified in 1966 and again in 1968. After Blue Book closed he founded the Center for UFO Studies and gave the world the \"close encounters\" scale, first, second and third kind."],
-   "hearings": ["1966-house-armed-services", "1968-house-symposium"]},
-  {"slug": "harold-brown", "name": "Harold Brown", "role": "US Secretary of the Air Force", "years": "1927 to 2019", "country": "us", "side": "official",
-   "text": ["A physicist who ran the Air Force from 1965 to 1969 and later became Secretary of Defense. In 1966 he gave Congress the Blue Book totals: 10,147 reports, 646 still unidentified, and agreed to an outside scientific review."],
-   "hearings": ["1966-house-armed-services"]},
-  {"slug": "hector-quintanilla", "name": "Hector Quintanilla", "role": "Project Blue Book officer", "years": "1923 to 1998", "country": "us", "side": "official",
-   "text": ["The longest-serving head of Project Blue Book, from 1963 until it closed in 1970. He sat with Secretary Brown and Hynek at the 1966 hearing."],
-   "hearings": ["1966-house-armed-services"]},
-  {"slug": "l-mendel-rivers", "name": "L. Mendel Rivers", "role": "Chair, House Armed Services Committee", "years": "1905 to 1970", "country": "us", "side": "official",
-   "text": ["South Carolina congressman who chaired the 1966 hearing and told the Air Force it could not simply write the sightings off."],
-   "hearings": ["1966-house-armed-services"]},
-  {"slug": "james-mcdonald", "name": "James E. McDonald", "role": "Atmospheric physicist, University of Arizona", "years": "1920 to 1971", "country": "us", "side": "scientist",
-   "text": ["A respected cloud physicist who became the most outspoken scientist calling for serious UFO study in the late 1960s. He interviewed hundreds of witnesses himself and criticised both Blue Book and the Condon study.",
-            "At the 1968 symposium he gave the longest statement of the day."],
-   "hearings": ["1968-house-symposium"]},
-  {"slug": "carl-sagan", "name": "Carl Sagan", "role": "Astronomer, Cornell University", "years": "1934 to 1996", "country": "us", "side": "scientist",
-   "text": ["Sagan spoke at the 1968 symposium on the chances of life elsewhere. He said the evidence was not persuasive that UFOs were alien craft, nor that none of them were, and later became one of the best-known sceptics of UFO claims."],
-   "hearings": ["1968-house-symposium"]},
-  {"slug": "robert-hall", "name": "Robert L. Hall", "role": "Sociologist, University of Illinois", "years": "", "country": "us", "side": "scientist",
-   "text": ["Hall spoke at the 1968 symposium on how rumours and mass belief work, and why that alone did not explain the reports he had looked at."],
-   "hearings": ["1968-house-symposium"]},
-  {"slug": "james-harder", "name": "James A. Harder", "role": "Civil engineer, University of California", "years": "1926 to 2006", "country": "us", "side": "scientist",
-   "text": ["An engineering professor at Berkeley who spoke about the physics of reported UFO behaviour at the 1968 symposium."],
-   "hearings": ["1968-house-symposium"]},
-  {"slug": "robert-baker", "name": "Robert M. L. Baker Jr.", "role": "Aerospace scientist", "years": "", "country": "us", "side": "scientist",
-   "text": ["An orbital mechanics specialist who presented his analysis of UFO films and the case for better sensor coverage at the 1968 symposium."],
-   "hearings": ["1968-house-symposium"]},
-  {"slug": "ronald-moultrie", "name": "Ronald Moultrie", "role": "Under Secretary of Defense for Intelligence and Security", "years": "", "country": "us", "side": "official",
-   "text": ["The senior Pentagon intelligence official who testified at the 2022 House hearing and oversaw the setup of AARO."],
-   "hearings": ["2022-house-intelligence"]},
-  {"slug": "scott-bray", "name": "Scott Bray", "role": "Deputy Director of Naval Intelligence", "years": "", "country": "us", "side": "official",
-   "text": ["Bray ran the public side of the Navy's UAP work in 2021 and 2022. At the 2022 hearing he showed footage, gave the count of about 400 reports, and said plainly when he could not explain something."],
-   "hearings": ["2022-house-intelligence"]},
-  {"slug": "sean-kirkpatrick", "name": "Sean Kirkpatrick", "role": "First director of AARO", "years": "", "country": "us", "side": "official",
-   "text": ["A physicist and intelligence official who led AARO from 2022 to the end of 2023. His testimony set the office's tone: most cases are ordinary, some lack data, and none so far point to alien technology.",
-            "After leaving he wrote publicly that claims of hidden crash retrieval programmes came from a small circle of people repeating each other."],
-   "hearings": ["2023-senate-aaro"]},
-  {"slug": "jon-kosloski", "name": "Jon Kosloski", "role": "Director of AARO", "years": "", "country": "us", "side": "official",
-   "text": ["Kosloski took over AARO after Kirkpatrick and presented its FY2024 report to senators in an open hearing in November 2024, walking through solved and unsolved cases on slides."],
-   "hearings": ["2024-senate-aaro"]},
-  {"slug": "ryan-graves", "name": "Ryan Graves", "role": "Former Navy F/A-18F pilot", "years": "", "country": "us", "side": "witness",
-   "text": ["Graves flew with the VFA-11 squadron off the US East Coast, where crews began tracking unknown objects on radar, infrared and by eye in 2014. He later founded Americans for Safe Aerospace to help pilots report what they see.",
-            "He testified to the US Congress in 2023 and also spoke at the Mexican Congress hearing that September."],
-   "hearings": ["2023-house-grusch", "2023-mexico-congress"]},
-  {"slug": "david-fravor", "name": "David Fravor", "role": "Retired Navy commander, VFA-41", "years": "", "country": "us", "side": "witness",
-   "text": ["Fravor led the flight that met the Tic Tac off San Diego in November 2004, working with the USS Nimitz group. He described a white, Tic Tac-shaped object with no wings or rotors moving abruptly over the water, which then turned up at his squadron's planned meeting point about 60 miles away in under a minute."],
-   "hearings": ["2023-house-grusch"]},
-  {"slug": "david-grusch", "name": "David Grusch", "role": "Former intelligence officer", "years": "", "country": "us", "side": "whistleblower",
-   "text": ["A former Air Force officer and intelligence civilian who served on the Pentagon's UAP Task Force. He filed a whistleblower complaint in 2022 and in 2023 told Congress under oath that the US runs a hidden crash retrieval programme. He said he was told of it, not that he saw it.",
-            "The Pentagon denies the programme exists, and AARO's historical review found no evidence for it."],
-   "hearings": ["2023-house-grusch"]},
-  {"slug": "tim-gallaudet", "name": "Tim Gallaudet", "role": "Retired Rear Admiral, US Navy", "years": "", "country": "us", "side": "witness",
-   "text": ["An oceanographer who commanded the Navy's meteorology and oceanography command and later served as acting head of NOAA. He testified in 2024 about the 2015 Go Fast email and the near-misses it reported."],
-   "hearings": ["2024-house-exposing-the-truth"]},
-  {"slug": "luis-elizondo", "name": "Luis Elizondo", "role": "Former Pentagon intelligence official", "years": "", "country": "us", "side": "whistleblower",
-   "text": ["Elizondo says he led the Pentagon's AATIP effort before resigning in 2017 in protest at secrecy. The Pentagon has disputed parts of that account. He became the public face of the 2017 New York Times story and told Congress in 2024 that UAP are real and that the US holds UAP technology."],
-   "hearings": ["2024-house-exposing-the-truth"]},
-  {"slug": "mike-gold", "name": "Mike Gold", "role": "Former NASA associate administrator", "years": "", "country": "us", "side": "official",
-   "text": ["A space lawyer and former NASA official who sat on NASA's independent UAP study team. At the 2024 hearing he argued that stigma, not secrecy alone, has held back proper science."],
-   "hearings": ["2024-house-exposing-the-truth"]},
-  {"slug": "michael-shellenberger", "name": "Michael Shellenberger", "role": "Journalist, founder of Public", "years": "", "country": "us", "side": "journalist",
-   "text": ["Shellenberger testified in 2024 and submitted a long document on an alleged secret UAP programme that he said came from whistleblowers. Its claims have not been confirmed."],
-   "hearings": ["2024-house-exposing-the-truth"]},
-  {"slug": "jeffrey-nuccetelli", "name": "Jeffrey Nuccetelli", "role": "Former Air Force security officer", "years": "", "country": "us", "side": "witness",
-   "text": ["Nuccetelli spent 16 years as an Air Force military police officer. In 2025 he described five incidents at Vandenberg Air Force Base from 2003 to 2005, one of which he saw himself, and said reports went up the chain with no answer."],
-   "hearings": ["2025-house-task-force"]},
-  {"slug": "alexandro-wiggins", "name": "Alexandro Wiggins", "role": "Senior Chief, US Navy", "years": "", "country": "us", "side": "witness",
-   "text": ["A serving Navy operations specialist with about 23 years in uniform. He testified in 2025 about four Tic Tac-shaped lights seen from USS Jackson off Southern California on February 15, 2023."],
-   "hearings": ["2025-house-task-force"]},
-  {"slug": "dylan-borland", "name": "Dylan Borland", "role": "Former Air Force imagery analyst", "years": "", "country": "us", "side": "whistleblower",
-   "text": ["A geospatial intelligence specialist in the Air Force from 2010 to 2013. He told the 2025 task force about a silent triangle he saw at Langley Air Force Base in 2012 and said he has faced reprisals since reporting."],
-   "hearings": ["2025-house-task-force"]},
-  {"slug": "george-knapp", "name": "George Knapp", "role": "Investigative reporter, KLAS-TV Las Vegas", "years": "", "country": "us", "side": "journalist",
-   "text": ["Knapp has reported on UFOs since 1987, including the Bob Lazar story. In 2025 he told Congress he is not a believer or a witness, just a reporter following a paper trail."],
-   "hearings": ["2025-house-task-force"]},
-  {"slug": "joe-spielberger", "name": "Joe Spielberger", "role": "Senior policy counsel, Project On Government Oversight", "years": "", "country": "us", "side": "official",
-   "text": ["A watchdog lawyer who testified in 2025 that whistleblower protections matter whatever the subject, and that national security whistleblowers are the least protected."],
-   "hearings": ["2025-house-task-force"]}
+  {
+   "slug": "j-allen-hynek",
+   "name": "J. Allen Hynek",
+   "role": "Astronomer, Blue Book science adviser",
+   "years": "1910 to 1986",
+   "country": "us",
+   "side": "scientist",
+   "text": [
+    "An astronomer at Ohio State and later Northwestern University, Hynek was hired by the Air Force in 1948 to explain sightings away. He stayed with Project Sign, Grudge and Blue Book for about 20 years and slowly came to think a small core of cases deserved real study.",
+    "He testified in 1966 and again in 1968. After Blue Book closed he founded the Center for UFO Studies and gave the world the \"close encounters\" scale, first, second and third kind."
+   ],
+   "hearings": [
+    "1966-house-armed-services",
+    "1968-house-symposium"
+   ]
+  },
+  {
+   "slug": "harold-brown",
+   "name": "Harold Brown",
+   "role": "US Secretary of the Air Force",
+   "years": "1927 to 2019",
+   "country": "us",
+   "side": "official",
+   "text": [
+    "A physicist who ran the Air Force from 1965 to 1969 and later became Secretary of Defense. In 1966 he gave Congress the Blue Book totals: 10,147 reports, 646 still unidentified, and agreed to an outside scientific review."
+   ],
+   "hearings": [
+    "1966-house-armed-services"
+   ]
+  },
+  {
+   "slug": "hector-quintanilla",
+   "name": "Hector Quintanilla",
+   "role": "Project Blue Book officer",
+   "years": "1923 to 1998",
+   "country": "us",
+   "side": "official",
+   "text": [
+    "The longest-serving head of Project Blue Book, from 1963 until it closed in 1970. He sat with Secretary Brown and Hynek at the 1966 hearing."
+   ],
+   "hearings": [
+    "1966-house-armed-services"
+   ]
+  },
+  {
+   "slug": "l-mendel-rivers",
+   "name": "L. Mendel Rivers",
+   "role": "Chair, House Armed Services Committee",
+   "years": "1905 to 1970",
+   "country": "us",
+   "side": "official",
+   "text": [
+    "South Carolina congressman who chaired the 1966 hearing and told the Air Force it could not simply write the sightings off."
+   ],
+   "hearings": [
+    "1966-house-armed-services"
+   ]
+  },
+  {
+   "slug": "james-mcdonald",
+   "name": "James E. McDonald",
+   "role": "Atmospheric physicist, University of Arizona",
+   "years": "1920 to 1971",
+   "country": "us",
+   "side": "scientist",
+   "text": [
+    "A respected cloud physicist who became the most outspoken scientist calling for serious UFO study in the late 1960s. He interviewed hundreds of witnesses himself and criticised both Blue Book and the Condon study.",
+    "At the 1968 symposium he gave the longest statement of the day."
+   ],
+   "hearings": [
+    "1968-house-symposium"
+   ]
+  },
+  {
+   "slug": "carl-sagan",
+   "name": "Carl Sagan",
+   "role": "Astronomer, Cornell University",
+   "years": "1934 to 1996",
+   "country": "us",
+   "side": "scientist",
+   "text": [
+    "Sagan spoke at the 1968 symposium on the chances of life elsewhere. He said the evidence was not persuasive that UFOs were alien craft, nor that none of them were, and later became one of the best-known sceptics of UFO claims."
+   ],
+   "hearings": [
+    "1968-house-symposium"
+   ]
+  },
+  {
+   "slug": "robert-hall",
+   "name": "Robert L. Hall",
+   "role": "Sociologist, University of Illinois",
+   "years": "",
+   "country": "us",
+   "side": "scientist",
+   "text": [
+    "Hall spoke at the 1968 symposium on how rumours and mass belief work, and why that alone did not explain the reports he had looked at."
+   ],
+   "hearings": [
+    "1968-house-symposium"
+   ]
+  },
+  {
+   "slug": "james-harder",
+   "name": "James A. Harder",
+   "role": "Civil engineer, University of California",
+   "years": "1926 to 2006",
+   "country": "us",
+   "side": "scientist",
+   "text": [
+    "An engineering professor at Berkeley who spoke about the physics of reported UFO behaviour at the 1968 symposium."
+   ],
+   "hearings": [
+    "1968-house-symposium"
+   ]
+  },
+  {
+   "slug": "robert-baker",
+   "name": "Robert M. L. Baker Jr.",
+   "role": "Aerospace scientist",
+   "years": "",
+   "country": "us",
+   "side": "scientist",
+   "text": [
+    "An orbital mechanics specialist who presented his analysis of UFO films and the case for better sensor coverage at the 1968 symposium."
+   ],
+   "hearings": [
+    "1968-house-symposium"
+   ]
+  },
+  {
+   "slug": "ronald-moultrie",
+   "name": "Ronald Moultrie",
+   "role": "Under Secretary of Defense for Intelligence and Security",
+   "years": "",
+   "country": "us",
+   "side": "official",
+   "text": [
+    "The senior Pentagon intelligence official who testified at the 2022 House hearing and oversaw the setup of AARO."
+   ],
+   "hearings": [
+    "2022-house-intelligence"
+   ]
+  },
+  {
+   "slug": "scott-bray",
+   "name": "Scott Bray",
+   "role": "Deputy Director of Naval Intelligence",
+   "years": "",
+   "country": "us",
+   "side": "official",
+   "text": [
+    "Bray ran the public side of the Navy's UAP work in 2021 and 2022. At the 2022 hearing he showed footage, gave the count of about 400 reports, and said plainly when he could not explain something."
+   ],
+   "hearings": [
+    "2022-house-intelligence"
+   ]
+  },
+  {
+   "slug": "sean-kirkpatrick",
+   "name": "Sean Kirkpatrick",
+   "role": "First director of AARO",
+   "years": "",
+   "country": "us",
+   "side": "official",
+   "text": [
+    "A physicist and intelligence official who led AARO from 2022 to the end of 2023. His testimony set the office's tone: most cases are ordinary, some lack data, and none so far point to alien technology.",
+    "After leaving he wrote publicly that claims of hidden crash retrieval programmes came from a small circle of people repeating each other."
+   ],
+   "hearings": [
+    "2023-senate-aaro"
+   ]
+  },
+  {
+   "slug": "jon-kosloski",
+   "name": "Jon Kosloski",
+   "role": "Director of AARO",
+   "years": "",
+   "country": "us",
+   "side": "official",
+   "text": [
+    "Dr. Jon Kosloski took over AARO after Sean Kirkpatrick left at the end of 2023.",
+    "In November 2024 he gave senators the office's numbers in public: more than 1,600 reports, most of them solved as balloons, drones or satellites, a small share still anomalous, and no verifiable evidence of extraterrestrial technology."
+   ],
+   "hearings": [
+    "2024-senate-aaro"
+   ]
+  },
+  {
+   "slug": "ryan-graves",
+   "name": "Ryan Graves",
+   "role": "Former Navy F/A-18F pilot",
+   "years": "",
+   "country": "us",
+   "side": "witness",
+   "text": [
+    "Graves flew with the VFA-11 squadron off the US East Coast, where crews began tracking unknown objects on radar, infrared and by eye in 2014. He later founded Americans for Safe Aerospace to help pilots report what they see.",
+    "He testified to the US Congress in 2023 and also spoke at the Mexican Congress hearing that September."
+   ],
+   "hearings": [
+    "2023-house-grusch",
+    "2023-mexico-congress"
+   ]
+  },
+  {
+   "slug": "david-fravor",
+   "name": "David Fravor",
+   "role": "Retired Navy commander, VFA-41",
+   "years": "",
+   "country": "us",
+   "side": "witness",
+   "text": [
+    "Fravor led the flight that met the Tic Tac off San Diego in November 2004, working with the USS Nimitz group. He described a white, Tic Tac-shaped object with no wings or rotors moving abruptly over the water, which then turned up at his squadron's planned meeting point about 60 miles away in under a minute."
+   ],
+   "hearings": [
+    "2023-house-grusch"
+   ]
+  },
+  {
+   "slug": "david-grusch",
+   "name": "David Grusch",
+   "role": "Former intelligence officer",
+   "years": "",
+   "country": "us",
+   "side": "whistleblower",
+   "text": [
+    "A former Air Force officer and intelligence civilian who served on the Pentagon's UAP Task Force. He filed a whistleblower complaint in 2022 and in 2023 told Congress under oath that the US runs a hidden crash retrieval programme. He said he was told of it, not that he saw it.",
+    "The Pentagon denies the programme exists, and AARO's historical review found no evidence for it."
+   ],
+   "hearings": [
+    "2023-house-grusch"
+   ]
+  },
+  {
+   "slug": "tim-gallaudet",
+   "name": "Tim Gallaudet",
+   "role": "Retired Rear Admiral, US Navy",
+   "years": "",
+   "country": "us",
+   "side": "witness",
+   "text": [
+    "An oceanographer who commanded the Navy's meteorology and oceanography command and later served as acting head of NOAA. He testified in 2024 about the 2015 Go Fast email and the near-misses it reported."
+   ],
+   "hearings": [
+    "2024-house-exposing-the-truth"
+   ]
+  },
+  {
+   "slug": "luis-elizondo",
+   "name": "Luis Elizondo",
+   "role": "Former Pentagon intelligence official",
+   "years": "",
+   "country": "us",
+   "side": "whistleblower",
+   "text": [
+    "Elizondo says he led the Pentagon's AATIP effort before resigning in 2017 in protest at secrecy. The Pentagon has disputed parts of that account. He became the public face of the 2017 New York Times story and told Congress in 2024 that UAP are real and that the US holds UAP technology."
+   ],
+   "hearings": [
+    "2024-house-exposing-the-truth"
+   ]
+  },
+  {
+   "slug": "mike-gold",
+   "name": "Mike Gold",
+   "role": "Former NASA associate administrator",
+   "years": "",
+   "country": "us",
+   "side": "official",
+   "text": [
+    "A space lawyer and former NASA official who sat on NASA's independent UAP study team. At the 2024 hearing he argued that stigma, not secrecy alone, has held back proper science."
+   ],
+   "hearings": [
+    "2024-house-exposing-the-truth"
+   ]
+  },
+  {
+   "slug": "michael-shellenberger",
+   "name": "Michael Shellenberger",
+   "role": "Journalist, founder of Public",
+   "years": "",
+   "country": "us",
+   "side": "journalist",
+   "text": [
+    "Shellenberger testified in 2024 and submitted a long document on an alleged secret UAP programme that he said came from whistleblowers. Its claims have not been confirmed."
+   ],
+   "hearings": [
+    "2024-house-exposing-the-truth"
+   ]
+  },
+  {
+   "slug": "jeffrey-nuccetelli",
+   "name": "Jeffrey Nuccetelli",
+   "role": "Former Air Force security officer",
+   "years": "",
+   "country": "us",
+   "side": "witness",
+   "text": [
+    "Nuccetelli spent 16 years as an Air Force military police officer. In 2025 he described five incidents at Vandenberg Air Force Base from 2003 to 2005, one of which he saw himself, and said reports went up the chain with no answer."
+   ],
+   "hearings": [
+    "2025-house-task-force"
+   ]
+  },
+  {
+   "slug": "alexandro-wiggins",
+   "name": "Alexandro Wiggins",
+   "role": "Senior Chief, US Navy",
+   "years": "",
+   "country": "us",
+   "side": "witness",
+   "text": [
+    "A serving Navy operations specialist with about 23 years in uniform. He testified in 2025 about four Tic Tac-shaped lights seen from USS Jackson off Southern California on February 15, 2023."
+   ],
+   "hearings": [
+    "2025-house-task-force"
+   ]
+  },
+  {
+   "slug": "dylan-borland",
+   "name": "Dylan Borland",
+   "role": "Former Air Force imagery analyst",
+   "years": "",
+   "country": "us",
+   "side": "whistleblower",
+   "text": [
+    "A geospatial intelligence specialist in the Air Force from 2010 to 2013. He told the 2025 task force about a silent triangle he saw at Langley Air Force Base in 2012 and said he has faced reprisals since reporting."
+   ],
+   "hearings": [
+    "2025-house-task-force"
+   ]
+  },
+  {
+   "slug": "george-knapp",
+   "name": "George Knapp",
+   "role": "Investigative reporter, KLAS-TV Las Vegas",
+   "years": "",
+   "country": "us",
+   "side": "journalist",
+   "text": [
+    "Knapp has reported on UFOs since 1987, including the Bob Lazar story. In 2025 he told Congress he is not a believer or a witness, just a reporter following a paper trail."
+   ],
+   "hearings": [
+    "2025-house-task-force"
+   ]
+  },
+  {
+   "slug": "joe-spielberger",
+   "name": "Joe Spielberger",
+   "role": "Senior policy counsel, Project On Government Oversight",
+   "years": "",
+   "country": "us",
+   "side": "official",
+   "text": [
+    "A watchdog lawyer who testified in 2025 that whistleblower protections matter whatever the subject, and that national security whistleblowers are the least protected."
+   ],
+   "hearings": [
+    "2025-house-task-force"
+   ]
+  }
  ]
 }
