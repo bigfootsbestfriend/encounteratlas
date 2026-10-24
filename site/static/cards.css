@@ -283,7 +283,9 @@
 /* small cards (two across on a phone): the text can't shrink below its floor, so show less of it */
 @container (max-width: 250px) {
   .tc-sum { font-size: 9.5px; line-height: 1.2; }
-  .tc-stats > div:nth-child(4), .tc-stats > .tc-signs { display: none; }
+  .tc-stats > .tc-signs { display: none; }
+  .tc-more { top: auto; bottom: calc(var(--u) * 44); }
+  .tc-back > .tc-where { bottom: calc(var(--u) * 44 + 30px); }
   .tc-stats > div { -webkit-line-clamp: 1; line-clamp: 1; }
   .tc-have .tc-spots li:nth-child(n+3):not(.tc-moresp) { display: none; }
 }

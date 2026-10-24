@@ -1,6 +1,12 @@
 [
  {
   "date": "2026-10-24",
+  "title": "Road trip podcast player",
+  "path": "/road-trip/",
+  "note": "Plan a trip or open one of the sample trips and there's now a Listen along list with podcast episodes about the creatures you'll pass, in the order you'll pass them. Hit Play all and it keeps going with your screen off, with big buttons and lock-screen controls. Episodes stream straight from each show, so the people who make them get the listen."
+ },
+ {
+  "date": "2026-10-24",
   "title": "Collector cards you can flip",
   "path": "/cards/",
   "note": "The cards are proper trading cards now. Tap one to flip it for the field notes and where to find it. Unique cards (only one spot on the planet) are the shiny ones, and on a phone they catch the light when you tilt it."
