@@ -62,12 +62,14 @@ def build(ctx):
         p = x['properties']; lon, lat = x['geometry']['coordinates']
         stops.append(['place', lat, lon, p['name'], ', '.join(v for v in (p.get('type'), p.get('city'), p.get('region')) if v),
                       U('/places/' + p['slug'] + '/'), p.get('c') or ''])
+    case_place = {}   # a famous case's place name, used as the card spot label (case titles read oddly there)
     for x in gj('famous'):
         p = x['properties']; lon, lat = x['geometry']['coordinates']
         if p['s'] in LIVING:
             continue
         stops.append(['case', lat, lon, p['t'], f"{p['n']}, {p['p']}{', ' + str(p['y']) if p.get('y') else ''}",
                       p.get('u') or U('/creatures/' + p['s'] + '/'), p['s']])
+        case_place[(p['t'], p['s'])] = p['p']
     for f, kind in (('mysteries', 'mystery'), ('encounters', 'encounter')):
         for x in gj(f):
             p = x['properties']; lon, lat = x['geometry']['coordinates']
@@ -85,7 +87,7 @@ def build(ctx):
     for s in stops:
         c = s[6]
         if s[0] in ('place', 'case') and c and c in ctx.by_slug and c not in LIVING:
-            spots.setdefault(c, []).append([s[1], s[2], s[3]])
+            spots.setdefault(c, []).append([s[1], s[2], s[3] if s[0] == 'place' else case_place.get((s[3], c), s[3])])
     cards = {}
     for slug, sp in spots.items():
         c = ctx.by_slug[slug]

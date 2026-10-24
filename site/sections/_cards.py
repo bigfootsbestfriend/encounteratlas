@@ -15,6 +15,10 @@ YEAR = re.compile(r'\b(\d{1,2}(?:st|nd|rd|th)(?=[ -]centur)|1\d{3}s?|20\d{2}s?)\
 FT = re.compile(r'(\d+(?:\.\d+)?)(?: to (\d+(?:\.\d+)?))? ?(?:ft|feet)\b')
 
 
+# Short category names for the card strip (the full CATS labels get cut off on phone-sized cards)
+SHORT_CAT = {'hominid': 'Hominid', 'canid': 'Dogman', 'winged': 'Winged', 'aquatic': 'Water monster', 'entity': 'Visitor',
+             'fae': 'Little people', 'other': 'Oddity', 'ufo': 'UFO'}
+
 def first_short(t):
     """'Indigenous names ... long predate the 1958 headline' -> 'Old lore; 1958'. Short text is kept as it is."""
     t = (t or '').strip()
@@ -66,7 +70,7 @@ def build_cards(ctx, cards, hunts, checkin_km):
     info = {}
     for i, slug in enumerate(allc, 1):
         c, cr = cards[slug], ctx.by_slug[slug]
-        info[slug] = {'no': i, 'n': c['n'], 'c': c['c'], 'k': ctx.CATS.get(c['c'], ('', ''))[0], 'r': c['r'], 'art': c['art'],
+        info[slug] = {'no': i, 'n': c['n'], 'c': c['c'], 'k': SHORT_CAT.get(c['c'], ctx.CATS.get(c['c'], ('', ''))[0]), 'r': c['r'], 'art': c['art'],
                       'u': U('/creatures/' + slug + '/'), 's': cr.get('summary', ''), 'first': first_short(cr.get('first')),
                       'turf': cr.get('region', ''), 'size': metric(cr.get('size', '')),
                       'hab': cr.get('habitat', ''), 'signs': (cr.get('signs') or [])[:2], 'spots': spot_list(c['spots'])}

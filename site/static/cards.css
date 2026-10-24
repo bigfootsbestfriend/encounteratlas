@@ -280,6 +280,13 @@
 @media (max-width: 520px) {
   .tc-filters .tc-tiltbtn { margin-left: 0; }
 }
+/* small cards (two across on a phone): the text can't shrink below its floor, so show less of it */
+@container (max-width: 250px) {
+  .tc-sum { font-size: 9.5px; line-height: 1.2; }
+  .tc-stats > div:nth-child(4), .tc-stats > .tc-signs { display: none; }
+  .tc-stats > div { -webkit-line-clamp: 1; line-clamp: 1; }
+  .tc-have .tc-spots li:nth-child(n+3):not(.tc-moresp) { display: none; }
+}
 /* reduced motion: no 3D turn, no tilt, no sparkle; flips become a crossfade */
 @media (prefers-reduced-motion: reduce) {
   .tc-in, .tc.is-flip .tc-in, .tc.is-act .tc-tilt { transform: none !important; transition: none; }
