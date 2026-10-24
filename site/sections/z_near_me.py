@@ -9,6 +9,14 @@ build time, like the newsletter does), region hub chips, report and email CTAs, 
 static/nearme.js acts only when a control is used: "Use my location", "Pick a place" (static/data/cities.json, no
 outside geocoder), radius (km or miles), category and time chips. Then the map shows reader reports from the
 Worker's /v1/reports/nearby plus the archive layers from data/near/<lat0>_<lon0>.json (5-degree tiles).
+
+Also here (2026-10-24):
+- App hub: a row of big icon buttons to the app's other features (plain links, no JS).
+- Then and now: an era slider plus era buttons (old newspapers, Blue Book, Canadian UFO Survey, FAA, PURSUE, reader
+  reports) that filter the map and list, with a count per era. Old newspaper stories come from /data/historic.geojson
+  (written by historic.py), loaded only when a search runs.
+- Flap in progress: the Worker's /v1/clusters (3+ approved reports within 50 km in 3 days). The build asks the API
+  once; until the endpoint answers, the page never calls it (no 404s in the console), and any failure stays silent.
 """
 import datetime, json, os, re, sys, urllib.request
 
@@ -18,6 +26,41 @@ RADII_KM = [10, 25, 50, 100, 250]
 RADII_MI = [5, 15, 30, 60, 150]   # sent as km (8, 24, 48, 97, 241)
 DAYS = [(7, 'Past week'), (30, 'Past month'), (90, 'Past 3 months'), (365, 'Past year')]
 CATS = [('', 'Everything'), ('ufo', 'UFOs'), ('creature', 'Creatures'), ('other', 'Something else')]
+# Then and now. src = layers in the era; years = dated archive files from other layers (the Greek cases) join by year.
+ERAS = [
+    {'id': 'all', 'name': 'Every era', 'span': '1800s to today'},
+    {'id': 'papers', 'name': 'Old newspapers', 'span': '1800s to 1920s', 'src': ['historic'], 'years': [1700, 1929]},
+    {'id': 'bluebook', 'name': 'Project Blue Book', 'span': '1947 to 1969', 'src': ['bluebook', 'bluebook_approx'], 'years': [1947, 1969]},
+    {'id': 'canada', 'name': 'Canadian UFO Survey', 'span': '1989 to 2025', 'src': ['canada'], 'years': [1989, 2025]},
+    {'id': 'faa', 'name': 'FAA pilot reports', 'span': '2007 to 2024', 'src': ['faa']},
+    {'id': 'pursue', 'name': 'PURSUE files', 'span': 'released 2026', 'src': ['pursue']},
+    {'id': 'today', 'name': 'Reader reports', 'span': 'today', 'src': ['reports']},
+]
+# App hub: (path, label, icon, tone)
+HUB = [('/road-trip/', 'Road trip', 'roadside', 'road'), ('/cards/', 'Collector cards', 'bigfoot', 'cards'),
+       ('/tools/skywatch/', "Tonight's sky", 'telescope', 'sky'), ('/stories/campfire/', 'Campfire stories', 'campfire', 'fire'),
+       ('/journal/', 'Field journal', 'clipboard', 'journal'), ('/map/', 'Full map', 'ufo-globe', 'map'),
+       ('/report/', 'Report a sighting', 'ufo-report', 'report')]
+
+
+# The icon set has no campfire, so this one is drawn here in the same flat white style.
+CAMPFIRE = ('<svg class="ico" viewBox="0 0 64 64" aria-hidden="true" focusable="false">'
+            '<path d="M32 4c3 9 13 14 13 27a13 13 0 0 1-26 0c0-7 4-11 6-15 1 5 3 7 5 8-1-8 0-14 2-20z"/>'
+            '<path d="M32 26c2 5 7 8 7 14a7 7 0 0 1-14 0c0-4 2-6 4-9 0 3 1 4 2 5 0-4 0-7 1-10z" fill="#C0582A"/>'
+            '<path d="M8 50l46 10 2-6-46-10zM56 50 10 60l-2-6 46-10z"/></svg>')
+
+
+def clusters_live():
+    """True when the Worker answers /v1/clusters (deployed). EA_CLUSTERS=1/0 forces it for local tests."""
+    force = os.environ.get('EA_CLUSTERS')
+    if force in ('0', '1'):
+        return force == '1'
+    try:
+        req = urllib.request.Request(f'{API}/v1/clusters?lat=0&lng=0', headers={'user-agent': 'EncounterAtlasBuild/1.0 (+https://encounteratlas.com)'})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            return r.status == 200 and 'clusters' in json.load(r)
+    except Exception:
+        return False
 
 
 def latest_reports(n=30):
@@ -88,11 +131,27 @@ def build(ctx):
     # Web Push public key: the Worker's wrangler.toml is the one place it lives.
     toml = open(os.path.join(ctx.ROOT, 'worker', 'wrangler.toml'), encoding='utf-8').read()
     vm = re.search(r'^VAPID_PUBLIC\s*=\s*"([A-Za-z0-9_-]+)"', toml, re.M)
+    # Old newspaper stories: historic.py's topic pages hold each story (#h-<id>).
+    try:
+        sys.path.insert(0, os.path.join(ctx.ROOT, 'site', 'sections'))
+        from historic import TOPICS as HTOPICS
+        hist_topics = {k: U('/history/' + v[0] + '/') for k, v in HTOPICS.items()}
+    except Exception:
+        hist_topics = {}
+    flap_on = clusters_live()
+    print(f'near-me: flap card {"on" if flap_on else "off (the Worker has no /v1/clusters yet)"}')
     cfg = json.dumps({'api': API, 'base': ctx.BASE, 'vapid': vm.group(1) if vm else '',
                       'sitekey': os.environ.get('TURNSTILE_SITEKEY', '1x00000000000000000000AA'), 'tiles': U('/data/near/'), 'cities': U('/data/cities.json'),
                       'report': U('/report/'), 'reports': U('/reports/'),
-                      'ufo': [c['slug'] for c in ctx.creatures if c['cat'] == 'ufo'], 'living': living},
+                      'ufo': [c['slug'] for c in ctx.creatures if c['cat'] == 'ufo'], 'living': living,
+                      'historic': U('/data/historic.geojson'), 'htopics': hist_topics,
+                      'eras': [{k: e[k] for k in ('id', 'name', 'span', 'src', 'years') if k in e} for e in ERAS], 'clusters': flap_on},
                      separators=(',', ':')).replace('</', '<\\/')
+    era_btns = ''.join(f'<button type="button" class="nm-era" data-era="{e["id"]}" data-i="{i}" aria-pressed="{"true" if i == 0 else "false"}">'
+                       f'<b>{E(e["name"])}</b><span class="nm-era-span">{E(e["span"])}</span><span class="nm-era-n"></span></button>'
+                       for i, e in enumerate(ERAS))
+    hub = ''.join(f'<li><a class="nm-app tone-{t}" href="{U(p)}"><span class="nm-app-ico">{CAMPFIRE if ic == "campfire" else ctx.icon(ic)}</span>'
+                  f'<span class="nm-app-name">{E(n)}</span></a></li>' for p, n, ic, t in HUB)
     sources = ''.join(f'<li><b>{E(t)}</b> ({counts[k]:,} on this map). {E(s.split(" Credit by name")[0].split(" Rows from")[0])}</li>'
                       for k, (_, t, s) in LAYERS.items() if k != 'bluebook_approx')
 
@@ -103,6 +162,7 @@ def build(ctx):
     <h1>UFO and cryptid sightings near me</h1>
     <p class="lede">See what people have reported around you: Bigfoot, Dogman, lake monsters, strange lights and UFOs. Use your location or pick a
     town anywhere in the world. You'll get reader reports from the last few weeks, plus {total:,} official UFO files and survey sightings from the archives.</p>
+    <nav class="nm-hub" aria-label="More in the app"><ul>{hub}</ul></nav>
     <p class="nm-install" id="nm-install" hidden><button type="button" class="btn btn-ghost" id="nm-install-btn">Install the app</button>
       <span>Opens straight to this page, full screen, and works with a weak signal.</span></p>
     <p class="nm-install nm-ios" id="nm-ios" hidden>On iPhone: tap Share, then <b>Add to Home Screen</b> to keep this as an app.</p>
@@ -119,6 +179,7 @@ def build(ctx):
       </form>
     </div>
     <p class="nm-status" id="nm-status" role="status" aria-live="polite"></p>
+    <div class="nm-flap-slot" id="nm-flap" aria-live="polite"></div>
     <div class="nm-alert" id="nm-alert" hidden>
       <button type="button" class="btn btn-ghost nm-alert-btn" id="nm-alert-btn">Alert me about new reports here</button>
       <p class="nm-alert-st" id="nm-alert-st" role="status" aria-live="polite"></p>
@@ -130,12 +191,20 @@ def build(ctx):
         <button type="button" class="nm-unit" id="nm-unit" aria-pressed="false">Show miles</button>
       </div>
       <div class="nm-row" role="group" aria-label="What"><span class="nm-row-h">What</span><div class="nm-opts" id="nm-cat">{cats}</div></div>
-      <div class="nm-row" role="group" aria-label="When"><span class="nm-row-h">When</span><div class="nm-opts" id="nm-days">{days}</div></div>
+      <div class="nm-row" role="group" aria-label="When (reader reports)"><span class="nm-row-h">When</span><div class="nm-opts" id="nm-days">{days}</div></div>
     </div>
+    <fieldset class="nm-then" id="nm-then">
+      <legend class="nm-row-h">Then and now</legend>
+      <p class="nm-then-help">Slide back through time, from old newspaper stories to this month's reader reports. The map and the list show one era at a time.</p>
+      <label class="nm-then-lab" for="nm-era-range">Era: <output id="nm-era-out" for="nm-era-range">{E(ERAS[0]["name"])}, {E(ERAS[0]["span"])}</output></label>
+      <input type="range" id="nm-era-range" class="nm-era-range" min="0" max="{len(ERAS) - 1}" step="1" value="0" aria-valuetext="{E(ERAS[0]["name"])}, {E(ERAS[0]["span"])}">
+      <div class="nm-eras" id="nm-eras" role="group" aria-label="Pick an era">{era_btns}</div>
+      <p class="nm-era-st" id="nm-era-st" role="status" aria-live="polite"></p>
+    </fieldset>
   </div>
   <div class="nm-mapwrap" id="nm-mapwrap" hidden>
     <div id="nm-map" class="nm-map" aria-label="Map of sightings near the chosen place"></div>
-    <p class="nm-legend"><span class="lg lg-rep">Reader reports</span><span class="lg lg-bb">Air Force files</span><span class="lg lg-ring">Area only (faded ring)</span><span class="lg lg-faa">FAA pilot reports</span><span class="lg lg-pur">Pentagon files</span><span class="lg lg-ca">Canadian UFO Survey</span><span class="lg lg-gr">Greek close encounters</span></p>
+    <p class="nm-legend"><span class="lg lg-rep">Reader reports</span><span class="lg lg-bb">Air Force files</span><span class="lg lg-ring">Area only (faded ring)</span><span class="lg lg-faa">FAA pilot reports</span><span class="lg lg-pur">Pentagon files</span><span class="lg lg-ca">Canadian UFO Survey</span><span class="lg lg-gr">Greek close encounters</span><span class="lg lg-hi">Old newspaper stories</span></p>
   </div>
   <div class="wrap"><div class="nm-results" id="nm-results" aria-live="polite"></div></div>
 </section>
@@ -172,8 +241,10 @@ def build(ctx):
     <ul class="nm-src">
       <li><b>Reader reports</b>. Sent in through our report form and read by a person before they go up. Shown to about 5 km. Reports about creatures from living Indigenous and local traditions are shown only to the nearest region, about 100 km.</li>
       {sources}
+      <li><b>Old newspaper stories</b> (1800s to 1920s). Wild men, sea serpents, airships and ghost lights from US and New Zealand papers, retold in our own words with a link to each original page. <a href="{U('/history/')}">See them all</a>.</li>
+      <li><b>Flap in progress</b>. When three or more approved reader reports land within 50 km of each other in three days, the area gets a highlighted card. It only counts reports, it never shows where anyone lives, and creatures from living traditions are counted to the nearest region only.</li>
     </ul>
-    <p>Air Force files that only name a state or country are drawn as a faded ring over that area, never as a pin. Archive files come from every year; the time buttons apply to reader reports.</p>
+    <p>Air Force files that only name a state or country are drawn as a faded ring over that area, never as a pin. The Then and now slider picks an era; the When buttons apply to reader reports. Greek close encounters show up in the era that matches their year.</p>
     <p><b>Your location stays yours.</b> We round it to about 1 km before searching and don't save it. Picking a place uses a town list on this site, not an outside service.</p>
   </div>
 </section>

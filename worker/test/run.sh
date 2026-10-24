@@ -21,3 +21,4 @@ API="http://127.0.0.1:$PORT" PERSIST="$STATE" node test/api.test.mjs
 API="http://127.0.0.1:$PORT" node test/nearby.test.mjs
 API="http://127.0.0.1:$PORT" PERSIST="$STATE" LOG="$STATE.log" node test/push.test.mjs
 API="http://127.0.0.1:$PORT" node test/motd.test.mjs
+API="http://127.0.0.1:$PORT" LOG="$STATE.log" node test/clusters.test.mjs

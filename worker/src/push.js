@@ -11,6 +11,7 @@ import { LIVING_TRADITIONS } from './index.js';
 import { haversineKm, category, publicPoint, summary } from './nearby.js';
 import { sendPush, validEndpoint, b64u } from './webpush.js';
 import { publicPlace } from './place.js';
+import { clusterFor, shortPlace, WINDOW_DAYS } from './clusters.js';
 import { fail, json, hash, clientIp, rateLimited, turnstileOk, randomId, sendEmail, emailLayout, esc, line, now } from './util.js';
 
 export const DAILY_CAP = 3;
@@ -170,13 +171,20 @@ export async function notifyNearby(env, pid) {
   const label = category(r.creature) === 'ufo' && name.toLowerCase().indexOf('ufo') === -1 ? `${name} (UFO)` : name;
   const site = String(env.SITE || 'https://encounteratlas.com').replace(/\/$/, '');
   const body = clean(summary([publicPlace(r.place), r.story].filter(Boolean).join(': '), 140), 'Tap to read the report.');
+  // Part of a flap (3+ reports within 50 km in the last 3 days)? Then the title says so. Same one alert per
+  // approval and the same daily cap; a living tradition still only names the region.
+  const flap = await clusterFor(env, r).catch((e) => { console.error('clusterFor', e); return null; });
+  const near = region ? '' : shortPlace(r.place);
+  const flapTitle = flap && (near ? `${flap.count} reports near ${near} in the last ${WINDOW_DAYS} days`
+    : `${flap.count} reports in your region in the last ${WINDOW_DAYS} days`);
   return deliver(env, hits.map((x) => x.s), (s) => {
     const km = kmOf.get(s.id);
     const dist = s.units === 'mi' ? `${Math.max(1, Math.round(km / 1.609344))} mi` : `${Math.max(1, Math.round(km))} km`;
     return {
       kind: 'alert', id: r.pid,
-      title: clean(region ? `New ${label} report in your region` : `New ${label} report ${dist} away`, 'New report near you'),
+      title: clean(flapTitle || (region ? `New ${label} report in your region` : `New ${label} report ${dist} away`), 'New report near you'),
       body, url: `${site}/reports/${r.pid}/?source=alert`,
+      ...(flap ? { cluster: { count: flap.count, first_seen: flap.first_seen, last_seen: flap.last_seen } } : {}),
     };
   });
 }

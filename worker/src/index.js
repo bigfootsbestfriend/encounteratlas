@@ -12,6 +12,8 @@
 //   GET  /api/reports.geojson             approved reports, public (~5 km) points only
 //   GET  /v1/reports/nearby?lat&lng&radius_km&days&category&limit&cursor   field app: approved reports near a point
 //                                         (public cell centres rounded to 0.01 deg, no links; 60/min per IP)
+//   GET  /v1/clusters?lat&lng&radius_km   "flap in progress": 3+ approved reports within 50 km in the last 3 days
+//                                         (clusters.js; rounded centre, counts and dates only; 60/min per IP)
 //   POST /v1/push/subscribe|update|unsubscribe   sighting alerts for a saved area (push.js)
 //   GET  /api/reports/<pid>               an approved report, or your own in any status (Bearer)
 //   PATCH /api/reports/<pid>              (owner) edit text/location/videos, remove photos -> back to pending
@@ -27,6 +29,7 @@ import { CREATURES } from './creatures.js';
 import { sanitizeJpeg, BadImage } from './jpeg.js';
 import { handleMod } from './mod.js';
 import { nearby, category } from './nearby.js';
+import { clusters } from './clusters.js';
 import { pushApi, notifyMods, BLOCKED } from './push.js';
 import { privatizePlace, publicPlace } from './place.js';
 import { MOTD_SLUGS, motdIsToday } from './motd.js';
@@ -101,6 +104,7 @@ async function api(req, env, url, ctx) {
   if (p === '/api/reports' && m === 'GET') return listReports(env, url);
   if (p === '/api/reports.geojson' && m === 'GET') return geojson(env);
   if (p === '/v1/reports/nearby' && m === 'GET') return nearby(req, env, url, ctx);
+  if (p === '/v1/clusters' && m === 'GET') return clusters(req, env, url, ctx);
   if (p.startsWith('/v1/push/') && m === 'POST') return pushApi(req, env, p, ctx, body);
   const rm = p.match(/^\/api\/reports\/([a-z0-9]{10})$/);
   if (rm && m === 'GET') return getReport(req, env, rm[1]);

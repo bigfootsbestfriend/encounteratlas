@@ -116,7 +116,8 @@ const n2 = pushes().length;
 await approve(w1.data.id);
 await sleep(1000);
 sent = pushes().slice(n2).filter((p) => p.payload.kind === 'alert');
-ok(sent.length >= 1 && sent.every((p) => / in your region$/.test(p.payload.title)), 'living tradition says "in your region", no distance', JSON.stringify(sent.map((p) => p.payload.title)));
+// (The third Banff report in a day: the title can be the flap wording from clusters.js, still region-only.)
+ok(sent.length >= 1 && sent.every((p) => / in your region( in the last \d days)?$/.test(p.payload.title) && !/\d+ (km|mi)/.test(p.payload.title)), 'living tradition says "in your region", no distance', JSON.stringify(sent.map((p) => p.payload.title)));
 st = await (await fetch(API + '/mod/push-stats', { headers: { cookie: COOKIE } })).json();
 const n3 = pushes().length;
 const u2 = await file({ creature: 'ufo-orbs', lat: 51.18, lon: -115.57, place: 'Banff again' });
