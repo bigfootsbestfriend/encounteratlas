@@ -671,7 +671,7 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
   background-image: radial-gradient(circle at 92% 0%, rgba(242,179,61,.18), transparent 45%); color: #F3F1DA; border: 2px solid var(--lantern);
   border-radius: 18px; padding: 1.5rem 1.6rem; margin: 2rem 0 1rem; box-shadow: 0 10px 30px rgba(0,0,0,.18); }
 .su-art { display: grid; grid-template-columns: 1fr 1fr; gap: .3rem; width: 132px; }
-.su-art img { width: 64px; height: 64px; background: var(--spruce-3); border: 2px solid var(--lantern); border-radius: 50%; padding: 7px; }
+.su-art img { width: 64px; height: 64px; background: radial-gradient(circle at 50% 40%, #FBE3A6, var(--lantern) 75%); border: 3px solid #F3F1DA; border-radius: 50%; padding: 8px; box-shadow: 0 0 0 3px rgba(242,179,61,.35); }
 .su-art img:first-child { grid-column: 1 / -1; justify-self: center; }
 .signup h2 { margin: 0 0 .25rem; color: var(--lantern-2); font-size: clamp(1.4rem, 3vw, 1.8rem); }
 .signup .su-lede { margin: 0 0 .8rem; color: var(--lichen); }
@@ -685,7 +685,7 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 .signup .su-fine { margin: .55rem 0 0; font-size: .82rem; color: var(--muted-d); }
 @media (max-width: 640px) {
   .signup { grid-template-columns: 1fr; gap: .8rem; padding: 1.2rem; }
-  .su-art { display: flex; width: auto; }
+  .su-art { display: flex; justify-content: center; gap: .6rem; width: auto; }
   .su-art img { width: 48px; height: 48px; padding: 6px; }
   .signup input[type=email] { max-width: none; }
 }
