@@ -5,8 +5,9 @@
 // filters the grid, counts the collection and shows the nearest spot when we already know roughly where you are.
 (function () {
   const KEY = 'ea-cards', LOC = 'ea-cards-loc';
-  const me = document.currentScript && document.currentScript.src;
-  const logo = me ? me.replace(/cards\.js(\?.*)?$/, 'logo-mark.svg') : '/static/logo-mark.svg';
+  // Face-down artwork for the reveal: fetched before the card flies in so it never shows up blank
+  const REV = ((document.currentScript && document.currentScript.src) || '/static/cards.js').replace(/cards\.js(\?.*)?$/, 'cards/reverse.webp');
+  const revArt = () => { const im = new Image(); im.src = REV; return im.decode().catch(() => {}); };
   const cfgEl = document.getElementById('cc-config') || document.getElementById('rt-config');
   const cfg = cfgEl ? JSON.parse(cfgEl.textContent) : {};
   const dataUrl = cfg.data || '/data/roadtrip.json';
@@ -131,7 +132,7 @@
   async function reveal(got, returnFocus) {
     if (revealing || !got || !got.length) return;
     let info;
-    try { info = await loadInfo(); } catch (e) { return; }
+    try { [info] = await Promise.all([loadInfo(), revArt()]); } catch (e) { return; }
     revealing = true;
     const prevFocus = returnFocus || document.activeElement;
     const hunt = new Set(info.hunt || []);
@@ -171,7 +172,7 @@
       ov.className = 'tc-rv';
       ov.innerHTML = `<div class="tc-rv-stage"><span class="tc-burst" aria-hidden="true"></span>
 <div class="tc tc-rvcard tc-have tc-${rk} cat-${esc(d.c)}${hunt.has(g.slug) ? ' tc-hunt' : ''}${still ? '' : ' is-flip'}"><div class="tc-card"><div class="tc-tilt"><div class="tc-in">
-${frontHTML(g.slug, d, info, (collected()[g.slug] || {}).t || new Date().toISOString())}<div class="tc-face tc-rev" aria-hidden="true"><span class="tc-rev-ring"><img src="${esc(logo)}" alt=""></span><span class="tc-rev-w">Encounter Atlas</span></div>
+${frontHTML(g.slug, d, info, (collected()[g.slug] || {}).t || new Date().toISOString())}<div class="tc-face tc-rev" aria-hidden="true"></div>
 </div></div></div></div></div>
 <p class="tc-rv-t" id="tc-rv-t">${got.length > 1 ? `New card ${i + 1} of ${got.length}` : 'New card!'}</p>
 <p class="tc-rv-s">${esc(d.n)}, ${esc(d.r)}${g.at ? `. Collected at ${esc(g.at)}` : ''}.</p>
