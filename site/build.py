@@ -231,7 +231,7 @@ MAP_API = f' data-api="{EA_API}"' if EA_API else ''
 UFO_MENU = [('/ufo/', 'UFO sightings'), ('/ufo/cases/', 'Famous cases worldwide'), ('/ufo/canada/', 'Canada sightings map'), ('/ufo/greece/', 'Greece close encounters'), ('/ufo/blue-book/', 'Air Force Blue Book files'),
             ('/ufo/releases/', 'Official releases'), ('/ufo/hearings/', 'Hearings and testimony'), ('/ufo/programs/', 'Government programmes'), ('/ufo/countries/', 'UFO files by country'), ('/military/', 'Military encounters')]
 STORY_MENU = ([('/reports/', 'Reader reports')] if EA_API else []) + [('/stories/', 'Witness stories'), ('/encounters/', 'Close encounters'), ('/report/', 'Report an encounter')]
-EXPLORE_MENU = [('/near-me/', 'Sightings near me'), ('/mysteries/', 'Mysteries'), ('/history/', 'Old newspaper stories'), ('/on-this-day/', 'On this day'), ('/compare/', 'Creature comparisons'),
+EXPLORE_MENU = [('/near-me/', 'Sightings near me'), ('/road-trip/', 'Road trip planner'), ('/cards/', 'Collector cards'), ('/mysteries/', 'Mysteries'), ('/history/', 'Old newspaper stories'), ('/on-this-day/', 'On this day'), ('/compare/', 'Creature comparisons'),
                 ('/us/', 'By state or province'), ('/places/', 'Places to visit')]
 RES_MENU = [('/guides/', 'Field guides'), ('/gear/', 'Field gear'), ('/books/', 'Books'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts'), ('/newsletter/', 'Weekly email')]
 # Six top-level items (Mike, 2026-10-18: the eight-item menu wrapped into three rows on phones). Under 960px the
