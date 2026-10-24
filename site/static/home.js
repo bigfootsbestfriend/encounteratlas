@@ -79,27 +79,29 @@
     document.addEventListener('click', (e) => { if (!box.contains(e.target)) list.hidden = true; });
   }
 
-  // Blue Book points, shared by the two lists below
+  // Blue Book points for "Near you" (the full map file, only fetched after "Use my location")
   let bb = null;
   const loadBB = () => bb || (bb = fetch(BASE + '/data/bluebook.geojson').then((r) => r.json()).then((d) => d.features));
 
-  // This month in the Air Force files
+  // This month in the Air Force files: a small per-month list, fetched when the box comes near the screen
   const monthBox = document.querySelector('.this-month');
   if (monthBox) {
     const m = new Date().getMonth();
     monthBox.querySelector('.month-name').textContent = LONG[m];
-    loadBB().then((feats) => {
-      const hits = feats.filter((f) => f.properties.w.startsWith(MONTHS[m] + ' ') && f.properties.a === 0);
+    const fill = () => fetch(`${BASE}/data/bluebook-month/${String(m + 1).padStart(2, '0')}.json`).then((r) => r.json()).then((rows) => {
+      const hits = rows.map(([id, t, r, w, y]) => ({ id, t, r, w, y }));
       // A different handful each day, spread across the years
       const day = Math.floor(Date.now() / 864e5);
-      const pick = hits.map((f, i) => [((f.properties.id + day) * 2654435761) % 4294967296, f]).sort((x, y) => x[0] - y[0]).slice(0, 8).map((x) => x[1]);
-      pick.sort((x, y) => x.properties.y - y.properties.y);
-      monthBox.querySelector('.month-list').innerHTML = pick.map((f) => {
-        const p = f.properties;
+      const pick = hits.map((p) => [((p.id + day) * 2654435761) % 4294967296, p]).sort((x, y) => x[0] - y[0]).slice(0, 8).map((x) => x[1]);
+      pick.sort((x, y) => x.y - y.y);
+      monthBox.querySelector('.month-list').innerHTML = pick.map((p) => {
         const where = p.t === p.r || !p.r ? p.t : `${p.t}, ${p.r}`;
         return `<li><span class="yr">${esc(p.w)}</span><span><a href="${caseLink(p)}" rel="noopener" target="_blank">${esc(where)}</a></span></li>`;
       }).join('') + `<li><span class="yr"></span><span><a href="${BASE}/ufo/blue-book/">All ${hits.length.toLocaleString()} ${LONG[m]} reports in the Air Force files</a></span></li>`;
     }).catch(() => { monthBox.hidden = true; });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((es, o) => { if (es.some((e) => e.isIntersecting)) { o.disconnect(); fill(); } }, { rootMargin: '600px 0px' }).observe(monthBox);
+    } else fill();
   }
 
   // Near you, after "Use my location"

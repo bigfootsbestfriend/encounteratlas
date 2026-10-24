@@ -54,7 +54,24 @@
 
   // ---------- map ----------
   const el = document.getElementById('pl-map');
-  if (!el || !window.maplibregl) return;
+  if (!el) return;
+  // MapLibre (about 200 KB) loads only when the map comes near the screen, so the page text paints first
+  let started = false;
+  const start = () => {
+    if (started) return;
+    started = true;
+    if (window.maplibregl) return initMap();
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.js';
+    s.onload = initMap;
+    document.head.appendChild(s);
+  };
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((es, o) => { if (es.some((e) => e.isIntersecting)) { o.disconnect(); start(); } }, { rootMargin: '400px 0px' }).observe(el);
+  } else start();
+  el.addEventListener('pointerdown', start, { once: true });
+
+  function initMap() {
   const BASE = el.dataset.base || '';
   const map = new maplibregl.Map({
     container: el,
@@ -195,4 +212,5 @@
     };
     if (state.type || state.term) onFilter();
   });
+  }
 })();

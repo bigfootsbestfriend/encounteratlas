@@ -1254,6 +1254,13 @@ def build_map_data(bluebook):
     os.makedirs(os.path.join(OUT, 'data'), exist_ok=True)
     with open(os.path.join(OUT, 'data', 'bluebook.geojson'), 'w') as f:
         json.dump({'type': 'FeatureCollection', 'features': feats}, f, separators=(',', ':'))
+    # Small per-month lists for the home page's "This month in the Air Force files" box, so it never pulls the
+    # whole 1.3 MB map file just to show eight rows
+    os.makedirs(os.path.join(OUT, 'data', 'bluebook-month'), exist_ok=True)
+    for i, m in enumerate(MONTHS[1:], 1):
+        rows = [[p['id'], p['t'], p['r'], p['w'], p['y']] for p in (x['properties'] for x in feats) if p['w'].startswith(m[:3] + ' ')]
+        with open(os.path.join(OUT, 'data', 'bluebook-month', f'{i:02d}.json'), 'w') as f:
+            json.dump(rows, f, separators=(',', ':'))
     ap = [{'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [round(a['lon'], 3), round(a['lat'], 3)]},
            'properties': {'n': a['n'], 't': a['name'], 'u': url(f'/ufo/blue-book/{a["k"]}/')}}
           for a in sorted(approx.values(), key=lambda a: -a['n'])]

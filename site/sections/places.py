@@ -65,7 +65,6 @@ class Builder:
         self.head = (f'<link rel="stylesheet" href="{ctx.url("/static/places.css")}">')
         self.map_head = (self.head +
                          '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.css">'
-                         '<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.js" defer></script>'
                          f'<script src="{ctx.url("/static/places.js")}" defer></script>')
 
     # ---------- helpers ----------
