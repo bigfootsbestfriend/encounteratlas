@@ -5,16 +5,17 @@
   <g fill="none" stroke="#000" stroke-linecap="round" stroke-width="7">
     <path d="M412 300 C432 292 452 292 470 300"/><path d="M406 326 C428 318 450 318 468 326"/>
     <path d="M402 352 C424 344 446 344 462 352"/><path d="M402 378 C420 372 438 372 452 378"/>
-  </g></mask></defs>
+  </g></mask>
+<mask id="eye"><rect width="800" height="800" fill="#fff"/><ellipse cx="538" cy="158" rx="9" ry="6" fill="#000" transform="rotate(15 538 158)"/></mask></defs>
 <g fill="#14211B" stroke="#14211B" stroke-linecap="round" stroke-linejoin="round">
   <!-- torso: hunched back, hollow chest, sunken belly -->
   <path mask="url(#ribs)" d="M468 236 C440 226 404 232 384 256 C366 280 360 320 362 370 C364 412 370 446 380 474 L440 480 C446 452 452 420 462 396 C474 368 486 330 490 292 C492 266 486 246 468 236 Z" stroke-width="4"/>
   <!-- neck pushed forward -->
-  <path d="M462 246 C478 232 492 222 506 212" fill="none" stroke-width="30"/>
+  <path d="M458 250 C478 240 496 232 512 226" fill="none" stroke-width="30"/>
   <!-- head: long skull hanging forward, open jaw -->
-  <path d="M500 132 C530 120 562 136 570 168 C576 192 570 214 556 226 L566 262 C562 272 550 274 544 266 L530 236 C514 236 498 226 492 210 C484 186 482 148 500 132 Z" stroke-width="3"/>
+  <path mask="url(#eye)" d="M496 120 C516 106 546 112 558 138 C566 156 566 176 560 190 C552 198 548 206 550 216 C548 230 540 240 528 244 C514 246 502 238 496 226 C486 206 484 176 486 152 C487 138 490 128 496 120 Z" stroke-width="3"/>
   <!-- ragged hair hanging from the back of the skull -->
-  <path d="M502 136 C484 160 476 200 474 250 M510 132 C496 168 492 214 494 262 M498 150 C478 172 466 206 458 240" fill="none" stroke-width="7"/>
+  <path d="M494 124 C478 152 470 192 468 244 M502 116 C488 150 482 196 484 252 M490 138 C472 164 460 200 452 236" fill="none" stroke-width="7"/>
   <!-- trailing arm: long and thin, hanging past the knee -->
   <path d="M392 262 C372 304 356 350 346 398" fill="none" stroke-width="24"/>
   <circle cx="345" cy="402" r="16"/>
