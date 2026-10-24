@@ -2,7 +2,7 @@
 free-to-use charts, and the contact form preset to "Press". Numbers are counted from data/ at build time.
 Charts in site/static/img/charts/ are our own work under CC BY-SA 4.0 (the same files go to Wikimedia Commons).
 """
-import json, os, sys
+import json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import _sources
@@ -10,7 +10,7 @@ from contact import _form, _head
 
 CHARTS = [('Project_Blue_Book_UFO_sightings_by_year_1947-1969.svg', 'UFO sightings reported to the US Air Force each year, 1947 to 1969',
            'From the Air Force\'s own fact sheet: 12,618 sightings, 701 left unidentified.'),
-          ('Official_UFO_programmes_by_country.svg', 'Official UFO programmes by country, 1947 to today',
+          ('Official_UFO_programmes_by_country.svg', 'Official UFO programmes by country, 1946 to today',
            'Every government programme on our programmes page, as a timeline.')]
 
 
@@ -33,8 +33,12 @@ def build(ctx):
     if progs:
         stats.insert(1, (len(progs), 'government UFO programmes', f'in {len({p["country"] for p in progs})} countries', '/ufo/programs/'))
     tiles = ''.join(f'<li><a href="{U(p)}"><b>{v:,}</b><span>{E(a)}</span><small>{E(b)}</small></a></li>' for v, a, b, p in stats)
+    def size(f):
+        head = open(os.path.join(ctx.ROOT, 'site', 'static', 'img', 'charts', f), encoding='utf-8').read(400)
+        return re.search(r'width="(\d+)" height="(\d+)"', head).groups()
+
     charts = ''.join(
-        f'<figure class="press-chart"><a href="{U("/static/img/charts/" + f)}"><img src="{U("/static/img/charts/" + f)}" alt="{E(t)}" loading="lazy" width="1000" height="600"></a>'
+        f'<figure class="press-chart"><a href="{U("/static/img/charts/" + f)}"><img src="{U("/static/img/charts/" + f)}" alt="{E(t)}" loading="lazy" width="{size(f)[0]}" height="{size(f)[1]}"></a>'
         f'<figcaption><b>{E(t)}.</b> {E(c)} <a href="{U("/static/img/charts/" + f)}" download>Download SVG</a></figcaption></figure>'
         for f, t, c in CHARTS if os.path.exists(os.path.join(ctx.ROOT, 'site', 'static', 'img', 'charts', f)))
     body = f'''
