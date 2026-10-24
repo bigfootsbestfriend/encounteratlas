@@ -20,7 +20,7 @@ import datetime, hashlib, json, os
 API = os.environ.get('EA_API', 'https://api.encounteratlas.com').rstrip('/')
 SITEKEY = os.environ.get('TURNSTILE_SITEKEY', '1x00000000000000000000AA')
 PATH = '/mystery-of-the-day/'
-START = '2026-10-10'          # first day on the schedule (fills the 14-day archive at launch)
+START = '2026-10-24'          # first day on the schedule (launch day)
 ARCHIVE = 14
 MON = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 SKIP = {'dyatlov-pass', 'nahanni-headless-valley'}  # plus every mystery of type 'vanishing'

@@ -1,6 +1,30 @@
 [
  {
   "date": "2026-10-24",
+  "title": "Then and now on Near me",
+  "path": "/near-me/",
+  "note": "Slide back through time around any town, from 1800s newspaper stories to this week's reader reports, with quick buttons for the road trip planner, cards, skywatch and more."
+ },
+ {
+  "date": "2026-10-24",
+  "title": "Mystery of the day",
+  "path": "/mystery-of-the-day/",
+  "note": "One strange case a day from our files. Vote on what you think it was, then come back tomorrow for the verdict and how everyone else voted."
+ },
+ {
+  "date": "2026-10-24",
+  "title": "Conditions that night, on every reader report",
+  "path": "/reports/",
+  "note": "Each report now shows the Moon, how dark it was, any bright planets or meteor shower and the weather at that spot on that night."
+ },
+ {
+  "date": "2026-10-24",
+  "title": "Local legends for every state, province and country",
+  "path": "/us/",
+  "note": "Each region page now opens with its signature creature, like Mothman in West Virginia and Ogopogo in BC, with the famous cases and places to visit for it."
+ },
+ {
+  "date": "2026-10-24",
   "title": "Every government UFO programme, country by country",
   "path": "/ufo/programs/",
   "note": "44 official UFO programmes in 18 countries, from Sweden's 1946 ghost rocket committee and Project Blue Book to France's GEIPAN, Chile's SEFAA and the Pentagon's AARO: who ran each one, what they found and the official records."

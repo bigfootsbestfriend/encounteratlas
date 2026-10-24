@@ -231,7 +231,7 @@ MAP_API = f' data-api="{EA_API}"' if EA_API else ''
 UFO_MENU = [('/ufo/', 'UFO sightings'), ('/ufo/cases/', 'Famous cases worldwide'), ('/ufo/canada/', 'Canada sightings map'), ('/ufo/greece/', 'Greece close encounters'), ('/ufo/blue-book/', 'Air Force Blue Book files'),
             ('/ufo/releases/', 'Official releases'), ('/ufo/hearings/', 'Hearings and testimony'), ('/ufo/programs/', 'Government programmes'), ('/ufo/countries/', 'UFO files by country'), ('/military/', 'Military encounters')]
 STORY_MENU = ([('/reports/', 'Reader reports')] if EA_API else []) + [('/stories/', 'Witness stories'), ('/stories/campfire/', 'Campfire stories'), ('/encounters/', 'Close encounters'), ('/report/', 'Report an encounter')]
-EXPLORE_MENU = [('/near-me/', 'Sightings near me'), ('/road-trip/', 'Road trip planner'), ('/cards/', 'Collector cards'), ('/tools/skywatch/', "Tonight's skywatch"), ('/journal/', 'Field journal'), ('/mysteries/', 'Mysteries'), ('/history/', 'Old newspaper stories'), ('/on-this-day/', 'On this day'), ('/compare/', 'Creature comparisons'),
+EXPLORE_MENU = [('/near-me/', 'Sightings near me'), ('/road-trip/', 'Road trip planner'), ('/cards/', 'Collector cards'), ('/tools/skywatch/', "Tonight's skywatch"), ('/journal/', 'Field journal'), ('/mystery-of-the-day/', 'Mystery of the day'), ('/mysteries/', 'Mysteries'), ('/history/', 'Old newspaper stories'), ('/on-this-day/', 'On this day'), ('/compare/', 'Creature comparisons'),
                 ('/us/', 'By state or province'), ('/places/', 'Places to visit')]
 RES_MENU = [('/guides/', 'Field guides'), ('/gear/', 'Field gear'), ('/books/', 'Books'), ('/tools/', 'Tools'), ('/podcasts/', 'Podcasts'), ('/newsletter/', 'Weekly email')]
 # Six top-level items (Mike, 2026-10-18: the eight-item menu wrapped into three rows on phones). Under 960px the
@@ -1549,14 +1549,14 @@ def build_static_pages():
 <section class="band band-dark"><div class="wrap"><h1>Privacy</h1>
 <p class="lede">What we keep when you use Encounter Atlas or send us a report, who can see it, and how to get it removed. Short version: your exact location, your email address and your IP address are never made public.</p></div></section>
 <div class="band band-mist"><div class="wrap prose">
-<p class="small">Last updated: October 21, 2026.</p>
+<p class="small">Last updated: October 24, 2026.</p>
 
 <h2>Just reading the site</h2>
 <ul>
 <li><strong>No ads and no account needed.</strong> You can read every page and use the map and tools without signing up.</li>
 <li id="analytics"><strong>Analytics:</strong> we use Google Analytics to count visits and see which pages and tools people use, so we know what to improve. It sets cookies and collects things like your approximate location, your device and browser, the pages you view and the buttons, filters and map choices you use. It never gets your name, your email address, or what you type into a report or message. Search words you type into the site's search boxes are counted so we can see what people look for. You can opt out with <a href="https://tools.google.com/dlpage/gaoptout">Google's opt-out add-on</a> or by blocking cookies, and the site works the same either way. See <a href="https://policies.google.com/technologies/partner-sites">how Google uses this data</a>. We also use Clicky to see how visitors move through the site. Like Google Analytics it sets cookies and sees the same kind of information, never your name, email or what you type into a form (<a href="https://clicky.com/terms/privacy">Clicky's privacy policy</a>). Blocking cookies opts you out of both.</li>
-<li><strong>Things your browser remembers, not us:</strong> your sort choice on the creature index, your last place on Near me, and a draft of a report you haven't sent yet (stored only on your device so you don't lose them). Clearing your browser data removes them.</li>
-<li><strong>Other services the pages load:</strong> map tiles from OpenFreeMap, fonts from Google Fonts and code libraries from cdnjs and jsDelivr. The <a href="{url('/tools/was-it-a-planet/')}">Was it a planet?</a> tool also fetches the Space Station's orbit from Celestrak; the place you enter stays in your browser. Like any website, these see your IP address when they send the file. Witness videos only load from YouTube (in its privacy-enhanced mode) when you press play.</li>
+<li><strong>Things your browser remembers, not us:</strong> your sort choice on the creature index, your last place on Near me, a draft of a report you haven't sent yet, your saved road trips, the collector cards you've checked in, and your field journal notes (all stored only on your device, and never sent to us unless you turn a journal note into a report). Clearing your browser data removes them.</li>
+<li><strong>Other services the pages load:</strong> map tiles from OpenFreeMap, fonts from Google Fonts and code libraries from cdnjs and jsDelivr. The <a href="{url('/tools/was-it-a-planet/')}">Was it a planet?</a> tool also fetches the Space Station's orbit from Celestrak; the place you enter stays in your browser. The <a href="{url('/road-trip/')}">road trip planner</a> sends the start and end towns you type to Open-Meteo's place search and the route points to the OpenStreetMap routing service (routing.openstreetmap.de). <a href="{url('/tools/skywatch/')}">Tonight's skywatch</a> sends a point rounded to about 1 km to Open-Meteo for the cloud forecast. The "Conditions that night" panel on reader reports asks Open-Meteo for the weather at the report's public map point. Like any website, these see your IP address when they send the file. Witness videos only load from YouTube (in its privacy-enhanced mode) when you press play.</li>
 </ul>
 
 <h2>Sending a report</h2>
@@ -1725,6 +1725,10 @@ def main():
                              {'src': BASE + '/static/app-maskable-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'},
                              {'src': BASE + '/static/favicon.svg', 'sizes': 'any', 'type': 'image/svg+xml'}],
                    'shortcuts': [{'name': 'Report an encounter', 'short_name': 'Report', 'url': BASE + '/report/?source=pwa',
+                                  'icons': [{'src': BASE + '/static/app-192.png', 'sizes': '192x192', 'type': 'image/png'}]},
+                                 {'name': 'Road trip planner', 'short_name': 'Road trip', 'url': BASE + '/road-trip/?source=pwa',
+                                  'icons': [{'src': BASE + '/static/app-192.png', 'sizes': '192x192', 'type': 'image/png'}]},
+                                 {'name': "Tonight's skywatch", 'short_name': 'Skywatch', 'url': BASE + '/tools/skywatch/?source=pwa',
                                   'icons': [{'src': BASE + '/static/app-192.png', 'sizes': '192x192', 'type': 'image/png'}]},
                                  {'name': 'Full encounter map', 'short_name': 'Map', 'url': BASE + '/map/?source=pwa',
                                   'icons': [{'src': BASE + '/static/app-192.png', 'sizes': '192x192', 'type': 'image/png'}]}]}, f)
