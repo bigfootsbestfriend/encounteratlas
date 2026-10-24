@@ -155,4 +155,4 @@ class E:
   <p><a href="{self.u(self.BASE)}">All {len(self.cases)} {self.LABEL.lower()}</a></p>
 </div></div>'''
         c.write(self.BASE + x['slug'] + '/', c.page(self.BASE + x['slug'] + '/', f'{x["name"]} ({x["year"]})', body,
-                                                         x['summary'], body_class='encounters', head_extra=self.head))
+                                                         x['summary'], body_class='encounters', head_extra=self.head, article={'updated': x.get('updated')}))

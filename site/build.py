@@ -18,6 +18,79 @@ def md_links(t):
     return re.sub(r'\[([^\]]+)\]\((/[^)\s]*)\)', lambda m: f'<a href="{url(m.group(2))}">{m.group(1)}</a>', esc(t))
 
 
+ARTICLES = []  # every page built with article=..., for the author page and sitemap <lastmod>
+AUTHOR = {'name': 'Mike Johnston', 'path': '/author/mike-johnston/', 'image': '/static/img/mike-johnston.png'}
+
+
+def byline_html(a):
+    pub, upd = a.get('published') or PUBLISHED, a.get('updated')
+    when = f'Updated {nice_date(upd)}' if upd and upd != pub else f'Published {nice_date(pub)}'
+    return f'<p class="byline">{a.get("verb", "By")} <a href="{url(AUTHOR["path"])}" rel="author">{AUTHOR["name"]}</a> · {when}</p>'
+
+
+def with_byline(body, a):
+    b = byline_html(a)
+    m = re.search(r'<p class="lede">.*?</p>', body, re.S) or re.search(r'</h1>', body)
+    return body[:m.end()] + '\n      ' + b + body[m.end():] if m else b + body
+
+
+def article_ld(path, title, desc, og_image, a):
+    o = {'@context': 'https://schema.org', '@type': 'Article', 'headline': title[:110], 'description': desc,
+         'mainEntityOfPage': SITE_URL + path, 'datePublished': a.get('published') or PUBLISHED,
+         'dateModified': a.get('updated') or a.get('published') or PUBLISHED,
+         'author': {'@type': 'Person', 'name': AUTHOR['name'], 'url': SITE_URL + AUTHOR['path']},
+         'publisher': {'@type': 'Organization', 'name': 'Encounter Atlas', 'url': SITE_URL + '/', 'logo': {'@type': 'ImageObject', 'url': SITE_URL + '/static/app-512.png'}}}
+    o['image'] = SITE_URL + (og_image or '/static/og.png')
+    return o
+
+
+def author_page():
+    """/author/mike-johnston/: who writes and reviews the site, how it's researched, and everything credited to him."""
+    groups = [('/creatures/', 'Creatures'), ('/mysteries/', 'Mysteries'), ('/encounters/', 'Close encounters'), ('/ufo/cases/', 'Famous UFO cases'),
+              ('/ufo/hearings/', 'UFO hearings'), ('/ufo/people/', 'People on the record'), ('/ufo/releases/', 'Official UFO releases'),
+              ('/compare/', 'Comparisons'), ('/guides/', 'Field guides'), ('/stories/', 'Witness stories (retold)')]
+    arts = [a for a in ARTICLES if not a['noindex']]
+    recent = sorted(arts, key=lambda a: (a['date'], a['title']), reverse=True)[:12]
+    rec = ''.join(f'<li><span class="yr">{esc(nice_date(a["date"]))}</span><span><a href="{url(a["path"])}">{esc(a["title"])}</a></span></li>' for a in recent)
+    cnt = ''.join(f'<li><a href="{url(p)}">{esc(n)}</a> <span class="muted">{sum(1 for a in arts if a["path"].startswith(p) and a["path"] != p)}</span></li>'
+                  for p, n in groups if any(a['path'].startswith(p) for a in arts))
+    path = AUTHOR['path']
+    body = f'''
+<section class="band band-dark"><div class="wrap author-head">
+  <picture><source srcset="{url('/static/img/mike-johnston.webp')}" type="image/webp"><img class="author-photo" src="{url(AUTHOR['image'])}" alt="Mike Johnston" width="160" height="160"></picture>
+  <div>
+    <p class="crumb"><a href="{url('/about/')}">About</a> / Author</p>
+    <h1>Mike Johnston</h1>
+    <p class="lede">Founder and editor of Encounter Atlas. Canadian web developer with a long-running interest in Bigfoot, lake monsters and UFOs.</p>
+    {social_row('social owner-social')}
+  </div>
+</div></section>
+<div class="band band-mist"><div class="wrap prose">
+  <h2>About me</h2>
+  <p>I've had a long-running interest in Sasquatch, lake monsters like Ogopogo, and lights in the sky. I built Encounter Atlas because the information was scattered across old forums, dead links and books that are hard to find. I wanted one place where you can see where things were reported, read what people actually said, and check the original sources yourself.</p>
+  <p>By day I build websites. Here I write and review the creature pages, case write-ups, guides and the official records sections, and I read every reader report before it goes on the map.</p>
+  <h2>How I research and write</h2>
+  <ul>
+    <li><strong>Original sources first.</strong> Government archives (Project Blue Book, the National Archives, Library and Archives Canada), congressional transcripts, old newspapers and published witness accounts. Every page links to where the facts came from.</li>
+    <li><strong>Reports are not proof.</strong> A sighting on this site means someone said they saw something. I say what was reported, what investigators found and which explanations hold up, and I let you decide.</li>
+    <li><strong>Witnesses get credit.</strong> Stories are retold in my own words and credited to the person who told them, with a link to the original where there is one.</li>
+    <li><strong>Corrections are welcome.</strong> If something is wrong or out of date, <a href="{url('/contact/')}">tell me</a> and I will fix it and update the date on the page.</li>
+  </ul>
+  <h2>Recently updated</h2>
+  <ol class="timeline cases">{rec}</ol>
+  <h2>Everything I've written</h2>
+  <ul class="author-counts">{cnt}</ul>
+</div></div>'''
+    person = {'@type': 'Person', '@id': SITE_URL + path + '#person', 'name': 'Mike Johnston', 'url': SITE_URL + path, 'image': SITE_URL + AUTHOR['image'],
+              'jobTitle': 'Founder and editor', 'nationality': 'Canadian', 'knowsAbout': ['Cryptozoology', 'Bigfoot', 'Lake monsters', 'UFOs', 'Project Blue Book'],
+              'worksFor': {'@type': 'Organization', 'name': 'Encounter Atlas', 'url': SITE_URL + '/', 'sameAs': [u for _, u, _, _ in SOCIAL]}}
+    ld = [{'@context': 'https://schema.org', '@type': 'ProfilePage', 'url': SITE_URL + path, 'mainEntity': person}]
+    write(path, page(path, 'Mike Johnston, founder and editor', body,
+                     'Mike Johnston writes and reviews Encounter Atlas: who he is, how the site is researched, and everything he has written about cryptids, UFOs and mysteries.',
+                     ld=ld, head_extra='<style>.author-head{display:flex;gap:1.6rem;align-items:center}.author-photo{border-radius:50%;border:4px solid var(--lantern);width:160px;height:160px}'
+                     '.author-counts{columns:2;max-width:40rem}@media(max-width:600px){.author-head{flex-direction:column;align-items:flex-start}.author-photo{width:110px;height:110px}.author-counts{columns:1}}</style>'))
+
+
 def nice_date(d):
     y, m, dd = map(int, d.split('-'))
     return f'{_MON[m - 1]} {dd}, {y}'
@@ -269,7 +342,13 @@ HELLO = f'''<div class="hello" id="hello" role="region" aria-label="Weekly email
 <script>try{{const s=localStorage;if(s.getItem('ea-subbed')||Date.now()-(+s.getItem('ea-hello')||0)<12096e5)document.getElementById('hello').remove();}}catch(e){{}}</script>'''
 
 
-def page(path, title, body, desc='', body_class='', head_extra='', canonical=True, og_image='', noindex=False, viewport_fit=False, ld=None):
+def page(path, title, body, desc='', body_class='', head_extra='', canonical=True, og_image='', noindex=False, viewport_fit=False, ld=None, article=None):
+    # article={'published': 'YYYY-MM-DD', 'updated': 'YYYY-MM-DD' or None, 'verb': 'By'|'Retold by'}: pages we wrote get Mike's
+    # byline (after the lede, else after the h1), Article structured data and og:type article. See AUTHOR.
+    if article is not None:
+        ARTICLES.append({'path': path, 'title': title, 'desc': desc, 'date': article.get('updated') or article.get('published') or PUBLISHED, 'noindex': noindex})
+        body = with_byline(body, article)
+        ld = (ld or []) + [article_ld(path, title, desc, og_image, article)]
     full_title = title if title.startswith('Encounter Atlas') else f'{title} | Encounter Atlas'
     nav = nav_html(path)
     # noindex=True for thin template pages (useful to visitors, not worth Google's index): kept out of the sitemap too.
@@ -838,7 +917,6 @@ def build_creatures(creatures, by_slug):
       <h1>{esc(c['name'])}</h1>
       {aka}
       <p class="lede">{esc(c['summary'])}</p>
-      <p class="byline">By <a href="{url('/about/')}">Mike Johnston</a> · {'Updated' if c.get('updated') else 'Published'} {esc(nice_date(c.get('updated') or PUBLISHED))}</p>
       {f'<p class="lede-story"><a href="{first_story[0]}">Read the full story: {esc(first_story[1])}</a></p>' if first_story else ''}
       {jump}
       {reads}
@@ -878,13 +956,7 @@ def build_creatures(creatures, by_slug):
         desc = c.get('seo_desc') or (f'{c["summary"]} Also called {", ".join(c["aliases"][:4])}.' if c['aliases'] else c['summary'])
         og = f'/static/og/creatures/{c["slug"]}.jpg'
         og = og if os.path.exists(os.path.join(STATIC, 'og', 'creatures', c['slug'] + '.jpg')) else ''
-        article = {'@context': 'https://schema.org', '@type': 'Article', 'headline': title[:110], 'description': desc,
-                   'mainEntityOfPage': f'{SITE_URL}/creatures/{c["slug"]}/', 'datePublished': PUBLISHED, 'dateModified': c.get('updated') or PUBLISHED,
-                   'author': {'@type': 'Person', 'name': 'Mike Johnston', 'url': SITE_URL + '/about/'},
-                   'publisher': {'@type': 'Organization', 'name': 'Encounter Atlas', 'url': SITE_URL + '/', 'logo': {'@type': 'ImageObject', 'url': SITE_URL + '/static/app-512.png'}}}
-        if og:
-            article['image'] = SITE_URL + og
-        write(f'/creatures/{c["slug"]}/', page(f'/creatures/{c["slug"]}/', title, body, desc, og_image=og, ld=[article],
+        write(f'/creatures/{c["slug"]}/', page(f'/creatures/{c["slug"]}/', title, body, desc, og_image=og, article={'updated': c.get('updated')},
                                                head_extra=f'<script src="{url("/static/creature.js")}" defer></script>' if EA_API else ''))
 
 
@@ -1217,7 +1289,7 @@ def build_military(military):
   <ol class="timeline mil-list">{items}</ol>
 </div></div>'''
     write('/military/', page('/military/', 'Military UFO and creature encounters', body,
-                             'The most famous military UFO and UAP encounters, from WWII foo fighters to the Navy Tic Tac, with official sources.'))
+                             'The most famous military UFO and UAP encounters, from WWII foo fighters to the Navy Tic Tac, with official sources.', article={}))
 
 
 TILES = [('hominid', 'yeti', 'Bigfoot and hairy giants'), ('canid', 'dogman', 'Dogmen and beasts'),
@@ -1604,6 +1676,7 @@ def main():
                 if not os.environ.get('SKIP_BROKEN_SECTIONS'):
                     raise
                 print(f'warning: section {fn} skipped: {e!r}', file=sys.stderr)
+    author_page()
     with open(os.path.join(OUT, 'manifest.webmanifest'), 'w') as f:
         # The app (installed PWA, later the Play Store TWA) opens on /near-me/. id stays fixed so installs survive start_url changes.
         json.dump({'id': BASE + '/near-me/', 'name': 'Encounter Atlas', 'short_name': 'Encounters', 'start_url': BASE + '/near-me/?source=pwa',
@@ -1629,7 +1702,8 @@ def main():
     pages = sorted(p.replace('//', '/') for p in pages)
     with open(os.path.join(OUT, 'sitemap.xml'), 'w') as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
-        f.writelines(f'<url><loc>{SITE_URL}{p}</loc></url>\n' for p in pages)
+        lastmod = {a['path']: a['date'] for a in ARTICLES}
+        f.writelines(f'<url><loc>{SITE_URL}{p}</loc>' + (f'<lastmod>{lastmod[p]}</lastmod>' if p in lastmod else '') + '</url>\n' for p in pages)
         f.write('</urlset>\n')
     # IndexNow (Bing, Yandex, Seznam, Naver): the key file proves we own the site when we ping changed URLs.
     open(os.path.join(OUT, INDEXNOW_KEY + '.txt'), 'w').write(INDEXNOW_KEY)

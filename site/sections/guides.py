@@ -239,7 +239,7 @@ def build(ctx):
       <p class="crumb"><a href="{ctx.url('/guides/')}">Field guides</a> / {ctx.esc(g['kicker'])}</p>
       <h1>{ctx.esc(g['title'])}</h1>
       <p class="lede">{ctx.esc(g['lede'])}</p>
-      <p class="g-meta"><span class="g-chip">{g['_mins']} min read</span>{printable}<span class="g-chip">Updated {ctx.esc(g.get('updated', 'October 2026'))}</span></p>
+      <p class="g-meta"><span class="g-chip">{g['_mins']} min read</span>{printable}</p>
     </div>
   </div>
 </section>
@@ -257,7 +257,7 @@ def build(ctx):
 </div></div>
 {SCRIPT if 'g-checklist' in body_html else ''}'''
         path = f'/guides/{g["slug"]}/'
-        ctx.write(path, ctx.page(path, g['seo'], body, g['desc'], body_class='guide', head_extra=head))
+        ctx.write(path, ctx.page(path, g['seo'], body, g['desc'], body_class='guide', head_extra=head, article={'updated': g.get('updated_iso')}))
 
     flagship = guides[0]
     rest = ''.join(card(g) for g in guides[1:])

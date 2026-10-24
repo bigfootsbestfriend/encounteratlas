@@ -266,7 +266,7 @@ def build(ctx):
   <aside class="facts"><dl>{dl}</dl><p class="more">{ext(r['url'], 'Official source')}</p></aside>
 </div></div>'''
         ctx.write(f'/ufo/releases/{r["slug"]}/', ctx.page(f'/ufo/releases/{r["slug"]}/', r['title'], body,
-                                                         r['summary'][:155], head_extra=css))
+                                                         r['summary'][:155], head_extra=css, article={'updated': r.get('updated')}))
 
     # --- FAA pilot reports -----------------------------------------------------------------------
     def faa_item(r):

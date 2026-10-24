@@ -170,4 +170,4 @@ class M:
   <p><a href="{self.u('/mysteries/')}">All {len(self.cases)} mysteries</a></p>
 </div></div>'''
         c.write('/mysteries/' + x['slug'] + '/', c.page('/mysteries/' + x['slug'] + '/', f'{x["name"]}: what happened and the theories', body,
-                                                        x['summary'], body_class='encounters mysteries', head_extra=self.head))
+                                                        x['summary'], body_class='encounters mysteries', head_extra=self.head, article={'updated': x.get('updated')}))

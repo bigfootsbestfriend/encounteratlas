@@ -109,7 +109,7 @@ def build(ctx):
 <script type="application/ld+json">{json.dumps(faq)}</script>'''
         ctx.write(f'/compare/{slug(p)}/', ctx.page(f'/compare/{slug(p)}/', f'{title(p)}: what\'s the difference?', body,
                                                   f'{A["name"]} or {B["name"]}? Where each is seen, what they look like, how the stories differ, and how to tell which one you saw.',
-                                                  head_extra=head))
+                                                  head_extra=head, article={'updated': p.get('updated')}))
 
     cards = ''.join(
         f'<a class="cmp-card" href="{url("/compare/" + slug(p) + "/")}"><span class="cmp-pair">{poster(ctx.by_slug[p["a"]])}{poster(ctx.by_slug[p["b"]])}</span>'

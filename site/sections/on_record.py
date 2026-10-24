@@ -163,7 +163,8 @@ class R:
   <p><a href="{self.u('/ufo/hearings/')}">All {len(self.hearings)} hearings</a></p>
 </div></div>'''
         c.write('/ufo/hearings/' + h['slug'] + '/', c.page('/ufo/hearings/' + h['slug'] + '/', f'{h["title"]} ({h["date"][:4]})', body,
-                                                           h['summary'], body_class='encounters onrecord', head_extra=self.head))
+                                                           h['summary'], body_class='encounters onrecord', head_extra=self.head,
+                                                           article={'published': '2026-10-23', 'updated': h.get('updated')}))
 
     # --- /ufo/people/ ------------------------------------------------------------------------------
     def pcard(self, p):
@@ -224,4 +225,5 @@ class R:
 </div></div>'''
         c.write('/ufo/people/' + p['slug'] + '/', c.page('/ufo/people/' + p['slug'] + '/', f'{p["name"]}: UFO hearing testimony', body,
                                                          f'{p["name"]}, {p["role"]}: ' + p['text'][0][:120].rsplit(' ', 1)[0] + '...',
-                                                         body_class='encounters onrecord', head_extra=self.head, noindex=thin))
+                                                         body_class='encounters onrecord', head_extra=self.head, noindex=thin,
+                                                         article={'published': '2026-10-23', 'updated': p.get('updated')}))

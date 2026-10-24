@@ -123,7 +123,7 @@ def build(ctx):
 </div></div>'''
         ctx.write(f'/stories/{st["id"]}/', ctx.page(f'/stories/{st["id"]}/', f'{st["title"]}: a {c["name"]} encounter', body,
                                                    st['dek'], head_extra=vote_head + f'<script src="{u("/static/stories.js")}" defer></script>',
-                                                   og_image=og_image(st)))
+                                                   og_image=og_image(st), article={'verb': 'Retold by', 'updated': st.get('updated')}))
 
     # Hub: newest encounters first, chips to filter by creature (all cards are in the HTML; JS only hides).
     # Once there are FILTERS_AT stories, a second row adds setting, place and sort. ?c=, ?s=, ?w= and ?o= preselect them.
