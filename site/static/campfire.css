@@ -1,0 +1,61 @@
+/* /stories/campfire/: the page (site look) and the night view (.cf-night). The night view is red on black only:
+   no white, amber or blue anywhere, focus rings and selection included, so it doesn't spoil night vision. */
+.campfire .wrap { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+.campfire .narrow { max-width: 760px; }
+.cf-hero { padding-bottom: 2rem; }
+.cf-hero h1 { color: #F3F1DA; }
+.cf-start-row { margin: 1.4rem 0 .5rem; }
+.cf-start { min-height: 60px; padding: 0 1.8rem; font-size: 1.2rem; border: 0; cursor: pointer; justify-content: center; }
+.cf-start[disabled] { opacity: .55; cursor: default; }
+@media (max-width: 560px) { .cf-start { width: 100%; } }
+.cf-start-note { color: var(--muted-d); margin: 0; }
+.cf-list { list-style: none; padding: 0; margin: 0 0 1.4rem; border-top: 1px solid var(--mist-2); }
+.cf-list li { padding: .7rem 0; border-bottom: 1px solid var(--mist-2); }
+.cf-list a { font-weight: 700; display: inline-block; padding: .15rem 0; }
+.cf-li-meta { display: block; font-size: .9rem; color: var(--muted-l); }
+.cf-list-band h3 { margin-top: 1.6rem; }
+
+/* ---------- night view ---------- */
+.cf-night {
+  --cf-bg: #000; --cf-red: #C81A0A; --cf-dim: #6E0E04; --cf-line: #3A0702; --cf-fs: 1.5rem;
+  position: fixed; inset: 0; z-index: 2147483000; background: var(--cf-bg); color: var(--cf-red);
+  display: flex; flex-direction: column; color-scheme: dark; -webkit-tap-highlight-color: transparent;
+  font-family: var(--body); scrollbar-color: var(--cf-dim) var(--cf-bg);
+}
+.cf-night[hidden] { display: none; }
+.cf-night *, .cf-night *::before, .cf-night *::after { color: inherit; }
+.cf-night ::selection { background: var(--cf-dim); color: #000; }
+.cf-night :focus { outline: none; }
+.cf-night :focus-visible { outline: 3px solid var(--cf-red); outline-offset: 3px; border-radius: 8px; box-shadow: none; }
+.cf-night .visually-hidden { color: transparent; }
+
+.cf-bar { display: flex; align-items: center; gap: .45rem;
+  padding: max(.6rem, env(safe-area-inset-top)) max(.8rem, env(safe-area-inset-right)) .6rem max(.8rem, env(safe-area-inset-left));
+  border-bottom: 1px solid var(--cf-line); }
+.cf-gap { flex: 1; }
+.cf-btn { min-height: 48px; min-width: 48px; padding: 0 .9rem; border-radius: 999px; font: 700 1rem var(--body); cursor: pointer;
+  background: var(--cf-bg); color: var(--cf-red); border: 2px solid var(--cf-dim); touch-action: manipulation; }
+.cf-btn:active { background: var(--cf-line); }
+.cf-btn[aria-pressed="true"] { background: var(--cf-dim); color: #000; border-color: var(--cf-dim); }
+.cf-btn[disabled] { opacity: .4; cursor: default; }
+
+.cf-scroll { flex: 1; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  padding: 1.2rem max(1.1rem, env(safe-area-inset-right)) 2rem max(1.1rem, env(safe-area-inset-left)); }
+.cf-story { max-width: 36em; margin: 0 auto; font-size: var(--cf-fs); line-height: 1.55; }
+.cf-story:focus { outline: none; }
+.cf-meta { font-size: .62em; letter-spacing: .04em; text-transform: uppercase; color: var(--cf-dim); margin: 0 0 .5em; }
+.cf-story h2 { font-family: var(--display); font-size: 1.45em; line-height: 1.15; margin: 0 0 .8em; color: var(--cf-red); }
+.cf-story p { margin: 0 0 1em; }
+.cf-credit { font-size: .6em; color: var(--cf-dim); border-top: 1px solid var(--cf-line); padding-top: .8em; margin-top: 1.6em; }
+.cf-msg { text-align: center; margin-top: 30vh; }
+
+.cf-nav { display: grid; grid-template-columns: 1fr 2fr; gap: .6rem; border-top: 1px solid var(--cf-line);
+  padding: .6rem max(.8rem, env(safe-area-inset-right)) max(.6rem, env(safe-area-inset-bottom)) max(.8rem, env(safe-area-inset-left)); }
+.cf-nav .cf-btn { min-height: 56px; font-size: 1.1rem; }
+.cf-status { grid-column: 1 / -1; margin: 0; text-align: center; font-size: .85rem; color: var(--cf-dim); font-variant-numeric: tabular-nums; }
+.cf-awake:not(:empty)::before { content: " · "; }
+@media (min-width: 760px) { .cf-nav { max-width: 760px; width: 100%; margin: 0 auto; border-top: 0; } .cf-scroll { padding-top: 2rem; } }
+html.cf-open, html.cf-open body { overflow: hidden; background: #000; }
+@media (prefers-reduced-motion: no-preference) { .cf-story { animation: cf-in .25s ease-out; } }
+@keyframes cf-in { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 359px) { .cf-bar .cf-btn { padding: 0 .55rem; font-size: .92rem; } }
