@@ -430,9 +430,13 @@ def signup_box(uid, title='Strange news, once a week', text=None):
     """Weekly email signup (single opt-in). The newsletter Worker sends people back to /newsletter/#confirmed.
     A dark card with three creature silhouettes, what's in each email, and a short email field (signup.js tracks it)."""
     text = text or 'One short email every Thursday, free, for cryptid and UFO fans everywhere.'
-    art = ''.join(f'<img src="{url("/static/art/" + a + ".svg")}" alt="" width="64" height="64" loading="lazy">' for a in ('bigfoot', 'ufo-saucer', 'mothman'))
+    # A dusk banner across the top of the card: creature silhouettes on the ridge, Nessie in the lake, a saucer overhead
+    a = lambda n, c: f'<img class="{c}" src="{url("/static/art/" + n + ".svg")}" alt="" width="80" height="80" loading="lazy">'
+    art = (a('ufo-saucer', 'sb-ufo') + a('mothman', 'sb-moth') + a('bigfoot', 'sb-big') + a('dogman', 'sb-dog') + a('loch-ness-monster', 'sb-ness')
+           + '<svg class="sb-land" viewBox="0 0 800 60" preserveAspectRatio="none"><path d="M0 34 C90 14 170 12 260 26 S420 44 520 30 L560 32 L800 32 L800 60 L0 60Z" fill="#13261F"/>'
+           '<path d="M560 36 L800 36 L800 60 L560 60Z" fill="#1E4A4F"/><path d="M590 44 h60 M690 50 h70" stroke="#F2B33D" stroke-opacity=".35" stroke-width="2"/></svg>')
     return f'''<section class="signup" id="signup-{uid}">
-<div class="su-art" aria-hidden="true">{art}</div>
+<div class="su-banner" aria-hidden="true">{art}</div>
 <div class="su-main"><h2>{esc(title)}</h2>
 <p class="su-lede">{esc(text)}</p>
 <ul class="su-list"><li><b>From the old newspapers</b> monster and airship stories printed this week, 100+ years ago</li>
