@@ -7,9 +7,11 @@ Also writes /data/places.geojson for the main map's "Places to visit" layer.
 Data: data/places.json. Every entry was checked by hand against the source URL stored with it.
 Event dates: `start`/`end` are the announced dates (if any); `month`/`when` describe the usual timing.
 """
-import json, math, os, re
+import json, math, os, re, sys
 from collections import defaultdict
 from datetime import date
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _legend import legend_card, head as legend_head
 
 TYPES = {  # key: (singular, plural, icon)
     'museum': ('Museum', 'Museums', 'museum'),
@@ -353,6 +355,7 @@ class Builder:
   {self.map_block(f'data-region="{k}"')}
 </div></section>
 <div class="band band-mist"><div class="wrap">
+  {legend_card(c, pl[0]['country'], nm, places_link=False)}
   {sections}
   {crit_html}
   <h2>More places</h2>
@@ -361,7 +364,7 @@ class Builder:
 </div></div>'''
             c.write(f'/places/{k}/', c.page(f'/places/{k}/', h1 + (': museums, festivals and roadside stops' if len(h1) < 30 else ': museums and festivals' if len(h1) < 45 else ''), body,
                                             f'{h1}: {names}{" and more" if len(pl) > 4 else ""}. Addresses, dates, prices and a map.',
-                                            body_class='places', head_extra=self.map_head,
+                                            body_class='places', head_extra=self.map_head + legend_head(c),
                                             noindex=len(pl) < 3))  # one- or two-place regions are too thin for Google
 
     def nearest(self, p, n=4):

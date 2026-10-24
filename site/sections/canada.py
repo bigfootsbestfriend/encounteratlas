@@ -5,6 +5,8 @@ close encounters, mysteries, places, the Canadian UFO Survey). Nothing here is n
 """
 import json, os, sys
 from collections import Counter
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _legend import legend_card, head as legend_head
 
 MONTHS = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
@@ -61,6 +63,7 @@ def build(ctx):
   </div>
 </section>
 <div class="band band-mist"><div class="wrap">
+  {legend_card(ctx, 'CA')}
   <h2 id="creatures">Creatures reported in Canada</h2>
   <p>From the Sasquatch of the BC coast to {E(", ".join(c["name"] for c in lakes[:4]))} and the rest of the lake monsters.</p>
   <div class="crit-grid">{''.join(ctx.creature_card(c) for c in crit)}</div>
@@ -87,7 +90,7 @@ def build(ctx):
   <p>Tell us what happened. Every report is read by a person before it goes on the map, and you can keep the exact spot private.</p>
   <p><a class="btn" href="{U('/report/')}">Report an encounter</a> <a class="btn btn-ghost" href="{U('/guides/')}">Field guides</a></p></section>
 </div></div>'''
-    css = f'<link rel="stylesheet" href="{U("/static/ufo_archive.css")}"><link rel="stylesheet" href="{U("/static/canada.css")}">'
+    css = f'<link rel="stylesheet" href="{U("/static/ufo_archive.css")}"><link rel="stylesheet" href="{U("/static/canada.css")}">' + legend_head(ctx)
     ctx.write('/canada/', ctx.page('/canada/', 'Sasquatch, lake monsters and UFOs in Canada', body,
                                    f'Canada\'s cryptids and UFOs in one place: {len(crit)} creatures from Sasquatch to Ogopogo, {len(cu):,} mapped UFO reports by province, famous cases and places to visit.',
                                    head_extra=css))

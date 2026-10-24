@@ -1,0 +1,46 @@
+{
+  "_about": "Local legend card on region hubs (site/sections/_legend.py). Keys are the region's display name as the page shows it (a state, province or country). Without an entry the legend is picked from the data: most famous cases located in the region, then places and old newspaper reports, then the creature index's sightings count. Living traditions are never auto-picked. Fields: creature (slug, required), blurb (one line, optional), places (extra place slugs to link, optional), case ([path, label], optional).",
+  "West Virginia": {
+    "creature": "mothman",
+    "blurb": "Point Pleasant has a Mothman museum, a stainless steel statue downtown and a festival that fills the streets."
+  },
+  "United Kingdom": {
+    "creature": "loch-ness-monster",
+    "blurb": "Loch Ness in Scotland is where the modern lake monster craze took off, after the Mackay sighting in 1933."
+  },
+  "British Columbia": {
+    "creature": "ogopogo",
+    "blurb": "Okanagan Lake's serpent has had its own statue on the Kelowna waterfront since 1960."
+  },
+  "New Jersey": {
+    "creature": "jersey-devil",
+    "blurb": "Asbury Park closes Cookman Avenue every year for the Jersey Devil Festival.",
+    "places": ["jersey-devil-festival", "paranormal-museum-asbury-park"]
+  },
+  "New Mexico": {
+    "creature": "ufo-crash",
+    "blurb": "The Roswell debris story from 1947 put New Mexico on the UFO map, and Roswell still throws a festival for it every Fourth of July weekend.",
+    "places": ["international-ufo-museum", "roswell-ufo-festival", "ufo-skip-site"],
+    "case": ["/ufo/cases/roswell-1947/", "The Roswell case, 1947"]
+  },
+  "Washington": {
+    "creature": "bigfoot",
+    "blurb": "Ape Canyon on Mount St. Helens is named for a 1924 story of miners besieged by rock-throwing apemen."
+  },
+  "California": {
+    "creature": "bigfoot",
+    "blurb": "The name took off at Bluff Creek in 1958, and Patterson and Gimlin filmed their figure along the same creek in 1967."
+  },
+  "Vermont": {
+    "creature": "champ",
+    "blurb": "Lake Champlain's long-necked monster, made famous by the Mansi photograph in 1977."
+  },
+  "Texas": {
+    "creature": "chupacabra",
+    "blurb": "Texas is where the goat-sucker turned into hairless dogs, like the Cuero carcass in 2007."
+  },
+  "United States": {
+    "creature": "bigfoot",
+    "blurb": "The best-known cryptid in North America, from Bluff Creek in California to Ape Canyon in Washington."
+  }
+}

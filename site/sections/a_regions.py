@@ -9,6 +9,8 @@ has at least 3 cases, places or newspaper reports besides UFO file counts, so no
 """
 import json, os, sys
 from collections import Counter, defaultdict
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _legend import legend_card, head as legend_head
 
 
 def build(ctx):
@@ -61,7 +63,7 @@ def build(ctx):
         cc = k[:2]
         slug = ctx.slugify(nm)
         made[k] = (f'/{"us" if cc == "US" else "canada"}/{slug}/', nm)
-    css = f'<link rel="stylesheet" href="{U("/static/ufo_archive.css")}"><link rel="stylesheet" href="{U("/static/canada.css")}">'
+    css = f'<link rel="stylesheet" href="{U("/static/ufo_archive.css")}"><link rel="stylesheet" href="{U("/static/canada.css")}">' + legend_head(ctx)
 
     def card(href, title, sub, text, cls=''):
         return (f'<li><a class="cn-card{cls}" href="{href}"><b>{E(title)}</b><small>{E(sub)}</small>'
@@ -134,6 +136,7 @@ def build(ctx):
   </div>
 </section>
 <div class="band band-mist"><div class="wrap">
+  {legend_card(ctx, cc, nm)}
   {''.join(parts)}
   <section class="cn-cta"><h2>Seen something in {E(nm)}?</h2>
   <p>Tell us what happened. Every report is read by a person before it goes on the map, and you can keep the exact spot private.</p>
@@ -158,7 +161,7 @@ def build(ctx):
   <p class="lede">Pick your state to see its creatures, famous cases, UFO files, old newspaper reports and places to visit.
   In Canada? <a href="{U('/canada/')}">Start here</a>.</p>
 </div></section>
-<div class="band band-mist"><div class="wrap"><ul class="cu-pgrid st-grid">{grid}</ul></div></div>'''
+<div class="band band-mist"><div class="wrap">{legend_card(ctx, 'US')}<ul class="cu-pgrid st-grid">{grid}</ul></div></div>'''
         ctx.write('/us/', ctx.page('/us/', 'Cryptids, Bigfoot and UFOs by state', body,
                                    'Bigfoot, strange creatures, UFO files, old newspaper reports and places to visit for every US state.',
                                    head_extra=css + f'<link rel="stylesheet" href="{U("/static/ufo_canada.css")}">'))

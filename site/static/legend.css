@@ -1,0 +1,34 @@
+/* Local legend card on region hubs (site/sections/_legend.py) */
+.lg-card { --lg: var(--c-other); position: relative; display: grid; grid-template-columns: 1fr; gap: 1rem; justify-items: center;
+  margin: 0 0 2rem; padding: 1.2rem 1.1rem 1.3rem; border-radius: var(--r-md); color: #E8ECDD; overflow: hidden;
+  background: radial-gradient(90% 120% at 0% 0%, color-mix(in srgb, var(--lg) 26%, transparent), transparent 65%), var(--spruce);
+  border: 1px solid var(--spruce-3); border-top: 5px solid var(--lg); box-shadow: 0 10px 28px rgba(0,0,0,.18); }
+.lg-card.cat-hominid { --lg: var(--c-hominid); } .lg-card.cat-canid { --lg: var(--c-canid); } .lg-card.cat-winged { --lg: var(--c-winged); }
+.lg-card.cat-aquatic { --lg: var(--c-aquatic); } .lg-card.cat-entity { --lg: var(--c-entity); } .lg-card.cat-fae { --lg: var(--c-fae); }
+.lg-card.cat-ufo { --lg: var(--c-ufo); } .lg-card.cat-other { --lg: var(--c-other); }
+.lg-art { width: min(200px, 60vw); }
+.lg-art .poster, .lg-art .badge { width: 100%; height: auto; display: block; }
+.lg-art .badge-xl { margin: 0 auto; }
+.lg-art.lg-icon { width: min(140px, 40vw); }
+.lg-icon { display: grid; place-items: center; aspect-ratio: 1; border-radius: var(--r-md); background: var(--spruce-2); color: var(--lg); }
+.lg-icon svg { width: 55%; height: 55%; }
+.lg-txt { min-width: 0; width: 100%; }
+.lg-eyebrow { margin: 0 0 .2rem; font: 700 .78rem/1.3 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--lg); }
+.lg-card h2 { margin: 0 0 .35rem; font: 700 clamp(1.6rem, 5vw, 2.2rem)/1.1 var(--display); color: #F3F1DA; }
+.lg-why { margin: 0 0 .5rem; font-weight: 700; color: var(--lantern-2); }
+.lg-sum { margin: 0 0 .7rem; color: #DCE3D2; }
+.lg-note { margin: 0 0 .7rem; padding: .55rem .75rem; border-left: 3px solid var(--lg); background: rgba(255,255,255,.05); font-size: .93rem; color: #DCE3D2; }
+.lg-cases { list-style: none; margin: 0 0 .9rem; padding: 0; display: grid; gap: .3rem; font-size: .95rem; }
+.lg-cases li { display: flex; gap: .55rem; align-items: baseline; }
+.lg-yr { flex: none; min-width: 3.2em; padding: .05rem .4rem; border-radius: 4px; background: rgba(255,255,255,.08); font: 700 .8rem var(--body); text-align: center; color: var(--lantern-2); }
+.lg-links { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; }
+.lg-btn, .lg-chip { display: inline-flex; align-items: center; min-height: 44px; padding: .45rem 1rem; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: .95rem; }
+.lg-card .lg-btn { background: var(--lantern); color: var(--ink); }
+.lg-card .lg-btn:hover { background: var(--lantern-2); color: var(--ink); }
+.lg-card .lg-chip { border: 1px solid var(--spruce-3); background: rgba(255,255,255,.06); color: #E8ECDD; font-weight: 600; }
+.lg-card .lg-chip:hover { border-color: var(--lg); color: #fff; }
+.lg-place::before { content: ""; width: .55rem; height: .55rem; margin-right: .45rem; border-radius: 50%; background: #9CC46B; flex: none; }
+@media (min-width: 700px) {
+  .lg-card { grid-template-columns: auto 1fr; justify-items: start; align-items: center; gap: 1.6rem; padding: 1.5rem 1.7rem; }
+  .lg-art { width: clamp(170px, 22vw, 220px); }
+}
