@@ -19,7 +19,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 150  # ~1,100 throttled iTunes calls (3 s apart) with no cache on the runner: about an hour
+    timeout-minutes: 180  # ~1,100 throttled iTunes calls (3 s apart) with no cache on the runner: about an hour, plus the audio lookups
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -27,6 +27,8 @@ jobs:
           python-version: "3.12"
       - name: Collect podcasts
         run: python3 collector/podcasts.py
+      - name: Find each episode's audio (show's own https enclosure, for the site's player)
+        run: python3 tools/podcast_audio.py
       - name: Commit if changed
         id: commit
         run: |

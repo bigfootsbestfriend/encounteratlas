@@ -284,6 +284,7 @@
       li.append(txt); ol.append(li);
     }
     out.append(ol);
+    document.dispatchEvent(new CustomEvent('ea:route', { detail: { after: ol, stops: res.stops } })); // podplayer.js "Listen along"
     if (res.cards.length) {
       out.append(el('h2', '', 'Cards on this route'));
       const p = el('p', '', `Stand within ${fmt(25)} of one of these spots and tap "I'm here" to collect the card.`); out.append(p);

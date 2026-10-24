@@ -2,7 +2,10 @@
 
 Data: data/podcasts.json and data/podcasts_episodes.json, written by collector/podcasts.py (weekly).
 """
-import json, os, re
+import json, os, re, sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _podplay
 
 # Mike's rule: no links to BFRO, NUFORC, MUFON or competing cryptid/encounter hubs, even as an RSS link.
 BLOCKED = re.compile(r'bfro\.net|nuforc\.org|mufon\.com|cryptidcatchers?\.|cryptidatlas\.|enigmalabs\.', re.I)
@@ -170,6 +173,8 @@ def build(ctx):
         return f'<nav class="ptiles" aria-label="Podcast topics">{out}</nav>'
 
     creature_order = [c['slug'] for c in ctx.creatures if c['slug'] in eps_by]
+    _podplay.write_json(ctx)  # /data/podcast-play.json for the player (road trip "Listen along")
+    pp_head = head + _podplay.head(ctx)
 
     # ---------- hub ----------
     active = sorted([s for s in shows if s.get('recent30', 0) > 0 and (s.get('notable') or s['episodes'] >= 100)], key=lambda s: (-s['recent30'], -s['score']))[:12]
@@ -265,6 +270,12 @@ def build(ctx):
                                               head_extra=head))
 
     # ---------- creature episode pages ----------
+    def play(e, sh):
+        # Play in the site's player, streamed from the show's own feed (living traditions stay info-only)
+        if not e.get('audio') or slug in _podplay.LIVING:
+            return ''
+        return _podplay.play_button(_podplay.entry(e, sh['apple'] if sh else ''), 'pod-play')
+
     for slug in creature_order:
         c, eps = ctx.by_slug[slug], eps_by[slug]
         show_by_id = {s['id']: s for s in shows}
@@ -278,7 +289,7 @@ def build(ctx):
                       f'{img(e, 160, "", 96)}</a><div class="pep-body"><h3><a href="{esc(e["url"])}" rel="noopener">{esc(scrub(e["title"]))}</a></h3>'
                       f'<p class="pep-show">{show_link} <span class="muted">{esc(meta)}</span></p>'
                       f'{about}'
-                      f'<p class="pod-links"><a class="pod-apple" href="{esc(e["url"])}" rel="noopener">'
+                      f'<p class="pod-links">{play(e, sh)}<a class="pod-apple" href="{esc(e["url"])}" rel="noopener">'
                       f'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.1v13.8a1 1 0 0 0 1.5.86l11-6.9a1 1 0 0 0 0-1.72l-11-6.9A1 1 0 0 0 8 5.1z"/></svg>'
                       f'Listen</a></p></div></li>')
         # shows on the matching topic, for "keep listening"
@@ -302,12 +313,12 @@ def build(ctx):
   </div>
 </section>
 <div class="band band-mist"><div class="wrap">
-  <ol class="pep-list">{items}</ol>
+  <ol class="pep-list" data-pp-list>{items}</ol>
   {keep_html}
   {f'<h2>More creatures like this</h2><div class="pcrit-grid light">{others}</div>' if others else ''}
-  <p class="small muted">Episodes found through Apple Podcasts search, updated {esc(fmt_date(updated))}. Links open the episode on Apple Podcasts.</p>
+  <p class="small muted">Episodes found through Apple Podcasts search, updated {esc(fmt_date(updated))}. {"Play streams the episode straight from the show's own feed, so the show gets the listen. " if slug not in _podplay.LIVING and any(e.get("audio") for e in eps) else ""}Listen opens the episode on Apple Podcasts.</p>
 </div></div>'''
         ctx.write(f'/podcasts/creature/{slug}/', ctx.page(
             f'/podcasts/creature/{slug}/', f'Podcast episodes about {c["name"]}', body,
             f'The best podcast episodes about {c["name"]}' + (f' ({", ".join(c["aliases"][:2])})' if c['aliases'] else '') +
-            f': {len(eps)} picks from shows like {", ".join(dict.fromkeys(e["show"] for e in eps[:3]))}.', head_extra=head))
+            f': {len(eps)} picks from shows like {", ".join(dict.fromkeys(e["show"] for e in eps[:3]))}.', head_extra=pp_head))

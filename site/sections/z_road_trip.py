@@ -8,7 +8,10 @@ OpenStreetMap data, straight-line fallback) and static/cards.js keeps the collec
 
 The sample trips' routes are cached in data/road_trips.json by tools/road_trip_routes.py, and their stops are worked
 out here at build time so each trip page is complete HTML. Trips with fewer than 8 stops are noindexed."""
-import importlib.util, json, math, os
+import importlib.util, json, math, os, sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _podplay  # "Listen along" podcast player (static/podplayer.js)
 
 CORRIDOR_KM = 40
 CHECKIN_KM = 25
@@ -104,7 +107,7 @@ def build(ctx):
     print(f'road trip: {len(stops)} stops, {len(cards)} cards')
 
     head = (f'<link rel="stylesheet" href="{U("/static/roadtrip.css")}"><link rel="stylesheet" href="{U("/static/cards.css")}">'
-            '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.css">')
+            '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.css">' + _podplay.head(ctx))
     cfg = lambda extra='': (f'<script type="application/json" id="rt-config">{json.dumps({"data": U("/data/roadtrip.json"), "cities": U("/data/cities.json"), "tiles": U("/data/near/"), "cards": U("/cards/"), "api": "https://api.encounteratlas.com", "living": sorted(LIVING), **(extra or {})})}</script>'
                             f'<script src="{U("/static/cards.js")}" defer></script><script src="{U("/static/roadtrip.js")}" defer></script>')
 
@@ -168,6 +171,7 @@ def build(ctx):
     <h2>Stops along the way</h2>
     <p class="rt-note">Everything within {CORRIDOR_KM} km of the road, in the order you'll pass it. Distances are from the start.</p>
     {leg_html}
+    {_podplay.listen_along(ctx, [(h[0], h[2][6], h[2][3]) for h in hits if h[2][0] in ('place', 'case')])}
     {f'<h2>Cards you can collect on this trip</h2><p>Stand within {CHECKIN_KM} km of one of these spots and tap "I\'m here" in the planner or on the <a href="{U("/cards/")}">cards page</a> to add the card to your collection.</p><ul class="cc-grid">{cards_html}</ul>' if cards_html else ''}
     <p class="rt-src">Route from OpenStreetMap data (FOSSGIS routing). Always check road conditions, opening hours and festival dates before you go.</p>
   </article>

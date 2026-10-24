@@ -1,0 +1,74 @@
+/* Podcast player (static/podplayer.js): docked bar, "Listen along" lists, Play buttons on episode lists.
+   Big buttons on purpose (64px+), so it's usable at arm's length on a phone mount. */
+body.pp-on { padding-bottom: calc(11.5rem + env(safe-area-inset-bottom)); }
+
+.pp-bar { position: fixed; z-index: 900; left: 0; right: 0; bottom: 0; background: #0E1D18; color: var(--lichen);
+  border-top: 2px solid var(--lantern); box-shadow: 0 -8px 24px rgba(0,0,0,.35);
+  padding: .6rem max(12px, env(safe-area-inset-right)) calc(.55rem + env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); }
+.pp-in { max-width: 56rem; margin: 0 auto; display: grid; gap: .35rem; }
+.pp-top { display: flex; align-items: center; gap: .7rem; min-width: 0; }
+.pp-art { flex: none; width: 56px; height: 56px; border-radius: 8px; object-fit: cover; background: var(--spruce-2); }
+.pp-meta { flex: 1; min-width: 0; }
+.pp-title { margin: 0; font: 700 1rem/1.25 var(--body); color: #F3F1DA; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.pp-show { margin: .1rem 0 0; font-size: .85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pp-show a { color: var(--lantern); }
+.pp-pos { color: var(--muted-d); }
+
+.pp-prog { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .6rem; font: 600 .8rem var(--body); font-variant-numeric: tabular-nums; color: var(--muted-d); }
+.pp-range { width: 100%; height: 32px; margin: 0; accent-color: var(--lantern); background: transparent; cursor: pointer; touch-action: none; }
+.pp-range:disabled { opacity: .45; cursor: default; }
+
+.pp-ctl { display: flex; align-items: center; justify-content: center; gap: clamp(.4rem, 3vw, 1.4rem); }
+.pp-b { position: relative; display: inline-grid; place-items: center; width: 60px; height: 60px; padding: 0; border-radius: 50%;
+  border: 0; background: var(--spruce-2); color: #F3F1DA; cursor: pointer; touch-action: manipulation; font: 700 1rem var(--body); }
+.pp-b svg { width: 30px; height: 30px; }
+.pp-b:hover { background: var(--spruce-3); }
+.pp-b:focus-visible, .pp-btn:focus-visible, .pod-play:focus-visible, .pp-all:focus-visible { outline: 3px solid var(--lantern); outline-offset: 3px; }
+.pp-b:disabled { opacity: .35; cursor: default; }
+.pp-main { width: 76px; height: 76px; background: var(--lantern); color: var(--spruce); }
+.pp-main:hover { background: var(--lantern-2); }
+.pp-main svg { width: 38px; height: 38px; }
+.pp-n { position: absolute; font-size: .62rem; font-weight: 800; top: 50%; left: 50%; transform: translate(-50%, -38%); }
+.pp-rate { font-size: .95rem; }
+.pp-close { flex: none; width: 48px; height: 48px; background: transparent; color: var(--muted-d); }
+.pp-close svg { width: 22px; height: 22px; }
+.pp-status { margin: 0; min-height: 0; font-size: .85rem; font-weight: 600; color: var(--lantern-2); text-align: center; }
+.pp-status:empty { display: none; }
+.pp-resume { display: flex; justify-content: center; padding: .3rem 0 .2rem; }
+.pp-resume .btn { min-height: 56px; padding: 0 1.6rem; font-size: 1.1rem; border: 0; cursor: pointer; }
+.pp-resume .btn svg, .pp-all svg { width: 20px; height: 20px; }
+.pp-resume[hidden], .pp-ctl[hidden], .pp-prog[hidden] { display: none; }
+
+@media (min-width: 760px) {
+  body.pp-on { padding-bottom: calc(7rem + env(safe-area-inset-bottom)); }
+  .pp-in { grid-template-columns: minmax(14rem, 1fr) auto; grid-template-areas: "top ctl" "prog prog" "st st"; column-gap: 1.5rem; align-items: center; }
+  .pp-top { grid-area: top; } .pp-ctl { grid-area: ctl; } .pp-prog { grid-area: prog; } .pp-status { grid-area: st; }
+  .pp-resume { grid-area: ctl; }
+  .pp-top .pp-close { order: -1; }
+}
+
+/* "Listen along" (road trip pages and planner) */
+.pp-along { margin: 2rem 0; padding: 1.2rem 1.1rem 1rem; border-radius: var(--r-md); background: #fff; border: 1px solid var(--mist-2); border-top: 5px solid var(--lantern); }
+.pp-along > h2 { margin-top: 0; }
+.pp-all { min-height: 52px; border: 0; cursor: pointer; }
+.pp-stops, .pp-eps { list-style: none; margin: 0; padding: 0; }
+.pp-stop { padding: .8rem 0; border-top: 1px solid var(--mist-2); }
+.pp-stop h3 { margin: 0; font-size: 1.1rem; }
+.pp-near { margin: .1rem 0 .5rem; font-size: .88rem; color: var(--muted-l); }
+.pp-ep { display: grid; grid-template-columns: 52px 1fr; gap: .7rem; align-items: center; padding: .35rem 0; }
+.pp-ep-t { min-width: 0; }
+.pp-ep-t b { display: block; font-weight: 700; line-height: 1.3; }
+.pp-ep-t small { color: var(--muted-l); font-size: .85rem; }
+.pp-btn { display: inline-flex; align-items: center; justify-content: center; gap: .35rem; border: 0; cursor: pointer; touch-action: manipulation; }
+.pp-round { width: 52px; height: 52px; border-radius: 50%; background: var(--spruce); color: var(--lantern); }
+.pp-round svg { width: 24px; height: 24px; }
+.pp-round:hover { background: var(--spruce-3); }
+.pp-round.pp-cur { background: var(--lantern); color: var(--spruce); }
+
+/* Play button next to "Listen" on /podcasts/creature/<slug>/ */
+.pod-play { display: inline-flex; align-items: center; gap: .35rem; min-height: 40px; font: 700 .9rem var(--body); padding: .42rem 1rem;
+  border-radius: 999px; border: 0; cursor: pointer; background: var(--lantern); color: var(--spruce); touch-action: manipulation; }
+.pod-play svg { width: 16px; height: 16px; }
+.pod-play:hover { background: var(--lantern-2); }
+.pod-play.pp-cur { box-shadow: 0 0 0 3px var(--spruce); }
+.pod-links { align-items: center; }
