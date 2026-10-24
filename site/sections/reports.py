@@ -48,7 +48,9 @@ def _head(ctx, extra_js=''):
 
 
 def _config(ctx):
-    cfg = {'api': API, 'base': ctx.BASE, 'sitekey': SITEKEY}
+    cfg = {'api': API, 'base': ctx.BASE, 'sitekey': SITEKEY,
+           # "Conditions that night" panel for the /reports/?id= view (vote.js loads these only when it shows a report)
+           'cond': {'js': ctx.url('/static/conditions.js'), 'css': ctx.url('/static/conditions.css'), 'living': sorted(LIVING_TRADITIONS)}}
     meta = {c['slug']: {'n': c['name'], 'c': c['cat'], 'i': c.get('art') or 'icons/' + c['icon']} for c in ctx.creatures}
     cats = {k: v[0] for k, v in ctx.CATS.items()}
     # json.dumps output is safe inside <script type="application/json"> once "</" is escaped.
@@ -407,6 +409,20 @@ def card_html(ctx, R, S, sid):
             f'<span class="rc-snip">{e(snip)}</span></span></a>')
 
 
+def conditions_panel(R, S):
+    """'Conditions that night': plain HTML here, filled in by static/conditions.js once it scrolls into view.
+    Left out when there's no point or the date is only a rough guess."""
+    lat, lon, d = R.get('lat'), R.get('lon'), R.get('seen_date') or ''
+    if lat is None or lon is None or R.get('date_approx') or not re.fullmatch(r'\d{4}-\d\d-\d\d', d):
+        return ''
+    t = R.get('seen_time') or ''
+    t = t if re.fullmatch(r'\d\d:\d\d', t) else ''
+    return (f'<section class="cond" data-cond="{float(lat):.2f},{float(lon):.2f},{d},{t},{1 if S["region_only"] else 0}" aria-labelledby="cond-h">'
+            f'<h2 id="cond-h">Conditions that night</h2>'
+            f'<p class="cond-wait">The Moon, how dark it was, any bright planets or meteor shower, and the weather on {_date(d)}'
+            f'{" in the region" if S["region_only"] else " near this spot"} show here as you scroll down.</p></section>')
+
+
 def report_page(ctx, R, S, others):
     e, u = ctx.esc, ctx.url
     c, pid = S['c'], R['id']
@@ -466,6 +482,7 @@ def report_page(ctx, R, S, others):
     crumb_c = f' / <a href="{u("/creatures/" + c["slug"] + "/")}">{e(c["name"])}</a>' if c else ''
     report_href = u('/report/?creature=' + c['slug']) if c else u('/report/')
     seen_icon = ctx.crit_icon(c) if c else ''
+    cond = conditions_panel(R, S)
     body = f'''
 <section class="band band-dark rep-head"><div class="wrap rep-detail-head">
   <div class="creature-head-in">{_poster(ctx, c, 'rsky' + pid, 'rposter rposter-lg')}
@@ -479,6 +496,7 @@ def report_page(ctx, R, S, others):
       <div data-owner-slot></div>
       {paras}
       {extra}
+      {cond}
       <h2 id="vote">Real or hoax?</h2>
       <div data-vote-item="r:{pid}" data-vote-label="Your verdict on this encounter"></div>
       <p class="small">A reader sent this in and a moderator checked it before it went up. We can't verify it, and we don't claim it's true or false.
@@ -512,7 +530,8 @@ def report_page(ctx, R, S, others):
         ld['author'] = {'@type': 'Person', 'name': R['name']}
     if S['where']:
         ld['contentLocation'] = {'@type': 'Place', 'name': S['where']}
-    head = (_head(ctx, f'<script src="{u("/static/report_page.js")}" defer></script>')
+    head = (_head(ctx, f'<script src="{u("/static/report_page.js")}" defer></script>'
+                       + (f'<link rel="stylesheet" href="{u("/static/conditions.css")}"><script src="{u("/static/conditions.js")}" defer></script>' if cond else ''))
             + '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace('</', '<\\/') + '</script>')
     return ctx.page(S['path'], S['title'], body, desc, body_class='reports report-page', head_extra=head, noindex=bool(S['thin']))
 

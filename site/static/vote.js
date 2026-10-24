@@ -576,6 +576,16 @@
         art.append(h('div', { class: 'vid' }, videoEmbed(v), R.owner && R.status !== 'approved' ? '' : voteWidget(v.item, { label: 'This video: real or hoax?', compact: true, ai: true })));
       }
     }
+    // "Conditions that night": static/conditions.js (and its CSS) load only here, from cfg.cond set by reports.py.
+    const cc = cfg.cond;
+    if (cc && R.lat != null && /^\d{4}-\d\d-\d\d$/.test(R.seen_date || '') && !R.date_approx) {
+      const t = /^\d\d:\d\d$/.test(R.seen_time || '') ? R.seen_time : '';
+      const el = h('section', { class: 'cond', 'data-cond': [(+R.lat).toFixed(2), (+R.lon).toFixed(2), R.seen_date, t, cc.living.includes(R.creature) ? 1 : 0].join(',') },
+        h('h2', { text: 'Conditions that night' }));
+      art.append(el);
+      document.head.append(h('link', { rel: 'stylesheet', href: cc.css }));
+      if (window.eaCond) window.eaCond.watch(el); else document.head.append(h('script', { src: cc.js, async: true }));
+    }
     if (!R.owner || R.status === 'approved') {
       art.append(h('h2', { id: 'vote', text: 'Real or hoax?' }), voteWidget(R.item, { label: 'Your verdict on this encounter', ai: false }));
     }

@@ -1,0 +1,27 @@
+/* "Conditions that night" panel on reader report pages (static/conditions.js). A night-sky card inside the story column. */
+.cond { background: #17233A; color: #DCE3EC; border-radius: var(--r-md); padding: 1.1rem 1rem 1rem; margin: 2rem 0 1.5rem; border: 1px solid #26365A; }
+.prose .cond h2, .cond h2 { color: #F3F1DA; font-size: 1.3rem; margin: 0 0 .5rem; }
+.cond p { margin: 0 0 .6rem; }
+.cond .cond-wait { color: #AEBBD0; font-size: .95rem; }
+.cond-status { font-size: .95rem; color: #AEBBD0; margin: 0; }
+.cond-status:empty { display: none; }
+.cond-for { font-size: .92rem; color: #AEBBD0; }
+.cond-list { margin: .4rem 0 .8rem; }
+.cond-row { display: grid; grid-template-columns: 5.6rem 1fr; gap: .2rem .8rem; padding: .6rem 0; border-top: 1px solid #26365A; }
+.cond-row > dt { font-weight: 700; color: #F2B33D; font-size: .9rem; padding-top: .1rem; }
+.cond-row > dd { margin: 0; font-size: .97rem; line-height: 1.5; }
+.cond-mrow > dd { display: flex; gap: .7rem; align-items: center; }
+.cond-moon { flex: none; }
+.cond-moon .dark { fill: #2A3450; stroke: rgba(255, 255, 255, .3); stroke-width: .6; }
+.cond-moon .lit { fill: #F7E7B0; }
+.cond-times dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem .8rem; margin: 0; }
+.cond-times dl div { padding: 0; border: 0; }
+.cond-times dl dt { font-size: .78rem; color: #AEBBD0; font-weight: 600; }
+.cond-times dl dd { margin: 0; font-weight: 600; font-size: .95rem; }
+.cond-notes { font-size: .85rem; color: #AEBBD0; margin: 0; }
+.cond a { color: var(--lantern-2); }
+@media (max-width: 520px) {
+  .cond-row { grid-template-columns: 1fr; }
+  .cond-times dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 700px) { .cond { padding: 1.3rem 1.4rem 1.1rem; } }
