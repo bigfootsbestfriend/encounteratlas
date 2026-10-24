@@ -8,7 +8,7 @@ OpenStreetMap data, straight-line fallback) and static/cards.js keeps the collec
 
 The sample trips' routes are cached in data/road_trips.json by tools/road_trip_routes.py, and their stops are worked
 out here at build time so each trip page is complete HTML. Trips with fewer than 8 stops are noindexed."""
-import datetime, json, math, os
+import importlib.util, json, math, os
 
 CORRIDOR_KM = 40
 CHECKIN_KM = 25
@@ -91,7 +91,7 @@ def build(ctx):
         c = ctx.by_slug[slug]
         n = len(sp)
         cards[slug] = {'n': c['name'], 'c': c['cat'], 'art': U(f"/static/{c['art']}.svg") if c.get('art') else '',
-                       'r': 'Rare' if n == 1 else 'Uncommon' if n <= 3 else 'Common', 'spots': sp}
+                       'r': 'Unique' if n == 1 else 'Uncommon' if n <= 3 else 'Common', 'spots': sp}
     hunts = json.load(open(os.path.join(ctx.ROOT, 'data', 'hunts.json')))
     for h in hunts:
         h['creatures'] = [s for s in h['creatures'] if s in cards]
@@ -101,7 +101,7 @@ def build(ctx):
                    'trips': {t['slug']: {'title': t['title'], 'waypoints': t['waypoints'], 'route': t['route']} for t in trips}}, f, separators=(',', ':'), ensure_ascii=False)
     print(f'road trip: {len(stops)} stops, {len(cards)} cards')
 
-    head = (f'<link rel="stylesheet" href="{U("/static/roadtrip.css")}">'
+    head = (f'<link rel="stylesheet" href="{U("/static/roadtrip.css")}"><link rel="stylesheet" href="{U("/static/cards.css")}">'
             '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.css">')
     cfg = lambda extra='': (f'<script type="application/json" id="rt-config">{json.dumps({"data": U("/data/roadtrip.json"), "cities": U("/data/cities.json"), "tiles": U("/data/near/"), "cards": U("/cards/"), "api": "https://api.encounteratlas.com", "living": sorted(LIVING), **(extra or {})})}</script>'
                             f'<script src="{U("/static/cards.js")}" defer></script><script src="{U("/static/roadtrip.js")}" defer></script>')
@@ -213,32 +213,8 @@ def build(ctx):
               'Plan a road trip past every Bigfoot museum, UFO site, famous monster sighting and mystery along your route, anywhere in the world. Free, no sign-up.',
               head_extra=head))
 
-    # ---------- cards ----------
-    today = datetime.date.today().isoformat()
-    hunt_html = ''
-    for h in hunts:
-        if h['start'] <= today <= h['end'] and h['creatures']:
-            end = datetime.date.fromisoformat(h['end']).strftime('%B %-d')
-            hunt_html += (f'<section class="cc-huntbox" data-hunt="{h["slug"]}"><h2>{E(h["title"])}</h2><p>{E(h["blurb"])}</p>'
-                          f'<p class="cc-prog" data-of="{len(h["creatures"])}">0 of {len(h["creatures"])} collected</p>'
-                          f'<ul class="cc-grid">{"".join(card_html(s, cards[s], True) for s in h["creatures"])}</ul></section>')
-    order = {k: i for i, k in enumerate(ctx.CATS)}
-    allc = sorted(cards, key=lambda s: (order.get(cards[s]['c'], 99), cards[s]['n']))
-    body = f'''
-<section class="band band-dark rt-hero"><div class="wrap">
-  <h1>Collector cards</h1>
-  <p class="lede">{len(cards)} creatures have a card, and the only way to get one is to actually go there. Stand within {CHECKIN_KM} km of a real sighting spot or a place tied to that creature, tap "I'm here", and it's yours.</p>
-  <p class="rt-actions"><button type="button" class="btn" id="cc-here">I'm here</button> <a class="btn btn-ghost" href="{U('/road-trip/')}">Plan a trip</a></p>
-  <p id="cc-status" class="rt-status" aria-live="polite"></p>
-  <p class="cc-total" id="cc-total" hidden></p>
-</div></section>
-<div class="band band-mist"><div class="wrap">
-  {hunt_html}
-  <h2>Every card</h2>
-  <p class="rt-note">Rare means there's only one spot in the world to get it. Your collection stays on this device (no account), so don't clear your browser data if you care about it.</p>
-  <ul class="cc-grid">{''.join(card_html(s, cards[s]) for s in allc)}</ul>
-</div></div>
-<script type="application/json" id="cc-config">{json.dumps({"data": U("/data/roadtrip.json")})}</script><script src="{U('/static/cards.js')}" defer></script>'''
-    ctx.write('/cards/', ctx.page('/cards/', 'Cryptid collector cards: collect them on location', body,
-              f'{len(cards)} cryptid and monster cards you can only collect by visiting real sighting spots and places, plus the {hunts[0]["title"] if hunts else "seasonal"} set.',
-              head_extra=f'<link rel="stylesheet" href="{U("/static/roadtrip.css")}">'))
+    # ---------- cards (page builder in _cards.py) ----------
+    spec = importlib.util.spec_from_file_location('ea_cards_page', os.path.join(os.path.dirname(os.path.abspath(__file__)), '_cards.py'))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    mod.build_cards(ctx, cards, hunts, CHECKIN_KM)
