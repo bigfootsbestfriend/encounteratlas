@@ -1501,8 +1501,8 @@ def build_home(creatures, n_points, bluebook, military):
 <script src="{url('/static/home.js')}" defer></script>''', 'Search creatures, places, UFO files and encounters on Encounter Atlas.'))
     write('/map/', page('/map/', 'Encounter map', f'''
 <section class="map-full" aria-label="Encounter map">
-  <h1 class="visually-hidden">Encounter map</h1>
   <div class="map-full-bar">
+    <div class="mf-head"><h1>Encounter map</h1><p>Air Force UFO files, famous creature cases, military encounters and places you can visit. Every pin is a real file or case, so tap one and read it.</p></div>
     <button type="button" class="mf-toggle" aria-expanded="false" aria-controls="mf-panel"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2 4h12M4.5 8h7M7 12h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Filters</span><span class="mf-now">Everything</span></button>
     <button type="button" class="btn btn-sm" data-locate>Near me</button>
   </div>

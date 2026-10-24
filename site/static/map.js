@@ -79,6 +79,7 @@
     const pad = px * 0.17;
     try { g.drawImage(img, pad, pad, px - 2 * pad, px - 2 * pad); } catch (e) { /* icon failed to load */ }
     map.addImage(id, g.getImageData(0, 0, px, px), { pixelRatio: 2 });
+    await new Promise((r) => setTimeout(r)); // let the browser handle input between badges
   }
 
   function popup(lngLat, nodes) {
@@ -161,6 +162,7 @@
   async function addFamous() {
     const data = await fetch(BASE + '/data/famous.geojson').then((r) => r.json()).catch(() => null);
     if (!data || !data.features.length) return;
+    famousData = data;
     const icons = new Set(data.features.map((f) => f.properties.i + '|' + f.properties.c));
     await Promise.all([...icons].map((k) => { const [i, c] = k.split('|'); return addBadge('crit-' + i + '-' + c, i, CAT[c] || '#C9D3A4'); }));
     for (const f of data.features) f.properties.img = 'crit-' + f.properties.i + '-' + f.properties.c;
@@ -181,8 +183,7 @@
   }
 
   async function addMilitary() {
-    const data = await fetch(BASE + '/data/military.geojson').then((r) => r.json()).catch(() => null);
-    if (!data || !data.features.length) return;
+    const data = BASE + '/data/military.geojson';
     await addBadge('mil', 'art/pic-mil-chase', '#7FD3FF');
     map.addSource('military', { type: 'geojson', data });
     map.addLayer({ id: 'military', type: 'symbol', source: 'military', layout: {
@@ -197,8 +198,7 @@
   }
 
   async function addPlaces() {
-    const data = await fetch(BASE + '/data/places.geojson').then((r) => (r.ok ? r.json() : null)).catch(() => null);
-    if (!data || !data.features || !data.features.length) return;
+    const data = BASE + '/data/places.geojson'; // a URL: MapLibre loads and parses it in its worker, off the main thread
     map.addSource('places', { type: 'geojson', data });
     map.addLayer({ id: 'places', type: 'circle', source: 'places', paint: {
       // Festivals and gatherings get their own colour (and their own "Events and gatherings" chip)
@@ -219,8 +219,7 @@
 
   // Newer official cases: FAA pilot reports (NARA RG 615) and the Pentagon's PURSUE files
   async function addOfficial(file, id, color, label) {
-    const data = await fetch(BASE + '/data/' + file).then((r) => (r.ok ? r.json() : null)).catch(() => null);
-    if (!data || !data.features || !data.features.length) return;
+    const data = BASE + '/data/' + file; // a URL: MapLibre loads and parses it in its worker, off the main thread
     map.addSource(id, { type: 'geojson', data });
     map.addLayer({ id, type: 'circle', source: id, paint: {
       'circle-color': color, ...APPROX_PAINT(color, 3.5, 7) } });
@@ -237,8 +236,7 @@
 
   // Canadian UFO Survey: one dot per town (n reports, nu unexplained), clustered; the popup links to the town page.
   async function addCanada() {
-    const data = await fetch(BASE + '/data/ufo_canada.geojson').then((r) => (r.ok ? r.json() : null)).catch(() => null);
-    if (!data || !data.features || !data.features.length) return;
+    const data = BASE + '/data/ufo_canada.geojson'; // a URL: MapLibre loads and parses it in its worker, off the main thread
     map.addSource('cufos', { type: 'geojson', data, cluster: true, clusterRadius: 34, clusterMaxZoom: 8,
       clusterProperties: { n: ['+', ['get', 'n']] } });
     // Drawn under every other layer, small and faint, so famous cases and the Air Force files stay on top.
@@ -266,8 +264,7 @@
 
   // Greek close encounters shared by GRUFON (site/sections/ufo_greece.py): one dot per case, linking to it on /ufo/greece/.
   async function addGreece() {
-    const data = await fetch(BASE + '/data/ufo_greece.geojson').then((r) => (r.ok ? r.json() : null)).catch(() => null);
-    if (!data || !data.features || !data.features.length) return;
+    const data = BASE + '/data/ufo_greece.geojson'; // a URL: MapLibre loads and parses it in its worker, off the main thread
     map.addSource('greece', { type: 'geojson', data });
     map.addLayer({ id: 'greece', type: 'circle', source: 'greece', paint: {
       'circle-color': '#4FC3A1', 'circle-opacity': 0.85, 'circle-stroke-color': '#13261F', 'circle-stroke-width': 1,
@@ -284,8 +281,7 @@
 
   // Unexplained mysteries (Tunguska, Dyatlov Pass...), coloured by type
   async function addMysteries() {
-    const data = await fetch(BASE + '/data/mysteries.geojson').then((r) => (r.ok ? r.json() : null)).catch(() => null);
-    if (!data || !data.features || !data.features.length) return;
+    const data = BASE + '/data/mysteries.geojson'; // a URL: MapLibre loads and parses it in its worker, off the main thread
     map.addSource('mysteries', { type: 'geojson', data });
     map.addLayer({ id: 'mysteries', type: 'circle', source: 'mysteries', paint: {
       'circle-color': ['get', 'c'], 'circle-radius': ['interpolate', ['linear'], ['zoom'], 2, 5, 10, 9],
@@ -455,7 +451,6 @@
     await addMysteries();
     await addFamous();
     await addReports();
-    famousData = map.getSource('famous') ? await fetch(BASE + '/data/famous.geojson').then((r) => r.json()) : null;
     apply(!!(state.cat || state.creature));
   });
 
