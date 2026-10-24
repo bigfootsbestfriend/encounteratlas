@@ -358,7 +358,8 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
         ARTICLES.append({'path': path, 'title': title, 'desc': desc, 'date': article.get('updated') or article.get('published') or PUBLISHED, 'noindex': noindex})
         body = with_byline(body, article)
         ld = (ld or []) + [article_ld(path, title, desc, og_image, article)]
-    full_title = title if title.startswith('Encounter Atlas') else f'{title} | Encounter Atlas'
+    # Brand suffix only when it still fits in Google's ~60-70 character title space
+    full_title = title if title.startswith('Encounter Atlas') or len(title) > 50 else f'{title} | Encounter Atlas'
     nav = nav_html(path)
     # noindex=True for thin template pages (useful to visitors, not worth Google's index): kept out of the sitemap too.
     robots = '<meta name="robots" content="noindex">' if not LAUNCHED else ('<meta name="robots" content="noindex,follow">' if noindex else '')

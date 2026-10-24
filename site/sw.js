@@ -2,7 +2,7 @@
 // 2.5 s) the last saved copy shows instead, and offline falls back to it too,
 // static files and map data cache-first. Map tiles are left to the browser cache.
 // Also: sighting-alert notifications (push), and waking the report form when a report queued with no signal can go.
-const V = 'ea-v101';
+const V = 'ea-v102';
 const BASE = new URL(self.registration.scope).pathname.replace(/\/$/, '');
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(V).then((c) => c.addAll([BASE + '/', BASE + '/map/', BASE + '/near-me/', BASE + '/report/', BASE + '/static/site.css', BASE + '/static/map.js',

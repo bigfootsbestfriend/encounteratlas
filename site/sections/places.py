@@ -326,7 +326,7 @@ class Builder:
         for k, pl in self.regions_map.items():
             nm = self.region_name(pl[0])
             what = self.creature_title(pl)
-            h1 = f'{what} attractions in {nm}'
+            h1 = f'{what} attractions in {"the " if nm in ("United Kingdom", "United States", "Netherlands", "Philippines", "Czech Republic") else ""}{nm}'
             sections = ''
             for t, (one, many, ic) in TYPES.items():
                 sub = [p for p in pl if p['type'] == t]
@@ -359,7 +359,7 @@ class Builder:
   <ul class="cols">{others}</ul>
   <p><a class="btn" href="{self.u('/places/')}">All places on the map</a></p>
 </div></div>'''
-            c.write(f'/places/{k}/', c.page(f'/places/{k}/', f'{h1}: museums, festivals and roadside stops', body,
+            c.write(f'/places/{k}/', c.page(f'/places/{k}/', h1 + (': museums, festivals and roadside stops' if len(h1) < 30 else ': museums and festivals' if len(h1) < 45 else ''), body,
                                             f'{h1}: {names}{" and more" if len(pl) > 4 else ""}. Addresses, dates, prices and a map.',
                                             body_class='places', head_extra=self.map_head,
                                             noindex=len(pl) < 3))  # one- or two-place regions are too thin for Google
@@ -445,7 +445,14 @@ class Builder:
             if p['type'] == 'festival':
                 title = f'{p["name"]} {self.occurrence(p)[0]}: dates and details'
             else:
-                title = f'{p["name"]}, {self.where(p)}: {one.lower()} guide'
+                # Short and specific: the town isn't repeated when it's already in the name, and the kind of place
+                # is added only if there's room
+                loc = self.where(p)
+                if p['city'] and p['city'].lower() in p['name'].lower():
+                    loc = loc.split(', ', 1)[1] if ', ' in loc else loc
+                title = f'{p["name"]}, {loc}'
+                if len(title) < 48:
+                    title += f': {one.lower()}'
             desc = p['summary'] + (f' {p["price"]}.' if p.get('price') and not p['price'].endswith('.') else '')
             c.write(f'/places/{p["slug"]}/', c.page(f'/places/{p["slug"]}/', title, body, desc[:300],
                                                     body_class='places', head_extra=self.map_head + self.jsonld(p)))

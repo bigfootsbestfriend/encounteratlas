@@ -505,7 +505,8 @@ def build(ctx):
 </div></div>{js}'''
         ctx.write(f'/ufo/countries/{cslug[cc]}/', ctx.page(f'/ufo/countries/{cslug[cc]}/', f'{name}: official UFO files and releases', body,
                   (f'How {name} has handled UFO reports, with {len(rels)} official releases linked to their sources.' if c else
-                   f'{len(pcs)} US government UFO files about events in {name}.'), head_extra=css))
+                   f'{len(pcs)} US government UFO file{"s" if len(pcs) != 1 else ""} about events in {name}.'), head_extra=css,
+                  noindex=not c and len(pcs) < 5))  # a country with a handful of files and no releases of its own is thin
     cards = ''
     for cc in sorted((c for c in all_cc if c in cname), key=lambda c: (-len(rel_by_cc.get(c, [])), cname[c])):
         nr, npc = len(rel_by_cc.get(cc, [])), len(pursue_by_cc.get(cc, []))
