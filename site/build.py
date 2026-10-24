@@ -9,6 +9,18 @@ from collections import Counter, defaultdict
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 OUT = os.environ.get('OUT_DIR') or os.path.join(ROOT, '_site')
 STATIC = os.path.join(ROOT, 'site', 'static')
+PUBLISHED = '2026-10-13'  # launch day: creature pages without their own "updated" date show this
+_MON = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+
+def md_links(t):
+    """Escape text, then turn [words](/site/path/) into internal links (hand-written creature sections only)."""
+    return re.sub(r'\[([^\]]+)\]\((/[^)\s]*)\)', lambda m: f'<a href="{url(m.group(2))}">{m.group(1)}</a>', esc(t))
+
+
+def nice_date(d):
+    y, m, dd = map(int, d.split('-'))
+    return f'{_MON[m - 1]} {dd}, {y}'
 SITE_URL = os.environ.get('SITE_URL', 'https://encounteratlas.com').rstrip('/')
 BASE = os.environ.get('BASE_PATH', '').rstrip('/')  # '/encounteratlas' on the GitHub Pages preview
 INDEXNOW_KEY = '929458a6bce349d1b445a459836d80fe'
@@ -218,9 +230,9 @@ def social_row(cls='social'):
     return f'<p class="{cls}">{links}</p>'
 
 
-def ld_json(path, title, body):
-    """Structured data: BreadcrumbList from the page's own crumb line, and WebSite on the home page."""
-    out = []
+def ld_json(path, title, body, extra=None):
+    """Structured data: BreadcrumbList from the page's own crumb line, WebSite on the home page, plus any extra objects."""
+    out = list(extra or [])
     if path == '/':
         out.append({'@context': 'https://schema.org', '@type': 'WebSite', 'name': 'Encounter Atlas', 'url': SITE_URL + '/'})
         out.append({'@context': 'https://schema.org', '@type': 'Organization', 'name': 'Encounter Atlas', 'url': SITE_URL + '/',
@@ -257,7 +269,7 @@ HELLO = f'''<div class="hello" id="hello" role="region" aria-label="Weekly email
 <script>try{{const s=localStorage;if(s.getItem('ea-subbed')||Date.now()-(+s.getItem('ea-hello')||0)<12096e5)document.getElementById('hello').remove();}}catch(e){{}}</script>'''
 
 
-def page(path, title, body, desc='', body_class='', head_extra='', canonical=True, og_image='', noindex=False, viewport_fit=False):
+def page(path, title, body, desc='', body_class='', head_extra='', canonical=True, og_image='', noindex=False, viewport_fit=False, ld=None):
     full_title = title if title.startswith('Encounter Atlas') else f'{title} | Encounter Atlas'
     nav = nav_html(path)
     # noindex=True for thin template pages (useful to visitors, not worth Google's index): kept out of the sitemap too.
@@ -276,7 +288,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <link rel="icon" href="{url('/static/favicon.svg')}" type="image/svg+xml">
 <link rel="manifest" href="{url('/manifest.webmanifest')}">
 <link rel="apple-touch-icon" href="{url('/static/apple-touch-icon.png')}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="{'article' if ld and any(o.get('@type') == 'Article' for o in ld) else 'website'}">
 <meta property="og:site_name" content="Encounter Atlas">
 <meta property="og:title" content="{esc(full_title)}">
 <meta property="og:description" content="{esc(desc)}">
@@ -288,7 +300,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{url('/static/site.css')}">
 {head_extra}
-{ld_json(path, title, body)}
+{ld_json(path, title, body, ld)}
 {beacon}
 </head>
 <body class="{body_class}">
@@ -405,7 +417,7 @@ def poster(c):
     sid = 'sky-' + c['slug']
     ground = ('<rect y="160" width="200" height="40" fill="#2B4A55"/>' if c['cat'] == 'aquatic' else
               '<path d="M0 182L14 146 28 182 40 138 54 182 146 182 160 132 174 182 188 142 200 182V200H0Z" fill="#1E3A2F"/>')
-    return (f'<svg class="poster" viewBox="0 0 200 200" role="img" aria-label="{esc(c["name"])} silhouette">'
+    return (f'<svg class="poster" viewBox="0 0 200 200" role="img" aria-label="Illustration of the {esc(c["name"][4:] if c["name"].startswith("The ") else c["name"])}: {esc(c["summary"].rstrip("."))}">'
             f'<defs><linearGradient id="{sid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{a}"/><stop offset="1" stop-color="{b}"/></linearGradient>'
             f'<clipPath id="c{sid}"><rect x="6" y="6" width="188" height="188" rx="10"/></clipPath></defs>'
             f'<g clip-path="url(#c{sid})"><rect width="200" height="200" fill="url(#{sid})"/><circle cx="150" cy="52" r="24" fill="#F3E3B8" opacity=".9"/>'
@@ -772,6 +784,17 @@ def build_creatures(creatures, by_slug):
         return (f'<li><span class="yr">{f["year"]}</span><span><strong>{esc(f["name"])}</strong>'
                 f'<br><span class="muted">{esc(f["place"])}</span>{extra}</span></li>')
 
+    def extra_sections(c):
+        """Hand-written longer sections for priority pages: data/creatures.json "sections": [{"h": heading, "p": [paragraphs]}]."""
+        return ''.join(f'<h2>{esc(x["h"])}</h2>' + ''.join(f'<p>{md_links(t)}</p>' for t in x['p']) for x in c.get('sections', []))
+
+    def faq_section(c):
+        """Short answers to what people actually search (Search Console), as question headings: "faq": [{"q", "a"}]."""
+        if not c.get('faq'):
+            return ''
+        return ('<h2 id="questions">Questions people ask</h2>'
+                + ''.join(f'<h3>{esc(x["q"])}</h3><p>{md_links(x["a"])}</p>' for x in c['faq']))
+
     for c in creatures:
         aka = (f'<p class="aka-line">Also called {esc(", ".join(c["aliases"]))}</p>' if c['aliases'] else '')
         facts = ''.join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in
@@ -795,7 +818,7 @@ def build_creatures(creatures, by_slug):
                         f'case files on the <a href="{url("/map/")}">map</a> or <a href="{url("/ufo/blue-book/")}">by state</a>.</p>')
         gb, mb = (guide_band(c) if kind(c) != 'single' else ''), media_band(c)
         jumps = [('#witness', 'Witness stories') if WITNESS.get(c['slug']) else None, ('#cases', 'Timeline' if kind(c) == 'single' else 'Famous cases') if cases else None, ('#modern', 'Modern reports') if modern else None, ('#papers', 'Old newspapers') if c.get('papers') else None,
-                 ('#facts', 'Facts'), ('#guides', 'Field guides') if gb else None, ('#books', 'Books and gear') if mb else None, ('#related', 'Similar creatures')]
+                 ('#questions', 'Questions') if c.get('faq') else None, ('#facts', 'Facts'), ('#guides', 'Field guides') if gb else None, ('#books', 'Books and gear') if mb else None, ('#related', 'Similar creatures')]
         jump = '<nav class="jump" aria-label="On this page">' + ''.join(f'<a href="{h}">{t}</a>' for h, t in filter(None, jumps)) + '</nav>'
         nws = len(WITNESS.get(c['slug'], []))
         reads = (f'<a href="{url("/stories/?c=" + c["slug"])}">{"Read " + str(nws) + " witness " + ("story" if nws == 1 else "stories") if nws else "Read witness stories"}</a>')
@@ -815,6 +838,7 @@ def build_creatures(creatures, by_slug):
       <h1>{esc(c['name'])}</h1>
       {aka}
       <p class="lede">{esc(c['summary'])}</p>
+      <p class="byline">By <a href="{url('/about/')}">Mike Johnston</a> · {'Updated' if c.get('updated') else 'Published'} {esc(nice_date(c.get('updated') or PUBLISHED))}</p>
       {f'<p class="lede-story"><a href="{first_story[0]}">Read the full story: {esc(first_story[1])}</a></p>' if first_story else ''}
       {jump}
       {reads}
@@ -825,6 +849,7 @@ def build_creatures(creatures, by_slug):
   <article class="prose">
     {'<h2>The story</h2>' if kind(c) == 'single' else ''}
     {body_p}
+    {extra_sections(c)}
     {ufo_note}
     <h2>{ {'single': 'What was shown or claimed', 'folklore': 'What the stories say'}.get(kind(c), 'What witnesses report') }</h2>
     <ul class="signs">{signs}</ul>
@@ -833,6 +858,7 @@ def build_creatures(creatures, by_slug):
     {f'<h2 id="cases">{"Timeline" if kind(c) == "single" else "Famous cases"}</h2><ol class="timeline">{cases}</ol>' if cases else ''}
     {f'<h2 id="modern">Modern reports</h2><ol class="timeline">{modern}</ol>' if modern else ''}
     {papers_section(c)}
+    {faq_section(c)}
     {seen_box(c)}
   </article>
   <aside class="side">
@@ -848,9 +874,17 @@ def build_creatures(creatures, by_slug):
 {mb}
 <div class="band band-mist" id="related">{related_groups(c)}</div>
 <div class="band band-mist nl-band"><div class="wrap">{signup_box('c', 'Get strange news, once a week', 'New ' + c['name'] + ' and cryptid reports, a creature of the week and what the old newspapers said this week. One short email on Thursdays, unsubscribe in one click.')}</div></div>'''
-        write(f'/creatures/{c["slug"]}/', page(f'/creatures/{c["slug"]}/', f'{c["name"]}: ' + {'single': 'the story, facts and other names', 'folklore': 'stories, facts and other names'}.get(kind(c), 'sightings, facts and other names'),
-                                               body, f'{c["summary"]} Also called {", ".join(c["aliases"][:4])}.'
-                                               if c['aliases'] else c['summary'],
+        title = c.get('seo_title') or (f'{c["name"]}: ' + {'single': 'the story, facts and other names', 'folklore': 'stories, facts and other names'}.get(kind(c), 'sightings, facts and other names'))
+        desc = c.get('seo_desc') or (f'{c["summary"]} Also called {", ".join(c["aliases"][:4])}.' if c['aliases'] else c['summary'])
+        og = f'/static/og/creatures/{c["slug"]}.jpg'
+        og = og if os.path.exists(os.path.join(STATIC, 'og', 'creatures', c['slug'] + '.jpg')) else ''
+        article = {'@context': 'https://schema.org', '@type': 'Article', 'headline': title[:110], 'description': desc,
+                   'mainEntityOfPage': f'{SITE_URL}/creatures/{c["slug"]}/', 'datePublished': PUBLISHED, 'dateModified': c.get('updated') or PUBLISHED,
+                   'author': {'@type': 'Person', 'name': 'Mike Johnston', 'url': SITE_URL + '/about/'},
+                   'publisher': {'@type': 'Organization', 'name': 'Encounter Atlas', 'url': SITE_URL + '/', 'logo': {'@type': 'ImageObject', 'url': SITE_URL + '/static/app-512.png'}}}
+        if og:
+            article['image'] = SITE_URL + og
+        write(f'/creatures/{c["slug"]}/', page(f'/creatures/{c["slug"]}/', title, body, desc, og_image=og, ld=[article],
                                                head_extra=f'<script src="{url("/static/creature.js")}" defer></script>' if EA_API else ''))
 
 
