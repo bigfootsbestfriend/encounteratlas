@@ -97,8 +97,9 @@ class H:
             elif x.get('country') == 'NZ':
                 self.states['New Zealand'].append(x)
         self.state_pages = {s: v for s, v in self.states.items() if len(v) >= 5}
-        self.css = (f'<link rel="preconnect" href="https://fonts.googleapis.com">'
-                    f'<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">'
+        # masthead blackletter, self-hosted (OFL) so the page never waits on Google Fonts
+        self.css = (f'<style>@font-face{{font-family:"UnifrakturMaguntia";font-style:normal;font-weight:400;font-display:swap;'
+                    f'src:url({self.u("/static/fonts/unifrakturmaguntia.woff2")}) format("woff2")}}</style>'
                     f'<link rel="stylesheet" href="{self.u("/static/historic.css")}">')
         self.head = (self.css +
                      '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.css">'

@@ -18,6 +18,15 @@ def md_links(t):
     return re.sub(r'\[([^\]]+)\]\((/[^)\s]*)\)', lambda m: f'<a href="{url(m.group(2))}">{m.group(1)}</a>', esc(t))
 
 
+# Self-hosted fonts (site/static/fonts, OFL): @font-face inlined so text never waits on a third-party stylesheet, and the
+# two fonts the first screen uses are preloaded. Regenerate fonts.css + woff2 files if weights change.
+def font_head():
+    return (f'<link rel="preload" href="{url("/static/fonts/publicsans-ijwRs572Xtc6ZYQws9YVwnNGfJ4.woff2")}" as="font" type="font/woff2" crossorigin>'
+            f'<link rel="preload" href="{url("/static/fonts/zillaslab-dFa5ZfeM_74wlPZtksIFYoEf6HOpWw.woff2")}" as="font" type="font/woff2" crossorigin>'
+            '<style>' + re.sub(r'/\*.*?\*/\s*', '', open(os.path.join(STATIC, 'fonts', 'fonts.css')).read(), flags=re.S)
+            .replace('url(/static/', f'url({BASE}/static/').replace('\n', '') + '</style>')
+
+
 ARTICLES = []  # every page built with article=..., for the author page and sitemap <lastmod>
 AUTHOR = {'name': 'Mike Johnston', 'path': '/author/mike-johnston/', 'image': '/static/img/mike-johnston.png'}
 
@@ -283,9 +292,9 @@ def ga_tag():
                 "window.eaTrack=function(n,p){try{gtag('event',n,Object.assign({page_type:location.pathname.split('/')[1]||'home'},p||{}));}catch(e){}};</script>"
                 f'<script src="{url("/static/track.js")}" defer></script>')
     if CLARITY_ID:
-        out += ('<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};'
+        out += ('<script>addEventListener("load",function(){setTimeout(function(){(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};'
                 't=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);'
-                f'}})(window,document,"clarity","script","{CLARITY_ID}");</script>')
+                f'}})(window,document,"clarity","script","{CLARITY_ID}");}},3000);}});</script>')
     if CLICKY_ID:
         out += f'<script async data-id="{CLICKY_ID}" src="https://static.getclicky.com/js"></script>'
     if CF_BEACON:
@@ -355,6 +364,8 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
     robots = '<meta name="robots" content="noindex">' if not LAUNCHED else ('<meta name="robots" content="noindex,follow">' if noindex else '')
     beacon = ga_tag()
     canon = f'<link rel="canonical" href="{SITE_URL}{path}">' if canonical else ''
+    head_extra = re.sub(r'<link rel="stylesheet" href="(https://cdnjs\.cloudflare\.com/ajax/libs/maplibre-gl/[^"]+\.css)">',
+                        r"""<link rel="preload" href="\1" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="\1"></noscript>""", head_extra)
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -374,9 +385,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <meta property="og:url" content="{SITE_URL}{path}">
 <meta property="og:image" content="{SITE_URL}{og_image or '/static/og.png'}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet">
+{font_head()}
 <link rel="stylesheet" href="{url('/static/site.css')}">
 {head_extra}
 {ld_json(path, title, body, ld)}
@@ -1298,7 +1307,18 @@ TILES = [('hominid', 'yeti', 'Bigfoot and hairy giants'), ('canid', 'dogman', 'D
 MAP_HEAD = None
 
 
-def map_head():
+def map_head(lazy=False):
+    if lazy:
+        # Home page: the map is below the fold, so MapLibre (about 200 KB of JS) and map.js only load when the map comes
+        # within ~800px of the screen or someone touches its controls. Keeps the first screen fast.
+        return (f'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.css">'
+                '<script>(function(){var done=0;function go(){if(done)return;done=1;var a=document.createElement("script");'
+                'a.src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.js";a.onload=function(){var b=document.createElement("script");'
+                f'b.src="{url("/static/map.js")}";document.head.appendChild(b);}};document.head.appendChild(a);}}'
+                'addEventListener("DOMContentLoaded",function(){var m=document.getElementById("map");if(!m)return;var blk=m.closest("section")||m;'
+                '["pointerdown","focusin","keydown"].forEach(function(t){blk.addEventListener(t,go,{once:true});});'
+                'if("IntersectionObserver"in window){new IntersectionObserver(function(es,o){if(es.some(function(e){return e.isIntersecting})){o.disconnect();go();}},'
+                '{rootMargin:"800px 0px"}).observe(m);}else go();});})();</script>')
     return (f'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.css">'
             f'<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.js" defer></script>'
             f'<script src="{url("/static/map.js")}" defer></script>')
@@ -1459,7 +1479,7 @@ def build_home(creatures, n_points, bluebook, military):
 <script src="{url('/static/home.js')}" defer></script>'''
     write('/', page('/', 'Encounter Atlas: Bigfoot, UFO and cryptid sightings mapped', body,
                     'A map of Bigfoot, Dogman, UFO and cryptid encounters, a searchable creature index, and the US Air Force Project Blue Book files.',
-                    body_class='home', head_extra=map_head()))
+                    body_class='home', head_extra=map_head(lazy=True)))
     write('/search/', page('/search/', 'Search', f'''
 <section class="band band-dark search-page"><div class="wrap">
   <h1>Search Encounter Atlas</h1>
