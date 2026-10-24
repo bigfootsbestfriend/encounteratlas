@@ -643,12 +643,17 @@ def build_creatures(creatures, by_slug):
             more = (f'<p class="next-more"><a href="{url("/history/" + HPAGE.get(hs[0]["k"], "") + "/")}">{len(hs)} reports in all: see the history pages</a></p>'
                     if len(hs) > 6 else '')
             out += f'<div class="next-block"><h3>In old newspapers</h3><ul class="next-list">{items}</ul>{more}</div>'
-        pl = [x for x in places if c['slug'] in (x.get('creatures') or [])][:6]
+        pl = [x for x in places if c['slug'] in (x.get('creatures') or [])]
         if pl:
-            items = ''.join(f'<li><a href="{url("/places/" + x["slug"] + "/")}">{esc(x["name"])}</a>'
+            # Every linked place, so each place page gets a link back from its creature; past eight they sit in a
+            # <details> (still plain links in the HTML) so long lists like Bigfoot's don't swamp the page
+            li = lambda x: (f'<li><a href="{url("/places/" + x["slug"] + "/")}">{esc(x["name"])}</a>'
                             f'<small>{esc(PLACE_KIND.get(x["type"], "Place"))}{", " + esc(x["city"]) if x.get("city") else ""}'
-                            f'{", " + esc(x["region"]) if x.get("region") else ""}</small></li>' for x in pl)
-            out += f'<div class="next-block"><h3>Go see it</h3><ul class="next-list">{items}</ul></div>'
+                            f'{", " + esc(x["region"]) if x.get("region") else ""}</small></li>')
+            items = ''.join(li(x) for x in pl[:8])
+            more = (f'<details class="next-more-places"><summary>{len(pl) - 8} more place{"s" if len(pl) - 8 != 1 else ""} to visit</summary>'
+                    f'<ul class="next-list">{"".join(li(x) for x in pl[8:])}</ul></details>' if len(pl) > 8 else '')
+            out += f'<div class="next-block"><h3>Go see it</h3><ul class="next-list">{items}</ul>{more}</div>'
         return out
 
     def guide_band(c):

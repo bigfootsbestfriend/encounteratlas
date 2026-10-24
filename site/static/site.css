@@ -825,3 +825,7 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 /* Long option text (e.g. the creature index sort) must never widen the page on small phones. */
 select { max-width: 100%; }
 @media (max-width: 480px) { .md-aff { white-space: normal; } }
+
+.next-more-places { margin-top: .4rem; }
+.next-more-places summary { cursor: pointer; font-weight: 700; color: var(--spruce); padding: .3rem 0; }
+.next-more-places summary:focus-visible { outline: 3px solid var(--lantern); outline-offset: 2px; }
