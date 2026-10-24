@@ -277,6 +277,7 @@
     if (!items.length) return;
     const r = await api('/api/votes?items=' + encodeURIComponent(items.join(',')));
     for (const t of (r.data.items || [])) tallies.set(t.item, t);
+    return r.status === 200 ? r.data.items || [] : null;
   }
 
   function results(t) {
@@ -312,6 +313,7 @@
       const mine = LABELS[t.mine.choice] + (t.mine.reason ? ` (${REASONS[t.mine.reason] || t.mine.reason})` : '');
       el.append(h('p', { class: 'vote-mine', text: `You voted: ${mine}.` }));
       if (t.results) el.append(results(t));
+      else if (t.today) el.append(h('p', { class: 'vote-msg', text: `Thanks! Results for today's case go up tomorrow, along with what the evidence says (${t.n} ${t.n === 1 ? 'vote' : 'votes'} so far).` }));
       else el.append(h('p', { class: 'vote-msg', text: `Results show once ${t.threshold} people have voted (${t.n} so far). Check back later.` }));
       if (opts.ai) el.append(aiButton(item));
       return;
@@ -329,7 +331,8 @@
     }
     const send = h('button', { type: 'button', class: 'btn', hidden: true, text: 'Send my vote' });
     el.append(choices, reasons, send, slot, msg);
-    el.append(h('p', { class: 'vote-n', text: t.n ? `${t.n} ${t.n === 1 ? 'vote' : 'votes'} so far. Vote to see results once there are ${t.threshold}.` : `No votes yet. Results show after ${t.threshold} votes.` }));
+    el.append(h('p', { class: 'vote-n', text: t.today ? `${t.n ? `${t.n} ${t.n === 1 ? 'vote' : 'votes'} so far.` : 'No votes yet.'} Results go up tomorrow.`
+      : t.n ? `${t.n} ${t.n === 1 ? 'vote' : 'votes'} so far. Vote to see results once there are ${t.threshold}.` : `No votes yet. Results show after ${t.threshold} votes.` }));
     if (opts.ai) el.append(aiButton(item));
 
     choices.addEventListener('click', (e) => {
@@ -408,7 +411,7 @@
 
   // ---------- /reports/ views ----------
   const root = document.getElementById('ea-reports');
-  window.EA = { reportUrl, poster, addPin, cfg, API, BASE, h, api, store, session, user, signOut, human, resetHuman, creature, badge, title, fmtDate, makeMap, areaLayer, circle, signinBox, voteWidget, loadTallies, CAT_COLORS, page };
+  window.EA = { reportUrl, poster, addPin, cfg, API, BASE, h, api, store, session, user, signOut, human, resetHuman, creature, badge, title, fmtDate, makeMap, areaLayer, circle, signinBox, voteWidget, loadTallies, results, CAT_COLORS, page };
   if (!root) return;
 
   const qs = new URLSearchParams(location.search);

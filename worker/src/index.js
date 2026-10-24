@@ -17,6 +17,7 @@
 //   PATCH /api/reports/<pid>              (owner) edit text/location/videos, remove photos -> back to pending
 //   DELETE /api/reports/<pid>             (owner) withdraw
 //   GET  /api/votes?items=a,b             counts; your vote; results once you voted AND 10+ votes
+//                                         (m:<slug> mystery-of-the-day cases: results for everyone at 10+, never on the day it runs)
 //   POST /api/votes        {item, choice, reason?, turnstile | pass}
 //   POST /api/flag         {item, kind: 'ai'}
 //   GET  /img/<id>.jpg                    approved photos only, sanitised JPEG, locked-down headers
@@ -28,6 +29,7 @@ import { handleMod } from './mod.js';
 import { nearby, category } from './nearby.js';
 import { pushApi, notifyMods, BLOCKED } from './push.js';
 import { privatizePlace, publicPlace } from './place.js';
+import { MOTD_SLUGS, motdIsToday } from './motd.js';
 import {
   HttpError, fail, json, sign, verify, hash, randomId, randomPid, clientIp, network, int, rateLimited, turnstileOk,
   sendEmail, emailLayout, line, para, esc, now,
@@ -592,6 +594,8 @@ export async function resolveItem(env, item, any = false) {
   }
   // Witness stories (site/sections/stories.py): ids are slugs. Unknown ids just collect votes nobody sees.
   if ((m = /^s:([a-z0-9][a-z0-9-]{2,79})$/.exec(item))) return { id: 0, pid: null, story: m[1] };
+  // Mystery of the day (site/sections/motd.py): only cases on the build-generated list (motd_items.js).
+  if ((m = /^m:([a-z0-9][a-z0-9-]{2,79})$/.exec(item))) return MOTD_SLUGS.has(m[1]) ? { id: 0, pid: null, motd: m[1] } : null;
   if ((m = /^v:([a-z0-9]{10}):([0-4])$/.exec(item))) {
     const r = await env.DB.prepare(`SELECT r.id, r.pid, r.videos FROM reports r WHERE r.pid = ?1${st}`).bind(m[1]).first();
     return r && JSON.parse(r.videos).length > Number(m[2]) ? r : null;
@@ -609,7 +613,12 @@ export async function tally(env, item, uid, full = false) {
   const n = rows.reduce((s, r) => s + r.n, 0);
   const threshold = int(env, 'VOTE_THRESHOLD', 10);
   const out = { item, n, threshold, frozen: !!(it && it.frozen), mine: mine ? { choice: mine.choice, reason: mine.reason } : null };
-  if (full || (mine && n >= threshold && !out.frozen)) {
+  // Mystery of the day: today's case shows no results to anyone (they go up the next UTC day); after that the
+  // results are public at the threshold, voted or not, so the page can show yesterday's verdict.
+  const motd = item.startsWith('m:');
+  if (motd && motdIsToday(item.slice(2))) out.today = true;
+  const open = motd ? !out.today : !!mine;
+  if (full || (open && n >= threshold && !out.frozen)) {
     const W = rows.reduce((s, r) => s + r.w, 0) || 1;
     const share = (pred) => Math.round((1000 * rows.filter(pred).reduce((s, r) => s + r.w, 0)) / W) / 10;
     const mis = rows.filter((r) => r.choice === 'mis');
