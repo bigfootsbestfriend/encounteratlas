@@ -7,3 +7,12 @@
 .src-cite { margin-top: 1.1rem; padding: .9rem 1.1rem; border-radius: var(--r-sm); background: var(--mist); border-left: 4px solid var(--lantern); }
 .src-cite h3 { margin: 0 0 .35rem; font-size: 1rem; }
 .src-cite p { font-size: .92rem; overflow-wrap: anywhere; }
+/* /press/ */
+.press-stats { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: .8rem; }
+.press-stats a { display: flex; flex-direction: column; gap: .15rem; padding: 1rem 1.1rem; background: #fff; border-radius: var(--r-md); color: var(--ink); text-decoration: none; border-top: 4px solid var(--lantern); height: 100%; }
+.press-stats b { font-family: var(--display); font-size: 1.9rem; line-height: 1.1; }
+.press-stats small { color: var(--muted-l); }
+.press-cite { padding: .8rem 1rem; background: #fff; border-left: 4px solid var(--lantern); border-radius: var(--r-sm); overflow-wrap: anywhere; }
+.press-chart { margin: 1.2rem 0; }
+.press-chart img { width: 100%; height: auto; background: #fff; border-radius: var(--r-sm); }
+.press-chart figcaption { font-size: .92rem; margin-top: .4rem; }

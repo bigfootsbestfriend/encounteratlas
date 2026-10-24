@@ -336,6 +336,254 @@
   "https://oversight.house.gov/wp-content/uploads/2025/09/Spielberger-Written-Testimony.pdf": {
    "status": 200,
    "archive": "https://web.archive.org/web/20260925160915/https://oversight.house.gov/wp-content/uploads/2025/09/Spielberger-Written-Testimony.pdf"
+  },
+  "https://www.govinfo.gov/content/pkg/CHRG-89hhrg50066O/pdf/CHRG-89hhrg50066O.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260730122926/https://www.govinfo.gov/content/pkg/CHRG-89hhrg50066O/pdf/CHRG-89hhrg50066O.pdf"
+  },
+  "https://www.nytimes.com/2017/12/16/us/politics/pentagon-program-ufo-harry-reid.html": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20260731170328/https://www.nytimes.com/2017/12/16/us/politics/pentagon-program-ufo-harry-reid.html"
+  },
+  "https://www.defense.gov/News/Releases/Release/Article/2314065/establishment-of-unidentified-aerial-phenomena-task-force/": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20250902023619/https://www.defense.gov/News/Releases/Release/Article/2314065/establishment-of-unidentified-aerial-phenomena-task-force/"
+  },
+  "https://www.defense.gov/News/Releases/Release/Article/2853121/dod-announces-the-establishment-of-the-airborne-object-identification-and-manag/": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20211125211021/https://www.defense.gov/News/Releases/Release/Article/2853121/dod-announces-the-establishment-of-the-airborne-object-identification-and-manag/utm_source/clubhouse/"
+  },
+  "https://www.defense.gov/News/Releases/Release/Article/3100053/dod-announces-the-establishment-of-the-all-domain-anomaly-resolution-office/": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20250830091216/https://www.defense.gov/News/Releases/Release/Article/3100053/dod-announces-the-establishment-of-the-all-domain-anomaly-resolution-office/"
+  },
+  "https://www.nasa.gov/news-release/update-nasa-shares-uap-independent-study-report-names-director/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261014105414/https://www.nasa.gov/news-release/update-nasa-shares-uap-independent-study-report-names-director/"
+  },
+  "https://cdn.nationalarchives.gov.uk/documents/briefing-guide-12-07-12.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261012215043/https://cdn.nationalarchives.gov.uk/documents/briefing-guide-12-07-12.pdf"
+  },
+  "https://cdn.nationalarchives.gov.uk/documents/ufo-highlights-guide-2013.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260718042507/https://cdn.nationalarchives.gov.uk/documents/ufo-highlights-guide-2013.pdf"
+  },
+  "http://www.mod.uk/DefenceInternet/FreedomOfInformation/PublicationScheme/SearchPublicationScheme/ClosureOfUfoHelpdesk.htm": {
+   "status": 410,
+   "archive": "https://web.archive.org/web/20100726115540/http://www.mod.uk:80/DefenceInternet/FreedomOfInformation/PublicationScheme/SearchPublicationScheme/ClosureOfUfoHelpdesk.htm"
+  },
+  "https://www.bbc.co.uk/news/articles/c3929kk7gdjo": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260629052115/https://www.bbc.co.uk/news/articles/c3929kk7gdjo"
+  },
+  "http://www.mod.uk/DefenceInternet/FreedomOfInformation/PublicationScheme/SearchPublicationScheme/UnidentifiedAerialPhenomenauapInTheUkAirDefenceRegion.htm": {
+   "status": 410,
+   "archive": "https://web.archive.org/web/20060515074341/http://www.mod.uk/DefenceInternet/FreedomOfInformation/PublicationScheme/SearchPublicationScheme/UnidentifiedAerialPhenomenauapInTheUkAirDefenceRegion.htm"
+  },
+  "http://www.mod.uk/NR/rdonlyres/7D2B11E0-EA9F-45EA-8883-A3C00546E752/0/uap_exec_summary_dec00.pdf": {
+   "status": 410,
+   "archive": "https://web.archive.org/web/20060515101201/http://www.mod.uk/NR/rdonlyres/7D2B11E0-EA9F-45EA-8883-A3C00546E752/0/uap_exec_summary_dec00.pdf"
+  },
+  "https://www.nature.com/news/2006/060508/full/news060508-6.html": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20251207041236/https://www.nature.com/news/2006/060508/full/news060508-6.html"
+  },
+  "https://www.cnes-geipan.fr/fr/node/58791": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260901041209/https://www.cnes-geipan.fr/fr/node/58791"
+  },
+  "https://www.cnes-geipan.fr/fr/node/58787": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260815094300/https://www.cnes-geipan.fr/fr/node/58787"
+  },
+  "https://www.cnes-geipan.fr/fr/node/58792": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260901041238/https://www.cnes-geipan.fr/fr/node/58792"
+  },
+  "https://cnes.fr/en/projects/geipan": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260714125356/https://cnes.fr/en/projects/geipan"
+  },
+  "https://www.defensa.gob.es/Galerias/main/2022/07/resolucion-68360anonimizada.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260823165854/https://www.defensa.gob.es/Galerias/main/2022/07/resolucion-68360anonimizada.pdf"
+  },
+  "https://www.libertaddigital.com/espana/2016-10-23/defensa-desclasifica-los-expedientes-ovni-1276585108/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260419173401/https://www.libertaddigital.com/espana/2016-10-23/defensa-desclasifica-los-expedientes-ovni-1276585108/"
+  },
+  "https://www.aeronautica.difesa.it/wp-content/uploads/2023/05/Archivio_OVNI_periodo1972-1990.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261003100632/https://www.aeronautica.difesa.it/wp-content/uploads/2023/05/Archivio_OVNI_periodo1972-1990.pdf"
+  },
+  "https://www.aeronautica.difesa.it/wp-content/uploads/2026/01/AVVISTAMENTI-2025.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261003100608/https://www.aeronautica.difesa.it/wp-content/uploads/2026/01/AVVISTAMENTI-2025.pdf"
+  },
+  "https://www.media.inaf.it/2015/09/14/se-questo-e-un-ufo/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260416014609/https://www.media.inaf.it/2015/09/14/se-questo-e-un-ufo/"
+  },
+  "https://cdn.nationalarchives.gov.uk/documents/aug-2009-highlights-guide.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261003061708/https://cdn.nationalarchives.gov.uk/documents/aug-2009-highlights-guide.pdf"
+  },
+  "https://www.forsvaret.dk/da/nyhedsarkiv/flyverstaben/2009/ufo-arkiv-online/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260416143222/https://www.forsvaret.dk/da/nyhedsarkiv/flyverstaben/2009/ufo-arkiv-online/"
+  },
+  "https://www.forsvaret.dk/da/organisation/flyvevaabnet/flyvevabnets-historie/flyvevabnets-ufo-arkiv--offentliggjort-i-2009/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260616024907/https://www.forsvaret.dk/da/organisation/flyvevaabnet/flyvevabnets-historie/flyvevabnets-ufo-arkiv--offentliggjort-i-2009/"
+  },
+  "https://www.forsvaret.dk/globalassets/fko---flyvevabnet/flk/dokumenter/ufo-arkiv/-flv_ufo_materiale_side1-99-.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20251214112308/https://www.forsvaret.dk/globalassets/fko---flyvevabnet/flk/dokumenter/ufo-arkiv/-flv_ufo_materiale_side1-99-.pdf"
+  },
+  "https://www.upi.com/Odd_News/2009/01/30/Denmark-releases-UFO-archives/90411233360944/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20241213021239/https://www.upi.com/Odd_News/2009/01/30/Denmark-releases-UFO-archives/90411233360944/"
+  },
+  "https://riksarkivet.se/resurser/spokraketer": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261017105615/https://riksarkivet.se/resurser/spokraketer"
+  },
+  "https://skepticalinquirer.org/newsletter/history-of-state-ufo-research-in-the-ussr/": {
+   "status": 0,
+   "archive": "https://web.archive.org/web/20261014135037/https://skepticalinquirer.org/newsletter/history-of-state-ufo-research-in-the-ussr/"
+  },
+  "https://www.mao.kiev.ua/biblio/jscans/knit/2013-19/knit-2013-19-1-10.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20230130082329/https://www.mao.kiev.ua/biblio/jscans/knit/2013-19/knit-2013-19-1-10.pdf"
+  },
+  "http://www.collectionscanada.ca/ufo/002029-1700-e.html": {
+   "status": 0,
+   "archive": "https://web.archive.org/web/20060119025119/http://www.collectionscanada.ca/ufo/002029-1700-e.html"
+  },
+  "http://www.collectionscanada.ca/ufo/002029-1900-e.html": {
+   "status": 0,
+   "archive": "https://web.archive.org/web/20060119025112/http://www.collectionscanada.ca/ufo/002029-1900-e.html"
+  },
+  "https://www.science.gc.ca/site/science/en/office-chief-science-advisor/sky-canada-project/management-public-reporting-unidentified-aerial-phenomena-canada": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260925130850/https://science.gc.ca/site/science/en/office-chief-science-advisor/sky-canada-project/management-public-reporting-unidentified-aerial-phenomena-canada"
+  },
+  "http://www.collectionscanada.ca/ufo/002029-1800-e.html": {
+   "status": 0,
+   "archive": "https://web.archive.org/web/20060119025105/http://www.collectionscanada.ca/ufo/002029-1800-e.html"
+  },
+  "http://www.collectionscanada.ca/ufo/002029-2500-e.html": {
+   "status": 0,
+   "archive": "https://web.archive.org/web/20060119025119/http://www.collectionscanada.ca/ufo/002029-2500-e.html"
+  },
+  "https://www.science.gc.ca/site/science/en/office-chief-science-advisor/sky-canada-project": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260416014122/https://science.gc.ca/site/science/en/office-chief-science-advisor/sky-canada-project"
+  },
+  "https://www.ctvnews.ca/canada/article/canadas-top-scientist-releases-new-ufo-report-heres-what-you-need-to-know/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260818214910/https://www.ctvnews.ca/canada/article/canadas-top-scientist-releases-new-ufo-report-heres-what-you-need-to-know/"
+  },
+  "https://querepublicaeessa.an.gov.br/index.php/que-republica-e-essa/assuntos/temas/302-os-ovnis-no-arquivo-nacional": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260922063319/https://querepublicaeessa.an.gov.br/index.php/que-republica-e-essa/assuntos/temas/302-os-ovnis-no-arquivo-nacional"
+  },
+  "https://www.gov.br/casacivil/pt-br/assuntos/colegiados/comissao-mista-de-reavaliacao-de-informacoes-cmri/decisoes-de-recurso-de-4a-instancia/2025/decisao-298-2025-nup-60141-001724-2024-73.pdf": {
+   "status": 404,
+   "archive": null
+  },
+  "https://www.gov.br/casacivil/pt-br/assuntos/colegiados/comissao-mista-de-reavaliacao-de-informacoes-cmri/decisoes-de-recurso-de-4a-instancia/2025/decisao-176-2025-nup-00137-007948-2024-26.pdf": {
+   "status": 404,
+   "archive": null
+  },
+  "https://www.bbc.com/news/world-latin-america-10947856": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260420175039/https://www.bbc.com/news/world-latin-america-10947856"
+  },
+  "https://sefaa.dgac.gob.cl/historia/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261009132711/https://sefaa.dgac.gob.cl/historia/"
+  },
+  "https://sefaa.dgac.gob.cl/quienes-somos/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260917173359/https://sefaa.dgac.gob.cl/quienes-somos/"
+  },
+  "https://sefaa.dgac.gob.cl/category/casos-resueltos/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260917173357/https://sefaa.dgac.gob.cl/category/casos-resueltos/"
+  },
+  "https://www.t13.cl/noticia/nacional/objetos-mas-1200-km-h-revelan-registros-militares-chile-fenomenos-aereos-anomalos-5-6-2026": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260620005728/https://www.t13.cl/noticia/nacional/objetos-mas-1200-km-h-revelan-registros-militares-chile-fenomenos-aereos-anomalos-5-6-2026"
+  },
+  "https://www.argentina.gob.ar/fuerzaaerea/centro-de-identificacion-aeroespacial": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261011190341/https://www.argentina.gob.ar/fuerzaaerea/centro-de-identificacion-aeroespacial"
+  },
+  "https://www.argentina.gob.ar/sites/default/files/informe_cefae_2015.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20250408193154/https://www.argentina.gob.ar/sites/default/files/informe_cefae_2015.pdf"
+  },
+  "https://desafiospublicos.argentina.gob.ar/sites/default/files/informe_cefae_2018.pdf": {
+   "status": 200,
+   "archive": null
+  },
+  "https://cooperativa.cl/noticias/sociedad/sucesos/ovni/fuerza-aerea-argentina-investiga-23-casos-de-posibles-ov/2012-04-17/113348.html": {
+   "status": 200,
+   "archive": null
+  },
+  "https://www.argentina.gob.ar/sites/default/files/2018/11/informe-ciae-2024.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20250408195523/https://www.argentina.gob.ar/sites/default/files/2018/11/informe-ciae-2024.pdf"
+  },
+  "https://www.argentina.gob.ar/sites/default/files/2018/11/informe_ciae_2025.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260927135845/https://www.argentina.gob.ar/sites/default/files/2018/11/informe_ciae_2025.pdf"
+  },
+  "https://www.lanacion.com.ar/lifestyle/quien-es-y-como-trabaja-el-piloto-militar-que-estudia-los-posibles-avistamientos-en-el-pais-nid30032022/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260518154906/https://www.lanacion.com.ar/lifestyle/quien-es-y-como-trabaja-el-piloto-militar-que-estudia-los-posibles-avistamientos-en-el-pais-nid30032022/"
+  },
+  "https://www.scmp.com/news/world/article/1341748/peru-reopen-ufo-investigations-office": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20250126152112/https://www.scmp.com/news/world/article/1341748/peru-reopen-ufo-investigations-office"
+  },
+  "https://www.24horas.cl/noticiasbbc/por-que-peru-reabrio-la-oficina-de-busqueda-de-ovnis-1062548": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20220929042409/https://www.24horas.cl/noticiasbbc/por-que-peru-reabrio-la-oficina-de-busqueda-de-ovnis-1062548"
+  },
+  "https://www.fau.mil.uy/es/articulos/182-comision-receptora-e-investigadora-de-denuncias-de-objetos-voladores-no-identificados-cridovni.html": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20191121191911/https://www.fau.mil.uy/es/articulos/182-comision-receptora-e-investigadora-de-denuncias-de-objetos-voladores-no-identificados-cridovni.html"
+  },
+  "https://www.fau.mil.uy/es/noticias/481-40-anos-de-existencia-de-la-cridovni.html": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20220522075542/https://www.fau.mil.uy/es/noticias/481-40-anos-de-existencia-de-la-cridovni.html"
+  },
+  "https://www.cnnchile.com/mundo/uruaguay-investiga-denuncias-avistamientos-luces/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260517003628/https://www.cnnchile.com/mundo/uruaguay-investiga-denuncias-avistamientos-luces/"
+  },
+  "https://www.defence.gov.au/sites/default/files/2022-07/459_2122_documents.pdf": {
+   "status": 0,
+   "archive": "https://web.archive.org/web/20260413173109/https://www.defence.gov.au/sites/default/files/2022-07/459_2122_documents.pdf"
+  },
+  "https://www.defence.gov.au/sites/default/files/2024-12/Defence-FOI-1009-23-24-Documents.pdf": {
+   "status": 0,
+   "archive": "https://web.archive.org/web/20260420124149/https://www.defence.gov.au/sites/default/files/2024-12/Defence-FOI-1009-23-24-Documents.pdf"
+  },
+  "https://www.canberratimes.com.au/story/7915780/defence-quizzed-on-ufos-says-they-are-likely-one-of-three-things/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20240615080643/https://www.canberratimes.com.au/story/7915780/defence-quizzed-on-ufos-says-they-are-likely-one-of-three-things/"
+  },
+  "https://www.bbc.com/news/world-asia-pacific-12057314": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261001140722/https://www.bbc.com/news/world-asia-pacific-12057314"
+  },
+  "https://www.mod.go.jp/j/press/kisha/2020/0915a.html": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20250421211304/https://www.mod.go.jp/j/press/kisha/2020/0915a.html"
   }
  }
 }

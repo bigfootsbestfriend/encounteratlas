@@ -25,6 +25,24 @@ def archived(root, url):
     return (data(root)['links'].get(url) or {}).get('archive')
 
 
+DEAD_HOSTS = ('www.collectionscanada.ca', 'collectionscanada.ca', 'www.mod.uk')  # whole sites retired; only archived copies work
+
+
+def is_dead(root, url):
+    v = data(root)['links'].get(url) or {}
+    host = url.split('/')[2] if '//' in url else ''
+    return bool(v.get('archive')) and (host in DEAD_HOSTS or v.get('status') in (404, 410))
+
+
+def src_link(ctx, url, name):
+    """An official source link: normal link + 'Archived copy', or straight to the archive when the original is gone."""
+    e = ctx.esc
+    if is_dead(ctx.ROOT, url):
+        return (f'<a href="{e(archived(ctx.ROOT, url))}" rel="noopener">{e(name)}</a> '
+                '<span class="src-arch">(archived copy; the original page has been taken down)</span>')
+    return f'<a href="{e(url)}" rel="noopener">{e(name)}</a>{arch_link(ctx, url)}'
+
+
 def arch_link(ctx, url):
     """' · Archived copy' after an official link, when the Internet Archive has a working capture."""
     a = archived(ctx.ROOT, url)

@@ -1,0 +1,1223 @@
+[
+ {
+  "slug": "project-sign",
+  "name": "Project Sign",
+  "aka": "Project Saucer (its informal first name)",
+  "country": "us",
+  "agency": "US Air Force, Air Materiel Command, Wright Field",
+  "start": 1948,
+  "end": 1949,
+  "status": "closed",
+  "did": "The Air Force's first formal UFO investigation, set up after the 1947 wave of 'flying saucer' reports that began with pilot Kenneth Arnold's sighting near Mount Rainier. Staff collected and evaluated sighting reports to work out whether the objects were Soviet secret weapons or something else, and reviewed intelligence on German wartime aircraft designs.",
+  "found": "It evaluated 243 reports and in February 1949 concluded there was no definite evidence to prove or disprove that the objects were real aircraft of unknown configuration; nearly all were put down to misidentified ordinary objects, hysteria, hallucination or hoax.",
+  "sources": [
+   {
+    "name": "AARO, Report on the Historical Record of U.S. Government Involvement with Unidentified Anomalous Phenomena, Vol. I (Feb 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+    "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+   },
+   {
+    "name": "CIA, Gerald K. Haines, \"CIA's Role in the Study of UFOs, 1947-90\"",
+    "url": "https://www.cia.gov/resources/csi/static/cia-role-study-UFOs.pdf",
+    "archive": "https://web.archive.org/web/20261014165135/https://www.cia.gov/resources/csi/static/cia-role-study-UFOs.pdf"
+   }
+  ],
+  "release": "project-blue-book",
+  "note": null
+ },
+ {
+  "slug": "project-grudge",
+  "name": "Project Grudge",
+  "aka": "",
+  "country": "us",
+  "agency": "US Air Force, Air Technical Intelligence Center",
+  "start": 1949,
+  "end": 1952,
+  "status": "closed",
+  "did": "Sign was renamed Grudge in early 1949 and took a much more sceptical line, aiming to explain reports away; it closed on December 27, 1949 and the Air Force handled UFO reports through routine intelligence channels. In October 1951 the Air Force restarted a separate Grudge office under Capt. Edward Ruppelt, which re-reviewed all earlier cases and added an 'unknown' category before becoming Blue Book.",
+  "found": "The first Grudge looked at 244 reports, found no evidence of foreign technology or threat, and recommended scaling back because the project itself fed 'war hysteria'; the 1951-52 Grudge found no evidence of extraterrestrial origin and noted that sightings tracked press coverage.",
+  "sources": [
+   {
+    "name": "AARO, Report on the Historical Record of U.S. Government Involvement with Unidentified Anomalous Phenomena, Vol. I (Feb 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+    "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+   },
+   {
+    "name": "CIA, Gerald K. Haines, \"CIA's Role in the Study of UFOs, 1947-90\"",
+    "url": "https://www.cia.gov/resources/csi/static/cia-role-study-UFOs.pdf",
+    "archive": "https://web.archive.org/web/20261014165135/https://www.cia.gov/resources/csi/static/cia-role-study-UFOs.pdf"
+   }
+  ],
+  "release": "project-blue-book",
+  "note": "Grudge ran twice: from February to December 1949, then again from October 1951 until it became Blue Book in March 1952."
+ },
+ {
+  "slug": "project-twinkle",
+  "name": "Project Twinkle",
+  "aka": "The green fireballs study",
+  "country": "us",
+  "agency": "US Air Force Cambridge Research Laboratory",
+  "start": 1949,
+  "end": 1950,
+  "status": "closed",
+  "did": "A short camera-based study set up in summer 1949 after many reports of 'green fireballs' over New Mexico and Nevada. The plan was to photograph the fireballs from several cameras near White Sands so speed and altitude could be worked out.",
+  "found": "The project only ever got one camera, which kept being moved after reports came in, and it never photographed a fireball.",
+  "sources": [
+   {
+    "name": "AARO, Report on the Historical Record of U.S. Government Involvement with Unidentified Anomalous Phenomena, Vol. I (Feb 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+    "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+   }
+  ],
+  "release": null,
+  "note": "Known from the AARO historical report only."
+ },
+ {
+  "slug": "project-bear",
+  "name": "Project Bear (Battelle study)",
+  "aka": "Blue Book Special Report No. 14",
+  "country": "us",
+  "agency": "US Air Force contract with the Battelle Memorial Institute",
+  "start": 1951,
+  "end": 1954,
+  "status": "closed",
+  "did": "An informal name for a scientific support contract Capt. Ruppelt set up with Battelle Memorial Institute. Battelle studied how reliably witnesses remember sightings, designed a better witness questionnaire, and put the Grudge and Blue Book reports on punch cards for statistical analysis.",
+  "found": "Its late-1954 report, 'Special Report No. 14', found that cases with enough data were explainable and judged it highly improbable that any represented technology beyond then-current scientific knowledge.",
+  "sources": [
+   {
+    "name": "AARO, Report on the Historical Record of U.S. Government Involvement with Unidentified Anomalous Phenomena, Vol. I (Feb 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+    "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+   }
+  ],
+  "release": null,
+  "note": "Known from the AARO historical report only.",
+  "short": "Project Bear"
+ },
+ {
+  "slug": "project-blue-book",
+  "name": "Project Blue Book",
+  "aka": "",
+  "country": "us",
+  "agency": "US Air Force, Wright-Patterson Air Force Base",
+  "start": 1952,
+  "end": 1969,
+  "status": "closed",
+  "did": "The longest-running US government UFO investigation. Air Force staff, with astronomer J. Allen Hynek as scientific consultant, logged sighting reports and sorted them into identified, insufficient data or unidentified, with explanations such as planets, balloons, aircraft and afterburners. Secretary of the Air Force Robert Seamans announced its end on December 17, 1969.",
+  "found": "Of 12,618 sightings reported from 1947 to 1969, 701 remained 'unidentified'. The Air Force concluded no UFO had shown any threat to national security, none showed technology beyond present-day science, and there was no evidence any were extraterrestrial vehicles.",
+  "sources": [
+   {
+    "name": "National Archives, Project BLUE BOOK - Unidentified Flying Objects (incl. 1985 USAF fact sheet)",
+    "url": "https://www.archives.gov/research/military/air-force/ufos"
+   },
+   {
+    "name": "AARO, Report on the Historical Record of U.S. Government Involvement with Unidentified Anomalous Phenomena, Vol. I (Feb 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+    "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+   }
+  ],
+  "release": "project-blue-book",
+  "note": "The 12,618 and 701 figures cover 1947 to 1969, so they include the Sign and Grudge years."
+ },
+ {
+  "slug": "cia-ufo-interest",
+  "name": "CIA interest in UFOs",
+  "aka": "",
+  "country": "us",
+  "agency": "Central Intelligence Agency, Office of Scientific Intelligence",
+  "start": 1947,
+  "end": 1990,
+  "status": "closed",
+  "did": "The CIA never ran a standing UFO project, but it took a close interest from the late 1940s to the early 1950s: after the summer 1952 Washington sightings its Office of Scientific Intelligence formed a study group that reviewed the Air Force's case files, and it then secretly sponsored the 1953 Robertson Panel. Later it did occasional reviews (including a 1964 update for Director John McCone), helped the Condon study with photo analysis, and fielded FOIA requests; an internal history by Gerald K. Haines covers 1947 to 1990.",
+  "found": "The 1952 study group judged about 90 percent of reports explainable and rejected Soviet or extraterrestrial explanations; the 1964 review found no evidence of a threat or foreign origin. The Haines history says CIA interest was substantial only until the early 1950s, and that, by later estimates of CIA officials, over half of UFO reports from the late 1950s through the 1960s were US manned reconnaissance flights (U-2 and OXCART).",
+  "sources": [
+   {
+    "name": "CIA, Gerald K. Haines, \"CIA's Role in the Study of UFOs, 1947-90\"",
+    "url": "https://www.cia.gov/resources/csi/static/cia-role-study-UFOs.pdf",
+    "archive": "https://web.archive.org/web/20261014165135/https://www.cia.gov/resources/csi/static/cia-role-study-UFOs.pdf"
+   },
+   {
+    "name": "AARO, Report on the Historical Record of U.S. Government Involvement with Unidentified Anomalous Phenomena, Vol. I (Feb 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+    "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+   },
+   {
+    "name": "CIA Reading Room, UFOs: Fact or Fiction? collection",
+    "url": "https://www.cia.gov/readingroom/collection/ufos-fact-or-fiction",
+    "archive": "https://web.archive.org/web/20261008042144/https://www.cia.gov/readingroom/collection/ufos-fact-or-fiction"
+   }
+  ],
+  "release": "cia-ufo-collection",
+  "note": "Not a standing programme: a series of studies and reviews over four decades."
+ },
+ {
+  "slug": "robertson-panel",
+  "name": "Robertson Panel",
+  "aka": "Scientific Advisory Panel on Unidentified Flying Objects",
+  "country": "us",
+  "agency": "Central Intelligence Agency",
+  "start": 1953,
+  "end": 1953,
+  "status": "closed",
+  "did": "A panel of scientists (Robertson, Lloyd Berkner, Samuel Goudsmit, Luis Alvarez, Thornton Page) quietly convened by the CIA in January 1953 to review the Air Force's UFO evidence. It looked at case files and film and considered whether UFOs were a security problem.",
+  "found": "Its report of January 17, 1953 found 'no indication' that UFOs were a direct physical threat to national security, no remaining cases pointing to hostile foreign craft, and no need to revise scientific concepts. It recommended that national security agencies 'strip' UFOs of their special status and 'aura of mystery' through a programme to reassure the public.",
+  "sources": [
+   {
+    "name": "CIA Reading Room, Report of the Scientific Panel on Unidentified Flying Objects, 17 January 1953 (CIA-RDP80B01676R004000110022-4)",
+    "url": "https://www.cia.gov/readingroom/document/cia-rdp80b01676r004000110022-4",
+    "archive": "https://web.archive.org/web/20250228110053/https://www.cia.gov/readingroom/document/cia-rdp80b01676r004000110022-4"
+   },
+   {
+    "name": "AARO, Report on the Historical Record of U.S. Government Involvement with Unidentified Anomalous Phenomena, Vol. I (Feb 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+    "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+   },
+   {
+    "name": "CIA, Gerald K. Haines, \"CIA's Role in the Study of UFOs, 1947-90\"",
+    "url": "https://www.cia.gov/resources/csi/static/cia-role-study-UFOs.pdf",
+    "archive": "https://web.archive.org/web/20261014165135/https://www.cia.gov/resources/csi/static/cia-role-study-UFOs.pdf"
+   }
+  ],
+  "release": "robertson-panel-1953",
+  "note": null
+ },
+ {
+  "slug": "obrien-committee",
+  "name": "O'Brien Committee",
+  "aka": "",
+  "country": "us",
+  "agency": "US Air Force Scientific Advisory Board",
+  "start": 1966,
+  "end": 1966,
+  "status": "closed",
+  "did": "A small ad hoc committee that met on February 3, 1966 to review how Blue Book investigated sightings. It went over earlier panels' findings (especially the Robertson Panel), heard Air Force briefings and read selected unidentified cases.",
+  "found": "It found no evidence UFOs threatened national security and no verified case clearly outside known science; about 6 percent (646) of 10,147 sightings from 1947 to 1965 were listed as unidentified. It recommended contracting universities to study selected sightings in depth, which led to the Condon study.",
+  "sources": [
+   {
+    "name": "GovInfo, full text PDF of the 1966 hearing (prints the USAF Scientific Advisory Board ad hoc committee report)",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-89hhrg50066O/pdf/CHRG-89hhrg50066O.pdf"
+   },
+   {
+    "name": "GovInfo, House Armed Services Committee hearing \"Unidentified Flying Objects\", April 5, 1966",
+    "url": "https://www.govinfo.gov/app/details/CHRG-89hhrg50066O",
+    "archive": "https://web.archive.org/web/20260730122925/https://www.govinfo.gov/app/details/CHRG-89hhrg50066O/"
+   },
+   {
+    "name": "AARO, Report on the Historical Record of U.S. Government Involvement with Unidentified Anomalous Phenomena, Vol. I (Feb 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+    "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+   }
+  ],
+  "release": "house-hearing-1966",
+  "note": "AARO's history dates it 1964, but the committee's own report says it met on February 3, 1966."
+ },
+ {
+  "slug": "condon-committee",
+  "name": "Condon Committee",
+  "aka": "University of Colorado UFO Project · the Condon Report",
+  "country": "us",
+  "agency": "University of Colorado, under a US Air Force contract",
+  "start": 1966,
+  "end": 1969,
+  "status": "closed",
+  "did": "Following the O'Brien committee's advice, the Air Force paid the University of Colorado $325,000 for an 18-month study of UFO reports, led by physicist and former National Bureau of Standards director Edward Condon. The team looked closely at 59 case studies, including claimed physical evidence, and got photo-analysis help from the CIA's National Photographic Interpretation Center.",
+  "found": "Its general conclusion was that 'nothing has come from the study of UFOs in the past 21 years that has added to scientific knowledge' and that further extensive study probably could not be justified. A National Academy of Sciences panel endorsed the methods and conclusions, and the Air Force cited both in closing Blue Book in December 1969.",
+  "sources": [
+   {
+    "name": "AARO, Report on the Historical Record of U.S. Government Involvement with Unidentified Anomalous Phenomena, Vol. I (Feb 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+    "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+   },
+   {
+    "name": "CIA, Gerald K. Haines, \"CIA's Role in the Study of UFOs, 1947-90\"",
+    "url": "https://www.cia.gov/resources/csi/static/cia-role-study-UFOs.pdf",
+    "archive": "https://web.archive.org/web/20261014165135/https://www.cia.gov/resources/csi/static/cia-role-study-UFOs.pdf"
+   },
+   {
+    "name": "National Archives, Project BLUE BOOK - Unidentified Flying Objects (incl. 1985 USAF fact sheet)",
+    "url": "https://www.archives.gov/research/military/air-force/ufos"
+   }
+  ],
+  "release": "condon-report",
+  "note": "Sources give different dates for the final report (late 1968 to early 1969). The contract started October 7, 1966."
+ },
+ {
+  "slug": "roswell-inquiries",
+  "name": "Roswell inquiries",
+  "aka": "The Roswell Report (1995) · Case Closed (1997) · GAO report NSIAD-95-187",
+  "country": "us",
+  "agency": "US Air Force and the General Accounting Office",
+  "start": 1993,
+  "end": 1997,
+  "status": "closed",
+  "did": "After Rep. Steven Schiff's 1993 inquiries, GAO searched for government records on the July 1947 crash near Roswell, New Mexico, while the Air Force searched archives and interviewed witnesses, releasing them from secrecy obligations. The Air Force published two reports and GAO published its own findings in July 1995.",
+  "found": "The Air Force found no sign of a UFO or a cover-up: the debris matched a balloon from the then-classified Project Mogul, and the 1997 follow-up said 'alien bodies' stories came from crash-test dummies carried by high-altitude balloons, mixed up with two later accidents. GAO found that the four Army Air Force accidents reported in New Mexico that July all involved military aircraft and happened after July 8, 1947, and that no report was required for a balloon crash.",
+  "sources": [
+   {
+    "name": "GAO, Government Records: Results of a Search for Records Concerning the 1947 Crash Near Roswell, New Mexico (NSIAD-95-187, July 28, 1995)",
+    "url": "https://www.gao.gov/products/nsiad-95-187",
+    "archive": "https://web.archive.org/web/20260927004818/https://www.gao.gov/products/nsiad-95-187"
+   },
+   {
+    "name": "AARO, Report on the Historical Record of U.S. Government Involvement with Unidentified Anomalous Phenomena, Vol. I (Feb 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+    "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+   }
+  ],
+  "release": null,
+  "note": null
+ },
+ {
+  "slug": "aawsap",
+  "name": "Advanced Aerospace Weapon System Applications Program (AAWSAP)",
+  "aka": "",
+  "country": "us",
+  "agency": "Defense Intelligence Agency, through a private contractor",
+  "start": 2009,
+  "end": 2012,
+  "status": "closed",
+  "did": "Pushed by Senate Majority Leader Harry Reid, Congress gave DIA $22 million in the FY2008 and FY2010 defence appropriations to study long-range foreign aerospace threats. DIA hired a private company, which produced technical papers in 12 future-technology areas and, with the DIA programme manager's support, also reviewed Blue Book and private UFO cases and studied alleged paranormal activity at a Utah ranch owned by the contractor's head.",
+  "found": "AARO found the contract produced exploratory papers on the 12 topics (never thoroughly peer-reviewed) and no other substantive UAP case work. DIA ended it in 2012 after its deliverables were done, over DIA and DoD concerns; a 2009 request by Sen. Reid to make it a Special Access Program was turned down.",
+  "sources": [
+   {
+    "name": "AARO, Report on the Historical Record of U.S. Government Involvement with Unidentified Anomalous Phenomena, Vol. I (Feb 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+    "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+   }
+  ],
+  "release": null,
+  "note": null,
+  "short": "AAWSAP"
+ },
+ {
+  "slug": "aatip",
+  "name": "Advanced Aerospace Threat Identification Program (AATIP)",
+  "aka": "",
+  "country": "us",
+  "agency": "US Department of Defense",
+  "start": 2007,
+  "end": 2012,
+  "status": "closed",
+  "did": "The name under which the Pentagon's UFO-related work became public in a December 2017 New York Times story, which described a $22 million programme that studied UFO reports. AARO says the name was used interchangeably with AAWSAP, and after AAWSAP ended it was used by an informal group of DoD staff who looked at military UAP reports as a side job, without its own staff or budget.",
+  "found": "AARO says AATIP was never an official DoD programme and produced no substantive case work beyond what AAWSAP did. The Pentagon told the NYT it ended the programme in 2012, while its backers said the work went on informally.",
+  "sources": [
+   {
+    "name": "AARO, Report on the Historical Record of U.S. Government Involvement with Unidentified Anomalous Phenomena, Vol. I (Feb 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+    "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+   },
+   {
+    "name": "The New York Times, Cooper, Blumenthal and Kean, \"Glowing Auras and 'Black Money': The Pentagon's Mysterious U.F.O. Program\" (Dec 16, 2017)",
+    "url": "https://www.nytimes.com/2017/12/16/us/politics/pentagon-program-ufo-harry-reid.html",
+    "archive": "https://web.archive.org/web/20260731170328/https://www.nytimes.com/2017/12/16/us/politics/pentagon-program-ufo-harry-reid.html"
+   }
+  ],
+  "release": null,
+  "note": "Disputed: AARO says AATIP was never an official programme, while people who worked on it say the work carried on informally after 2012. The 2007 start date comes from The New York Times.",
+  "short": "AATIP"
+ },
+ {
+  "slug": "uap-task-force",
+  "name": "Unidentified Aerial Phenomena Task Force (UAPTF)",
+  "aka": "",
+  "country": "us",
+  "agency": "US Navy, for the Under Secretary of Defense for Intelligence and Security",
+  "start": 2020,
+  "end": 2021,
+  "status": "closed",
+  "did": "Approved by Deputy Secretary of Defense David Norquist on August 4, 2020 (announced August 14) to 'detect, analyze and catalog' UAP that could threaten US national security. It standardised and destigmatised military reporting and fed into the ODNI's June 2021 preliminary assessment for Congress.",
+  "found": "The June 2021 preliminary assessment covered 144 reports from US government sources (November 2004 to March 2021). Only one was identified with high confidence (a large, deflating balloon); the rest stayed unexplained, mostly because of limited data. AARO later credited the task force's methods with helping identify Chinese high-altitude balloons.",
+  "sources": [
+   {
+    "name": "DoD release, Establishment of Unidentified Aerial Phenomena Task Force (Aug 14, 2020)",
+    "url": "https://www.defense.gov/News/Releases/Release/Article/2314065/establishment-of-unidentified-aerial-phenomena-task-force/",
+    "archive": "https://web.archive.org/web/20250902023619/https://www.defense.gov/News/Releases/Release/Article/2314065/establishment-of-unidentified-aerial-phenomena-task-force/"
+   },
+   {
+    "name": "ODNI, Preliminary Assessment: Unidentified Aerial Phenomena (June 25, 2021)",
+    "url": "https://www.dni.gov/files/ODNI/documents/assessments/Prelimary-Assessment-UAP-20210625.pdf",
+    "archive": "https://web.archive.org/web/20260728122824/https://www.dni.gov/files/ODNI/documents/assessments/Prelimary-Assessment-UAP-20210625.pdf"
+   },
+   {
+    "name": "AARO, Report on the Historical Record of U.S. Government Involvement with Unidentified Anomalous Phenomena, Vol. I (Feb 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+    "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+   }
+  ],
+  "release": "odni-preliminary-assessment-2021",
+  "note": null,
+  "short": "UAP Task Force"
+ },
+ {
+  "slug": "aoimsg",
+  "name": "Airborne Object Identification and Management Synchronization Group (AOIMSG)",
+  "aka": "",
+  "country": "us",
+  "agency": "Office of the Under Secretary of Defense for Intelligence and Security",
+  "start": 2021,
+  "end": 2022,
+  "status": "closed",
+  "did": "Set up on November 23, 2021 as the successor to the Navy's UAP Task Force, to coordinate across DoD and other agencies on detecting, identifying and attributing objects in special use airspace and assessing threats to flight safety and national security. An executive council (AOIMEXEC) was created to oversee it.",
+  "found": "It published no findings. AARO says it never reached initial operating capability before the FY2022 defence law led to it being renamed and expanded as AARO in July 2022.",
+  "sources": [
+   {
+    "name": "DoD release, DoD Announces the Establishment of the Airborne Object Identification and Management Synchronization Group (AOIMSG) (Nov 23, 2021)",
+    "url": "https://www.defense.gov/News/Releases/Release/Article/2853121/dod-announces-the-establishment-of-the-airborne-object-identification-and-manag/",
+    "archive": "https://web.archive.org/web/20211125211021/https://www.defense.gov/News/Releases/Release/Article/2853121/dod-announces-the-establishment-of-the-airborne-object-identification-and-manag/utm_source/clubhouse/"
+   },
+   {
+    "name": "DoD release, DoD Announces the Establishment of the All-domain Anomaly Resolution Office (July 20, 2022)",
+    "url": "https://www.defense.gov/News/Releases/Release/Article/3100053/dod-announces-the-establishment-of-the-all-domain-anomaly-resolution-office/",
+    "archive": "https://web.archive.org/web/20250830091216/https://www.defense.gov/News/Releases/Release/Article/3100053/dod-announces-the-establishment-of-the-all-domain-anomaly-resolution-office/"
+   },
+   {
+    "name": "AARO, Report on the Historical Record of U.S. Government Involvement with Unidentified Anomalous Phenomena, Vol. I (Feb 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+    "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+   }
+  ],
+  "release": null,
+  "note": null,
+  "short": "AOIMSG"
+ },
+ {
+  "slug": "aaro",
+  "name": "All-domain Anomaly Resolution Office (AARO)",
+  "aka": "",
+  "country": "us",
+  "agency": "US Department of Defense (now styled Department of War), with the Director of National Intelligence",
+  "start": 2022,
+  "end": null,
+  "status": "active",
+  "did": "Created on July 15, 2022 (announced July 20) by renaming and expanding AOIMSG, following the FY2022 National Defense Authorization Act; its first director was Dr. Sean Kirkpatrick, and Dr. Jon Kosloski was director by November 2024 and still in the FY2025 report. It collects and analyses UAP reports from the military, intelligence agencies and FAA in all domains (air, sea, space), reports to Congress yearly, and published a historical review of US government UFO involvement in 2024.",
+  "found": "AARO says most cases have ordinary explanations and it has found no verifiable evidence of extraterrestrial beings, activity or technology. As of May 30, 2025 it held 1,870 reports; in the FY2025 period it got 319 new reports and resolved 370 cases (114 new plus 256 older), all prosaic objects such as balloons, satellites, birds, aircraft and drones.",
+  "sources": [
+   {
+    "name": "DoD release, DoD Announces the Establishment of the All-domain Anomaly Resolution Office (July 20, 2022)",
+    "url": "https://www.defense.gov/News/Releases/Release/Article/3100053/dod-announces-the-establishment-of-the-all-domain-anomaly-resolution-office/",
+    "archive": "https://web.archive.org/web/20250830091216/https://www.defense.gov/News/Releases/Release/Article/3100053/dod-announces-the-establishment-of-the-all-domain-anomaly-resolution-office/"
+   },
+   {
+    "name": "Department of War / AARO, Fiscal Year 2025 Consolidated Annual Report on UAP (cut-off May 30, 2025)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/FY25%20UAP%20Annual%20Report/AARO_FY2025_Consolidated_Annual_Report_on_UAP.pdf",
+    "archive": "https://web.archive.org/web/20261001041041/https://www.aaro.mil/Portals/136/PDFs/FY25%20UAP%20Annual%20Report/AARO_FY2025_Consolidated_Annual_Report_on_UAP.pdf"
+   },
+   {
+    "name": "AARO, Dr. Jon Kosloski statement for the record, Senate Armed Services subcommittee (Nov 19, 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/Dr_Jon_Kosloski_Statement_for_the_Record_SASC_Open_Hearing_Nov2024.pdf",
+    "archive": "https://web.archive.org/web/20260921013225/https://www.aaro.mil/Portals/136/PDFs/Dr_Jon_Kosloski_Statement_for_the_Record_SASC_Open_Hearing_Nov2024.pdf"
+   },
+   {
+    "name": "AARO, Report on the Historical Record of U.S. Government Involvement with Unidentified Anomalous Phenomena, Vol. I (Feb 2024)",
+    "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+    "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+   },
+   {
+    "name": "ODNI, 2022 Annual Report on Unidentified Aerial Phenomena (Jan 2023)",
+    "url": "https://www.dni.gov/files/ODNI/documents/assessments/Unclassified-2022-Annual-Report-UAP.pdf",
+    "archive": "https://web.archive.org/web/20260603190713/https://www.dni.gov/files/ODNI/documents/assessments/Unclassified-2022-Annual-Report-UAP.pdf"
+   }
+  ],
+  "release": "aaro-fy2025-annual-report",
+  "note": null,
+  "short": "AARO"
+ },
+ {
+  "slug": "nasa-uap-study",
+  "name": "NASA UAP Independent Study Team",
+  "aka": "",
+  "country": "us",
+  "agency": "NASA Science Mission Directorate",
+  "start": 2022,
+  "end": 2023,
+  "status": "closed",
+  "did": "A 16-member outside panel NASA set up in June 2022 to work out how NASA's unclassified data and scientific tools could help understand UAP in the future. It held a public meeting on May 31, 2023 and was explicitly not a review of past incidents.",
+  "found": "Its final report of September 14, 2023 said there are too few high-quality observations to draw firm scientific conclusions about UAP and saw no reason to conclude existing reports have an extraterrestrial source; it recommended NASA take a bigger role in data collection and reducing stigma.",
+  "sources": [
+   {
+    "name": "NASA, Unidentified Anomalous Phenomena Independent Study Team Report (Sept 2023)",
+    "url": "https://smd-cms.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf"
+   },
+   {
+    "name": "NASA Science, UAP (independent study page)",
+    "url": "https://science.nasa.gov/uap/"
+   },
+   {
+    "name": "NASA release 23-106, UPDATE: NASA Shares UAP Independent Study Report; Names Director (Sept 14, 2023)",
+    "url": "https://www.nasa.gov/news-release/update-nasa-shares-uap-independent-study-report-names-director/",
+    "archive": "https://web.archive.org/web/20261014105414/https://www.nasa.gov/news-release/update-nasa-shares-uap-independent-study-report-names-director/"
+   }
+  ],
+  "release": "nasa-uap-independent-study",
+  "note": null,
+  "short": "NASA UAP study"
+ },
+ {
+  "slug": "uk-flying-saucer-working-party",
+  "name": "Flying Saucer Working Party",
+  "aka": "DSI/JTIC Report No. 7",
+  "country": "gb",
+  "agency": "Ministry of Defence, Directorate of Scientific Intelligence",
+  "start": 1950,
+  "end": 1951,
+  "status": "closed",
+  "did": "A small, secret team of intelligence officers from the three armed services was set up in August 1950, after pressure from the government's chief scientific adviser Sir Henry Tizard, to review flying saucer reports and keep in touch with American evaluations. It looked at what was known and questioned witnesses, including test pilots from the Royal Aircraft Establishment at Farnborough. The team was dissolved once its report was delivered.",
+  "found": "Its six-page report of June 1951 concluded that all sightings could be explained as misidentified ordinary objects, optical illusions, psychological delusions or hoaxes, and strongly recommended no further investigation 'unless and until some material evidence becomes available'. Copies are at The National Archives in DEFE 44/119, DEFE 19/9 and DEFE 24/2050/1.",
+  "sources": [
+   {
+    "name": "The National Archives (UK): UFO briefing document, July 2012 (PDF)",
+    "url": "https://cdn.nationalarchives.gov.uk/documents/briefing-guide-12-07-12.pdf"
+   }
+  ],
+  "release": null,
+  "note": null,
+  "short": "Flying Saucer Working Party"
+ },
+ {
+  "slug": "uk-mod-ufo-desk",
+  "name": "The Ministry of Defence UFO desk",
+  "aka": "S6 (Air), S4 (Air), DS8, Sec(AS), DAS",
+  "country": "gb",
+  "agency": "Air Ministry, then Ministry of Defence",
+  "start": 1958,
+  "end": 2009,
+  "status": "closed",
+  "did": "From 1958 a civilian Air Staff secretariat branch, S6 (Air), handled UFO reports and questions from the public, press and MPs, while air intelligence looked at any defence significance. Responsibility passed to S4 (Air) in 1964, DS8 in 1979 and Secretariat (Air Staff) in 1985, later the Directorate of Air Staff; in December 2008 the desk moved to RAF Air Command. It logged sighting reports, answered correspondence and Parliamentary Questions, and from 1997 ran a public hotline and email address.",
+  "found": "A November 2009 ministerial briefing said that in more than 50 years no reported UFO sighting had revealed anything suggesting an extra-terrestrial presence or military threat to the UK. The MoD withdrew the hotline and email address from 1 December 2009 and said it would no longer respond to or investigate UFO reports. The desk logged 208 reports in 2008 and 643 in 2009 (to 30 November).",
+  "sources": [
+   {
+    "name": "The National Archives (UK): UFO briefing document, July 2012 (PDF)",
+    "url": "https://cdn.nationalarchives.gov.uk/documents/briefing-guide-12-07-12.pdf"
+   },
+   {
+    "name": "The National Archives (UK): Highlights guide to the tenth and final UFO file release, 2013 (PDF)",
+    "url": "https://cdn.nationalarchives.gov.uk/documents/ufo-highlights-guide-2013.pdf"
+   },
+   {
+    "name": "Ministry of Defence FOI Publication Scheme: Closure of UFO hotline (2009 to 10)",
+    "url": "http://www.mod.uk/DefenceInternet/FreedomOfInformation/PublicationScheme/SearchPublicationScheme/ClosureOfUfoHelpdesk.htm",
+    "archive": "https://web.archive.org/web/20100726115540/http://www.mod.uk:80/DefenceInternet/FreedomOfInformation/PublicationScheme/SearchPublicationScheme/ClosureOfUfoHelpdesk.htm"
+   },
+   {
+    "name": "BBC News: Does the UK have a blind spot on UFO sightings? (14 June 2026)",
+    "url": "https://www.bbc.co.uk/news/articles/c3929kk7gdjo"
+   }
+  ],
+  "release": "uk-mod-ufo-files",
+  "note": null,
+  "short": "MoD UFO desk"
+ },
+ {
+  "slug": "uk-di55",
+  "name": "Air intelligence UFO assessments (DDI(Tech), later DI55)",
+  "aka": "",
+  "country": "gb",
+  "agency": "Air Ministry, then Defence Intelligence Staff",
+  "start": 1953,
+  "end": 2000,
+  "status": "closed",
+  "did": "From 1953, UFO reports from all sources were sent to the Air Ministry's technical intelligence branch DDI (Tech) for examination, analysis and classification, with an annual summary for the Air Staff. In 1967 responsibility for reports with possible defence significance passed to the Defence Intelligence branch DI55, which received copies of sighting reports for the next three decades. Its interest was in foreign aircraft or technology, not extraterrestrials.",
+  "found": "A 1955 Air Ministry answer to Parliament said about 90 per cent of reports related to meteors, balloons, flares and other objects, with the rest unexplained through lack of data. After DI55's report 'Unidentified Aerial Phenomena in the UK Air Defence Region' was completed in 2000, the branch was taken off the distribution list for UFO reports.",
+  "sources": [
+   {
+    "name": "The National Archives (UK): UFO briefing document, July 2012 (PDF)",
+    "url": "https://cdn.nationalarchives.gov.uk/documents/briefing-guide-12-07-12.pdf"
+   }
+  ],
+  "release": "uk-mod-ufo-files",
+  "note": null,
+  "short": "Air intelligence / DI55"
+ },
+ {
+  "slug": "uk-condign",
+  "name": "Project Condign: UAP in the UK Air Defence Region",
+  "aka": "Scientific & Technical Memorandum No. 55/2/00",
+  "country": "gb",
+  "agency": "Ministry of Defence, Defence Intelligence Staff",
+  "start": 1996,
+  "end": 2000,
+  "status": "closed",
+  "did": "After a 1996 MoD review of how it handled UAP sighting reports, the Defence Intelligence Staff ran a study to see whether the reports had any value to Defence Intelligence. It built a database of about 30 years of reports, examined a sample from 1987 to 1997 in detail, and looked at flight safety and possible military technologies of interest. The report, classified Secret UK Eyes Only and dated December 2000, was released under the Freedom of Information Act on 15 May 2006 with some parts withheld.",
+  "found": "The study found that UAP reports had no significant Defence Intelligence value and that no evidence existed that the phenomena were hostile, under any type of control other than natural physical forces, or linked to any particular nation. It put most reports down to misidentified aircraft, ordinary natural phenomena and rare natural events such as meteors and atmospheric plasmas.",
+  "sources": [
+   {
+    "name": "Ministry of Defence FOI Publication Scheme: Unidentified Aerial Phenomena (UAP) in the UK Air Defence Region (15 May 2006)",
+    "url": "http://www.mod.uk/DefenceInternet/FreedomOfInformation/PublicationScheme/SearchPublicationScheme/UnidentifiedAerialPhenomenauapInTheUkAirDefenceRegion.htm",
+    "archive": "https://web.archive.org/web/20060515074341/http://www.mod.uk/DefenceInternet/FreedomOfInformation/PublicationScheme/SearchPublicationScheme/UnidentifiedAerialPhenomenauapInTheUkAirDefenceRegion.htm"
+   },
+   {
+    "name": "Ministry of Defence: UAP in the UK Air Defence Region, Executive Summary, December 2000 (PDF, scanned)",
+    "url": "http://www.mod.uk/NR/rdonlyres/7D2B11E0-EA9F-45EA-8883-A3C00546E752/0/uap_exec_summary_dec00.pdf",
+    "archive": "https://web.archive.org/web/20060515101201/http://www.mod.uk/NR/rdonlyres/7D2B11E0-EA9F-45EA-8883-A3C00546E752/0/uap_exec_summary_dec00.pdf"
+   },
+   {
+    "name": "The National Archives (UK): UFO briefing document, July 2012 (PDF)",
+    "url": "https://cdn.nationalarchives.gov.uk/documents/briefing-guide-12-07-12.pdf"
+   },
+   {
+    "name": "Nature News: UFO mind-melting in government report (9 May 2006)",
+    "url": "https://www.nature.com/news/2006/060508/full/news060508-6.html"
+   }
+  ],
+  "release": "uk-project-condign",
+  "note": "The codename Condign does not appear in the released report itself; it became known later.",
+  "short": "Project Condign"
+ },
+ {
+  "slug": "france-geipan",
+  "name": "GEPAN, SEPRA and GEIPAN",
+  "aka": "Groupe d'Études et d'Informations sur les Phénomènes Aérospatiaux Non identifiés",
+  "country": "fr",
+  "agency": "CNES, the French space agency",
+  "start": 1977,
+  "end": null,
+  "status": "active",
+  "did": "France's space agency CNES has studied unidentified aerospace phenomena (PAN/UAP) since 1977, first as GEPAN, then from 1988 as SEPRA (which also monitored atmospheric re-entries of space debris), and since 2005 as GEIPAN. It collects witness reports directly and from the gendarmerie, civil aviation and the air and space force, investigates with volunteer field investigators and a panel of experts, and publishes anonymised case files online (published since 2007; website since 2008). A steering committee of civil, military and scientific representatives oversees its work.",
+  "found": "GEIPAN sorts cases into A (fully identified), B (probably identified), C (unidentifiable for lack of data) and D (unexplained after investigation). As of 31 March 2026 it reported about 5,170 cases, 3,336 published: 66.5% A or B, 30.3% C and 3.2% D. It says it has found no proof of extraterrestrial presence but gives no opinion on it.",
+  "sources": [
+   {
+    "name": "GEIPAN (CNES): Son histoire",
+    "url": "https://www.cnes-geipan.fr/fr/node/58791"
+   },
+   {
+    "name": "GEIPAN (CNES): Classification (statistics as of 31/03/2026)",
+    "url": "https://www.cnes-geipan.fr/fr/node/58787"
+   },
+   {
+    "name": "GEIPAN (CNES): Mission & Geipan",
+    "url": "https://www.cnes-geipan.fr/fr/node/58792"
+   },
+   {
+    "name": "CNES: GEIPAN project page (English)",
+    "url": "https://cnes.fr/en/projects/geipan"
+   }
+  ],
+  "release": "france-geipan-archives",
+  "note": "The COMETA report (1999) is often mistaken for an official French study. It was written by a private group of former officials.",
+  "short": "GEPAN / SEPRA / GEIPAN"
+ },
+ {
+  "slug": "spain-air-force",
+  "name": "Spanish Air Force UFO investigations",
+  "aka": "Expedientes OVNI",
+  "country": "es",
+  "agency": "Ejército del Aire (Spanish Air Force), Ministry of Defence",
+  "start": 1962,
+  "end": null,
+  "status": "active",
+  "did": "In 1991 the Ministry of Defence began declassifying the Air Force's files on 'sightings of strange phenomena' in Spanish airspace, and in 1992 a physical copy was placed in the Air Force Central Library at Air Force headquarters in Madrid. In October 2016 the 80 files (about 1,900 pages, from a 1962 case at San Javier to a 1995 case at Morón) were put online in the Defence Virtual Library. Each file has a summary with place, date, facts, conclusions and a declassification recommendation, followed by witness reports and weather data, with names removed.",
+  "found": "The files are case-by-case findings, with no overall official conclusion. Reporting continues: a 2022 Ministry of Defence transparency ruling says sightings are now handled under Air Force General Instruction IG 40-5, newer files are CONFIDENTIAL until declassified, and they are kept by the intelligence section of the Air Combat Command (MACOM).",
+  "sources": [
+   {
+    "name": "Biblioteca Virtual de Defensa (Ministerio de Defensa): Expedientes OVNI microsite",
+    "url": "https://bibliotecavirtual.defensa.gob.es/BVMDefensa/exp_ovni/es/micrositios/inicio.do",
+    "archive": "https://web.archive.org/web/20220630005243/https://bibliotecavirtual.defensa.gob.es/BVMDefensa/exp_ovni/en/micrositios/inicio.do"
+   },
+   {
+    "name": "Ministerio de Defensa: transparency resolution 001-068360 on UFO procedures (2022, PDF)",
+    "url": "https://www.defensa.gob.es/Galerias/main/2022/07/resolucion-68360anonimizada.pdf"
+   },
+   {
+    "name": "Libertad Digital: Defensa desclasifica los 'expedientes ovni' (23 Oct 2016)",
+    "url": "https://www.libertaddigital.com/espana/2016-10-23/defensa-desclasifica-los-expedientes-ovni-1276585108/"
+   }
+  ],
+  "release": "spain-air-force-ovni-files",
+  "note": "The files run from a 1962 case to 1995; when formal reporting began isn't published. Newer files stay classified until reviewed.",
+  "short": "Spanish Air Force"
+ },
+ {
+  "slug": "italy-air-force",
+  "name": "Italian Air Force UFO reports",
+  "aka": "Oggetti Volanti Non Identificati (OVNI)",
+  "country": "it",
+  "agency": "Aeronautica Militare, Reparto Generale Sicurezza",
+  "start": 1978,
+  "end": null,
+  "status": "active",
+  "did": "After the 1978 wave of sightings, Prime Minister Giulio Andreotti named the Air Force as the official body to collect, check and track UFO reports; the Air Staff's General Security Department (Reparto Generale Sicurezza) does this today. Members of the public fill in a reporting form and hand it to the nearest Carabinieri station, and the Air Force runs a technical check against human activity and natural phenomena, for flight safety and national security. Results are published as yearly lists, plus archive lists for 1972 to 1990 and 1991 to 2000.",
+  "found": "Each case gets an outcome; if no technical or natural explanation is found it is classed as an OVNI (unidentified flying object). Several 2025 entries point to Starlink satellite trains. The head of the department told the national astrophysics institute's news service in 2015 that the Air Force's job is threat and flight-safety assessment, not deciding whether alien life exists.",
+  "sources": [
+   {
+    "name": "Aeronautica Militare: OVNI page (reporting process, form and yearly lists)",
+    "url": "https://www.aeronautica.difesa.it/ovni/"
+   },
+   {
+    "name": "Aeronautica Militare: OVNI archive 1972 to 1990 (PDF)",
+    "url": "https://www.aeronautica.difesa.it/wp-content/uploads/2023/05/Archivio_OVNI_periodo1972-1990.pdf"
+   },
+   {
+    "name": "Aeronautica Militare: Avvistamenti 2025 (PDF)",
+    "url": "https://www.aeronautica.difesa.it/wp-content/uploads/2026/01/AVVISTAMENTI-2025.pdf"
+   },
+   {
+    "name": "Media INAF (Istituto Nazionale di Astrofisica): Se questo è un UFO (14 Sep 2015)",
+    "url": "https://www.media.inaf.it/2015/09/14/se-questo-e-un-ufo/"
+   }
+  ],
+  "release": "italy-air-force-ovni-reports",
+  "note": "The Air Force was named in 1978; its published lists start with a 1972 case.",
+  "short": "Italian Air Force"
+ },
+ {
+  "slug": "belgium-1990",
+  "name": "Belgian Air Force and the 1989-90 wave",
+  "aka": "",
+  "country": "be",
+  "agency": "Belgian Air Force",
+  "start": 1989,
+  "end": 1990,
+  "status": "closed",
+  "did": "During a wave of sightings in Belgium in 1989 to 90, the Belgian Air Force scrambled F-16 fighters in March 1990 to intercept UFOs reported by police officers and others and tracked by NATO ground radar. Its Chief of Operations, Wilfried De Brouwer, wrote an account of the radar and F-16 data, and the Air Force sent an official statement to the UK MoD in November 1993. This was a one-off investigation, not a standing programme.",
+  "found": "De Brouwer's account confirms that the F-16 pilots got radar 'lock-ons' but could not explain the phenomena, which stayed unexplained. The UK MoD, not told at the time, concluded there was no threat to the UK.",
+  "sources": [
+   {
+    "name": "The National Archives (UK): Highlights guide, August 2009 UFO file release (PDF)",
+    "url": "https://cdn.nationalarchives.gov.uk/documents/aug-2009-highlights-guide.pdf"
+   }
+  ],
+  "release": null,
+  "note": "A one-off investigation, not a standing programme. The official documents we could reach are copies held in British MoD files.",
+  "short": "Belgian wave inquiry"
+ },
+ {
+  "slug": "denmark-air-force",
+  "name": "Danish Air Force UFO archive",
+  "aka": "Flyvevåbnets UFO-arkiv",
+  "country": "dk",
+  "agency": "Royal Danish Air Force, Tactical Air Command",
+  "start": 1978,
+  "end": 2002,
+  "status": "closed",
+  "did": "For many years the Air Force operations centre kept every report of unidentified flying objects in a single folder once the report had been investigated. On 28 January 2009 the Air Force scanned the folder and put it online (329 pages in four PDF parts), with reporters' personal details blacked out under data-protection law. The Air Force now only supplies data on military flights in Danish airspace, and collection and investigation of reports has passed to a civilian association.",
+  "found": "The Air Force said most of the observations were never explained; those detailed enough to investigate usually turned out to be military or civil aircraft, weather phenomena, sky lanterns, bright planets or similar. The archive's 'flying jellyfish' case was most likely steam blown off from a boiler at a heating plant.",
+  "sources": [
+   {
+    "name": "Forsvaret: UFO-arkiv online (Flyverstaben news, 28 Jan 2009)",
+    "url": "https://www.forsvaret.dk/da/nyhedsarkiv/flyverstaben/2009/ufo-arkiv-online/"
+   },
+   {
+    "name": "Forsvaret: Flyvevåbnets UFO-arkiv to offentliggjort i 2009 (links to the four PDF parts)",
+    "url": "https://www.forsvaret.dk/da/organisation/flyvevaabnet/flyvevabnets-historie/flyvevabnets-ufo-arkiv--offentliggjort-i-2009/"
+   },
+   {
+    "name": "Forsvaret: Flyvevåbnets UFO-arkiv, part 1, pp. 1-99 (PDF)",
+    "url": "https://www.forsvaret.dk/globalassets/fko---flyvevabnet/flk/dokumenter/ufo-arkiv/-flv_ufo_materiale_side1-99-.pdf"
+   },
+   {
+    "name": "UPI: Denmark releases UFO archives (30 Jan 2009)",
+    "url": "https://www.upi.com/Odd_News/2009/01/30/Denmark-releases-UFO-archives/90411233360944/"
+   }
+  ],
+  "release": null,
+  "note": "The 1978 to 2002 dates come from news coverage of the release; the Air Force pages give no years.",
+  "short": "Danish Air Force"
+ },
+ {
+  "slug": "sweden-ghost-rockets",
+  "name": "The ghost rocket committee",
+  "aka": "Spökraketkommittén",
+  "country": "se",
+  "agency": "Swedish Defence Staff",
+  "start": 1946,
+  "end": 1946,
+  "status": "closed",
+  "did": "After waves of 'ghost rocket' sightings over Sweden and the rest of Scandinavia from 23 to 24 May 1946, the Defence Staff issued a headquarters order on 12 June 1946 telling all military units to report sky phenomena on a set form. A special committee drawn from the Defence Staff, the air and naval materiel administrations, the Air Staff, the signals intelligence agency FRA and the defence research institute FOA collected and analysed reports with outside experts and recommended more radar and radio surveillance. It held its first full meeting on 10 July 1946, after a day with more than 250 reports.",
+  "found": "Experts put most reports down to meteors and similar celestial phenomena, but a group of reports of rocket-shaped objects stayed unexplained. The committee held its last meeting on 12 December 1946 without ever offering a solid explanation; the episode sped up Swedish radar expansion.",
+  "sources": [
+   {
+    "name": "Riksarkivet (Swedish National Archives): Arkivpodden to Spökraketer, with transcript (Krigsarkivet's chief archivist Bo Berg)",
+    "url": "https://riksarkivet.se/resurser/spokraketer"
+   },
+   {
+    "name": "The National Archives (UK): UFO briefing document, July 2012 (PDF)",
+    "url": "https://cdn.nationalarchives.gov.uk/documents/briefing-guide-12-07-12.pdf"
+   }
+  ],
+  "release": null,
+  "note": null,
+  "short": "Ghost rocket committee"
+ },
+ {
+  "slug": "ussr-setka",
+  "name": "Setka",
+  "aka": "Setka-MO and Setka-AN (Сетка)",
+  "country": "su",
+  "agency": "USSR Ministry of Defence and Academy of Sciences",
+  "start": 1978,
+  "end": 1990,
+  "status": "closed",
+  "did": "After the September 1977 Petrozavodsk sighting and questions from the public and from Nordic governments, the Military-Industrial Commission put two classified research topics into the 1978 defence research plan. Setka-MO studied how anomalous phenomena affected military equipment and personnel, and Setka-AN studied their physical nature. From January 1980 a General Staff directive required servicemen across the USSR to report unusual phenomena. The programme was renewed in the 1981 and 1986 five-year plans, ran with little funding, and gathered about 3,000 reports.",
+  "found": "Its participants report that almost all mass night-time sightings were identified as rocket launches and aerospace tests (Petrozavodsk was tied to the launch of Kosmos 955 from Plesetsk), and high-altitude balloons explained many others. Together these accounted for more than 90% of cases.",
+  "sources": [
+   {
+    "name": "Skeptical Inquirer (Skeptical Briefs 10.4, Dec 2000): A History of State UFO Research in the USSR, by Yulii Platov and Boris Sokolov",
+    "url": "https://skepticalinquirer.org/newsletter/history-of-state-ufo-research-in-the-ussr/"
+   },
+   {
+    "name": "Kinematika i Fizika Nebesnykh Tel (Main Astronomical Observatory, NAS of Ukraine), 2013, vol. 19, no. 1: R.P. Oleksyuk, 'Некоторые итоги исследований НЛО в СССР и СНГ' (PDF)",
+    "url": "https://www.mao.kiev.ua/biblio/jscans/knit/2013-19/knit-2013-19-1-10.pdf"
+   }
+  ],
+  "release": null,
+  "note": "No Soviet government documents are online. This rests on the account its two coordinators published in 2000, and a 2013 Ukrainian academic paper."
+ },
+ {
+  "slug": "canada-project-magnet",
+  "name": "Project Magnet",
+  "aka": "Projet Magnet",
+  "country": "ca",
+  "agency": "Department of Transport",
+  "start": 1950,
+  "end": 1954,
+  "status": "closed",
+  "did": "A Department of Transport engineer, Wilbert Smith, was allowed to use department labs and field facilities part-time to test whether UFOs might draw propulsion from the Earth's magnetic field. He widened it into checking UFO reports and set up an observation station at Shirley's Bay outside Ottawa. Funding stopped in 1954 and Smith carried on privately.",
+  "found": "Smith personally believed the sightings matched his magnetic-propulsion theory, but the government did not adopt his view; the Sky Canada report says his attempts to detect UFOs were unsuccessful and the department ended the project in 1954.",
+  "sources": [
+   {
+    "name": "Library and Archives Canada, 'Canada's UFOs: The Search for the Unknown' - 1950 Project Magnet (timeline)",
+    "url": "http://www.collectionscanada.ca/ufo/002029-1700-e.html",
+    "archive": "https://web.archive.org/web/20060119025119/http://www.collectionscanada.ca/ufo/002029-1700-e.html"
+   },
+   {
+    "name": "Library and Archives Canada, 'Canada's UFOs: The Search for the Unknown' - 1954 (timeline: funding stopped)",
+    "url": "http://www.collectionscanada.ca/ufo/002029-1900-e.html",
+    "archive": "https://web.archive.org/web/20060119025112/http://www.collectionscanada.ca/ufo/002029-1900-e.html"
+   },
+   {
+    "name": "Office of the Chief Science Advisor of Canada, 'Management of Public Reporting of Unidentified Aerial Phenomena in Canada' (Sky Canada Project report, June 2025)",
+    "url": "https://www.science.gc.ca/site/science/en/office-chief-science-advisor/sky-canada-project/management-public-reporting-unidentified-aerial-phenomena-canada"
+   }
+  ],
+  "release": "canada-lac-ufo-files",
+  "note": null
+ },
+ {
+  "slug": "canada-second-storey",
+  "name": "Project Second Storey",
+  "aka": "Also spelled Second Story",
+  "country": "ca",
+  "agency": "Defence Research Board",
+  "start": 1952,
+  "end": 1954,
+  "status": "closed",
+  "did": "An interdepartmental committee sponsored by the Defence Research Board to collect, catalogue and correlate 'flying saucer' reports coming in from the armed services and other agencies. It did not investigate sightings itself but drew up a standard reporting form, which was never widely used. It met six times between 1952 and 1954.",
+  "found": "Concluded that UFOs posed no security threat and were of no scientific interest, and recommended ending investigations by the Canadian military (per the 2025 OCSA report).",
+  "sources": [
+   {
+    "name": "Library and Archives Canada, 'Canada's UFOs: The Search for the Unknown' - 1952 Project Second Story (timeline)",
+    "url": "http://www.collectionscanada.ca/ufo/002029-1800-e.html",
+    "archive": "https://web.archive.org/web/20060119025105/http://www.collectionscanada.ca/ufo/002029-1800-e.html"
+   },
+   {
+    "name": "Office of the Chief Science Advisor of Canada, 'Management of Public Reporting of Unidentified Aerial Phenomena in Canada' (Sky Canada Project report, June 2025)",
+    "url": "https://www.science.gc.ca/site/science/en/office-chief-science-advisor/sky-canada-project/management-public-reporting-unidentified-aerial-phenomena-canada"
+   }
+  ],
+  "release": "canada-lac-ufo-files",
+  "note": null,
+  "short": "Second Storey"
+ },
+ {
+  "slug": "canada-nrc",
+  "name": "The National Research Council's UFO file",
+  "aka": "The Non-Meteoric Sightings file",
+  "country": "ca",
+  "agency": "National Research Council of Canada",
+  "start": 1967,
+  "end": 1995,
+  "status": "closed",
+  "did": "In 1967, on the Defence Minister's recommendation, DND handed responsibility for UFO reports to the NRC, which became the main federal place to send them. Reports from the public, police and other departments were logged in a 'Non-Meteoric Sightings' file and Peter Millman often answered with ordinary explanations such as stars, planets, meteors or optical effects. The NRC stopped collecting reports in 1995 and sent the material to what is now Library and Archives Canada.",
+  "found": "No formal report was published; the NRC's practice was to offer natural explanations where possible. The 1967 DND transfer memo said most reports were no threat to national security.",
+  "sources": [
+   {
+    "name": "Library and Archives Canada, 'Canada's UFOs: The Search for the Unknown' - 1967 (timeline: DND files transferred to NRC)",
+    "url": "http://www.collectionscanada.ca/ufo/002029-2500-e.html",
+    "archive": "https://web.archive.org/web/20060119025119/http://www.collectionscanada.ca/ufo/002029-2500-e.html"
+   },
+   {
+    "name": "Office of the Chief Science Advisor of Canada, 'Management of Public Reporting of Unidentified Aerial Phenomena in Canada' (Sky Canada Project report, June 2025)",
+    "url": "https://www.science.gc.ca/site/science/en/office-chief-science-advisor/sky-canada-project/management-public-reporting-unidentified-aerial-phenomena-canada"
+   }
+  ],
+  "release": "canada-lac-ufo-files",
+  "note": "Police reports were already going to this file from 1959; 1967 is when the NRC formally took over.",
+  "short": "NRC UFO file"
+ },
+ {
+  "slug": "sky-canada",
+  "name": "Sky Canada Project",
+  "aka": "Projet Ciel Canada",
+  "country": "ca",
+  "agency": "Office of the Chief Science Advisor of Canada",
+  "start": 2023,
+  "end": 2025,
+  "status": "closed",
+  "did": "A review by the Chief Science Advisor's office of how Canadians report UAP and how federal bodies handle those reports. It gathered information from federal departments, experts and other organisations, looked at historical records and other countries' approaches, and commissioned an Earnscliffe survey of Canadians in 2024. It did not collect sighting evidence or try to settle whether extraterrestrials exist.",
+  "found": "The final report (June 2025, 59 pages) found that Canada has no clear federal lead for public UAP reports. It recommended naming a lead department, setting up a dedicated service that publishes its analyses, better civil-aviation reporting, open data, citizen science, and partnerships with AARO/NASA, GEIPAN and Chile's SEFAA. A preliminary report came out in January 2025.",
+  "sources": [
+   {
+    "name": "Office of the Chief Science Advisor of Canada, 'Management of Public Reporting of Unidentified Aerial Phenomena in Canada' (Sky Canada Project report, June 2025)",
+    "url": "https://www.science.gc.ca/site/science/en/office-chief-science-advisor/sky-canada-project/management-public-reporting-unidentified-aerial-phenomena-canada"
+   },
+   {
+    "name": "Office of the Chief Science Advisor of Canada, 'Sky Canada Project' (project page)",
+    "url": "https://www.science.gc.ca/site/science/en/office-chief-science-advisor/sky-canada-project"
+   },
+   {
+    "name": "CTV News, 'UFOs: 5 takeaways from latest Sky Canada Project report'",
+    "url": "https://www.ctvnews.ca/canada/article/canadas-top-scientist-releases-new-ufo-report-heres-what-you-need-to-know/"
+   }
+  ],
+  "release": "canada-sky-canada-report",
+  "note": null
+ },
+ {
+  "slug": "brazil-sioani",
+  "name": "SIOANI",
+  "aka": "Sistema de Investigação de Objetos Aéreos Não-Identificados",
+  "country": "br",
+  "agency": "Brazilian Air Force, 4th Air Zone, Sao Paulo",
+  "start": 1969,
+  "end": 1972,
+  "status": "closed",
+  "did": "According to the Arquivo Nacional, SIOANI was the first Brazilian military body set up to investigate UFOs officially. Its investigators went into the field across Brazil, recording dozens of reports with interviews, sketches and even psychiatric tests of witnesses. Two of its internal bulletins survive in the Arquivo Nacional.",
+  "found": "No official overall conclusion is published; the surviving bulletins are detailed case files.",
+  "sources": [
+   {
+    "name": "Arquivo Nacional (Brazil), 'Os OVNIs no Arquivo Nacional' (Que República é Essa?, 29 Apr 2021)",
+    "url": "https://querepublicaeessa.an.gov.br/index.php/que-republica-e-essa/assuntos/temas/302-os-ovnis-no-arquivo-nacional"
+   }
+  ],
+  "release": "brazil-arquivo-nacional-ovni",
+  "note": "Known from one Arquivo Nacional article."
+ },
+ {
+  "slug": "brazil-operacao-prato",
+  "name": "Operação Prato",
+  "aka": "Operation Saucer",
+  "country": "br",
+  "agency": "Brazilian Air Force",
+  "start": 1977,
+  "end": 1978,
+  "status": "closed",
+  "did": "A military field operation over several months of 1977-1978 around Colares island in north-east Pará, after villagers reported lights said to attack people (the 'chupa-chupa'). The team took local testimony, kept night watches, logged events and photographed lights. The digitised report, with photos and press clippings, is in the Arquivo Nacional.",
+  "found": "The Arquivo Nacional says the team looked into at least 130 cases; no official explanatory conclusion is published. The Arquivo Nacional notes that film the officers reportedly shot has never been released by the FAB.",
+  "sources": [
+   {
+    "name": "Arquivo Nacional (Brazil), 'Os OVNIs no Arquivo Nacional' (Que República é Essa?, 29 Apr 2021)",
+    "url": "https://querepublicaeessa.an.gov.br/index.php/que-republica-e-essa/assuntos/temas/302-os-ovnis-no-arquivo-nacional"
+   }
+  ],
+  "release": "brazil-arquivo-nacional-ovni",
+  "note": "Known from one Arquivo Nacional article."
+ },
+ {
+  "slug": "brazil-air-force-reporting",
+  "name": "Brazilian Air Force reporting order",
+  "aka": "Portaria nº 551/GC3, 9 August 2010",
+  "country": "br",
+  "agency": "Brazilian Air Force (Comando da Aeronautica)",
+  "start": 2010,
+  "end": null,
+  "status": "active",
+  "did": "An Air Force order of 9 August 2010 that limits the Air Force's UFO role to receiving and cataloguing reports, filed on a form by air traffic control users, and sending them to the Arquivo Nacional every year. The Air Force says it does not study or analyse the reports itself.",
+  "found": "This is a records process, not an investigation, so there are no findings. In its 2025 freedom-of-information answer, COMAER said all its UFO material from 1952 to 2024 had been transferred to the Arquivo Nacional, and that any 2025 reports would follow in mid-2026.",
+  "sources": [
+   {
+    "name": "Casa Civil / CMRI, Decisão CMRI nº 298/2025 (Comando da Aeronáutica answer quoting Portaria nº 551/GC3)",
+    "url": "https://www.gov.br/casacivil/pt-br/assuntos/colegiados/comissao-mista-de-reavaliacao-de-informacoes-cmri/decisoes-de-recurso-de-4a-instancia/2025/decisao-298-2025-nup-60141-001724-2024-73.pdf"
+   },
+   {
+    "name": "Casa Civil / CMRI, Decisão CMRI nº 176/2025 (cites Portaria nº 551/GC3 of 9 Aug 2010)",
+    "url": "https://www.gov.br/casacivil/pt-br/assuntos/colegiados/comissao-mista-de-reavaliacao-de-informacoes-cmri/decisoes-de-recurso-de-4a-instancia/2025/decisao-176-2025-nup-00137-007948-2024-26.pdf"
+   },
+   {
+    "name": "BBC News, 'Brazil air force to record UFO sightings' (12 Aug 2010)",
+    "url": "https://www.bbc.com/news/world-latin-america-10947856"
+   }
+  ],
+  "release": "brazil-arquivo-nacional-ovni",
+  "note": null,
+  "short": "Air Force reporting order"
+ },
+ {
+  "slug": "chile-1968-commission",
+  "name": "Chile's first UFO commission",
+  "aka": "Comisión Chilena para Estudios de Fenómenos Espaciales No Identificados",
+  "country": "cl",
+  "agency": "Chile's Meteorological Office",
+  "start": 1968,
+  "end": 1975,
+  "status": "closed",
+  "did": "A commission led by the director of Chile's Meteorological Office, which on 9 July 1968 sent an official circular asking 43 aeronautical stations to report sightings. Its members included meteorologists, engineers, a doctor, a physicist and an Air Force lieutenant.",
+  "found": "Over seven years it gathered about a dozen reports, some of which were sent to the University of Colorado (Condon Committee) study. It ended in 1975 when its director retired.",
+  "sources": [
+   {
+    "name": "SEFAA / DGAC Chile, 'Historia'",
+    "url": "https://sefaa.dgac.gob.cl/historia/"
+   }
+  ],
+  "release": "chile-cefaa-sefaa",
+  "note": "Known from SEFAA's own history page only.",
+  "short": "1968 commission"
+ },
+ {
+  "slug": "chile-cefaa-sefaa",
+  "name": "CEFAA / SEFAA",
+  "aka": "Comité (now Sección) de Estudios de Fenómenos Aéreos Anómalos",
+  "country": "cl",
+  "agency": "Directorate General of Civil Aviation (DGAC)",
+  "start": 1997,
+  "end": null,
+  "status": "active",
+  "did": "Set up by DGAC on 3 October 1997 (Resolución Exenta N° 01599) after a wave of sightings around Arica, to study anomalous aerial phenomena in Chilean airspace in support of flight safety. In October 2021 it was renamed SEFAA and placed under DGAC's communications sub-department. It takes reports from aircrew and the public, needs photo or video evidence, and publishes monthly 'casos resueltos' (resolved cases).",
+  "found": "It publishes case-by-case explanations rather than an overall finding. Retired General Ricardo Bermúdez, its long-time head, told La Tercera that almost 95% of material received has a logical explanation, and T13 reported more than 2,200 reports since 1997.",
+  "sources": [
+   {
+    "name": "SEFAA / DGAC Chile, 'Quiénes somos'",
+    "url": "https://sefaa.dgac.gob.cl/quienes-somos/"
+   },
+   {
+    "name": "SEFAA / DGAC Chile, 'Historia'",
+    "url": "https://sefaa.dgac.gob.cl/historia/"
+   },
+   {
+    "name": "SEFAA / DGAC Chile, 'Casos resueltos'",
+    "url": "https://sefaa.dgac.gob.cl/category/casos-resueltos/"
+   },
+   {
+    "name": "T13, 'Objetos detectados a más de 1.200 km/h: qué revelan los registros militares de Chile sobre fenómenos aéreos anómalos' (5 Jun 2026)",
+    "url": "https://www.t13.cl/noticia/nacional/objetos-mas-1200-km-h-revelan-registros-militares-chile-fenomenos-aereos-anomalos-5-6-2026"
+   }
+  ],
+  "release": "chile-cefaa-sefaa",
+  "note": "The 95% figure is what its long-time head told a newspaper, not an official statistic."
+ },
+ {
+  "slug": "argentina-cefae",
+  "name": "CEFAe",
+  "aka": "Comisión de Estudio de Fenómenos Aeroespaciales",
+  "country": "ar",
+  "agency": "Argentine Air Force",
+  "start": 2011,
+  "end": 2019,
+  "status": "closed",
+  "did": "An Argentine Air Force commission, formally created on 6 May 2011, that took public sighting reports. From 2014, under retired Commodore Rubén Lianza, it would only analyse cases that came with both a witness statement and photo or video evidence, and it published yearly case-resolution reports from 2015.",
+  "found": "Every published annual report (2015-2018) found that all the cases it analysed had known causes such as stars, aircraft lights, birds, satellites or camera effects. The 2018 report covered 21 cases plus two historical ones, all explained.",
+  "sources": [
+   {
+    "name": "Fuerza Aérea Argentina, 'Centro de Identificación Aeroespacial' (official page with annual case reports 2015-2025)",
+    "url": "https://www.argentina.gob.ar/fuerzaaerea/centro-de-identificacion-aeroespacial"
+   },
+   {
+    "name": "CEFAe, 'Informe de resoluciones casos 2015'",
+    "url": "https://www.argentina.gob.ar/sites/default/files/informe_cefae_2015.pdf"
+   },
+   {
+    "name": "CEFAe, 'Informe resolución de casos 2018'",
+    "url": "https://desafiospublicos.argentina.gob.ar/sites/default/files/informe_cefae_2018.pdf"
+   },
+   {
+    "name": "Cooperativa.cl, 'Fuerza Aérea argentina investiga 23 casos de posibles ovnis' (17 Apr 2012)",
+    "url": "https://cooperativa.cl/noticias/sociedad/sucesos/ovni/fuerza-aerea-argentina-investiga-23-casos-de-posibles-ov/2012-04-17/113348.html"
+   }
+  ],
+  "release": "argentina-cefae-reports",
+  "note": null
+ },
+ {
+  "slug": "argentina-ciae",
+  "name": "Centro de Identificación Aeroespacial (CIAE)",
+  "aka": "Centro de Identificación Aeroespacial",
+  "country": "ar",
+  "agency": "Argentine Air Force",
+  "start": 2019,
+  "end": null,
+  "status": "active",
+  "did": "Created on 4 April 2019 by upgrading CEFAe, with the same staff. Its main task is to investigate and identify events or objects in airspace of interest and report to higher bodies. As a secondary task it still resolves public sighting reports that come with evidence and publishes a yearly report, now grading cases in GEIPAN's A/B style.",
+  "found": "Each annual report says all analysed cases had known causes. The 2024 report covered 36 cases (9 rejected for missing evidence) and the 2025 report 28 cases (11 rejected), plus two fieldwork cases on fallen space debris.",
+  "sources": [
+   {
+    "name": "Fuerza Aérea Argentina, 'Centro de Identificación Aeroespacial' (official page with annual case reports 2015-2025)",
+    "url": "https://www.argentina.gob.ar/fuerzaaerea/centro-de-identificacion-aeroespacial"
+   },
+   {
+    "name": "CIAE, 'Informe resolución de casos 2024'",
+    "url": "https://www.argentina.gob.ar/sites/default/files/2018/11/informe-ciae-2024.pdf"
+   },
+   {
+    "name": "CIAE, 'Informe resolución de casos 2025'",
+    "url": "https://www.argentina.gob.ar/sites/default/files/2018/11/informe_ciae_2025.pdf"
+   },
+   {
+    "name": "La Nación, '\"Recibimos 33 casos por año\". Es piloto militar y analiza las denuncias de avistamientos de OVNI's en el país' (30 Mar 2022)",
+    "url": "https://www.lanacion.com.ar/lifestyle/quien-es-y-como-trabaja-el-piloto-militar-que-estudia-los-posibles-avistamientos-en-el-pais-nid30032022/"
+   }
+  ],
+  "release": "argentina-cefae-reports",
+  "note": null,
+  "short": "CIAE"
+ },
+ {
+  "slug": "peru-oifaa",
+  "name": "OIFAA",
+  "aka": "Oficina de Investigación de Fenómenos Aéreos Anómalos",
+  "country": "pe",
+  "agency": "Peruvian Air Force",
+  "start": 2001,
+  "end": 2008,
+  "status": "closed",
+  "did": "A Peruvian Air Force office for investigating anomalous aerial phenomena. Press reports say it was set up at the end of 2001 after a widely televised sighting over Lima, and it later went dormant for administrative reasons.",
+  "found": "No official findings were published.",
+  "sources": [
+   {
+    "name": "Agencia Andina (Peruvian state news agency), 'Fenómenos aéreos anómalos en Perú podrán reportarse a la FAP' (18 Oct 2013)",
+    "url": "https://andina.pe/agencia/noticia-fenomenos-aereos-anomalos-peru-podran-reportarse-a-fap-478982.aspx"
+   },
+   {
+    "name": "South China Morning Post, 'Peru to reopen UFO investigations office' (Oct 2013)",
+    "url": "https://www.scmp.com/news/world/article/1341748/peru-reopen-ufo-investigations-office"
+   }
+  ],
+  "release": "peru-difaa-reopened",
+  "note": "Dates are uncertain: news reports give 2001 to about 2008, the BBC says 1999 to 2005. No Air Force document is online."
+ },
+ {
+  "slug": "peru-difaa",
+  "name": "DIFAA",
+  "aka": "Departamento de Investigación de Fenómenos Aéreos Anómalos",
+  "country": "pe",
+  "agency": "Peruvian Air Force",
+  "start": 2013,
+  "end": 2014,
+  "status": "unclear",
+  "did": "Relaunched by the Peruvian Air Force in October 2013, citing more sightings and misuse of the information. It takes reports from anywhere in Peru (images or testimony) and builds a case file on how often, where and when the phenomena happen, with a planned advisory council of sociologists, archaeologists, astronomers and Air Force staff. In 2014 the Defence Minister framed it as an aviation-safety and security task.",
+  "found": "No official reports or statistics found.",
+  "sources": [
+   {
+    "name": "Agencia Andina (Peruvian state news agency), 'Fenómenos aéreos anómalos en Perú podrán reportarse a la FAP' (18 Oct 2013)",
+    "url": "https://andina.pe/agencia/noticia-fenomenos-aereos-anomalos-peru-podran-reportarse-a-fap-478982.aspx"
+   },
+   {
+    "name": "BBC Mundo (via 24horas.cl), 'Por qué Perú reabrió la oficina de búsqueda de ovnis' (Feb 2014)",
+    "url": "https://www.24horas.cl/noticiasbbc/por-que-peru-reabrio-la-oficina-de-busqueda-de-ovnis-1062548"
+   }
+  ],
+  "release": "peru-difaa-reopened",
+  "note": "We found no news of it after 2014, so it may no longer be active."
+ },
+ {
+  "slug": "uruguay-cridovni",
+  "name": "CRIDOVNI",
+  "aka": "Comisión Receptora e Investigadora de Denuncias de Objetos Voladores No Identificados",
+  "country": "uy",
+  "agency": "Uruguayan Air Force",
+  "start": 1979,
+  "end": null,
+  "status": "active",
+  "did": "Created by order of the Air Force commander on 7 August 1979 to support air traffic control by receiving, studying and evaluating all UFO reports in Uruguayan airspace. It keeps a database, checks each case for fraud, conventional causes or psychological illusion, and scores it with a percentage for how likely it is to be 'non-conventional'. It works with civilian collaborators and signed a cooperation agreement with Chile's CEFAA in 2012.",
+  "found": "At its 40th anniversary (2019) the FAU said about 1,500 cases had been investigated, with about 3% still classed as 'non-conventional'.",
+  "sources": [
+   {
+    "name": "Fuerza Aérea Uruguaya, 'Comisión Receptora e Investigadora de Denuncias de Objetos Voladores No Identificados (CRIDOVNI)' (11 May 2019)",
+    "url": "https://www.fau.mil.uy/es/articulos/182-comision-receptora-e-investigadora-de-denuncias-de-objetos-voladores-no-identificados-cridovni.html",
+    "archive": "https://web.archive.org/web/20191121191911/https://www.fau.mil.uy/es/articulos/182-comision-receptora-e-investigadora-de-denuncias-de-objetos-voladores-no-identificados-cridovni.html"
+   },
+   {
+    "name": "Fuerza Aérea Uruguaya, '40 años de existencia de la CRIDOVNI' (16 Aug 2019)",
+    "url": "https://www.fau.mil.uy/es/noticias/481-40-anos-de-existencia-de-la-cridovni.html",
+    "archive": "https://web.archive.org/web/20220522075542/https://www.fau.mil.uy/es/noticias/481-40-anos-de-existencia-de-la-cridovni.html"
+   },
+   {
+    "name": "CNN Chile (CNN en Español), 'Uruguay investiga denuncias de avistamientos de luces en el noroeste del país' (Feb 2023)",
+    "url": "https://www.cnnchile.com/mundo/uruaguay-investiga-denuncias-avistamientos-luces/"
+   }
+  ],
+  "release": null,
+  "note": null
+ },
+ {
+  "slug": "australia-raaf",
+  "name": "RAAF unusual aerial sightings",
+  "aka": "Unusual Aerial Sightings",
+  "country": "au",
+  "agency": "Royal Australian Air Force, Department of Defence",
+  "start": 1950,
+  "end": 1996,
+  "status": "closed",
+  "did": "For several decades the RAAF handled UFO reports for Defence, collecting reports from the public and service personnel on special forms. Most public sightings were put down to aircraft, the Moon, Venus and other ordinary causes. A Defence Instruction amendment of 27 August 1996 stopped unusual aerial sightings being reported to the RAAF, and the instruction was cancelled in November 2000 without replacement.",
+  "found": "Defence says the RAAF stopped in 1996 'after determining there was no scientific or other compelling reason to continue to devote resources' to recording and investigating them. The National Archives says only about 3% of reports could not be explained by natural phenomena and these posed little or no security threat. Defence still has no specific UAP reporting policy (June 2024 brief).",
+  "sources": [
+   {
+    "name": "Australian Department of Defence, FOI 459/21/22 released documents (Chief of Air Force Senate Estimates brief on UAP, updated 26 May 2022)",
+    "url": "https://www.defence.gov.au/sites/default/files/2022-07/459_2122_documents.pdf",
+    "archive": "https://web.archive.org/web/20260413173109/https://www.defence.gov.au/sites/default/files/2022-07/459_2122_documents.pdf"
+   },
+   {
+    "name": "Australian Department of Defence, FOI 1009/23/24 released documents (Budget Estimates June 2024 brief on UAP/UFO)",
+    "url": "https://www.defence.gov.au/sites/default/files/2024-12/Defence-FOI-1009-23-24-Documents.pdf",
+    "archive": "https://web.archive.org/web/20260420124149/https://www.defence.gov.au/sites/default/files/2024-12/Defence-FOI-1009-23-24-Documents.pdf"
+   },
+   {
+    "name": "National Archives of Australia, 'Flying saucers - fact or fiction?' (Bill Edwards, 28 Feb 2018)",
+    "url": "https://www.naa.gov.au/blog/flying-saucers-fact-or-fiction",
+    "archive": "https://web.archive.org/web/20260724054222/https://www.naa.gov.au/blog/flying-saucers-fact-or-fiction"
+   },
+   {
+    "name": "The Canberra Times, \"'No evidence' UFOs are extra-terrestrial in origin, Defence Department talking points say\"",
+    "url": "https://www.canberratimes.com.au/story/7915780/defence-quizzed-on-ufos-says-they-are-likely-one-of-three-things/"
+   }
+  ],
+  "release": "australia-naa-ufo-records",
+  "note": "The start year is not in Defence records we could find. Defence says reporting ended in 1996; the National Archives of Australia says 1994.",
+  "short": "RAAF sightings"
+ },
+ {
+  "slug": "nz-defence-force",
+  "name": "New Zealand Defence Force UFO files",
+  "aka": "",
+  "country": "nz",
+  "agency": "New Zealand Defence Force",
+  "start": 1952,
+  "end": 2009,
+  "status": "closed",
+  "did": "For decades the New Zealand military acted as a collection point for UFO reports from the public, service personnel and pilots, filing them with investigations by Defence and other agencies, press clippings and letters. In December 2010 the NZDF released redacted copies of 12 file volumes (Archives NZ series AIR 39/3/3, AIR 1630/2, NZDF 1461/4/2 and others) under the Official Information Act.",
+  "found": "The NZDF said it did not investigate or substantiate the reports ('We have just been a collection point'). The 1978 Kaikōura lights report concluded natural phenomena could explain them.",
+  "sources": [
+   {
+    "name": "National Library of New Zealand catalogue, 'Unidentified flying objects (UFO) files: copies for release to the public / New Zealand Defence Force' (2010)",
+    "url": "https://natlib.govt.nz/records/22979464",
+    "archive": "https://web.archive.org/web/20260106143343/https://natlib.govt.nz/records/22979464"
+   },
+   {
+    "name": "BBC News, 'New Zealand releases UFO government files' (22 Dec 2010)",
+    "url": "https://www.bbc.com/news/world-asia-pacific-12057314"
+   }
+  ],
+  "release": "new-zealand-nzdf-ufo-files",
+  "note": "Not an investigation: the military was a collection point. The files were released in 2010.",
+  "short": "NZ Defence Force files"
+ },
+ {
+  "slug": "japan-mod-instruction",
+  "name": "Japan's defence reporting order",
+  "aka": "",
+  "country": "jp",
+  "agency": "Ministry of Defense, Japan Self-Defense Forces",
+  "start": 2020,
+  "end": null,
+  "status": "active",
+  "did": "On 14 September 2020 the Defense Minister issued an instruction telling the SDF, when they spot an unidentifiable object in the air that could affect Japan's defence or security, to report it thoroughly, record it with photos where possible, and analyse it, including information gathered outside air-defence and surveillance missions. Kono stressed it was about unidentifiable objects, not objects 'from space'.",
+  "found": "A reporting procedure, not a study; no findings or case counts have been published. A press report says no dedicated agency has been set up since.",
+  "sources": [
+   {
+    "name": "Ministry of Defense (Japan), Defense Minister press conference transcript, 15 Sep 2020 (防衛大臣記者会見 令和2年9月15日)",
+    "url": "https://www.mod.go.jp/j/press/kisha/2020/0915a.html"
+   }
+  ],
+  "release": null,
+  "note": null,
+  "short": "Defence reporting order"
+ }
+]

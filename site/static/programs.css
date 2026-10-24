@@ -1,0 +1,33 @@
+/* /ufo/programs/ (site/sections/ufo_programs.py) */
+.pg-tl { background: #fff; border-radius: var(--r-md); padding: 1rem 1.1rem 1.2rem; overflow-x: auto; }
+.pg-ticks, .pg-track { position: relative; display: block; margin-left: 13rem; min-width: 26rem; }
+.pg-ticks { height: 1.3rem; border-bottom: 1px solid var(--mist-2); font-size: .75rem; color: var(--muted-l); }
+.pg-ticks span { position: absolute; transform: translateX(-50%); }
+.pg-strip, .pg-strip ol { list-style: none; margin: 0; padding: 0; }
+.pg-cc > b { display: block; margin: .7rem 0 .2rem; font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted-l); }
+.pg-strip li li a { display: flex; align-items: center; text-decoration: none; color: var(--ink); padding: .12rem 0; border-radius: 4px; }
+.pg-strip li li a:hover { background: var(--mist); }
+.pg-bl { flex: 0 0 13rem; margin-right: -13rem; font-size: .82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: .6rem; position: relative; z-index: 1; }
+.pg-track { flex: 1; height: .8rem; background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 1px), var(--mist) calc(10% - 1px) 10%); }
+.pg-bar { position: absolute; top: 0; bottom: 0; background: var(--c-ufo); border-radius: 3px; display: inline-block; }
+.pg-bar-on { background: var(--lantern); }
+.pg-key { font-size: .82rem; color: var(--muted-l); margin: .8rem 0 0; }
+.pg-key .pg-bar { position: static; width: 1.4rem; height: .7rem; vertical-align: middle; margin: 0 .3rem 0 .8rem; }
+.pg-jump { margin: 1.4rem 0 .5rem; }
+.pg-country { scroll-margin-top: 5rem; }
+.pg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; }
+.pg-card { background: #fff; border-radius: var(--r-md); padding: 1.1rem 1.2rem; scroll-margin-top: 5rem; border-top: 4px solid var(--c-ufo); }
+.pg-card:target { box-shadow: 0 0 0 3px var(--lantern); }
+.pg-card h3 { margin: .25rem 0 .1rem; }
+.pg-card h4 { margin: .8rem 0 .2rem; font-size: .9rem; }
+.pg-meta { display: flex; gap: .5rem; align-items: center; margin: 0; font-size: .85rem; }
+.pg-yrs { font-weight: 700; }
+.pg-st { font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; padding: .12rem .45rem; border-radius: 99px; background: var(--mist); }
+.pg-on { background: var(--lantern); color: var(--ink); }
+.pg-aka, .pg-agency { margin: 0; font-size: .88rem; color: var(--muted-l); }
+.pg-src { margin: 0; padding-left: 1.1rem; font-size: .9rem; }
+.pg-note { font-size: .9rem; color: var(--muted-l); }
+.pg-rel { font-size: .9rem; margin-bottom: 0; }
+@media (max-width: 600px) { .pg-tl { padding: .8rem .7rem 1rem; } .pg-ticks, .pg-track { margin-left: 8.8rem; min-width: 0; } .pg-bl { flex-basis: 8.8rem; margin-right: -8.8rem; font-size: .76rem; } .pg-ticks span:nth-child(even) { display: none; } }
+.pg-bar-unc { background: repeating-linear-gradient(135deg, var(--c-ufo) 0 4px, #fff 4px 7px); }
+.pg-unc { background: #EFE7F7; }

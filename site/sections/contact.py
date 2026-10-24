@@ -66,7 +66,8 @@ def build(ctx):
     U = ctx.url
     ctx.write('/contact/', ctx.page('/contact/', 'Contact us', f'''
 <section class="band band-dark"><div class="wrap"><h1>Contact us</h1>
-<p class="lede">Questions, corrections, a source we should add, or a report you want taken down. We read everything.</p></div></section>
+<p class="lede">Questions, corrections, a source we should add, or a report you want taken down. We read everything.</p>
+<p>Journalist or researcher? See our <a href="{U('/press/')}">press page</a> for figures, sourcing and charts you can use.</p></div></section>
 <div class="band band-mist"><div class="wrap narrow">
 {_form(ctx, 'general')}
 <p class="small">We only use your email to reply. See our <a href="{U('/privacy/')}">privacy policy</a>.</p>
@@ -119,6 +120,7 @@ the official UFO files and the close-encounter stories, and they send in sightin
 <li><strong>Map tiles</strong>: OpenFreeMap, built on OpenMapTiles and OpenStreetMap data.</li>
 <li><strong>Creature entries</strong> are written by us from published accounts. Each links to further reading.</li>
 </ul>
+<p>Writing about the site or citing our data? See <a href="{U('/press/')}">Press and researchers</a>.</p>
 <h2>Our stance</h2>
 <p>We collect reports and evidence and let you decide. A report on this site means someone said they saw something, not that it's proven.</p>
 </div></div>''', 'Who runs Encounter Atlas, how to reach Mike, and the sources behind the site.', head_extra=_head(ctx)))
