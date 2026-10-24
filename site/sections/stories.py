@@ -159,6 +159,7 @@ def build(ctx):
 <section class="band band-dark"><div class="wrap">
   <h1>Witness stories</h1>
   <p class="lede">{len(stories)} first-hand accounts people have shared publicly, retold in full: what they saw, where, and what happened next. Each one credits the person who told it and links the original.</p>
+  <p><a class="btn btn-ghost" href="{u('/stories/campfire/')}">Campfire mode: read them out loud in the dark</a></p>
   <div class="chips ws-chips" role="group" aria-label="Filter by creature"><button type="button" class="chip on" data-c="">All <span>{len(stories)}</span></button>{chips}</div>{more}
 </div></section>
 <div class="band band-mist"><div class="wrap">

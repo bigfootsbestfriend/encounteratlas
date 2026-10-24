@@ -58,5 +58,23 @@
   "title": "Collector cards and the Halloween hunt",
   "path": "/cards/",
   "note": "190 creature cards you can only collect by actually going to a real sighting spot. Twelve spooky ones are a Halloween set until November 2."
+ },
+ {
+  "date": "2026-10-24",
+  "title": "Tonight's skywatch forecast",
+  "path": "/tools/skywatch/",
+  "note": "A score out of 10 for tonight anywhere in the world, from clouds hour by hour, the Moon, meteor showers and Space Station passes, plus a meteor shower calendar."
+ },
+ {
+  "date": "2026-10-24",
+  "title": "Campfire mode",
+  "path": "/stories/campfire/",
+  "note": "A red-on-black reader for telling witness stories out loud in the dark, one at a time, with the screen kept on."
+ },
+ {
+  "date": "2026-10-24",
+  "title": "Field journal",
+  "path": "/journal/",
+  "note": "Log every night out, even the quiet ones. Weather and the Moon fill in by themselves and it all stays on your phone, offline too."
  }
 ]

@@ -347,6 +347,27 @@ class Tools:
       <span class="tool-sum">Enter when and where you saw a strange light. See which planets, bright stars, the Moon or the Space Station were in that part of the sky.</span>
       <span class="tool-go">Check the sky</span></span>
     </a>
+    <a class="tool-card tool-card-sky" href="{c.url('/tools/skywatch/')}">
+      <span class="tool-art" aria-hidden="true"><svg class="tool-scene" viewBox="0 0 520 190" preserveAspectRatio="xMidYMax slice">
+        <defs><linearGradient id="ts-watch" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#070F22"/><stop offset="1" stop-color="#26305A"/></linearGradient></defs>
+        <rect width="520" height="190" fill="url(#ts-watch)"/>
+        <circle cx="90" cy="30" r="1.4" fill="#fff"/><circle cx="200" cy="50" r="1.1" fill="#fff"/><circle cx="300" cy="24" r="1.6" fill="#fff"/><circle cx="420" cy="40" r="1.2" fill="#fff"/>
+        <path d="M330 30 380 70" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".8"/><path d="M250 20 290 52" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+        <path d="M110 92a26 26 0 1 0 0-1z" fill="none"/><circle cx="110" cy="80" r="20" fill="#F7E7B0"/><circle cx="120" cy="74" r="20" fill="url(#ts-watch)"/>
+        <path d="M0 165L80 140 170 156 260 132 350 154 440 136 520 152V190H0Z" fill="#13261F"/>
+      </svg></span>
+      <span class="tool-txt"><span class="tool-kicker">Clouds, Moon, meteors</span>
+      <span class="tool-name">Tonight's skywatch</span>
+      <span class="tool-sum">A score out of 10 for tonight wherever you are, with the best hours to look up, meteor showers and Space Station passes.</span>
+      <span class="tool-go">Check tonight</span></span>
+    </a>
+    <a class="tool-card" href="{c.url('/journal/')}">
+      <span class="tool-art" aria-hidden="true">{self.icon('clipboard', cls='ico tool-big')}</span>
+      <span class="tool-txt"><span class="tool-kicker">Works offline</span>
+      <span class="tool-name">Field journal</span>
+      <span class="tool-sum">Log every night out, including the ones where nothing happened. Weather and Moon fill in on their own, and it all stays on your phone.</span>
+      <span class="tool-go">Open the journal</span></span>
+    </a>
   </div>
 </div></div>'''
         c.write('/tools/', c.page('/tools/', 'Field tools: identify a sighting, check the sky and compare cryptid sizes', body,

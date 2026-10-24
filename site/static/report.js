@@ -464,5 +464,13 @@
     const pre = qs.get('creature');
     const r = pre && !(d && d.creature) && form.querySelector(`input[name=creature][value="${CSS.escape(pre)}"]`);
     if (r) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); }
+    // Arriving from the field journal (?from=journal&date=&time=&story=&duration=&witnesses=): fill what's empty, never over a draft
+    if (!d) {
+      const dt = qs.get('date'); if (/^\d{4}-\d{2}-\d{2}$/.test(dt || '') && dt <= today()) $('#seen_date').value = dt;
+      const tm = qs.get('time'); if (/^\d{2}:\d{2}$/.test(tm || '')) $('#seen_time').value = tm;
+      const st = qs.get('story'); if (st && !$('#story').value) { $('#story').value = st.slice(0, 6000); $('#story').dispatchEvent(new Event('input', { bubbles: true })); }
+      const du = qs.get('duration'); if (du) $('#duration').value = du.slice(0, 80);
+      const wn = +qs.get('witnesses'); if (wn >= 1 && wn <= 999) $('#witnesses').value = wn;
+    }
   }
 })();
