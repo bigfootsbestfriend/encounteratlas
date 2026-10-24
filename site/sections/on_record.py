@@ -5,7 +5,10 @@ Summaries are our own words. Quotes are short, word for word from US congression
 (US federal records, public domain), checked against the files in data/raw/hearings/. Every page links the official record.
 Hearings with "page": false get a hub card that points to their /ufo/releases/ page instead. Short profiles are noindexed.
 """
-import json, os
+import json, os, sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _sources
 
 MON = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 SIDES = {'witness': ('Witnesses', 'Pilots, sailors and security staff who saw something themselves', '#E07A4F'),
@@ -52,7 +55,8 @@ class R:
             p['quotes'] = [(h, q) for h in self.hearings for q in h.get('quotes', []) if q['who'] == p['slug']]
             p['hearings'] = [s for s in p['hearings'] if s in self.h_by]
         self.head = (f'<link rel="stylesheet" href="{self.u("/static/encounters.css")}">'
-                     f'<link rel="stylesheet" href="{self.u("/static/onrecord.css")}">')
+                     f'<link rel="stylesheet" href="{self.u("/static/onrecord.css")}">'
+                     f'<link rel="stylesheet" href="{self.u("/static/sources.css")}">')
 
     def run(self):
         self.hub()
@@ -88,7 +92,7 @@ class R:
                 f'<figcaption>{bits}{note}</figcaption></figure>')
 
     def ext_list(self, links):
-        return ''.join(f'<li><a href="{self.e(l["url"])}" rel="noopener">{self.e(l["name"])}</a></li>' for l in links)
+        return ''.join(f'<li><a href="{self.e(l["url"])}" rel="noopener">{self.e(l["name"])}</a>{_sources.arch_link(self.c, l["url"])}</li>' for l in links)
 
     # --- /ufo/hearings/ ----------------------------------------------------------------------------
     def hcard(self, h):
@@ -117,7 +121,7 @@ class R:
   <div class="or-qgrid">{qs}</div>
   <h2>Every hearing, oldest first</h2>
   <ol class="or-tl">{''.join(self.hcard(h) for h in self.hearings)}</ol>
-  <aside class="ce-note"><h2>How we put this together</h2><p>We read the official transcripts and written statements and summed them up in our own words. Quotes are short and copied word for word from US congressional records, which are public domain; each page links the original so you can read the whole thing. Testimony is what people told lawmakers, not a finding of fact, so we note where the Pentagon or AARO disputes a claim. Private briefings and so-called citizen hearings are left out because they were not held by a legislature.</p></aside>
+  {_sources.about_box(c, '/ufo/hearings/', 'UFO hearings in Congress: every public hearing since 1966', '<p>We read the official transcripts and written statements and summed them up in our own words. Quotes are short and copied word for word from US congressional records, which are public domain; each page links the original so you can read the whole thing. Testimony is what people told lawmakers, not a finding of fact, so we note where the Pentagon or AARO disputes a claim. Private briefings and so-called citizen hearings are left out because they were not held by a legislature.</p>')}
 </div></div>'''
         c.write('/ufo/hearings/', c.page('/ufo/hearings/', 'UFO hearings in Congress: every public hearing since 1966', body,
                                          f'All {n} public UFO and UAP hearings held by lawmakers since {y0}: who testified, key quotes from the '

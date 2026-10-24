@@ -1,0 +1,341 @@
+{
+ "checked": "2026-10-24",
+ "links": {
+  "https://www.war.gov/ufo/": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20261024013216/https://www.war.gov/UFO/"
+  },
+  "https://www.archives.gov/research/topics/uaps": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261008053951/https://www.archives.gov/research/topics/uaps"
+  },
+  "https://www.archives.gov/research/catalog/catalog-bulk-downloads/uap-bulk-download": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261007031513/https://www.archives.gov/research/catalog/catalog-bulk-downloads/uap-bulk-download"
+  },
+  "https://catalog.archives.gov/id/445887258": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260927184117/https://catalog.archives.gov/id/445887258"
+  },
+  "https://catalog.archives.gov/id/493468575": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260927184139/https://catalog.archives.gov/id/493468575"
+  },
+  "https://catalog.archives.gov/id/493468580": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260927184155/https://catalog.archives.gov/id/493468580"
+  },
+  "https://catalog.archives.gov/id/580103959": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260927184135/https://catalog.archives.gov/id/580103959"
+  },
+  "https://catalog.archives.gov/id/608806625": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261001134404/https://catalog.archives.gov/id/608806625"
+  },
+  "https://catalog.archives.gov/id/488808322": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260927184221/https://catalog.archives.gov/id/488808322"
+  },
+  "https://catalog.archives.gov/id/665701604": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260927184151/https://catalog.archives.gov/id/665701604"
+  },
+  "https://catalog.archives.gov/id/656595571": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260927184149/https://catalog.archives.gov/id/656595571"
+  },
+  "https://catalog.archives.gov/id/580705010": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260927184133/https://catalog.archives.gov/id/580705010"
+  },
+  "https://catalog.archives.gov/id/493468579": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260927184147/https://catalog.archives.gov/id/493468579"
+  },
+  "https://www.aaro.mil/Portals/136/PDFs/FY25%20UAP%20Annual%20Report/AARO_FY2025_Consolidated_Annual_Report_on_UAP.pdf": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20261001041041/https://www.aaro.mil/Portals/136/PDFs/FY25%20UAP%20Annual%20Report/AARO_FY2025_Consolidated_Annual_Report_on_UAP.pdf"
+  },
+  "https://media.defense.gov/2024/Nov/14/2003583603/-1/-1/0/FY24-CONSOLIDATED-ANNUAL-REPORT-ON-UAP-508.PDF": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20261007000157/https://media.defense.gov/2024/Nov/14/2003583603/-1/-1/0/FY24-CONSOLIDATED-ANNUAL-REPORT-ON-UAP-508.PDF"
+  },
+  "https://www.defense.gov/News/Releases/Release/Article/3964824/department-of-defense-releases-the-annual-report-on-unidentified-anomalous-phen/": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20250827194159/https://www.defense.gov/News/Releases/Release/Article/3964824/department-of-defense-releases-the-annual-report-on-unidentified-anomalous-phen/"
+  },
+  "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20261016175139/https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf"
+  },
+  "https://www.defense.gov/News/Releases/Release/Article/3700894/statement-by-pentagon-press-secretary-maj-gen-pat-ryder-on-the-historical-recor/": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20250806025403/https://www.defense.gov/News/Releases/Release/Article/3700894/statement-by-pentagon-press-secretary-maj-gen-pat-ryder-on-the-historical-recor/"
+  },
+  "https://www.aaro.mil/Portals/136/PDFs/UNCLASSIFIED-FY23_Consolidated_Annual_Report_on_UAP-Oct_25_2023_1236.pdf": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20260508180206/https://www.aaro.mil/Portals/136/PDFs/UNCLASSIFIED-FY23_Consolidated_Annual_Report_on_UAP-Oct_25_2023_1236.pdf"
+  },
+  "https://www.aaro.mil/UAP-Cases/UAP-Case-Resolution-Reports/": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20261007064027/https://www.aaro.mil/UAP-Cases/UAP-Case-Resolution-Reports/"
+  },
+  "https://www.aaro.mil/UAP-Cases/Official-UAP-Imagery/": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20261012123817/https://www.aaro.mil/UAP-Cases/Official-UAP-Imagery/"
+  },
+  "https://science.nasa.gov/uap/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261017164519/https://science.nasa.gov/uap/"
+  },
+  "https://smd-cms.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260906104710/https://smd-cms.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf"
+  },
+  "https://www.dni.gov/files/ODNI/documents/assessments/Unclassified-2022-Annual-Report-UAP.pdf": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20260603190713/https://www.dni.gov/files/ODNI/documents/assessments/Unclassified-2022-Annual-Report-UAP.pdf"
+  },
+  "https://www.dni.gov/files/ODNI/documents/assessments/Prelimary-Assessment-UAP-20210625.pdf": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20260728122824/https://www.dni.gov/files/ODNI/documents/assessments/Prelimary-Assessment-UAP-20210625.pdf"
+  },
+  "https://www.defense.gov/News/Releases/Release/Article/2165713/statement-by-the-department-of-defense-on-the-release-of-historical-navy-videos-i/": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20250212194125/https://www.defense.gov/News/Releases/Release/Article/2165713/statement-by-the-department-of-defense-on-the-release-of-historical-navy-videos/utm_source/statement-by-the-department-of-defense-on-the-release-of-historical-navy-videos/"
+  },
+  "https://oversight.house.gov/hearing/restoring-public-trust-through-uap-transparency-and-whistleblower-protection/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260911050829/https://oversight.house.gov/hearing/restoring-public-trust-through-uap-transparency-and-whistleblower-protection/"
+  },
+  "https://www.armed-services.senate.gov/hearings/to-receive-testimony-on-the-activities-of-the-all-domain-anomaly-resolution-office": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20260612020359/https://www.armed-services.senate.gov/hearings/to-receive-testimony-on-the-activities-of-the-all-domain-anomaly-resolution-office"
+  },
+  "https://www.aaro.mil/Portals/136/PDFs/Dr_Jon_Kosloski_Statement_for_the_Record_SASC_Open_Hearing_Nov2024.pdf": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20260921013225/https://www.aaro.mil/Portals/136/PDFs/Dr_Jon_Kosloski_Statement_for_the_Record_SASC_Open_Hearing_Nov2024.pdf"
+  },
+  "https://www.aaro.mil/Portals/136/PDFs/SASC_AARO_Open_Hearing_Case_Slides_19Nov2024.pdf": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20260820193733/https://www.aaro.mil/Portals/136/PDFs/SASC_AARO_Open_Hearing_Case_Slides_19Nov2024.pdf"
+  },
+  "https://oversight.house.gov/hearing/unidentified-anomalous-phenomena-exposing-the-truth/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261015111427/https://oversight.house.gov/hearing/unidentified-anomalous-phenomena-exposing-the-truth/"
+  },
+  "https://oversight.house.gov/hearing/unidentified-anomalous-phenomena-implications-on-national-security-public-safety-and-government-transparency/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261013081956/https://oversight.house.gov/hearing/unidentified-anomalous-phenomena-implications-on-national-security-public-safety-and-government-transparency/"
+  },
+  "https://www.armed-services.senate.gov/hearings/to-receive-testimony-on-the-mission-activities-oversight-and-budget-of-the-all-domain-anomaly-resolution-office": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20261011041419/https://www.armed-services.senate.gov/hearings/to-receive-testimony-on-the-mission-activities-oversight-and-budget-of-the-all-domain-anomaly-resolution-office"
+  },
+  "https://www.armed-services.senate.gov/imo/media/doc/23-31_04-19-2023.pdf": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20261013082152/https://www.armed-services.senate.gov/imo/media/doc/23-31_04-19-2023.pdf"
+  },
+  "https://www.congress.gov/event/117th-congress/house-event/114761": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20251119115253/https://www.congress.gov/event/117th-congress/house-event/114761"
+  },
+  "https://www.congress.gov/117/meeting/house/114761/documents/HHRG-117-IG05-Transcript-20220517.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261004105058/https://www.congress.gov/117/meeting/house/114761/documents/HHRG-117-IG05-Transcript-20220517.pdf"
+  },
+  "https://vault.fbi.gov/UFO": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261003075750/https://vault.fbi.gov/UFO"
+  },
+  "https://vault.fbi.gov/hottel_guy": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260630144809/https://vault.fbi.gov/hottel_guy"
+  },
+  "https://vault.fbi.gov/Roswell%20UFO": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261012050710/https://vault.fbi.gov/Roswell%20UFO"
+  },
+  "https://www.cia.gov/readingroom/collection/ufos-fact-or-fiction": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261008042144/https://www.cia.gov/readingroom/collection/ufos-fact-or-fiction"
+  },
+  "https://www.cia.gov/resources/csi/static/cia-role-study-UFOs.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261014165135/https://www.cia.gov/resources/csi/static/cia-role-study-UFOs.pdf"
+  },
+  "https://www.af.mil/The-Roswell-Report/": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20261014144426/https://www.af.mil/The-Roswell-Report/"
+  },
+  "https://www.govinfo.gov/app/details/GOVPUB-D301-PURL-gpo92195": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260726071137/https://www.govinfo.gov/app/details/GOVPUB-D301-PURL-gpo92195/"
+  },
+  "https://media.defense.gov/2021/Jul/13/2002761379/-1/-1/0/REPORT_AF_ROSWELL.PDF": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20250402145922/https://media.defense.gov/2021/Jul/13/2002761379/-1/-1/0/REPORT_AF_ROSWELL.PDF"
+  },
+  "https://www.gao.gov/products/nsiad-95-187": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20260927004818/https://www.gao.gov/products/nsiad-95-187"
+  },
+  "https://www.archives.gov/research/military/air-force/ufos": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261014105328/https://www.archives.gov/research/military/air-force/ufos"
+  },
+  "https://www.govinfo.gov/app/details/CHRG-90hhrg97818/CHRG-90hhrg97818": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260918034219/https://www.govinfo.gov/app/details/CHRG-90hhrg97818/CHRG-90hhrg97818/"
+  },
+  "https://www.govinfo.gov/app/details/CHRG-89hhrg50066O": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260730122925/https://www.govinfo.gov/app/details/CHRG-89hhrg50066O/"
+  },
+  "https://www.cia.gov/readingroom/document/cia-rdp80b01676r004000110022-4": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20250228110053/https://www.cia.gov/readingroom/document/cia-rdp80b01676r004000110022-4"
+  },
+  "https://www.nationalarchives.gov.uk/explore-the-collection/explore-by-time-period/postwar/ufo-reports/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260714125339/https://www.nationalarchives.gov.uk/explore-the-collection/explore-by-time-period/postwar/ufo-reports/"
+  },
+  "https://cdn.nationalarchives.gov.uk/documents/ufo-research-guide-2013.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260714125640/https://cdn.nationalarchives.gov.uk/documents/ufo-research-guide-2013.pdf"
+  },
+  "https://cdn.nationalarchives.gov.uk/documents/final-tranche-of-UFO-files-released.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260919204341/https://cdn.nationalarchives.gov.uk/documents/final-tranche-of-UFO-files-released.pdf"
+  },
+  "https://webarchive.nationalarchives.gov.uk/ukgwa/+tf_/http://www.mod.uk/DefenceInternet/FreedomOfInformation/PublicationScheme/SearchPublicationScheme/UnidentifiedAerialPhenomenauapInTheUkAirDefenceRegion.htm": {
+   "status": 405,
+   "archive": "https://web.archive.org/web/20250125233227/https://webarchive.nationalarchives.gov.uk/ukgwa/+tf_/http://www.mod.uk/DefenceInternet/FreedomOfInformation/PublicationScheme/SearchPublicationScheme/UnidentifiedAerialPhenomenauapInTheUkAirDefenceRegion.htm"
+  },
+  "https://www.canada.ca/en/library-archives/collection/research-help/science-technology/ufos.html": {
+   "status": 0,
+   "archive": "https://web.archive.org/web/20260927090345/https://www.canada.ca/en/library-archives/collection/research-help/science-technology/ufos.html"
+  },
+  "https://science.gc.ca/site/science/en/office-chief-science-advisor/sky-canada-project/management-public-reporting-unidentified-aerial-phenomena-canada": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260925130850/https://science.gc.ca/site/science/en/office-chief-science-advisor/sky-canada-project/management-public-reporting-unidentified-aerial-phenomena-canada"
+  },
+  "https://cnes.fr/actualites/geipan-ouvre-dossiers": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260606194344/https://cnes.fr/actualites/geipan-ouvre-dossiers"
+  },
+  "https://www.geipan.fr/fr/recherche/cas": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260612180752/https://geipan.fr/fr/recherche/cas"
+  },
+  "https://cnes.fr/projets/geipan": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261012145957/https://cnes.fr/projets/geipan"
+  },
+  "https://www.gov.br/arquivonacional/pt-br/canais_atendimento/imprensa/noticias/conheca-o-fundo-sobre-ovnis-do-arquivo-nacional": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20250218191433/https://www.gov.br/arquivonacional/pt-br/canais_atendimento/imprensa/noticias/conheca-o-fundo-sobre-ovnis-do-arquivo-nacional"
+  },
+  "http://sian.an.gov.br/sianex/consulta/login.asp": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261004061428/https://sian.an.gov.br/sianex/consulta/login.asp"
+  },
+  "https://sefaa.dgac.gob.cl/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260917173353/https://sefaa.dgac.gob.cl/"
+  },
+  "https://www.argentina.gob.ar/sites/default/files/informe_cefae_2018.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261011230237/https://www.argentina.gob.ar/sites/default/files/informe_cefae_2018.pdf"
+  },
+  "https://www.argentina.gob.ar/node/120784": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20231213020937/https://www.argentina.gob.ar/node/120784"
+  },
+  "https://andina.pe/agencia/noticia-fenomenos-aereos-anomalos-peru-podran-reportarse-a-fap-478982.aspx": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260121115811/https://andina.pe/agencia/noticia-fenomenos-aereos-anomalos-peru-podran-reportarse-a-fap-478982.aspx"
+  },
+  "https://comunicacionsocial.diputados.gob.mx/index.php/notas/anuncian-sergio-gutierrez-y-jaime-maussan-primera-audiencia-publica-para-la-posible-legislacion-de-fenomenos-aereos-anomalos-no-identificados-en-mexico": {
+   "status": 0,
+   "archive": null
+  },
+  "https://comunicacionsocial.diputados.gob.mx/index.php/notilegis/se-realiza-en-camara-de-diputados-segunda-audiencia-publica-sobre-fenomenos-anomalos-no-identificados": {
+   "status": 0,
+   "archive": "https://web.archive.org/web/20231231132114/https://comunicacionsocial.diputados.gob.mx/index.php/notilegis/se-realiza-en-camara-de-diputados-segunda-audiencia-publica-sobre-fenomenos-anomalos-no-identificados"
+  },
+  "https://www.aeronautica.difesa.it/ovni/": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261023043325/https://www.aeronautica.difesa.it/ovni/"
+  },
+  "https://bibliotecavirtual.defensa.gob.es/BVMDefensa/exp_ovni/es/micrositios/inicio.do": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261002015328/https://bibliotecavirtual.defensa.gob.es/BVMDefensa/exp_ovni/es/micrositios/inicio.do"
+  },
+  "https://natlib.govt.nz/records/22979464": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260925091409/https://natlib.govt.nz/records/22979464"
+  },
+  "https://www.naa.gov.au/blog/flying-saucers-fact-or-fiction": {
+   "status": 0,
+   "archive": "https://web.archive.org/web/20260724054222/https://www.naa.gov.au/blog/flying-saucers-fact-or-fiction"
+  },
+  "https://www.naa.gov.au/students-and-teachers/student-research-portal/learning-resource-themes/war/defence-equipment-and-weapons/ufo-sightings-weapons-testing-site-woomera": {
+   "status": 0,
+   "archive": "https://web.archive.org/web/20261019011342/https://www.naa.gov.au/students-and-teachers/student-research-portal/learning-resource-themes/war/defence-equipment-and-weapons/ufo-sightings-weapons-testing-site-woomera"
+  },
+  "https://www.govinfo.gov/app/details/CHRG-90hhrg97818": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261014104650/https://www.govinfo.gov/app/details/CHRG-90hhrg97818"
+  },
+  "https://www.govinfo.gov/app/details/CHRG-118shrg60390": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260729114518/https://www.govinfo.gov/app/details/CHRG-118shrg60390/"
+  },
+  "https://www.govinfo.gov/app/details/CHRG-118hhrg53022": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260729112640/https://www.govinfo.gov/app/details/CHRG-118hhrg53022/"
+  },
+  "https://oversight.house.gov/wp-content/uploads/2024/11/Updated-Testimony-Gallaudet.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261014105020/https://oversight.house.gov/wp-content/uploads/2024/11/Updated-Testimony-Gallaudet.pdf"
+  },
+  "https://oversight.house.gov/wp-content/uploads/2024/11/Written-Testimony-Elizondo.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260902133726/https://oversight.house.gov/wp-content/uploads/2024/11/Written-Testimony-Elizondo.pdf"
+  },
+  "https://oversight.house.gov/wp-content/uploads/2024/11/Written-Testimony-Gold.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260829203735/https://oversight.house.gov/wp-content/uploads/2024/11/Written-Testimony-Gold.pdf"
+  },
+  "https://oversight.house.gov/wp-content/uploads/2024/11/Written-Testimony-Shellenberger.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261007024853/https://oversight.house.gov/wp-content/uploads/2024/11/Written-Testimony-Shellenberger.pdf"
+  },
+  "https://www.armed-services.senate.gov/imo/media/doc/11-19-24_-_sub_-_transcript.pdf": {
+   "status": 403,
+   "archive": "https://web.archive.org/web/20261014105735/https://www.armed-services.senate.gov/imo/media/doc/11-19-24_-_sub_-_transcript.pdf"
+  },
+  "https://oversight.house.gov/wp-content/uploads/2025/09/Nuccetelli-Written-Testimony.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260925160915/https://oversight.house.gov/wp-content/uploads/2025/09/Nuccetelli-Written-Testimony.pdf"
+  },
+  "https://oversight.house.gov/wp-content/uploads/2025/09/Wiggins-Written-Statement.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261015002740/https://oversight.house.gov/wp-content/uploads/2025/09/Wiggins-Written-Statement.pdf"
+  },
+  "https://oversight.house.gov/wp-content/uploads/2025/09/Borland-Written-Testimony.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20261012110042/https://oversight.house.gov/wp-content/uploads/2025/09/Borland-Written-Testimony.pdf"
+  },
+  "https://oversight.house.gov/wp-content/uploads/2025/09/George-Knapp-Written-Testimony.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260925160915/https://oversight.house.gov/wp-content/uploads/2025/09/George-Knapp-Written-Testimony.pdf"
+  },
+  "https://oversight.house.gov/wp-content/uploads/2025/09/Spielberger-Written-Testimony.pdf": {
+   "status": 200,
+   "archive": "https://web.archive.org/web/20260925160915/https://oversight.house.gov/wp-content/uploads/2025/09/Spielberger-Written-Testimony.pdf"
+  }
+ }
+}

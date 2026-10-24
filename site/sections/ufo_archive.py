@@ -8,7 +8,7 @@ Data (all hand-checked or collected from official sources):
   data/ufo_cases_pursue.json  Department of War PURSUE releases, geocoded (collector/ufo_pursue.py)
 Writes OUT/data/ufo_faa.geojson and OUT/data/ufo_pursue.geojson for the maps.
 """
-import json, os, re
+import json, os, re, sys
 from collections import Counter, defaultdict
 
 TYPES = {
@@ -56,6 +56,8 @@ def short_date(d):
 
 def build(ctx):
     E, U = ctx.esc, ctx.url
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import _sources
     releases = load(ctx, 'ufo_releases.json', [])
     if not releases:
         return
@@ -63,7 +65,7 @@ def build(ctx):
     rg615 = load(ctx, 'ufo_rg615.json', {'series': []})
     faa = load(ctx, 'ufo_cases_faa.json', [])
     pursue = load(ctx, 'ufo_cases_pursue.json', [])
-    css = f'<link rel="stylesheet" href="{U("/static/ufo_archive.css")}">'
+    css = f'<link rel="stylesheet" href="{U("/static/ufo_archive.css")}"><link rel="stylesheet" href="{U("/static/sources.css")}">'
     js = f'<script src="{U("/static/ufo_archive.js")}" defer></script>'
     by_code = {c['code']: c for c in countries}
     series = {s['naId']: s for s in rg615.get('series', [])}
@@ -94,7 +96,7 @@ def build(ctx):
         return f'<span class="ua-tb ua-tb-{size} ua-t-{t}">{ctx.icon(TYPES[t][1])}</span>'
 
     def ext(url, text):
-        return f'<a class="ua-ext" href="{E(url)}" rel="noopener">{E(text)}<span aria-hidden="true"> &#8599;</span></a>'
+        return f'<a class="ua-ext" href="{E(url)}" rel="noopener">{E(text)}<span aria-hidden="true"> &#8599;</span></a>' + _sources.arch_link(ctx, url)
 
     def rel_card(r, compact=False):
         t = r['type']
@@ -157,6 +159,10 @@ def build(ctx):
     n_countries = len({r['country'] for r in releases})
 
     # --- /ufo/releases/ ------------------------------------------------------------------------
+    METHOD = ('<p><b>What counts:</b> a government body published UFO or UAP records, reports, footage or case data, or a '
+              'legislature held a public hearing. Leaks, private studies and books are left out. Dates are when each release came out, '
+              'not when the events happened.</p><p><b>How we wrote it:</b> every entry links to the official source, and the summaries '
+              'are our own words after reading the originals. Each details page says what the licence lets you reuse.</p>')
     decades = defaultdict(list)
     for r in releases:
         if r.get('date'):
@@ -207,7 +213,7 @@ def build(ctx):
   <p class="empty" hidden>Nothing matches. Try another word or clear the filters.</p>
   <h2>Browse by country</h2>
   <ul class="ua-cgrid">{''.join(f'<li><a href="{U("/ufo/countries/" + cslug[cc] + "/")}"><span class="ua-cc">{E(cc.upper())}</span>{E(cname[cc])}<span class="muted">{len(v)} release{"s" if len(v) != 1 else ""}</span></a></li>' for cc, v in sorted(rel_by_cc.items(), key=lambda kv: cname[kv[0]]))}</ul>
-  <p class="small">Dates are when each release came out, not when the events happened. Summaries are ours; follow the links for the originals.</p>
+  {_sources.about_box(ctx, '/ufo/releases/', 'Every official UFO release, on one timeline', METHOD)}
 </div></div>{js}'''
     ctx.write('/ufo/releases/', ctx.page('/ufo/releases/', 'Official UFO releases: a timeline of government disclosure', body,
                                         f'{len(releases)} official UFO and UAP releases from {n_countries} countries, from Project Blue Book to the 2026 Pentagon files, each linked to its source.',
