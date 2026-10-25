@@ -26,7 +26,8 @@ def minutes(st):
 
 def load(ctx):
     p = os.path.join(ctx.ROOT, 'data', 'witness_stories.json')
-    return json.load(open(p, encoding='utf-8')) if os.path.exists(p) else []
+    from rewrites import apply_witness
+    return apply_witness(json.load(open(p, encoding='utf-8'))) if os.path.exists(p) else []
 
 
 def card(ctx, st, show_creature=True):

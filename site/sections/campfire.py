@@ -47,7 +47,8 @@ def build(ctx):
     skip = living_traditions(ctx)
 
     long_ones, short_ones = [], []
-    for st in load(ctx, 'witness_stories.json', []):
+    from rewrites import apply_witness
+    for st in apply_witness(load(ctx, 'witness_stories.json', [])):
         c = ctx.by_slug.get(st['creature'])
         if not c or st['creature'] in skip:
             continue

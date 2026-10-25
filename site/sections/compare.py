@@ -30,6 +30,8 @@ def build(ctx):
     sp = os.path.join(ctx.ROOT, 'data', 'witness_stories.json')
     stories = json.load(open(sp, encoding='utf-8')) if os.path.exists(sp) else []
     stories = stories if isinstance(stories, list) else stories.get('stories', [])
+    from rewrites import apply_witness
+    stories = apply_witness(stories)
     n_stories = {}
     for s in stories:
         n_stories[s.get('creature')] = n_stories.get(s.get('creature'), 0) + 1

@@ -857,7 +857,8 @@ def build_creatures(creatures, by_slug):
         return f'<div class="wrap rel-wrap">{out}</div>' if out else ''
 
     WITNESS = {}
-    for st in load('witness_stories.json'):
+    from rewrites import apply_witness
+    for st in apply_witness(load('witness_stories.json')):
         WITNESS.setdefault(st['creature'], []).append(st)
 
     def witness_section(c):
