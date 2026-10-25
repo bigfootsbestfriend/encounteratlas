@@ -507,8 +507,8 @@ class Builder:
   <h1>Cryptid and UFO festivals, {span}</h1>
   <p class="lede">Mothman, Bigfoot, Rougarou and little green men all get their own parties. Here is the next 12 months, month by month.{lead}</p>
   <nav class="pl-mnavs" aria-label="Jump to month">{nav}</nav>
-  <p class="pl-ics"><a class="btn" href="webcal://{c.SITE_URL.split('://', 1)[1]}/events/calendar.ics">Add to your calendar</a>
-  <a class="btn btn-ghost" href="{self.u('/events/calendar.ics')}" download>Download .ics</a></p>
+  <p class="pl-ics"><a class="btn" href="webcal://{c.SITE_URL.split('://', 1)[1]}/events/calendar.ics" onclick="window.eaTrack&&eaTrack('calendar_subscribe',{{how:'webcal'}})">Add to your calendar</a>
+  <a class="btn btn-ghost" href="{self.u('/events/calendar.ics')}" download onclick="window.eaTrack&&eaTrack('calendar_subscribe',{{how:'download'}})">Download .ics</a></p>
 </div></section>
 <div class="band band-mist"><div class="wrap">
   <p class="callout pl-note">Dates marked <strong>announced</strong> come from organizers or local news. Others show when the event usually happens; we add exact dates as soon as they are published.</p>

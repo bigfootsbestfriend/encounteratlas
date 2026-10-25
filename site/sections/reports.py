@@ -595,7 +595,7 @@ def build_podcasters(ctx, shaped):
 <section class="band band-dark"><div class="wrap"><p class="crumb"><a href="{u('/press/')}">Press and researchers</a> / Podcasters</p>
 <h1>Encounter stories for your podcast</h1>
 <p class="lede">When people send us a sighting they can tick "Podcasts can read my report on air". Those reports are here, free to read on your show.</p>
-<div class="map-actions"><a class="btn" href="{u('/podcasters/feed.xml')}">RSS feed of cleared reports</a></div></div></section>
+<div class="map-actions"><a class="btn" href="{u('/podcasters/feed.xml')}" onclick="window.eaTrack&&eaTrack('podcast_feed',{{}})">RSS feed of cleared reports</a></div></div></section>
 <div class="band band-mist"><div class="wrap"><div class="prose">
 <h2>The deal</h2>
 <ul>

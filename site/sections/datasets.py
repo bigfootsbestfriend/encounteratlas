@@ -96,7 +96,7 @@ def build(ctx):
         if m.get('doi'):
             d['identifier'] = 'https://doi.org/' + m['doi']
         ld.append(d)
-        dl = ''.join(f'<a class="btn{"" if i == 0 else " btn-ghost"}" href="{U(FILES + f)}" download>{f.rsplit(".", 1)[1].upper()}</a>' for i, f in enumerate(s['files']))
+        dl = ''.join(f'<a class="btn{"" if i == 0 else " btn-ghost"}" href="{U(FILES + f)}" download onclick="window.eaTrack&&eaTrack(\'dataset_download\',{{file:\'{f}\'}})">{f.rsplit(".", 1)[1].upper()}</a>' for i, f in enumerate(s['files']))
         also = ' · '.join(f'<a href="{E(m[k])}">{n}</a>' for k, n in (('huggingface', 'Hugging Face'), ('kaggle', 'Kaggle'), ('zenodo', 'Zenodo')) if m.get(k))
         cols = ('<details><summary>Columns</summary><dl class="ds-cols">' + ''.join(f'<dt><code>{c}</code></dt><dd>{E(t)}</dd>' for c, t in s['cols']) + '</dl></details>') if s['cols'] else ''
         cards.append(f'''<section class="ds-card" id="{s["key"]}"><h2>{E(s["name"])}</h2><p>{E(s["desc"])}</p>

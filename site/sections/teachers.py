@@ -5,6 +5,7 @@ data/famous_cases.json and data/close_encounters.json, which carry the sources).
 verdict; the last page is the answer key with what the Air Force decided. The same sheet is the free download on
 Teachers Pay Teachers (PDF made from this page with tools/print_pdf.sh), which links back here.
 """
+import re
 
 CASES = [
     {'id': 'A', 'title': 'The pilot who chased a light', 'when': 'January 7, 1948', 'where': 'Fort Knox, Kentucky, USA', 'slug': '/ufo/cases/mantell-1948/',
@@ -68,17 +69,17 @@ def build(ctx):
 </section>''' for c in CASES)
     key = ''.join(f'''<div class="jr-ans"><h3>Case {c["id"]}: {e(c["title"])} <span class="jr-v">{e(c["verdict"])}</span></h3>
   <p>{e(c["answer"])}</p><p class="jr-lesson"><b>Big idea:</b> {e(c["lesson"])}</p>
-  <p class="jr-more">Full case and sources: encounteratlas.com{e(c["slug"])}</p></div>''' for c in CASES)
+  <p class="jr-more">Full case and sources: <a href="https://encounteratlas.com{e(c["slug"])}">encounteratlas.com{e(c["slug"])}</a></p></div>''' for c in CASES)
     body = f'''
 <section class="band band-dark pr-head"><div class="wrap">
   <p class="crumb"><a href="{u('/teachers/')}">For teachers</a> / Printables</p>
   <h1>Be the investigator: judge a UFO report</h1>
   <p class="lede">A free printable lesson on weighing evidence, built on four real cases from the US Air Force's Project Blue Book. Students read each case, sort the clues and give a verdict. The last page is the answer key.</p>
   <p class="pr-actions"><button type="button" class="btn" onclick="window.print()">Print the worksheet</button>
-  <a class="btn btn-ghost" href="{u('/static/printables/judge-a-ufo-report.pdf')}" download>Download the PDF</a></p>
+  <a class="btn btn-ghost" href="{u('/static/printables/judge-a-ufo-report.pdf')}" download onclick="window.eaTrack&&eaTrack('worksheet_download',{{}})">Download the PDF</a></p>
 </div></section>
 <div class="band band-mist"><div class="wrap">
-<article class="pr-sheet jr">
+<!--sheet--><article class="pr-sheet jr">
   <header class="pr-title"><h2>Be the investigator: judge a UFO report</h2>
   <p>From 1952 to 1969 the US Air Force ran Project Blue Book to look into reports of strange things in the sky. Investigators asked the same
   questions every time. Use them on the four real cases below. There are no trick questions, and "we don't know" can be a good answer.</p></header>
@@ -93,9 +94,9 @@ def build(ctx):
   <p>Teachers: verdicts can differ from the Air Force's and still be good thinking. Give credit for clear reasons tied to the evidence.</p>
   {key}
   <div class="pr-send">
-  <p><b>More cases, maps and real Air Force files</b> Free at encounteratlas.com: the full Project Blue Book list, every government UFO release, and the folklore behind 245 creatures. More classroom ideas at encounteratlas.com/teachers</p></div>
+  <p><b>More cases, maps and real Air Force files</b> Free at encounteratlas.com: the full Project Blue Book list, every government UFO release, and the folklore behind 245 creatures. More classroom ideas at <a href="https://encounteratlas.com/teachers/">encounteratlas.com/teachers</a></p></div>
   </section>
-</article>
+</article><!--/sheet-->
 </div></div>'''
     css = '''<style>
 .jr-case { border: 1.5px solid #13261F; border-radius: 10px; padding: .6rem 1rem .8rem; margin: 1.1rem 0; }
@@ -120,6 +121,20 @@ def build(ctx):
     ctx.write('/printables/judge-a-ufo-report/', ctx.page('/printables/judge-a-ufo-report/', 'Be the investigator: a free UFO evidence worksheet', body,
               'A free printable critical-thinking lesson: students judge four real Project Blue Book UFO cases, weigh the clues and compare with the Air Force verdicts.',
               body_class='printables', head_extra=head))
+    # Teachers Pay Teachers copy (2026-10-25): same sheet, but its links carry utm_source=tpt and the printed address is
+    # encounteratlas.com/class (only in this copy), so visits from TPT downloads show up in GA4. Print it with
+    # tools/print_pdf.sh /printables/judge-a-ufo-report/tpt/ <out.pdf> and upload that file to TPT.
+    sheet = body[body.index('<!--sheet-->'):body.index('<!--/sheet-->')]
+    tag = lambda m: m.group(1) + ('&' if '?' in m.group(2) else '?') + 'utm_source=tpt&utm_medium=worksheet&utm_campaign=judge-a-ufo-report"'
+    tpt = re.sub(r'(href="https://encounteratlas\.com([^"]*))"', tag, sheet).replace('>encounteratlas.com/teachers<', '>encounteratlas.com/class<')
+    ctx.write('/printables/judge-a-ufo-report/tpt/', ctx.page('/printables/judge-a-ufo-report/tpt/', 'Be the investigator: a free UFO evidence worksheet',
+              f'<div class="band band-mist"><div class="wrap">{tpt}</div></div>', '', body_class='printables', head_extra=head,
+              canonical=False, noindex=True))
+    ctx.write('/class/', '<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><title>For teachers</title>'
+              '<link rel="canonical" href="https://encounteratlas.com/teachers/">'
+              '<script>location.replace("/teachers/?utm_source=tpt&utm_medium=worksheet&utm_campaign=judge-a-ufo-report")</script>'
+              '<meta http-equiv="refresh" content="0;url=/teachers/?utm_source=tpt&amp;utm_medium=worksheet&amp;utm_campaign=judge-a-ufo-report">'
+              '<a href="/teachers/">Classroom ideas from Encounter Atlas</a>')
 
     tbody = f'''
 <section class="band band-dark"><div class="wrap"><p class="crumb"><a href="{u('/about/')}">About</a> / For teachers</p>
@@ -128,7 +143,7 @@ def build(ctx):
 <div class="band band-mist"><div class="wrap"><div class="prose">
 <h2>Ready-to-print lessons</h2>
 <ul>
-<li><a href="{u('/printables/judge-a-ufo-report/')}"><b>Be the investigator: judge a UFO report</b></a>. Four real Air Force cases, a clue sheet and an answer key. Works well for grades 4 to 8 (ages 9 to 14), in one 45 to 60 minute lesson. <a href="{u('/static/printables/judge-a-ufo-report.pdf')}" download>PDF</a></li>
+<li><a href="{u('/printables/judge-a-ufo-report/')}"><b>Be the investigator: judge a UFO report</b></a>. Four real Air Force cases, a clue sheet and an answer key. Works well for grades 4 to 8 (ages 9 to 14), in one 45 to 60 minute lesson. <a href="{u('/static/printables/judge-a-ufo-report.pdf')}" download onclick="window.eaTrack&&eaTrack('worksheet_download',{{}})">PDF</a></li>
 <li><a href="{u('/printables/after-an-encounter/')}">Encounter record sheet</a>. The form we give witnesses. Good for a lesson on observation and writing things down before memory changes.</li>
 </ul>
 <h2>Ideas by subject</h2>
