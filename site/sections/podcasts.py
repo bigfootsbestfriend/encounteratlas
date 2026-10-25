@@ -187,6 +187,20 @@ def build(ctx):
                     f'{esc(topic_names.get(t, t))} <span class="chip-n">{len(by_topic[t])}</span></button>'
                     for t in TOPIC_META if by_topic[t])
     total_eps = sum(s['episodes'] for s in shows)
+    # "Play an episode now": newest playable creature episodes, one per creature, in the site's player
+    play_now, seen = [], set()
+    for slug, lst in _podplay.playable(ctx).items():
+        if slug in _podplay.LIVING or not lst:
+            continue
+        e = max(lst, key=lambda x: x.get('d') or '')
+        if e['t'] not in seen:
+            seen.add(e['t']); play_now.append((e, slug))
+    play_now = sorted(play_now, key=lambda x: x[0].get('d') or '', reverse=True)[:8]
+    play_html = ''.join(
+        f'<li class="pp-ep">{_podplay.play_button(e, "pp-btn pp-round", "")}<span class="pp-ep-t"><b>{esc(e["t"])}</b>'
+        f'<small><a href="{url("/podcasts/creature/" + slug + "/")}">{esc(ctx.by_slug[slug]["name"])}</a> · {esc(e["s"])}'
+        f'{" · " + str(e["m"]) + " min" if e.get("m") else ""}</small></span></li>'
+        for e, slug in play_now)
     body = f'''
 <section class="band band-dark pod-head">
   <div class="wrap">
@@ -196,6 +210,14 @@ def build(ctx):
     {topic_tiles()}
   </div>
 </section>
+{f"""<section class="band band-mist" aria-labelledby="pn-h">
+  <div class="wrap"><div class="pp-along" data-pp-list>
+    <h2 id="pn-h">Play an episode now</h2>
+    <p>Fresh episodes about Mothman, Bigfoot, Dogman and the rest. They play right here (and keep going with your screen off in the app), streamed from each show's own feed so the show gets the listen.</p>
+    <p><button type="button" class="btn pp-all" data-pp-all>{_podplay.PLAY_SVG} Play all {len(play_now)}</button></p>
+    <ol class="pp-eps">{play_html}</ol>
+  </div></div>
+</section>""" if play_now else ''}
 {f"""<section class="band band-dark pod-active-band" aria-labelledby="act-h">
   <div class="wrap">
     <h2 id="act-h"><span class="pulse" aria-hidden="true"></span>Most active this month</h2>
@@ -231,7 +253,7 @@ def build(ctx):
     ctx.write('/podcasts/', ctx.page('/podcasts/', 'Bigfoot, UFO and paranormal podcasts: the directory', body,
                                      f'{len(shows)} podcasts about Bigfoot, Dogman, cryptids, UFOs and the paranormal, checked weekly. '
                                      f'Filter by topic, see who posted this month, and find episodes about any creature.',
-                                     head_extra=head))
+                                     head_extra=head + _podplay.head(ctx)))
 
     # ---------- topic pages ----------
     for t, (noun, ico, col, intro, rel) in TOPIC_META.items():

@@ -136,6 +136,7 @@
 .tone-fire { --t: linear-gradient(150deg, #F2B33D, #C0582A); }
 .tone-journal { --t: linear-gradient(150deg, #4FB3A9, #1F6F66); }
 .tone-map { --t: linear-gradient(150deg, #6FA86A, #27463A); }
+.tone-pod { --t: linear-gradient(150deg, #B56FD6, #5B2F7A); }
 .tone-report { --t: linear-gradient(150deg, #F06A4F, #B3261E); }
 .nm-hub li:last-child { grid-column: span 2; }
 .nm-hub li:last-child .nm-app { grid-template-columns: auto 1fr; justify-items: start; align-items: center; align-content: center; gap: .3rem; padding: 0 .9rem 0 0;

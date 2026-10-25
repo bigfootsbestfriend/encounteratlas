@@ -40,7 +40,14 @@ ERAS = [
 HUB = [('/road-trip/', 'Road trip', 'roadside', 'road'), ('/cards/', 'Collector cards', 'bigfoot', 'cards'),
        ('/tools/skywatch/', "Tonight's sky", 'telescope', 'sky'), ('/stories/campfire/', 'Campfire stories', 'campfire', 'fire'),
        ('/journal/', 'Field journal', 'clipboard', 'journal'), ('/map/', 'Full map', 'ufo-globe', 'map'),
+       ('/podcasts/', 'Podcasts', 'headphones', 'pod'),
        ('/report/', 'Report a sighting', 'ufo-report', 'report')]
+
+
+# Headphones for the podcast tile, same flat white style.
+HEADPHONES = ('<svg class="ico" viewBox="0 0 64 64" aria-hidden="true" focusable="false">'
+              '<path d="M32 8C18 8 8 19 8 33v13h6V33c0-10.5 7.9-19 18-19s18 8.5 18 19v13h6V33C56 19 46 8 32 8z"/>'
+              '<rect x="8" y="36" width="14" height="22" rx="5"/><rect x="42" y="36" width="14" height="22" rx="5"/></svg>')
 
 
 # The icon set has no campfire, so this one is drawn here in the same flat white style.
@@ -150,7 +157,7 @@ def build(ctx):
     era_btns = ''.join(f'<button type="button" class="nm-era" data-era="{e["id"]}" data-i="{i}" aria-pressed="{"true" if i == 0 else "false"}">'
                        f'<b>{E(e["name"])}</b><span class="nm-era-span">{E(e["span"])}</span><span class="nm-era-n"></span></button>'
                        for i, e in enumerate(ERAS))
-    hub = ''.join(f'<li><a class="nm-app tone-{t}" href="{U(p)}"><span class="nm-app-ico">{CAMPFIRE if ic == "campfire" else ctx.icon(ic)}</span>'
+    hub = ''.join(f'<li><a class="nm-app tone-{t}" href="{U(p)}"><span class="nm-app-ico">{CAMPFIRE if ic == "campfire" else HEADPHONES if ic == "headphones" else ctx.icon(ic)}</span>'
                   f'<span class="nm-app-name">{E(n)}</span></a></li>' for p, n, ic, t in HUB)
     sources = ''.join(f'<li><b>{E(t)}</b> ({counts[k]:,} on this map). {E(s.split(" Credit by name")[0].split(" Rows from")[0])}</li>'
                       for k, (_, t, s) in LAYERS.items() if k != 'bluebook_approx')

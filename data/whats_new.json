@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-10-25",
+    "title": "Podcasts right on the home screen",
+    "path": "/podcasts/",
+    "note": "There's a Podcasts button on the Near me page now, and the podcasts page starts with fresh episodes about Mothman, Bigfoot, the Nandi bear and more that you can play right there. In the app they keep playing with your screen off."
+  },
+  {
+    "date": "2026-10-25",
     "title": "Festival calendar: 27 more events, and it syncs to your phone",
     "path": "/events/",
     "note": "Our cryptid and UFO festival calendar grew from 31 to 58 events, from Beast Fest in North Carolina to Japan's Iino UFO Festival and Australia's UFO festival in Cardwell. Tap \"Add to your calendar\" and new dates show up on your phone by themselves. Running an event? There's a form at the bottom to send it in."
