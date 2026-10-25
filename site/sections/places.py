@@ -12,6 +12,7 @@ from collections import defaultdict
 from datetime import date
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _legend import legend_card, head as legend_head
+import contact
 
 TYPES = {  # key: (singular, plural, icon)
     'museum': ('Museum', 'Museums', 'museum'),
@@ -208,7 +209,7 @@ class Builder:
         if p['lat'] is not None and not p.get('approx'):
             loc['geo'] = {'@type': 'GeoCoordinates', 'latitude': p['lat'], 'longitude': p['lon']}
         if p['type'] == 'festival':
-            if not p.get('start') or date.fromisoformat(p['end'] or p['start']) < self.today:
+            if not p.get('start') or date.fromisoformat(p['end'] or p['start']) < self.today or p.get('tentative'):
                 return ''
             d = {'@context': 'https://schema.org', '@type': 'Event', 'name': p['name'], 'description': p['summary'],
                  'startDate': p['start'], 'endDate': p['end'] or p['start'], 'location': loc,
@@ -391,7 +392,10 @@ class Builder:
                 facts.append(('When', p['when']))
                 if p.get('start'):
                     facts.append(('Latest dates', self.date_label(p)))
-                if st == 'set':
+                if st == 'set' and p.get('tentative'):
+                    when_html = (f'<p class="pl-when-big">{c.icon("festival", "ico")} Next: {esc(label)}, but sources disagree or only one '
+                                 'listing has it. Check with the organizer before you travel.</p>')
+                elif st == 'set':
                     when_html = f'<p class="pl-when-big is-set">{c.icon("festival", "ico")} Next: {esc(label)}</p>'
                 elif st == 'past':
                     when_html = f'<p class="pl-when-big">{c.icon("festival", "ico")} Just happened ({esc(label)}). Next year\'s dates are not out yet.</p>'
@@ -458,7 +462,8 @@ class Builder:
                     title += f': {one.lower()}'
             desc = p['summary'] + (f' {p["price"]}.' if p.get('price') and not p['price'].endswith('.') else '')
             c.write(f'/places/{p["slug"]}/', c.page(f'/places/{p["slug"]}/', title, body, desc[:300],
-                                                    body_class='places', head_extra=self.map_head + self.jsonld(p)))
+                                                    body_class='places', head_extra=self.map_head + self.jsonld(p),
+                                                    noindex=bool(p.get('brief'))))  # brief: calendar entry only, not yet written up
 
     def events(self):
         c, esc = self.c, self.c.esc
@@ -477,6 +482,8 @@ class Builder:
             rows = ''
             for d, p, label, st in sorted(slots[(y, m)], key=lambda x: (x[0], x[1]['name'])):
                 status = {'set': 'Dates announced', 'past': 'Already happened', 'usual': f'{y} dates not announced yet'}[st]
+                if st == 'set' and p.get('tentative'):
+                    status = 'Date to confirm'
                 rows += (f'<li class="pl-ev is-{st}" data-type="{p["type"]}"><span class="pl-date{" is-tba" if d == 99 else ""}">'
                          f'<span class="pl-date-m">{SHORT[m]}</span><span class="pl-date-d">{d if d != 99 else "TBA"}</span></span>'
                          f'<div><h3><a href="{self.u("/places/" + p["slug"] + "/")}">{esc(p["name"])}</a></h3>'
@@ -500,16 +507,53 @@ class Builder:
   <h1>Cryptid and UFO festivals, {span}</h1>
   <p class="lede">Mothman, Bigfoot, Rougarou and little green men all get their own parties. Here is the next 12 months, month by month.{lead}</p>
   <nav class="pl-mnavs" aria-label="Jump to month">{nav}</nav>
+  <p class="pl-ics"><a class="btn" href="webcal://{c.SITE_URL.split('://', 1)[1]}/events/calendar.ics">Add to your calendar</a>
+  <a class="btn btn-ghost" href="{self.u('/events/calendar.ics')}" download>Download .ics</a></p>
 </div></section>
 <div class="band band-mist"><div class="wrap">
   <p class="callout pl-note">Dates marked <strong>announced</strong> come from organizers or local news. Others show when the event usually happens; we add exact dates as soon as they are published.</p>
   {secs}
   <p><a class="btn" href="{self.u('/places/')}">See every place on the map</a></p>
+  <section class="pl-organizer"><h2>Running a festival?</h2>
+  <p>Cryptid, Bigfoot, UFO or folklore event anywhere in the world? Send us the name, town, dates and your website and we'll add it. Free, always.</p>
+  <div class="narrow">{contact._form(c, 'event', compact=True)}</div></section>
 </div></div>
 <script src="{self.u('/static/places.js')}" defer></script>'''
         c.write('/events/', c.page('/events/', f'Cryptid festivals {span}: Bigfoot, Mothman and UFO event calendar', body,
                                    f'Bigfoot festivals, the Mothman Festival, Rougarou Fest, Roswell and other UFO festivals: a month-by-month calendar for {span} with dates and links.',
-                                   body_class='places', head_extra=self.head))
+                                   body_class='places', head_extra=self.head + contact._head(c)
+                                   + f'<link rel="alternate" type="text/calendar" title="Cryptid and UFO festivals" href="{c.SITE_URL}/events/calendar.ics">'))
+        self.ics()
+
+    def ics(self):
+        """/events/calendar.ics: every festival with announced dates still to come, as all-day events (subscribe or import)."""
+        from datetime import timedelta
+        esc = lambda t: str(t).replace('\\', '\\\\').replace(';', '\\;').replace(',', '\\,').replace('\n', '\\n')
+        def fold(line):
+            out, b = [], line.encode()
+            while len(b) > 74:
+                cut = 74
+                while (b[cut] & 0xC0) == 0x80:
+                    cut -= 1
+                out.append(b[:cut].decode()); b = b' ' + b[cut:]
+            return '\r\n'.join(out + [b.decode()])
+        stamp = self.today.strftime('%Y%m%dT000000Z')
+        lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Encounter Atlas//Festivals//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+                 'X-WR-CALNAME:Cryptid and UFO festivals (Encounter Atlas)', 'X-PUBLISHED-TTL:P1D', 'REFRESH-INTERVAL;VALUE=DURATION:P1D']
+        for p in sorted(self.P, key=lambda p: p.get('start') or ''):
+            if p['type'] != 'festival' or not p.get('start'):
+                continue
+            s, e = date.fromisoformat(p['start']), date.fromisoformat(p['end'] or p['start'])
+            if e < self.today:
+                continue
+            page = self.c.SITE_URL + '/places/' + p['slug'] + '/'
+            desc = p['summary'] + (' Date to confirm with the organizer.' if p.get('tentative') else '') + ' ' + page
+            lines += ['BEGIN:VEVENT', f'UID:{p["slug"]}-{s.year}@encounteratlas.com', f'DTSTAMP:{stamp}',
+                      f'DTSTART;VALUE=DATE:{s:%Y%m%d}', f'DTEND;VALUE=DATE:{e + timedelta(days=1):%Y%m%d}',
+                      'SUMMARY:' + esc(p['name'] + (' (date to confirm)' if p.get('tentative') else '')),
+                      'LOCATION:' + esc(self.where(p, short=False)), 'DESCRIPTION:' + esc(desc), f'URL:{page}', 'END:VEVENT']
+        lines.append('END:VCALENDAR')
+        self.c.write('/events/calendar.ics', '\r\n'.join(fold(l) for l in lines) + '\r\n')
 
     def expeditions(self):
         c, esc = self.c, self.c.esc

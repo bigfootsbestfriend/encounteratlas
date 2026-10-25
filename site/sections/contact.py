@@ -10,7 +10,7 @@ import os
 
 EMAIL = 'hello@encounteratlas.com'
 TOPICS = [('general', 'General question'), ('advertise', 'Advertising or sponsorship'), ('correction', 'Correction or source'),
-          ('takedown', 'Takedown or privacy request'), ('press', 'Press'), ('podcast', 'Podcasts')]
+          ('takedown', 'Takedown or privacy request'), ('press', 'Press'), ('podcast', 'Podcasts'), ('event', 'Add an event')]
 
 
 def _form(ctx, topic, compact=False):

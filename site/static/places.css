@@ -143,3 +143,7 @@
 .pl-listyours p { max-width: 62ch; }
 .pl-listyours .muted { color: var(--muted-d) !important; }
 @media (max-width: 520px) { .pl-listyours { flex-direction: column; } }
+
+/* iCal subscribe + organizer form on /events/ (2026-10-25) */
+.pl-ics{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.pl-ics .btn-ghost{color:#fff;border-color:rgba(255,255,255,.6)}
+.pl-organizer{margin-top:36px}
