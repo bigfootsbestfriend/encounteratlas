@@ -3,16 +3,8 @@
    .tc  = the full trading card on /cards/ and in the reveal (built by _cards.py and cards.js)
 
    Trading card geometry: everything is laid out on a 750 x 1050 grid (5:7), so 1u = card width / 750.
-   Frame artwork (optional, see .has-frames below) must be 750 x 1050 px (or 1500 x 2100 px at 2x) and match:
-     front  name plate    x 30-720,  y 30-122
-            art window    x 44-706,  y 130-640
-            category strip x 44-706, y 648-700
-            text box      x 44-706,  y 708-962
-            footer        x 44-706,  y 968-1012
-     back   header        x 30-720,  y 30-122
-            text area     x 52-698,  y 136-948   (keep it plain: small text sits on it)
-            link row      x 52-698,  y 956-1012
-   Outer corner radius 36u. Frame border is the 30u band around the edge. */
+   Front: the Gemini frame for the tier sits on top (see "frame artwork on the front" at the end); back and the
+   face-down side use back.webp / reverse.webp. Sources and the magenta cut-out script notes: design/cards-src. */
 
 /* ---------- small chip cards (trip pages, planner) ---------- */
 .cc-grid { list-style: none; padding: 0; margin: 1rem 0 1.6rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: .8rem; }
@@ -28,7 +20,7 @@
 .cc-name { font-weight: 700; line-height: 1.2; }
 .cc-meta { font-size: .8rem; color: var(--muted-l); }
 .cc-r { display: inline-block; padding: .05rem .45rem; border-radius: 999px; font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; }
-.cc-r-unique { background: linear-gradient(100deg, #8a5a12, #E8B64A 45%, #8a5a12); color: #1B1205; }
+.cc-r-rare { background: linear-gradient(100deg, #8a5a12, #E8B64A 45%, #8a5a12); color: #1B1205; }
 .cc-r-uncommon { background: #056770; color: #E3F5F2; } .cc-r-common { background: var(--mist-2); color: var(--ink); }
 .cc-got { position: absolute; top: .4rem; right: .4rem; max-width: 85%; padding: .1rem .45rem; border-radius: 999px; background: var(--lantern); color: var(--spruce);
   font-size: .68rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -49,7 +41,7 @@
 .tc-tally b { color: #F3F1DA; }
 .tc-tmark { font-size: .85em; }
 .tc-t-uncommon .tc-tmark { color: #C9D6DD; }
-.tc-t-unique .tc-tmark { color: #F2C14E; text-shadow: 0 0 6px rgba(242,193,78,.7); }
+.tc-t-shiny .tc-tmark { color: #F2C14E; text-shadow: 0 0 6px rgba(242,193,78,.7); }
 .tc-filters { display: flex; flex-wrap: wrap; gap: .45rem; margin: .4rem 0 .2rem; }
 .tc-filters button { min-height: 44px; padding: 0 1.05rem; border-radius: 999px; font: 600 .95rem var(--body); cursor: pointer;
   border: 1.5px solid #3A5A4C; background: transparent; color: var(--lichen); }
@@ -63,11 +55,13 @@
 .tc-huntbox .tc-grid { margin-bottom: 1.2rem; }
 
 /* ---------- the trading card ---------- */
-:root { --cc-back: url("cards/back.webp"); --cc-reverse: url("cards/reverse.webp"); }   /* :root so the reveal overlay (outside the grid) gets them */
+/* Gemini artwork (design/cards-src): frames have the magenta windows cut out, so the frame sits ON TOP of the card
+   content and the plates show through the holes. :root so the reveal overlay (outside the grid) gets them too. */
+:root { --cc-back: url("cards/back.webp"); --cc-reverse: url("cards/reverse.webp");
+  --cc-frame-common: url("cards/frame-common.webp"); --cc-frame-uncommon: url("cards/frame-uncommon.webp"); --cc-frame-rare: url("cards/frame-rare.webp");
+  --cc-frame-unique: url("cards/frame-unique.webp"); --cc-frame-hunt: url("cards/frame-hunt.webp"); }
 .tc-grid { list-style: none; padding: 0; margin: 1rem 0 1.6rem; display: grid; gap: clamp(.7rem, 2vw, 1.2rem);
   grid-template-columns: repeat(auto-fill, minmax(min(46%, 12.5rem), 1fr));
-  --cc-frame-common: url("cards/frame-common.webp"); --cc-frame-uncommon: url("cards/frame-uncommon.webp");
-  --cc-frame-unique: url("cards/frame-unique.webp"); --cc-frame-hunt: url("cards/frame-hunt.webp");
 }
 .tc { position: relative; --px: .5; --py: .5; --rx: 0deg; --ry: 0deg;
   --k: #C9D3A4; --frame: #CDC3A6; --foot-ink: #2B2618; --mark: #5F6B63; }
@@ -93,12 +87,12 @@
 .tc-uncommon { --frame: #C7CED4; --mark: #3E6E80; }
 .tc-uncommon .tc-front { background: linear-gradient(125deg, #8E979F 0%, #EEF2F5 16%, #A2AAB2 30%, #F7FAFC 46%, #8D959D 60%, #E3E8EC 76%, #9AA2A9 100%);
   background-size: 220% 220%; background-position: calc(var(--px) * 100%) calc(var(--py) * 100%); }
-.tc-unique { --frame: #D9A93C; --mark: #9A6A0E; }
-.tc-unique .tc-front { background: linear-gradient(125deg, #8C5E12 0%, #F6D77A 15%, #B3801F 30%, #FFF0B8 45%, #A87418 60%, #F2C860 76%, #7E5410 100%);
+.tc-shiny { --frame: #D9A93C; --mark: #9A6A0E; }
+.tc-shiny .tc-front { background: linear-gradient(125deg, #8C5E12 0%, #F6D77A 15%, #B3801F 30%, #FFF0B8 45%, #A87418 60%, #F2C860 76%, #7E5410 100%);
   background-size: 220% 220%; background-position: calc(var(--px) * 100%) calc(var(--py) * 100%); }
 .tc-hunt { --foot-ink: #FFF3E3; }
 .tc-hunt .tc-front { background: linear-gradient(150deg, #F28A2E 0%, #E2602B 30%, #6B2C8F 70%, #2C1240 100%); }
-.tc-hunt.tc-unique .tc-front { background: linear-gradient(150deg, #F6D77A 0%, #F28A2E 22%, #E2602B 40%, #6B2C8F 72%, #2C1240 100%); }
+.tc-hunt.tc-shiny .tc-front { background: linear-gradient(150deg, #F6D77A 0%, #F28A2E 22%, #E2602B 40%, #6B2C8F 72%, #2C1240 100%); }
 
 .tc-name, .tc-win, .tc-strip, .tc-sum, .tc-foot, .tc-fx { position: absolute; margin: 0; }
 .tc-name { left: calc(var(--u) * 30); top: calc(var(--u) * 30); width: calc(var(--u) * 690); height: calc(var(--u) * 92);
@@ -106,7 +100,7 @@
   border-radius: calc(var(--u) * 20) calc(var(--u) * 20) calc(var(--u) * 8) calc(var(--u) * 8); background: #F4EDDA; box-shadow: inset 0 0 0 calc(var(--u) * 3) rgba(0,0,0,.18); }
 .tc-name h3 { margin: 0; min-width: 0; font: 700 max(13px, calc(var(--u) * 52))/1.05 var(--display); color: #1B1E19; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tc-mark { flex: none; font-size: max(13px, calc(var(--u) * 50)); line-height: 1; color: var(--mark); }
-.tc-unique .tc-mark { color: #C8901C; text-shadow: 0 0 calc(var(--u) * 10) rgba(255,214,102,.9); }
+.tc-shiny .tc-mark { color: #C8901C; text-shadow: 0 0 calc(var(--u) * 10) rgba(255,214,102,.9); }
 .tc-win { left: calc(var(--u) * 44); top: calc(var(--u) * 130); width: calc(var(--u) * 662); height: calc(var(--u) * 510); overflow: hidden;
   border-radius: calc(var(--u) * 6); box-shadow: inset 0 0 0 calc(var(--u) * 4) rgba(0,0,0,.35), 0 0 0 calc(var(--u) * 3) rgba(255,255,255,.4);
   /* dusk: stars and a moon over a sky that glows in the category colour at the horizon, dark ground */
@@ -134,7 +128,7 @@
 
 /* back */
 .tc-back { background: linear-gradient(160deg, #20372E, #13261F 60%, #0E1C17); padding: 0; color: #E9E6CF; }
-.tc-unique .tc-back { box-shadow: inset 0 0 0 calc(var(--u) * 30) #C9962F, 0 10px 22px rgba(0,0,0,.45); }
+.tc-shiny .tc-back { box-shadow: inset 0 0 0 calc(var(--u) * 30) #C9962F, 0 10px 22px rgba(0,0,0,.45); }
 .tc-uncommon .tc-back { box-shadow: inset 0 0 0 calc(var(--u) * 30) #AEB6BD, 0 10px 22px rgba(0,0,0,.45); }
 .tc-common .tc-back { box-shadow: inset 0 0 0 calc(var(--u) * 30) #CDC3A6, 0 10px 22px rgba(0,0,0,.45); }
 .tc-hunt .tc-back { box-shadow: inset 0 0 0 calc(var(--u) * 30) #E2602B, 0 10px 22px rgba(0,0,0,.45); background: linear-gradient(160deg, #3A1C4E, #1D1028 70%); }
@@ -205,7 +199,7 @@
 .tc.is-act .tc-fx::after { opacity: .9; }
 .tc-common.is-act .tc-fx::after { opacity: .5; }
 .tc-holo { display: none; }
-.tc-unique .tc-holo { display: block; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: color-dodge; opacity: .55;
+.tc-shiny .tc-holo { display: block; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: color-dodge; opacity: .55;
   filter: brightness(.82) contrast(1.15) saturate(1.1);
   background-image:
     radial-gradient(farthest-corner circle at calc(var(--px) * 100%) calc(var(--py) * 100%), rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 45%),
@@ -213,42 +207,32 @@
     repeating-linear-gradient(-35deg, rgba(255,255,255,0) 0 4%, rgba(255,255,255,.22) 5%, rgba(255,255,255,0) 6.5%);
   background-size: 100% 100%, 320% 320%, 220% 220%;
   background-position: 0 0, calc(var(--px) * 100%) calc(var(--py) * 100%), calc(100% - var(--px) * 100%) calc(var(--py) * 100%); }
-.tc-unique:not(.tc-have) .tc-holo { opacity: .25; }
-.tc-unique.is-act .tc-holo { opacity: .7; }
+.tc-shiny:not(.tc-have) .tc-holo { opacity: .25; }
+.tc-shiny.is-act .tc-holo { opacity: .7; }
 /* moving shine band: runs only on the one live card */
-.tc-unique .tc-holo::after { content: ""; position: absolute; inset: -20% -60%; opacity: 0;
+.tc-shiny .tc-holo::after { content: ""; position: absolute; inset: -20% -60%; opacity: 0;
   background: linear-gradient(105deg, transparent 38%, rgba(255,255,255,.75) 48%, rgba(255,250,220,.9) 50%, rgba(255,255,255,.75) 52%, transparent 62%);
   transform: translateX(-60%); }
-.tc-unique.is-live .tc-holo::after { animation: tc-sweep 3.6s ease-in-out infinite; }
+.tc-shiny.is-live .tc-holo::after { animation: tc-sweep 3.6s ease-in-out infinite; }
 @keyframes tc-sweep { 0%, 55% { transform: translateX(-60%); opacity: 0; } 60% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateX(60%); opacity: 0; } }
 /* sparkle pass over the whole front */
-.tc-unique .tc-fx::before { content: ""; position: absolute; inset: 0; mix-blend-mode: color-dodge; opacity: .35;
+.tc-shiny .tc-fx::before { content: ""; position: absolute; inset: 0; mix-blend-mode: color-dodge; opacity: .35;
   background-image:
     radial-gradient(circle, #fff 0 .9px, transparent 1.6px), radial-gradient(circle, #FFF2B0 0 1.2px, transparent 2px),
     radial-gradient(circle, #B8F3FF 0 .8px, transparent 1.4px);
   background-size: 37px 41px, 61px 53px, 29px 31px; background-position: 3px 7px, 19px 23px, 11px 2px;
   /* keep the sparkle off the name plate and the text box */
-  -webkit-mask: linear-gradient(to bottom, #000 0 2.7%, transparent 2.8% 11.7%, #000 11.8% 67.3%, transparent 67.5% 91.5%, #000 91.7%); mask: linear-gradient(to bottom, #000 0 2.7%, transparent 2.8% 11.7%, #000 11.8% 67.3%, transparent 67.5% 91.5%, #000 91.7%); }
-.tc-unique.is-act .tc-fx::before, .tc-unique.is-live .tc-fx::before { animation: tc-twinkle 1.8s steps(6) infinite; }
+  -webkit-mask: linear-gradient(to bottom, #000 0 9.7%, transparent 9.8% 16.9%, #000 17% 63.7%, transparent 63.8% 91.7%, #000 91.8%); mask: linear-gradient(to bottom, #000 0 9.7%, transparent 9.8% 16.9%, #000 17% 63.7%, transparent 63.8% 91.7%, #000 91.8%); }
+.tc-shiny.is-act .tc-fx::before, .tc-shiny.is-live .tc-fx::before { animation: tc-twinkle 1.8s steps(6) infinite; }
 @keyframes tc-twinkle { 0% { opacity: .2; background-position: 3px 7px, 19px 23px, 11px 2px; }
   50% { opacity: .85; background-position: 6px 3px, 15px 27px, 8px 5px; } 100% { opacity: .2; background-position: 3px 7px, 19px 23px, 11px 2px; } }
-.tc-unique .tc-front { box-shadow: 0 10px 22px rgba(0,0,0,.45), 0 0 0 1px rgba(255,226,140,.6), 0 0 18px rgba(242,193,78,.25); }
+.tc-shiny .tc-front { box-shadow: 0 10px 22px rgba(0,0,0,.45), 0 0 0 1px rgba(255,226,140,.6), 0 0 18px rgba(242,193,78,.25); }
 .tc-uncommon .tc-fx::after { mix-blend-mode: soft-light; }
 
 /* ---------- card back + face-down artwork (Gemini, design/cards-src/back-gemini.jpg): always on ---------- */
 .tc .tc-back { background: #0E1C17 var(--cc-back) center / 100% 100% no-repeat; }
-.tc-common .tc-back, .tc-uncommon .tc-back, .tc-unique .tc-back, .tc-hunt .tc-back { box-shadow: inset 0 0 0 calc(var(--u) * 10) var(--tc-ring, #CDC3A6), 0 10px 22px rgba(0,0,0,.45); }
-.tc-uncommon { --tc-ring: #AEB6BD; } .tc-unique { --tc-ring: #C9962F; } .tc-hunt { --tc-ring: #E2602B; }
-
-/* ---------- frame artwork (off until the images exist: add class has-frames to the grid) ---------- */
-.has-frames .tc-common .tc-front { background: var(--cc-frame-common) center / 100% 100% no-repeat; }
-.has-frames .tc-uncommon .tc-front { background: var(--cc-frame-uncommon) center / 100% 100% no-repeat; }
-.has-frames .tc-unique .tc-front { background: var(--cc-frame-unique) center / 100% 100% no-repeat; }
-.has-frames .tc-hunt .tc-front { background: var(--cc-frame-hunt) center / 100% 100% no-repeat; }
-.has-frames .tc-name, .has-frames .tc-sum { background: transparent; box-shadow: none; }
-.has-frames .tc .tc-back { background: var(--cc-back) center / 100% 100% no-repeat; box-shadow: 0 10px 22px rgba(0,0,0,.45); }
-.has-frames .tc-rev { background: var(--cc-reverse) center / 100% 100% no-repeat; }
-.has-frames .tc-rev > * { display: none; }
+.tc-common .tc-back, .tc-uncommon .tc-back, .tc-shiny .tc-back, .tc-hunt .tc-back { box-shadow: inset 0 0 0 calc(var(--u) * 10) var(--tc-ring, #CDC3A6), 0 10px 22px rgba(0,0,0,.45); }
+.tc-uncommon { --tc-ring: #AEB6BD; } .tc-shiny { --tc-ring: #C9962F; } .tc-hunt { --tc-ring: #E2602B; }
 
 /* ---------- reveal ---------- */
 .tc-rv { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; align-content: center; gap: .8rem; padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
@@ -270,7 +254,7 @@
 .tc-rev { transform: rotateY(180deg); display: grid; place-items: center; align-content: center; gap: calc(var(--u) * 24);
   background: #13261F var(--cc-reverse) center / 100% 100% no-repeat; box-shadow: 0 10px 22px rgba(0,0,0,.45); }
 .tc-rev > * { display: none; }   /* the artwork carries the design (design/cards-src/back-gemini.jpg) */
-.tc-unique .tc-rev { box-shadow: 0 0 0 calc(var(--u) * 8) #C9962F, 0 10px 22px rgba(0,0,0,.45); }
+.tc-shiny .tc-rev { box-shadow: 0 0 0 calc(var(--u) * 8) #C9962F, 0 10px 22px rgba(0,0,0,.45); }
 .tc-rev-ring { width: calc(var(--u) * 300); aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle, #F2B33D 0 30%, #13261F 31% 60%, #F2B33D 61% 64%, transparent 65%); }
 .tc-rev-ring img { width: 42%; height: auto; filter: brightness(0) invert(.08); }
 .tc-rev-w { font: 700 calc(var(--u) * 54)/1 var(--display); color: #F2B33D; letter-spacing: .02em; }
@@ -278,8 +262,8 @@
   background: repeating-conic-gradient(from 0deg, rgba(255,226,140,.55) 0 4deg, transparent 4deg 18deg); -webkit-mask: radial-gradient(circle, #000 20%, transparent 68%); mask: radial-gradient(circle, #000 20%, transparent 68%); }
 .tc-rv.is-burst .tc-burst { animation: tc-burst 1.6s ease-out both; }
 @keyframes tc-burst { 0% { opacity: 0; transform: scale(.4) rotate(0deg); } 25% { opacity: 1; } 100% { opacity: 0; transform: scale(1.25) rotate(40deg); } }
-.tc-rv.is-burst .tc-unique .tc-holo::after { animation: tc-sweep 1.4s ease-in-out 2 both; }
-.tc-rv.is-burst .tc-unique .tc-holo { opacity: .85; }
+.tc-rv.is-burst .tc-shiny .tc-holo::after { animation: tc-sweep 1.4s ease-in-out 2 both; }
+.tc-rv.is-burst .tc-shiny .tc-holo { opacity: .85; }
 
 @media (hover: hover) {
   .tc:not(.is-act) .tc-flip:hover { background: rgba(255,255,255,.03); }
@@ -303,6 +287,46 @@
   .tc-back, .tc-rev { transform: none; opacity: 0; visibility: hidden; }
   .tc.is-flip .tc-back, .tc.is-flip .tc-rev { opacity: 1; visibility: visible; }
   .tc.is-flip .tc-front { opacity: 0; visibility: hidden; }
-  .tc-unique .tc-fx::before, .tc-unique .tc-holo::after, .tc-burst { animation: none !important; }
+  .tc-shiny .tc-fx::before, .tc-shiny .tc-holo::after, .tc-burst { animation: none !important; }
   .tc-rv .tc-rvcard .tc-card, .tc-rv { animation: none; }
+}
+
+/* ---------- frame artwork on the front ----------
+   Holes in the frames (750 x 1050 grid): name 87-664 x 108-171, art 90-660 x 198-598, strip 86-665 x 619-659,
+   text 90-660 x 685-957 (Common's are a few px inside that). Each plate is a little bigger than its hole and tucks under. */
+.tc-front { background: #14211B; }
+.tc-front::after { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; background: var(--fr) center / 100% 100% no-repeat; }
+.tc-common { --fr: var(--cc-frame-common); } .tc-uncommon { --fr: var(--cc-frame-uncommon); } .tc-rare { --fr: var(--cc-frame-rare); --mark: #8A4B1E; --tc-ring: #B87333; }
+.tc.tc-hunt { --fr: var(--cc-frame-hunt); } .tc.tc-shiny { --fr: var(--cc-frame-unique); }
+.tc-front .tc-name { left: calc(var(--u) * 82); top: calc(var(--u) * 102); width: calc(var(--u) * 588); height: calc(var(--u) * 76); border-radius: 0; box-shadow: none; padding: 0 calc(var(--u) * 30); }
+.tc-front .tc-win { left: calc(var(--u) * 84); top: calc(var(--u) * 190); width: calc(var(--u) * 582); height: calc(var(--u) * 416); border-radius: 0; box-shadow: none; }
+.tc-front .tc-strip { left: calc(var(--u) * 80); top: calc(var(--u) * 612); width: calc(var(--u) * 592); height: calc(var(--u) * 54); border-radius: 0; padding: 0 calc(var(--u) * 30); }
+.tc-front .tc-sum { left: calc(var(--u) * 84); top: calc(var(--u) * 670); width: calc(var(--u) * 582); height: calc(var(--u) * 222); border-radius: 0; box-shadow: none;
+  padding: calc(var(--u) * 26) calc(var(--u) * 40) 0; line-height: 1.18; }
+.tc-front .tc-foot { left: calc(var(--u) * 170); top: calc(var(--u) * 892); width: calc(var(--u) * 410); height: calc(var(--u) * 46); z-index: 1;
+  justify-content: center; gap: .7em; color: #5B4E36; background: #F4EDDA; }
+.tc-front .tc-fx { z-index: 4; }
+/* the cream text plate runs under the foot too */
+.tc-front::before { content: ""; position: absolute; left: calc(var(--u) * 84); top: calc(var(--u) * 670); width: calc(var(--u) * 582); height: calc(var(--u) * 292); background: #F4EDDA; }
+.tc-front .tc-sum, .tc-front .tc-foot { background: transparent; }
+.tc:not(.tc-have) .tc-front::before { background: #DCD5C2; }
+/* painted art: shown on collected cards, the silhouette stays on locked ones */
+.tc-paint { display: none; }
+.tc-have .tc-win .tc-paint { display: block; position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; transform: none; object-fit: cover; }
+.tc-have .tc-win:has(.tc-paint) > img:not(.tc-paint) { display: none; }
+.tc-rare .tc-mark { color: #B8662A; }
+.tc-t-rare .tc-tmark { color: #D08A4E; }
+.tc-t-shiny .tc-tmark { color: #F2C14E; text-shadow: 0 0 6px rgba(242,193,78,.7); }
+.cc-r-rare { background: linear-gradient(100deg, #7a3f17, #D08A4E 45%, #7a3f17); color: #1B1205; }
+/* wider foot; the Common frame's moths reach into the bottom corners, so its foot and summary keep to the middle */
+.tc-front .tc-foot { left: calc(var(--u) * 120); width: calc(var(--u) * 510); }
+.tc-common .tc-front .tc-foot { left: calc(var(--u) * 190); width: calc(var(--u) * 370); top: calc(var(--u) * 884); font-size: max(9.5px, calc(var(--u) * 26)); gap: .5em; }
+.tc-common .tc-front .tc-sum { padding-left: calc(var(--u) * 56); padding-right: calc(var(--u) * 56); -webkit-line-clamp: 3; line-clamp: 3; }
+.tc-common.tc-hunt .tc-front .tc-foot, .tc-common.tc-shiny .tc-front .tc-foot { left: calc(var(--u) * 120); width: calc(var(--u) * 510); top: calc(var(--u) * 892); }
+.tc-common.tc-hunt .tc-front .tc-sum, .tc-common.tc-shiny .tc-front .tc-sum { padding: calc(var(--u) * 26) calc(var(--u) * 40) 0; -webkit-line-clamp: 4; line-clamp: 4; }
+/* phone-sized cards: a tick instead of the date */
+@container (max-width: 250px) {
+  .tc-have .tc-front .tc-got { font-size: 0; }
+  .tc-front .tc-sum, .tc-common.tc-hunt .tc-front .tc-sum, .tc-common.tc-shiny .tc-front .tc-sum { -webkit-line-clamp: 3; line-clamp: 3; height: auto; max-height: calc(var(--u) * 26 + 3.54em); }
+  .tc-have .tc-front .tc-got::before { font-size: 11px; }
 }

@@ -1,10 +1,12 @@
-// Collector cards: the collection lives in localStorage ('ea-cards': {slug: {t: ISO date, at: spot name}}), no account.
+// Collector cards: the collection lives in localStorage ('ea-cards': {slug: {t: ISO date, at: spot name, s: 1 if shiny,
+// r: last day we rolled for shiny}}), no account. Shiny is luck: SHINY odds per check-in (once a day per card at a
+// spot you already have), and a check-in within 3 days of the creature's first-sighting anniversary is always shiny.
 // window.eaCards: collected(), checkIn() (asks for location once, collects every card with a spot within checkin_km),
 // mark(), message(), load(), button(), reveal(got).
 // On /cards/ it also flips the trading cards, runs the light on the card you're pointing at (or tilting, on phones),
 // filters the grid, counts the collection and shows the nearest spot when we already know roughly where you are.
 (function () {
-  const KEY = 'ea-cards', LOC = 'ea-cards-loc';
+  const KEY = 'ea-cards', LOC = 'ea-cards-loc', SHINY = 1 / 15;
   // Face-down artwork for the reveal: fetched before the card flies in so it never shows up blank
   const REV = ((document.currentScript && document.currentScript.src) || '/static/cards.js').replace(/cards\.js(\?.*)?$/, 'cards/reverse.webp');
   const revArt = () => { const im = new Image(); im.src = REV; return im.decode().catch(() => {}); };
@@ -39,7 +41,14 @@
       navigator.geolocation.getCurrentPosition((p) => res([p.coords.latitude, p.coords.longitude]), rej, { enableHighAccuracy: false, timeout: 15000, maximumAge: 60000 });
     });
   }
-  // Returns {got: [{slug, name, at}], nearest: {name, at, km} | null}
+  const today = () => new Date().toISOString().slice(0, 10);
+  // Within 3 days of 'MM-DD' this year (wrapping round New Year)
+  function anniversary(ann) {
+    if (!ann) return false;
+    const now = new Date(), [m, d] = ann.split('-').map(Number);
+    return [-1, 0, 1].some((dy) => Math.abs(new Date(now.getFullYear() + dy, m - 1, d) - now) <= 3.5 * 864e5);
+  }
+  // Returns {got: [{slug, name, at, shiny, again}], nearest: {name, at, km} | null}
   async function checkIn() {
     const [lat, lon] = await where();
     try { localStorage.setItem(LOC, JSON.stringify({ lat: Math.round(lat * 100) / 100, lon: Math.round(lon * 100) / 100 })); } catch (e) { /* blocked */ }
@@ -49,7 +58,15 @@
       for (const [a, o, label] of c.spots) {
         const km = hav(lat, lon, a, o);
         if (km <= d.checkin_km) {
-          if (!mine[slug]) { mine[slug] = { t: new Date().toISOString(), at: label }; got.push({ slug, name: c.n, at: label }); }
+          const roll = () => anniversary(c.ann) || Math.random() < SHINY;
+          if (!mine[slug]) {
+            const shiny = roll();
+            mine[slug] = { t: new Date().toISOString(), at: label, r: today(), ...(shiny ? { s: 1 } : {}) };
+            got.push({ slug, name: c.n, at: label, shiny });
+          } else if (!mine[slug].s && mine[slug].r !== today()) {   // back at a spot for a card you have: one roll a day
+            mine[slug].r = today();
+            if (roll()) { mine[slug].s = 1; got.push({ slug, name: c.n, at: label, shiny: true, again: true }); }
+          }
           break;
         }
         if (!mine[slug] && (!nearest || km < nearest.km)) nearest = { name: c.n, at: label, km };
@@ -66,6 +83,7 @@
       const m = mine[li.dataset.card], has = !!m;
       li.classList.toggle('cc-have', has);
       li.classList.toggle('tc-have', has);
+      li.classList.toggle('tc-shiny', has && !!m.s);
       const g = li.querySelector('.cc-got');
       if (g) { g.hidden = !has; if (has) g.textContent = 'Collected' + (m.at ? ' at ' + m.at : ''); }
       const tg = li.querySelector('.tc-got');
@@ -83,7 +101,8 @@
     });
     const grid = document.getElementById('tc-all');
     document.querySelectorAll('[data-tally]').forEach((b) => {
-      b.textContent = grid ? grid.querySelectorAll(`.tc-have[data-r="${b.dataset.tally}"]`).length : 0;
+      b.textContent = !grid ? 0 : b.dataset.tally === 'shiny' ? grid.querySelectorAll('.tc-shiny').length
+        : grid.querySelectorAll(`.tc-have[data-r="${b.dataset.tally}"]`).length;
     });
     const tot = document.getElementById('cc-total');
     if (tot) {
@@ -94,7 +113,13 @@
     if (grid) filter();
   }
   function message(res) {
-    if (res.got.length) return `Got ${res.got.length === 1 ? 'a card' : res.got.length + ' cards'}: ${res.got.map((g) => g.name + ' (' + g.at + ')').join(', ')}.`;
+    if (res.got.length) {
+      const fresh = res.got.filter((g) => !g.again), up = res.got.filter((g) => g.again);
+      const parts = [];
+      if (fresh.length) parts.push(`Got ${fresh.length === 1 ? 'a card' : fresh.length + ' cards'}: ${fresh.map((g) => g.name + (g.shiny ? ' (shiny!)' : '') + ' at ' + g.at).join(', ')}.`);
+      if (up.length) parts.push(`Your ${up.map((g) => g.name).join(' and ')} card${up.length === 1 ? ' just turned' : 's just turned'} shiny.`);
+      return parts.join(' ');
+    }
     if (res.nearest) {
       const km = Math.round(res.nearest.km);
       const mi = Math.round(res.nearest.km / 1.609344);
@@ -117,13 +142,13 @@
   }
 
   // ---------- reveal: a new card flies in face down and turns over ----------
-  const RANK = { Common: ['common', '●'], Uncommon: ['uncommon', '◆'], Unique: ['unique', '★'] };
+  const RANK = { Common: ['common', '●'], Uncommon: ['uncommon', '◆'], Rare: ['rare', '★'] };
   function frontHTML(slug, d, info, when) {
     const [rk, mk] = RANK[d.r] || RANK.Common;
     const no = `#${String(d.no).padStart(3, '0')} / ${info.total}`;
     const n = d.spots.length;
     return `<div class="tc-face tc-front"><div class="tc-name"><h3><span class="tc-nm">${esc(d.n)}</span></h3><span class="tc-mark" aria-hidden="true">${mk}</span></div>
-<div class="tc-win">${d.art ? `<img src="${esc(d.art)}" alt="" width="240" height="240">` : ''}<span class="tc-holo" aria-hidden="true"></span></div>
+<div class="tc-win">${d.art ? `<img src="${esc(d.art)}" alt="" width="240" height="240">` : ''}${d.img ? `<img class="tc-paint" src="${esc(d.img)}" alt="" width="578" height="412">` : ''}<span class="tc-holo" aria-hidden="true"></span></div>
 <div class="tc-strip"><span class="tc-kind">${esc(d.k)}</span><span class="tc-no">${no}</span></div>
 <p class="tc-sum">${esc(d.s)}</p><p class="tc-foot"><span class="tc-r">${esc(d.r)}</span><span class="tc-got">${when ? fmtDate(when) : `${n} place${n === 1 ? "" : "s"}`}</span></p>
 <span class="tc-fx" aria-hidden="true"></span></div>`;
@@ -171,17 +196,17 @@
       const more = i < got.length - 1;
       ov.className = 'tc-rv';
       ov.innerHTML = `<div class="tc-rv-stage"><span class="tc-burst" aria-hidden="true"></span>
-<div class="tc tc-rvcard tc-have tc-${rk} cat-${esc(d.c)}${hunt.has(g.slug) ? ' tc-hunt' : ''}${still ? '' : ' is-flip'}"><div class="tc-card"><div class="tc-tilt"><div class="tc-in">
+<div class="tc tc-rvcard tc-have tc-${rk}${g.shiny ? ' tc-shiny' : ''} cat-${esc(d.c)}${hunt.has(g.slug) ? ' tc-hunt' : ''}${still ? '' : ' is-flip'}"><div class="tc-card"><div class="tc-tilt"><div class="tc-in">
 ${frontHTML(g.slug, d, info, (collected()[g.slug] || {}).t || new Date().toISOString())}<div class="tc-face tc-rev" aria-hidden="true"></div>
 </div></div></div></div></div>
-<p class="tc-rv-t" id="tc-rv-t">${got.length > 1 ? `New card ${i + 1} of ${got.length}` : 'New card!'}</p>
-<p class="tc-rv-s">${esc(d.n)}, ${esc(d.r)}${g.at ? `. Collected at ${esc(g.at)}` : ''}.</p>
+<p class="tc-rv-t" id="tc-rv-t">${g.again ? 'It turned shiny!' : `${g.shiny ? 'Shiny! ' : ''}${got.length > 1 ? `New card ${i + 1} of ${got.length}` : 'New card!'}`}</p>
+<p class="tc-rv-s">${esc(d.n)}, ${esc(d.r)}${g.shiny ? ', shiny' : ''}${g.at ? `. Collected at ${esc(g.at)}` : ''}.</p>
 <p class="tc-rv-b">${more ? '<button type="button" class="btn" data-rv="next">Next card</button>' : ''}<a class="btn btn-ghost" href="${esc(d.u)}">Read the file</a><button type="button" class="btn${more ? ' btn-ghost' : ''}" data-rv="close">${more ? 'Skip' : 'Nice'}</button></p>`;
       const card = ov.querySelector('.tc-rvcard');
       const done = () => { ov.classList.add('is-shown'); (ov.querySelector('[data-rv="next"]') || ov.querySelector('[data-rv="close"]')).focus(); };
       if (still) { done(); return; }
       timers.push(setTimeout(() => card.classList.remove('is-flip'), 950));
-      timers.push(setTimeout(() => { if (rk === 'unique') { ov.classList.add('is-burst'); card.classList.add('is-live'); } done(); }, 1750));
+      timers.push(setTimeout(() => { if (g.shiny) { ov.classList.add('is-burst'); card.classList.add('is-live'); } done(); }, 1750));
       ov.querySelector('[data-rv="close"]').focus({ preventScroll: true });
     };
     ov.addEventListener('click', (e) => {
@@ -205,7 +230,7 @@ ${frontHTML(g.slug, d, info, (collected()[g.slug] || {}).t || new Date().toISOSt
     filter = () => {
       let n = 0;
       grid.querySelectorAll('.tc').forEach((li) => {
-        const ok = mode === 'all' || (mode === 'have' && li.classList.contains('tc-have')) || (mode === 'unique' && li.dataset.r === 'unique') || (mode === 'hunt' && li.classList.contains('tc-hunt'));
+        const ok = mode === 'all' || (mode === 'have' && li.classList.contains('tc-have')) || (mode === 'shiny' && li.classList.contains('tc-shiny')) || (mode === 'hunt' && li.classList.contains('tc-hunt'));
         li.hidden = !ok;
         if (ok) n++;
       });
@@ -266,7 +291,7 @@ ${frontHTML(g.slug, d, info, (collected()[g.slug] || {}).t || new Date().toISOSt
     });
     window.addEventListener('scroll', () => { if (act) rect = act.querySelector('.tc-flip').getBoundingClientRect(); }, { passive: true });
 
-    // Phones: the Unique card nearest the middle of the screen is the live one (shine band), and once you've
+    // Phones: the shiny card nearest the middle of the screen is the live one (shine band), and once you've
     // tapped (Android) or allowed motion (iOS) it follows the phone's tilt. Cards off screen never animate.
     const coarse = window.matchMedia && matchMedia('(hover: none)').matches;
     if (coarse && !reduced() && 'IntersectionObserver' in window) {
@@ -276,7 +301,7 @@ ${frontHTML(g.slug, d, info, (collected()[g.slug] || {}).t || new Date().toISOSt
         let best = null, bd = Infinity;
         const mid = innerHeight / 2;
         vis.forEach((li) => {
-          if (li.hidden || li.classList.contains('is-flip')) return;
+          if (li.hidden || li.classList.contains('is-flip') || !li.classList.contains('tc-shiny')) return;
           const r = li.getBoundingClientRect(), d = Math.abs(r.top + r.height / 2 - mid);
           if (d < bd) { bd = d; best = li; }
         });
@@ -290,7 +315,7 @@ ${frontHTML(g.slug, d, info, (collected()[g.slug] || {}).t || new Date().toISOSt
         ents.forEach((en) => (en.isIntersecting ? vis.add(en.target) : vis.delete(en.target)));
         pick();
       }, { threshold: [0, 0.6] });
-      document.querySelectorAll('.tc-grid .tc-unique').forEach((li) => io.observe(li));
+      document.querySelectorAll('.tc-grid .tc').forEach((li) => io.observe(li));
       let st = 0;
       window.addEventListener('scroll', () => { if (!st) st = requestAnimationFrame(() => { st = 0; pick(); }); }, { passive: true });
       const onTilt = (e) => {

@@ -8,11 +8,13 @@ OpenStreetMap data, straight-line fallback) and static/cards.js keeps the collec
 
 The sample trips' routes are cached in data/road_trips.json by tools/road_trip_routes.py, and their stops are worked
 out here at build time so each trip page is complete HTML. Trips with fewer than 8 stops are noindexed."""
-import importlib.util, json, math, os, sys
+import importlib.util, json, math, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import _podplay  # "Listen along" podcast player (static/podplayer.js)
 
+FIRST_DAY = re.compile(r'(January|February|March|April|May|June|July|August|September|October|November|December) (\d{1,2}),')
+MONTHS = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 CORRIDOR_KM = 40
 CHECKIN_KM = 25
 # Same list as LIVING_TRADITIONS in site/build.py and the Worker: info only, never collectible
@@ -96,7 +98,10 @@ def build(ctx):
         c = ctx.by_slug[slug]
         n = len(sp)
         cards[slug] = {'n': c['name'], 'c': c['cat'], 'art': U(f"/static/{c['art']}.svg") if c.get('art') else '',
-                       'r': 'Unique' if n == 1 else 'Uncommon' if n <= 3 else 'Common', 'spots': sp}
+                       'r': 'Rare' if n == 1 else 'Uncommon' if n <= 3 else 'Common', 'spots': sp}
+        m = FIRST_DAY.match(c.get('first') or '')
+        if m:   # 'November 15, 1966' -> '11-15': a check-in that week always comes out shiny
+            cards[slug]['ann'] = f"{MONTHS.index(m.group(1)):02d}-{int(m.group(2)):02d}"
     hunts = json.load(open(os.path.join(ctx.ROOT, 'data', 'hunts.json')))
     for h in hunts:
         h['creatures'] = [s for s in h['creatures'] if s in cards]

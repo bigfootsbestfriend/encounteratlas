@@ -1,6 +1,12 @@
 [
  {
   "date": "2026-10-24",
+  "title": "Shiny cards and proper card frames",
+  "path": "/cards/",
+  "note": "Every collector card now has a real frame: pine and moths for Common, silver for Uncommon, copper for Rare and a Halloween one for the hunt. And any card can come out shiny when you check in, about 1 in 15. Already have the card? Go back to the spot and try again (once a day). Check in during the week of a creature's famous first sighting and it's shiny for sure."
+ },
+ {
+  "date": "2026-10-24",
   "title": "Road trip podcast player",
   "path": "/road-trip/",
   "note": "Plan a trip or open one of the sample trips and there's now a Listen along list with podcast episodes about the creatures you'll pass, in the order you'll pass them. Hit Play all and it keeps going with your screen off, with big buttons and lock-screen controls. Episodes stream straight from each show, so the people who make them get the listen."

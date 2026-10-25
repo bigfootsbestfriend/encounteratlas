@@ -2,14 +2,14 @@
 
 Every card is a trading card (5:7) drawn in CSS (static/cards.css): the front has the creature on a dusk sky in its
 category colour, the back has the short field notes and where to check in. static/cards.js flips them, runs the
-shine on Unique cards and the reveal when a new card is collected. The back is rendered here too, so the page is
+shine on shiny cards (a lucky roll at check-in, see cards.js) and the reveal when a new card is collected. The back is rendered here too, so the page is
 complete HTML for search engines. cards.json carries the same back data for the reveal on other pages and the
 nearest-spot line.
 
 The leading underscore keeps build.py from loading this file as a section of its own."""
 import datetime, json, os, re
 
-RANK = {'Common': ('common', '●'), 'Uncommon': ('uncommon', '◆'), 'Unique': ('unique', '★')}
+RANK = {'Common': ('common', '●'), 'Uncommon': ('uncommon', '◆'), 'Rare': ('rare', '★')}
 LORE = re.compile(r'\b(tradition|legend|lore|belief|indigenous|sacred|tales|folklore|myth)', re.I)
 YEAR = re.compile(r'\b(\d{1,2}(?:st|nd|rd|th)(?=[ -]centur)|1\d{3}s?|20\d{2}s?)\b|\((\d{3})\)')
 FT = re.compile(r'(\d+(?:\.\d+)?)(?: to (\d+(?:\.\d+)?))? ?(?:ft|feet)\b')
@@ -74,6 +74,9 @@ def build_cards(ctx, cards, hunts, checkin_km):
                       'u': U('/creatures/' + slug + '/'), 's': cr.get('summary', ''), 'first': first_short(cr.get('first')),
                       'turf': cr.get('region', ''), 'size': metric(cr.get('size', '')),
                       'hab': cr.get('habitat', ''), 'signs': (cr.get('signs') or [])[:2], 'spots': spot_list(c['spots'])}
+        # painted card art (static/cards/art/<slug>.webp), shown once the card is collected; locked cards keep the silhouette
+        if os.path.exists(os.path.join(ctx.ROOT, 'site', 'static', 'cards', 'art', slug + '.webp')):
+            info[slug]['img'] = U(f'/static/cards/art/{slug}.webp')
     with open(os.path.join(ctx.OUT, 'data', 'cards.json'), 'w') as f:
         json.dump({'total': total, 'checkin_km': checkin_km, 'hunt': sorted(in_hunt), 'cards': info}, f, separators=(',', ':'), ensure_ascii=False)
 
@@ -92,7 +95,7 @@ def build_cards(ctx, cards, hunts, checkin_km):
 <div class="tc-card"><div class="tc-tilt"><div class="tc-in">
 <div class="tc-face tc-front">
 <div class="tc-name"><h3><span class="tc-nm">{E(d["n"])}</span></h3><span class="tc-mark" title="{d["r"]}" aria-hidden="true">{mark}</span></div>
-<div class="tc-win">{art}<span class="tc-holo" aria-hidden="true"></span></div>
+<div class="tc-win">{art}{f'<img class="tc-paint" src="{d["img"]}" alt="" width="578" height="412" loading="lazy" decoding="async">' if d.get("img") else ""}<span class="tc-holo" aria-hidden="true"></span></div>
 <div class="tc-strip"><span class="tc-kind">{E(d["k"])}</span><span class="tc-no">{no}</span></div>
 <p class="tc-sum">{E(d["s"])}</p>
 <p class="tc-foot"><span class="tc-r">{d["r"]}</span><span class="tc-got">{n} place{"s" if n != 1 else ""}</span></p>
@@ -122,11 +125,11 @@ def build_cards(ctx, cards, hunts, checkin_km):
                       f'<p class="cc-prog" data-of="{len(h["creatures"])}">0 of {len(h["creatures"])} collected</p>'
                       f'<ul class="tc-grid">{"".join(card(s, True) for s in h["creatures"])}</ul></section>')
 
-    tiers = [('common', 'Common'), ('uncommon', 'Uncommon'), ('unique', 'Unique')]
+    tiers = [('common', 'Common'), ('uncommon', 'Uncommon'), ('rare', 'Rare')]
     counts = {k: sum(1 for s in allc if RANK[cards[s]['r']][0] == k) for k, _ in tiers}
     tally = ''.join(f'<li class="tc-t-{k}"><span class="tc-tmark" aria-hidden="true">{RANK[lab][1]}</span> {lab} <b data-tally="{k}">0</b> of {counts[k]}</li>'
-                    for k, lab in tiers)
-    filters = [('all', 'All'), ('have', 'Collected'), ('unique', 'Unique')] + ([('hunt', 'Hunt')] if in_hunt else [])
+                    for k, lab in tiers) + '<li class="tc-t-shiny"><span class="tc-tmark" aria-hidden="true">✦</span> Shiny <b data-tally="shiny">0</b></li>'
+    filters = [('all', 'All'), ('have', 'Collected'), ('shiny', 'Shiny')] + ([('hunt', 'Hunt')] if in_hunt else [])
     fbtn = ''.join(f'<button type="button" data-f="{k}" aria-pressed="{"true" if k == "all" else "false"}">{lab}</button>' for k, lab in filters)
     hunt_title = live[0]['title'] if live else ''
     body = f'''
@@ -140,7 +143,7 @@ def build_cards(ctx, cards, hunts, checkin_km):
 <div class="band band-dark tc-band"><div class="wrap">
   {hunt_html}
   <h2>Every card</h2>
-  <p class="tc-note">Tap a card to flip it. Unique cards are the shiny ones because there's exactly one spot on the planet to get them. Uncommon cards have two or three spots and Common cards have four or more. Your collection stays on this device (no account), so don't clear your browser data if you care about it.</p>
+  <p class="tc-note">Tap a card to flip it. Rare cards have exactly one spot on the planet to get them, Uncommon cards have two or three and Common cards have four or more. Any card can come out shiny (gold frame, holo, the works). It's about a 1 in 15 chance when you check in, you can try again at the same spot once a day, and a check-in during the week of a creature's famous first sighting is always shiny. Your collection stays on this device (no account), so don't clear your browser data if you care about it.</p>
   <ul class="tc-tally" aria-label="Your collection by rarity">{tally}</ul>
   <div class="tc-filters" role="group" aria-label="Show cards">{fbtn}<button type="button" class="tc-tiltbtn" hidden aria-pressed="false">Tilt to shine</button></div>
   <p class="tc-shown" id="tc-shown" aria-live="polite"></p>
@@ -149,7 +152,7 @@ def build_cards(ctx, cards, hunts, checkin_km):
 </div></div>
 <script type="application/json" id="cc-config">{json.dumps({"data": U("/data/roadtrip.json"), "cards": U("/data/cards.json")})}</script><script src="{U('/static/cards.js')}" defer></script>'''
     ctx.write('/cards/', ctx.page('/cards/', 'Cryptid collector cards: collect them on location', body,
-              f'{total} cryptid and monster trading cards you can only collect by visiting real sighting spots and places, including {counts["unique"]} shiny Unique cards'
+              f'{total} cryptid and monster trading cards you can only collect by visiting real sighting spots and places, including {counts["rare"]} Rare cards and a shiny version of every one'
               f'{", plus the " + hunt_title + " set" if hunt_title else ""}.',
               head_extra=f'<link rel="stylesheet" href="{U("/static/roadtrip.css")}"><link rel="stylesheet" href="{U("/static/cards.css")}">'))
     return info
