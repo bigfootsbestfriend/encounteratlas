@@ -52,3 +52,5 @@
   .rt-stops::before { left: 4.55rem; }
   .rt-row { flex-wrap: wrap; }
 }
+
+.rt-here-msg { margin: .35rem 0 .6rem; min-height: 1.2em; color: var(--lantern, #F2B33D); }

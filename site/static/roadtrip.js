@@ -237,12 +237,29 @@
   unitBtn.addEventListener('click', () => setUnit(S.unit === 'km' ? 'mi' : 'km'));
   if (/^en-US$/i.test(navigator.language || '')) setUnit('mi');
   $('rt-here').addEventListener('click', () => {
-    if (!navigator.geolocation) { say('Location is not available on this device.'); return; }
-    say('Finding you...');
-    navigator.geolocation.getCurrentPosition((p) => {
-      here.from = [round2(p.coords.latitude), round2(p.coords.longitude), 'Your location'];
-      $('rt-from').value = 'Your location'; say('');
-    }, () => say("Couldn't get your location. Type a town instead."), { timeout: 15000 });
+    const msg = $('rt-here-msg'), inp = $('rt-from'), tell = (t) => { if (msg) msg.textContent = t; };
+    if (!navigator.geolocation) { tell("This browser can't share your location. Type your town instead."); inp.focus(); return; }
+    tell('Finding you...'); inp.value = ''; inp.placeholder = 'Finding you...';
+    navigator.geolocation.getCurrentPosition(async (p) => {
+      const lat = round2(p.coords.latitude), lon = round2(p.coords.longitude);
+            let label = 'Your location';
+      try {
+        // our list runs biggest first, so the first town within 25 km is the city you'd name (Edmonton, not a neighbourhood)
+        const list = await loadCities(), k = Math.cos(lat * Math.PI / 180);
+        const km = (c) => 111 * Math.hypot(c[2] - lat, (c[3] - lon) * k);
+        const best = list.find((c) => km(c) < 25);
+        if (best) label = best[0] + ', ' + best[1];
+      } catch (e) { /* list didn't load, keep the generic label */ }
+      here.from = [lat, lon, label];
+      inp.value = label; inp.placeholder = 'Town or city'; tell('Got it. Now pick where you\'re headed.');
+      $('rt-to').focus();
+    }, (err) => {
+      inp.placeholder = 'Town or city';
+      tell(err && err.code === 1
+        ? 'Location is blocked for this site. Allow it from the icon in the address bar (or your phone settings), or just type your town.'
+        : "Couldn't get your location just now. Type your town instead.");
+      inp.focus();
+    }, { enableHighAccuracy: false, timeout: 12000, maximumAge: 600000 });
   });
 
   async function plan(pts, label, cached) {

@@ -196,6 +196,7 @@ def build(ctx):
   <form id="rt-form" class="rt-form" autocomplete="off">
     <label for="rt-from">From</label>
     <div class="rt-row"><input id="rt-from" list="rt-cities" placeholder="Town or city" required><button type="button" class="btn btn-ghost btn-sm" id="rt-here">Use my location</button></div>
+    <p id="rt-here-msg" class="rt-here-msg small" aria-live="polite"></p>
     <label for="rt-to">To</label>
     <input id="rt-to" list="rt-cities" placeholder="Town or city" required>
     <datalist id="rt-cities"></datalist>
