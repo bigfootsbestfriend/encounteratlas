@@ -118,13 +118,14 @@
     if (!v) return null;
     const list = await loadCities();
     const [name, reg] = v.split(',').map((s) => s.trim());
-    const c = list.find((x) => fold(x[0]) === name && (!reg || fold(x[1]).startsWith(reg))) || list.find((x) => fold(x[0]) === name);
+    const c = list.find((x) => fold(x[0]) === name && (!reg || fold(x[1]).startsWith(reg))) || (!reg && list.find((x) => fold(x[0]) === name));
     if (c) return { lat: round2(c[2]), lon: round2(c[3]), src: 'town' };
     if (!navigator.onLine) return null;
     try {
-      const r = await fetch('https://geocoding-api.open-meteo.com/v1/search?' + new URLSearchParams({ name: text.split(',')[0].trim().slice(0, 80), count: 1, language: 'en' }));
-      const g = (await r.json()).results;
-      if (g && g[0]) return { lat: round2(g[0].latitude), lon: round2(g[0].longitude), src: 'search' };
+      const r = await fetch('https://geocoding-api.open-meteo.com/v1/search?' + new URLSearchParams({ name: text.split(',')[0].trim().slice(0, 80), count: reg ? 50 : 10, language: 'en' }));
+      const g = (await r.json()).results || [];
+      const m = g.find((x) => !reg || [x.admin1, x.country, x.country_code].some((a) => a && fold(a).startsWith(reg))) || (!reg && g[0]);
+      if (m) return { lat: round2(m.latitude), lon: round2(m.longitude), src: 'search' };
     } catch (e) { /* offline or blocked */ }
     return null;
   }
