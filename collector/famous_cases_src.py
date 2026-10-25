@@ -281,7 +281,7 @@ C = [
             'About twelve United employees, including pilots, managers and mechanics, saw the object. They said it was silent, dark grey, between 6 and 24 feet across, and hung below the cloud base for several minutes. Witnesses outside the airport said it shot straight up and left a clear blue hole in the clouds that soon closed.',
             "The object did not show on radar and air traffic controllers did not see it. The FAA did not investigate, calling it a weather phenomenon, possibly a hole-punch cloud. The story broke when the Chicago Tribune reported it two months later."],
       official=[{'agency': 'Federal Aviation Administration', 'note': 'Declined to investigate, attributing the sighting to weather.'}], sources=[src("2006 O'Hare International Airport UFO sighting", "2006_O%27Hare_International_Airport_UFO_sighting")]),
- dict(slug='alderney-2007', name='The Alderney giant', date='2007-04-23', place='Over the English Channel near Alderney, Channel Islands', cc='GB', lat=49.7, lon=-2.36667,
+ dict(slug='alderney-2007', name='The Alderney UFOs', date='2007-04-23', place='Over the English Channel near Alderney, Channel Islands', cc='GB', lat=49.7, lon=-2.36667,
       coord_source='Wikipedia: 2007 Alderney UFO sighting', creatures=['ufo-cigar'],
       beings='No beings. Two bright yellow, cigar-shaped objects with dark bands, apparently huge and standing still.',
       witnesses='Aurigny pilot Ray Bowyer, two of his passengers, and the pilot of a second aircraft.',
