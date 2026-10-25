@@ -324,6 +324,7 @@ function readFields(d) {
   r.display_name = line(d.display_name, 40);
   r.anonymous = d.anonymous === false || d.anonymous === 0 ? 0 : 1;
   if (!r.display_name) r.anonymous = 1;
+  r.podcast_ok = d.podcast_ok === true || d.podcast_ok === 1 ? 1 : 0;   // off unless the witness ticks it
   const vids = Array.isArray(d.videos) ? d.videos.map((v) => String(v || '').trim()).filter(Boolean) : [];
   if (vids.length > 5) bad.videos = 'Up to 5 video links';
   r.videos = [];
@@ -409,11 +410,11 @@ async function submit(req, env, ctx) {
   const pid = randomPid();
   const row = await env.DB.prepare(
     `INSERT INTO reports (pid, user_id, creature, other_what, seen_date, seen_time, date_approx, lat, lon, pub_lat, pub_lon,
-       loc_source, place, story, duration, sounds, smells, witnesses, display_name, anonymous, videos, ip_hash, links)
-     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18, ?19, ?20, ?21, ?22, ?23) RETURNING id`,
+       loc_source, place, story, duration, sounds, smells, witnesses, display_name, anonymous, videos, ip_hash, links, podcast_ok)
+     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18, ?19, ?20, ?21, ?22, ?23, ?24) RETURNING id`,
   ).bind(pid, uid, f.creature, f.other_what, f.seen_date, f.seen_time, f.date_approx, f.lat, f.lon, f.pub_lat, f.pub_lon,
     f.loc_source, f.place, f.story, f.duration, f.sounds, f.smells, f.witnesses, f.display_name, f.anonymous,
-    JSON.stringify(f.videos), iph, JSON.stringify(f.links)).first();
+    JSON.stringify(f.videos), iph, JSON.stringify(f.links), f.podcast_ok).first();
   if (f.sky) await env.DB.prepare('INSERT INTO report_sky (report_id, data) VALUES (?1, ?2)').bind(row.id, f.sky).run();
   ctx.waitUntil(notifyMods(env, pid, new URL(req.url).origin).catch((e) => console.error(e)));
   let extra = {};
@@ -444,6 +445,7 @@ function publicReport(env, r, photos) {
     lat: r.pub_lat, lon: r.pub_lon, approx_km: 5, place: publicPlace(r.place),
     story: r.story, duration: r.duration, sounds: r.sounds, smells: r.smells, witnesses: r.witnesses,
     name: r.anonymous ? null : r.display_name || null,
+    podcast_ok: !!r.podcast_ok,
     photos: photos.map((p) => ({ id: p.id, url: photoUrl(env, p.id), w: p.w, h: p.h, item: `p:${p.id}` })),
     videos: vids.map((v, i) => ({ provider: v.p, id: v.id, url: v.url, item: `v:${r.pid}:${i}` })),
     links: JSON.parse(r.links || '[]'),
@@ -467,7 +469,7 @@ async function getReport(req, env, pid) {
     // Owner view: exact point and status, for editing. Photo URLs for unapproved reports go through /img
     // with the owner's session, so they aren't public.
     Object.assign(out, { owner: true, status: r.status, exact: { lat: r.lat, lon: r.lon }, loc_source: r.loc_source,
-      display_name: r.display_name, anonymous: !!r.anonymous, mod_note: r.mod_note });
+      display_name: r.display_name, anonymous: !!r.anonymous, podcast_ok: !!r.podcast_ok, mod_note: r.mod_note });
     if (r.status !== 'approved') {
       for (const p of out.photos) p.url = `/img/${p.id}.jpg?k=${encodeURIComponent(await sign(env, `i|${p.id}|${now()}`))}`;
     }
@@ -536,10 +538,10 @@ async function editReport(req, env, pid) {
   await env.DB.prepare(
     `UPDATE reports SET creature=?2, other_what=?3, seen_date=?4, seen_time=?5, date_approx=?6, lat=?7, lon=?8, pub_lat=?9,
        pub_lon=?10, loc_source=?11, place=?12, story=?13, duration=?14, sounds=?15, smells=?16, witnesses=?17,
-       display_name=?18, anonymous=?19, videos=?20, links=?21, status='pending', updated=unixepoch() WHERE id=?1`,
+       display_name=?18, anonymous=?19, videos=?20, links=?21, podcast_ok=?22, status='pending', updated=unixepoch() WHERE id=?1`,
   ).bind(r.id, f.creature, f.other_what, f.seen_date, f.seen_time, f.date_approx, f.lat, f.lon, f.pub_lat, f.pub_lon,
     f.loc_source, f.place, f.story, f.duration, f.sounds, f.smells, f.witnesses, f.display_name, f.anonymous,
-    JSON.stringify(f.videos), JSON.stringify(f.links)).run();
+    JSON.stringify(f.videos), JSON.stringify(f.links), f.podcast_ok).run();
   for (const id of remove) {
     const ph = await env.DB.prepare('UPDATE photos SET removed = 1 WHERE id = ?1 AND report_id = ?2 RETURNING id').bind(id, r.id).first();
     if (ph && env.PHOTOS) await env.PHOTOS.delete(`p/${id}.jpg`);

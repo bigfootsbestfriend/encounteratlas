@@ -60,7 +60,7 @@ const EXACT = { lat: 45.42153, lon: -75.69719 };
 const baseReport = {
   creature: 'bigfoot', seen_date: '2026-09-30', seen_time: '21:40', lat: EXACT.lat, lon: EXACT.lon, loc_source: 'gps',
   place: 'Near Wakefield, Quebec', story: 'Walking the dog on the trail at dusk, a tall dark shape crossed about 40 m ahead and stepped over a fallen log.',
-  duration: 'About 10 seconds', sounds: 'Two wood knocks', smells: 'Wet dog', witnesses: 2, display_name: 'Trail Walker', anonymous: true,
+  duration: 'About 10 seconds', sounds: 'Two wood knocks', smells: 'Wet dog', witnesses: 2, display_name: 'Trail Walker', anonymous: true, podcast_ok: true,
   videos: ['https://youtu.be/dQw4w9WgXcQ', 'https://www.tiktok.com/@someone/video/7234567890123456789', 'https://vimeo.com/76979871',
     'https://youtu.be/aqz-KE-bpKQ', 'https://vimeo.com/22439234'],
   turnstile: 'XXXX.DUMMY.TOKEN',
@@ -156,6 +156,7 @@ pub = await call('GET', `/api/reports/${PID}`);
 const R = pub.data.report;
 ok(pub.status === 200 && !R.exact && R.name === null, 'approved report public, no exact point, anonymous name hidden');
 ok(!JSON.stringify(pub.data).includes('example.test'), 'no email in public JSON');
+ok(R.podcast_ok === true, 'podcast OK tickbox saved and public');
 const dKm = Math.hypot((R.lat - EXACT.lat) * 111, (R.lon - EXACT.lon) * 111 * Math.cos(EXACT.lat * Math.PI / 180));
 ok(R.lat !== EXACT.lat && dKm < 4 && Math.abs(R.lat / 0.045 - Math.round(R.lat / 0.045)) < 1e-6, `public point snapped to ~5 km grid (${dKm.toFixed(2)} km off)`);
 ok(R.videos.length === 5 && R.videos[1].url === 'https://www.tiktok.com/@someone/video/7234567890123456789', 'video links normalised');

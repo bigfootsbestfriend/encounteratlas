@@ -33,7 +33,8 @@ CREATE TABLE IF NOT EXISTS reports (
   display_name TEXT NOT NULL DEFAULT '',
   anonymous INTEGER NOT NULL DEFAULT 1,
   videos TEXT NOT NULL DEFAULT '[]',        -- JSON [{p: youtube|tiktok|vimeo, id, url}]
-  links TEXT NOT NULL DEFAULT '[]',         -- JSON [{url, host}]: photo LINKS (we never take uploads)
+  links TEXT NOT NULL DEFAULT '[]',
+  podcast_ok INTEGER NOT NULL DEFAULT 0,      -- witness ticked "OK for podcasts to read this on air" (2026-10-25; added to live D1 by ALTER TABLE)         -- JSON [{url, host}]: photo LINKS (we never take uploads)
   ip_hash TEXT NOT NULL DEFAULT '',
   mod_note TEXT NOT NULL DEFAULT '',
   created INTEGER NOT NULL DEFAULT (unixepoch()),

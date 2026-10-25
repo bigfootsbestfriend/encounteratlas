@@ -347,6 +347,7 @@ ${it.pid ? btn('reject', it.pid, 'Unpublish report', view, '<input name="note" p
 <dt>Where</dt><dd>${esc(r.place) || '<i>no place name</i>'} · exact <a href="${osm}" target="_blank" rel="noopener noreferrer">${r.lat.toFixed(5)}, ${r.lon.toFixed(5)}</a> (${esc(r.loc_source)}) · public ${r.pub_lat}, ${r.pub_lon}</dd>
 <dt>Duration</dt><dd>${esc(r.duration)}</dd><dt>Witnesses</dt><dd>${r.witnesses}</dd>
 <dt>Sounds</dt><dd>${esc(r.sounds)}</dd><dt>Smells</dt><dd>${esc(r.smells)}</dd>
+<dt>Podcasts</dt><dd>${r.podcast_ok ? 'OK to read on air' : 'Not for podcasts'}</dd>
 <dt>By</dt><dd>${r.anonymous ? 'Anonymous publicly' : esc(r.display_name)} · ${r.email ? esc(r.email) + ` (account since ${when(r.u_created).slice(0, 10)})` : 'no email'} · ip ${esc(r.ip_hash.slice(0, 8))}</dd>
 ${r.sky ? `<dt>Sky check</dt><dd>${r.sky.answer === 'no' ? `Lined up: ${esc(r.sky.candidates.join(', '))}. The witness said it wasn't that.` : 'Nothing bright lined up.'}</dd>` : ''}
 <dt>Sent</dt><dd>${when(r.created)}${r.updated > r.created + 5 ? `, edited ${when(r.updated)}` : ''}</dd></dl>
