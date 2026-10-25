@@ -59,6 +59,7 @@ def build(ctx):
         if not c or slug in skip:
             continue
         for i, st in enumerate(items):
+            continue  # Mike 2026-10-25: one-line case notes aren't campfire stories, so witness stories only
             if not st.get('summary'):
                 continue
             anchor = '#papers' if st.get('kind') == 'newspaper' else '#cases'
@@ -106,12 +107,8 @@ def build(ctx):
 </div></div>
 <section class="band band-mist cf-list-band" aria-labelledby="cf-all"><div class="wrap narrow">
   <h2 id="cf-all">Every story in the mix</h2>
-  <h3>Witness stories ({len(long_ones)})</h3>
-  <p class="small">The long ones. Most take two to four minutes to read out loud.</p>
+  <p class="small">{len(long_ones)} witness stories. Most take two to four minutes to read out loud.</p>
   <ul class="cf-list">{"".join(li(x) for x in long_ones)}</ul>
-  <h3>Short ones from the creature pages ({len(short_ones)})</h3>
-  <p class="small">A minute or less, for when the fire's dying and you need one more.</p>
-  <ul class="cf-list">{"".join(li(x) for x in short_ones)}</ul>
   <p class="small">Got one of your own? <a href="{u('/report/')}">Report an encounter</a> and it might end up in here.</p>
 </div></section>
 <script type="application/json" id="cf-config">{cfg}</script>'''
