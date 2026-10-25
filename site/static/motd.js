@@ -49,6 +49,10 @@
       return span;
     }
     span.setAttribute('aria-hidden', 'true');
+    if (a && a.svg) {  // built by motd.py scene(), from our own /data/motd.json
+      span.innerHTML = a.svg.split('{ID}').join('motd-' + idp).split('{BASE}').join(BASE);
+      return span;
+    }
     if (a && a.art && /^art\/[a-z0-9-]+$/.test(a.art)) {
       const [c1, c2] = SKY[a.cat] || SKY.other;
       const wet = a.cat === 'aquatic', id = 'motd-' + idp;

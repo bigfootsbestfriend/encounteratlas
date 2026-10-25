@@ -64,6 +64,7 @@ def load(ctx, fn):
 def gather(ctx):
     """Every eligible case as a small dict (the same shape goes into /data/motd.json for the browser)."""
     photos = load(ctx, 'mystery_photos.json') or {}
+    looks = load(ctx, 'motd_art.json') or {}
     out = {}
     for kind, fn in (('my', 'mysteries.json'), ('ce', 'close_encounters.json'), ('uf', 'famous_cases.json')):
         for x in load(ctx, fn):
@@ -79,6 +80,13 @@ def gather(ctx):
                 if crs:
                     c = ctx.by_slug[crs[0]]
                     art = {'art': c['art'], 'cat': c['cat']}
+                look = {k: v for k, v in looks.get(x['slug'], {}).items() if k != 'why'}
+                if look:
+                    if 'art' in look:
+                        look['art'] = 'art/' + look['art']
+                    art = {'cat': 'ufo', **(art or {}), **look}
+                if art and not art.get('img'):  # motd.js drops this in as is ({ID} -> its own id, {BASE} -> site base)
+                    art['svg'] = scene(lambda p: '{BASE}' + p, art, '{ID}')
             nd = lambda t: (t or '').replace('\u2013', '-').replace('\u2014', ', ')  # no en/em dashes in this page's copy
             out[x['slug']] = {'k': kind, 'n': nd(x['name']), 'd': dateline(x['date']), 'p': nd(x['place']), 's': nd(x['summary']),
                               'st': x['status'], 'sn': nd(x.get('status_note')), 'u': KINDS[kind][1] + x['slug'] + '/', 'a': art}
@@ -129,24 +137,73 @@ def pick(eras, day):
     return era['order'][(day - era['from']) % len(era['order'])]
 
 
+SKIES = {'day': ('#8FBFDC', '#DCE9EE'), 'dawn': ('#5A3A5C', '#E58A4E')}
+LIGHT_SPOTS = {  # where lights go, in the 200x200 frame (sky above the ridge line)
+    'one': [(100, 72)],
+    'row': [(40 + 30 * i, 92 + 4 * i) for i in range(5)],
+    'low': [(52, 140), (96, 128), (138, 136), (168, 126)],
+    'scatter': [(58, 52), (104, 40), (150, 94), (84, 86), (40, 104), (112, 70), (174, 112), (72, 30), (100, 112), (30, 70), (126, 100)],
+}
+
+
+def scene(u, a, sid):
+    """The poster picture as one <svg>: sky, moon or sun, ridge, ground, then the silhouette (or lights).
+    a comes from gather(): art + cat, plus the optional data/motd_art.json fields that make it match the case:
+    sky (day/dawn/night/sea), tint (+ glow), n copies of the silhouette, or lights {n, pattern, color, r}."""
+    sky = a.get('sky')
+    wet = a['cat'] == 'aquatic' or sky == 'sea'
+    sa, sb = SKIES.get(sky) or POSTER_SKY.get('ufo' if sky in ('night', 'sea') else a['cat'], POSTER_SKY['other'])
+    orb = ('<circle cx="150" cy="46" r="20" fill="#FFF6D6"/>' if sky == 'day' else
+           '<circle cx="100" cy="150" r="30" fill="#F6C66A" opacity=".9"/>' if sky == 'dawn' else
+           '' if a.get('lights') else '<circle cx="150" cy="52" r="24" fill="#F3E3B8" opacity=".9"/>')  # no moon among lights
+    ground = ('<rect y="160" width="200" height="40" fill="#2B4A55"/>' if wet else
+              '<path d="M0 182L14 146 28 182 40 138 54 182 146 182 160 132 174 182 188 142 200 182V200H0Z" fill="#1E3A2F"/>')
+    defs, fx = '', ''
+    if a.get('tint') or a.get('lights'):
+        glow = '<feGaussianBlur in="f" stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="f"/></feMerge>' if a.get('glow') or a.get('lights') else '<feMerge><feMergeNode in="f"/></feMerge>'
+        col = a.get('tint') or a['lights'].get('color', '#FFFFFF')
+        defs = (f'<filter id="g{sid}" x="-50%" y="-50%" width="200%" height="200%"><feFlood flood-color="{col}"/>'
+                f'<feComposite in2="SourceAlpha" operator="in" result="f"/>{glow}</filter>')
+        fx = f' filter="url(#g{sid})"'
+    if a.get('lights'):
+        L = a['lights']
+        n = L.get('n', 1)
+        if L.get('pattern') == 'v':  # a V pointing down, as wide as the frame whatever the count
+            k = (n - 1) // 2 or 1
+            spots = [(100, 100)] + [(100 + s * 70 * i / k, 100 - 60 * i / k) for i in range(1, k + 1) for s in (-1, 1)]
+        else:
+            spots = LIGHT_SPOTS[L.get('pattern', 'scatter')][:n]
+        r = L.get('r', 4)
+        thing = f'<g{fx}>' + ''.join(f'<circle cx="{x}" cy="{y}" r="{r}" fill="#fff"/>' for x, y in spots)
+        if L.get('rays'):  # the Petrozavodsk "jellyfish": a glow raining thin rays
+            x, y = spots[0]
+            thing += ''.join(f'<path d="M{x + dx * .5} {y + r * .6}L{x + dx} {y + 70}" stroke="#fff" stroke-width="1.6"/>' for dx in range(-30, 31, 10))
+        thing += '</g>'
+    else:
+        href = u('/static/' + a['art'] + '.svg')
+        n = a.get('n', 1)
+        if n == 1:
+            boxes = [(22, 34 if wet else 26, 160)]
+        elif n == 2:
+            boxes = [(14, 26, 100), (92, 70, 92)]
+        else:  # a chain across the sky, like Kenneth Arnold's nine
+            boxes = [(6 + i * (148 / (n - 1)), 24 + i * (50 / (n - 1)), 42) for i in range(n)]
+        thing = f'<g{fx}>' + ''.join(f'<image href="{href}" x="{x:g}" y="{y:g}" width="{w}" height="{w}"/>' for x, y, w in boxes) + '</g>'
+    return (f'<svg viewBox="0 0 200 200"><defs><linearGradient id="{sid}" x1="0" y1="0" x2="0" y2="1">'
+            f'<stop offset="0" stop-color="{sa}"/><stop offset="1" stop-color="{sb}"/></linearGradient>'
+            f'<clipPath id="c{sid}"><rect x="6" y="6" width="188" height="188" rx="10"/></clipPath>{defs}</defs>'
+            f'<g clip-path="url(#c{sid})"><rect width="200" height="200" fill="url(#{sid})"/>{orb}'
+            f'<path d="M0 152L30 120 55 138 85 104 120 134 150 110 200 142V200H0Z" fill="#5E4A3A" opacity=".5"/>{ground}{thing}</g>'
+            f'<rect x="6" y="6" width="188" height="188" rx="10" fill="none" stroke="#F3E3B8" stroke-width="4"/></svg>')
+
+
 def art_html(ctx, a, cls, idp):
-    """Poster frame with the creature silhouette (same as the creature pages), the mystery's photo, or a plain mark."""
+    """Poster frame with the case's picture (see scene), the mystery's photo, or a plain mark."""
     u = ctx.url
     if a and a.get('img'):
         return f'<span class="{cls} motd-photo"><img src="{u(a["img"])}" alt="" width="320" height="320" loading="lazy"></span>'
-    if a and a.get('art'):
-        sa, sb = POSTER_SKY.get(a['cat'], POSTER_SKY['other'])
-        sid = 'motd-' + idp
-        wet = a['cat'] == 'aquatic'
-        ground = ('<rect y="160" width="200" height="40" fill="#2B4A55"/>' if wet else
-                  '<path d="M0 182L14 146 28 182 40 138 54 182 146 182 160 132 174 182 188 142 200 182V200H0Z" fill="#1E3A2F"/>')
-        return (f'<span class="{cls}" aria-hidden="true"><svg viewBox="0 0 200 200"><defs><linearGradient id="{sid}" x1="0" y1="0" x2="0" y2="1">'
-                f'<stop offset="0" stop-color="{sa}"/><stop offset="1" stop-color="{sb}"/></linearGradient>'
-                f'<clipPath id="c{sid}"><rect x="6" y="6" width="188" height="188" rx="10"/></clipPath></defs>'
-                f'<g clip-path="url(#c{sid})"><rect width="200" height="200" fill="url(#{sid})"/><circle cx="150" cy="52" r="24" fill="#F3E3B8" opacity=".9"/>'
-                f'<path d="M0 152L30 120 55 138 85 104 120 134 150 110 200 142V200H0Z" fill="#5E4A3A" opacity=".5"/>{ground}'
-                f'<image href="{u("/static/" + a["art"] + ".svg")}" x="22" y="{34 if wet else 26}" width="160" height="160"/></g>'
-                f'<rect x="6" y="6" width="188" height="188" rx="10" fill="none" stroke="#F3E3B8" stroke-width="4"/></svg></span>')
+    if a and (a.get('art') or a.get('lights')):
+        return f'<span class="{cls}" aria-hidden="true">{scene(u, a, "motd-" + idp)}</span>'
     return f'<span class="{cls} motd-blank" aria-hidden="true">?</span>'
 
 
