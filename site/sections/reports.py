@@ -196,6 +196,8 @@ def build(ctx):
   <fieldset class="step" id="step-you">
     <legend><span class="n">6</span>About you</legend>
     <label class="check"><input type="checkbox" name="anonymous" checked> Stay anonymous on the site</label>
+    <label class="check"><input type="checkbox" name="podcast_ok"> Podcasts can read my report on air <span class="opt">(optional)</span></label>
+    <p class="hint">Some paranormal podcasts read listener sightings. Tick this and your report (as it appears on our site, with your name only if you chose to show it) can be shared with shows on our <a href="{url('/podcasters/')}">podcast list</a>. Untick it any time by editing your report.</p>
     <div class="field" data-name-field hidden><label for="display_name">Show my name as</label><input id="display_name" name="display_name" maxlength="40" autocomplete="nickname"></div>
     <div class="field" data-email-field>
       <label for="email">Email <span class="opt">(optional, never shown)</span></label>
@@ -259,6 +261,7 @@ def build(ctx):
     ctx.write('/reports/', ctx.page('/reports/', 'Encounter reports: Real or hoax?', shell,
                                     'Recent Bigfoot, Dogman, UFO and cryptid encounter reports from witnesses, with community Real or Hoax votes.',
                                     body_class='reports', head_extra=_head(ctx)))
+    build_podcasters(ctx, shaped)
 
 
 # ---------------- static report pages ----------------
@@ -461,7 +464,8 @@ def report_page(ctx, R, S, others):
     facts = [('What', f'<a href="{u("/creatures/" + c["slug"] + "/")}">{e(c["name"])}</a>' if c else e(_short(R.get('other_what'), 120))),
              ('When', e(when)), ('Where', e(where_txt)), ('How long', e(R.get('duration') or '')),
              ('Witnesses', e(str(R.get('witnesses') or ''))), ('Reported by', e(R.get('name') or 'Anonymous')),
-             ('Added', e(_date(datetime.datetime.utcfromtimestamp(R['approved_at']).date().isoformat())) if R.get('approved_at') else '')]
+             ('Added', e(_date(datetime.datetime.utcfromtimestamp(R['approved_at']).date().isoformat())) if R.get('approved_at') else ''),
+             ('Podcasts', f'OK to read on air, with credit. <a href="{u("/podcasters/")}">How</a>' if R.get('podcast_ok') else '')]
     dl = ''.join(f'<div><dt>{k}</dt><dd>{v}</dd></div>' for k, v in facts if v)
     lat, lon = R.get('lat'), R.get('lon')
     at = f'{lat:.2f},{lon:.2f},{6 if S["region_only"] else 8}' if lat is not None else ''
@@ -558,3 +562,56 @@ def build_report_pages(ctx):
                    'u': ctx.url(S['path']), 'i': 'clipboard', 'c': S['c']['cat'] if S['c'] else 'other'} for R, S in shaped if not S['thin']]
         json.dump(items, open(sp, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     return shaped
+
+
+# ---------------- podcasters ----------------
+def build_podcasters(ctx, shaped):
+    """/podcasters/ and /podcasters/feed.xml (2026-10-25): approved reports whose witness ticked "Podcasts can read my
+    report on air" (podcast_ok, public in the API). The feed carries the full story so shows can pull it straight into
+    show prep; every item says how to credit. Thin reports are included (podcasts want the story, not Google)."""
+    e, u, site = ctx.esc, ctx.url, ctx.SITE_URL
+    ok = sorted([(R, S) for R, S in shaped if R.get('podcast_ok')], key=lambda x: x[0].get('approved_at') or 0, reverse=True)
+    credit = lambda S: f'Encounter Atlas reader report, encounteratlas.com{S["path"]}'
+    from email.utils import formatdate
+    items = ''
+    for R, S in ok[:50]:
+        when = _date(R.get('seen_date'), R.get('seen_time'), R.get('date_approx'))
+        body = (f'<p><b>{e(S["what"])}</b>. {e(when)}. {e(S["where"] or S["region"] or "")}</p>'
+                + ''.join(f'<p>{e(p.strip())}</p>' for p in re.split(r'\n+', S['story']) if p.strip())
+                + (f'<p>Sounds: {e(R["sounds"])}</p>' if R.get('sounds') else '') + (f'<p>Smells: {e(R["smells"])}</p>' if R.get('smells') else '')
+                + f'<p>Reported by {e(R.get("name") or "an anonymous witness")}. Credit on air and in show notes: "{e(credit(S))}"</p>')
+        items += (f'<item><title>{e(S["title"])}</title><link>{site}{S["path"]}</link><guid isPermaLink="true">{site}{S["path"]}</guid>'
+                  f'<pubDate>{formatdate(R.get("approved_at") or time.time(), usegmt=True)}</pubDate>'
+                  f'<description>{e(body)}</description></item>\n')
+    ctx.write('/podcasters/feed.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n<channel>\n'
+              f'<title>Encounter Atlas: reports cleared for podcasts</title><link>{site}/podcasters/</link>'
+              '<description>Reader encounter reports whose witnesses said podcasts can read them on air, with credit.</description>'
+              f'<language>en</language><atom:link href="{site}/podcasters/feed.xml" rel="self" type="application/rss+xml"/>\n'
+              + items + '</channel>\n</rss>\n')
+
+    cards = ''.join(card_html(ctx, R, S, f'pc{i}') for i, (R, S) in enumerate(ok[:24]))
+    import contact
+    body = f'''
+<section class="band band-dark"><div class="wrap"><p class="crumb"><a href="{u('/press/')}">Press and researchers</a> / Podcasters</p>
+<h1>Encounter stories for your podcast</h1>
+<p class="lede">When people send us a sighting they can tick "Podcasts can read my report on air". Those reports are here, free to read on your show.</p>
+<div class="map-actions"><a class="btn" href="{u('/podcasters/feed.xml')}">RSS feed of cleared reports</a></div></div></section>
+<div class="band band-mist"><div class="wrap"><div class="prose">
+<h2>The deal</h2>
+<ul>
+<li><b>Free to read on air</b>, in full or in part, on any podcast, YouTube channel, stream or radio show.</li>
+<li><b>Credit it</b> out loud ("from a reader report on Encounter Atlas") and put the report's link in your show notes, for example <code style="overflow-wrap:anywhere">encounteratlas.com/reports/abc123/</code>.</li>
+<li><b>Keep the witness's words.</b> Trim for time, but don't add details or change what they say they saw. Use only the name shown on the report; anonymous means anonymous.</li>
+<li>Only reports marked <b>Podcasts: OK to read on air</b> are cleared. Anything else, ask us first.</li>
+</ul>
+<p>Want to talk to a witness, or have a story of your own to tell us? Send a note below. We pass messages on to witnesses only if they've agreed.</p>
+</div>
+<div class="list-bar"><h2>Cleared reports</h2></div>
+{f'<div class="rep-cards">{cards}</div>' if cards else '<p>The first cleared reports will show up here soon. Subscribe to the feed and they\'ll come to you.</p>'}
+<div class="prose"><h2>Get in touch</h2></div>
+<div class="narrow">{contact._form(ctx, 'podcast', compact=True)}</div>
+</div></div>'''
+    ctx.write('/podcasters/', ctx.page('/podcasters/', 'Encounter stories for podcasts', body,
+                                       'Bigfoot, UFO and cryptid encounter reports that witnesses cleared for podcasts. Free to read on air with credit, plus an RSS feed.',
+                                       head_extra=contact._head(ctx)
+                                       + f'<link rel="alternate" type="application/rss+xml" title="Reports cleared for podcasts" href="{site}/podcasters/feed.xml">'))

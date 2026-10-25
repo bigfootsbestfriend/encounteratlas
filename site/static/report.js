@@ -190,7 +190,7 @@
       place: f.place.value, story: f.story.value, duration: f.duration.value, witnesses: f.witnesses.value || 1,
       sounds: f.sounds.value, smells: f.smells.value, videos: [...vbox.querySelectorAll('input')].map((i) => i.value.trim()).filter(Boolean),
       links: [...lbox.querySelectorAll('input')].map((i) => i.value.trim()).filter(Boolean),
-      anonymous: f.anonymous.checked, display_name: f.display_name.value, email: f.email.value.trim(), website: f.website.value,
+      anonymous: f.anonymous.checked, podcast_ok: f.podcast_ok.checked, display_name: f.display_name.value, email: f.email.value.trim(), website: f.website.value,
     };
   }
   function fill(d) {
@@ -203,6 +203,7 @@
     }
     f.date_approx.checked = !!d.date_approx;
     f.anonymous.checked = d.anonymous !== false;
+    f.podcast_ok.checked = d.podcast_ok === true;
     $('[data-name-field]').hidden = f.anonymous.checked;
     if (d.lat !== '' && d.lat != null) setPoint(+d.lat, +d.lon, d.loc_source || 'map', true);
     vbox.replaceChildren();
@@ -428,7 +429,7 @@
     }
     const R = r.data.report;
     banner.textContent = 'Saving changes sends the report back to a moderator before it shows again.';
-    fill({ ...R, lat: R.exact.lat, lon: R.exact.lon, videos: R.videos.map((v) => v.url), links: (R.links || []).map((l) => l.url), anonymous: R.anonymous, display_name: R.display_name });
+    fill({ ...R, lat: R.exact.lat, lon: R.exact.lon, videos: R.videos.map((v) => v.url), links: (R.links || []).map((l) => l.url), anonymous: R.anonymous, podcast_ok: R.podcast_ok, display_name: R.display_name });
     tsSlot.hidden = true;
     submitBtn.textContent = 'Save changes';
     const wd = h('button', { type: 'button', class: 'linkish danger', text: 'Withdraw this report' });
