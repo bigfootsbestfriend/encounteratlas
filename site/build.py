@@ -28,6 +28,11 @@ def font_head():
 
 
 ARTICLES = []  # every page built with article=..., for the author page and sitemap <lastmod>
+# RSS feeds (2026-10-25): Google Discover's Follow button reads the feeds linked from each page's <head>; Telegram,
+# Discord and feed readers use them too. Every indexable page with a known date goes in FEED; section feeds by path prefix.
+FEED = []
+FEED_SECTIONS = [('/creatures/', 'Creatures'), ('/reports/', 'Reader reports'), ('/stories/', 'Witness stories'),
+                 ('/ufo/', 'UFOs and official files'), ('/encounters/', 'Close encounters'), ('/mysteries/', 'Mysteries')]
 AUTHOR = {'name': 'Mike Johnston', 'path': '/author/mike-johnston/', 'image': '/static/img/mike-johnston.png'}
 
 
@@ -362,7 +367,15 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
     full_title = title if title.startswith('Encounter Atlas') or len(title) > 50 else f'{title} | Encounter Atlas'
     nav = nav_html(path)
     # noindex=True for thin template pages (useful to visitors, not worth Google's index): kept out of the sitemap too.
-    robots = '<meta name="robots" content="noindex">' if not LAUNCHED else ('<meta name="robots" content="noindex,follow">' if noindex else '')
+    robots = '<meta name="robots" content="noindex">' if not LAUNCHED else ('<meta name="robots" content="noindex,follow">' if noindex else
+                                                                            '<meta name="robots" content="max-image-preview:large">')
+    m = re.search(r'"datePublished":\s*"(\d{4}-\d\d-\d\d)', head_extra + json.dumps(ld or []))
+    fdate = (article.get('updated') or article.get('published') or PUBLISHED) if article is not None else (m.group(1) if m else None)
+    if fdate and not noindex and canonical:
+        FEED.append({'path': path, 'title': title, 'desc': desc, 'image': og_image or '/static/og.png', 'date': fdate})
+    sec = next(((p, n) for p, n in FEED_SECTIONS if path.startswith(p)), None)
+    feeds = (f'<link rel="alternate" type="application/rss+xml" title="Encounter Atlas" href="{SITE_URL}/feed.xml">'
+             + (f'<link rel="alternate" type="application/rss+xml" title="Encounter Atlas: {sec[1]}" href="{SITE_URL}{sec[0]}feed.xml">' if sec else ''))
     beacon = ga_tag()
     canon = f'<link rel="canonical" href="{SITE_URL}{path}">' if canonical else ''
     head_extra = re.sub(r'<link rel="stylesheet" href="(https://cdnjs\.cloudflare\.com/ajax/libs/maplibre-gl/[^"]+\.css)">',
@@ -379,6 +392,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <link rel="icon" href="{url('/static/favicon.svg')}" type="image/svg+xml">
 <link rel="manifest" href="{url('/manifest.webmanifest')}">
 <link rel="apple-touch-icon" href="{url('/static/apple-touch-icon.png')}">
+{feeds}
 <meta property="og:type" content="{'article' if ld and any(o.get('@type') == 'Article' for o in ld) else 'website'}">
 <meta property="og:site_name" content="Encounter Atlas">
 <meta property="og:title" content="{esc(full_title)}">
@@ -411,7 +425,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
   <div class="foot-in">
     <p class="foot-brand"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</p>
     <p>Sightings, creatures and official files, mapped. Reports are what witnesses say they saw. We don't claim they're real, and we don't claim they're not.</p>
-    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/compare/')}">Comparisons</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/stories/')}">Witness stories</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/on-this-day/')}">On this day</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/gear/')}">Gear</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/newsletter/')}">Weekly email</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{url('/privacy/')}">Privacy policy</a></p>
+    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/compare/')}">Comparisons</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/stories/')}">Witness stories</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/on-this-day/')}">On this day</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/gear/')}">Gear</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/newsletter/')}">Weekly email</a><a href="{url('/feed.xml')}">RSS feed</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{url('/privacy/')}">Privacy policy</a></p>
     {social_row('social foot-social')}
     <p class="small">As an Amazon Associate we earn from qualifying purchases. <a href="{url('/privacy/')}#affiliate">About our affiliate links</a>.</p>
     <p class="small">Air Force case files: US National Archives, Record Group 341. Canadian sightings: the Canadian UFO Survey, Ufology Research. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>
@@ -1714,6 +1728,7 @@ def main():
                     raise
                 print(f'warning: section {fn} skipped: {e!r}', file=sys.stderr)
     author_page()
+    write_feeds()
     with open(os.path.join(OUT, 'manifest.webmanifest'), 'w') as f:
         # The app (installed PWA, later the Play Store TWA) opens on /near-me/. id stays fixed so installs survive start_url changes.
         json.dump({'id': BASE + '/near-me/', 'name': 'Encounter Atlas', 'short_name': 'Encounters', 'start_url': BASE + '/near-me/?source=pwa',
@@ -1764,6 +1779,44 @@ def main():
         f.write(''.join(f'User-agent: {b}\n' for b in training_bots) + 'Disallow: /\n\n'
                 f'User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n')
     print(f'built {len(pages)} pages, {n_points:,} map points', file=sys.stderr)
+
+
+def write_feeds():
+    """/feed.xml (everything, plus the What's new notes) and one RSS 2.0 feed per FEED_SECTIONS prefix, newest first."""
+    from email.utils import format_datetime
+    def rfc(d):
+        return format_datetime(datetime.datetime.fromisoformat(d[:10]).replace(hour=12, tzinfo=datetime.timezone.utc))
+    def item(x):
+        img = SITE_URL + x['image'] if x['image'].startswith('/') else x['image']
+        typ = 'image/png' if img.endswith('.png') else 'image/jpeg'
+        link = SITE_URL + x['path']
+        return (f'<item><title>{esc(x["title"])}</title><link>{esc(link)}</link><guid isPermaLink="{"false" if x.get("guid") else "true"}">'
+                f'{esc(x.get("guid") or link)}</guid><pubDate>{rfc(x["date"])}</pubDate><description>{esc(x["desc"])}</description>'
+                f'<enclosure url="{esc(img)}" length="0" type="{typ}"/><media:content url="{esc(img)}" medium="image" type="{typ}"/></item>\n')
+    def feed(path, title, desc, items):
+        items = sorted(items, key=lambda x: (x['date'], x['path']), reverse=True)[:50]
+        os.makedirs(os.path.dirname(os.path.join(OUT, path.strip('/'))), exist_ok=True)
+        with open(os.path.join(OUT, path.strip('/')), 'w', encoding='utf-8') as f:
+            f.write('<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" '
+                    'xmlns:media="http://search.yahoo.com/mrss/">\n<channel>\n'
+                    f'<title>{esc(title)}</title><link>{SITE_URL}{path.rsplit("feed.xml", 1)[0]}</link><description>{esc(desc)}</description>'
+                    f'<language>en</language><atom:link href="{SITE_URL}{path}" rel="self" type="application/rss+xml"/>'
+                    f'<image><url>{SITE_URL}/static/app-192.png</url><title>{esc(title)}</title><link>{SITE_URL}/</link></image>\n'
+                    + (f'<lastBuildDate>{rfc(items[0]["date"])}</lastBuildDate>\n' if items else '')
+                    + ''.join(item(x) for x in items) + '</channel>\n</rss>\n')
+    seen = {}
+    for x in FEED:
+        seen[x['path']] = x  # last build of a path wins
+    pages = list(seen.values())
+    news = []
+    for n in json.load(open(os.path.join(ROOT, 'data', 'whats_new.json'))):
+        hit = seen.get(n['path'], {})
+        news.append({'path': n['path'], 'title': 'New on Encounter Atlas: ' + n['title'], 'desc': n['note'], 'date': n['date'],
+                     'image': hit.get('image', '/static/og.png'), 'guid': f'{SITE_URL}/whats-new/{n["date"]}/{slugify(n["title"])}'})
+    feed('/feed.xml', 'Encounter Atlas', 'New sightings, creatures, witness stories and official UFO files from Encounter Atlas.', pages + news)
+    for prefix, name in FEED_SECTIONS:
+        feed(prefix + 'feed.xml', f'Encounter Atlas: {name}', f'The newest {name.lower()} on Encounter Atlas.',
+             [x for x in pages if x['path'].startswith(prefix) and x['path'] != prefix])
 
 
 APP_FINGERPRINTS = [
