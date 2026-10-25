@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-10-25",
+    "title": "Open data: download the UFO files",
+    "path": "/datasets/",
+    "note": "All 10,622 Project Blue Book case files, mapped and cleaned up, plus our list of 44 government UFO programmes and 51 official file releases, are now free to download as spreadsheets (CSV) or JSON. Use them for research, school projects or your own maps. Just credit Encounter Atlas."
+  },
+  {
+    "date": "2026-10-25",
     "title": "Follow us in your feed reader",
     "path": "/",
     "note": "Encounter Atlas now has RSS feeds: one for everything new, plus feeds for reader reports, creatures, witness stories, UFO files, close encounters and mysteries. Add encounteratlas.com/feed.xml to Feedly, Inoreader or any reader, or tap Follow in Google Discover."

@@ -57,6 +57,7 @@ def build(ctx):
 <li><a href="{U('/ufo/hearings/')}">UFO hearings since 1966</a>: quotes checked word for word against the official transcripts.</li>
 <li><a href="{U('/ufo/blue-book/')}">Project Blue Book files, mapped</a>: {len(ctx.bluebook):,} Air Force case files from the National Archives.</li>
 <li><a href="{U('/ufo/countries/')}">UFO files by country</a>: how each government has handled reports.</li>
+<li><a href="{U('/datasets/')}">Open data</a>: the Blue Book files, programmes and releases as free CSV and JSON downloads.</li>
 </ul>
 <h2>How we source things</h2>
 <ul>
