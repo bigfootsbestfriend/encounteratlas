@@ -56,5 +56,9 @@
  "Canada": {
   "creature": "bigfoot",
   "blurb": "Sasquatch, from the Ruby Creek incident in 1941 to the museum in Harrison Hot Springs, BC."
+ },
+ "Ohio": {
+  "creature": "grassman",
+  "blurb": "Ohio's own Bigfoot, named for the flattened grass nests it's said to build, from the 1978 Minerva Monster to Salt Fork State Park."
  }
 }
