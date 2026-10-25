@@ -3408,5 +3408,80 @@
   "source": "https://www.wkms.org/community-calendar/event/goblincon-ufo-and-paranormal-expo-13-08-2026-00-38-36",
   "note": "Kelly's own Little Green Men Days has not been held since 2023, as far as we can find. GoblinCon now marks the 1955 encounter.",
   "brief": true
+ },
+ {
+  "month": null,
+  "when": null,
+  "d2026": null,
+  "start": null,
+  "end": null,
+  "price": "Free to enter the park",
+  "note": "Whitey talks aren't on a fixed schedule. Check with the park before you go if you want one.",
+  "slug": "white-river-monster-refuge",
+  "name": "White River Monster Refuge (Jacksonport State Park)",
+  "type": "attraction",
+  "creatures": [
+   "white-river-monster"
+  ],
+  "city": "Newport",
+  "region": "Arkansas",
+  "country": "US",
+  "address": "111 Avenue Street, Newport, Arkansas",
+  "lat": 35.6394,
+  "lon": -91.3114,
+  "approx": false,
+  "summary": "In 1973 Arkansas lawmakers made this stretch of the White River a legal refuge for Whitey, and it's against the law to harm him inside it. The state's tourism listings name Jacksonport State Park as the refuge's home, and park interpreters have run Whitey talks here.",
+  "url": "https://www.arkansasstateparks.com/parks/jacksonport-state-park",
+  "source": "https://www.arkansas.com/newport/events/legend-white-river-monster"
+ },
+ {
+  "month": null,
+  "when": null,
+  "d2026": null,
+  "start": null,
+  "end": null,
+  "price": "Free",
+  "note": null,
+  "slug": "rougarou-historic-marker",
+  "name": "Rougarou Historic Marker",
+  "type": "attraction",
+  "creatures": [
+   "rougarou"
+  ],
+  "city": "Houma",
+  "region": "Louisiana",
+  "country": "US",
+  "address": "Valhi Boulevard, Houma, Louisiana",
+  "lat": 29.58175,
+  "lon": -90.72818,
+  "approx": false,
+  "summary": "A roadside marker put up in 2025, in English on one side and French on the other, calling the rougarou a werewolf-like creature of Cajun and French folklore believed to prowl the swamps of Terrebonne Parish.",
+  "url": null,
+  "source": "https://www.wgpfoundation.org/historic-markers/the-rougarou/"
+ },
+ {
+  "month": null,
+  "when": null,
+  "d2026": null,
+  "start": null,
+  "end": null,
+  "price": "Free",
+  "note": "Most of the swamp is private land. Look from the public roads and don't go wandering in.",
+  "slug": "scape-ore-swamp",
+  "name": "Scape Ore Swamp",
+  "type": "attraction",
+  "creatures": [
+   "lizard-man"
+  ],
+  "city": "Bishopville",
+  "region": "South Carolina",
+  "country": "US",
+  "address": null,
+  "lat": 34.197,
+  "lon": -80.327,
+  "approx": true,
+  "summary": "The swamp outside Bishopville where 17-year-old Christopher Davis said a seven-foot green creature attacked his car while he changed a flat tire one night in 1988. Most Lizard Man reports since have come from around here.",
+  "url": null,
+  "source": "https://www.southcarolinapublicradio.org/post/30-years-later-legend-lizard-man-lives-bishopville"
  }
 ]

@@ -1171,6 +1171,14 @@ def build_ufo(bluebook, BY_SLUG):
         ('us-district-of-columbia', 'washington'): 'In July 1952 radar operators at Washington National Airport and Andrews Air Force Base tracked unknown '
                                                     'targets over the capital on two weekends running, and jets were scrambled to chase them. '
                                                     'The "Washington flap" made front pages around the world.',
+        ('us-new-mexico', 'roswell'): 'None of these files are about the famous 1947 crash, which never got a Blue Book file at all. '
+                                      'The Air Force only answered Roswell in the 1990s, with reports blaming Project Mogul spy balloons '
+                                      '(and, for the "alien bodies", crash-test dummies from the 1950s). What you get here instead is '
+                                      'sixteen years of everyday sighting reports from a town that had a big bomber base, Walker Air Force Base, '
+                                      'right on its south edge until 1967.',
+        ('us-new-york', 'new-york-city'): 'A dozen files for a city of eight million sounds low, and it is. Blue Book only saw what people '
+                                          'bothered to report to the Air Force, and odds are most New Yorkers who saw something never did. Four of these are from 1966, '
+                                          'which was one of the busiest years Blue Book ever had, with reports pouring in from all over the country.',
     }
 
     def file_years(cases):
