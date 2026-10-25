@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-10-25",
+    "title": "Hit play on the home page",
+    "path": "/",
+    "note": "The home page and the app now open with a fresh podcast episode about one of our creatures, plus a strip of more you can flip through and play without leaving the page. The app's front screen got livelier too (tonight's moon, the mystery of the day, and how many collector cards you've found)."
+  },
+  {
+    "date": "2026-10-25",
     "title": "Podcasts right on the home screen",
     "path": "/podcasts/",
     "note": "There's a Podcasts button on the Near me page now, and the podcasts page starts with fresh episodes about Mothman, Bigfoot, the Nandi bear and more that you can play right there. In the app they keep playing with your screen off."

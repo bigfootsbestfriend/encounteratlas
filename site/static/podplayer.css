@@ -72,3 +72,83 @@ body.pp-on { padding-bottom: calc(11.5rem + env(safe-area-inset-bottom)); }
 .pod-play:hover { background: var(--lantern-2); }
 .pod-play.pp-cur { box-shadow: 0 0 0 3px var(--spruce); }
 .pod-links { align-items: center; }
+
+/* "Today's listen" (_podplay.todays_listen): home page + app home. A late-night radio: one featured episode on its
+   creature's painted card art, then the "dial", a sideways strip of stations with a tuning ruler along the top.
+   The station that's playing gets the amber needle (CSS :has on the .pp-cur class podplayer.js sets). */
+.pf-band { background: var(--spruce); padding: 0 0 clamp(1.4rem, 4vw, 2.4rem); }
+.pf { --night: #0E1D18; background: var(--night); color: var(--lichen); border: 1px solid var(--spruce-3); border-radius: 18px; overflow: hidden;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .35); }
+.pf-feat { display: grid; }
+.pf-art { position: relative; aspect-ratio: 2.25 / 1; background: linear-gradient(160deg, #2E3E5C, #141E2E); overflow: hidden; }
+.pf-art img, .pf-art .pf-noart { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }
+.pf-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14, 29, 24, 0) 35%, rgba(14, 29, 24, .92) 100%); pointer-events: none; }
+.pf-art h2 { position: absolute; z-index: 1; left: 1rem; bottom: .7rem; margin: 0; font: 700 clamp(1.45rem, 5.6vw, 2rem)/1.1 var(--display); color: #F3F1DA;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .7); }
+.pf-play { position: absolute; z-index: 1; right: .9rem; bottom: .8rem; min-height: 56px; padding: 0 1.3rem 0 1.05rem; border-radius: 999px;
+  background: var(--lantern); color: var(--spruce); font: 800 1.1rem var(--body); box-shadow: 0 6px 18px rgba(0, 0, 0, .45), 0 0 0 4px rgba(242, 179, 61, .22);
+  transition: transform .12s ease, box-shadow .2s ease; }
+.pf-play svg { width: 26px; height: 26px; }
+.pf-play:hover { background: var(--lantern-2); }
+.pf-play:active { transform: scale(.95); }
+.pf-play:focus-visible, .pf-st-play:focus-visible { outline: 3px solid var(--lantern-2); outline-offset: 3px; }
+.pf-play.pp-cur { box-shadow: 0 6px 18px rgba(0, 0, 0, .45), 0 0 0 6px rgba(242, 179, 61, .4); }
+.pf-info { padding: .85rem 1rem .2rem; min-width: 0; }
+.pf-title { margin: 0; font: 700 1.15rem/1.3 var(--display); color: #F3F1DA; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.pf-meta { display: flex; align-items: center; gap: .35rem; margin: .3rem 0 0; font-size: .9rem; color: var(--muted-d); }
+.pf-meta a { color: var(--lantern) !important; }
+.pf-about { margin: .25rem 0 0; font-size: .9rem; }
+.pf-about a { color: var(--lichen) !important; }
+/* little equalizer next to the show name while the featured episode plays */
+.pf-eq { display: none; align-items: flex-end; gap: 2px; height: 14px; }
+.pf-eq i { width: 3px; height: 100%; background: var(--lantern); border-radius: 1px; transform-origin: bottom; animation: pf-eq .9s ease-in-out infinite alternate; }
+.pf-eq i:nth-child(2) { animation-delay: -.3s; } .pf-eq i:nth-child(3) { animation-delay: -.6s; } .pf-eq i:nth-child(4) { animation-delay: -.15s; }
+@keyframes pf-eq { from { transform: scaleY(.25); } to { transform: scaleY(1); } }
+.pf-feat:has(.pf-play[aria-pressed="true"]) .pf-eq { display: inline-flex; }
+
+/* the dial */
+.pf-dial { list-style: none; margin: .7rem 0 0; display: flex; gap: .7rem; overflow-x: auto; scroll-snap-type: x proximity; overscroll-behavior-x: contain;
+  padding: 22px 1rem .9rem; scroll-padding: 0 1rem; scrollbar-width: none;
+  background-image: repeating-linear-gradient(90deg, rgba(201, 211, 164, .55) 0 1px, transparent 1px 48px),
+                    repeating-linear-gradient(90deg, rgba(201, 211, 164, .25) 0 1px, transparent 1px 8px),
+                    linear-gradient(rgba(201, 211, 164, .25), rgba(201, 211, 164, .25));
+  background-size: 100% 12px, 100% 6px, 100% 1px; background-position: 0 2px, 0 8px, 0 14px; background-repeat: repeat-x; background-attachment: local; }
+.pf-dial::-webkit-scrollbar { display: none; }
+.pf-st { position: relative; flex: 0 0 min(17rem, 78vw); scroll-snap-align: start; display: grid; grid-template-columns: 64px minmax(0, 1fr) 48px; gap: .65rem; align-items: center;
+  padding: .55rem; border-radius: 14px; background: var(--spruce); border: 1px solid var(--spruce-3); transition: border-color .2s ease; }
+.pf-st img, .pf-st .pf-noart { display: block; width: 64px; height: 64px; border-radius: 10px; object-fit: cover; background: var(--spruce-2); }
+.pf-st::before { content: ""; position: absolute; top: -22px; left: 32px; width: 3px; height: 26px; margin-left: -1.5px; border-radius: 2px; background: var(--lantern);
+  box-shadow: 0 0 10px 2px rgba(242, 179, 61, .55); opacity: 0; transform: scaleY(.3); transform-origin: top; transition: opacity .2s ease, transform .25s ease; }
+.pf-st:has(.pp-cur) { border-color: var(--lantern); }
+.pf-st:has(.pp-cur)::before { opacity: 1; transform: none; }
+.pf-st-t { display: grid; gap: .1rem; min-width: 0; }
+.pf-st-t a { font: 700 .78rem var(--body); color: var(--lantern) !important; text-decoration: none; justify-self: start; }
+.pf-st-t a:hover { text-decoration: underline; }
+.pf-st-t b { font: 600 .9rem/1.25 var(--body); color: #F3F1DA; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.pf-st-t small { font-size: .78rem; color: var(--muted-d); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pf-st-play { width: 48px; height: 48px; background: var(--spruce-3); }
+.pf-st-play:hover { background: #335A4B; }
+.pf-st-play svg { width: 22px; height: 22px; }
+.pf-st-play:active, .pf-all:active { transform: scale(.94); }
+
+.pf-foot { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1.1rem; padding: .2rem 1rem 1rem; }
+.pf-all { display: inline-flex; align-items: center; gap: .45rem; min-height: 48px; transition: transform .12s ease; }
+.pf-more { font-weight: 700; color: #F3F1DA !important; min-height: 44px; display: inline-flex; align-items: center; }
+.pf-note { flex: 1 0 100%; margin: 0; font-size: .82rem; color: var(--muted-d); }
+
+@media (min-width: 760px) {
+  .pf-feat { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+  .pf-art { aspect-ratio: 2 / 1; }
+  .pf-art::after { background: linear-gradient(180deg, rgba(14, 29, 24, 0) 45%, rgba(14, 29, 24, .9) 100%), linear-gradient(90deg, rgba(14, 29, 24, 0) 75%, var(--night) 100%); }
+  .pf-info { padding: 1.2rem 1.6rem; }
+  .pf-title { font-size: 1.5rem; -webkit-line-clamp: 3; }
+  .pf-meta, .pf-about { font-size: 1rem; }
+  .pf-dial { padding-left: 1.2rem; padding-right: 1.2rem; }
+  .pf-foot { padding: .2rem 1.2rem 1.1rem; }
+  .pf-note { flex: 1 1 auto; text-align: right; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-eq i { animation: none; transform: scaleY(.7); }
+  .pf-play, .pf-st, .pf-st::before, .pf-all { transition: none; }
+  .pf-play:active, .pf-st-play:active, .pf-all:active { transform: none; }
+}

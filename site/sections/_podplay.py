@@ -1,10 +1,11 @@
 """Podcast player helpers shared by podcasts.py (writes /data/podcast-play.json, Play buttons on creature episode
-pages) and z_road_trip.py ("Listen along" on trip pages). Not a section itself (leading underscore).
+pages), z_road_trip.py ("Listen along" on trip pages), and todays_listen() for the home page (build.py) and the
+app home (z_near_me.py). Not a section itself (leading underscore).
 
 Audio is the show's own enclosure URL (data/podcasts_episodes.json "audio", filled by tools/podcast_audio.py) and is
 streamed straight from the show's host by static/podplayer.js, so creators keep their download counts.
 """
-import html, json, os
+import datetime, html, json, os
 
 PER_CREATURE = 5      # in /data/podcast-play.json
 PER_STOP = 3          # shown per creature in a "Listen along" list
@@ -105,3 +106,69 @@ def listen_along(ctx, hits):
       <p><button type="button" class="btn pp-all" data-pp-all>{PLAY_SVG} Play all {n} in route order</button></p>
       <ol class="pp-stops">{groups}</ol>
     </section>'''
+
+
+def art_thumb(ctx, slug):
+    """Painted card art for a creature, the small copy first (tools/card_thumbs.py); '' when it has none."""
+    for d in ('thumb', 'art'):
+        if os.path.exists(os.path.join(ctx.ROOT, 'site', 'static', 'cards', d, slug + '.webp')):
+            return ctx.url(f'/static/cards/{d}/{slug}.webp')
+    return ''
+
+
+def picks(ctx, n=9):
+    """Newest playable episode per creature, newest first, each episode title once: [(entry, slug), ...]."""
+    out, seen = [], set()
+    for slug, lst in playable(ctx).items():
+        e = max(lst, key=lambda x: x.get('d') or '')
+        if e['t'] not in seen:
+            seen.add(e['t'])
+            out.append((e, slug))
+    return sorted(out, key=lambda x: x[0].get('d') or '', reverse=True)[:n]
+
+
+def todays_listen(ctx, where='home'):
+    """"Today's listen": one featured episode with its creature's painted card art and a big play button, a sideways
+    strip of more fresh episodes (stations on a radio dial; the one playing gets the needle), Play all and a link to
+    /podcasts/. On the home page (build.py) and the app home (z_near_me.py); the page needs head(ctx).
+    The featured episode rotates daily through the newest few (the site rebuilds daily), so it changes even in a week
+    with no new episodes. Returns '' when nothing is playable."""
+    E, U = ctx.esc, ctx.url
+    lst = picks(ctx)
+    if not lst:
+        return ''
+    k = datetime.date.today().toordinal() % len(lst)
+    lst = lst[k:] + lst[:k]
+    (fe, fs), rest = lst[0], lst[1:]
+    mins = lambda e: f' · {e["m"]} min' if e.get('m') else ''
+    # shows put em and en dashes in their titles; this block is ours, so they read as commas here
+    T = lambda e: E(e['t'].replace(' \u2014 ', ', ').replace(' \u2013 ', ', ').replace('\u2014', ', ').replace('\u2013', '-'))
+
+    def img(slug, lazy):
+        a = art_thumb(ctx, slug)
+        if not a:
+            return '<span class="pf-noart"></span>'
+        load = ' loading="lazy"' if lazy else ''
+        return f'<img src="{a}" alt="" width="360" height="257"{load} decoding="async">'
+
+    stations = ''.join(
+        f'<li class="pf-st">{img(s, True)}<span class="pf-st-t"><a href="{U("/podcasts/creature/" + s + "/")}">{E(ctx.by_slug[s]["name"])}</a>'
+        f'<b>{T(e)}</b><small>{E(e["s"])}{mins(e)}</small></span>{play_button(e, "pp-btn pp-round pf-st-play", "")}</li>'
+        for e, s in rest)
+    hid = f'pf-h-{where}'
+    return f'''<section class="pf pf-{where}" data-pp-list aria-labelledby="{hid}">
+  <div class="pf-feat">
+    <div class="pf-art">{img(fs, False)}<h2 id="{hid}" data-pf-when>Today's listen</h2>{play_button(fe, "pp-btn pf-play", "Play")}</div>
+    <div class="pf-info">
+      <p class="pf-title">{T(fe)}</p>
+      <p class="pf-meta"><span class="pf-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><a href="{E(fe["u"])}" rel="noopener">{E(fe["s"])}</a>{mins(fe)}</p>
+      <p class="pf-about"><a href="{U("/podcasts/creature/" + fs + "/")}">More {E(ctx.by_slug[fs]["name"])} episodes</a></p>
+    </div>
+  </div>
+  <ol class="pf-dial" aria-label="More fresh episodes">{stations}</ol>
+  <div class="pf-foot">
+    <button type="button" class="btn pp-all pf-all" data-pp-all>{PLAY_SVG} Play all {len(lst)}</button>
+    <a class="pf-more" href="{U("/podcasts/")}">All the podcasts</a>
+    <p class="pf-note">Plays right here, streamed from each show's own feed so the show gets the listen.</p>
+  </div>
+</section>'''

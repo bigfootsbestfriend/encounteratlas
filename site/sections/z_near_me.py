@@ -80,6 +80,36 @@ def latest_reports(n=30):
         return []
 
 
+SYNODIC = 29.530588853
+NEW_MOON = datetime.datetime(2000, 1, 6, 18, 14, tzinfo=datetime.timezone.utc)  # a known new moon
+MOON_NAMES = [(.03, 'New moon'), (.22, 'Waxing crescent'), (.28, 'First quarter'), (.47, 'Waxing gibbous'), (.53, 'Full moon'),
+              (.72, 'Waning gibbous'), (.78, 'Last quarter'), (.97, 'Waning crescent'), (1.01, 'New moon')]
+
+
+def moon(when):
+    """(phase 0..1 with 0 = new, fraction lit, name). nearme.js has the same sums for the visitor's own clock."""
+    import math
+    p = ((when - NEW_MOON).total_seconds() / 86400 / SYNODIC) % 1
+    lit = (1 - math.cos(2 * math.pi * p)) / 2
+    return p, lit, next(n for lim, n in MOON_NAMES if p < lim)
+
+
+def moon_svg(p):
+    """The lit part of the moon as an SVG path on a radius-20 disc centred at 24,24 (mirrored in nearme.js moonPath)."""
+    import math
+    rx = abs(math.cos(2 * math.pi * p)) * 20
+    if p < .5:
+        outer, inner = 1, (0 if p < .25 else 1)
+    else:
+        outer, inner = 0, (0 if p < .75 else 1)
+    return f'M24 4A20 20 0 0 {outer} 24 44A{rx:.2f} 20 0 0 {inner} 24 4Z'
+
+
+def moon_note(lit):
+    return ('Dark sky, good for spotting lights' if lit < .35 else
+            'Bright moon, faint stuff hides' if lit > .85 else f'{round(lit * 100)}% lit')
+
+
 def nice_date(d):
     try:
         x = datetime.date.fromisoformat(d)
@@ -145,6 +175,45 @@ def build(ctx):
         hist_topics = {k: U('/history/' + v[0] + '/') for k, v in HTOPICS.items()}
     except Exception:
         hist_topics = {}
+    # Hub tiles; nearme.js fills the badges from what's already on the device (collected cards, a podcast to resume)
+    badge = lambda t: f'<span class="nm-badge" data-badge="{t}" hidden></span>' if t in ('cards', 'pod') else ''
+    hub = ''.join(f'<li style="--i:{i}"><a class="nm-app tone-{t}" href="{U(p)}"><span class="nm-app-ico">{CAMPFIRE if ic == "campfire" else HEADPHONES if ic == "headphones" else ctx.icon(ic)}'
+                  f'{badge(t)}</span>'
+                  f'<span class="nm-app-name">{E(n)}</span></a></li>' for i, (p, n, ic, t) in enumerate(HUB))
+    n_cards = len([f for f in os.listdir(os.path.join(ctx.ROOT, 'site', 'static', 'cards', 'art')) if f.endswith('.webp')]) \
+        if os.path.isdir(os.path.join(ctx.ROOT, 'site', 'static', 'cards', 'art')) else 0
+
+    # "At a glance": tonight's moon (build day here, the visitor's clock in nearme.js) and the mystery of the day.
+    # motd.py ran first and wrote /data/motd.json; the next 8 UTC days go in the config so the tile stays right
+    # between builds.
+    mp, mlit, mname = moon(datetime.datetime.now(datetime.timezone.utc))
+    motd_days, motd_html = {}, ''
+    try:
+        mj = json.load(open(os.path.join(ctx.OUT, 'data', 'motd.json'), encoding='utf-8'))
+        today = (datetime.datetime.now(datetime.timezone.utc).date() - datetime.date(1970, 1, 1)).days
+        for d in range(today, today + 8):
+            era = None
+            for e in mj['eras']:
+                if e['from'] <= d:
+                    era = e
+            if era and era['order']:
+                c = mj['cases'].get(era['order'][(d - era['from']) % len(era['order'])])
+                if c:
+                    motd_days[d] = [c['n'], U(c['u'])]
+        if today in motd_days:
+            motd_html = (f'<a class="nm-gl nm-gl-motd" href="{U("/mystery-of-the-day/")}"><span class="nm-gl-ico nm-gl-q" aria-hidden="true">?</span>'
+                         f'<span class="nm-gl-t"><small>Mystery of the day</small><b id="nm-motd">{E(motd_days[today][0])}</b>'
+                         f'<span class="nm-gl-sub">What do you think it was?</span></span></a>')
+    except (OSError, ValueError, KeyError) as err:
+        print(f'near-me: mystery of the day tile skipped: {err!r}')
+    glance = (f'<div class="nm-glance">'
+              f'<a class="nm-gl nm-gl-moon" href="{U("/tools/skywatch/")}"><svg class="nm-gl-ico nm-moon" viewBox="0 0 48 48" aria-hidden="true">'
+              f'<circle cx="24" cy="24" r="20" fill="#2A3B36"/><path id="nm-moon-lit" d="{moon_svg(mp)}" fill="#F3E3B8"/></svg>'
+              f'<span class="nm-gl-t"><small>Tonight\'s sky</small><b id="nm-moon-name">{E(mname)}</b>'
+              f'<span class="nm-gl-sub" id="nm-moon-note">{E(moon_note(mlit))}</span></span></a>{motd_html}</div>')
+    sys.path.insert(0, os.path.join(ctx.ROOT, 'site', 'sections'))
+    import _podplay
+    listen = _podplay.todays_listen(ctx, 'near')
     flap_on = clusters_live()
     print(f'near-me: flap card {"on" if flap_on else "off (the Worker has no /v1/clusters yet)"}')
     cfg = json.dumps({'api': API, 'base': ctx.BASE, 'vapid': vm.group(1) if vm else '',
@@ -152,13 +221,12 @@ def build(ctx):
                       'report': U('/report/'), 'reports': U('/reports/'),
                       'ufo': [c['slug'] for c in ctx.creatures if c['cat'] == 'ufo'], 'living': living,
                       'historic': U('/data/historic.geojson'), 'htopics': hist_topics,
-                      'eras': [{k: e[k] for k in ('id', 'name', 'span', 'src', 'years') if k in e} for e in ERAS], 'clusters': flap_on},
+                      'eras': [{k: e[k] for k in ('id', 'name', 'span', 'src', 'years') if k in e} for e in ERAS], 'clusters': flap_on,
+                      'motd': motd_days, 'cards_total': n_cards},
                      separators=(',', ':')).replace('</', '<\\/')
     era_btns = ''.join(f'<button type="button" class="nm-era" data-era="{e["id"]}" data-i="{i}" aria-pressed="{"true" if i == 0 else "false"}">'
                        f'<b>{E(e["name"])}</b><span class="nm-era-span">{E(e["span"])}</span><span class="nm-era-n"></span></button>'
                        for i, e in enumerate(ERAS))
-    hub = ''.join(f'<li><a class="nm-app tone-{t}" href="{U(p)}"><span class="nm-app-ico">{CAMPFIRE if ic == "campfire" else HEADPHONES if ic == "headphones" else ctx.icon(ic)}</span>'
-                  f'<span class="nm-app-name">{E(n)}</span></a></li>' for p, n, ic, t in HUB)
     sources = ''.join(f'<li><b>{E(t)}</b> ({counts[k]:,} on this map). {E(s.split(" Credit by name")[0].split(" Rows from")[0])}</li>'
                       for k, (_, t, s) in LAYERS.items() if k != 'bluebook_approx')
 
@@ -166,10 +234,13 @@ def build(ctx):
 <section class="nm-hero" data-area="near-me-hero">
   <div class="wrap">
     <p class="crumb"><a href="{U('/')}">Home</a> / Near me</p>
+    <p class="nm-hello" id="nm-hello" hidden></p>
     <h1>UFO and cryptid sightings near me</h1>
     <p class="lede">See what people have reported around you: Bigfoot, Dogman, lake monsters, strange lights and UFOs. Use your location or pick a
     town anywhere in the world. You'll get reader reports from the last few weeks, plus {total:,} official UFO files and survey sightings from the archives.</p>
+    {glance}
     <nav class="nm-hub" aria-label="More in the app"><ul>{hub}</ul></nav>
+    {listen}
     <p class="nm-install" id="nm-install" hidden><button type="button" class="btn btn-ghost" id="nm-install-btn">Install the app</button>
       <span>Opens straight to this page, full screen, and works with a weak signal.</span></p>
     <p class="nm-install nm-ios" id="nm-ios" hidden>On iPhone: tap Share, then <b>Add to Home Screen</b> to keep this as an app.</p>
@@ -258,7 +329,7 @@ def build(ctx):
 <script type="application/json" id="nm-config">{cfg}</script>'''
 
     head = (f'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/{MAPLIBRE}/maplibre-gl.min.css">'
-            f'<link rel="stylesheet" href="{U("/static/nearme.css")}">'
+            f'<link rel="stylesheet" href="{U("/static/nearme.css")}">' + (_podplay.head(ctx) if listen else '') +
             f'<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/{MAPLIBRE}/maplibre-gl.min.js" defer></script>'
             f'<script src="{U("/static/nearme.js")}" defer></script>')
     ctx.write('/near-me/', ctx.page('/near-me/', 'UFO and cryptid sightings near me', body,

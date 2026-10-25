@@ -191,6 +191,60 @@
   .nm-app-ico { width: 72px; }
   .nm-eras { flex-wrap: wrap; overflow: visible; }
 }
+/* Hub: 8 tiles now (Podcasts joined), so Report becomes a normal tile (the header has its own Report button):
+   two even rows of 4 on a phone, one row of 8 on desktop */
+.nm-hub li:last-child { grid-column: auto; }
+.nm-hub li:last-child .nm-app { display: grid; grid-template-columns: none; justify-items: center; align-content: start; gap: .45rem; padding: .15rem 0;
+  height: auto; border-radius: 18px; background: none; box-shadow: none; }
+.nm-hub li:last-child .nm-app-ico { background: var(--t); box-shadow: 0 6px 14px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .25); }
+.nm-hub li:last-child .nm-app-name { font: 600 .82rem/1.2 var(--body); text-align: center; }
+@media (min-width: 720px) { .nm-hub ul { grid-template-columns: repeat(8, minmax(0, 1fr)); } }
+.nm-app-ico { position: relative; }
+/* Badges on hub tiles (nearme.js, from this device only) */
+.nm-badge { position: absolute; top: -7px; right: -9px; min-width: 22px; padding: .12rem .42rem; border-radius: 999px; background: var(--lantern); color: var(--spruce);
+  font: 800 .7rem/1.2 var(--body); box-shadow: 0 0 0 2px var(--spruce); white-space: nowrap; }
+.nm-badge[hidden] { display: none; }
+/* Tiles pop in once on load, one after another */
+.nm-hub li { animation: nm-pop .38s cubic-bezier(.3, 1.4, .5, 1) both; animation-delay: calc(var(--i, 0) * 45ms); }
+@keyframes nm-pop { from { opacity: 0; transform: translateY(10px) scale(.9); } }
+.nm-app:active .nm-app-ico { transform: scale(.9); transition-duration: .06s; }
+
+/* Greeting + at a glance */
+.nm-hello { margin: 0 0 .1rem; font: 600 1.05rem var(--display); color: var(--lantern); }
+.nm-hello[hidden] { display: none; }
+.nm-glance { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem; margin: 1.1rem 0 0; }
+.nm-gl { display: flex; align-items: center; gap: .6rem; min-height: 64px; padding: .6rem .7rem; border-radius: 16px; text-decoration: none;
+  background: var(--spruce-2); border: 1px solid var(--spruce-3); color: var(--lichen) !important; transition: border-color .15s ease, transform .1s ease; -webkit-tap-highlight-color: transparent; }
+.nm-gl:hover { border-color: var(--lantern); }
+.nm-gl:active { transform: scale(.98); }
+.nm-gl:focus-visible { outline: 3px solid var(--lantern); outline-offset: 2px; }
+.nm-gl-ico { flex: none; width: 38px; height: 38px; }
+.nm-moon { filter: drop-shadow(0 0 8px rgba(243, 227, 184, .35)); }
+.nm-gl-q { display: grid; place-items: center; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #4A3A6A, #231A36); color: #E9D8A6;
+  font: 700 1.5rem var(--display); box-shadow: inset 0 0 0 2px rgba(233, 216, 166, .35); }
+.nm-gl-t { display: grid; min-width: 0; line-height: 1.25; }
+.nm-gl-t small { font-size: .78rem; color: var(--muted-d); }
+.nm-gl-t b { font: 700 1rem/1.2 var(--display); color: #F3F1DA; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.nm-gl-sub { font-size: .78rem; line-height: 1.25; margin-top: .1rem; }
+@media (min-width: 720px) {
+  .nm-glance { max-width: 52rem; }
+  .nm-gl-ico { width: 44px; height: 44px; }
+  .nm-gl-sub { font-size: .85rem; }
+}
+
+/* Today's listen on the app home: a bit shorter art on phones so the search isn't pushed far down */
+.pf-near { margin: 1.4rem 0 .4rem; }
+.pf-near .pf-art { aspect-ratio: 2.6 / 1; }
+@media (min-width: 760px) { .pf-near .pf-art { aspect-ratio: 2.2 / 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .nm-hub li { animation: none; }
+  .nm-gl, .nm-app-ico { transition: none; }
+  .nm-gl:active, .nm-app:active .nm-app-ico { transform: none; }
+}
+
 /* Inside the Android / iPhone app (app-bridge.js adds .in-app): no home-screen tips; alerts note until app push is live */
+.in-app .nm-hero .crumb, .in-app .nm-hero .lede { display: none; }
+.in-app .nm-hero h1 { font-size: clamp(1.35rem, 5vw, 2rem); }
 .in-app .nm-push-ios, .in-app .nm-install { display: none; }
 .nm-app-soon { margin: .6rem 0 0; padding: .55rem .8rem; border-radius: 10px; background: rgba(242, 179, 61, .16); font-weight: 600; display: inline-block; }

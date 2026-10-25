@@ -155,6 +155,14 @@
       const lab = b.querySelector('span');
       if (lab && lab.textContent) lab.textContent = me && on ? 'Pause' : 'Play';
     });
+    // "Today's listen" dial: turn it to the station that's playing (sideways only, the page itself doesn't move)
+    document.querySelectorAll('.pf-dial').forEach((d) => {
+      const li = d.querySelector('.pp-cur') && d.querySelector('.pp-cur').closest('li');
+      if (!li || d.dataset.at === li.dataset.i) return;
+      d.dataset.at = li.dataset.i = li.dataset.i || String([...d.children].indexOf(li));
+      const calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      d.scrollTo({ left: Math.max(0, li.offsetLeft - d.offsetLeft - 16), behavior: calm ? 'auto' : 'smooth' });
+    });
   }
 
   // ---------- audio ----------
@@ -323,6 +331,19 @@
     };
     if (document.body) start(); else document.addEventListener('DOMContentLoaded', start);
   }
+
+  // ---------- "Today's listen" (home page, app home) ----------
+  // After dark it's "Tonight's listen", by the visitor's own clock.
+  const when = () => {
+    const h = new Date().getHours();
+    if (h >= 18 || h < 5) document.querySelectorAll('[data-pf-when]').forEach((x) => { x.textContent = "Tonight's listen"; });
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', when); else when();
+  // A tiny buzz on play in the app (Android WebView), so the big button feels like a button
+  document.addEventListener('click', (ev) => {
+    if (!document.documentElement.classList.contains('in-app') || !ev.target.closest('[data-pp],[data-pp-all]')) return;
+    try { if (navigator.vibrate) navigator.vibrate(8); } catch (e) { /* not allowed */ }
+  });
 
   window.eaPod = { play, toggle, close: closeBar };
 })();

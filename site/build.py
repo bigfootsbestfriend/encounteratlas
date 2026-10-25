@@ -1434,6 +1434,11 @@ def build_home(creatures, n_points, bluebook, military):
                     for cat, ic, label in TILES)
     tiles += f'<a class="tile tile-mil" href="{url("/map/?type=military")}">{tile_icon("military")}<span>Military encounters</span></a>'
     build_search_index(creatures, bluebook, military)
+    # "Today's listen" podcast feature (site/sections/_podplay.py), right under the hero
+    sys.path.insert(0, os.path.join(ROOT, 'site', 'sections'))
+    import types, _podplay
+    pctx = types.SimpleNamespace(ROOT=ROOT, url=url, esc=esc, by_slug={c['slug']: c for c in creatures})
+    listen = _podplay.todays_listen(pctx, 'home')
     body = f'''
 <section class="home-hero">
   <div class="wrap">
@@ -1448,6 +1453,7 @@ def build_home(creatures, n_points, bluebook, military):
     <nav class="tiles" aria-label="Browse by type">{tiles}</nav>
   </div>
 </section>
+{f'<div class="pf-band"><div class="wrap">{listen}</div></div>' if listen else ''}
 {f'''<section class="new-reports" data-api="{EA_API}" data-base="{url('')}" data-index="{url('/data/search.json')}" aria-labelledby="nr-h" hidden>
   <div class="wrap">
     <div class="nr-head"><div><p class="nr-pill"><span class="nr-dot" aria-hidden="true"></span><span data-nr-count>New from readers</span></p>
@@ -1513,7 +1519,7 @@ def build_home(creatures, n_points, bluebook, military):
 <script src="{url('/static/home.js')}" defer></script>'''
     write('/', page('/', 'Encounter Atlas: Bigfoot, UFO and cryptid sightings mapped', body,
                     'A map of Bigfoot, Dogman, UFO and cryptid encounters, a searchable creature index, and the US Air Force Project Blue Book files.',
-                    body_class='home', head_extra=map_head(lazy=True)))
+                    body_class='home', head_extra=map_head(lazy=True) + (_podplay.head(pctx) if listen else '')))
     write('/search/', page('/search/', 'Search', f'''
 <section class="band band-dark search-page"><div class="wrap">
   <h1>Search Encounter Atlas</h1>

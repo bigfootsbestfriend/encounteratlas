@@ -728,3 +728,51 @@
     search();
   }
 })();
+
+// App home touches (top of /near-me/): a greeting by the visitor's clock, tonight's moon and the mystery of the day for
+// their own day (the HTML has the build day's), and hub badges from what's already on this device: collected cards
+// ('ea-cards', cards.js) and an episode to pick back up ('ea-pod-v1', podplayer.js). Reads only, never writes.
+(function () {
+  const cfgEl = document.getElementById('nm-config');
+  if (!cfgEl) return;
+  const CFG = JSON.parse(cfgEl.textContent);
+  const $ = (id) => document.getElementById(id);
+  const ls = (k) => { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } };
+  const now = new Date(), h = now.getHours();
+
+  const hello = $('nm-hello');
+  if (hello) {
+    hello.textContent = h < 5 ? 'Still up? Good, so are they.' : h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening';
+    hello.hidden = false;
+  }
+
+  // Moon: same sums as z_near_me.py moon() / moon_svg()
+  const p = ((now - Date.UTC(2000, 0, 6, 18, 14)) / 864e5 / 29.530588853) % 1;
+  const lit = (1 - Math.cos(2 * Math.PI * p)) / 2;
+  const names = [[0.03, 'New moon'], [0.22, 'Waxing crescent'], [0.28, 'First quarter'], [0.47, 'Waxing gibbous'], [0.53, 'Full moon'],
+    [0.72, 'Waning gibbous'], [0.78, 'Last quarter'], [0.97, 'Waning crescent'], [1.01, 'New moon']];
+  const rx = (Math.abs(Math.cos(2 * Math.PI * p)) * 20).toFixed(2);
+  const outer = p < 0.5 ? 1 : 0, inner = p < 0.5 ? (p < 0.25 ? 0 : 1) : (p < 0.75 ? 0 : 1);
+  if ($('nm-moon-lit')) {
+    $('nm-moon-lit').setAttribute('d', `M24 4A20 20 0 0 ${outer} 24 44A${rx} 20 0 0 ${inner} 24 4Z`);
+    $('nm-moon-name').textContent = names.find((x) => p < x[0])[1];
+    $('nm-moon-note').textContent = lit < 0.35 ? 'Dark sky, good for spotting lights' : lit > 0.85 ? 'Bright moon, faint stuff hides' : `${Math.round(lit * 100)}% lit`;
+  }
+
+  // Mystery of the day changes at midnight UTC, like /mystery-of-the-day/
+  const m = (CFG.motd || {})[Math.floor(Date.now() / 864e5)];
+  if (m && $('nm-motd')) $('nm-motd').textContent = m[0];
+
+  // Hub badges
+  const cards = ls('ea-cards'), got = cards && typeof cards === 'object' ? Object.keys(cards).length : 0;
+  const cb = document.querySelector('[data-badge="cards"]');
+  if (cb && got) { cb.textContent = CFG.cards_total ? `${got}/${CFG.cards_total}` : String(got); cb.hidden = false; cb.closest('a').setAttribute('aria-label', `Collector cards, ${got} collected`); }
+  const pod = ls('ea-pod-v1'), pb = document.querySelector('[data-badge="pod"]');
+  if (pb && pod && Array.isArray(pod.q) && pod.q.length) { pb.textContent = 'Resume'; pb.hidden = false; }
+
+  // A small buzz on hub taps in the app
+  document.addEventListener('click', (ev) => {
+    if (!navigator.vibrate || !document.documentElement.classList.contains('in-app') || !ev.target.closest('.nm-app, .nm-gl')) return;
+    try { navigator.vibrate(8); } catch (e) { /* not allowed */ }
+  });
+})();
