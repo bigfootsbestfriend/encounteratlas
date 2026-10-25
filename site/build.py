@@ -1756,8 +1756,13 @@ def main():
         json.dump([{'relation': ['delegate_permission/common.handle_all_urls'],
                     'target': {'namespace': 'android_app', 'package_name': 'com.encounteratlas.app',
                                'sha256_cert_fingerprints': APP_FINGERPRINTS}}], f)
+    # Crawlers that only collect pages for AI training and never send visitors (Mike, 2026-10-25). Search and
+    # answer bots that cite and link back (ChatGPT-User, OAI-SearchBot, PerplexityBot, Googlebot) stay allowed.
+    training_bots = ['GPTBot', 'ClaudeBot', 'Google-Extended', 'Applebot-Extended', 'CCBot', 'meta-externalagent',
+                     'Bytespider', 'cohere-training-data-crawler']
     with open(os.path.join(OUT, 'robots.txt'), 'w') as f:
-        f.write(f'User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n')
+        f.write(''.join(f'User-agent: {b}\n' for b in training_bots) + 'Disallow: /\n\n'
+                f'User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n')
     print(f'built {len(pages)} pages, {n_points:,} map points', file=sys.stderr)
 
 
