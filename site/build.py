@@ -1776,7 +1776,7 @@ def main():
                                'sha256_cert_fingerprints': APP_FINGERPRINTS}}], f)
     # Crawlers that only collect pages for AI training and never send visitors (Mike, 2026-10-25). Search and
     # answer bots that cite and link back (ChatGPT-User, OAI-SearchBot, PerplexityBot, Googlebot) stay allowed.
-    training_bots = ['GPTBot', 'ClaudeBot', 'Google-Extended', 'Applebot-Extended', 'CCBot', 'meta-externalagent',
+    training_bots = ['GPTBot', 'ClaudeBot', 'Applebot-Extended', 'CCBot', 'meta-externalagent',
                      'Bytespider', 'cohere-training-data-crawler']
     with open(os.path.join(OUT, 'robots.txt'), 'w') as f:
         f.write(''.join(f'User-agent: {b}\n' for b in training_bots) + 'Disallow: /\n\n'
