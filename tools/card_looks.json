@@ -1,0 +1,758 @@
+{
+ "dogman": {
+  "look": "A long-snouted jackal-like head like the Egyptian god Anubis, very tall pointed ears, amber eyeshine and the mouth open in a snarl showing long fangs, on a powerful man-shaped body about 2 m (7 ft) tall. Upright on two digitigrade canine legs but hunched forward with a slight stoop, massive shoulders, covered in shaggy dark near-black fur (not smooth skin), big hands with long curved claws. Not a wolf on its hind legs.",
+  "setting": "A dirt back road between farm fields and dark pine woods in northern Michigan at dusk, split-rail fence, low mist."
+ },
+ "jersey-devil": {
+  "look": "The classic 1909 newspaper depiction: stands upright on two hind legs like a kangaroo, about 1 to 2 m tall, with a long horse- or goat-like head, small horns, leathery bat wings spread from its shoulders, short clawed forelimbs held up in front, thin legs ending in cloven hooves, and a long forked tail. Dark brown leathery hide. Not a winged horse on four legs and not a dragon.",
+  "setting": "A clearing in the New Jersey Pine Barrens at night, scrubby pitch pines, a sandy track and a cedar bog glinting under the moon."
+ },
+ "flatwoods-monster": {
+  "look": "The 1952 witness sketch: a towering figure about 3 m (10 ft) tall with a round, glowing reddish face and two round glowing eye holes, framed by a tall pointed hood shaped like the ace of spades. Below the face a dark green, pleated, skirt-like body flares out to the ground with no visible legs, and two small claw-like hands. It seems to hover. Not a robot, not a cartoon alien.",
+  "setting": "A grassy hilltop farm near Flatwoods, West Virginia at night, an oak tree, a pulsing red light on the ground and drifting mist."
+ },
+ "beast-of-bray-road": {
+  "look": "A big, powerful wolf-headed beast about 2 m tall with a heavy, muscular, man-like body, crouched at the road edge and caught mid-meal, head snapping up toward the viewer. Thick shaggy dark grey-brown fur bristling along its back and shoulders, a long wolf muzzle with lips curled back in a snarl showing long white fangs, ears pinned back, and fierce glowing yellow-orange eyes in the headlights. Big human-like hands with long black claws clutching a roadkill carcass (no blood shown). Threatening and wild, more monster than wolf, not a normal wolf or dog, not a cartoon.",
+  "setting": "The shoulder of a quiet two-lane farm road near Elkhorn, Wisconsin at night, cornrows behind, a single distant farm light."
+ },
+ "goatman": {
+  "look": "A hairy, man-shaped figure a little taller than a man: human torso, arms and hands, covered in coarse dark brown hair, with a bearded goat-like face, two curved goat horns and goat legs that bend backward and end in cloven hooves. He stands upright on two legs and carries an old wood-handled axe held low at his side. Not a faun from a storybook; rough and wild.",
+  "setting": "Fletchertown Road near Bowie, Maryland at night, a narrow wooded back road under overhanging trees and an old railway cut."
+ },
+ "black-shuck": {
+  "look": "Black Shuck, the demon hound of East Anglia: a huge, shaggy black dog the size of a calf, snarling straight at the viewer with lips curled back over long white fangs, glowing red eyes (exactly two) blazing like coals, bristling ragged fur and big claws, lightning flashing behind it. Menacing and supernatural, not a pet.",
+  "setting": "A coast path above a shingle beach in Norfolk during a thunderstorm, a flint church tower behind, lightning over the North Sea."
+ },
+ "spring-heeled-jack": {
+  "look": "Spring-heeled Jack as the Victorian penny dreadfuls drew him: a tall, devilish figure in a flowing black cloak leaping high over a London rooftop, with pointed ears, glowing red eyes, a grinning demonic face, long metal claws on his fingers and blue-and-white flames bursting from his mouth. Terrifying and theatrical, not a superhero.",
+  "setting": "A gas-lit Victorian London lane at night, brick walls, cobbles, chimney pots and fog, around 1838."
+ },
+ "owlman": {
+  "look": "The Owlman of Mawnan: a tall, thin, MAN-SHAPED figure about 1.5 m tall standing upright on two long human-like legs, with a human torso, shoulders and arms, all covered in silvery-grey feathers, and huge feathered wings spreading from its back. Its head is an owl's: a round feathered face with pointed ear tufts, a hooked beak open in a screech and blazing red eyes. The feet are long black pincer-like talons. It hovers just above the church tower, legs dangling like a man's. Menacing and monstrous: a man with an owl's head and wings, NOT an ordinary owl or bird body.",
+  "setting": "Above the square stone tower of St Mawnan's church in Cornwall at night, dark woodland and the Helford estuary behind."
+ },
+ "chupacabra": {
+  "look": "The original 1995 Puerto Rico description: about 1.2 m tall, standing upright on two kangaroo-like hind legs, with thin arms and clawed three-fingered hands, grey-green leathery skin, large dark oval eyes, a small mouth with fangs, and a row of long spines running down its back. Not a mangy dog or coyote and not a grey alien.",
+  "setting": "A goat pen on a hillside farm near Canóvanas, Puerto Rico at night, tropical trees, a tin-roofed shed and moonlight."
+ },
+ "lizard-man": {
+  "look": "A 2 m (7 ft) tall upright reptilian man with a muscular human build, rough green scaly skin, glowing red eyes, and hands with three long clawed fingers. It runs on two legs like a person. Not a dinosaur, not a lizard on all fours, and not a costume.",
+  "setting": "A lonely back road at the edge of Scape Ore Swamp, South Carolina at night, cypress and moss, a car with a flat tyre."
+ },
+ "pope-lick-monster": {
+  "look": "A part-man, part-goat figure about human height: a muscular, hairy human upper body with long arms, a goat- or sheep-like face with curved horns, shaggy woolly legs bending backward to cloven hooves. It crouches or stands in the shadows under the trestle, looking up. Rural and eerie, not a storybook faun.",
+  "setting": "Beneath a tall steel railroad trestle over a wooded creek in Louisville, Kentucky at night, girders black against the sky."
+ },
+ "agogwe": {
+  "look": "Small, upright 'little furry men' about 1.2 to 1.5 m tall, walking on two legs like people, covered in russet or reddish-brown hair, with human-like proportions and faces, a little like a small, hairy early human. Show two of them crossing a glade together. Not monkeys on all fours, not goblins.",
+  "setting": "A forest glade in the bush of western Tanzania at dusk, tall grass, acacia and miombo trees, golden light."
+ },
+ "ahool": {
+  "look": "A giant, fierce bat swooping straight at the viewer out of a stormy night sky, wingspan about 3 m, wings spread wide with glowing orange-red membranes and dark bony fingers. A dark, ape-like face with a flat snout, glaring eyes and its mouth gaping open in a screech, showing long white fangs. Shaggy dark grey-black fur, muscular shoulders, big hooked claws on its feet reaching forward to grab. Menacing and wild, not cute, not friendly, not a fruit bat, not a dragon.",
+  "setting": "Over the rainforest canopy and a waterfall in the Salak mountains of western Java at night, a full moon behind storm clouds."
+ },
+ "alien-abduction": {
+  "look": "The classic abduction image: a single person in ordinary clothes floating limp in mid-air, being lifted up inside a bright cone of white light that shines down from the underside of a dark, glowing flying saucer hovering overhead. Their arms and legs hang loose, seen from a distance so no face detail. The saucer has a ring of small lights around its rim. Quiet and eerie, no aliens visible, no violence.",
+  "setting": "An empty field beside a lonely country road at night, a farmhouse and pine trees in silhouette, stars overhead."
+ },
+ "almas": {
+  "look": "Two big, powerful wild men about 2 m tall walking upright through deep snow, covered head to toe in long, shaggy reddish-brown hair that hangs off their shoulders and arms in thick locks. Heavy, broad shoulders, a slightly pointed crown on the head, a dark, flat, human-like face with a heavy brow, and long arms with big hands hanging past the knees. The near one strides toward the viewer, the other walks away behind it, leaving footprints. Massive and wild, not a gorilla, not a skinny caveman.",
+  "setting": "A high, windswept snowfield below jagged snow-covered peaks in the Altai mountains of Mongolia under heavy grey clouds, ice ridges and blowing snow."
+ },
+ "altamaha-ha": {
+  "look": "A long, sleek, dark grey-green river creature 6 to 9 m long, shaped like a cross between a giant eel and a seal, swimming underwater. Smooth skin with pale spots along its back, a long tapering body and tail ending in a flat, horizontal tail fluke like a dolphin's or a manatee's. It has ONLY ONE PAIR of flippers, two big front flippers near the chest, and NO back flippers or hind legs at all. A long, narrow snout with a mouth full of small sharp teeth, open as it chases a fish, and big round eyes. Not an alligator, not a crocodile, no legs, no scales, no bony plates, not a dinosaur.",
+  "setting": "Underwater in a murky green tidal river near Darien on the Georgia coast, light filtering down from the surface, bubbles and a small fish."
+ },
+ "alyoshenka": {
+  "look": "The small mummified body as it appears in the well-known photos: about 25 cm long, lying on its back, with a large elongated domed skull shaped like a helmet with a raised ridge down the middle, big hollow eye sockets, a small open mouth, dry wrinkled leathery grey-brown skin, a thin shrivelled body, spindly arms with tiny hands raised up near its face, and long thin legs with small feet. Shown as a quiet, sad museum-like object, not gory, no blood. It lies on a dark cloth in a small open wooden box on a table, lit by a single oil lamp. Not a cartoon alien, not a skeleton, not a doll.",
+  "setting": "A small wooden house at the edge of Kaolinovy village in the Urals at night, birch trees and a snowy cemetery fence outside."
+ },
+ "amabie": {
+  "look": "Like the 1846 Japanese woodblock print: a small sea creature rising from the waves, glowing softly, with long flowing hair falling down its sides, a bird-like pointed beak, round eyes, scales from the neck down and three short leg-like tail fins below. Gentle and charming, a prophetic omen, not a monster and not a mermaid.",
+  "setting": "Calm open sea off the coast of Kumamoto, Kyushu at night, a faint glow on the water and dark green islands on the horizon."
+ },
+ "amomongo": {
+  "look": "A gaunt, sinewy, man-sized creature about 1.5 m tall, hunched forward on bent legs. Lean body with visible ribs and stringy muscles under thin greyish skin, not covered in fur, with a wild shaggy mane of hair only on its head, neck and shoulders. A long, bony, ape-like face with a jutting muzzle, small fangs and a long tongue hanging out. Very long thin arms that reach past its knees, ending in long bony fingers with long hooked claws. Clawed, splayed feet. A long thin tail with a tuft of hair at the end. Feral and creepy, not a gorilla, not a Bigfoot, not furry all over.",
+  "setting": "The mouth of a cave in volcanic forest on the lower slopes of Mount Kanlaon, Negros, Philippines at dusk, ferns and rising steam."
+ },
+ "barghest": {
+  "look": "A monstrous black dog the size of a large mastiff or bigger, with a shaggy coat, huge teeth and claws, and enormous saucer-like fiery eyes. A faint rattle of chains seems to hang around it. Normal dog body plan, menacing scale. Not a wolf, not a werewolf.",
+  "setting": "Troller's Gill, a narrow limestone gorge in the Yorkshire Dales at night, a trickling beck, moss and moonlight on pale rock."
+ },
+ "barmanou": {
+  "look": "An upright, hairy wild man of the high mountains, about human height or taller, heavily built, covered in long dark brown hair, with a human-like face partly hidden, and an animal skin draped over its back and head like a cloak. Part human, part ape. Not a white yeti, not a giant.",
+  "setting": "A high valley in the Hindu Kush of Chitral, Pakistan at dusk, terraced fields, juniper, stone huts and snow peaks."
+ },
+ "batsquatch": {
+  "look": "A 2.7 m (9 ft) ape-like creature with a muscular hairy body covered in bluish-purple fur, a wolf-like face, glowing yellow eyes, and huge leathery bat wings spread from its back and arms. Show it landing upright on a road. Not a giant bat, not a demon; a winged Bigfoot.",
+  "setting": "A mountain road through dark Douglas fir forest in the Cascades of Washington at night, Mount Rainier's snowy shape on the horizon."
+ },
+ "bear-lake-monster": {
+  "look": "A huge, powerful marine reptile like a pliosaur, about 10 m long, swimming underwater straight toward the viewer. A big, long, crocodile-like head on a short thick neck, jaws wide open showing rows of long needle-like teeth as it lunges at a small fish. A heavy, streamlined body, grey-blue on top with a pale belly and mottled markings, four long paddle-shaped flippers (two at the front, two at the back) and a short tapering tail. Menacing. No ears, no cow head, not a snake, not a long-necked plesiosaur, not a shark.",
+  "setting": "Deep underwater in the turquoise-blue water of Bear Lake on the Utah-Idaho border, light rays from the surface and rising bubbles."
+ },
+ "beast-of-bladenboro": {
+  "look": "A monstrous, oversized black cat-like beast, much bigger and heavier than a panther, crouched low on a rock and snarling. Thick, shaggy, bristling dark fur with a wild ruff around its neck, pointed lynx-like ears with tufts, glowing amber eyes, and a wide open mouth with huge curved fangs. Big paws with long claws gripping the rock, a long bushy tail raised. A small brown farm dog stands below it, barking up at it bravely. Old bleached animal bones lie in the moss nearby, no blood. Feral and frightening, not a sleek panther, not a lion.",
+  "setting": "A misty, swampy pine and hardwood forest near Bladenboro, North Carolina, winter 1953-54, dead trees, moss and rocks in thick fog."
+ },
+ "beast-of-bodmin": {
+  "look": "A big, powerful black panther-like cat much larger than a leopard, crouched on a granite boulder and snarling straight at the viewer, ears back, glowing yellow-green eyes and long white fangs bared. Sleek black coat, heavy shoulders, long curved tail. A dead sheep lies hidden in the grass below (no blood shown). Menacing.",
+  "setting": "Bodmin Moor in Cornwall at dusk, rough grass, granite tor, a stone wall and sheep scattered on the hillside."
+ },
+ "beast-of-busco": {
+  "look": "An enormous snapping turtle with a ridged shell the size of a dining table (about 1.5 m across), a huge, thick, hooked-beaked head and a long saw-toothed tail, its head breaking the surface of a small lake. A real animal shape, just far too big. Not a dinosaur.",
+  "setting": "A small farm lake near Churubusco, Indiana at dusk, cattails, a wooden dock and a red barn on the bank."
+ },
+ "beast-of-exmoor": {
+  "look": "A huge, muscular black big cat stalking out of the moorland mist straight toward the viewer, head low and shoulders rolling, lips pulled back over long fangs in a hiss, glowing amber eyes, long heavy tail curled. Bigger and more frightening than a real leopard. Menacing.",
+  "setting": "A high-hedged lane on Exmoor at dusk, heather moorland, a combe with oaks and a few sheep behind a gate."
+ },
+ "beast-of-gevaudan": {
+  "look": "The Beast of Gévaudan as the famous 1760s French engravings show it: a huge, monstrous wolf-like beast the size of a calf, with a reddish coat and a dark stripe down its back, an enormous head with a long snout, jaws gaping wide with huge fangs, a bristling mane, big clawed paws and a long tufted tail, lunging at the viewer. Far bigger and more terrifying than a real wolf.",
+  "setting": "Upland pasture in the Margeride mountains of Gévaudan, France in the 1760s at dusk, granite boulders, beech woods and a stone shepherd's hut."
+ },
+ "bessie": {
+  "look": "A long serpent 9 to 12 m (30 to 40 ft) long with smooth grey or black skin, swimming with a row of humps rising above the waves and a small snake-like head raised above the water. Not a plesiosaur with flippers.",
+  "setting": "Lake Erie's western basin at dusk, a limestone island shore with a lighthouse and choppy grey water."
+ },
+ "big-bird": {
+  "look": "A huge dark flier with a wingspan of 3 to 4.5 m (10 to 15 ft), part bird and part bat, with leathery dark wings, a bald, gorilla- or monkey-like face with dark eyes, and three-toed feet. Show it swooping low. Not a pterosaur with a crest, not a normal bird.",
+  "setting": "Flat farmland and a small town's water tower in the Lower Rio Grande Valley, Texas at dusk, palms and a power line."
+ },
+ "big-grey-man": {
+  "look": "A huge grey figure more than 3 m (10 ft) tall, with broad shoulders and long arms, seen only as a dim, towering shape in thick mist, almost like a giant shadow cast on fog. No clear face. Mysterious and looming, not an ape and not a ghost in a sheet.",
+  "setting": "The bare, boulder-strewn summit plateau of Ben Macdui in the Cairngorms, Scotland at dusk, thick rolling mist and a cairn."
+ },
+ "bigfoot": {
+  "look": "Like the Patterson-Gimlin film subject: a huge, heavily built upright ape about 2.2 to 2.7 m tall, covered in dark brown to black hair, with a cone-shaped head, no visible neck, broad shoulders, long arms swinging, and a smooth gliding stride on two legs. Turning to look back over its shoulder. Not a gorilla and not a man in a suit.",
+  "setting": "A gravel creek bed beside towering redwood and fir forest in the Pacific Northwest at dusk, ferns and a fallen log."
+ },
+ "black-eyed-children": {
+  "look": "Two pale children, about 10 to 14 years old, in plain, slightly old-fashioned clothes, standing very still on a doorstep at night. Their eyes are completely black, with no whites at all. They look ordinary except for those eyes and their unsettling calm. No gore, no fangs, no monster features.",
+  "setting": "A suburban front porch in Abilene, Texas late at night, porch light glowing, a screen door and a dark street behind."
+ },
+ "bloop": {
+  "look": "The Bloop as it is usually imagined: a colossal, pale, eyeless deep-sea monster many times bigger than a blue whale, rising out of the black depths with its enormous mouth gaping wide open, lined with rows of jagged teeth, a tiny submarine dwarfed in front of it for scale. Huge, dark and terrifying.",
+  "setting": "The remote Southern Ocean at the Antarctic ice edge at dusk, towering icebergs, heavy swell and a pale sky."
+ },
+ "bukit-timah-monkey-man": {
+  "look": "A grey-haired hominid about 1.75 m tall, walking fully upright on two legs like a man, with a monkey-like face, long arms and a lean build. Partly hidden between trees on a forest trail. Not a macaque on all fours, not a gorilla.",
+  "setting": "A forest trail in Bukit Timah Nature Reserve, Singapore after dark, huge tropical trees, vines and a wooden boardwalk."
+ },
+ "bunnyman": {
+  "look": "A man in a dirty white or grey full rabbit costume with long upright ears, standing at the mouth of a dark railroad underpass, holding a hatchet lowered at his side. The face of the suit is blank and unsettling. Human-sized, human-shaped. No blood, no gore; menace comes from stillness.",
+  "setting": "The narrow one-lane concrete Colchester Overpass near Clifton, Virginia at night, rail line above, woods and a gravel road leading in."
+ },
+ "bunyip": {
+  "look": "A large, dark, shaggy water monster the size of a horse rising out of a misty billabong at night, its fur streaming wet, with a broad dog- or seal-like face, glowing eyes, a wide mouth with tusks and sharp teeth open in a bellowing roar, powerful flippered forelimbs gripping the bank. Menacing and ancient, not a cute seal.",
+  "setting": "A misty billabong among river red gums and reeds in south-eastern Australia at night, a pale moon."
+ },
+ "cadborosaurus": {
+  "look": "A sea serpent 5 to 14 m long with a horse- or camel-like head on a long neck, large eyes, a long serpentine body forming coils above the water, small front flippers and a spiky or fluked tail. Dark brown or greenish skin. Fast and graceful. Not a plesiosaur with a bulky body.",
+  "setting": "Cadboro Bay near Victoria, British Columbia at dusk, rocky shore, Douglas firs and islands across calm cold water."
+ },
+ "cattle-mutilation": {
+  "look": "No carcass and no gore. A lone cow standing uneasy in a fenced pasture while three glowing lights hover silently above in a triangle, a faint beam touching the grass, and a dark, unmarked helicopter shape far off. The mystery is in the lights over the herd.",
+  "setting": "Remote ranchland in the San Luis Valley, Colorado at night, a barbed-wire fence, sagebrush and the Sangre de Cristo Mountains."
+ },
+ "champ": {
+  "look": "Like the famous 1977 Mansi photo: a long, dark neck and small snake-like head rising high out of the lake, with a dark hump of back behind it breaking the surface. Smooth grey-brown skin. Classic lake-monster profile, but not a cartoon dinosaur.",
+  "setting": "Lake Champlain near St. Albans, Vermont at dusk, calm water, a wooded shoreline and the Adirondacks across the lake."
+ },
+ "chessie": {
+  "look": "A long, thin, dark serpent 8 to 12 m long and about 30 cm thick, with a football-shaped or horse-like head turned to look back, and a row of humps rolling along the surface as it swims side to side. Brown to black skin. Not a plesiosaur.",
+  "setting": "The Chesapeake Bay near Kent Island, Maryland at dusk, marsh grass, a wooden pier and calm brackish water."
+ },
+ "cressie": {
+  "look": "Cressie of Crescent Lake: a giant eel-like lake monster about 10 m long, dark grey-black and slimy, rearing up out of the water with its long serpentine body, a broad flat head with small eyes and a wide gaping mouth full of needle-sharp fangs. Menacing, not an otter, no fur.",
+  "setting": "Crescent Lake beside Robert's Arm, Newfoundland at dusk, spruce-covered hills, clapboard houses and calm dark water."
+ },
+ "crop-circles": {
+  "look": "No creature at all. A huge, intricate crop circle formation seen from a low hill: concentric rings and a spiral pattern of flattened wheat, perfectly sharp-edged, in a ripe golden field. Two or three small glowing balls of light hover just above the field. Nothing standing in the field, no aliens, no figures, no craft.",
+  "setting": "A wheat field in Wiltshire near Avebury at dusk, rolling chalk downs, a chalk white horse on the hill and standing stones."
+ },
+ "dingonek": {
+  "look": "A water beast 4 to 4.5 m long with a broad head, a long scaly body covered in leopard-like spots, a long tail, and two long tusks or fangs pointing down from its upper jaw. Show it leaping from the river. Not a crocodile, not a dinosaur.",
+  "setting": "The Migori River in western Kenya at dusk, muddy water, rocks, fig trees and grassy banks."
+ },
+ "dobhar-chu": {
+  "look": "The Irish 'water hound': a huge, savage creature like a cross between a giant otter and a crocodile, about 3 m long, lunging out of the water. Sleek dark brown fur, a long powerful body, webbed clawed feet, small ears and whiskers, and long jaws gaping wide with rows of sharp fangs. Hunting, fierce and dangerous, not a cute otter.",
+  "setting": "Glenade Lough in County Leitrim, Ireland at dusk, steep limestone cliffs, reeds and a stone wall."
+ },
+ "dover-demon": {
+  "look": "Like Bill Bartlett's famous 1977 sketch: a thin, pale peach-coloured creature about 1 m tall, with a huge watermelon-shaped head, no nose or mouth, two large glowing orange eyes, a skinny body and long thin limbs with long fingers and toes gripping the top of a stone wall. Not a grey alien.",
+  "setting": "A dry-stone wall beside a wooded suburban road in Dover, Massachusetts at night, headlights glowing behind."
+ },
+ "dungarvon-whooper": {
+  "look": "The ghost of Ryan, the young cook murdered in a lumber camp, as the legend and the Canadian stamp show him: a pale, glowing, see-through phantom of a man in old 1800s lumberjack clothes and an apron, his mouth open in a terrible whooping scream, arms raised, floating among dark snowy spruce trees by a log camp. Eerie and spectral, not a cat, not an animal.",
+  "setting": "An abandoned log lumber camp by the Dungarvon River in New Brunswick at night, spruce forest, snow and a lone cross by a spring."
+ },
+ "ebu-gogo": {
+  "look": "Small, human-like forest people about 1.5 m tall, walking upright, covered in hair, with wide flat noses, large mouths, long arms and a fast, light way of moving. Show two or three slipping between trees with food from the fields. Like small hairy early humans, not monkeys and not goblins.",
+  "setting": "The edge of a millet field and dense forest in central Flores, Indonesia at dusk, a volcano on the horizon and a cave mouth."
+ },
+ "emela-ntouka": {
+  "look": "A heavy, elephant-sized semi-aquatic animal with a rhino-like body, short thick legs, a thick crocodile-like tail and a single long horn on its snout. Grey-brown skin. Show it wading out of a swamp river. Not a triceratops with a frill, not a rhinoceros with two horns.",
+  "setting": "The Likouala swamp forest, Republic of the Congo at dusk, a brown river, raffia palms, lily pads and tall trees."
+ },
+ "enfield-monster": {
+  "look": "A greyish creature about 1.4 m tall with three legs, a short body, two short arms near its chest, and two huge pink glowing eyes the size of flashlights. Show it mid-bound, leaping across a yard. Odd and alien-looking, not a dog, not a grey alien.",
+  "setting": "A small-town back yard in Enfield, Illinois at night, a wooden house, porch light and a railway embankment behind."
+ },
+ "fairies": {
+  "look": "The older Irish and British fairies, not Victorian winged sprites: slender, beautiful, human-like figures from small to almost human height, pale and otherworldly, in old-fashioned green and grey cloaks, dancing in a ring beside a lone hawthorn, with tiny lights floating around them. Eerie and dignified, no wings, no tutus.",
+  "setting": "A grassy ringfort with a lone hawthorn tree in the Irish countryside at dusk, stone walls and a full moon rising."
+ },
+ "flathead-lake-monster": {
+  "look": "A dark, eel-like creature 6 to 12 m long, with a smooth black or dark grey body and a blunt eel-like head, its long back rolling at the surface and leaving a wide wake on calm water. Not a plesiosaur, no long neck.",
+  "setting": "Flathead Lake, Montana at dusk, clear water, cherry orchards and pine forest on the shore, the Mission Mountains behind."
+ },
+ "fouke-monster": {
+  "look": "A large, hairy creature about 2.1 m tall, upright on two legs, covered in long shaggy reddish-brown to dark hair, with broad shoulders, long arms and glowing red eyes. Show it standing at the edge of a creek bottom. A Bigfoot type, not a gorilla.",
+  "setting": "Boggy Creek near Fouke, Arkansas at dusk, cypress and swampy woods, a rundown farmhouse with a lit window in the distance."
+ },
+ "fresno-nightcrawlers": {
+  "look": "Two small white figures that are almost all legs: long, thin, white legs with a tiny body and head sitting directly on top, no arms visible, like a pair of trousers walking. They move with a slow, swaying walk, side by side, slightly glowing. Odd and gentle, not scary.",
+  "setting": "A suburban front lawn in Fresno, California at night, a security light, a palm tree and a driveway."
+ },
+ "fur-bearing-trout": {
+  "look": "A trout covered in a thick coat of white or brown fur, like a taxidermy curiosity, with the trout's spotted head, fins and tail still visible through the fur. Show it leaping from an icy river. Playful tall tale, not a monster.",
+  "setting": "An icy northern river in Montana at dusk, snowy banks, spruce trees and a log cabin in the distance."
+ },
+ "gambo": {
+  "look": "A large sea animal about 4.5 m long, dark above and white below, with a long, narrow beak full of small teeth, a small head, four paddle-like flippers, and a long tail with no flukes. Show it lying intact at the edge of the surf. Like a marine reptile or beaked dolphin, not a dinosaur.",
+  "setting": "Bungalow Beach at Kotu, The Gambia at dusk, golden sand, palms and the Atlantic surf."
+ },
+ "gef": {
+  "look": "A small, rat-sized animal like a mongoose, with short yellowish fur, a long bushy tail, a narrow pointed face, small round ears and bright, knowing eyes. It peers out from a gap in old wooden wall panelling as if about to speak. Clever, cheeky and slightly uncanny. A real-looking small mammal, not a monster, not a rat.",
+  "setting": "Inside an isolated hill farmhouse on the Isle of Man in the 1930s at night, oil lamp, wooden panelling and a window to the moor."
+ },
+ "ghost-rockets": {
+  "look": "A small, sleek, wingless rocket- or cigar-shaped object streaking silently across the night sky, trailing a fiery orange-white tail, then curving down toward a lake as if changing course. Looks like a 1940s missile but with no markings. This is 1946, before flying saucers. No aliens, no disc shapes, no crew.",
+  "setting": "A northern Swedish lake surrounded by spruce forest at night, a wooden house with red walls and stars overhead."
+ },
+ "globster": {
+  "look": "A huge, pale, shapeless rubbery mass lying on a beach, with no head, eyes or bones, covered in white hair-like fibres, with a few flaps that look like stumpy arms. Mysterious rather than disgusting. Not an octopus with clear tentacles.",
+  "setting": "Anastasia Island beach near St. Augustine, Florida at dusk, dunes, sea oats and a distant lighthouse."
+ },
+ "gnomes": {
+  "look": "Paracelsus' earth spirit: a small figure about 45 cm (18 in) tall, an old man with a long white beard, wrinkled face and a pointed red cap, half emerging from solid rock as if it were water. Folk-tale style, not a cute garden ornament.",
+  "setting": "A rocky mountainside near an old mine entrance in the Alps at dusk, pine trees, a timbered mine adit and lantern light."
+ },
+ "grafton-monster": {
+  "look": "A tall, shapeless white mass about 2.7 m tall and 1.2 m wide, like a smooth upright pillar or a huge peeled tree stump, with slick wet seal-like skin that shines in car headlights. No head at all, no face, no eyes, no muscles, no visible arms or legs, it just stands there, lumpy and rounded at the top. Not a Bigfoot, not a person, not a ghost in a sheet.",
+  "setting": "A dark two-lane road along the Tygart Valley River near Grafton, West Virginia at night, seen in the headlights of a 1960s car, guardrail, trees and river mist."
+ },
+ "grassman": {
+  "look": "Ohio's Bigfoot: a tall, dark, hair-covered biped about 2.1 m tall, standing upright beside a lean-to of bent saplings and a bed of flattened grass. Broad shoulders, long arms hanging past the knees, a cone-shaped head with no visible neck, dark brown to black hair. It is half turned toward the viewer. Not a gorilla and not a man in a suit.",
+  "setting": "Hardwood forest in Salt Fork State Park, Ohio at dusk, a lake inlet, autumn leaves and rolling hills."
+ },
+ "green-fireballs": {
+  "look": "A brilliant, vivid green ball of light, bigger than a star but smaller than the moon, streaking flat and level across the night sky, leaving a thin glowing green trail, and breaking into small fragments at the end of its path. Silent and eerie. No craft, no aliens, no ordinary falling meteor arc.",
+  "setting": "The high desert near Los Alamos, New Mexico at night, mesas, juniper and a distant fence of a lab compound."
+ },
+ "grey-aliens": {
+  "look": "The classic grey: about 1 to 1.2 m tall, slender, hairless grey skin, an oversized head with a narrow chin, tiny slit mouth, two small nose holes, no ears, and huge black almond-shaped eyes wrapping around the head. Thin arms with long fingers. Calm and still.",
+  "setting": "A rural field at night with a lonely road, dark trees and a soft white light glowing behind."
+ },
+ "grootslang": {
+  "look": "The Grootslang as it is usually shown: a gigantic, ancient monster with the head, tusks and trunk of an elephant on the long, thick, coiling body of a huge serpent covered in dark scales, rearing up at the mouth of a deep cave with glinting diamonds in the dark behind it, glowing eyes and tusks raised. Huge and menacing.",
+  "setting": "A desert cave in the rugged Richtersveld near the Orange River, South Africa at dusk, red rock and quiver trees."
+ },
+ "hibagon": {
+  "look": "A gorilla-like ape about 1.5 m tall, standing upright, with dark bristly hair over its body, a large nose, deep-set glaring eyes under a heavy brow, and strikingly pale hands and feet. Shy and wary, half hidden among cedar trunks as if about to flee. Smaller than Bigfoot. Not a giant and not a monkey.",
+  "setting": "Mountain forest on Mount Hiba, Hiroshima Prefecture, Japan at dusk, cedar trees, a small shrine and a misty valley."
+ },
+ "hinzelmann": {
+  "look": "A household kobold drawn the way the 1704 woodcut shows him: a small cherub-like boy with a mop of curly blond hair and a pair of white feathered wings on his back, wearing a little red silk jacket, faintly see-through like a shadow, standing on the stone floor scrubbing a copper pot on a wooden stool. Ordinary human ears, a cheeky look. A bowl of milk with white bread sits on the table and a single white feather drifts nearby. Mischievous, not evil, not a goblin, not an elf.",
+  "setting": "The kitchen of Hudemühlen Castle in Lower Saxony in the 1580s at night, a stone hearth, copper pots and candlelight."
+ },
+ "hobyahs": {
+  "look": "Small, goblin-like night creatures with spindly limbs and wide mouths, shown mostly as dark silhouettes, a crowd of them creeping toward a hut made of hemp stalks, while a little dog stands barking at the door. Folk-tale eerie, not gory.",
+  "setting": "A hut of hemp stalks at the edge of dark woods at night, a crescent moon and long grass."
+ },
+ "hodag": {
+  "look": "A dark, stocky beast about 2 m long with a frog-like head, short bull horns, a huge grin full of sharp teeth, a row of spikes down its back, thick clawed legs and a long tail ending in a spear tip. Rugged lumberjack tall tale, not a dragon.",
+  "setting": "The Wisconsin Northwoods near Rhinelander at dusk, white pine, a logging camp and a river."
+ },
+ "honey-island-swamp-monster": {
+  "look": "A tall creature about 2.1 m tall, upright on two legs, covered in long grey matted hair hanging in clumps, with glowing yellow or amber eyes and large webbed four-toed feet sunk in the mud. Ape-like face and long arms. Swamp-worn and dripping. Not a gorilla, not a lizard man.",
+  "setting": "Honey Island Swamp, Louisiana at dusk, cypress and tupelo trees, Spanish moss and still black water."
+ },
+ "hook-island-sea-monster": {
+  "look": "A huge, dark, tadpole-shaped animal about 23 m long lying on the sandy floor of a clear shallow lagoon, with a broad rounded head and a long thin tapering tail, seen through the water from above. Not a plesiosaur, not a whale.",
+  "setting": "Stonehaven Bay, Hook Island in the Whitsundays at dusk, clear turquoise water, coral and forested hills."
+ },
+ "hopkinsville-goblins": {
+  "look": "Small silver-grey creatures about 1 m tall that glow faintly, with large round heads, huge pointed ears like a bat's, big glowing yellow eyes, long thin arms ending in claws, and thin legs. They float rather than walk, hands raised. Not green, not grey aliens.",
+  "setting": "A farmhouse in Kelly, Kentucky at night, a front porch, fields and a bright light glowing in the distance."
+ },
+ "hudson-river-monster": {
+  "look": "A long serpent 9 to 20 m long, its body as thick as a steamboat smokestack, dark and glistening, with a flat head, large eyes and a low fin running down its back, swimming with coils above the water. 1886 newspaper sea-serpent style, not a plesiosaur.",
+  "setting": "The Hudson River near Poughkeepsie, New York in 1886 at dusk, a paddle steamer in the distance and the Palisades-style cliffs."
+ },
+ "huldufolk": {
+  "look": "Shown respectfully as Icelandic tradition describes them: people who look human, in old-fashioned grey and green Icelandic clothes, standing calmly beside a large moss-covered boulder that has a small glowing doorway in it, half fading from view. Dignified and quiet, not tiny elves, no pointed ears, no horror.",
+  "setting": "A mossy lava field in Iceland at dusk on New Year's Eve, candles on the rocks, low hills and a pale sky."
+ },
+ "igopogo": {
+  "look": "A grey, seal-like lake animal with a dog- or horse-like face, large dark eyes and small ears, its neck held up like a stovepipe above the water and a dorsal fin showing on its back behind. Smooth, wet grey skin. More like a huge seal than a dinosaur; not a plesiosaur.",
+  "setting": "Kempenfelt Bay on Lake Simcoe, Ontario at dusk, cottages and maple trees on the shore and calm grey water."
+ },
+ "indrid-cold": {
+  "look": "A man about 1.8 m tall with an olive complexion, dark brown slicked hair and a glossy dark blue coat, standing beside a highway with a fixed, too-wide friendly smile. Behind him hovers a craft shaped like an old kerosene lamp globe, flat bottom and domed top. Human but uncanny, not a monster.",
+  "setting": "A pull-off on Interstate 77 near Parkersburg, West Virginia in 1966 at night, a stopped truck with its headlights on and wooded hills."
+ },
+ "issie": {
+  "look": "A long, dark animal swimming in a deep lake, shown as two large dark humps, each about 5 m long, rising above the surface with a big wake trailing behind, and something long visible just below the water. Head mostly hidden. Like a giant eel in shape. Not a plesiosaur, not a cartoon dinosaur.",
+  "setting": "Lake Ikeda near Ibusuki, Kyushu at dusk, the cone of Mount Kaimon behind and yellow rapeseed flowers on the shore."
+ },
+ "jackalope": {
+  "look": "A jackrabbit with long upright ears, long hind legs and a sandy-brown coat, with a pair of small branching deer antlers growing from its head. It sits alert on its haunches among the sagebrush, looking at the viewer. A cheerful Western tall-tale animal drawn as if it were real. Not a deer, not a cartoon bunny.",
+  "setting": "Sagebrush plains near Douglas, Wyoming at dusk, a wooden fence, a windmill and distant buttes."
+ },
+ "jenny-haniver": {
+  "look": "A small dried creature made from a ray or skate, shaped into a 'dragon' or 'demon', with wing-like fins, a whip-thin tail and a face-like underside with eyes and a mouth. Brown and leathery, displayed as a curiosity. Not a real dragon.",
+  "setting": "A 16th-century Antwerp harbour stall at dusk, ships' masts, barrels and a wooden table with curiosities."
+ },
+ "kappa": {
+  "look": "A child-sized river creature with green or yellow-green skin, a turtle-like shell on its back, a beak, webbed hands and feet, and a dish-shaped hollow on top of its head holding water, ringed by straggly hair. Crouched by the river, polite and wily. Traditional yokai style, not a turtle on all fours.",
+  "setting": "A river bank in rural Tōno, Iwate, Japan at dusk, willows, a wooden footbridge and cucumbers left on a rock."
+ },
+ "knockers": {
+  "look": "Little mine spirits about 60 cm tall with big heads, long arms, wrinkled skin, bright eyes and white whiskers, dressed in tiny miners' clothes with small candles stuck to their hats. Two or three of them tap the rock with tiny hammers near a vein of ore, half in shadow. Small and wise-looking, not goblins, not evil.",
+  "setting": "A tin mine tunnel in Cornwall at night, wooden supports, candlelight and a glinting vein of ore."
+ },
+ "kobold": {
+  "look": "A small household sprite the size of a child or smaller, a little old man in a red pointed cap and plain, old-fashioned brown peasant clothes, crouched by the glowing hearth beside a bowl of milk and a broom it has just used. Mischievous eyes, a sly half smile. Not a garden gnome, not evil.",
+  "setting": "A German farmhouse kitchen at night, a stone hearth with glowing embers, a wooden table and a broom."
+ },
+ "kongamato": {
+  "look": "A reddish, featherless flier with leathery wings spanning 1.2 to 2 m, a long, narrow beak lined with small teeth, a small head and thin body, gliding low over a swamp river. Pterosaur-like in shape, like a small pteranodon without a big crest. Not a bat, not a bird.",
+  "setting": "The Jiundu Swamp in north-west Zambia at dusk, papyrus, a winding river and tall trees."
+ },
+ "kraken": {
+  "look": "Enormous arms of a giant squid rising out of the sea around a small wooden Norwegian fishing boat, with long suckered tentacles curling in the air and a glimpse of a huge eye and reddish body just beneath the surface. Show the vast scale of the legend: the boat is tiny. No gore.",
+  "setting": "The Norwegian Sea off the Lofoten Islands at dusk, steep rocky peaks and choppy grey water."
+ },
+ "kussie": {
+  "look": "A dark animal crossing a lake fast, shown as two dark, triangular humps above the water and a long neck with a horse-like head raised in front, leaving a big splash and wake. Grey-black wet skin. Like a long-necked lake monster seen at a distance. Not a cartoon dinosaur.",
+  "setting": "Lake Kussharo, Hokkaido at dusk, volcanic hills, a forested island in the lake and steam rising from the shore."
+ },
+ "labynkyr-devil": {
+  "look": "A huge, dark monster bursting up through the black water at the edge of the ice, its enormous wide head and gaping jaws full of long pointed teeth opening like a giant pike crossed with a crocodile, small cold eyes, a broad scaly back, ice shattering around it. Terrifying and massive.",
+  "setting": "Lake Labynkyr in Yakutia at dusk, snow-covered mountains, frozen ice and a lone log cabin."
+ },
+ "lagarfljot-worm": {
+  "look": "A very long serpent, longer than a bus, moving through murky glacial water as a line of several humps, with a small, blunt head held just above the surface. Grey-brown, wet skin. In some tales it lies coiled on the shore. A worm-like serpent, not a plesiosaur.",
+  "setting": "Lagarfljót lake near Egilsstaðir, east Iceland at dusk, birch forest, snow-streaked mountains and murky water."
+ },
+ "lake-tianchi-monster": {
+  "look": "A large lake monster rising from a cold crater lake: a smooth, brownish-grey body like a giant sea lion's with big front flippers, a long thick neck and a head like a horse's or a dog's with small ears, dark eyes and a wide mouth. Strange and imposing, about 10 m long. Not a duck, not a plesiosaur with a tiny head.",
+  "setting": "Heaven Lake in the crater of Changbai Mountain at dusk, jagged volcanic rim, snow and deep blue water."
+ },
+ "lake-van-monster": {
+  "look": "A huge, dark brown sea-serpent-like monster surging out of a vast lake, its long body arched out of the water, a row of sharp triangular spikes along its back, a big reptilian head with a small horn, glaring eyes and a gaping mouth full of teeth, water pouring off it. Menacing.",
+  "setting": "Lake Van in eastern Turkey at dusk, a stone Armenian church on an island and mountains behind."
+ },
+ "lake-worth-monster": {
+  "look": "A 'half-man, half-goat' creature about 2.1 m tall, covered in white or grey shaggy fur with patches of scales, with goat-like horns and long clawed fingers. Show it standing on a bluff ready to hurl a tire. Not a faun.",
+  "setting": "A wooded bluff above Lake Worth near Fort Worth, Texas at night, oak trees and a distant bridge."
+ },
+ "lechuza": {
+  "look": "The Lechuza of Mexican and Texan legend: a giant barn owl the size of a person perched on a ranch house roof, white and tan feathers, huge wings half spread, and instead of an owl face, the pale face of an old witch with long stringy dark hair, glowing eyes and a cruel smile, framed by the owl's heart-shaped feather disc. Scary, not a normal owl.",
+  "setting": "A tin-roofed ranch house in South Texas at night, mesquite trees, a windmill and a full moon."
+ },
+ "leprechaun": {
+  "look": "The older Irish leprechaun, not the green tourist version: a little old bearded man about 90 cm (3 ft) tall in a red jacket and a cocked hat, sitting under a hedge mending a single shoe with a tiny hammer, a small crock of gold beside him. Wily and quick, not cute.",
+  "setting": "A hawthorn hedge on a green hillside in the Cooley Mountains of County Louth, Ireland at dusk, stone walls and mist."
+ },
+ "loch-ness-monster": {
+  "look": "Like the famous 1934 'Surgeon's Photograph': a slender, curving neck and small head rising out of dark peaty water, with one or more smooth humps of a large dark body behind. Grey-brown skin. Classic plesiosaur-like silhouette, drawn as a real animal, not a cartoon.",
+  "setting": "Loch Ness at dusk with the ruins of Urquhart Castle on the shore, dark water and Highland hills."
+ },
+ "loveland-frog": {
+  "look": "A frog-like humanoid about 1 to 1.2 m tall, walking upright on two legs, with a leathery frog face, wide mouth, big eyes, smooth greenish skin and webbed hands and feet. Show it crossing a road near a river. Not cute and not a cartoon.",
+  "setting": "A wet road beside the Little Miami River in Loveland, Ohio at night, a bridge railing and trees."
+ },
+ "lukwata": {
+  "look": "Shown respectfully as a great water creature of Baganda lore: a long, dark, smooth-skinned serpent 6 to 9 m long with a rounded head, rising beside a wooden fishing canoe on a vast lake. Powerful and mysterious, not a horror monster.",
+  "setting": "Lake Victoria near the Ugandan shore at dusk, papyrus, wooden canoes and distant islands."
+ },
+ "lusca": {
+  "look": "A giant octopus-like creature with long tentacles rising from the mouth of a deep blue hole, the water swirling into a whirlpool around it. Some versions blend a shark's head with an octopus's arms. Show huge arms and a dark mass below. Mysterious and powerful, not gory.",
+  "setting": "A deep blue hole in shallow turquoise water near Andros, The Bahamas at dusk, mangroves and a small boat."
+ },
+ "manipogo": {
+  "look": "A brownish-black serpent 4 to 15 m long, with at least one hump above the water and a flat or horse-like head raised, mouth open as it lets out a loud cry. Smooth, wet skin and a long tail trailing behind. A lake serpent, not a plesiosaur.",
+  "setting": "Lake Manitoba at dusk, a flat prairie shoreline, reeds and a wide sky."
+ },
+ "mapinguari": {
+  "look": "A large, shaggy creature about 2 m tall standing upright, covered in dark red-brown fur, with long hooked claws, backward-turned feet, a single eye and a gaping mouth on its belly. Like a giant ground sloth from legend. Not a Bigfoot.",
+  "setting": "Deep Amazon rainforest in Acre, Brazil at dusk, huge buttress roots, palm trees and mist."
+ },
+ "mbielu-mbielu-mbielu": {
+  "look": "A large animal mostly underwater with only its back showing, a row of tall, flat, board-like plates or 'planks' sticking up along its spine, green with algae. Like a stegosaurus seen half-submerged. Grey-green skin and a thick tail below. Not a crocodile.",
+  "setting": "A swamp river in the Likouala region, Republic of the Congo at dusk, raffia palms and water lilies."
+ },
+ "melon-heads": {
+  "look": "A group of small, pale, sickly child-like figures standing in the fog on a dark road, each with a huge bulbous, hairless, veiny head far too big for its thin body, pale grey skin, sunken glowing eyes and ragged old hospital gowns. Creepy and unsettling, clearly visible, not aliens, not silhouettes.",
+  "setting": "A wooded back road near an old mansion in Michigan at night, bare trees, fog and a crumbling fence."
+ },
+ "memphre": {
+  "look": "A long-necked lake animal with a small head held high and two dark humps rising behind it on calm water, like a Nessie-type creature. Smooth dark skin and a long tail. Graceful, drawn as a real animal. Not a cartoon dinosaur.",
+  "setting": "Lake Memphremagog between Magog, Quebec and Newport, Vermont at dusk, wooded hills and a church spire."
+ },
+ "men-in-black": {
+  "look": "Two pale, stiff men in black suits, black hats and dark sunglasses standing at a front door at night, with an old black 1950s car that looks brand new parked behind. Unsettling and too perfect. Not the comic film characters.",
+  "setting": "A small town street in the US in the 1960s at night, a front porch light and a dark car at the curb."
+ },
+ "mermaid": {
+  "look": "A classic mermaid from sailors' tales: a human head and shoulders above the water, long wet hair covering her shoulders, a fish's tail breaking the surface behind as she dives. Show her on a rock combing her hair. Tasteful and mysterious, not a cartoon.",
+  "setting": "A rocky shore in the Outer Hebrides at dusk, seaweed-covered rocks, a calm bay and a stone cottage."
+ },
+ "minhocao": {
+  "look": "A colossal earthworm-like creature up to 45 m long, with hard, scaly, armoured skin, a pig-like snout and two small horns, ploughing a deep trench through the ground and uprooting trees as it goes. Its body arcs in and out of the earth. Not a snake.",
+  "setting": "Wet highlands in southern Brazil at dusk, araucaria pines, a river and fresh trenches in the earth."
+ },
+ "minnesota-iceman": {
+  "look": "A hairy, man-like body about 1.8 m tall frozen inside a frosty block of ice in a refrigerated coffin, one arm bent over its head, dark hair visible through the ice. A 1960s carnival exhibit under a bare bulb. Not gory, no visible wounds.",
+  "setting": "Inside a refrigerated carnival trailer at a county fair in the 1960s at night, strings of lights and a sign."
+ },
+ "mngwa": {
+  "look": "A huge cat as big as a donkey, larger than a leopard, with grey brindled fur, a heavy head and powerful legs, prowling at a village edge. Long tail and large paws. Not a tiger, no stripes; like an oversized grey leopard.",
+  "setting": "A coastal forest in Tanzania near a fishing village at night, palm trees, thatched huts and moonlight."
+ },
+ "moca-vampire": {
+  "look": "The Moca Vampire of Puerto Rico: a gaunt, grey-green, alien-looking creature standing upright on two legs in a farmyard at night, with huge glowing red eyes, leathery skin, a row of sharp spines down its back, long thin arms with clawed fingers and a pair of ragged bat-like wings folded behind it. It looms over a dead goat lying on the ground (no blood shown). Menacing.",
+  "setting": "A farm in the Rocha neighbourhood of Moca, Puerto Rico at night, tropical trees, a tin-roofed barn and cows."
+ },
+ "moddey-dhoo": {
+  "look": "A huge, spectral black dog the size of a calf standing in a castle passage, shaggy black fur, eyes like burning coals glowing red, lips curled back over long white fangs, a faint ghostly mist around it. Menacing and supernatural, not a pet lying by the fire.",
+  "setting": "Peel Castle on the Isle of Man at dusk, red sandstone walls, the sea and a lit window."
+ },
+ "mogollon-monster": {
+  "look": "A tall wild man over 2.1 m tall, upright on two legs, covered in long black or reddish-brown hair, with a square face and glowing red eyes, standing among ponderosa pines. Bigfoot type with a wilder, leaner look. Not a gorilla.",
+  "setting": "The ponderosa pine forest on the edge of the Mogollon Rim, Arizona at dusk, red cliffs and a canyon view."
+ },
+ "mokele-mbembe": {
+  "look": "An elephant-sized animal with a long neck, small head and long tail, wading in a swamp river. Grey-brown skin and thick legs. Like a small sauropod dinosaur, but shown as a living animal in its swamp, half in the water. Not a cartoon.",
+  "setting": "Lake Tele in the Likouala swamps, Republic of the Congo at dusk, raffia palms and dense forest."
+ },
+ "momo": {
+  "look": "A hairy, dark creature about 2.1 m tall, upright on two legs, with a large pumpkin-shaped head and long hair hanging over its face so only its eyes glint through. Broad body and long arms. A Bigfoot type with a strange head.",
+  "setting": "The wooded edge of a hill above the Mississippi River at Louisiana, Missouri at dusk, a gravel road and a farmhouse."
+ },
+ "mongolian-death-worm": {
+  "look": "The olgoi-khorkhoi: a big, fat, blood-red worm about 1.5 m long rearing up out of the desert sand, its glistening segmented body coiled to strike, the front end opening into a round mouth ringed with rows of sharp spiky teeth, crackling with sparks of electricity and dripping venom. Menacing, not a toy, not a balloon.",
+  "setting": "Sand dunes of the southern Gobi Desert at dusk, saxaul shrubs and a white ger in the distance."
+ },
+ "monkey-man-of-delhi": {
+  "look": "A small, hairy, monkey-like figure about 1.2 m tall leaping between rooftops at night, with metal claws, a metal helmet, glowing red eyes and buttons on its chest. Strange and half-mechanical, mid-jump against the sky. Not a real monkey, not a superhero.",
+  "setting": "Flat rooftops of East Delhi on a hot summer night, people's charpoy beds, water tanks and a power cut."
+ },
+ "montauk-monster": {
+  "look": "A bloated, hairless carcass about the size of a small dog lying on sand, with a beak-like face showing sharp teeth and long finger-like toes on its paws. Strange but not gory. Probably a raccoon, but looks like a mystery beast.",
+  "setting": "Ditch Plains beach in Montauk, Long Island at dusk, dunes, a lighthouse on the bluff and gentle surf."
+ },
+ "moon-lake-monster": {
+  "look": "The Moon Lake Monster of Utah: a large serpent-like lake monster rising out of the dark water at night, a long dark scaly neck and body arched out of the lake in coils, a reptilian head with glowing eyes and an open mouth with teeth, under a full moon. Menacing.",
+  "setting": "Moon Lake high in the Uinta Mountains, Utah at dusk, pine forest, rocky peaks and a small resort dock."
+ },
+ "morag": {
+  "look": "A brown, rough-skinned creature 7.5 to 9 m long with three humps showing above the water and a snake-like head held up on a short neck. Strong and alive, near a small rowing boat for scale. Not a cartoon dinosaur.",
+  "setting": "Loch Morar in the western Scottish Highlands at dusk, steep mountains, islands and a small rowing boat."
+ },
+ "morgawr": {
+  "look": "A long-necked sea serpent with a small head and two humps on its back, its dark, slick skin like a sea lion's, swimming in a sheltered bay. Up to 18 m long. Plesiosaur-like silhouette, with a long tail trailing behind. Not a cartoon.",
+  "setting": "Falmouth Bay near Pendennis Point, Cornwall at dusk, the castle on the headland and a few anchored boats."
+ },
+ "mugwump": {
+  "look": "A big, sturgeon-like animal 2 to 6 m long with a round head and protruding eyes, a dark humped back and no fins, breaking the surface of a deep lake. Like a huge prehistoric fish with a blunt snout. Not a plesiosaur.",
+  "setting": "Lake Timiskaming on the Ontario-Quebec border at dusk, rocky cliffs, pine forest and calm dark water."
+ },
+ "mussie": {
+  "look": "Mussie, the three-eyed monster of Muskrat Lake: a big, walrus-like lake creature about 6 m long rising out of the water, with a long thick neck, grey-green skin covered in darker spots, two flippers, a pair of short tusks and three eyes in a row on its broad head. Strange and a bit frightening, not goofy, not a cartoon.",
+  "setting": "Muskrat Lake beside Cobden, Ontario at dusk, cottages, maple trees and a calm long lake."
+ },
+ "mystery-airships": {
+  "look": "A large cigar-shaped gas bag with a framework gondola below, propellers, fins or small wings, and a bright searchlight sweeping the ground. Small human figures visible in the gondola. 1890s steampunk look, glowing against the night sky. Varnished wood, brass fittings and canvas, like an inventor's dream.",
+  "setting": "Over a small Texas farm town in 1897 at night, a windmill, a church steeple and fields."
+ },
+ "nahuelito": {
+  "look": "A long-necked creature like a plesiosaur with a small head and a large dark hump, rising from turbulent water in a deep mountain lake. Grey-green skin and flippers just under the surface. Drawn as a real animal, not a cartoon dinosaur.",
+  "setting": "Nahuel Huapi Lake near Bariloche, Patagonia at dusk, snow-capped Andes and forested islands."
+ },
+ "nain-rouge": {
+  "look": "A small, child-sized red imp with a red face, a wide grin full of sharp teeth, and one glittering eye, dressed in old fur and boots. Show it standing in a city street, grinning at the viewer. Mischievous and ominous, not a devil with horns.",
+  "setting": "A cobbled street near the Detroit River in old Detroit at dusk, brick buildings and gas lamps."
+ },
+ "nandi-bear": {
+  "look": "NOT a bear. The Nandi bear as cryptozoology books show it: a huge HYENA-like predator with a very high, humped, shaggy shoulder and a back that slopes steeply down to short hind legs, a thick dark mane, a short stumpy tail, and a large hyena-like head with small round ears and massive jaws gaping in a roar with big fangs. It stands on all fours on the edge of the forest. Dark reddish-brown, savage, a giant hyena-baboon-bear hybrid.",
+  "setting": "Highland forest and grassland in the Nandi Hills of western Kenya at dusk, tea fields and mist."
+ },
+ "ningyo": {
+  "look": "A 'human fish' with a fish body and fins, a human-like face with a sad expression, and a red crest like a cockscomb on its head. Show it rising from the sea at dusk. Traditional Japanese woodblock print feel, not a Western mermaid.",
+  "setting": "The shore of Wakasa Bay in Fukui, Japan at dusk, pine trees, a shrine gate and calm water."
+ },
+ "nittaewo": {
+  "look": "Small, hairy, upright beings about 1 to 1.2 m tall, with short powerful arms and long claws, peering from a cave mouth. Human-like faces, dark hair. Two or three of them together. Not monkeys, not goblins. Lean bodies, short legs, alert and wary, as if about to twitter to each other.",
+  "setting": "A cave in dry forest near Mahalenama, south-east Sri Lanka at dusk, rocks, trees and a pink sky."
+ },
+ "nordic-aliens": {
+  "look": "Tall, human-looking visitors about 2 m tall with long fair hair, pale skin and light eyes, wearing smooth one-piece suits. Calm and peaceful, standing in front of a landed disc-shaped craft. Not glowing, not scary, not angels. Their faces are kind and serene, like 1950s 'space brothers'.",
+  "setting": "The California desert near Desert Center at dusk, Joshua trees, rocks and a scout ship on the ground."
+ },
+ "north-shore-monster": {
+  "look": "A 23 m beast with a long crocodile-like body and a horse-like head, bellowing as it comes toward the shore. Scaly grey-green skin, short legs and a long tail. It churns through the salty shallows. Not a dragon, no wings.",
+  "setting": "The north shore of the Great Salt Lake near Monument Point, Utah at dusk, salt flats and bare hills."
+ },
+ "ogopogo": {
+  "look": "Described as settlers and modern witnesses report it: a long, dark green or black serpent 12 to 15 m long with several humps in a line above the water and a horse- or goat-like head raised. Smooth skin. Not a spirit image, not a plesiosaur.",
+  "setting": "Okanagan Lake, British Columbia at dusk, hills and orchards across the water and a sandy beach."
+ },
+ "old-ned": {
+  "look": "A long, bulky, whale-like creature swimming fast in a lake, its dark rounded back rising with a large wake behind, as if chasing a birchbark canoe. Smooth dark skin, head mostly underwater. Not a serpent, not a plesiosaur. Seen at a distance, low and powerful in the water.",
+  "setting": "Lake Utopia near St. George, New Brunswick at dusk, spruce forest, rocky shore and calm water."
+ },
+ "old-yellow-top": {
+  "look": "A sasquatch-like creature about 2 m tall with a dark brown body and a light yellow or blond shaggy mane on its head and shoulders, standing upright in a blueberry patch. Broad shoulders, long arms. Not a lion, not a gorilla.",
+  "setting": "Boreal forest and old silver mine workings near Cobalt, Ontario at dusk, a headframe and blueberry bushes."
+ },
+ "orang-pendek": {
+  "look": "A short, stocky ape-man only about 1 m tall, child-height, walking upright on two legs like a person, covered in reddish-brown to orange-brown hair with a long shaggy mane on its head and down its back, long arms and a broad chest, a dark human-like face. Make the small size obvious: the jungle ferns are taller than it and it is dwarfed by the tree trunks. Not a big ape, not a Bigfoot. It glances back while walking away.",
+  "setting": "Rainforest in Kerinci Seblat National Park, Sumatra at dusk, huge trees, vines and a volcano in mist."
+ },
+ "ozark-howler": {
+  "look": "A bear-sized, shaggy black or grey cat-like animal with horns or tufted ears on its head and glowing red or yellow eyes. Show it on a rock ledge, head raised in a howl. Heavy build, long tail. Not a wolf, not a lion.",
+  "setting": "A wooded hollow in the Ozark Mountains at night, oak trees, rocky bluffs and a creek."
+ },
+ "pend-oreille-paddler": {
+  "look": "A large grey or silver shape just under the surface of a deep lake, moving fast and leaving a wake with no boat. Its form is unclear, like a huge fish or something long and smooth. Mysterious, not a cartoon, not a submarine.",
+  "setting": "Lake Pend Oreille in North Idaho at dusk, forested mountains, a lighthouse and calm water."
+ },
+ "piasa": {
+  "look": "The Piasa bird exactly as the famous painting on the cliff at Alton shows it: a fearsome creature with huge outspread wings striped red, green and black, deer antlers, red eyes, a bearded man-like face with fangs, a body covered in scales, eagle talons, and a very long tail wrapped around its body ending in a fish's fin. Painted large and bright on the pale limestone cliff.",
+  "setting": "The limestone bluffs above the Mississippi River at Alton, Illinois at dusk, the wide river and cottonwoods below."
+ },
+ "pixies": {
+  "look": "The older West Country pixies: small figures knee-high or less, in ragged, patched clothes, wiry and wild-haired, dancing in a ring among standing stones on the moor while one rides a moorland pony. Not the Victorian version with green suits and pointy hats.",
+  "setting": "A stone circle on Dartmoor at dusk, granite tors, heather and a misty valley."
+ },
+ "ponik": {
+  "look": "A long, dark creature shaped like an upturned canoe covered in scales, with a ridged back, floating at the surface of a valley lake. Head mostly hidden, a wake behind. Not a plesiosaur, not a canoe. Dark grey-brown, glistening, with a long low profile.",
+  "setting": "Lake Pohénégamook in south-east Quebec at dusk, forested hills and a small village church."
+ },
+ "popobawa": {
+  "look": "The Popobawa of Zanzibar: a large, menacing, one-eyed bat-winged demon with a single glowing eye in the middle of its forehead, huge leathery bat wings spread wide, dark grey skin, sharp ears, long claws and a gaping mouth with fangs, swooping down over village rooftops at night. Terrifying, not a cute bat or cat.",
+  "setting": "A village of coral-stone houses on Pemba Island, Zanzibar at night, palm trees and a campfire outside."
+ },
+ "puca": {
+  "look": "A sleek black horse with glowing eyes and a long, flowing mane, standing on a lonely road, waiting for a rider. Muscular and wild, with mist curling around its hooves. Otherworldly. Not a demon, not a unicorn. It looks almost too intelligent, head turned toward the viewer.",
+  "setting": "A lonely road through bog and hills in rural Ireland at dusk on Samhain, a stone wall and blackberry bushes."
+ },
+ "queensland-tiger": {
+  "look": "A dingo-sized, striped cat-like predator with a long tail, prominent front teeth and a fierce face, climbing a tree trunk. Short tan fur with dark stripes across the back. Like a marsupial lion, not a tiger, not a thylacine. Lean, muscular and snarling, gripping the bark with sharp claws.",
+  "setting": "Rainforest in the coastal ranges of Queensland at dusk, strangler figs, ferns and a rocky creek."
+ },
+ "redcap": {
+  "look": "A short, thickset old man with long teeth, talons, fiery red eyes, iron boots and a red cap, holding a pikestaff in the doorway of a ruined tower. Grim and menacing, long grey beard. No blood shown. His red cap is the brightest thing in the scene, worn and pointed.",
+  "setting": "The ruins of Hermitage Castle in the Scottish Borders at dusk, grassy hills and a burn."
+ },
+ "reptilians": {
+  "look": "A tall, muscular reptile-like humanoid about 2 m tall, with scaly green or grey skin and vertical slit-pupil eyes, standing upright inside a dim craft. A winged-serpent emblem on its chest. Calm and cold. Not a lizard on all fours, not a dinosaur.",
+  "setting": "Inside a dark, curved UFO interior with dim lights and metal panels."
+ },
+ "ropen": {
+  "look": "A featherless flier with leathery wings, a long tail ending in a diamond-shaped flap, and a body that glows softly at night. Show it gliding over a reef. Pterosaur-like, with a long beak and a small crest. Not a bat.",
+  "setting": "Umboi Island, Papua New Guinea at night, a coral reef, palm trees and a dark volcanic hill."
+ },
+ "rougarou": {
+  "look": "A Cajun werewolf: a wolf-like head with red eyes on a human body, about 2 m tall, covered in shaggy dark fur, standing upright among cypress trees. Ragged clothes still hang from its shoulders. Not a hunched cartoon werewolf. Hunched slightly, clawed hands at its sides, eyes glowing in the dark.",
+  "setting": "A bayou in South Louisiana at night, cypress knees, Spanish moss and a full moon."
+ },
+ "rusalka": {
+  "look": "A pale young woman with long, loose greenish hair in a simple white shift, sitting on a birch branch over a river at night. Beautiful and sad, with a faint glow. Moonlight on her skin. Not a zombie, not a mermaid.",
+  "setting": "A river bank in a birch wood in Ukraine on an early-summer night, moonlight and mist on the water."
+ },
+ "sea-monk": {
+  "look": "A 'fish' shaped like a hooded monk, with a human-like face, a head like a monk's hood, and fins draped like a robe. Show it rising from the water. Renaissance woodcut style, as in Gesner or Rondelet. Not a squid, not a seal.",
+  "setting": "The Øresund strait between Denmark and Sweden at dusk, a herring boat and Kronborg Castle on the shore."
+ },
+ "sea-serpent": {
+  "look": "A huge, snake-like sea animal 9 to 30 m long, with a horse- or turtle-like head on a long neck, a mane behind the head and a row of humps behind. Dark skin. Show it near a 19th-century sailing ship for scale.",
+  "setting": "The open Atlantic off Gloucester, Massachusetts at dusk, a sailing ship and a rocky headland."
+ },
+ "selkie": {
+  "look": "A seal on a rocky skerry, half-shedding its skin to reveal a human woman with long dark hair, holding her sealskin around her shoulders. Other seals watch from the water. Tasteful, mysterious and sad, not scary. Soft grey and silver tones, the shed skin still dappled like a seal's coat.",
+  "setting": "A rocky skerry in Orkney at dusk, seals, waves and a stone croft on the shore."
+ },
+ "selma": {
+  "look": "A long, dark serpent with several humps above the water, with a head like a horse's or a crocodile's raised high, circling a small rowing boat on a narrow lake. Smooth, glossy skin. Not a plesiosaur, not a dragon. Calm, hot summer weather, the water like glass.",
+  "setting": "Lake Seljordsvatnet in Telemark, Norway at dusk, a wooden church and green hills."
+ },
+ "sharlie": {
+  "look": "A 9 to 12 m lake serpent with a dinosaur-like head, camel-like humps and rough, shell-like skin, diving in a cold mountain lake and leaving a wake like a small motorboat. Not a cartoon dinosaur. Its long dark back looks like a moving log at first glance.",
+  "setting": "Payette Lake near McCall, Idaho at dusk, pine forest, mountains and a wooden dock."
+ },
+ "sheepsquatch": {
+  "look": "A bear-sized creature covered in long, dirty white wool, with a sheep- or goat-like head and curved horns, standing upright on two legs. Wild and shaggy, with clawed hands. Not a sheep on all fours, not a yeti. Its wool hangs in long matted clumps down to its knees.",
+  "setting": "A wooded hollow in the Kanawha Valley, West Virginia at night, a creek bank and bare trees."
+ },
+ "shunka-warakin": {
+  "look": "A dark, wolf-like animal with a sloping back and high shoulders like a hyena, prowling near a ranch. Coarse dark fur, a big head and a long tail. Like the stuffed 1886 mount come to life. Not a hyena, not a werewolf.",
+  "setting": "Open range in the Madison Valley, Montana at night, a log ranch house, a fence and mountains."
+ },
+ "skinwalker-ranch": {
+  "look": "This card shows the ranch and its reported lights, not any creature. Glowing orbs of light float low over a remote high-desert ranch, with an old barn, cattle and a dark ridge behind. Eerie and quiet. Do not depict a skin-walker or any Navajo imagery.",
+  "setting": "A ranch in the Uintah Basin, Utah at night, sage, red cliffs and a clear starry sky."
+ },
+ "skunk-ape": {
+  "look": "A Bigfoot-like ape, smaller and leaner, about 1.5 to 2.1 m tall, with reddish or dark shaggy hair, standing behind palmettos in a back yard at night, eyes reflecting light. Like the Myakka photos. Not a gorilla. Wet, matted fur and a lean frame.",
+  "setting": "Big Cypress Swamp in Florida at dusk, cypress, sawgrass and still water."
+ },
+ "snallygaster": {
+  "look": "A huge winged creature, half bird and half reptile, with a long hooked metal-like beak full of teeth, a single eye in its forehead, and octopus-like tentacles hanging below. Show it swooping over a farm. Not a dragon. Huge wings spread wide, claws hooked, screeching like a train whistle.",
+  "setting": "The Middletown Valley in Maryland at dusk, a barn with a seven-pointed hex star, fields and mountains."
+ },
+ "snarly-yow": {
+  "look": "A huge, ghostly black dog standing in the middle of a mountain road at night, bigger than a calf, with glowing red eyes, a gaping blood-red mouth with long fangs, shaggy fur blurring into the dark mist, its body faintly see-through. Menacing and supernatural, not a pet dog.",
+  "setting": "The old National Road over South Mountain, Maryland at night, a stone wall and woods."
+ },
+ "spriggans": {
+  "look": "Ugly, wizened little old men with large heads, crouched among granite cairns and ruins, guarding a small treasure, while one of them swells up to giant size behind the others. Grim and grotesque, not gory. Wrinkled faces, long noses, wiry limbs and dark cloaks.",
+  "setting": "Trencrom Hill in West Penwith, Cornwall at dusk, granite boulders, a hillfort and the sea beyond."
+ },
+ "stellers-sea-ape": {
+  "look": "A sea animal about 1.5 m long with a dog-like head, pointed ears, large eyes, drooping whiskers, thick grey and reddish fur, no visible front limbs and a tail with two fins like a shark's. Show it rising upright in the water, playing with seaweed.",
+  "setting": "The Shumagin Islands off Alaska at dusk, rocky shore, kelp and Bering's sailing ship."
+ },
+ "storsjoodjuret": {
+  "look": "A dark serpent with several humps and a head like a dog or cat, with ears or small fins on the head. Show it swimming in a deep, cold lake with a large wake behind. Not a plesiosaur, not a dragon.",
+  "setting": "Lake Storsjön near Frösön island in Jämtland, Sweden at dusk, a church and mountains."
+ },
+ "stronsay-beast": {
+  "look": "A long carcass on a beach with a long neck, small head, three pairs of paw-like limbs, and a row of bristles down its back that glow in the dark. Mysterious and pale, not gory. Not a dinosaur. Shown as an intact, long pale shape on the sand, about 17 m long.",
+  "setting": "A beach on Stronsay, Orkney at dusk, sand, rocks and a stormy sky."
+ },
+ "tahoe-tessie": {
+  "look": "A dark, humped serpent-like animal leaving a V-shaped wake on calm, very clear water, its long body visible beneath the surface. Smooth dark skin, small head. Not a plesiosaur, not a cartoon. Shown from above and to the side, so the shape under the clear water reads as huge and real.",
+  "setting": "Lake Tahoe near Zephyr Cove at dusk, clear blue water, pine trees and snowy mountains."
+ },
+ "tantanoola-tiger": {
+  "look": "A lean, pale sandy wolf with large ears and a long muzzle, prowling among sheep at the edge of a pine forest. The 'tiger' that turned out to be an Arabian wolf. Lean and quiet. Not a tiger, no stripes.",
+  "setting": "Pine forest and farmland near Tantanoola, South Australia at night, sheep and a fence."
+ },
+ "tatzelwurm": {
+  "look": "A stubby lizard-like body with a cat-like face, round eyes and short ears, and only two or four short legs, crawling over rocky alpine slopes, mouth open in a hiss. Not a snake, not a dragon. Scaly grey-brown body about 1 to 2 m long, thick like a log.",
+  "setting": "A rocky slope in the Alps at dusk, snowy peaks, a wooden hut and alpine flowers."
+ },
+ "thetis-lake-monster": {
+  "look": "A man-shaped creature about 1.5 m tall with silvery scales, a pointed, spiked head with ear-like gills, and clawed hands, rising out of a lake. Humanoid but fish-like. Not a man in a suit. Dripping wet, standing upright at the water's edge, arms raised slightly.",
+  "setting": "Thetis Lake beach near Victoria, BC at dusk, arbutus trees, rocks and calm water."
+ },
+ "thunderbird": {
+  "look": "The modern settler and witness sightings: an enormous dark bird with a wingspan of 4.5 to 6 m (15 to 20 ft), far larger than any condor, with broad fingered wing tips, a hooked beak and a long neck, soaring low so its shadow sweeps across a field. Shown as a huge bird, not as the sacred Indigenous spirit being and with no Indigenous art motifs.",
+  "setting": "Open plains with a farmhouse and a river valley in central Illinois at dusk, a long shadow on the grass."
+ },
+ "thylacine": {
+  "look": "The real Tasmanian tiger: a dog-sized marsupial about 1 m long, sandy-brown coat with dark stripes across the back and rump, a stiff thick tail held straight out, a long narrow head with rounded upright ears, and sometimes an enormous yawning gape. A real animal, drawn accurately, not a dog or a tiger.",
+  "setting": "Button-grass plains at the edge of eucalyptus forest in north-west Tasmania at dusk, a spotlight beam and mist."
+ },
+ "trunko": {
+  "look": "Trunko as the 1924 Margate witnesses described it: a huge, whale-sized sea creature covered in thick, long white fur like a polar bear's, with a long elephant-like trunk instead of a head, a lobster-like tail and NO legs, thrashing in the waves as two orcas attack it. A sea animal shaped like a furry whale, not an elephant, no legs.",
+  "setting": "The sea off Margate, KwaZulu-Natal, South Africa at dusk, waves, a sandy beach and palm trees."
+ },
+ "tsuchinoko": {
+  "look": "The Tsuchinoko of Japanese legend: a short, fat snake about 50 cm long with a wide, bulging belly like a beer bottle, a thin rat-like tail, a triangular viper head with sharp fangs and small eyes, mottled brown and dark scales, coiled on a rice-field path. A snake, fat in the middle, not a worm, not a slug.",
+  "setting": "A rice paddy edge beside mountain forest in Shimokitayama, Nara, Japan at dusk, cedars and terraced fields."
+ },
+ "tylwyth-teg": {
+  "look": "The 'Fair Family' of Wales: fair-haired, graceful human-like people dancing in a fairy ring of darker grass at night, with a lake maiden rising from the water nearby. Elegant and otherworldly, no wings, not tiny, not Victorian sprites. Their clothes are pale and shimmering.",
+  "setting": "Llyn y Fan Fach under the Black Mountains in Wales at dusk, a fairy ring and mist on the lake."
+ },
+ "ufo-boomerang": {
+  "look": "A huge V-shaped or chevron formation of glowing lights, with a dark boomerang-shaped body between them blocking out the stars, gliding silently and slowly overhead. Enormous scale, up to a mile across. No aliens. The lights are white, amber and red.",
+  "setting": "A desert city on the edge of Phoenix, Arizona at night, saguaro cacti and mountains."
+ },
+ "ufo-cigar": {
+  "look": "A long, wingless cylinder glowing softly, with a row of lit windows along its side and smaller lights leaving it. Silent and huge. Not a rocket, not a blimp with fins. A 'mothership' over the clouds. Metallic grey surface catching the moonlight.",
+  "setting": "Above clouds over Montgomery, Alabama in 1948 at night, a DC-3 airliner small in the distance."
+ },
+ "ufo-crash": {
+  "look": "The wreck of a crashed metallic flying saucer half-buried in a long gouge in the desert ground at night, its dented silver disc tilted, cracked open and smoking, strange metal debris with odd symbols scattered around, searchlights from distant military trucks sweeping toward it. Mysterious, no bodies, no aliens.",
+  "setting": "Ranchland near Roswell, New Mexico in 1947 at dusk, a windmill, fences and a dirt road."
+ },
+ "ufo-orbs": {
+  "look": "Glowing balls of light, white, orange and red, hovering and dancing over a desert at night, some splitting apart or merging. Soft, eerie and silent. No craft, no aliens. Some are basketball-sized and close, others far away and large, all glowing with soft halos, like the Marfa lights.",
+  "setting": "The Marfa viewing area in West Texas at night, desert grassland, a fence and distant mountains."
+ },
+ "ufo-saucer": {
+  "look": "The classic flying saucer: a shiny metallic disc with a dome on top and lights around the rim, hovering silently. 1940s and 1950s style, gleaming in the last light. No aliens visible. Show several of them in a loose formation, like Kenneth Arnold's skipping saucers, glinting in the sun's last rays.",
+  "setting": "Near Mount Rainier, Washington at dusk, snowy peak, forest and a small plane in the distance."
+ },
+ "ufo-tic-tac": {
+  "look": "A smooth white oblong object like a giant Tic Tac mint about 12 m long, with no wings, exhaust or rotors, hovering over a churning patch of ocean. A fighter jet small in the distance. Sleek and simple. Pure white, glowing faintly.",
+  "setting": "The Pacific Ocean off San Diego, California at dusk, choppy water and an aircraft carrier on the horizon."
+ },
+ "ufo-triangle": {
+  "look": "A huge, dark triangular craft with a bright light at each corner and a red light in the centre, hovering silently and low. Its body blocks out the stars. Flat, smooth and enormous. No aliens. Show it low over rooftops, seen from below, its lights bright.",
+  "setting": "A Belgian town at night with church spires and rooftops, a field in the foreground."
+ },
+ "utah-lake-monster": {
+  "look": "The Utah Lake monster as the 1860s settlers described it: a long, alligator-like reptile about 6 m long with a heavy scaly body, short legs and a long tail, but a dog-like head with glowing eyes, sliding out of the reeds into the lake with its jaws open. Menacing, not a snake.",
+  "setting": "Utah Lake beside Provo at dusk, reeds, mountains and a pioneer cabin on the shore."
+ },
+ "van-meter-visitor": {
+  "look": "The Van Meter Visitor of 1903: a big, winged, pterodactyl-like creature with huge leathery bat wings, a long, toothless beak, a single horn on its forehead that shoots out a bright beam of light like a searchlight, and long legs with claws, perched on a utility pole over a small Iowa town at night. Menacing, not an ape, not a gargoyle.",
+  "setting": "The main street of Van Meter, Iowa in 1903 at night, brick shops and an old mine entrance."
+ },
+ "vegetable-man": {
+  "look": "A thin, green, plant-like humanoid about 2.1 m tall, with very thin arms, long fingers tipped with needles, and yellow eyes turning red. Show it bounding through woods in huge leaps. Not a tree, not a cartoon. Its skin looks like stalks and leaves.",
+  "setting": "Woods and fields near Grant Town, West Virginia at dusk, a groundhog field and dark trees."
+ },
+ "waitoreke": {
+  "look": "A small, cat-sized, otter- or beaver-like animal with brown fur, short legs and a long tail, swimming in a river or sitting on a rock. A real-looking mammal, shy and alert. Not a seal, not a rat. Its wet fur glistens.",
+  "setting": "A river in a fiord on New Zealand's South Island at dusk, beech forest, ferns and mountains."
+ },
+ "walgren-lake-monster": {
+  "look": "A dull grey or brown animal like a huge alligator, about 12 m long, with a horn between its eyes and nostrils, wading in a small lake. Thick tail, heavy jaws. Not a dragon, no wings. Rough, ridged hide like an alligator's, only darker.",
+  "setting": "Walgren Lake in the Nebraska sandhills at dusk, grassy dunes, reeds and a windmill."
+ },
+ "wampus-cat": {
+  "look": "A big, dark cat bigger than a panther, with glowing green or yellow eyes and a long tail, prowling a mountain forest. Some versions give it six legs. Sleek and eerie, mouth open in a scream. Not a lion. Black fur that seems to soak up the light.",
+  "setting": "Appalachian mountain forest at night, mossy rocks, rhododendrons and a creek."
+ },
+ "white-river-monster": {
+  "look": "A huge grey animal the size of a boxcar, with peeling grey skin, a catfish-like face and a bony spike on its forehead, lying on the surface of a muddy river. Not a dinosaur, not a whale. A huge, gentle-looking face just at the waterline.",
+  "setting": "The White River near Newport, Arkansas at dusk, cottonwoods, a sandbar and slow muddy water."
+ },
+ "white-thing": {
+  "look": "A terrifying white 'devil dog': a huge beast bigger than a bear with long, ragged, filthy white fur, a long wolf-like snout, glowing red eyes and a wide snarling mouth full of fangs, lunging forward on all fours on a dark rural road with long black claws. Menacing, not a pet dog.",
+  "setting": "A back road in a wooded hollow in rural West Virginia at night, a wooden fence and fog."
+ },
+ "wild-man-of-the-navidad": {
+  "look": "Respectfully, a real man, not a monster: a lone African man in worn, patched clothes, seen at a distance among river-bottom trees, surviving in the wild. Tools left polished on a cabin step in the foreground. Quiet and human, no ape features, no horror.",
+  "setting": "Navidad River bottom woodland in south-east Texas in the 1840s at dusk, a log cabin and pecan trees."
+ },
+ "wolfman-of-defiance": {
+  "look": "A very tall upright figure with a wolf-like head, fangs and shaggy hair, holding a piece of wood like a club, near railroad tracks at night. Man-shaped, broad shoulders. Not a wolf on all fours. Eyes glowing in the dark, hair wild, clothes ragged.",
+  "setting": "Railroad yards in Defiance, Ohio in 1972 at night, boxcars, signal lights and gravel."
+ },
+ "yeren": {
+  "look": "A tall creature about 2 m tall, walking upright, covered in reddish hair, standing in montane forest with hair caught on nearby branches. Ape-like face, long arms. Not a yeti, not a gorilla. Long reddish hair covering its body, shoulders hunched slightly.",
+  "setting": "Montane forest in Shennongjia, Hubei, China at dusk, mist, bamboo and rugged peaks."
+ },
+ "yeti": {
+  "look": "The Abominable Snowman: a huge, powerful ape-like beast about 2.5 m tall standing on a glacier in a blizzard, covered in long, shaggy white-grey fur, with a dark leathery face, a conical head, glaring eyes and a roaring mouth showing fangs, massive arms raised. Menacing and wild.",
+  "setting": "A high Himalayan glacier in a blizzard at dusk, jagged peaks and deep snow."
+ },
+ "yowie": {
+  "look": "A tall, hairy, upright creature 2 to 3 m tall, with a broad chest, long arms and dark hair, standing among eucalyptus trees in the bush. Australia's Bigfoot. Not a gorilla, not a kangaroo. A heavy brow, deep-set eyes and long matted hair.",
+  "setting": "A rainforest gully in the Blue Mountains, NSW at dusk, tree ferns, sandstone cliffs and mist."
+ },
+ "zuiyo-maru-carcass": {
+  "look": "The famous 1977 Zuiyo-maru carcass: a huge, rotting, pinkish-grey and white sea creature carcass about 10 m long hanging from a fishing ship's crane by ropes, its decaying flesh sagging in strips, with a long neck, a small head, four flipper-like limbs and a long tail, dripping as fishermen look up at it. Decayed and strange, not a clean cartoon plesiosaur, no blood.",
+  "setting": "The deck of a Japanese fishing trawler off Christchurch, New Zealand at dusk, a crane and rough sea."
+ }
+}

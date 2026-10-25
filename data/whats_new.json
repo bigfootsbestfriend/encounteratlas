@@ -1,122 +1,128 @@
 [
- {
-  "date": "2026-10-24",
-  "title": "Shiny cards and proper card frames",
-  "path": "/cards/",
-  "note": "Every collector card now has a real frame: pine and moths for Common, silver for Uncommon, copper for Rare and a Halloween one for the hunt. And any card can come out shiny when you check in, about 1 in 15. Already have the card? Go back to the spot and try again (once a day). Check in during the week of a creature's famous first sighting and it's shiny for sure."
- },
- {
-  "date": "2026-10-24",
-  "title": "Road trip podcast player",
-  "path": "/road-trip/",
-  "note": "Plan a trip or open one of the sample trips and there's now a Listen along list with podcast episodes about the creatures you'll pass, in the order you'll pass them. Hit Play all and it keeps going with your screen off, with big buttons and lock-screen controls. Episodes stream straight from each show, so the people who make them get the listen."
- },
- {
-  "date": "2026-10-24",
-  "title": "Collector cards you can flip",
-  "path": "/cards/",
-  "note": "The cards are proper trading cards now. Tap one to flip it for the field notes and where to find it. Unique cards (only one spot on the planet) are the shiny ones, and on a phone they catch the light when you tilt it."
- },
- {
-  "date": "2026-10-24",
-  "title": "Then and now on Near me",
-  "path": "/near-me/",
-  "note": "Slide back through time around any town, from 1800s newspaper stories to this week's reader reports, with quick buttons for the road trip planner, cards, skywatch and more."
- },
- {
-  "date": "2026-10-24",
-  "title": "Mystery of the day",
-  "path": "/mystery-of-the-day/",
-  "note": "One strange case a day from our files. Vote on what you think it was, then come back tomorrow for the verdict and how everyone else voted."
- },
- {
-  "date": "2026-10-24",
-  "title": "Conditions that night, on every reader report",
-  "path": "/reports/",
-  "note": "Each report now shows the Moon, how dark it was, any bright planets or meteor shower and the weather at that spot on that night."
- },
- {
-  "date": "2026-10-24",
-  "title": "Local legends for every state, province and country",
-  "path": "/us/",
-  "note": "Each region page now opens with its signature creature, like Mothman in West Virginia and Ogopogo in BC, with the famous cases and places to visit for it."
- },
- {
-  "date": "2026-10-24",
-  "title": "Every government UFO programme, country by country",
-  "path": "/ufo/programs/",
-  "note": "44 official UFO programmes in 18 countries, from Sweden's 1946 ghost rocket committee and Project Blue Book to France's GEIPAN, Chile's SEFAA and the Pentagon's AARO: who ran each one, what they found and the official records."
- },
- {
-  "date": "2026-10-24",
-  "title": "Press and researchers",
-  "path": "/press/",
-  "note": "Facts, figures, how we source things and free charts for anyone writing about UFO files."
- },
- {
-  "date": "2026-10-24",
-  "title": "Backup copies of every official UFO source",
-  "path": "/ufo/releases/",
-  "note": "Government pages move and vanish, so every official link on our releases and hearings pages now has an archived copy next to it, plus a note on how the list is put together and a ready-made citation."
- },
- {
-  "date": "2026-10-23",
-  "title": "UFO hearings: what was said under oath",
-  "path": "/ufo/hearings/",
-  "note": "Every public UFO hearing held by lawmakers since 1966, from the Blue Book era to the 2025 House task force, with who testified, key quotes from the official transcripts and what happened next."
- },
- {
-  "date": "2026-10-23",
-  "title": "Who has testified about UFOs",
-  "path": "/ufo/people/",
-  "note": "25 pilots, sailors, scientists, officials, whistleblowers and reporters, including J. Allen Hynek, Carl Sagan, David Fravor and David Grusch, with what each one told Congress."
- },
- {
-  "date": "2026-10-24",
-  "title": "The real wendigo (no antlers)",
-  "path": "/creatures/wendigo/",
-  "note": "What the Cree, Ojibwe and Innu traditions actually describe, the Swift Runner and Jack Fiddler cases, and how the movies gave it antlers. New art too."
- },
- {
-  "date": "2026-10-24",
-  "title": "Chupacabra: the full story",
-  "path": "/creatures/chupacabra/",
-  "note": "From the 1995 Puerto Rico attacks to the hairless Texas carcasses, what the DNA tests found and the sci-fi movie link."
- },
- {
-  "date": "2026-10-24",
-  "title": "Who was Indrid Cold?",
-  "path": "/creatures/indrid-cold/",
-  "note": "The smiling man Woodrow Derenberger met on Interstate 77 in 1966, and how he became the Grinning Man of Mothman lore."
- },
- {
-  "date": "2026-10-24",
-  "title": "Road trip planner",
-  "path": "/road-trip/",
-  "note": "Put in where you're starting and where you're headed and it finds every monster museum, famous sighting, mystery and old newspaper story along the road, in driving order. Six ready-made trips too, from Route 66 to Loch Ness."
- },
- {
-  "date": "2026-10-24",
-  "title": "Collector cards and the Halloween hunt",
-  "path": "/cards/",
-  "note": "190 creature cards you can only collect by actually going to a real sighting spot. Twelve spooky ones are a Halloween set until November 2."
- },
- {
-  "date": "2026-10-24",
-  "title": "Tonight's skywatch forecast",
-  "path": "/tools/skywatch/",
-  "note": "A score out of 10 for tonight anywhere in the world, from clouds hour by hour, the Moon, meteor showers and Space Station passes, plus a meteor shower calendar."
- },
- {
-  "date": "2026-10-24",
-  "title": "Campfire mode",
-  "path": "/stories/campfire/",
-  "note": "A red-on-black reader for telling witness stories out loud in the dark, one at a time, with the screen kept on."
- },
- {
-  "date": "2026-10-24",
-  "title": "Field journal",
-  "path": "/journal/",
-  "note": "Log every night out, even the quiet ones. Weather and the Moon fill in by themselves and it all stays on your phone, offline too."
- }
+  {
+    "date": "2026-10-25",
+    "title": "Every card has its own painting now",
+    "path": "/cards/",
+    "note": "All 190 collector cards now show a painted picture of the creature once you've collected it, from Mothman and the Dogman to the Tsuchinoko and the Zuiyo-maru carcass. The ones you haven't found yet stay as silhouettes, so you'll have to go there to see them."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Shiny cards and proper card frames",
+    "path": "/cards/",
+    "note": "Every collector card now has a real frame: pine and moths for Common, silver for Uncommon, copper for Rare and a Halloween one for the hunt. And any card can come out shiny when you check in, about 1 in 15. Already have the card? Go back to the spot and try again (once a day). Check in during the week of a creature's famous first sighting and it's shiny for sure."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Road trip podcast player",
+    "path": "/road-trip/",
+    "note": "Plan a trip or open one of the sample trips and there's now a Listen along list with podcast episodes about the creatures you'll pass, in the order you'll pass them. Hit Play all and it keeps going with your screen off, with big buttons and lock-screen controls. Episodes stream straight from each show, so the people who make them get the listen."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Collector cards you can flip",
+    "path": "/cards/",
+    "note": "The cards are proper trading cards now. Tap one to flip it for the field notes and where to find it. Unique cards (only one spot on the planet) are the shiny ones, and on a phone they catch the light when you tilt it."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Then and now on Near me",
+    "path": "/near-me/",
+    "note": "Slide back through time around any town, from 1800s newspaper stories to this week's reader reports, with quick buttons for the road trip planner, cards, skywatch and more."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Mystery of the day",
+    "path": "/mystery-of-the-day/",
+    "note": "One strange case a day from our files. Vote on what you think it was, then come back tomorrow for the verdict and how everyone else voted."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Conditions that night, on every reader report",
+    "path": "/reports/",
+    "note": "Each report now shows the Moon, how dark it was, any bright planets or meteor shower and the weather at that spot on that night."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Local legends for every state, province and country",
+    "path": "/us/",
+    "note": "Each region page now opens with its signature creature, like Mothman in West Virginia and Ogopogo in BC, with the famous cases and places to visit for it."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Every government UFO programme, country by country",
+    "path": "/ufo/programs/",
+    "note": "44 official UFO programmes in 18 countries, from Sweden's 1946 ghost rocket committee and Project Blue Book to France's GEIPAN, Chile's SEFAA and the Pentagon's AARO: who ran each one, what they found and the official records."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Press and researchers",
+    "path": "/press/",
+    "note": "Facts, figures, how we source things and free charts for anyone writing about UFO files."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Backup copies of every official UFO source",
+    "path": "/ufo/releases/",
+    "note": "Government pages move and vanish, so every official link on our releases and hearings pages now has an archived copy next to it, plus a note on how the list is put together and a ready-made citation."
+  },
+  {
+    "date": "2026-10-23",
+    "title": "UFO hearings: what was said under oath",
+    "path": "/ufo/hearings/",
+    "note": "Every public UFO hearing held by lawmakers since 1966, from the Blue Book era to the 2025 House task force, with who testified, key quotes from the official transcripts and what happened next."
+  },
+  {
+    "date": "2026-10-23",
+    "title": "Who has testified about UFOs",
+    "path": "/ufo/people/",
+    "note": "25 pilots, sailors, scientists, officials, whistleblowers and reporters, including J. Allen Hynek, Carl Sagan, David Fravor and David Grusch, with what each one told Congress."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "The real wendigo (no antlers)",
+    "path": "/creatures/wendigo/",
+    "note": "What the Cree, Ojibwe and Innu traditions actually describe, the Swift Runner and Jack Fiddler cases, and how the movies gave it antlers. New art too."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Chupacabra: the full story",
+    "path": "/creatures/chupacabra/",
+    "note": "From the 1995 Puerto Rico attacks to the hairless Texas carcasses, what the DNA tests found and the sci-fi movie link."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Who was Indrid Cold?",
+    "path": "/creatures/indrid-cold/",
+    "note": "The smiling man Woodrow Derenberger met on Interstate 77 in 1966, and how he became the Grinning Man of Mothman lore."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Road trip planner",
+    "path": "/road-trip/",
+    "note": "Put in where you're starting and where you're headed and it finds every monster museum, famous sighting, mystery and old newspaper story along the road, in driving order. Six ready-made trips too, from Route 66 to Loch Ness."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Collector cards and the Halloween hunt",
+    "path": "/cards/",
+    "note": "190 creature cards you can only collect by actually going to a real sighting spot. Twelve spooky ones are a Halloween set until November 2."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Tonight's skywatch forecast",
+    "path": "/tools/skywatch/",
+    "note": "A score out of 10 for tonight anywhere in the world, from clouds hour by hour, the Moon, meteor showers and Space Station passes, plus a meteor shower calendar."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Campfire mode",
+    "path": "/stories/campfire/",
+    "note": "A red-on-black reader for telling witness stories out loud in the dark, one at a time, with the screen kept on."
+  },
+  {
+    "date": "2026-10-24",
+    "title": "Field journal",
+    "path": "/journal/",
+    "note": "Log every night out, even the quiet ones. Weather and the Moon fill in by themselves and it all stays on your phone, offline too."
+  }
 ]
