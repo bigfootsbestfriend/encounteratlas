@@ -151,5 +151,55 @@ await sleep(1000);
 sent = pushes().slice(n4).filter((p) => p.payload.kind === 'alert');
 ok(to(ufo).length === 0, 'no alerts after unsubscribing');
 
+section('App alerts (FCM token from the Android / iPhone app)');
+const tok = (n) => `${n}:APA91b` + 'x'.repeat(140);
+const app = (name, extra = {}) => ({ token: tok(name), platform: 'android', lat: 57.32, lng: -4.43, radius_km: 50, categories: '', units: 'mi',
+  turnstile: 'XXXX.DUMMY.TOKEN', ...extra });
+r = await post('/v1/push/app-subscribe', app('bad', { token: 'short' }));
+ok(r.status === 400 && r.data.fields.token, 'app: a malformed token is refused');
+r = await post('/v1/push/app-subscribe', app('bad', { token: 'https://evil.example/' + 'x'.repeat(60) }));
+ok(r.status === 400 && r.data.fields.token, 'app: a URL is not a token');
+r = await post('/v1/push/app-subscribe', app('bad', { platform: 'windows' }));
+ok(r.status === 400 && r.data.fields.platform, 'app: unknown platform refused');
+r = await post('/v1/push/app-subscribe', app('bad', { turnstile: '' }));
+ok(r.status === 403, 'app: needs the spam check');
+const nessApp = await post('/v1/push/app-subscribe', app('ness'));
+ok(nessApp.status === 201 && nessApp.data.id && nessApp.data.manage_token, 'app: subscribed with an FCM token');
+const nessAgain = await post('/v1/push/app-subscribe', app('ness', { radius_km: 80 }));
+ok(nessAgain.status === 201 && nessAgain.data.id === nessApp.data.id && nessAgain.data.manage_token !== nessApp.data.manage_token, 'app: same token again: same id, new manage token');
+const goneApp = await post('/v1/push/app-subscribe', app('gone'));
+const nessWeb = await post('/v1/push/subscribe', sub('ness-web', { lat: 57.33, lng: -4.42 }));
+r = await post('/v1/push/update', { id: nessApp.data.id, manage_token: nessApp.data.manage_token, lat: 57.32, lng: -4.43, radius_km: 60, categories: '', units: 'mi' });
+ok(r.status === 400 || r.status === 404, 'app: the old manage token no longer works');
+r = await post('/v1/push/update', { id: nessApp.data.id, manage_token: nessAgain.data.manage_token, lat: 57.32, lng: -4.43, radius_km: 60, categories: '', units: 'mi' });
+ok(r.status === 200, 'app: update moves the area (shared route)');
+const n5 = pushes().length;
+const ness = await file({ creature: 'loch-ness-monster', lat: 57.3, lon: -4.45, place: 'Dores Beach',
+  story: 'A long dark hump rose out of the water near the beach, moved against the waves and sank again after a minute.' });
+ok(ness.status === 201, 'app: Loch Ness report filed');
+await approve(ness.data.id);
+await sleep(1000);
+sent = pushes().slice(n5).filter((p) => p.payload.kind === 'alert' && p.payload.id === ness.data.id);
+const appPush = sent.find((p) => p.to === nessApp.data.id), webPush = sent.find((p) => p.to === nessWeb.data.id);
+ok(appPush && appPush.via === 'fcm' && webPush && webPush.via === 'webpush', 'app and web subscribers both alerted, each by its own channel', JSON.stringify(sent));
+ok(appPush && / mi away$/.test(appPush.payload.title) && appPush.payload.url.endsWith(`/reports/${ness.data.id}/?source=alert`), 'app alert: units and report link');
+const n6 = pushes().length;
+const ness2 = await file({ creature: 'loch-ness-monster', lat: 57.31, lon: -4.44, place: 'Dores',
+  story: 'Something big and dark moved across the loch in a straight line, leaving a long wake behind it in calm water.' });
+await approve(ness2.data.id);
+await sleep(1000);
+sent = pushes().slice(n6).filter((p) => p.payload.kind === 'alert');
+ok(sent.some((p) => p.to === nessApp.data.id) && !sent.some((p) => p.to === goneApp.data.id), 'app: an unregistered token (404) is switched off');
+st = await (await fetch(API + '/mod/push-stats', { headers: { cookie: COOKIE } })).json();
+ok(st.app_active === 1, 'push-stats counts app subscribers', JSON.stringify(st));
+r = await post('/v1/push/unsubscribe', { id: nessApp.data.id, manage_token: nessAgain.data.manage_token });
+ok(r.status === 200, 'app: unsubscribe (shared route)');
+const n7 = pushes().length;
+const ness3 = await file({ creature: 'loch-ness-monster', lat: 57.3, lon: -4.46, place: 'Inverfarigaig',
+  story: 'Two of us watched a smooth grey back break the surface three times before it went under and did not come up.' });
+await approve(ness3.data.id);
+await sleep(1000);
+ok(!pushes().slice(n7).some((p) => p.to === nessApp.data.id), 'app: no alerts after unsubscribing');
+
 console.log(`\n${pass} passed, ${failed} failed`);
 process.exit(failed ? 1 : 0);

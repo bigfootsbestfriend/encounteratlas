@@ -286,11 +286,13 @@ def ga_tag():
     if GA_ID:
         out += (f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>'
                 "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}"
-                # app_mode (GA4 custom dimension): twa = the Play Store app, pwa = installed from the browser, web = a tab.
+                # app_mode (GA4 custom dimension): app = the Capacitor app (Play Store 2.0+, its WebView adds EncounterAtlasApp/ to the
+                # user agent), twa = the old Play Store TWA, pwa = installed from the browser, web = a tab.
                 # Remembered per session, since only the app's first page carries ?source=twa / ?source=pwa. Only our own package's
                 # referrer counts: links opened from the Reddit app also arrive as android-app://com.reddit.frontpage.
                 "var eaMode=(function(){try{var q=new URLSearchParams(location.search).get('source'),s=sessionStorage;"
-                "if(q==='twa'||document.referrer.indexOf('android-app://com.encounteratlas.app')===0)s.setItem('ea-mode','twa');"
+                "if(/EncounterAtlasApp\\//.test(navigator.userAgent))s.setItem('ea-mode','app');"
+                "else if(q==='twa'||document.referrer.indexOf('android-app://com.encounteratlas.app')===0)s.setItem('ea-mode','twa');"
                 "else if(q==='pwa'||q==='app')s.setItem('ea-mode','pwa');"
                 "return s.getItem('ea-mode')||(matchMedia('(display-mode: standalone)').matches||navigator.standalone?'pwa':'web');}catch(e){return 'web';}})();"
                 f"gtag('js',new Date());gtag('set',{{app_mode:eaMode}});gtag('config','{GA_ID}',{{app_mode:eaMode}});"
@@ -393,6 +395,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <link rel="manifest" href="{url('/manifest.webmanifest')}">
 <link rel="apple-touch-icon" href="{url('/static/apple-touch-icon.png')}">
 {feeds}
+<script src="{url('/static/app-bridge.js')}" defer></script>
 <meta property="og:type" content="{'article' if ld and any(o.get('@type') == 'Article' for o in ld) else 'website'}">
 <meta property="og:site_name" content="Encounter Atlas">
 <meta property="og:title" content="{esc(full_title)}">

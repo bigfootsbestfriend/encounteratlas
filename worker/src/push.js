@@ -3,13 +3,19 @@
 //   POST /v1/push/subscribe   {endpoint, p256dh, auth, lat, lng, radius_km, categories, units, turnstile} -> {id, manage_token}
 //   POST /v1/push/update      {id, manage_token, lat, lng, radius_km, categories, units}                  -> {state: 'ok'}
 //   POST /v1/push/unsubscribe {id, manage_token}                                                           -> {state: 'ok'}
+//   POST /v1/push/app-subscribe {token, platform, lat, lng, radius_km, categories, units, turnstile}      -> {id, manage_token}
+//        the Android / iPhone app (Capacitor): its Firebase Cloud Messaging token instead of a Web Push subscription.
+//        Stored in the same push_subs table with endpoint 'fcm:<token>' (p256dh and auth empty), so matching, the daily
+//        cap, update and unsubscribe are shared. 503 {state: 'unavailable'} until the FCM_SERVICE_ACCOUNT secret is set.
 // Web web apps can't track location in the background, so alerts go by the saved area only. Sending happens in
 // ctx.waitUntil after the mod action, so approving stays instant. Secrets: VAPID_PRIVATE (JWK JSON) and
 // MOD_PUSH_KEY (signs the Approve / Reject buttons). VAPID_PUBLIC is a plain var (the site ships it too).
+// FCM_SERVICE_ACCOUNT (the Firebase service account JSON key) turns on app alerts (fcm.js).
 import { CREATURES } from './creatures.js';
 import { LIVING_TRADITIONS } from './index.js';
 import { haversineKm, category, publicPoint, summary } from './nearby.js';
 import { sendPush, validEndpoint, b64u } from './webpush.js';
+import { fcmConfig, sendFcm, validFcmToken } from './fcm.js';
 import { publicPlace } from './place.js';
 import { clusterFor, shortPlace, WINDOW_DAYS } from './clusters.js';
 import { fail, json, hash, clientIp, rateLimited, turnstileOk, randomId, sendEmail, emailLayout, esc, line, now } from './util.js';
@@ -22,6 +28,9 @@ const today = () => new Date().toISOString().slice(0, 10);
 
 // Competitor names never go out in a notification (titles and summaries come from readers' own words).
 export const BLOCKED = /bfro|nuforc|mufon|enigma\s*labs|enigmalabs|cryptid\s*catchers|cryptidcatchers|cryptid\s*atlas|cryptidatlas/i;
+
+export const FCM_PREFIX = 'fcm:';
+const isApp = (s) => String(s.endpoint || '').startsWith(FCM_PREFIX);
 
 const vapid = (env) => (env.VAPID_PUBLIC && env.VAPID_PRIVATE
   ? { publicKey: env.VAPID_PUBLIC, privateJwk: env.VAPID_PRIVATE, subject: 'mailto:hello@encounteratlas.com' } : null);
@@ -69,6 +78,29 @@ export async function pushApi(req, env, p, ctx, body) {
     if (!prev) ctx.waitUntil(tellMike(env, a).catch((e) => console.error(e)));
     return json({ state: 'ok', id, manage_token: token }, 201);
   }
+  if (p === '/v1/push/app-subscribe') {
+    if (!fcmConfig(env) && env.PUSH_MODE !== 'log') fail(503, 'unavailable');
+    const fields = {};
+    if (!validFcmToken(b.token)) fields.token = 'FCM registration token';
+    if (b.platform != null && !['android', 'ios'].includes(b.platform)) fields.platform = 'android | ios';
+    const a = area(b, fields);
+    if (Object.keys(fields).length) fail(400, 'invalid', { fields });
+    const ip = clientIp(req, env);
+    if (!(await turnstileOk(env, b.turnstile, ip))) fail(403, 'turnstile');
+    if (await rateLimited(env, [[`push|ip|${await hash(env, ip)}`, 10, 3600]])) fail(429, 'slow');
+    const endpoint = FCM_PREFIX + b.token;
+    const token = randomId(24);
+    const prev = await env.DB.prepare('SELECT id FROM push_subs WHERE endpoint = ?1').bind(endpoint).first();
+    const id = prev ? prev.id : randomId(9);
+    await env.DB.prepare(
+      `INSERT INTO push_subs (id, endpoint, p256dh, auth, manage_token_hash, lat, lng, radius_km, categories, units)
+       VALUES (?1, ?2, '', '', ?3, ?4, ?5, ?6, ?7, ?8)
+       ON CONFLICT (endpoint) DO UPDATE SET manage_token_hash = ?3, lat = ?4, lng = ?5, radius_km = ?6,
+         categories = ?7, units = ?8, active = 1, fail_count = 0, role = ''`,
+    ).bind(id, endpoint, await hash(env, 'push|' + token, 43), a.lat, a.lng, a.radius_km, a.categories, a.units).run();
+    if (!prev) ctx.waitUntil(tellMike(env, a, 'app').catch((e) => console.error(e)));
+    return json({ state: 'ok', id, manage_token: token }, 201);
+  }
   if (p === '/v1/push/update') {
     const s = await owned(env, b);
     const fields = {};
@@ -87,8 +119,8 @@ export async function pushApi(req, env, p, ctx, body) {
 }
 
 // Mike hears about every new alert subscriber (email plus his phone), like email signups. Only the rough area.
-async function tellMike(env, a) {
-  const what = a.categories ? a.categories.replace(/,/g, ', ') : 'everything';
+async function tellMike(env, a, via = '') {
+  const what = (a.categories ? a.categories.replace(/,/g, ', ') : 'everything') + (via === 'app' ? ' (in the app)' : '');
   const where = `${a.lat.toFixed(1)}, ${a.lng.toFixed(1)} (within ${a.radius_km} km)`;
   const jobs = [];
   if (env.OWNER_EMAIL) {
@@ -103,20 +135,27 @@ async function tellMike(env, a) {
   await Promise.all(jobs);
 }
 
-// Sends to a set of subscription rows; dead ones (404/410) are switched off, 5 failures in a row too.
-// Local dev (PUSH_MODE=log): nothing leaves the machine; each push is logged for the tests, and an endpoint
-// containing /gone answers 410 like an expired subscription.
+// Sends to a set of subscription rows (Web Push, or FCM for 'fcm:' rows from the app); dead ones (404/410) are switched
+// off, 5 failures in a row too. A failure on our side (no key configured, FCM down: status -1) doesn't count against
+// the row. Local dev (PUSH_MODE=log): nothing leaves the machine; each push is logged for the tests, and an endpoint
+// or app token containing "gone" answers 410 / 404 like an expired subscription.
 async function deliver(env, rows, payloadFor, opts) {
-  const v = vapid(env), logMode = env.PUSH_MODE === 'log';
-  if ((!v && !logMode) || !rows.length) return { sent: 0 };
+  const v = vapid(env), fcm = fcmConfig(env), logMode = env.PUSH_MODE === 'log';
+  rows = rows.filter((s) => logMode || (isApp(s) ? fcm : v));
+  if (!rows.length) return { sent: 0 };
   let sent = 0;
   for (let i = 0; i < rows.length; i += BATCH) {
     await Promise.all(rows.slice(i, i + BATCH).map(async (s) => {
       let status = 0;
       try {
-        if (logMode) { status = s.endpoint.includes('/gone') ? 410 : 201; console.log('PUSHLOG ' + JSON.stringify({ to: s.id, payload: payloadFor(s) })); }
+        if (logMode) {
+          const app = isApp(s);
+          status = app ? (s.endpoint.includes('gone') ? 404 : 200) : (s.endpoint.includes('/gone') ? 410 : 201);
+          console.log('PUSHLOG ' + JSON.stringify({ to: s.id, via: app ? 'fcm' : 'webpush', payload: payloadFor(s) }));
+        } else if (isApp(s)) ({ status } = await sendFcm(fcm, s.endpoint.slice(FCM_PREFIX.length), payloadFor(s), opts));
         else ({ status } = await sendPush(s, payloadFor(s), v, opts));
       } catch (e) { console.error('push', e); }
+      if (status === -1) return;
       if (status >= 200 && status < 300) {
         sent++;
         await env.DB.prepare('UPDATE push_subs SET fail_count = 0 WHERE id = ?1').bind(s.id).run();
@@ -247,7 +286,7 @@ export async function pushStats(env) {
   const iso = (s) => new Date((t - s) * 1000).toISOString();
   const r = await env.DB.prepare(
     `SELECT SUM(active = 1 AND role = '') AS active, SUM(role = '' AND created_at > ?1) AS new_24h, SUM(role = '' AND created_at > ?2) AS new_7d,
-            SUM(active = 1 AND role = 'mod') AS mod_devices FROM push_subs`,
+            SUM(active = 1 AND role = 'mod') AS mod_devices, SUM(active = 1 AND role = '' AND endpoint LIKE 'fcm:%') AS app_active FROM push_subs`,
   ).bind(iso(86400), iso(7 * 86400)).first();
-  return { active: r.active || 0, new_24h: r.new_24h || 0, new_7d: r.new_7d || 0, mod_devices: r.mod_devices || 0 };
+  return { active: r.active || 0, new_24h: r.new_24h || 0, new_7d: r.new_7d || 0, mod_devices: r.mod_devices || 0, app_active: r.app_active || 0 };
 }

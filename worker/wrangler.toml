@@ -37,4 +37,6 @@ crons = ["17 4 * * *"]   # daily: prune rate-limit rows and used sign-in links
 #   RESEND_API_KEY     Resend key (sending access) for sign-in emails
 #   VAPID_PRIVATE      Web Push signing key (JWK JSON); copy in ~/.config/kitchen-magpie/encounteratlas-vapid.env
 #   MOD_PUSH_KEY       signs the Approve / Reject buttons on Mike's moderation notifications (same file)
+#   FCM_SERVICE_ACCOUNT  Firebase service account key (the whole JSON file) for app alerts through Firebase Cloud
+#                      Messaging (fcm.js). Without it /v1/push/app-subscribe answers 503 and the app says alerts are coming.
 # Local development uses .dev.vars instead (see .dev.vars.example).

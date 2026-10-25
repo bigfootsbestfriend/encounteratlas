@@ -534,7 +534,13 @@
   // ---------- sighting alerts (Web Push for the saved area) ----------
   // The subscription id and its manage token live only on this device. Alerts follow the saved place, never the
   // phone's position. Turnstile runs once, when alerts are first turned on.
+  // Inside the Android / iPhone app (window.EAApp from app-bridge.js) Web Push can't work, so alerts go through the
+  // app's own push (Firebase): same area, same Worker rows, /v1/push/app-subscribe instead of /v1/push/subscribe.
+  // Until the app is built with Firebase, EAApp.push is false and the box says alerts are coming to the app soon.
   const AKEY = 'ea-alert';
+  // app-bridge.js is the first deferred script on every page, so window.EAApp is set before this file runs.
+  const APP = window.EAApp && window.EAApp.native ? window.EAApp : null;
+  const SOON = 'Alerts are coming to the app soon.';
   const ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
   const standaloneNow = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
   const alertSaved = () => { try { return JSON.parse(localStorage.getItem(AKEY) || 'null'); } catch (e) { return null; } };
@@ -545,6 +551,8 @@
   function alertUi() {
     if (!CFG.vapid || S.lat == null) return;
     $('nm-alert').hidden = false;
+    if (APP && !APP.push) { $('nm-alert-btn').hidden = true; alertSt(SOON); return; }
+    $('nm-alert-btn').hidden = false;
     const a = alertSaved();
     const here = a && Math.abs(a.lat - S.lat) < 0.005 && Math.abs(a.lng - S.lng) < 0.005 && a.radius_km === radiusKm() && a.categories === (S.cat || '');
     $('nm-alert-btn').textContent = !a ? 'Alert me about new reports here' : here ? 'Turn off alerts' : 'Move my alerts here';
@@ -570,6 +578,7 @@
     .then(async (r) => ({ status: r.status, data: await r.json().catch(() => ({})) })).catch(() => ({ status: 0, data: { state: 'offline' } }));
   $('nm-alert-btn').addEventListener('click', async (e) => {
     const b = e.currentTarget, mode = b.dataset.mode;
+    if (APP) { appAlert(b, mode); return; }
     if (ios && !standaloneNow()) { alertSt('On iPhone, add this page to your Home Screen first (Share, then Add to Home Screen), then open it from there and tap this again.'); return; }
     if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) { alertSt('This browser can\'t show notifications. Try Chrome, Edge, Firefox or Safari on a newer phone.'); return; }
     b.disabled = true;
@@ -615,6 +624,54 @@
     } finally { b.disabled = false; }
   });
 
+  // The app's version of the button: same steps, but the phone's own push token instead of a Web Push subscription.
+  async function appAlert(b, mode) {
+    if (!APP.push) { alertSt(SOON); return; }
+    b.disabled = true;
+    try {
+      const a = alertSaved();
+      const area = { lat: S.lat, lng: S.lng, radius_km: radiusKm(), categories: S.cat || '', units: S.unit };
+      const label = S.label === 'you' ? 'your location' : S.label;
+      if (mode === 'off' && a) {
+        alertSt('Turning alerts off...');
+        await post('/v1/push/unsubscribe', { id: a.id, manage_token: a.manage_token });
+        await APP.pushOff();
+        localStorage.removeItem(AKEY);
+        track('alert_unsubscribe', { how: 'app' });
+        alertUi(); alertSt('Alerts are off. Nothing more will be sent.');
+        return;
+      }
+      if (mode === 'move' && a) {
+        alertSt('Moving your alerts...');
+        const r = await post('/v1/push/update', { id: a.id, manage_token: a.manage_token, ...area });
+        if (r.status === 200) {
+          localStorage.setItem(AKEY, JSON.stringify({ ...a, ...area, label }));
+          track('alert_subscribe', { how: 'move', radius_km: area.radius_km, category: area.categories || 'all' });
+          alertUi(); return;
+        }
+        if (r.status !== 404) throw new Error(r.status === 0 ? 'No connection. Try again with signal.' : 'That didn\'t work. Try again in a minute.');
+        localStorage.removeItem(AKEY);
+      }
+      alertSt('Asking for permission to send notifications...');
+      const token = await APP.pushToken();
+      alertSt('Quick spam check...');
+      const ts = await turnstileToken();
+      const r = await post('/v1/push/app-subscribe', { token, platform: APP.platform, ...area, turnstile: ts });
+      $('nm-alert-ts').replaceChildren();
+      if (r.status === 503) throw new Error(SOON);
+      if (r.status !== 201) throw new Error(r.status === 0 ? 'No connection. Try again with signal.' : r.data.state === 'slow' ? 'Too many tries. Wait an hour.' : 'That didn\'t work. Try again in a minute.');
+      localStorage.setItem(AKEY, JSON.stringify({ id: r.data.id, manage_token: r.data.manage_token, ...area, label, app: 1 }));
+      track('alert_subscribe', { how: 'app', radius_km: area.radius_km, category: area.categories || 'all' });
+      alertUi();
+    } catch (err) {
+      alertSt(err.message || 'That didn\'t work. Try again.');
+    } finally { b.disabled = false; }
+  }
+  if (APP && APP.ready) APP.ready.then(() => {
+    if (!APP.push && $('alerts') && !$('nm-app-soon')) { const n = el('p', 'nm-app-soon', SOON); n.id = 'nm-app-soon'; $('alerts').append(n); }
+    if (S.lat != null) alertUi();
+  });
+
   // A report written with no signal on the report form waits on this device: offer to send it from here too.
   function queuedBanner() {
     let n = 0;
@@ -646,7 +703,7 @@
     track('app_install_prompt', { outcome: choice ? choice.outcome : 'unknown' });
     installEvt = null; $('nm-install').hidden = true;
   });
-  if (!standalone && /iPhone|iPad|iPod/.test(navigator.userAgent) && !/CriOS|FxiOS|EdgiOS/.test(navigator.userAgent)) $('nm-ios').hidden = false;
+  if (!standalone && !APP && /iPhone|iPad|iPod/.test(navigator.userAgent) && !/CriOS|FxiOS|EdgiOS/.test(navigator.userAgent)) $('nm-ios').hidden = false;
 
   // Returning visitor (and the installed app): reopen the last place with the same filters. Search engines have no
   // saved place, so they always get the plain page.

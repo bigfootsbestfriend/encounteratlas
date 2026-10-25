@@ -108,6 +108,7 @@
 .nm-alert { margin: .8rem 0 0; display: grid; gap: .4rem; justify-items: start; }
 .nm-alert[hidden] { display: none; }
 .nm-alert-btn { min-height: 48px; cursor: pointer; }
+.nm-alert-btn[hidden] { display: none; }
 .nm-alert-st { margin: 0; font-size: .95rem; }
 .nm-alert-st:empty, .nm-alert-ts:empty { display: none; }
 .nm-queued { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; background: var(--lantern); color: var(--spruce);
@@ -189,3 +190,6 @@
   .nm-app-ico { width: 72px; }
   .nm-eras { flex-wrap: wrap; overflow: visible; }
 }
+/* Inside the Android / iPhone app (app-bridge.js adds .in-app): no home-screen tips; alerts note until app push is live */
+.in-app .nm-push-ios, .in-app .nm-install { display: none; }
+.nm-app-soon { margin: .6rem 0 0; padding: .55rem .8rem; border-radius: 10px; background: rgba(242, 179, 61, .16); font-weight: 600; display: inline-block; }

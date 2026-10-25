@@ -114,7 +114,7 @@
   if (qs.get("source") === "alert") send("alert_open", {});
   try {
     const mode = sessionStorage.getItem("ea-mode");
-    if ((mode === "twa" || mode === "pwa") && !localStorage.getItem("ea-app-opened")) {
+    if ((mode === "app" || mode === "twa" || mode === "pwa") && !localStorage.getItem("ea-app-opened")) {
       localStorage.setItem("ea-app-opened", mode);
       send("app_install", { how: mode });
     }

@@ -129,6 +129,8 @@ CREATE TABLE IF NOT EXISTS report_sky (
 -- Web Push subscriptions. role '' = a reader's nearby-sightings alerts for a saved area (no background location on
 -- the web). role 'mod' = Mike's own devices: one notification per new pending report, with Approve / Reject buttons.
 -- The manage token only exists on the subscriber's device; we keep its HMAC.
+-- App rows (the Android / iPhone app, /v1/push/app-subscribe) hold 'fcm:<Firebase token>' in endpoint with p256dh
+-- and auth empty, so they share matching, the daily cap, update and unsubscribe. No schema change was needed.
 CREATE TABLE IF NOT EXISTS push_subs (
   id TEXT PRIMARY KEY,
   endpoint TEXT NOT NULL UNIQUE,

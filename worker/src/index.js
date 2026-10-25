@@ -15,6 +15,7 @@
 //   GET  /v1/clusters?lat&lng&radius_km   "flap in progress": 3+ approved reports within 50 km in the last 3 days
 //                                         (clusters.js; rounded centre, counts and dates only; 60/min per IP)
 //   POST /v1/push/subscribe|update|unsubscribe   sighting alerts for a saved area (push.js)
+//   POST /v1/push/app-subscribe           the same alerts for the Android / iPhone app (FCM token; push.js + fcm.js)
 //   GET  /api/reports/<pid>               an approved report, or your own in any status (Bearer)
 //   PATCH /api/reports/<pid>              (owner) edit text/location/videos, remove photos -> back to pending
 //   DELETE /api/reports/<pid>             (owner) withdraw
