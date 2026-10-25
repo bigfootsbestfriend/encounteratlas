@@ -125,7 +125,7 @@ async function body(req) {
 
 // ---------------- contact form ----------------
 
-export const TOPICS = { general: 'General', advertise: 'Advertising', correction: 'Correction or source', takedown: 'Takedown or privacy', press: 'Press' };
+export const TOPICS = { general: 'General', advertise: 'Advertising', correction: 'Correction or source', takedown: 'Takedown or privacy', press: 'Press', podcast: 'Podcasts' };
 
 // Emails the message to CONTACT_TO (default hello@) with reply-to set to the sender. Nothing is stored except rate-limit rows.
 async function contact(req, env) {
