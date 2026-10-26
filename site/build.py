@@ -1695,6 +1695,12 @@ def build_static_pages():
     var q = new URLSearchParams(location.search); q.set('id', m[1]); q.set('static', '0');
     location.replace('{url('/reports/')}?' + q.toString() + location.hash); return;
   }}
+  // Typed addresses (GitHub Pages paths are case-sensitive): /UFO -> /ufo/, /ufos -> /ufo/. Lowercase pages can't loop.
+  var low = location.pathname.toLowerCase().replace(/[/]+$/, '');
+  var to = {{'/ufos': '/ufo/', '/yfo': '/ufo/', '/uap': '/ufo/', '/creature': '/creatures/', '/cryptids': '/creatures/',
+            '/maps': '/map/', '/podcast': '/podcasts/', '/event': '/events/'}}[low] ||
+           (low + '/' !== location.pathname && low !== location.pathname && /[A-Z]/.test(location.pathname) ? low + '/' : '');
+  if (to) {{ location.replace('{url('')}' + to + location.search + location.hash); return; }}
   // guess search words from the missing address: /creatures/ogopogoo/ -> "ogopogoo"
   var w = location.pathname.split('/').filter(Boolean).pop() || '';
   w = decodeURIComponent(w).replace(/\.html?$/, '').replace(/[-_]+/g, ' ').trim();
