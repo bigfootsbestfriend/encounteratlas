@@ -203,23 +203,19 @@
       if (q.length < 2) return;
       const list = await loadCities(), hits = [];
       for (const c of list) { if (fold(c[0]).startsWith(q)) { hits.push(c); if (hits.length >= 12) break; } }
-      $('rt-cities').replaceChildren(...hits.map((c) => { const o = document.createElement('option'); o.value = c[0] + ', ' + c[1]; return o; }));
+      const show = (vals) => $('rt-cities').replaceChildren(...vals.map((v) => { const o = document.createElement('option'); o.value = v; return o; }));
+      const mine = hits.map((c) => c[0] + ', ' + c[1]);
+      show(mine);
+      // smaller towns (Jasper, Alberta) come from the place search a moment after typing stops
+      clearTimeout(here.t);
+      here.t = setTimeout(async () => {
+        if (!window.EAPlace || fold(inp.value.trim()) !== q) return;
+        const more = await window.EAPlace.suggest(inp.value);
+        if (fold(inp.value.trim()) !== q) return;
+        const have = new Set(mine.map((m) => fold(m.split(',')[0]) + '|' + fold(m.split(',')[1] || '')));
+        show([...mine, ...more.filter((m) => !have.has(fold(m.split(',')[0]) + '|' + fold(m.split(',')[1] || '')))].slice(0, 16));
+      }, 350);
     });
-  }
-  async function geocode(text) {
-    const list = await loadCities(), v = fold(text.trim());
-    const [name, reg] = v.split(',').map((s) => s.trim());
-    const exact = list.find((x) => fold(x[0]) === name && (!reg || fold(x[1]).startsWith(reg)));
-    if (exact) return [exact[2], exact[3], exact[0] + ', ' + exact[1]];
-    // Not in our town list (smaller places like Jasper, Alberta): ask Open-Meteo's place search, matching the province, state or country typed.
-    try {
-      const r = await fetch('https://geocoding-api.open-meteo.com/v1/search?' + new URLSearchParams({ name: text.split(',')[0].trim().slice(0, 80), count: reg ? 50 : 10, language: 'en' }));
-      const g = (await r.json()).results || [];
-      const m = g.find((x) => !reg || [x.admin1, x.country, x.country_code].some((a) => a && fold(a).startsWith(reg))) || (!reg && g[0]);
-      if (m) return [round2(m.latitude), round2(m.longitude), m.name + ', ' + (m.admin1 || m.country || '')];
-    } catch (e) { /* offline or blocked: fall back to our list */ }
-    const c = !reg && list.find((x) => fold(x[0]).startsWith(name));
-    return c ? [c[2], c[3], c[0] + ', ' + c[1]] : null;
   }
   form.querySelectorAll('.rt-chips [data-km]').forEach((b) => b.addEventListener('click', () => {
     form.querySelectorAll('.rt-chips [data-km]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
@@ -360,8 +356,8 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     S.trip = null;
-    const from = here.from || await geocode($('rt-from').value);
-    const to = await geocode($('rt-to').value);
+    // placefind.js settles both ends together, so "Edmonton" to "Jasper" is Jasper, Alberta (not Indiana)
+    const [from, to] = window.EAPlace ? await window.EAPlace.trip(here.from || $('rt-from').value, $('rt-to').value, await loadCities()) : [null, null];
     if (!from) { say(`We couldn't find "${$('rt-from').value}". Try a bigger town nearby.`); return; }
     if (!to) { say(`We couldn't find "${$('rt-to').value}". Try a bigger town nearby.`); return; }
     plan([from, to], `${from[2]} to ${to[2]}`);

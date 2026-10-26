@@ -150,7 +150,7 @@ def build(ctx):
 <script type="application/json" id="jn-config">{cfg}</script>'''
 
     head = (f'<link rel="stylesheet" href="{U("/static/journal.css")}">'
-            f'<script src="{U("/static/journal.js")}" defer></script>')
+            f'<script src="{U("/static/placefind.js")}" defer></script><script src="{U("/static/journal.js")}" defer></script>')
     ctx.write('/journal/', ctx.page('/journal/', 'Field journal for cryptid and UFO outings', body,
                                     'Log every stakeout, hike and skywatching night, even the empty ones. Weather and moon phase fill in for you, '
                                     'and it all stays on your device. Export to CSV or JSON.',

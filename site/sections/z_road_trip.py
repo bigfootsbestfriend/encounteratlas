@@ -114,7 +114,7 @@ def build(ctx):
     head = (f'<link rel="stylesheet" href="{U("/static/roadtrip.css")}"><link rel="stylesheet" href="{U("/static/cards.css")}">'
             '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.css">' + _podplay.head(ctx))
     cfg = lambda extra='': (f'<script type="application/json" id="rt-config">{json.dumps({"data": U("/data/roadtrip.json"), "cities": U("/data/cities.json"), "tiles": U("/data/near/"), "cards": U("/cards/"), "api": "https://api.encounteratlas.com", "living": sorted(LIVING), **(extra or {})})}</script>'
-                            f'<script src="{U("/static/cards.js")}" defer></script><script src="{U("/static/roadtrip.js")}" defer></script>')
+                            f'<script src="{U("/static/cards.js")}" defer></script><script src="{U("/static/placefind.js")}" defer></script><script src="{U("/static/roadtrip.js")}" defer></script>')
 
     def card_html(slug, c, hunt=False):
         art = f'<img src="{c["art"]}" alt="" width="96" height="96" loading="lazy">' if c['art'] else ctx.badge(ctx.by_slug[slug], 'lg')

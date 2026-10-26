@@ -113,21 +113,13 @@
     for (const c of list) { if (fold(c[0]).startsWith(q)) { hits.push(c); if (hits.length >= 10) break; } }
     $('jn-cities').replaceChildren(...hits.map((c) => { const o = document.createElement('option'); o.value = c[0] + ', ' + c[1]; return o; }));
   });
+  // placefind.js: our town list, then Open-Meteo, honouring a typed province/state/country ("Jasper, AB")
   async function geocode(text) {
-    const v = fold(text.trim());
-    if (!v) return null;
-    const list = await loadCities();
-    const [name, reg] = v.split(',').map((s) => s.trim());
-    const c = list.find((x) => fold(x[0]) === name && (!reg || fold(x[1]).startsWith(reg))) || (!reg && list.find((x) => fold(x[0]) === name));
-    if (c) return { lat: round2(c[2]), lon: round2(c[3]), src: 'town' };
-    if (!navigator.onLine) return null;
-    try {
-      const r = await fetch('https://geocoding-api.open-meteo.com/v1/search?' + new URLSearchParams({ name: text.split(',')[0].trim().slice(0, 80), count: reg ? 50 : 10, language: 'en' }));
-      const g = (await r.json()).results || [];
-      const m = g.find((x) => !reg || [x.admin1, x.country, x.country_code].some((a) => a && fold(a).startsWith(reg))) || (!reg && g[0]);
-      if (m) return { lat: round2(m.latitude), lon: round2(m.longitude), src: 'search' };
-    } catch (e) { /* offline or blocked */ }
-    return null;
+    if (!fold(text.trim()) || !window.EAPlace) return null;
+    const list = await loadCities(), p = await window.EAPlace.find(text, list);
+    if (!p) return null;
+    const v = fold(text.trim()), town = list.some((c) => v === fold(c[0] + ', ' + c[1]) || v === fold(c[0]));
+    return { lat: p[0], lon: p[1], src: town ? 'town' : 'search' };
   }
 
   // ---------- form ----------

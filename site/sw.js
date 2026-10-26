@@ -2,12 +2,12 @@
 // 2.5 s) the last saved copy shows instead, and offline falls back to it too,
 // static files and map data cache-first. Map tiles are left to the browser cache.
 // Also: sighting-alert notifications (push), and waking the report form when a report queued with no signal can go.
-const V = 'ea-v119';
+const V = 'ea-v120';
 const BASE = new URL(self.registration.scope).pathname.replace(/\/$/, '');
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(V).then((c) => c.addAll([BASE + '/', BASE + '/map/', BASE + '/near-me/', BASE + '/report/', BASE + '/static/site.css', BASE + '/static/map.js',
     BASE + '/static/nearme.js', BASE + '/static/nearme.css', BASE + '/data/near/index.json',
-    BASE + '/road-trip/', BASE + '/cards/', BASE + '/static/roadtrip.js', BASE + '/static/cards.js', BASE + '/static/roadtrip.css', BASE + '/data/roadtrip.json',
+    BASE + '/road-trip/', BASE + '/cards/', BASE + '/static/roadtrip.js', BASE + '/static/placefind.js', BASE + '/static/cards.js', BASE + '/static/roadtrip.css', BASE + '/data/roadtrip.json',
     BASE + '/tools/skywatch/', BASE + '/static/skywatch.js', BASE + '/static/skywatch.css', BASE + '/journal/', BASE + '/static/journal.js', BASE + '/static/journal.css',
     BASE + '/stories/campfire/', BASE + '/static/campfire.js', BASE + '/static/campfire.css', BASE + '/data/campfire.json',
     BASE + '/mystery-of-the-day/', BASE + '/static/motd.js', BASE + '/static/motd.css', BASE + '/static/conditions.js', BASE + '/static/conditions.css', BASE + '/data/showers.json', BASE + '/static/legend.css', BASE + '/data/historic.geojson', BASE + '/static/cards.css', BASE + '/static/cards/back.webp', BASE + '/static/podplayer.js', BASE + '/static/podplayer.css', BASE + '/data/cards.json',
