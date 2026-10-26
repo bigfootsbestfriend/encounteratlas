@@ -424,6 +424,9 @@ class Builder:
             approx = ('<p class="small muted">Map pin is approximate: it marks the nearest town or the general area.</p>'
                       if p.get('approx') else '')
             mapb = self.map_block(f'data-focus="{p["slug"]}"') if p['lat'] is not None else ''
+            # optional hand-written fields: intro (paragraphs, [text](/path/) links), seo_title, seo_desc, more_sources (extra source URLs)
+            intro = ''.join(f'<p>{c.md_links(t)}</p>' for t in p.get('intro', []))
+            more_src = ''.join(f', <a href="{esc(s)}" rel="noopener">{esc(s.split("/")[2].replace("www.", ""))}</a>' for s in p.get('more_sources', []))
             body = f'''
 <section class="band band-dark pl-head pl-detail-head t-{p['type']}"><div class="wrap pl-detail-in">
   {self.badge(p, 'xl')}
@@ -438,18 +441,22 @@ class Builder:
 </div></section>
 <div class="band band-mist"><div class="wrap creature-body">
   <article class="prose pl-prose">
-    {note}
+    {intro}{note}
     {mapb}
     {approx}
     {crit_html}
     {near_html}
-    <p class="small muted pl-src">Source: <a href="{esc(p['source'])}" rel="noopener">{esc(p['source'].split('/')[2].replace('www.', ''))}</a>. Hours, prices and dates change, so confirm with the organizer before you travel. Spotted something out of date? <a href="{self.u('/report/')}">Let us know</a>.</p>
+    <p class="small muted pl-src">Source: <a href="{esc(p['source'])}" rel="noopener">{esc(p['source'].split('/')[2].replace('www.', ''))}</a>{more_src}. Hours, prices and dates change, so confirm with the organizer before you travel. Spotted something out of date? <a href="{self.u('/report/')}">Let us know</a>.</p>
   </article>
   <aside class="facts"><dl>{facts_html}</dl>
     <p class="more"><a href="{self.u('/places/' + p['rg'] + '/') if p['rg'] else self.u('/expeditions/')}">More in {esc(rn or 'expeditions')}</a></p>
   </aside>
 </div></div>'''
-            if p['type'] == 'festival':
+            if p.get('seo_title'):
+                # {year} shows only while the next dates are announced, so the title never names a year we can't back up
+                o = self.occurrence(p) if p['type'] == 'festival' else None
+                title = ' '.join(p['seo_title'].format(year=o[0] if o and o[4] == 'set' else '').split()).replace(' :', ':').replace(' ,', ',')
+            elif p['type'] == 'festival':
                 title = f'{p["name"]} {self.occurrence(p)[0]}: dates and details'
             else:
                 # Short and specific: the town isn't repeated when it's already in the name, and the kind of place
@@ -460,7 +467,7 @@ class Builder:
                 title = f'{p["name"]}, {loc}'
                 if len(title) < 48:
                     title += f': {one.lower()}'
-            desc = p['summary'] + (f' {p["price"]}.' if p.get('price') and not p['price'].endswith('.') else '')
+            desc = p.get('seo_desc') or p['summary'] + (f' {p["price"]}.' if p.get('price') and not p['price'].endswith('.') else '')
             c.write(f'/places/{p["slug"]}/', c.page(f'/places/{p["slug"]}/', title, body, desc[:300],
                                                     body_class='places', head_extra=self.map_head + self.jsonld(p),
                                                     noindex=bool(p.get('brief'))))  # brief: calendar entry only, not yet written up

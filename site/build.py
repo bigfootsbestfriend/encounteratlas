@@ -598,7 +598,7 @@ def build_creatures(creatures, by_slug):
 <section class="band band-dark index-head">
   <div class="wrap">
     <h1>Creature index</h1>
-    <p class="lede">{len(creatures)} creatures and phenomena, from Bigfoot to the Navy's Tic Tac. Search by any name: Sasquatch, Nessie, goat-sucker. Mixing two up? <a href="{url('/compare/')}">See the comparisons</a>.</p>
+    <p class="lede">{len(creatures)} creatures and phenomena, from Bigfoot to the Navy's Tic Tac. Search by any name: Sasquatch, Nessie, goat-sucker. Mixing two up? <a href="{url('/compare/')}">See the comparisons</a>. Rather listen than read? See the <a href="{url('/podcasts/cryptids/')}">best cryptid podcasts</a>.</p>
     <div class="search-row">
       <label class="visually-hidden" for="q">Search creatures</label>
       <input id="q" type="search" placeholder="Search by name, nickname or place" autocomplete="off">
@@ -997,12 +997,30 @@ def build_creatures(creatures, by_slug):
                                                head_extra=f'<script src="{url("/static/creature.js")}" defer></script>' if EA_API else ''))
 
 
+_WRITEUPS = None
+
+
+def writeups():
+    """Blue Book file id -> (our case page, case name), from the bluebook field in close_encounters/famous_cases.json."""
+    global _WRITEUPS
+    if _WRITEUPS is None:
+        _WRITEUPS = {}
+        for fn, base in (('close_encounters.json', '/encounters/'), ('famous_cases.json', '/ufo/cases/')):
+            p = os.path.join(ROOT, 'data', fn)
+            for x in (json.load(open(p, encoding='utf-8')) if os.path.exists(p) else []):
+                if x.get('bluebook'):
+                    _WRITEUPS[str(int(x['bluebook']))] = (base + x['slug'] + '/', x['name'])
+    return _WRITEUPS
+
+
 def case_line(b):
+    w = writeups().get(str(b['id']))
+    ours = f' · Our write-up: <a href="{url(w[0])}">{esc(w[1])}</a>' if w else ''
     when = f'{MONTHS[b["month"]]} {b["year"]}' if b.get('month') and b.get('year') else (str(b['year']) if b.get('year') else 'Date unknown')
     place = b['place'] or b['region'] or 'Unknown place'
     scan = f' <a class="muted" href="{esc(b["img"])}" rel="noopener">first page</a>' if b.get('img') else ''
     return (f'<li><span class="yr">{esc(when)}</span><span><a href="https://catalog.archives.gov/id/{b["id"]}" rel="noopener">'
-            f'{esc(place)}</a>{scan}</span></li>')
+            f'{esc(place)}</a>{scan}{ours}</span></li>')
 
 
 def region_slug(b):
@@ -1021,6 +1039,10 @@ def build_ufo(bluebook, BY_SLUG):
     for k, v in by_region.items():
         b = v[0]
         names[k] = (b['region'] if b['cc'] == 'US' else b.get('country') or b['region']) if b['cc'] else 'Place unclear or at sea'
+    # shortcut: the geocoder read the three "New Guinea" folders as Guinea (Africa); the label is fixed here and the URL kept,
+    # since the site has no redirects. Re-geocoding them to PG would move the page (and their map dots) to /papua-new-guinea/.
+    if 'guinea' in names and all('New Guinea' in b['title'] for b in by_region['guinea']):
+        names['guinea'] = 'New Guinea'
     years = Counter(b['year'] for b in bluebook if b.get('year'))
     ymax = max(years.values())
     bars = ''
@@ -1736,7 +1758,7 @@ def main():
     # build(ctx). ctx gives it the shared helpers and loaded data, so sections never edit this file.
     import importlib.util, types
     ctx = types.SimpleNamespace(ROOT=ROOT, OUT=OUT, STATIC=STATIC, SITE_URL=SITE_URL, BASE=BASE, page=page, write=write,
-                                url=url, esc=esc, icon=icon, crit_icon=crit_icon, slugify=slugify, badge=badge, creature_card=creature_card,
+                                url=url, esc=esc, md_links=md_links, icon=icon, crit_icon=crit_icon, slugify=slugify, badge=badge, creature_card=creature_card,
                                 social_row=social_row, signup_box=signup_box, NEWSLETTER_API=NEWSLETTER_API, creatures=creatures, by_slug=by_slug, bluebook=bluebook, military=military, CATS=CATS, MONTHS=MONTHS)
     sec_dir = os.path.join(ROOT, 'site', 'sections')
     for fn in sorted(os.listdir(sec_dir)) if os.path.isdir(sec_dir) else []:

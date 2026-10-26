@@ -566,6 +566,7 @@
    }
   ],
   "related": [
+   "mono-grande",
    "yeren",
    "bigfoot",
    "hibagon",
@@ -1181,7 +1182,8 @@
    "igopogo",
    "manipogo",
    "nahuelito",
-   "lake-tianchi-monster"
+   "lake-tianchi-monster",
+   "thetis-lake-monster"
   ],
   "wiki": "Ogopogo"
  },
@@ -1308,7 +1310,8 @@
   "related": [
    "ogopogo",
    "loch-ness-monster",
-   "sea-serpent"
+   "sea-serpent",
+   "thetis-lake-monster"
   ],
   "wiki": "Cadborosaurus"
  },
@@ -2166,6 +2169,7 @@
    }
   ],
   "related": [
+   "mono-grande",
    "bigfoot",
    "yeti"
   ],
@@ -4013,6 +4017,7 @@
    }
   ],
   "related": [
+   "hook-island-sea-monster",
    "cadborosaurus",
    "chessie",
    "loch-ness-monster",
@@ -4020,8 +4025,7 @@
    "altamaha-ha",
    "ningen",
    "stronsay-beast",
-   "zuiyo-maru-carcass",
-   "hook-island-sea-monster"
+   "zuiyo-maru-carcass"
   ],
   "wiki": "Sea serpent"
  },
@@ -4896,9 +4900,9 @@
    "CA"
   ],
   "first": "August 1972",
-  "summary": "A silver, scaly gill-man two teenagers said chased them from a BC beach in 1972.",
+  "summary": "A silver, scaly gill-man two teenagers said chased them off a beach near Victoria, BC in 1972. One of them later admitted the story was made up.",
   "body": [
-   "On 22 August 1972, the Victoria Daily Times reported that two teenage boys said a silver-scaled, man-shaped creature with claws and a sharp, spiked head rose out of Thetis Lake and chased them off the beach. Two other boys fishing on the far shore said they saw it too. The RCMP investigated and found nothing.",
+   "The Thetis Lake monster is Canada's own gill-man. On 22 August 1972 the Victoria Daily Times reported that two teenage boys said a silver, scaly, man-shaped thing with claws and a spiked head came up out of Thetis Lake, just outside Victoria, and chased them off the beach. Two other boys fishing on the far shore said they saw it too, and the RCMP looked into it and found nothing (I'll admit the spiked head is a nice touch though).",
    "Years later skeptic Daniel Loxton tracked down one of the witnesses, who admitted the story was made up. Loxton found the description matched the monster in Monster from the Surf, a film shown on local TV just days earlier."
   ],
   "signs": [
@@ -4921,7 +4925,10 @@
    "loveland-frog",
    "reptilians"
   ],
-  "wiki": "Thetis Lake Monster"
+  "wiki": "Thetis Lake Monster",
+  "seo_title": "Thetis Lake Monster: the 1972 BC gill-man story and the hoax",
+  "seo_desc": "In 1972 two teenagers said a silver, scaly gill-man came out of Thetis Lake near Victoria, BC and chased them off the beach. The story, and the TV movie that gave it away.",
+  "updated": "2026-10-26"
  },
  {
   "slug": "indrid-cold",
@@ -5977,7 +5984,13 @@
    "grey-aliens",
    "men-in-black"
   ],
-  "wiki": "Roswell incident"
+  "wiki": "Roswell incident",
+  "faq": [
+   {
+    "q": "Where is the Aztec UFO crash site?",
+    "a": "In Hart Canyon, about 12 miles (19 km) northeast of Aztec, New Mexico. There's a plaque on a mesa trail and the [Aztec UFO crash site](/places/aztec-ufo-crash-site/) page has directions, but the 1948 crash story was a hoax by two con men."
+   }
+  ]
  },
  {
   "slug": "alien-abduction",
@@ -7730,9 +7743,9 @@
    "CO"
   ],
   "first": "Wild-man tales heard by Alexander von Humboldt around 1800; de Loys photo published 1929",
-  "summary": "A large, tailless ape said to live in South American forests, famous for the de Loys photo.",
+  "summary": "A big, tailless ape said to live in the forests of Venezuela and Colombia, best known from one 1920s photo that experts say shows a spider monkey.",
   "body": [
-   "Mono Grande means 'big monkey'. It refers to reports of a large, tailless, ape-like animal in the forests of northern South America, where no apes are known to live. Explorer Alexander von Humboldt heard stories around 1800 of hairy wild people called salvajes on the Orinoco, though he did not believe them.",
+   "Mono Grande just means 'big monkey' in Spanish, and that's pretty much the whole claim. People in the forests of northern South America (Venezuela, Colombia and the Guianas) have told stories about a large, tailless ape where no apes are known to live. Alexander von Humboldt heard about hairy wild people called salvajes on the Orinoco around 1800 and he didn't believe a word of it.",
    "The most famous piece of evidence is a photograph taken by Swiss geologist François de Loys during an expedition near the Colombia-Venezuela border around 1920. It shows a dead, upright-propped animal his party had shot. Anthropologist George Montandon published it in 1929 and named it a new species.",
    "Experts quickly identified the animal as a spider monkey with its tail hidden or removed, and the photo is now widely considered a hoax. Similar photos appeared in the 1950s."
   ],
@@ -7749,7 +7762,10 @@
    "bigfoot",
    "orang-pendek"
   ],
-  "wiki": "Mono Grande"
+  "wiki": "Mono Grande",
+  "seo_title": "Mono Grande explained: the de Loys ape photo and the legend",
+  "seo_desc": "Mono Grande means big monkey. The South American ape story from Venezuela and Colombia, the 1920 de Loys photo, and why experts say it shows a spider monkey.",
+  "updated": "2026-10-26"
  },
  {
   "slug": "minhocao",
@@ -7956,6 +7972,7 @@
    }
   ],
   "related": [
+   "hook-island-sea-monster",
    "sea-serpent",
    "cadborosaurus",
    "chessie",
@@ -10590,6 +10607,7 @@
    }
   ],
   "related": [
+   "hook-island-sea-monster",
    "trunko",
    "zuiyo-maru-carcass",
    "stronsay-beast",
@@ -10699,9 +10717,9 @@
    "AU"
   ],
   "first": "Photographed by Robert Le Serrec on 12 December 1964",
-  "summary": "A giant tadpole-shaped 'sea serpent' photographed off Queensland in 1964, widely considered a hoax.",
+  "summary": "A French photographer's 1964 shot of a giant tadpole lying on the sea floor off Queensland, and almost certainly a hoax.",
   "body": [
-   "On 12 December 1964 the French photographer Robert Le Serrec, his family and a friend were crossing Stonehaven Bay at Hook Island in the Whitsundays when, they said, they saw a huge, dark, tadpole-shaped animal lying on the floor of the shallow lagoon. Le Serrec photographed it, and estimates of its length grew to around 75 to 80 ft.",
+   "The Hook Island sea monster is basically one set of photos. On 12 December 1964 a French photographer named Robert Le Serrec was crossing Stonehaven Bay at Hook Island in the Whitsundays with his family and a friend when, by their account, they spotted a huge dark tadpole-shaped animal lying on the bottom of the shallow lagoon. He took pictures, and by the time the story got around its length had grown to 75 or 80 ft (roughly 23 to 24 metres). I think it's a hoax, and so does pretty much everyone who has looked into it (the reasons are below).",
    "The photos were published in Australia's Everyone magazine and went around the world. The best-known picture shows a broad head and a long, tapering tail under the water.",
    "The case is widely considered a hoax. It came out that Le Serrec was in debt in France and had talked about making money from a sea-serpent photo before the trip. Suggested explanations range from a sheet or tarpaulin weighted on the sea bed to a large fish."
   ],
@@ -10724,7 +10742,10 @@
    "lusca",
    "globster"
   ],
-  "wiki": "Hook Island"
+  "wiki": "Hook Island",
+  "seo_title": "Hook Island Sea Monster: Le Serrec's 1964 photo, explained",
+  "seo_desc": "Robert Le Serrec's 1964 photo of a giant tadpole on the sea floor off Hook Island, Queensland. What he said he saw, why it's called a hoax and what it probably was.",
+  "updated": "2026-10-26"
  },
  {
   "slug": "uss-stein-monster",

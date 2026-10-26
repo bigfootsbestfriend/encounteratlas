@@ -28,10 +28,12 @@
    "links": [{"name": "Canada's UFOs at LAC", "url": "https://www.canada.ca/en/library-archives/collection/research-help/science-technology/ufos.html"}, {"name": "Sky Canada Project", "url": "https://science.gc.ca/site/science/en/office-chief-science-advisor/sky-canada-project/management-public-reporting-unidentified-aerial-phenomena-canada"}]},
 
   {"code": "fr", "slug": "france", "name": "France",
+   "seo_title": "France UFO files: GEIPAN, the space agency's UFO office",
+   "seo_desc": "France's space agency has run a UFO office since 1977. How GEPAN, SEPRA and GEIPAN grade cases from A to D, what they found, and where to search the French files.",
    "bodies": "GEPAN (1977), SEPRA (1988), GEIPAN (2005 to now), all at the national space agency CNES",
    "body": [
-     "France is the only country whose space agency has run a UFO office continuously since the 1970s. GEPAN was founded at CNES in Toulouse in 1977, became SEPRA in 1988 and GEIPAN in 2005.",
-     "GEIPAN investigates reports with help from the gendarmerie, air force and Météo-France and grades each case from A (explained) to D (unexplained after investigation). According to CNES, about a quarter of cases are fully identified, 40% probably identified, a third lack data and around 3% stay unexplained. It began putting its archive online at the end of 2006."
+     "If you're after France's UFO files, they sit with GEIPAN, a small office inside CNES, the French space agency in Toulouse. As far as I know France is the only country whose space agency has run a UFO office nonstop since the 1970s. It started as GEPAN in 1977, became SEPRA in 1988 and has been GEIPAN since 2005.",
+     "GEIPAN looks into reports with help from the gendarmerie, the air force and Météo-France, then grades each case from A (fully explained) to D (still unexplained after investigation). As of 31 March 2026 it listed about 5,170 cases and had published 3,336 of them. Only 3.2% ended up as D, about two thirds were A or B, and the rest were C, which basically means there wasn't enough to go on. GEIPAN says it has found no proof of anything extraterrestrial (and it won't give an opinion either way). It started putting its archive online at the end of 2006."
    ],
    "data": "GEIPAN's legal notice reserves all rights and forbids extraction of its content beyond private or educational copies, so we don't copy its cases. Search them on geipan.fr.",
    "links": [{"name": "GEIPAN at CNES", "url": "https://cnes.fr/projets/geipan"}, {"name": "GEIPAN case search", "url": "https://www.geipan.fr/fr/recherche/cas"}]},
@@ -105,7 +107,7 @@
   {"code": "au", "slug": "australia", "name": "Australia",
    "bodies": "Royal Australian Air Force; National Archives of Australia",
    "body": [
-     "The RAAF recorded public and military UFO reports on special forms for decades. Those files, including reports from the Woomera weapons range, now sit in the National Archives of Australia."
+     "The RAAF recorded public and military UFO reports on special forms for decades. Those files, including reports from the Woomera weapons range, now sit in the National Archives of Australia. In 1959 the RAAF also interviewed Father William Gill about the [Boianai sightings](/encounters/boianai-1959/) in Papua, then an Australian territory, and put the lights down to planets seen through cloud."
    ],
    "data": "Linked only.",
    "links": [{"name": "National Archives of Australia", "url": "https://www.naa.gov.au/blog/flying-saucers-fact-or-fiction"}]}

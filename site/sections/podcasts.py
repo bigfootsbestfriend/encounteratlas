@@ -23,6 +23,9 @@ def scrub(t):
         t = rx.sub(rep, t)
     return re.sub(r'\ba a\b', 'a', t)
 
+# Optional per-topic <title> override ({year}, {n} = show count); other topics use the default title
+TOPIC_TITLE = {'cryptids': 'Best cryptid podcasts {year}: {n} shows, ranked and updated weekly'}
+
 # topic -> (page title noun, icon, colour class, intro, related creature categories or slugs)
 TOPIC_META = {
     'bigfoot': ('Bigfoot', 'bigfoot', 'hominid',
@@ -32,7 +35,7 @@ TOPIC_META = {
                'Upright canines in the Michigan woods, werewolf reports and the scariest campfire calls. Not for listening alone in a cabin.',
                ['canid']),
     'cryptids': ('cryptid', 'mothman', 'winged',
-                 'Mothman, the Jersey Devil, lake monsters and everything in between. Shows that go looking for the creatures science hasn\'t caught yet.',
+                 "Looking for a good cryptid podcast? These are the shows that spend real time on Mothman, lake monsters, the Jersey Devil and the rest, ranked so the best ones sit on top, and we re-check them against Apple Podcasts every week. If you're new to this, try the top three first and you'll know pretty fast which style you like.",
                  ['winged', 'aquatic', 'other', 'entity']),
     'ufo': ('UFO', 'saucer', 'ufo',
             'Sightings, abductions, whistleblowers and the UAP hearings. From weekly news roundups to deep dives on Roswell.',
@@ -287,7 +290,7 @@ def build(ctx):
   {rel_html}
   <p class="small muted">Updated {esc(fmt_date(updated))} from Apple Podcasts. <a href="{url('/podcasts/')}">See all {len(shows)} shows</a>.</p>
 </div></div>'''
-        ctx.write(f'/podcasts/{t}/', ctx.page(f'/podcasts/{t}/', f'{h1} ({len(lst)} shows, updated weekly)', body,
+        ctx.write(f'/podcasts/{t}/', ctx.page(f'/podcasts/{t}/', TOPIC_TITLE[t].format(year=date.today().year, n=len(lst)) if t in TOPIC_TITLE else f'{h1} ({len(lst)} shows, updated weekly)', body,
                                               f'The best {noun} podcasts, ranked: {", ".join(s["name"] for s in top[:4])} and {len(lst) - 4} more, with episode counts and the latest episodes.',
                                               head_extra=head))
 

@@ -772,7 +772,10 @@
   "price": null,
   "url": "https://ohiobigfootconference.org",
   "source": "https://ohiobigfootconference.org/town-hall-event-2026/",
-  "note": null
+  "note": null,
+  "intro": [
+   "Down south, the [Texas Bigfoot Conference](/places/texas-bigfoot-conference/) in Jefferson has been running since 2001."
+  ]
  },
  {
   "slug": "hocking-hills-bigfoot-festival",
@@ -922,7 +925,12 @@
   "price": "Tickets roughly $31 and up",
   "url": "https://www.texasbigfootconference.com",
   "source": "https://allevents.in/jefferson-tx",
-  "note": null
+  "note": null,
+  "seo_title": "Texas Bigfoot Conference {year}, Jefferson TX: dates and tickets",
+  "seo_desc": "Running since 2001 in Jefferson, a historic Piney Woods town in East Texas. Dates, tickets (about $31 and up) and other Bigfoot events near you.",
+  "intro": [
+   "The Texas Bigfoot Conference has been going since 2001, which makes it the original one in Texas, and it's held in Jefferson, a historic little town in the Piney Woods of East Texas. It usually lands in mid October with some big-name speakers and a room full of vendors, and tickets have run about $31 and up. If you're looking for a Bigfoot festival or conference closer to home (wherever home is), our [events calendar](/events/) has every one we know of, worldwide."
+  ]
  },
  {
   "slug": "belleville-ufo-days",
@@ -947,7 +955,12 @@
   "price": null,
   "url": "https://ufodays.org",
   "source": "https://ufodays.org",
-  "note": null
+  "note": null,
+  "seo_title": "Belleville UFO Days {year}, Wisconsin: parade, fun run, dates",
+  "seo_desc": "Belleville, Wisconsin, south of Madison, holds UFO Days at the end of October with a fun run, parade and vendors. It started after a 1987 police sighting over the village.",
+  "intro": [
+   "Belleville is a little village just south of Madison, Wisconsin, and at the end of every October it throws UFO Days in Library Park with a fun run, a parade, games, vendors and a whole lot of alien costumes. It started after a 1987 police sighting of something strange over town, which is honestly a pretty good excuse for a party. The next date is up top, and it's usually the last Saturday of October."
+  ]
  },
  {
   "slug": "elmwood-ufo-days",
@@ -972,7 +985,10 @@
   "price": null,
   "url": "https://www.facebook.com/UFODAYSELMWOOD",
   "source": "https://www.piercecountyjournal.news/stories/gallery-never-ending-fun-at-elmwood-ufo-days,200178",
-  "note": null
+  "note": null,
+  "intro": [
+   "Wisconsin actually has two of these. Down south of Madison, [Belleville UFO Days](/places/belleville-ufo-days/) runs at the end of October."
+  ]
  },
  {
   "slug": "pine-bush-ufo-fair",
@@ -1237,7 +1253,7 @@
   "lat": 49.69258,
   "lon": -124.99704,
   "approx": false,
-  "summary": "A three-day Sasquatch conference in the Comox Valley with presenters, a vendor market and a gala dinner, partnered with the Queneesh Indigenous Community Society.",
+  "summary": "A three-day Sasquatch conference in the Comox Valley with speakers, a vendors market and a Halloween dance, in partnership with the Queneesh Indigenous Community Society.",
   "month": 10,
   "when": "Late October",
   "d2026": "October 30 to November 1, 2026",
@@ -1246,7 +1262,12 @@
   "price": "$50 weekend pass",
   "url": "https://kikiscommunications.com/squatch-watch-v-i-2026",
   "source": "https://experiencecomoxvalley.ca/festival-event/squatch-watch-2026-vancouver-island/",
-  "note": null
+  "note": null,
+  "seo_title": "Squatch Watch {year}: Vancouver Island Sasquatch conference, BC",
+  "seo_desc": "A three-day Sasquatch conference at the Florence Filberg Centre in Courtenay, BC, with speakers, a vendors market and an all-ages Halloween dance. Dates and tickets.",
+  "intro": [
+   "Squatch Watch is a Sasquatch conference on Vancouver Island, held at the Florence Filberg Centre in Courtenay in the Comox Valley. It runs over a weekend in late October (October 30 to November 1 in 2026) with talks, a Sasquatch vendors market and a Halloween Monster Bash dance (all ages, and it's a dry event). For 2026 the organizers named Tom Sewid, Terry James (who wrote the biography of Comox Valley researcher John Bindernagel) and Robert Alley, author of Raincoast Sasquatch, among the speakers. Kiki's Communications puts it on in partnership with the Queneesh Indigenous Community Society. Tickets are sold through Eventbrite, and it's worth checking the official site before you head over in case anything changes."
+  ]
  },
  {
   "slug": "jersey-devil-festival",
@@ -1989,7 +2010,15 @@
   "price": "Free",
   "url": null,
   "source": "https://www.roadsideamerica.com/tip/24971",
-  "note": null
+  "note": null,
+  "seo_title": "Aztec UFO Crash Site (Hart Canyon, NM): the hoax and the hike",
+  "seo_desc": "The Aztec UFO crash site is in Hart Canyon, about 12 miles (19 km) northeast of Aztec, New Mexico. A plaque marks the 1948 saucer story, which two con men made up. Free.",
+  "more_sources": [
+   "https://en.wikipedia.org/wiki/Aztec_crashed_saucer_hoax"
+  ],
+  "intro": [
+   "The Aztec UFO crash site is out in Hart Canyon, about 12 miles (19 km) northeast of Aztec, New Mexico, where a plaque on a mesa trail marks the spot a flying saucer supposedly came down in March 1948. The story goes that the military pulled 16 bodies out of a saucer 99 ft (30 m) across. Truth be told, the whole thing was a con. Frank Scully ran it in his Variety columns in 1949 and then in his 1950 book Behind the Flying Saucers, and in 1952 it came out that his sources, Silas Newton and Leo GeBauer, had made it up to help sell devices they claimed used alien technology. Both were convicted of fraud in 1953. The hike's still nice and it's free."
+  ]
  },
  {
   "slug": "ufo-skip-site",
@@ -2972,7 +3001,10 @@
   "url": "https://www.kelsolongviewchamber.org/squatchfest/",
   "source": "https://stateofwatourism.com/event/squatch-fest-galactic-fest",
   "note": null,
-  "brief": true
+  "brief": true,
+  "intro": [
+   "Looking for the Vancouver Island one? That's [Squatch Watch in Courtenay, BC](/places/squatch-watch-vancouver-island/), held in late October."
+  ]
  },
  {
   "slug": "fyffe-ufo-days",
@@ -2999,7 +3031,10 @@
   "source": "https://256today.com/256-today-events-across-north-alabama-this-week-aug-21-27/",
   "note": null,
   "brief": true,
-  "tentative": true
+  "tentative": true,
+  "intro": [
+   "Not to be confused with [UFO Days in Belleville, Wisconsin](/places/belleville-ufo-days/), which happens at the end of October."
+  ]
  },
  {
   "slug": "seriously-strange-conference-assap",
@@ -3128,7 +3163,10 @@
   "url": "https://sasquatchsummit.com",
   "source": "https://sasquatchsummit.com",
   "note": null,
-  "brief": true
+  "brief": true,
+  "intro": [
+   "On the Canadian side, [Squatch Watch Vancouver Island](/places/squatch-watch-vancouver-island/) is held in Courtenay, BC in late October."
+  ]
  },
  {
   "slug": "great-florida-bigfoot-conference",
@@ -3154,7 +3192,10 @@
   "url": "https://gatherupevents.com/florida-bigfoot-conference",
   "source": "https://www.wcjb.com/2026/06/13/bigfoot-believers-gather-ocala-6th-annual-great-florida-bigfoot-conference/",
   "note": null,
-  "brief": true
+  "brief": true,
+  "intro": [
+   "If you want an older one, the [Texas Bigfoot Conference](/places/texas-bigfoot-conference/) in Jefferson has been running since 2001."
+  ]
  },
  {
   "slug": "bell-witch-fall-festival",

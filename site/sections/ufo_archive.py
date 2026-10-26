@@ -446,7 +446,7 @@ def build(ctx):
         pcs = sorted(pursue_by_cc.get(cc, []), key=lambda o: o.get('date') or '', reverse=True)
         parts = []
         if c:
-            parts.append(''.join(f'<p>{E(p)}</p>' for p in c['body']))
+            parts.append(''.join(f'<p>{ctx.md_links(p)}</p>' for p in c['body']))
             parts.append(f'<p class="callout"><strong>Our data:</strong> {E(c["data"])}</p>')
         if rels:
             parts.append(f'<h2>Official releases</h2><ol class="ua-tl ua-tl-compact">{"".join(rel_card(r, compact=True) for r in rels)}</ol>')
@@ -503,8 +503,8 @@ def build(ctx):
   <article class="prose ua-prose">{''.join(parts)}</article>
   {facts}
 </div></div>{js}'''
-        ctx.write(f'/ufo/countries/{cslug[cc]}/', ctx.page(f'/ufo/countries/{cslug[cc]}/', f'{name}: official UFO files and releases', body,
-                  (f'How {name} has handled UFO reports, with {len(rels)} official releases linked to their sources.' if c else
+        ctx.write(f'/ufo/countries/{cslug[cc]}/', ctx.page(f'/ufo/countries/{cslug[cc]}/', (c or {}).get('seo_title') or f'{name}: official UFO files and releases', body,
+                  ((c.get('seo_desc') or f'How {name} has handled UFO reports, with {len(rels)} official release{"s" if len(rels) != 1 else ""} linked to their sources.') if c else
                    f'{len(pcs)} US government UFO file{"s" if len(pcs) != 1 else ""} about events in {name}.'), head_extra=css,
                   noindex=not c and len(pcs) < 5))  # a country with a handful of files and no releases of its own is thin
     cards = ''

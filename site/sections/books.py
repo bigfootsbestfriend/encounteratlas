@@ -57,7 +57,7 @@ def build(ctx):
 <section class="band band-dark"><div class="wrap">
   <p class="crumb"><a href="{U('/gear/')}">Gear</a> / Books</p>
   <h1>Books about cryptids, UFOs and the unexplained</h1>
-  <p class="lede">{len(books)} books we've checked exist and are worth a look, sceptical and believing, from Bigfoot field guides to the UFO files. Each week the email picks one.</p>
+  <p class="lede">{len(books)} books we've checked exist and are worth a look, sceptical and believing, from Bigfoot field guides to the UFO files. Each week the email picks one. Rather listen? Here are the <a href="{U('/podcasts/cryptids/')}">best cryptid podcasts</a>, ranked every week.</p>
   <p class="gr-aff"><a class="md-aff" href="{U('/privacy/')}#affiliate">As an Amazon Associate we earn from qualifying purchases.</a></p>
 </div></section>
 <div class="band band-mist"><div class="wrap">

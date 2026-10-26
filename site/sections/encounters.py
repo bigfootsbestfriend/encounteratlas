@@ -50,6 +50,11 @@ class E:
         for x in self.cases:
             self.case(x)
 
+    def title(self, x):
+        # "Name (Who) (1959)" reads badly, so a name already ending in brackets takes the year inside them
+        n = x['name']
+        return f'{n[:-1]}, {x["year"]})' if n.endswith(')') else f'{n} ({x["year"]})'
+
     def url(self, x):
         return self.u(self.BASE + x['slug'] + '/')
 
@@ -112,7 +117,7 @@ class E:
 
     def case(self, x):
         c, e = self.c, self.e
-        paras = ''.join(f'<p>{e(p)}</p>' for p in x['body'])
+        paras = ''.join(f'<p>{c.md_links(p)}</p>' for p in x['body'])
         off = ''.join(f'<li><b>{e(o["agency"])}</b> {e(o["note"])}</li>' for o in x.get('official', []))
         if x.get('bluebook'):
             off += (f'<li><b>Project Blue Book folder</b> <a href="https://catalog.archives.gov/id/{int(x["bluebook"])}" rel="noopener">'
@@ -154,5 +159,5 @@ class E:
   <nav class="ce-pns" aria-label="More cases">{pn}</nav>
   <p><a href="{self.u(self.BASE)}">All {len(self.cases)} {self.LABEL.lower()}</a></p>
 </div></div>'''
-        c.write(self.BASE + x['slug'] + '/', c.page(self.BASE + x['slug'] + '/', f'{x["name"]} ({x["year"]})', body,
-                                                         x['summary'], body_class='encounters', head_extra=self.head, article={'updated': x.get('updated')}))
+        c.write(self.BASE + x['slug'] + '/', c.page(self.BASE + x['slug'] + '/', x.get('seo_title') or self.title(x), body,
+                                                         x.get('seo_desc') or x['summary'], body_class='encounters', head_extra=self.head, article={'updated': x.get('updated')}))

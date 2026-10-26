@@ -26,6 +26,16 @@ def build(ctx):
         return
     E, U = ctx.esc, ctx.url
     progs = json.load(open(p, encoding='utf-8'))
+    # countries with a written-up page at /ufo/countries/<slug>/ get a link under their heading
+    cpage = {c['code']: c['slug'] for c in json.load(open(os.path.join(ctx.ROOT, 'data', 'ufo_countries.json'), encoding='utf-8'))}
+
+    def files_link(c):
+        if c not in cpage:
+            return ''
+        n = NAMES.get(c, c.upper())
+        pos = "'" if n.endswith('s') else "'s"
+        return f'<p class="pg-cc-files"><a href="{U("/ufo/countries/" + cpage[c] + "/")}">{E(n + pos)} UFO files</a></p>'
+
     now = datetime.date.today().year
     span = now + 1 - Y0
     by_cc = {}
@@ -71,7 +81,7 @@ def build(ctx):
                 f'<h4>Sources</h4><ul class="pg-src">{src}</ul>{rel}</article>')
 
     sections = ''.join(
-        f'<section class="pg-country" id="c-{c}"><h2>{E(NAMES.get(c, c.upper()))} <span class="muted">({len(by_cc[c])})</span></h2>'
+        f'<section class="pg-country" id="c-{c}"><h2>{E(NAMES.get(c, c.upper()))} <span class="muted">({len(by_cc[c])})</span></h2>{files_link(c)}'
         f'<div class="pg-grid">{"".join(card(g) for g in by_cc[c])}</div></section>' for c in ccs)
     jump = ''.join(f'<a class="chip" href="#c-{c}">{E(NAMES.get(c, c.upper()))}</a>' for c in ccs)
     first = min(int(str(g['start'])[:4]) for g in progs)
