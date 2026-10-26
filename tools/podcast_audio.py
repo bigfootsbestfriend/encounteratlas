@@ -10,6 +10,8 @@ Where the URL comes from, in order:
 3. The show's RSS feed (podcasts.json, else the feedUrl from the lookup), matched on the normalised title.
 
 Only https URLs are kept. An http URL is upgraded to https and HEAD-checked; if that fails the episode gets no audio.
+Every audio URL is then fetched (first 2 bytes, following redirects) and dropped if the host no longer serves audio,
+e.g. a show that deleted an episode (Spreaker answers 404 JSON). `--check` runs only that pass on the current file.
 Raw responses are cached under data/raw/podcasts/ for CACHE_DAYS (FRESH=1 ignores the cache).
 """
 import glob, hashlib, html, json, os, re, sys, time, urllib.error, urllib.parse, urllib.request
@@ -145,6 +147,42 @@ def https_only(u):
     return s if ok else ''
 
 
+def live(u):
+    """True if u still serves audio. Hosts that refuse bots (403/429) or time out are given the benefit of the doubt."""
+    try:
+        req = urllib.request.Request(u, headers={'User-Agent': 'Mozilla/5.0 (EncounterAtlas link check)', 'Range': 'bytes=0-1'})
+        with urllib.request.urlopen(req, timeout=25) as r:
+            ct = (r.headers.get('Content-Type') or '').lower()
+            return not (ct.startswith('text/html') or 'json' in ct)
+    except urllib.error.HTTPError as e:
+        return e.code in (403, 429) or e.code >= 500
+    except Exception:
+        return True
+
+
+def drop_dead(eps):
+    from concurrent.futures import ThreadPoolExecutor
+    urls = sorted({e['audio'] for e in eps if e.get('audio')})
+    with ThreadPoolExecutor(12) as ex:
+        ok = dict(zip(urls, ex.map(live, urls)))
+    dead = 0
+    for e in eps:
+        if e.get('audio') and not ok[e['audio']]:
+            print(f'  dead audio: {e.get("show", "")} | {e["title"]}', file=sys.stderr)
+            e.pop('audio')
+            dead += 1
+    return dead
+
+
+def check_only():
+    data = json.load(open(P_EPS, encoding='utf-8'))
+    eps = [e for v in data['creatures'].values() for e in v]
+    dead = drop_dead(eps)
+    with open(P_EPS, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=1, ensure_ascii=False)
+    print(f'{dead} dead audio URLs dropped', file=sys.stderr)
+
+
 def track_id(url):
     m = re.search(r'[?&]i=(\d+)', url or '')
     return int(m.group(1)) if m else None
@@ -212,12 +250,14 @@ def main():
             filled += 1
         else:
             e.pop('audio', None)
+    dead = drop_dead(eps)
+    filled -= dead
     with open(P_EPS, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=1, ensure_ascii=False)
     print(f'audio: {filled}/{len(eps)} episodes ({100 * filled / max(1, len(eps)):.1f}%); '
           f'found via cache {src["cache"]}, lookup {src["lookup"]}, rss {src["rss"]}; '
-          f'{sum(1 for v in _https_ok.values() if not v)} http-only URLs dropped', file=sys.stderr)
+          f'{sum(1 for v in _https_ok.values() if not v)} http-only URLs dropped, {dead} dead', file=sys.stderr)
 
 
 if __name__ == '__main__':
-    main()
+    check_only() if '--check' in sys.argv else main()
