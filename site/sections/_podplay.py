@@ -148,8 +148,14 @@ def todays_listen(ctx, where='home'):
         a = art_thumb(ctx, slug)
         if not a:
             return '<span class="pf-noart"></span>'
-        load = ' loading="lazy"' if lazy else ''
-        return f'<img src="{a}" alt="" width="360" height="257"{load} decoding="async">'
+        if lazy:
+            return f'<img src="{a}" alt="" width="360" height="257" loading="lazy" decoding="async">'
+        # the featured picture fills the card (up to ~900 px wide), so phones and big screens get the full art
+        full = ctx.url(f'/static/cards/art/{slug}.webp')
+        if '/thumb/' not in a:
+            return f'<img src="{a}" alt="" width="1164" height="832" decoding="async">'
+        return (f'<img src="{full}" srcset="{a} 360w, {full} 1164w" sizes="(min-width: 960px) 900px, 100vw" alt=""'
+                f' width="1164" height="832" decoding="async">')
 
     stations = ''.join(
         f'<li class="pf-st">{img(s, True)}<span class="pf-st-t"><a href="{U("/podcasts/creature/" + s + "/")}">{E(ctx.by_slug[s]["name"])}</a>'
