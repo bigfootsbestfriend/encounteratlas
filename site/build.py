@@ -1638,10 +1638,14 @@ def build_static_pages():
 <h2 id="newsletter">Weekly email</h2>
 <p>If you sign up for the <a href="{url('/newsletter/')}">weekly email</a>, we store your email address with <a href="https://resend.com/legal/privacy-policy">Resend</a>, the service that sends it, and use it only for that email. We ask you to confirm by clicking a link first. Every email has a one-click unsubscribe link, and we never sell or share the list. Signing up is separate from a reporting account: an account alone never puts you on the list.</p>
 
-<h2>Removing your report or account</h2>
+<h2 id="delete-account">Removing your report or account</h2>
+<p>This works the same on the website and in the Encounter Atlas app for Android and iPhone.</p>
 <ul>
 <li>If you sent a report while signed in, you can edit or withdraw it yourself from the report page. Withdrawing removes it from the site straight away.</li>
-<li>To remove a report sent without an account, delete your account, or ask what we hold about you, email <a href="mailto:hello@encounteratlas.com">hello@encounteratlas.com</a>. We reply within 30 days.</li>
+<li><strong>To delete your account:</strong> email <a href="mailto:hello@encounteratlas.com?subject=Delete%20my%20account">hello@encounteratlas.com</a> from the address you sign in with and say "delete my account". You don't need to do anything else. We reply within 30 days, usually much sooner.</li>
+<li>When we delete an account we remove your email address, display name, sign-ins and votes, and the reports you sent from that account (tell us if you'd rather keep a report up with no name on it). Database backups roll over within 30 days, so that's the longest anything lingers.</li>
+<li>To turn off alerts, use "Turn off alerts" on the Near me page (or uninstall the app). That stops alerts straight away and switches the push address or app token off for good.</li>
+<li>To remove a report sent without an account, or ask what we hold about you, email the same address. We reply within 30 days.</li>
 <li>Sign-ins expire after 90 days on a device, and you can sign out at any time.</li>
 </ul>
 
