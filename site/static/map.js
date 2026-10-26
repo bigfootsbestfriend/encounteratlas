@@ -29,6 +29,15 @@
   // The basemap's town dots ask for a sprite icon (circle-11) the style doesn't ship: give it a blank one, no console noise.
   map.on('styleimagemissing', (e) => { if (!map.hasImage(e.id)) map.addImage(e.id, { width: 1, height: 1, data: new Uint8Array(4) }); });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
+  // One tap, one popup: dots from different layers overlap, and a handler per layer opened a stack of popups.
+  // Layer click handlers register here; a map click runs only the one for the topmost feature under the tap.
+  const CLICK = {};
+  const onClick = (id, fn) => { CLICK[id] = fn; };
+  map.on('click', (e) => {
+    const ids = Object.keys(CLICK).filter((id) => map.getLayer(id));
+    const f = ids.length && map.queryRenderedFeatures(e.point, { layers: ids })[0];
+    if (f) CLICK[f.layer.id](Object.assign({}, e, { features: [f] }));
+  });
   // Full map page: a clear way back to wherever the visitor came from (home page "Full screen" button, creature pages...)
   const exit = document.querySelector('.map-exit');
   if (exit) {
@@ -132,12 +141,12 @@
       'circle-color': '#F2B33D',
       'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 3, 10, 6],
       'circle-stroke-color': '#13261F', 'circle-stroke-width': 1.5 } });
-    map.on('click', 'bb-clusters', async (e) => {
+    onClick('bb-clusters', async (e) => {
       const f = e.features[0];
       const zoom = await map.getSource('bluebook').getClusterExpansionZoom(f.properties.cluster_id);
       map.easeTo({ center: f.geometry.coordinates, zoom });
     });
-    map.on('click', 'bb-point', (e) => {
+    onClick('bb-point', (e) => {
       const p = e.features[0].properties;
       const nodes = [node('div', 'pop-kind', null, SAUCER + '<span>Air Force UFO file (Project Blue Book)</span>'),
         node('p', 'pop-h', p.t || 'Unknown place'),
@@ -154,7 +163,7 @@
     map.addLayer({ id: 'bb-approx-n', type: 'symbol', source: 'bb-approx', minzoom: 3, layout: {
       'text-field': ['concat', '~', ['to-string', ['get', 'n']]], 'text-size': 11, 'text-font': ['Noto Sans Bold'], 'text-allow-overlap': false },
       paint: { 'text-color': '#F2B33D', 'text-opacity': 0.75, 'text-halo-color': '#13261F', 'text-halo-width': 1.2 } });
-    map.on('click', 'bb-approx', (e) => {
+    onClick('bb-approx', (e) => {
       const p = e.features[0].properties;
       popup(e.features[0].geometry.coordinates, [node('div', 'pop-kind', null, SAUCER + '<span>Air Force UFO files, location approximate</span>'),
         node('p', 'pop-h', p.n + (p.n == 1 ? ' file' : ' files') + ' somewhere in ' + p.t),
@@ -176,7 +185,7 @@
     map.addLayer({ id: 'famous', type: 'symbol', source: 'famous', layout: {
       'icon-image': ['get', 'img'], 'icon-size': ['interpolate', ['linear'], ['zoom'], 2, 0.62, 8, 1],
       'icon-allow-overlap': true, 'symbol-sort-key': ['get', 'y'] } });
-    map.on('click', 'famous', (e) => {
+    onClick('famous', (e) => {
       const p = e.features[0].properties;
       popup(e.features[0].geometry.coordinates, [
         node('div', 'pop-kind', null, '<span class="dot" style="background:' + (CAT[p.c] || '#ccc') + '"></span><span>' + p.n + '</span>'),
@@ -194,7 +203,7 @@
     map.addSource('military', { type: 'geojson', data });
     map.addLayer({ id: 'military', type: 'symbol', source: 'military', layout: {
       'icon-image': 'mil', 'icon-size': ['interpolate', ['linear'], ['zoom'], 2, 0.62, 8, 1], 'icon-allow-overlap': true } });
-    map.on('click', 'military', (e) => {
+    onClick('military', (e) => {
       const p = e.features[0].properties;
       popup(e.features[0].geometry.coordinates, [node('div', 'pop-kind', null, '<span>Military encounter, ' + p.y + '</span>'),
         node('p', 'pop-h', p.t), node('p', 'pop-meta', p.p + '. ' + p.b), link(BASE + '/military/', 'Read the case')]);
@@ -210,7 +219,7 @@
       // Festivals and gatherings get their own colour (and their own "Events and gatherings" chip)
       'circle-color': ['case', ['==', ['get', 'k'], 'festival'], '#F0806A', '#9CC46B'], 'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 5, 10, 9],
       'circle-stroke-color': '#13261F', 'circle-stroke-width': 2 } });
-    map.on('click', 'places', (e) => {
+    onClick('places', (e) => {
       const p = e.features[0].properties;
       const nodes = [node('div', 'pop-kind', null, '<span>' + (p.type || 'Place to visit') + '</span>'), node('p', 'pop-h', p.name || p.t || '')];
       if (p.city || p.region) nodes.push(node('p', 'pop-meta', [p.city, p.region].filter(Boolean).join(', ')));
@@ -229,7 +238,7 @@
     map.addSource(id, { type: 'geojson', data });
     map.addLayer({ id, type: 'circle', source: id, paint: {
       'circle-color': color, ...APPROX_PAINT(color, 3.5, 7) } });
-    map.on('click', id, (e) => {
+    onClick(id, (e) => {
       const p = e.features[0].properties;
       const nodes = [node('div', 'pop-kind', null, '<span>' + label + (p.w ? ', ' + p.w : '') + '</span>'), node('p', 'pop-h', p.t || 'Report')];
       if (p.r) nodes.push(node('p', 'pop-meta', p.r));
@@ -253,12 +262,12 @@
     map.addLayer({ id: 'cufos-pt', type: 'circle', source: 'cufos', filter: ['!', ['has', 'point_count']], paint: {
       'circle-color': '#C08BE8', 'circle-opacity': ['case', ['==', ['get', 'a'], 1], 0.25, 0.55], 'circle-stroke-width': 0,
       'circle-radius': ['interpolate', ['linear'], ['get', 'n'], 1, 2.5, 20, 4, 200, 7, 1000, 10] } }, under);
-    map.on('click', 'cufos-cl', async (e) => {
+    onClick('cufos-cl', async (e) => {
       const f = e.features[0];
       const z = await map.getSource('cufos').getClusterExpansionZoom(f.properties.cluster_id);
       map.easeTo({ center: f.geometry.coordinates, zoom: z });
     });
-    map.on('click', 'cufos-pt', (e) => {
+    onClick('cufos-pt', (e) => {
       const p = e.features[0].properties;
       const nodes = [node('div', 'pop-kind', null, '<span>Canadian UFO Survey</span>'), node('p', 'pop-h', p.t + (p.a == 1 ? '' : ', ' + p.r)),
         node('p', 'pop-meta', p.n + ' report' + (p.n == 1 ? '' : 's') + ' since 1989 · ' + p.nu + ' unexplained')];
@@ -275,7 +284,7 @@
     map.addLayer({ id: 'greece', type: 'circle', source: 'greece', paint: {
       'circle-color': '#4FC3A1', 'circle-opacity': 0.85, 'circle-stroke-color': '#13261F', 'circle-stroke-width': 1,
       'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 3.5, 10, 7] } });
-    map.on('click', 'greece', (e) => {
+    onClick('greece', (e) => {
       const p = e.features[0].properties;
       const nodes = [node('div', 'pop-kind', null, '<span>Greek close encounter' + (p.w ? ', ' + p.w.slice(0, 4) : '') + '</span>'), node('p', 'pop-h', p.t + ', ' + p.r),
         node('p', 'pop-meta', p.k + ' · ' + p.h)];
@@ -292,7 +301,7 @@
     map.addLayer({ id: 'mysteries', type: 'circle', source: 'mysteries', paint: {
       'circle-color': ['get', 'c'], 'circle-radius': ['interpolate', ['linear'], ['zoom'], 2, 5, 10, 9],
       'circle-stroke-color': '#F4EFD8', 'circle-stroke-width': 2 } });
-    map.on('click', 'mysteries', (e) => {
+    onClick('mysteries', (e) => {
       const p = e.features[0].properties;
       popup(e.features[0].geometry.coordinates, [node('div', 'pop-kind', null, '<span>Mystery, ' + p.d + '</span>'),
         node('p', 'pop-h', p.n), node('p', 'pop-meta', p.p + ' · ' + p.st), link(p.u, 'Read the mystery')]);
@@ -321,7 +330,7 @@
     map.addSource('reports', { type: 'geojson', data });
     map.addLayer({ id: 'reports', type: 'symbol', source: 'reports', layout: {
       'icon-image': ['get', 'img'], 'icon-size': ['interpolate', ['linear'], ['zoom'], 2, 0.62, 8, 1], 'icon-allow-overlap': true } });
-    map.on('click', 'reports', (e) => {
+    onClick('reports', (e) => {
       const p = e.features[0].properties;
       popup(e.features[0].geometry.coordinates, [node('div', 'pop-kind', null, '<span>Reader report' + (p.d ? ', ' + p.d : '') + '</span>'),
         node('p', 'pop-h', (p.n || 'Something') + (p.t ? ' near ' + (p.t === p.t.toLowerCase() ? p.t.replace(/(^|\s)(\p{L})/gu, (m, a, b) => a + b.toUpperCase()) : p.t) : '')),
