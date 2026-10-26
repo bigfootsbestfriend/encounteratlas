@@ -63,6 +63,12 @@ def build(ctx):
         cc = k[:2]
         slug = ctx.slugify(nm)
         made[k] = (f'/{"us" if cc == "US" else "canada"}/{slug}/', nm)
+    hubs = load('region_hubs.json') or {}  # hand-written copy: state hub titles/intros and multi-state region hubs
+    state_over, regions = hubs.get('states', {}), hubs.get('regions', [])
+    part_of = defaultdict(list)  # state name -> [(path, region name)] to link from that state's hub
+    for r in regions:
+        for st in r.get('link_from', []):
+            part_of[st].append((f'/us/{r["slug"]}/', r['name'], r['h1']))
     css = f'<link rel="stylesheet" href="{U("/static/ufo_archive.css")}"><link rel="stylesheet" href="{U("/static/canada.css")}">' + legend_head(ctx)
 
     def card(href, title, sub, text, cls=''):
@@ -125,18 +131,21 @@ def build(ctx):
                 if cnames else f'UFO files, old newspaper reports and places to visit in {E(nm)}, all in one place.')
         if cc == 'CA':
             lead = lead.replace('UFO files', 'UFO sightings')
+        o = state_over.get(nm, {}) if cc == 'US' else {}
+        intro = (f'<div class="prose">{"".join(f"<p>{ctx.md_links(t)}</p>" for t in o["intro"])}</div>' if o.get('intro') else '')
+        part = ''.join(f'<p>More from the mountains: <a href="{U(rp)}">{E(rh)}</a></p>' for rp, rn, rh in part_of.get(nm, []) if cc == 'US')
         body = f'''
 <section class="band band-dark cn-hero">
   <div class="wrap">
     <p class="crumb"><a href="{U('/canada/' if cc == 'CA' else '/us/')}">{top}</a> / {E(nm)}</p>
-    <h1>{'Cryptids and UFOs' if cc == 'US' else ('Sasquatch, cryptids and UFOs' if 'bigfoot' in crit else 'Cryptids and UFOs')} in {E(nm)}</h1>
-    <p class="lede">{lead}</p>
+    <h1>{E(o['h1']) if o.get('h1') else ('Cryptids and UFOs' if cc == 'US' else ('Sasquatch, cryptids and UFOs' if 'bigfoot' in crit else 'Cryptids and UFOs')) + ' in ' + E(nm)}</h1>
+    <p class="lede">{lead}</p>{part}
     <ul class="ua-stats">{''.join(f'<li><b>{v}</b> {E(t)}</li>' for v, t in stats)}</ul>
     <nav class="jump" aria-label="On this page">{''.join(f'<a href="{h}">{t}</a>' for h, t in filter(None, jumps))}</nav>
   </div>
 </section>
 <div class="band band-mist"><div class="wrap">
-  {legend_card(ctx, cc, nm)}
+  {intro}{legend_card(ctx, cc, nm)}
   {''.join(parts)}
   <section class="cn-cta"><h2>Seen something in {E(nm)}?</h2>
   <p>Tell us what happened. Every report is read by a person before it goes on the map, and you can keep the exact spot private.</p>
@@ -147,7 +156,55 @@ def build(ctx):
         title = (f'{"Bigfoot, cryptids" if big else "Cryptids"} and UFOs in {nm}' if cc == 'US'
                  else f'{"Sasquatch, cryptids" if big else "Cryptids"} and UFOs in {nm}')
         desc = (f'Everything strange in {nm}: ' + ', '.join(f'{v} {t}' for v, t in stats[:4]) + '.')
-        ctx.write(path, ctx.page(path, title, body, desc, head_extra=css))
+        ctx.write(path, ctx.page(path, o.get('seo_title') or title, body, o.get('seo_desc') or desc, head_extra=css))
+
+    # hand-written multi-state region hubs (/us/appalachia/), from data/region_hubs.json
+    pl_by = {x['slug']: x for x in load('places.json')}
+    st_key = {n: k for k, n in names.items() if k.startswith('US.')}
+    for r in regions:
+        path = f'/us/{r["slug"]}/'
+        md = lambda ps: ''.join(f'<p>{ctx.md_links(t)}</p>' for t in ps)
+        parts, jumps = [], []
+        for b in r['blocks']:
+            jumps.append((b['id'], b['h2']))
+            h2 = f'<h2 id="{b["id"]}">{E(b["h2"])}</h2>'
+            if b['type'] == 'text':
+                parts.append(f'<section class="prose">{h2}{md(b["p"])}</section>')
+            elif b['type'] == 'creatures':
+                its = [i for i in b['items'] if i['slug'] in ctx.by_slug]
+                tl = ''.join(f'<li><span class="yr">{E(i["year"])}</span><span><a href="{U("/creatures/" + i["slug"] + "/")}"><strong>{E(ctx.by_slug[i["slug"]]["name"])}</strong></a>'
+                             f'<br><span class="muted">{E(i["line"])}</span></span></li>' for i in its)
+                parts.append(f'{h2}<div class="crit-grid">{"".join(ctx.creature_card(ctx.by_slug[i["slug"]]) for i in its)}</div>'
+                             f'<h3>Where and when</h3><ol class="timeline">{tl}</ol>')
+            elif b['type'] == 'bluebook':
+                li = ''.join(f'<li><a href="{U("/ufo/blue-book/" + bb_slug[st_key[st]] + "/")}"><b>{E(st)}</b></a>: {bb[st_key[st]]:,} Project Blue Book files, 1947 to 1969</li>'
+                             for st in b['states'] if bb.get(st_key.get(st)))
+                parts.append(f'{h2}<ul class="also-links">{li}</ul>')
+            elif b['type'] == 'places':
+                pls = ''.join(card(U('/places/' + x['slug'] + '/'), x['name'], f'{x.get("city")}, {x.get("region")}', x.get('summary') or '', ' cn-place')
+                              for x in (pl_by[sl] for sl in b['slugs'] if sl in pl_by))
+                parts.append(f'{h2}<ul class="cn-grid">{pls}</ul><p><a href="{U("/events/")}">All events and festivals</a></p>')
+            elif b['type'] == 'states':
+                chips = ''.join(f'<a class="md-chip" href="{U(made[st_key[st]][0])}">{E(st)}</a>' for st in r['states'] if st_key.get(st) in made)
+                parts.append(f'{h2}<p class="md-chips">{chips}</p>')
+        src = ''.join(f'<li><a href="{E(x["url"])}" rel="noopener">{E(x["title"])}</a></li>' for x in r.get('sources', []))
+        body = f'''
+<section class="band band-dark cn-hero">
+  <div class="wrap">
+    <p class="crumb"><a href="{U('/us/')}">United States</a> / {E(r['name'])}</p>
+    <h1>{E(r['h1'])}</h1>
+    <p class="lede">{E(r['lede'])}</p>
+    <nav class="jump" aria-label="On this page">{''.join(f'<a href="#{i}">{E(t)}</a>' for i, t in jumps)}</nav>
+  </div>
+</section>
+<div class="band band-mist"><div class="wrap">
+  {''.join(parts)}
+  <p class="small muted">Sources: everything here comes from our own creature, case and place pages, each with its own sources, plus:</p><ul class="small muted">{src}</ul>
+  <section class="cn-cta"><h2>Seen something in {E(r['name'])}?</h2>
+  <p>Tell us what happened. Every report is read by a person before it goes on the map, and you can keep the exact spot private.</p>
+  <p><a class="btn" href="{U('/report/')}">Report an encounter</a> <a class="btn btn-ghost" href="{U('/guides/')}">Field guides</a></p></section>
+</div></div>'''
+        ctx.write(path, ctx.page(path, r['seo_title'], body, r['seo_desc'], head_extra=css))
 
     # /us/ index
     us = sorted(((p, n, k) for k, (p, n) in made.items() if k[:2] == 'US'), key=lambda x: x[1])
@@ -159,7 +216,7 @@ def build(ctx):
   <p class="crumb"><a href="{U('/')}">Home</a> / United States</p>
   <h1>Cryptids and UFOs, state by state</h1>
   <p class="lede">Pick your state to see its creatures, famous cases, UFO files, old newspaper reports and places to visit.
-  In Canada? <a href="{U('/canada/')}">Start here</a>.</p>
+  In Canada? <a href="{U('/canada/')}">Start here</a>.{''.join(f' By region: <a href="{U("/us/" + r["slug"] + "/")}">{E(r["h1"])}</a>.' for r in regions)}</p>
 </div></section>
 <div class="band band-mist"><div class="wrap">{legend_card(ctx, 'US')}<ul class="cu-pgrid st-grid">{grid}</ul></div></div>'''
         ctx.write('/us/', ctx.page('/us/', 'Cryptids, Bigfoot and UFOs by state', body,
@@ -172,5 +229,6 @@ def build(ctx):
         items = json.load(open(sp, encoding='utf-8'))
         items += [{'t': f'{n}: creatures and UFOs', 'a': n + (' canada' if p.startswith('/canada/') else ' state usa'), 'k': 'Everything in ' + n,
                    'u': U(p), 'i': 'saucer', 'c': 'other'} for p, n in made.values()]
+        items += [{'t': r['h1'], 'a': r['name'] + ' region usa', 'k': r['lede'], 'u': U(f'/us/{r["slug"]}/'), 'i': 'saucer', 'c': 'other'} for r in regions]
         json.dump(items, open(sp, 'w', encoding='utf-8'), separators=(',', ':'))
     ctx.regions = made  # for other sections that want to link a state or province hub

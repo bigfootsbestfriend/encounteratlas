@@ -1,0 +1,122 @@
+{
+  "_note": "Hand-written copy for the region hubs (site/sections/a_regions.py). 'states': optional seo_title, seo_desc, h1 and intro paragraphs for /us/<state>/ hubs (keyed by state name; states not listed render unchanged). 'regions': hand-written multi-state hubs at /us/<slug>/. Text uses [words](/path/) for internal links. Every fact comes from our own creature, case and place data or the listed sources.",
+  "states": {
+    "West Virginia": {
+      "seo_title": "West Virginia cryptids: Mothman, Flatwoods and more",
+      "seo_desc": "Every West Virginia cryptid we have on file, from Mothman and the Flatwoods Monster to the Grafton Monster, Sheepsquatch and Indrid Cold, with famous cases by year and places to visit.",
+      "h1": "West Virginia cryptids and UFOs",
+      "intro": [
+        "West Virginia is the only state that sits entirely inside Appalachia, and for a small state it has a crazy number of cryptids. Mothman is the big one. On November 15, 1966, two young couples driving by the old TNT area outside Point Pleasant said a tall grey winged thing with red eyes chased their car, and dozens more reports came in over the next year. Point Pleasant now has the Mothman Museum, a 12-foot steel statue that's stood downtown since 2003 and a festival every September.",
+        "Braxton County has the other famous one. On September 12, 1952, a group of seven in Flatwoods (a National Guardsman among them) climbed a hill after a bright light came down and said they met a 10-foot figure with a glowing face and a spade-shaped hood. Sutton has the Flatwoods Monster Museum and the West Virginia Bigfoot Museum a few blocks apart, and five giant monster chairs are spread around the county for your photos.",
+        "A newspaper reporter saw the headless-looking Grafton Monster by the Tygart Valley River in 1964. Sheepsquatch and the older White Thing come out of the Kanawha Valley, and folklorist Ruth Ann Musick printed a White Thing tale from her Fairmont State students in 1965. Indrid Cold is the grinning man Woodrow Derenberger said he met on Interstate 77 near Parkersburg in 1966. The Vegetable Man of Grant Town rests on one man's story, published by a known hoaxer (I'm listing it anyway, you've been warned).",
+        "Below you'll find the creatures, the famous cases by year, the Air Force UFO files, old newspaper reports going back to 1886 and places you can actually go see. For the neighbours across the mountains, see [Appalachian cryptids](/us/appalachia/)."
+      ]
+    },
+    "Ohio": {
+      "seo_title": "Ohio cryptids: Grassman, Loveland Frogman and more",
+      "seo_desc": "Ohio cryptids from the Loveland Frogman and the Ohio Grassman to Lake Erie's Bessie and the Wolfman of Defiance, with famous cases by year, Bigfoot festivals and places to visit.",
+      "h1": "Ohio cryptids and UFOs",
+      "intro": [
+        "Ohio's cryptids are an odd bunch. The Loveland Frogman started as a 1955 roadside tale, then at about 1 a.m. on March 3, 1972, police officer Ray Shockey said a leathery, frog-like animal crossed Riverside Drive in his headlights and climbed over the guardrail toward the Little Miami River. One officer later said it was probably an escaped iguana. Loveland went ahead and made a Frogman Festival out of it anyway.",
+        "Ohio's Bigfoot goes by the Grassman, named for the beds of flattened grass some witnesses say they found. In August 1978 a family outside Minerva in Stark County said a big hairy creature kept coming back at night and staring in the window, and the papers called it the Minerva Monster. Since the 1980s Salt Fork State Park near Cambridge has been the hotspot, and the Ohio Bigfoot Conference has met at the park lodge every spring since 2005. A lot of these reports come out of the hill country in the east and southeast, which is Appalachian Ohio.",
+        "Up north, sailors have reported Bessie in Lake Erie since a sloop captain saw a serpent near Middle Island in 1793. In the summer of 1972 railroad crewmen in Defiance said a tall figure with a wolf-like head came at them from behind, and one said he got hit on the shoulder. Kirtland has its melon heads too, and teens still drive Wisner Road at night looking for them.",
+        "Scroll down for every creature we have for Ohio, the famous cases by year, the Air Force UFO files, old newspaper reports of hairy wild men from 1869 on and places to visit. Southeast Ohio also shows up on our [Appalachian cryptids](/us/appalachia/) page."
+      ]
+    },
+    "Pennsylvania": {
+      "seo_title": "Pennsylvania cryptids: Bigfoot, Kecksburg and more",
+      "seo_desc": "Pennsylvania cryptids and strange cases: Bigfoot in the Allegheny forest, old 'gorilla' scares, thunderbirds, the Jersey Devil's 1909 week and the 1965 Kecksburg fireball, plus where to go.",
+      "h1": "Pennsylvania cryptids and UFOs",
+      "intro": [
+        "Pennsylvania's most famous strange story came out of the sky. At about 4:44 p.m. on December 9, 1965, a fireball crossed the sky and was seen from at least six states and Ontario, and people in Kecksburg, about 30 miles southeast of Pittsburgh, said something came down in the woods. Some described an acorn-shaped object hauled away by soldiers. The volunteer fire company still throws a Kecksburg UFO Festival, and the acorn replica made for Unsolved Mysteries sits at the fire hall.",
+        "For actual cryptids, Bigfoot is the main event. The Forest County Bigfoot Festival in Marienville runs three days every June in the Allegheny National Forest with a 5-mile Bigfoot hunt, and the Central PA Bigfoot and Cryptid Festival is now at the Susquehanna Valley Mall in Selinsgrove. The old papers were full of it too, they just called it a gorilla. In 1907 there was the Delaware County 'gorilla' and an 'enormous ape' on the Laurel Run road, and in 1921 a 'gorilla' near Gettysburg got shot, got back up and chased a man.",
+        "Pennsylvania has its own long list of thunderbird sightings. In January 1909 thousands of people across New Jersey and Pennsylvania reported tracks and sightings during the Jersey Devil's big week (a Philadelphia museum man later admitted to a publicity stunt). And Cornish and Welsh miners brought the knockers, their little mine spirits, with them to Pennsylvania's mines.",
+        "Below are the creatures, the famous cases, the Air Force UFO files, old newspaper reports and places to visit. Western Pennsylvania is Appalachian country, so see [Appalachian cryptids](/us/appalachia/) for the neighbours."
+      ]
+    },
+    "North Carolina": {
+      "seo_title": "North Carolina cryptids: Bladenboro Beast and more",
+      "seo_desc": "North Carolina cryptids and mysteries: the Beast of Bladenboro, the Brown Mountain lights, the wampus cat and the Cherokee Little People, with famous cases and Bigfoot festivals to visit.",
+      "h1": "North Carolina cryptids and UFOs",
+      "intro": [
+        "Over the winter of 1953 to 1954 something killed dogs around Bladenboro, and the papers called it the Vampire Beast. By early January hundreds of hunters with guns and dogs were out in the swamps. A bobcat got shot and put on display as the culprit, and plenty of locals didn't buy it. The town holds Beast Fest every fall.",
+        "Up in the mountains, people have reported red lights over Brown Mountain near Linville Gorge since about 1912. In 1922 the US Geological Survey sent George R. Mansfield, who traced them to trains, car headlights and brush fires. Appalachian State University later pointed low-light cameras at the mountain and by 2014 had 6,300 hours of footage with no unexplained lights. People still pull off on NC 181 north of Morganton to look, and honestly I would too.",
+        "Western North Carolina is home to the Eastern Band of Cherokee. The Yunwi Tsunsdi, the Little People of Cherokee tradition, are part of a living culture, so our page sticks to what's been recorded. The wampus cat gets around the Carolinas as well, and in the 1930s newspapers in the Piedmont blamed one for killing livestock.",
+        "For Bigfoot there's the WNC Bigfoot Festival in Marion, the Uwharrie Bigfoot Festival in New London and Carolina CryptidFest in Raleigh, and Littleton has a Cryptozoology and Paranormal Museum run by a former mayor. The mountain counties are on our [Appalachian cryptids](/us/appalachia/) page too."
+      ]
+    },
+    "Michigan": {
+      "seo_title": "Michigan cryptids: Dogman, Nain Rouge and more",
+      "seo_desc": "Michigan cryptids: the Michigan Dogman from 1887 Wexford County to the 1987 radio song, Detroit's Nain Rouge, the melon heads, old Great Lakes newspaper reports and Air Force UFO files.",
+      "h1": "Michigan cryptids and UFOs",
+      "intro": [
+        "In Michigan it's all about the Dogman. The story goes back to 1887, when lumberjacks in Wexford County said they saw a man with a dog's head. More cases followed, from Paris in 1937 to Grand Haven in 1993 and a cabin break-in at Luther in 1997. What really put it on the map was 1987, when DJ Steve Cook at WTCM radio in Traverse City aired a song called The Legend as an April Fools' joke. Listeners started calling in with their own sightings, and the legend grew from there.",
+        "Detroit has its own monster, the Nain Rouge (French for 'red dwarf'). The legend says the city's founder, Antoine de la Mothe Cadillac, hit the imp with his cane and lost his fortune, and people say it showed up after the Battle of Bloody Run in 1763, before the 1805 fire and before the 1967 riots. Side note, the story first turns up in print in 1883, so who knows how old it really is. Since 2010 Detroiters have chased it out of town every spring with the Marche du Nain Rouge.",
+        "Then there are the melon heads, said to live in the woods around the Felt Mansion in Laketown Township. Local historians say the asylum they supposedly escaped from never existed.",
+        "Below are the creatures, the famous cases by year, Michigan's Air Force UFO files and a few old newspaper reports, including a 25-foot snake with a hairy head at Thunder Bay in 1888."
+      ]
+    }
+  },
+  "regions": [
+    {
+      "slug": "appalachia",
+      "name": "Appalachia",
+      "seo_title": "Appalachian cryptids: Mothman, wampus cat and the full list",
+      "seo_desc": "Appalachian cryptids from western Pennsylvania to north Georgia: Mothman, the Flatwoods Monster, the wampus cat, the snallygaster, Sheepsquatch, Bigfoot and the Cherokee Little People, plus places to visit.",
+      "h1": "Appalachian cryptids",
+      "lede": "Mothman, the Flatwoods Monster, the wampus cat, the snallygaster and the rest of the mountain crowd, from western Pennsylvania down to north Georgia.",
+      "link_from": ["West Virginia", "Kentucky", "Tennessee", "Virginia", "North Carolina", "Pennsylvania", "Ohio", "Maryland", "Georgia"],
+      "states": ["West Virginia", "Kentucky", "Tennessee", "Virginia", "North Carolina", "Pennsylvania", "Ohio", "Maryland", "Georgia", "Alabama", "New York", "South Carolina", "Mississippi"],
+      "blocks": [
+        {"type": "text", "id": "what", "h2": "What counts as Appalachia?", "p": [
+          "The official answer comes from the Appalachian Regional Commission, which counts 423 counties in 13 states, from southern New York to northern Mississippi, home to about 26.8 million people. West Virginia is the only state that's entirely inside it.",
+          "Most people mean something a bit tighter when they say Appalachia: the mountains and hollows of West Virginia, eastern Kentucky, east Tennessee, southwest Virginia and western North Carolina, plus the hill country of southeast Ohio and western Pennsylvania. That's what this page sticks to, with a couple of stops in the Blue Ridge of western Maryland and the north Georgia mountains.",
+          "Side note: Kentucky's [Kelly-Hopkinsville goblins](/creatures/hopkinsville-goblins/) and the [Pope Lick Monster](/creatures/pope-lick-monster/) get lumped in with Appalachian cryptids a lot, but Kelly and Louisville are well west of the mountains. You'll find them on the [Kentucky page](/us/kentucky/)."
+        ]},
+        {"type": "creatures", "id": "creatures", "h2": "The creatures", "items": [
+          {"slug": "flatwoods-monster", "year": "1952", "line": "A 10-foot figure with a glowing face and a spade-shaped hood, met on a Braxton County, West Virginia hillside after a light came down."},
+          {"slug": "grafton-monster", "year": "1964", "line": "A tall, pale, headless-looking thing a newspaper reporter saw by the Tygart Valley River in Grafton, West Virginia."},
+          {"slug": "white-thing", "year": "1965", "line": "A shaggy white beast that screams like a woman, printed by folklorist Ruth Ann Musick from her Fairmont State students."},
+          {"slug": "mothman", "year": "1966", "line": "The grey winged figure with red eyes that chased two couples near the TNT area outside Point Pleasant, West Virginia."},
+          {"slug": "indrid-cold", "year": "1966", "line": "The grinning man Woodrow Derenberger said stepped out of a craft on Interstate 77 near Parkersburg."},
+          {"slug": "men-in-black", "year": "1967", "line": "The odd visitors in dark suits tied to Point Pleasant in the Mothman year."},
+          {"slug": "vegetable-man", "year": "1968", "line": "A plant-like humanoid from Grant Town, West Virginia, based on one man's story and published by a known hoaxer."},
+          {"slug": "grassman", "year": "1978", "line": "Ohio's Bigfoot, from the Minerva Monster to Salt Fork State Park in the eastern hills."},
+          {"slug": "sheepsquatch", "year": "1990s", "line": "A woolly white, horned beast reported around West Virginia's Kanawha Valley in the mid-1990s."},
+          {"slug": "snarly-yow", "year": "1882", "line": "A huge black phantom dog on the old National Road over South Mountain in Maryland, written down by Madeleine Vinton Dahlgren."},
+          {"slug": "snallygaster", "year": "1909", "line": "The German settlers' beaked 'quick ghost' of Maryland's Middletown Valley, revived by a 1909 newspaper stunt."},
+          {"slug": "wampus-cat", "year": "1936", "line": "A big dark mountain cat with glowing eyes. A Knoxville paper in 1936 put one at 15 to 20 feet long."},
+          {"slug": "tailypo", "year": "Folktale", "line": "The creature from the old jump tale that comes back night after night for its stolen tail."},
+          {"slug": "yunwi-tsunsdi", "year": "Cherokee", "line": "The Little People of Cherokee tradition, recorded among the Eastern Band in western North Carolina."},
+          {"slug": "bigfoot", "year": "Today", "line": "Reported up and down the mountains, where some old-timers call it the wood booger."}
+        ]},
+        {"type": "text", "id": "why", "h2": "Why are the mountains so full of these stories?", "p": [
+          "I think a lot of it is just the land. You've got steep hollows and thick woods with not many people around, and that's the kind of country where Bigfoot reports pile up everywhere else too. Add families who've been telling stories on the porch for generations and there's a lot of material.",
+          "The people who settled here also brought their own monsters. German settlers around Frederick, Maryland told of the schneller Geist, which became the [snallygaster](/creatures/snallygaster/), and painted seven-pointed stars on their barns to keep it away. The [Snarly Yow](/creatures/snarly-yow/) belongs to the British black dog family, cousins of Black Shuck and the barghest. Cornish and Welsh miners brought the [knockers](/creatures/knockers/) to Pennsylvania's mines.",
+          "Some of it survived because somebody wrote it down. Ruth Ann Musick collected ghost tales from her students at Fairmont State and printed them in 1965, and that's where West Virginia's [White Thing](/creatures/white-thing/) comes from. Small-town papers loved a wild man story as well. We've got a hairy wild man near Gallipolis, Ohio in 1869, a hairy giant throwing rocks in Lewis County, Kentucky in 1892, a 'wild woman' leaping fences near Elkins, West Virginia in 1897 and another one jumping onto a farmer's horse at Middlesboro, Kentucky in 1901. Read them in [the wild men stories](/history/wild-men/).",
+          "These days the towns are proud of their monsters. Point Pleasant has a Mothman statue and festival, Sutton has two museums, Grafton started a Grafton Monster Festival in 2024 for the 60th anniversary, and Marion and Townsend both throw Bigfoot festivals."
+        ]},
+        {"type": "text", "id": "indigenous", "h2": "Cherokee Little People and other Indigenous beings", "p": [
+          "The southern mountains were Cherokee country long before any settler tales, and the Eastern Band of Cherokee still live in western North Carolina. In Cherokee tradition the [Yunwi Tsunsdi](/creatures/yunwi-tsunsdi/), the Little People, stand about knee-high with long hair, live in rock caves on the mountainsides, love music and drumming, and help lost children and travellers. They're distinct from the Nunnehi, who look like full-sized Cherokee. The ethnologist James Mooney recorded these traditions among the Eastern Band and published them in Myths of the Cherokee in 1900.",
+          "This is a living tradition and many families still speak of the Little People with respect, so our page sticks to what's been recorded and we don't add to it. Some versions of the [wampus cat](/creatures/wampus-cat/) are said to draw on older Cherokee stories while others are plain lumber camp yarns, and we don't claim to know which is which."
+        ]},
+        {"type": "text", "id": "bigfoot", "h2": "Bigfoot in Appalachia", "p": [
+          "Bigfoot gets reported all along the range. In eastern Ohio it's the [Grassman](/creatures/grassman/), and Salt Fork State Park has been the hotspot since the 1980s. You can visit the [West Virginia Bigfoot Museum](/places/west-virginia-bigfoot-museum/) in Sutton or [Expedition: Bigfoot!](/places/expedition-bigfoot/) in Cherry Log, Georgia, or book a guided [night hunt near Red River Gorge](/places/out-the-top-bigfoot-hunt/) in Kentucky.",
+          "Some of the witness stories we've retold come from right here: [knocks across a holler](/stories/eastern-kentucky-holler-cabin/) in eastern Kentucky, [something standing up out of the tall grass](/stories/wv-holler-litter-box-2013/) in West Virginia, [a hello in the North Carolina foothills](/stories/nc-foothills-cabin-cob/) and [a roar at a booster station](/stories/washington-county-pump-2am/) in southwestern Pennsylvania."
+        ]},
+        {"type": "text", "id": "ufo", "h2": "UFOs and lights in the mountains", "p": [
+          "The [Flatwoods monster](/encounters/flatwoods-1952/) started with a light coming down in 1952. In December 1965 a fireball seen over six states was said to have come down near [Kecksburg, Pennsylvania](/encounters/kecksburg-1965/). People have watched the [Brown Mountain lights](/mysteries/brown-mountain-lights/) in North Carolina since about 1912, even after the US Geological Survey traced them to trains and headlights in 1922. And Spruce Pine throws an alien festival every June."
+        ]},
+        {"type": "bluebook", "id": "files", "h2": "Air Force UFO files by state", "states": ["West Virginia", "Kentucky", "Tennessee", "Virginia", "North Carolina", "Pennsylvania", "Ohio"]},
+        {"type": "places", "id": "visit", "h2": "Places to visit and festivals", "slugs": ["mothman-museum", "mothman-festival", "mothman-statue", "tnt-area", "flatwoods-monster-museum", "flatwoods-monster-chairs", "west-virginia-bigfoot-museum", "west-virginia-bigfoot-festival", "brown-mountain-overlook", "wnc-bigfoot-festival", "smoky-mountain-bigfoot-festival", "smoky-mountain-bigfoot-conference", "out-the-top-bigfoot-hunt", "expedition-bigfoot", "ohio-bigfoot-conference", "hocking-hills-bigfoot-festival", "salt-fork-bigfoot-night-hikes", "forest-county-bigfoot-festival", "kecksburg-ufo-festival", "kecksburg-acorn"]},
+        {"type": "text", "id": "papers", "h2": "From the old newspapers", "p": [
+          "Hairy wild men, giant birds and a catawampus by a railroad tunnel, all from papers before 1927: [West Virginia](/history/west-virginia/), [Kentucky](/history/kentucky/), [Ohio](/history/ohio/) and [Pennsylvania](/history/pennsylvania/)."
+        ]},
+        {"type": "states", "id": "states", "h2": "State by state"}
+      ],
+      "sources": [
+        {"title": "About the Appalachian Region (Appalachian Regional Commission)", "url": "https://www.arc.gov/about-the-appalachian-region/"}
+      ]
+    }
+  ]
+}

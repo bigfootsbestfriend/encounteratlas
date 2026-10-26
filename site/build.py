@@ -598,7 +598,7 @@ def build_creatures(creatures, by_slug):
 <section class="band band-dark index-head">
   <div class="wrap">
     <h1>Creature index</h1>
-    <p class="lede">{len(creatures)} creatures and phenomena, from Bigfoot to the Navy's Tic Tac. Search by any name: Sasquatch, Nessie, goat-sucker. Mixing two up? <a href="{url('/compare/')}">See the comparisons</a>. Rather listen than read? See the <a href="{url('/podcasts/cryptids/')}">best cryptid podcasts</a>.</p>
+    <p class="lede">{len(creatures)} creatures and phenomena, from Bigfoot to the Navy's Tic Tac. Search by any name: Sasquatch, Nessie, goat-sucker. Mixing two up? <a href="{url('/compare/')}">See the comparisons</a>. Rather listen than read? See the <a href="{url('/podcasts/cryptids/')}">best cryptid podcasts</a>. Looking by region? Start with <a href="{url('/us/appalachia/')}">Appalachian cryptids</a> or <a href="{url('/us/')}">pick a state</a>.</p>
     <div class="search-row">
       <label class="visually-hidden" for="q">Search creatures</label>
       <input id="q" type="search" placeholder="Search by name, nickname or place" autocomplete="off">
