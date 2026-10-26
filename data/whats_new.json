@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-10-25",
+    "title": "Road trips land in the right town",
+    "path": "/road-trip/",
+    "note": "Type \"Jasper, AB\", \"Banff Alberta\" or \"Perth, WA\" and the road trip planner (and your journal) now knows exactly where you mean. Short forms for provinces and states work, so do countries, and if you just type \"Jasper\" from Edmonton it figures out you mean the one in the Rockies, not Indiana. Smaller towns show up in the list as you type, too."
+  },
+  {
+    "date": "2026-10-25",
     "title": "Hit play on the home page",
     "path": "/",
     "note": "The home page and the app now open with a fresh podcast episode about one of our creatures, plus a strip of more you can flip through and play without leaving the page. The app's front screen got livelier too (tonight's moon, the mystery of the day, and how many collector cards you've found)."
