@@ -87,6 +87,12 @@
     div.className = 'pop';
     div.append(...nodes);
     new maplibregl.Popup({ maxWidth: '300px' }).setLngLat(lngLat).setDOMContent(div).addTo(map);
+    // popup opens per dot type (track.js can't see canvas taps); label = the popup's kind line before the comma
+    const sec = el.closest('section');
+    if (window.gtag) try {
+      window.gtag('event', 'popup_open', { area: sec && sec.classList[0] ? 'section.' + sec.classList[0] : 'map',
+        label: ((nodes[0] && nodes[0].textContent) || '').split(',')[0].trim().slice(0, 60) });
+    } catch (e) { /* analytics only */ }
   }
   function node(tag, cls, text, html) {
     const n = document.createElement(tag);
