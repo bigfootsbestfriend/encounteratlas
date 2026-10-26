@@ -363,5 +363,24 @@ section('Street addresses are never public');
   ok(!/Elm/.test(JSON.stringify(pub.data)), 'an older address-like place is hidden in the public feed', JSON.stringify(pub.data).slice(0, 200));
 }
 
+section('App-store review account signs in with a code');
+{
+  const st = await call('POST', '/api/auth/start', { body: { email: 'Review@example.test', turnstile: 'XXXX.DUMMY.TOKEN' }, ip: freshIp() });
+  ok(st.status === 200 && st.data.state === 'code' && !st.data.dev_link, 'review email gets a code box, no link', JSON.stringify(st.data));
+  const bad = await call('POST', '/api/auth/code', { body: { email: 'review@example.test', code: 'wrong' }, ip: freshIp() });
+  ok(bad.status === 403, 'wrong code refused');
+  const other = await call('POST', '/api/auth/code', { body: { email: 'someone@example.test', code: 'test-review-code' }, ip: freshIp() });
+  ok(other.status === 403, 'right code with another email refused');
+  const good = await call('POST', '/api/auth/code', { body: { email: 'review@example.test', code: 'test-review-code' }, ip: freshIp() });
+  ok(good.status === 200 && good.data.session, 'right code signs in');
+  const me = await call('GET', '/api/me', { session: good.data.session });
+  ok(me.status === 200 && me.data.user && me.data.user.email === 'review@example.test', 'session works', JSON.stringify(me.data).slice(0, 120));
+  const ip = freshIp(); let last;
+  for (let i = 0; i < 11; i++) last = await call('POST', '/api/auth/code', { body: { email: 'review@example.test', code: 'guess' + i }, ip });
+  ok(last.status === 429, 'guessing is rate limited', String(last.status));
+  const normal = await call('POST', '/api/auth/start', { body: { email: 'normal@example.test', turnstile: 'XXXX.DUMMY.TOKEN' }, ip: freshIp() });
+  ok(normal.data.state === 'sent', 'everyone else still gets a link');
+}
+
 console.log(`\n${pass} passed, ${failed} failed`);
 process.exit(failed ? 1 : 0);

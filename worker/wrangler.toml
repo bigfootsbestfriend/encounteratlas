@@ -39,4 +39,6 @@ crons = ["17 4 * * *"]   # daily: prune rate-limit rows and used sign-in links
 #   MOD_PUSH_KEY       signs the Approve / Reject buttons on Mike's moderation notifications (same file)
 #   FCM_SERVICE_ACCOUNT  Firebase service account key (the whole JSON file) for app alerts through Firebase Cloud
 #                      Messaging (fcm.js). Without it /v1/push/app-subscribe answers 503 and the app says alerts are coming.
+#   REVIEW_EMAIL / REVIEW_CODE  the app-store review account: that email gets a code box instead of a link
+#                      (/api/auth/code). Copy in ~/.config/kitchen-magpie/encounteratlas-review.env
 # Local development uses .dev.vars instead (see .dev.vars.example).

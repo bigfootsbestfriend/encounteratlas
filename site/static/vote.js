@@ -237,6 +237,7 @@
       const r = await api('/api/auth/start', { method: 'POST', body: { email: input.value.trim(), turnstile: token, r: opts.r || '' }, auth: false });
       resetHuman(slot);
       btn.disabled = false;
+      if (r.status === 200 && r.data.state === 'code') { form.replaceWith(codeBox(input.value.trim())); return; }
       if (r.status === 200) {
         window.eaTrack && eaTrack('sign_in_request', { from: opts.r ? 'report' : 'site' });
         msg.textContent = `Check ${input.value.trim()} for your sign-in link. It works once, for 30 minutes.`;
@@ -249,19 +250,40 @@
     return form;
   }
 
+  // The app-store review account can't open emailed links, so the server asks it for its access code instead.
+  function codeBox(email) {
+    const msg = h('p', { class: 'form-msg', role: 'status', 'aria-live': 'polite' });
+    const input = h('input', { type: 'text', required: true, autocomplete: 'one-time-code', placeholder: 'Access code', id: 'si-code' });
+    const btn = h('button', { class: 'btn', type: 'submit', text: 'Sign in' });
+    const form = h('form', { class: 'signin', novalidate: true },
+      h('p', { class: 'signin-h', text: 'Enter your access code' }),
+      h('label', { class: 'visually-hidden', for: input.id, text: 'Access code' }), h('div', { class: 'signin-row' }, input, btn), msg);
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      msg.textContent = 'Signing you in...';
+      const r = await api('/api/auth/code', { method: 'POST', body: { email, code: input.value.trim() }, auth: false });
+      btn.disabled = false;
+      if (r.status === 200) { finishSignin(r.data); return; }
+      msg.textContent = r.data.state === 'slow' ? 'Too many tries. Try again in an hour.' : 'That code didn\'t work.';
+    });
+    return form;
+  }
+
+  function finishSignin(data) {
+    store.set('ea-session', data.session);
+    store.set('ea-user', JSON.stringify(data.user));
+    const back = store.get('ea-return');
+    store.del('ea-return');
+    const sameSite = back && back.startsWith(location.origin) && !back.includes('signin=');
+    location.replace(data.r ? page('?id=' + data.r) : sameSite ? back : page('?me=1'));
+  }
+
   async function handleSignin(t) {
     const root = document.getElementById('ea-reports');
     if (root) root.querySelector('.band-mist .wrap').replaceChildren(h('p', { class: 'loading', text: 'Signing you in...' }));
     const r = await api('/api/auth/verify', { method: 'POST', body: { t }, auth: false });
-    if (r.status === 200) {
-      store.set('ea-session', r.data.session);
-      store.set('ea-user', JSON.stringify(r.data.user));
-      const back = store.get('ea-return');
-      store.del('ea-return');
-      const sameSite = back && back.startsWith(location.origin) && !back.includes('signin=');
-      location.replace(r.data.r ? page('?id=' + r.data.r) : sameSite ? back : page('?me=1'));
-      return;
-    }
+    if (r.status === 200) { finishSignin(r.data); return; }
     const why = { used: 'That sign-in link was already used.', expired: 'That sign-in link has expired.' }[r.data.state] || 'That sign-in link didn\'t work.';
     const wrap = root.querySelector('.band-mist .wrap');
     wrap.replaceChildren(h('p', { class: 'lede-dark', text: why + ' Get a new one:' }), signinBox({ title: 'Sign in', returnTo: page('?me=1') }));

@@ -4,6 +4,8 @@
 // Public (CORS for SITE + EXTRA_ORIGINS):
 //   GET  /api/config                      turnstile site key, vote choices, thresholds
 //   POST /api/auth/start   {email, turnstile, r?}   emails a sign-in link to <SITE>/reports/?signin=...
+//                                                    (the app-store review account answers {state: 'code'} instead)
+//   POST /api/auth/code    {email, code}             signs in the review account (REVIEW_EMAIL + REVIEW_CODE secrets)
 //   POST /api/auth/verify  {t}            single-use link token -> {session, user}
 //   GET  /api/me                          (Bearer session) account + own reports, any status
 //   PATCH /api/me          {name}
@@ -99,6 +101,7 @@ async function api(req, env, url, ctx) {
   }
   if (p === '/api/auth/start' && m === 'POST') return authStart(req, env);
   if (p === '/api/auth/verify' && m === 'POST') return authVerify(req, env);
+  if (p === '/api/auth/code' && m === 'POST') return authCode(req, env);
   if (p === '/api/me' && m === 'GET') return me(req, env);
   if (p === '/api/me' && m === 'PATCH') return updateMe(req, env);
   if (p === '/api/reports' && m === 'POST') return submit(req, env, ctx);
@@ -179,6 +182,8 @@ async function authStart(req, env) {
   if (!(await turnstileOk(env, b.turnstile, ip))) fail(403, 'turnstile');
   const iph = await hash(env, ip);
   if (await rateLimited(env, [[`auth|ip|${iph}`, 6, 3600], [`auth|em|${await hash(env, email)}`, 3, 3600]])) fail(429, 'slow');
+  // Google Play / App Store reviewers can't open emailed links, so their one account signs in with a code.
+  if (reviewEmail(env) && email === reviewEmail(env)) return json({ state: 'code' });
   const r = /^[a-z0-9]{10}$/.test(b.r || '') ? b.r : '';
   return json({ state: 'sent', ...(await mailLink(env, email, r, 'signin')) });
 }
@@ -216,6 +221,24 @@ async function authVerify(req, env) {
   ).bind(email).first();
   if (u.banned) fail(403, 'banned');
   return json({ state: 'ok', session: await sign(env, `s|${u.id}|${now()}`), user: publicUser(u), r: r || '' });
+}
+
+const reviewEmail = (env) => (env.REVIEW_EMAIL && env.REVIEW_CODE ? String(env.REVIEW_EMAIL).toLowerCase() : '');
+
+async function authCode(req, env) {
+  const b = await body(req);
+  const email = line(b.email, 254).toLowerCase();
+  const iph = await hash(env, clientIp(req, env));
+  if (await rateLimited(env, [[`code|ip|${iph}`, 10, 3600]])) fail(429, 'slow');
+  const want = reviewEmail(env);
+  // compare hashes so the check takes the same time whatever the guess
+  const good = want && email === want && (await hash(env, line(b.code, 64))) === (await hash(env, String(env.REVIEW_CODE)));
+  if (!good) fail(403, 'code');
+  const u = await env.DB.prepare(
+    `INSERT INTO users (email) VALUES (?1) ON CONFLICT (email) DO UPDATE SET last_seen = unixepoch() RETURNING *`,
+  ).bind(email).first();
+  if (u.banned) fail(403, 'banned');
+  return json({ state: 'ok', session: await sign(env, `s|${u.id}|${now()}`), user: publicUser(u), r: '' });
 }
 
 function publicUser(u) {
