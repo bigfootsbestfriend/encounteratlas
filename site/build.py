@@ -1039,10 +1039,6 @@ def build_ufo(bluebook, BY_SLUG):
     for k, v in by_region.items():
         b = v[0]
         names[k] = (b['region'] if b['cc'] == 'US' else b.get('country') or b['region']) if b['cc'] else 'Place unclear or at sea'
-    # shortcut: the geocoder read the three "New Guinea" folders as Guinea (Africa); the label is fixed here and the URL kept,
-    # since the site has no redirects. Re-geocoding them to PG would move the page (and their map dots) to /papua-new-guinea/.
-    if 'guinea' in names and all('New Guinea' in b['title'] for b in by_region['guinea']):
-        names['guinea'] = 'New Guinea'
     years = Counter(b['year'] for b in bluebook if b.get('year'))
     ymax = max(years.values())
     bars = ''
@@ -1752,6 +1748,12 @@ def main():
     build_home(creatures, n_points, bluebook, military)
     build_creatures(creatures, by_slug)
     build_ufo(bluebook, by_slug)
+    # Moved pages. GitHub Pages can't do server redirects, so the old URL gets an instant meta-refresh with a canonical,
+    # which Google treats as a permanent redirect. Keep entries for good; old links live on elsewhere.
+    for old, new in {'/ufo/blue-book/guinea/': '/ufo/blue-book/papua-new-guinea/'}.items():
+        if not os.path.exists(os.path.join(OUT, old.lstrip('/'), 'index.html')):
+            write(old, f'<!doctype html><meta charset="utf-8"><title>Moved</title><link rel="canonical" href="https://encounteratlas.com{new}">'
+                       f'<meta http-equiv="refresh" content="0;url={new}"><script>location.replace("{new}")</script><a href="{new}">This page moved</a>')
     build_military(military)
     build_static_pages()
     # Each site/sections/*.py module owns one part of the site (places, podcasts, ...) and exposes
@@ -1798,7 +1800,8 @@ def main():
     pages = []
     for d, _, files in os.walk(OUT):
         for fn in files:
-            if fn == 'index.html' and 'content="noindex' not in open(os.path.join(d, fn), encoding='utf-8').read(3000):
+            head = open(os.path.join(d, fn), encoding='utf-8').read(3000) if fn == 'index.html' else ''
+            if head and 'content="noindex' not in head and 'http-equiv="refresh"' not in head:  # moved-page stubs stay out
                 pages.append('/' + os.path.relpath(d, OUT).replace('.', '').strip('/') + '/')
     pages = sorted(p.replace('//', '/') for p in pages)
     with open(os.path.join(OUT, 'sitemap.xml'), 'w') as f:

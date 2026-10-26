@@ -42,6 +42,7 @@ REGION_ALIASES = {
     'northwest': 'northwest territories', 'nfld': 'newfoundland and labrador', 'labador': 'newfoundland and labrador',
     'yukon': 'yukon', 'new foundland': 'newfoundland and labrador', 'babrador': 'newfoundland and labrador',
     'susk': 'saskatchewan', 'soviet union': 'russia', 'siberia': 'russia',
+    'new guinea': 'papua new guinea',  # else the last word alone matches Guinea (Africa)
 }
 # Old names of bases and towns (after place_candidates cleaning) -> the GeoNames name, or fixed (lat, lon) for
 # places GeoNames' populated-place files don't carry.
@@ -262,6 +263,11 @@ def main():
                 place = ', '.join(parts[:-1])
                 kind, info = resolve_region(region_key(re.sub(r'\(.*?\)', '', parts[-1])), admin1, country_names, us_abbr)
                 region_name = parts[-1]
+            if kind is None and len(parts) == 1:
+                # The whole title names a region ("New Guinea", "Papua and New Guinea"): try it before its last words.
+                kd, inf = resolve_region(region_key(parts[0]), admin1, country_names, us_abbr)
+                if kd:
+                    kind, info, place, region_name = kd, inf, '', parts[0]
             if kind is None:
                 # No comma ("BILOXI MISS", "CARIBOU MAINE"): try the last one or two words as the region.
                 words = rest.replace(',', ' ').split()
@@ -271,10 +277,6 @@ def main():
                         if kd:
                             kind, info, place, region_name = kd, inf, ' '.join(words[:-k]), ' '.join(words[-k:])
                             break
-                if kind is None and len(parts) == 1:
-                    kd, inf = resolve_region(region_key(parts[0]), admin1, country_names, us_abbr)
-                    if kd:
-                        kind, info, place, region_name = kd, inf, '', parts[0]
             if kind == 'cc':
                 # "Edmonton, Alberta, Canada" / "North Bay Ontario, Canada" / "Kingsville, Canada (Ontario)":
                 # the province or state sits before the country (or in brackets after it).
