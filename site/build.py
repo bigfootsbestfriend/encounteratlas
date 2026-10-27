@@ -659,6 +659,23 @@ def poster(c):
             f'<rect x="6" y="6" width="188" height="188" rx="10" fill="none" stroke="#F3E3B8" stroke-width="4"/></svg>')
 
 
+_THE_WORDS = {'monster', 'beast', 'creature', 'thing', 'serpent', 'bird', 'lizard', 'dog', 'wolf', 'cat', 'ape', 'yeti', 'devil',
+              'demon', 'man', 'men', 'dogman', 'goatman', 'lizardman', 'frogman', 'wildman', 'phantom', 'giant', 'worm', 'eel', 'shark', 'kraken'}
+
+
+def the(name):
+    """'Bigfoot' reads right bare, 'the Lake Worth Monster' needs the article."""
+    return ('the ' if name.split()[-1].lower() in _THE_WORDS else '') + name
+
+
+def crit_pic(c):
+    """Painted card thumbnail for creature cards (tools/card_thumbs.py), else the round silhouette badge."""
+    if os.path.exists(os.path.join(STATIC, 'cards', 'thumb', c['slug'] + '.webp')):
+        return (f'<span class="crit-pic"><img src="{url("/static/cards/thumb/" + c["slug"] + ".webp")}" alt="" '
+                f'width="360" height="257" loading="lazy" decoding="async"></span>')
+    return badge(c)
+
+
 def creature_card(c, sort=None):
     """sort: on the creature index, a dict of sort keys (n sightings, loc, size, first and last year) shown as a meta line."""
     aka = f'<span class="aka">aka {esc(", ".join(c["aliases"][:2]))}</span>' if c['aliases'] else ''
@@ -670,7 +687,7 @@ def creature_card(c, sort=None):
                 f'<span class="cm-loc">{esc(sort["place"])}</span></span>')
     return (f'<a class="crit" href="{url("/creatures/" + c["slug"] + "/")}" data-cat="{c["cat"]}"{data} '
             f'data-names="{esc((c["name"] + " " + " ".join(c["aliases"]) + " " + c["region"]).lower())}">'
-            f'{badge(c)}<span class="crit-txt"><span class="crit-name">{esc(c["name"])}</span>{aka}'
+            f'{crit_pic(c)}<span class="crit-txt"><span class="crit-name">{esc(c["name"])}</span>{aka}'
             f'<span class="crit-sum">{esc(c["summary"])}</span>{meta}</span></a>')
 
 
@@ -810,7 +827,7 @@ def build_creatures(creatures, by_slug):
         cards = ''.join(f'<a class="cg-card" href="{url("/guides/" + g["slug"] + "/")}"><span class="cg-ico tone-{g.get("tone", "other")}">{icon(g["icon"])}</span>'
                         f'<span><span class="cg-kick">{esc(g.get("kicker") or "Field guide")}</span><b>{esc(g.get("short") or g["title"])}</b>'
                         f'<small>{esc(g.get("blurb") or "")}</small><span class="cg-go">Read the guide{" · printable checklist" if g.get("printable") else ""}</span></span></a>' for g in gs)
-        return (f'<section class="band band-dark cg-band" id="guides"><div class="wrap"><h2>{"Out where the stories are told?" if kind(c) == "folklore" else "Watching the skies?" if kind(c) == "ufo" else "Going looking for the " + esc(c["name"]) + "?"}</h2>'
+        return (f'<section class="band band-dark cg-band" id="guides"><div class="wrap"><h2>{"Out where the stories are told?" if kind(c) == "folklore" else "Watching the skies?" if kind(c) == "ufo" else "Going looking for " + esc(the(c["name"])) + "?"}</h2>'
                 f'<p class="lede-dark">Our field guides cover where to go, what to bring and how to come back with evidence that holds up.</p>'
                 f'<div class="cg-grid">{cards}</div><p class="cg-all"><a href="{url("/guides/")}">All field guides</a></p></div></section>')
 
@@ -858,12 +875,17 @@ def build_creatures(creatures, by_slug):
             if re.match(r'^[A-Z][a-z]+, [A-Z]', author):  # "Owen, David" -> "David Owen"
                 author = ' '.join(reversed(author.split(', ', 1)))
             href = amz(f'{title} {author.split(",")[0]}', 'stripbooks')
+            cov = (f'https://covers.openlibrary.org/b/id/{b["cover_id"]}-M.jpg' if b.get('cover_id') else
+                   f'https://covers.openlibrary.org/b/isbn/{b["isbn10"]}-M.jpg' if b.get('cover') and b.get('isbn10') else '')
+            pic = (f'<img class="md-cover" src="{cov}" alt="Cover of {esc(title)}" '
+                   f'width="72" height="108" loading="lazy" decoding="async">' if cov
+                   else f'<span class="md-nocover" aria-hidden="true"><span>{esc(title[:48])}</span></span>')
             return (f'<a class="md-book tone-{i % 5}" href="{esc(href)}" rel="sponsored nofollow noopener" target="_blank">'
-                    f'<span class="md-spine" aria-hidden="true"></span><span class="md-txt"><b>{esc(title)}</b><small>{esc(author)}</small>'
+                    f'{pic}<span class="md-txt"><b>{esc(title)}</b><small>{esc(author)}</small>'
                     f'<span class="md-go">Find it on Amazon</span></span></a>')
         out = ''
         if spec or general:
-            out += f'<h3>Books about the {esc(c["name"])}</h3><div class="md-grid">{"".join(book_card(b, i) for i, b in enumerate(spec))}</div>' if spec else ''
+            out += f'<h3>Books about {esc(the(c["name"]))}</h3><div class="md-grid">{"".join(book_card(b, i) for i, b in enumerate(spec))}</div>' if spec else ''
             if general:
                 out += (f'<h3>{"More good reads" if spec else "General books on " + ("UFOs" if c["cat"] in ("ufo", "entity") else "fairy lore" if c["cat"] == "fae" else "cryptids")}</h3>'
                         f'{"" if spec else "<p class=md-note>No book is devoted to this one yet, so here are the best general guides.</p>"}'
@@ -872,7 +894,10 @@ def build_creatures(creatures, by_slug):
             out += (f'<p class="md-listen">Prefer to listen? <a href="{AUDIBLE}" rel="sponsored nofollow noopener" target="_blank">Try Audible free</a> '
                     f'and hear cryptid and UFO books on the drive to the trailhead.</p>')
         if docs:
-            cards = ''.join(f'<div class="md-doc"><span class="md-ico">{icon("ufo-film")}</span><span class="md-txt"><b>{esc(d["title"])}</b>'
+            poster = lambda d: (f'<img class="md-poster" src="{url("/static/covers/film/" + d["poster"] + ".webp")}" alt="{esc(d["title"])} poster" '
+                                f'width="96" height="128" loading="lazy" decoding="async">' if d.get('poster')
+                                else f'<span class="md-poster md-nocover" aria-hidden="true"><span>{esc(d["title"])}</span></span>')
+            cards = ''.join(f'<div class="md-doc">{poster(d)}<span class="md-txt"><b>{esc(d["title"])}</b>'
                             f'<small>{d["year"]} · {esc(d["blurb"])}</small>'
                             f'<span class="md-links"><a href="{esc(amz(d["title"] + " " + str(d["year"]), "instant-video"))}" rel="sponsored nofollow noopener" target="_blank">Watch on Amazon</a>'
                             f'<a href="https://www.justwatch.com/us/search?q={urllib.parse.quote(d["title"])}" rel="noopener nofollow" target="_blank">Where to stream</a>'
@@ -995,9 +1020,9 @@ def build_creatures(creatures, by_slug):
                         for x in sts[:6])
         more = (f'<p class="ws-more"><a class="btn btn-quiet" href="{url("/stories/?c=" + c["slug"])}">Read all {len(sts)} {esc(c["name"])} stories</a></p>'
                 if len(sts) > 6 else '')
-        return (f'<h2 id="witness">Witness stories</h2><p class="ws-intro">First-hand accounts people have shared publicly, '
+        return (f'<section class="blk blk-ws"><p class="blk-kick">First-hand</p><h2 id="witness">Witness stories</h2><p class="ws-intro">First-hand accounts people have shared publicly, '
                 f'retold in full and credited to them. <a href="{url("/stories/")}">All witness stories</a></p>'
-                f'<div class="ws-grid">{cards}</div>{more}')
+                f'<div class="ws-grid">{cards}</div>{more}</section>')
 
     def papers_section(c):
         ps = sorted(c.get('papers', []), key=lambda x: x['year'])
@@ -1006,7 +1031,8 @@ def build_creatures(creatures, by_slug):
         items = ''.join(f'<li><span class="yr">{x["year"]}</span><span><strong>{esc(x["name"])}</strong><br><span class="muted">{esc(x["place"])}</span>'
                         f'<p class="case-sum">{esc(x["summary"])}</p><p class="case-links"><a class="case-src" href="{esc(x["source_url"])}" rel="noopener">'
                         f'Source: {esc(x["source_title"])}</a></p></span></li>' for x in ps)
-        return f'<h2 id="papers">In the old newspapers</h2><ol class="timeline">{items}</ol>'
+        return (f'<section class="blk blk-papers"><p class="blk-kick">From the archives</p><h2 id="papers">In the old newspapers</h2>'
+                f'<ol class="timeline tl-cards">{items}</ol></section>')
 
     def case_item(c, f, cid=''):
         d = famous_details.get(c['slug'] + '|' + f['name']) or {}
@@ -1026,7 +1052,8 @@ def build_creatures(creatures, by_slug):
 
     def extra_sections(c):
         """Hand-written longer sections for priority pages: data/creatures.json "sections": [{"h": heading, "p": [paragraphs]}]."""
-        return ''.join(f'<h2>{esc(x["h"])}</h2>' + ''.join(f'<p>{md_links(t)}</p>' for t in x['p']) for x in c.get('sections', []))
+        return ''.join(f'<section class="blk blk-plain"><h2>{esc(x["h"])}</h2>' + ''.join(f'<p>{md_links(t)}</p>' for t in x['p']) + '</section>'
+                       for x in c.get('sections', []))
 
     _PE = (load('podcasts_episodes.json') or {}).get('creatures', {})
 
@@ -1036,7 +1063,14 @@ def build_creatures(creatures, by_slug):
         if not eps:
             return ''
         top = sorted(eps, key=lambda x: x.get('date', ''), reverse=True)[:3]
-        lis = ''.join(f'<li><b>{esc(x["title"])}</b><small>{esc(x["show"])}{" · " + str(x["mins"]) + " min" if x.get("mins") else ""}</small></li>' for x in top)
+        def ep(x):
+            show = x['show']
+            alt = show + (' cover art' if show.lower().endswith('podcast') else ' podcast cover art')
+            pic = (f'<img src="{esc(re.sub(r"/[0-9]+x[0-9]+bb[.]", "/300x300bb.", x["art"]))}" alt="{esc(alt)}" width="96" height="96" loading="lazy" decoding="async">'
+                   if x.get('art') else '<span class="lb-noart"></span>')
+            mins = f' · {x["mins"]} min' if x.get('mins') else ''
+            return f'<li>{pic}<span><b>{esc(x["title"])}</b><small>{esc(show)}{mins}</small></span></li>'
+        lis = ''.join(ep(x) for x in top)
         return (f'<section class="band band-mist listen-band" id="listen"><div class="wrap"><h2>Listen: {esc(c["name"])} podcasts</h2>'
                 f'<p>{len(eps)} episode{"s" if len(eps) != 1 else ""} about {esc(c["name"])} from shows we follow. They play right on the page.</p>'
                 f'<ul class="listen-list">{lis}</ul><p><a class="btn" href="{url("/podcasts/creature/" + c["slug"] + "/")}">Play {esc(c["name"])} episodes</a></p></div></section>')
@@ -1045,15 +1079,15 @@ def build_creatures(creatures, by_slug):
         """Where the facts come from (data/creatures.json "sources": [{t, u}]); shown on pages that list them."""
         if not c.get('sources'):
             return ''
-        return ('<h2 id="sources">Sources</h2><ul class="src-list">'
-                + ''.join(f'<li><a href="{esc(x["u"])}" rel="noopener">{esc(x["t"])}</a></li>' for x in c['sources']) + '</ul>')
+        return ('<section class="blk blk-src"><h2 id="sources">Sources</h2><ul class="src-list">'
+                + ''.join(f'<li><a href="{esc(x["u"])}" rel="noopener">{esc(x["t"])}</a></li>' for x in c['sources']) + '</ul></section>')
 
     def faq_section(c):
         """Short answers to what people actually search (Search Console), as question headings: "faq": [{"q", "a"}]."""
         if not c.get('faq'):
             return ''
-        return ('<h2 id="questions">Questions people ask</h2>'
-                + ''.join(f'<h3>{esc(x["q"])}</h3><p>{md_links(x["a"])}</p>' for x in c['faq']))
+        return ('<section class="blk blk-faq"><p class="blk-kick">Quick answers</p><h2 id="questions">Questions people ask</h2><div class="faq-list">'
+                + ''.join(f'<div class="faq-item"><h3>{esc(x["q"])}</h3><p>{md_links(x["a"])}</p></div>' for x in c['faq']) + '</div></section>')
 
     # ---- interactive bits (2026-10-26): painted card hero, "How big is it?" wall, cases-by-decade strip.
     # CSS in static/creature-ia.css, JS in static/creature.js. All of it reads fine with JS off.
@@ -1212,16 +1246,21 @@ def build_creatures(creatures, by_slug):
 <div class="band band-mist"><div class="wrap creature-body">
   <article class="prose">
     {f'<p class="quick-answer"><strong>In short:</strong> {md_links(c["quick"])}</p>' if c.get('quick') else ''}
-    {'<h2>The story</h2>' if kind(c) == 'single' else ''}
-    {body_p}
+    <section class="blk blk-intro">
+      {'<h2>The story</h2>' if kind(c) == 'single' else '<p class="blk-kick">The basics</p>'}
+      {body_p}
+    </section>
     {extra_sections(c)}
     {ufo_note}
-    <h2>{ {'single': 'What was shown or claimed', 'folklore': 'What the stories say'}.get(kind(c), 'What witnesses report') }</h2>
-    <ul class="signs">{signs}</ul>
+    <section class="blk blk-signs">
+      <p class="blk-kick">{ {'single': 'The claims', 'folklore': 'In the stories'}.get(kind(c), 'Field signs') }</p>
+      <h2>{ {'single': 'What was shown or claimed', 'folklore': 'What the stories say'}.get(kind(c), 'What witnesses report') }</h2>
+      <ul class="signs">{signs}</ul>
+    </section>
     {witness_section(c)}
     {rr_sec}
-    {f'<h2 id="cases">{"Timeline" if kind(c) == "single" else "Famous cases"}</h2>{dec}<ol class="timeline">{cases}</ol>' if cases else ''}
-    {f'<h2 id="modern">Modern reports</h2>{"" if cases else dec}<ol class="timeline">{modern}</ol>' if modern else ''}
+    {f'<section class="blk blk-cases"><p class="blk-kick">{"Step by step" if kind(c) == "single" else "On the record"}</p><h2 id="cases">{"Timeline" if kind(c) == "single" else "Famous cases"}</h2>{dec}<ol class="timeline tl-cards">{cases}</ol></section>' if cases else ''}
+    {f'<section class="blk blk-cases"><h2 id="modern">Modern reports</h2>{"" if cases else dec}<ol class="timeline tl-cards">{modern}</ol></section>' if modern else ''}
     {papers_section(c)}
     {faq_section(c)}
     {sources_section(c)}

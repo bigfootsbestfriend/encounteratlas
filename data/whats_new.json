@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-10-27",
+    "title": "Creature pages got a makeover",
+    "path": "/creatures/bigfoot/",
+    "note": "Every creature page is easier to read now. Witness signs are numbered tiles, famous cases and old newspaper clippings each get their own card, and common questions have quick answers. Books show their real covers, documentaries show their posters, and podcast episodes show the show's art. Similar creatures now show their painted cards too."
+  },
+  {
     "date": "2026-10-26",
     "title": "Flip the cards, roll the dice",
     "path": "/creatures/",

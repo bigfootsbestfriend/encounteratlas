@@ -16,6 +16,8 @@ GROUPS = [('General reads', ['@general', '@us']), ('Bigfoot and hairy giants', [
 
 
 def cover(b, size='M'):
+    if b.get('cover_id'):  # cover found under another edition (Open Library search, 2026-10-27)
+        return f'https://covers.openlibrary.org/b/id/{b["cover_id"]}-{size}.jpg'
     return f'https://covers.openlibrary.org/b/isbn/{b["isbn10"]}-{size}.jpg'
 
 
@@ -38,7 +40,7 @@ def build(ctx):
         tags = [ctx.by_slug[t]['name'] for t in b['for'] if t in ctx.by_slug][:3]
         return (f'<article class="bk-card{" bk-big" if big else ""}" id="{"" if big else "b-" + b["isbn10"]}">'
                 + (f'<a href="{amazon(b)}" {SPONSORED} class="bk-cover"><img src="{cover(b, "L" if big else "M")}" alt="Cover of {E(b["title"])}" loading="lazy" width="{150 if big else 96}" height="{225 if big else 144}"></a>'
-                 if b.get('cover') else f'<a href="{amazon(b)}" {SPONSORED} class="bk-cover bk-nocover tone-{sum(map(ord, b["isbn10"])) % 5}" aria-hidden="true" tabindex="-1"><span>{E(b["title"][:60])}</span></a>')
+                 if b.get('cover') or b.get('cover_id') else f'<a href="{amazon(b)}" {SPONSORED} class="bk-cover bk-nocover tone-{sum(map(ord, b["isbn10"])) % 5}" aria-hidden="true" tabindex="-1"><span>{E(b["title"][:60])}</span></a>')
                 + f'<div class="bk-txt">{"<p class=bk-kick>Book of the week</p>" if big else ""}<h3>{E(b["title"])}</h3><p class="bk-by">{E(b["author"])}{(" · " + str(b["year"])) if b.get("year") else ""}</p>'
                 + (f'<p class="bk-why">{E(why)}</p>' if big else '')
                 + (f'<p class="bk-tags">{E(", ".join(tags))}</p>' if tags else '')

@@ -53,7 +53,8 @@
     "nandi-bear",
     "kongamato"
    ],
-   "cover": false
+   "cover": false,
+   "cover_id": 3884196
   },
   {
    "title": "Abominable science!",
@@ -327,7 +328,8 @@
    "for": [
     "jersey-devil"
    ],
-   "cover": false
+   "cover": false,
+   "cover_id": 7148544
   },
   {
    "title": "Tracking the chupacabra",
@@ -472,7 +474,8 @@
    "for": [
     "thylacine"
    ],
-   "cover": false
+   "cover": false,
+   "cover_id": 920624
   },
   {
    "title": "The Great Sea-Serpent",
@@ -546,7 +549,8 @@
     "ufo-saucer",
     "ufo-orbs"
    ],
-   "cover": false
+   "cover": false,
+   "cover_id": 813341
   },
   {
    "title": "The Report on Unidentified Flying Objects",
@@ -559,7 +563,8 @@
     "ufo-saucer",
     "green-fireballs"
    ],
-   "cover": false
+   "cover": false,
+   "cover_id": 1861314
   },
   {
    "title": "UFOs",
@@ -667,7 +672,8 @@
    "for": [
     "skinwalker-ranch"
    ],
-   "cover": false
+   "cover": false,
+   "cover_id": 759544
   },
   {
    "title": "Stalking The Herd Examining The Cattle Mutilation Mystery",
@@ -912,7 +918,8 @@
    "blurb": "1972 American docudrama horror film",
    "for": [
     "fouke-monster"
-   ]
+   ],
+   "poster": "the-legend-of-boggy-creek"
   },
   {
    "title": "Sasquatch",
@@ -930,7 +937,8 @@
    "blurb": "Animal Planet TV series",
    "for": [
     "bigfoot"
-   ]
+   ],
+   "poster": "finding-bigfoot"
   },
   {
    "title": "MonsterQuest",
@@ -939,7 +947,8 @@
    "blurb": "2007 American TV series or program",
    "for": [
     "@general"
-   ]
+   ],
+   "poster": "monsterquest"
   },
   {
    "title": "The Phenomenon",
@@ -949,7 +958,8 @@
    "for": [
     "@ufo",
     "ufo-saucer"
-   ]
+   ],
+   "poster": "the-phenomenon"
   },
   {
    "title": "Out of the Blue",
@@ -958,7 +968,8 @@
    "blurb": "2003 American film",
    "for": [
     "@ufo"
-   ]
+   ],
+   "poster": "out-of-the-blue"
   },
   {
    "title": "Unidentified: Inside America's UFO Investigation",
@@ -968,7 +979,8 @@
    "for": [
     "ufo-tic-tac",
     "@ufo"
-   ]
+   ],
+   "poster": "unidentified-inside-america-s-ufo-investigation"
   },
   {
    "title": "The Secret of Skinwalker Ranch",
@@ -977,7 +989,8 @@
    "blurb": "American reality television series",
    "for": [
     "skinwalker-ranch"
-   ]
+   ],
+   "poster": "the-secret-of-skinwalker-ranch"
   },
   {
    "title": "Hellier",
@@ -986,7 +999,8 @@
    "blurb": "2019 American TV series or program",
    "for": [
     "hopkinsville-goblins"
-   ]
+   ],
+   "poster": "hellier"
   }
  ]
 }
