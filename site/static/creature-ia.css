@@ -49,7 +49,7 @@
   .ccard.flip-on .ccard-back { opacity: 0; } .ccard.flip-on.flipped .ccard-back { opacity: 1; } .ccard.flip-on.flipped .ccard-front { opacity: 0; }
   .ccard-flip-ico { transition: none; }
 }
-@media (max-width: 600px) { .ccard { width: min(330px, 100%); } }
+@media (max-width: 600px) { .ccard { width: min(460px, 100%); align-self: center; margin-inline: auto; } }
 
 /* ---- "How big is it?" ---- */
 .sz { background: var(--spruce); color: #F3F1DA; border-radius: var(--r-md); padding: 1rem 1rem 1.1rem; }
@@ -103,3 +103,13 @@
 @keyframes dec-flash { from { background: rgba(242, 179, 61, .45); } to { background: transparent; } }
 @media (prefers-reduced-motion: reduce) { .dec-bar { transition: none; } .timeline li.dec-flash { animation: none; } }
 .ccard-flip[hidden], .sz-you[hidden] { display: none; }
+
+/* No transition while flip mode switches on, so the card never turns until someone taps it */
+.ccard.ccard-still .ccard-face, .ccard.ccard-still .ccard-face * { transition: none !important; }
+/* "Flip me for info" tag on the front of the card */
+.ccard-hint { position: absolute; top: .6rem; right: .6rem; z-index: 2; display: inline-flex; align-items: center; gap: .35rem; padding: .35rem .7rem;
+  border-radius: 999px; background: var(--lantern); color: var(--ink, #13261F); font-weight: 700; font-size: .8rem; line-height: 1.1;
+  box-shadow: 0 3px 10px rgba(0,0,0,.35); pointer-events: none; }
+.ccard-hint::before { content: ""; width: 11px; height: 11px; border: 2px solid currentColor; border-radius: 50%; border-right-color: transparent; }
+.ccard.flipped .ccard-hint { opacity: 0; }
+.ccard.flip-on .ccard-front { position: relative; }

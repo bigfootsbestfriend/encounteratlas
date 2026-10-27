@@ -58,7 +58,14 @@ const eaTrack = (name, p) => { try { if (window.gtag) window.gtag('event', name,
   const btn = card.querySelector('.ccard-flip');
   const front = card.querySelector('.ccard-front');
   const back = card.querySelector('.ccard-back');
-  card.classList.add('flip-on');
+  // Switch into flip mode with transitions off, so the card doesn't spin by itself on page load (Mike 2026-10-27).
+  card.classList.add('ccard-still', 'flip-on');
+  requestAnimationFrame(() => requestAnimationFrame(() => card.classList.remove('ccard-still')));
+  const hint = document.createElement('span');
+  hint.className = 'ccard-hint';
+  hint.setAttribute('aria-hidden', 'true');
+  hint.textContent = 'Flip me for info';
+  front.append(hint);
   btn.hidden = false;
   back.inert = true;
   let flips = 0;
