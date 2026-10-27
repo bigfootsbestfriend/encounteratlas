@@ -670,9 +670,9 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 .signup { position: relative; display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: start; background: var(--spruce);
   color: #F3F1DA; border: 2px solid var(--lantern);
   border-radius: 18px; padding: 1.5rem 1.6rem; margin: 2rem 0 1rem; box-shadow: 0 10px 30px rgba(0,0,0,.18); }
-.su-banner { position: relative; grid-column: 1 / -1; aspect-ratio: 994 / 350; margin: -1.5rem -1.6rem .2rem; border-radius: 16px 16px 0 0; overflow: hidden; background: #13261F; }
-.su-banner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
-.su-banner::after { content: ""; position: absolute; inset: auto 0 0 0; height: 40%; background: linear-gradient(transparent, var(--spruce)); }
+.su-banner { position: relative; grid-column: 1 / -1; aspect-ratio: 1792 / 592; margin: -1.5rem -1.6rem .2rem; border-radius: 16px 16px 0 0; overflow: hidden; background: #13261F; }
+.su-banner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.su-banner::after { content: ""; position: absolute; inset: auto 0 0 0; height: 25%; background: linear-gradient(transparent, var(--spruce)); }
 .signup h2 { margin: 0 0 .25rem; color: var(--lantern-2); font-size: clamp(1.4rem, 3vw, 1.8rem); }
 .signup .su-lede { margin: 0 0 .8rem; color: var(--lichen); }
 .su-list { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: .45rem; }

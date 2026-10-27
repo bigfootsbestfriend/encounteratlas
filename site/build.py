@@ -448,9 +448,9 @@ def signup_box(uid, title='Strange news, once a week', text=None):
     """Weekly email signup (single opt-in). The newsletter Worker sends people back to /newsletter/#confirmed.
     A dark card with three creature silhouettes, what's in each email, and a short email field (signup.js tracks it)."""
     text = text or 'One short email every Thursday, free, for cryptid and UFO fans everywhere.'
-    # A painted dusk banner across the top of the card (Gemini art, same poster style as the creature cards)
-    art = (f'<img src="{url("/static/art/signup-banner-994.webp")}" srcset="{url("/static/art/signup-banner-994.webp")} 994w, '
-           f'{url("/static/art/signup-banner.webp")} 1988w" sizes="(min-width: 900px) 820px, 100vw" alt="" width="994" height="418" loading="lazy" decoding="async">')
+    # A painted night campsite banner across the top of the card (Gemini art, same poster style as the creature cards)
+    art = (f'<img src="{url("/static/art/signup-camp-896.webp")}" srcset="{url("/static/art/signup-camp-896.webp")} 896w, '
+           f'{url("/static/art/signup-camp.webp")} 1792w" sizes="(min-width: 900px) 820px, 100vw" alt="" width="1792" height="592" loading="lazy" decoding="async">')
     return f'''<section class="signup" id="signup-{uid}">
 <div class="su-banner" aria-hidden="true">{art}</div>
 <div class="su-main"><h2>{esc(title)}</h2>
