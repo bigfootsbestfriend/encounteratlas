@@ -40,3 +40,47 @@
 .mysteries .ce-list .my-group:first-of-type h2 { margin-top: .4rem; }
 .mysteries .ce-list .ce-status:empty { display: none; }
 .prose .my-fig img { width: auto; max-width: 100%; max-height: 460px; margin: 0 auto; }
+
+/* Your verdict: pick buttons on each theory, a result line, and a summary card */
+.my-vd-intro { max-width: 52rem; margin: -.3rem 0 .9rem; padding: .7rem 1rem; border-radius: var(--r-md); background: var(--spruce); color: var(--lichen); font-weight: 600; }
+.my-vd { clear: both; margin-top: .8rem; padding-top: .7rem; border-top: 1px dashed #D6DDD6; }
+.my-vd-btns { display: flex; flex-wrap: wrap; gap: .45rem; }
+.my-vd-b { min-height: 44px; padding: .5rem .95rem; border-radius: 999px; border: 2px solid #C9D2C9; background: #F6F8F5; color: var(--ink);
+  font: 700 .9rem/1 var(--body); cursor: pointer; }
+.my-vd-b:hover { border-color: var(--spruce-3, #2F5446); }
+.my-vd-b:focus-visible { outline: 3px solid var(--lantern); outline-offset: 2px; }
+.my-vd-b.vd-likely[aria-pressed="true"] { background: #6BA34A; border-color: #6BA34A; color: #fff; }
+.my-vd-b.vd-possible[aria-pressed="true"] { background: var(--lantern); border-color: var(--lantern); color: #13261F; }
+.my-vd-b.vd-no[aria-pressed="true"] { background: #E07A4F; border-color: #E07A4F; color: #fff; }
+.my-vd-res { margin: .55rem 0 0; font-weight: 600; }
+.my-th.vd-agree { box-shadow: 0 0 0 2px #6BA34A inset; }
+.my-th.vd-agree .my-vd-res { color: #2C5A1E; }
+.my-th.vd-agree .my-vd-res::before { content: "✓ "; }
+.my-th.vd-differ .my-vd-res { color: #7A3A1C; }
+.my-vd-card { max-width: 52rem; margin: 1rem 0 1.6rem; padding: 1.2rem 1.3rem; border-radius: var(--r-md); color: var(--cream, #F3F1DA);
+  background: linear-gradient(135deg, #13261F 0%, #1E4A4F 100%); border: 2px solid var(--lantern); box-shadow: 0 8px 24px rgba(19,38,31,.25); }
+.my-vd-big { margin: 0; font: 700 1.45rem/1.25 var(--display); color: var(--lantern); }
+.my-vd-sub { margin: .35rem 0 .9rem; color: var(--lichen); }
+.my-vd-acts { display: flex; flex-wrap: wrap; gap: .5rem; }
+.my-vd-acts .btn { min-height: 44px; }
+
+/* Tap-through timeline: a stepper card on top, the full list stays below with the current event lit */
+.my-step { max-width: 52rem; margin: 0 0 1rem; padding: 1rem 1.1rem; border-radius: var(--r-md); background: var(--spruce); color: var(--lichen); }
+.my-step-card { min-height: 6.2rem; }
+.my-step-n { margin: 0; font: 700 .74rem/1 var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted-d); }
+.my-step-when { margin: .35rem 0 .2rem; font: 700 1.35rem/1.2 var(--display); color: var(--lantern); }
+.my-step-what { margin: 0; font-size: 1.05rem; color: #F3F1DA; }
+.my-step-ctl { display: flex; align-items: center; gap: .7rem; margin-top: .9rem; }
+.my-step-b { min-width: 64px; min-height: 44px; padding: 0 .9rem; border-radius: 999px; border: 0; background: var(--lantern); color: #13261F;
+  font: 700 .92rem/1 var(--body); cursor: pointer; }
+.my-step-b:disabled { opacity: .35; cursor: default; }
+.my-step-b:focus-visible, .my-step-range:focus-visible { outline: 3px solid #F3F1DA; outline-offset: 2px; }
+.my-step-range { flex: 1; min-width: 0; height: 44px; accent-color: var(--lantern); cursor: pointer; background: transparent; }
+.my-tl-on li { cursor: pointer; border-radius: 0 var(--r-sm) var(--r-sm) 0; }
+.my-tl-on li.is-on { background: #FFF6DF; box-shadow: inset 4px 0 0 var(--lantern); }
+.my-tl-on li.is-on::before { background: #E07A4F; transform: scale(1.35); }
+.my-tl-on li.is-past::before { background: #1E4A4F; }
+@media (prefers-reduced-motion: no-preference) {
+  .my-tl-on li, .my-tl-on li::before, .my-vd-b { transition: background-color .2s, transform .2s, box-shadow .2s; }
+}
+@media (max-width: 520px) { .my-vd-b { flex: 1 1 auto; } .my-step-when { font-size: 1.15rem; } }

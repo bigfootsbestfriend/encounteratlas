@@ -126,7 +126,7 @@ class M:
         c, e = self.c, self.e
         paras = ''.join(f'<p>{e(p)}</p>' for p in x['body'])
         tl = ''.join(f'<li><b>{e(t["when"])}</b><span>{e(t["what"])}</span></li>' for t in x.get('timeline', []))
-        th = ''.join(f'<li class="my-th v-{t["verdict"]}"><span class="my-v">{VERDICT[t["verdict"]]}</span>'
+        th = ''.join(f'<li class="my-th v-{t["verdict"]}" data-v="{t["verdict"]}"><span class="my-v">{VERDICT[t["verdict"]]}</span>'
                      f'<b>{e(t["name"])}</b><p>{e(t["note"])}</p></li>' for t in x.get('theories', []))
         src = ''.join(f'<li><a href="{e(s["url"])}" rel="noopener">{e(s["title"])}</a></li>' for s in x['sources'])
         crs = ''.join(c.creature_card(c.by_slug[s]) for s in x['creatures'])

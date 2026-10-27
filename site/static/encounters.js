@@ -50,6 +50,12 @@
         map.setFilter('ce-pins', !filter ? null : filter === 'beings' ? ['in', ['get', 's'], ['literal', cards.filter((c) => c.dataset.b === '1').map((c) => c.querySelector('a').pathname.split('/').filter(Boolean).pop())]] : ['==', ['get', 'st'], filter]);
         map.setFilter('ce-glow', map.getFilter('ce-pins'));
       };
+      // Pages with their own filters (e.g. /ufo/cases/) send the visible case slugs, or null for all.
+      document.addEventListener('ce:filter', (ev) => {
+        const slugs = ev.detail && ev.detail.slugs;
+        const flt = slugs ? ['in', ['get', 's'], ['literal', slugs]] : null;
+        map.setFilter('ce-pins', flt); map.setFilter('ce-glow', flt);
+      });
       map.on('mouseenter', 'ce-pins', () => { map.getCanvas().style.cursor = 'pointer'; });
       map.on('mouseleave', 'ce-pins', () => { map.getCanvas().style.cursor = ''; });
       map.on('click', 'ce-pins', (ev) => {

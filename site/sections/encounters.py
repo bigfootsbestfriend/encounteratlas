@@ -115,6 +115,14 @@ class E:
                                        'Valensole and Pascagoula: what witnesses said, what investigators found, and sources.',
                                        body_class='encounters', head_extra=self.head))
 
+    def case_top(self, x):
+        """Extra block between the hero and the case body (subclasses add things here)."""
+        return ''
+
+    def case_more(self, x):
+        """Extra block at the top of the lower band (subclasses add things here)."""
+        return ''
+
     def case(self, x):
         c, e = self.c, self.e
         paras = ''.join(f'<p>{c.md_links(p)}</p>' for p in x['body'])
@@ -140,7 +148,7 @@ class E:
     <p class="lede">{e(x['summary'])}</p>
   </div>
 </div></section>
-<div class="band band-mist"><div class="wrap ce-body">
+{self.case_top(x)}<div class="band band-mist"><div class="wrap ce-body">
   <article class="prose">{paras}</article>
   <aside class="ce-side">
     <div class="ce-facts">
@@ -153,6 +161,7 @@ class E:
   </aside>
 </div></div>
 <div class="band ce-more"><div class="wrap">
+  {self.case_more(x)}
   {f'<h2>Official records</h2><ul class="ce-off">{off}</ul>' if off else ''}
   {f'<h2>Related creatures</h2><div class="crit-grid">{crs}</div>' if crs else ''}
   <h2>Sources</h2><ul class="ce-src">{src}</ul>
