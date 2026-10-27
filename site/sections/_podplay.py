@@ -5,7 +5,7 @@ app home (z_near_me.py). Not a section itself (leading underscore).
 Audio is the show's own enclosure URL (data/podcasts_episodes.json "audio", filled by tools/podcast_audio.py) and is
 streamed straight from the show's host by static/podplayer.js, so creators keep their download counts.
 """
-import datetime, html, json, os
+import datetime, html, json, os, re
 
 PER_CREATURE = 5      # in /data/podcast-play.json
 PER_STOP = 3          # shown per creature in a "Listen along" list
@@ -145,10 +145,15 @@ def todays_listen(ctx, where='home'):
     # shows put em and en dashes in their titles; this block is ours, so they read as commas here
     T = lambda e: E(e['t'].replace(' \u2014 ', ', ').replace(' \u2013 ', ', ').replace('\u2014', ', ').replace('\u2013', '-'))
 
-    def img(slug, lazy):
+    def img(slug, lazy, e=None):
         a = art_thumb(ctx, slug)
         if not a:
-            return '<span class="pf-noart"></span>'
+            # no painted card for this creature yet: use the show's own cover instead of a blank square
+            cover = (e or {}).get('art', '')
+            if not cover:
+                return '<span class="pf-noart"></span>'
+            cover = re.sub(r'/\d+x\d+bb\.', '/600x600bb.' if not lazy else '/160x160bb.', cover)
+            return f'<img src="{html.escape(cover)}" alt="" width="160" height="160"{' loading="lazy"' if lazy else ''} decoding="async">'
         if lazy:
             return f'<img src="{a}" alt="" width="360" height="257" loading="lazy" decoding="async">'
         # the featured picture fills the card (up to ~900 px wide), so phones and big screens get the full art
@@ -159,13 +164,13 @@ def todays_listen(ctx, where='home'):
                 f' width="1164" height="832" decoding="async">')
 
     stations = ''.join(
-        f'<li class="pf-st">{img(s, True)}<span class="pf-st-t"><a href="{U("/podcasts/creature/" + s + "/")}">{E(ctx.by_slug[s]["name"])}</a>'
+        f'<li class="pf-st">{img(s, True, e)}<span class="pf-st-t"><a href="{U("/podcasts/creature/" + s + "/")}">{E(ctx.by_slug[s]["name"])}</a>'
         f'<b>{T(e)}</b><small>{E(e["s"])}{mins(e)}</small></span>{play_button(e, "pp-btn pp-round pf-st-play", "")}</li>'
         for e, s in rest)
     hid = f'pf-h-{where}'
     return f'''<section class="pf pf-{where}" data-pp-list aria-labelledby="{hid}">
   <div class="pf-feat">
-    <div class="pf-art">{img(fs, False)}<h2 id="{hid}" data-pf-when>Today's listen</h2>{play_button(fe, "pp-btn pf-play", "Play")}</div>
+    <div class="pf-art">{img(fs, False, fe)}<h2 id="{hid}" data-pf-when>Today's listen</h2>{play_button(fe, "pp-btn pf-play", "Play")}</div>
     <div class="pf-info">
       <p class="pf-title">{T(fe)}</p>
       <p class="pf-meta"><span class="pf-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><a href="{E(fe["u"])}" rel="noopener">{E(fe["s"])}</a>{mins(fe)}</p>
