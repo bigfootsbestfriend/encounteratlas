@@ -1,10 +1,15 @@
 /* On this day */
 .otd-nav { display: flex; gap: .5rem; flex-wrap: wrap; }
 .otd-list { list-style: none; padding: 0; margin: 0 0 2rem; }
-.otd-list li { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--mist-2, #cfd9d3); }
-.otd-list li:first-child { border-top: 0; }
-.otd-yr { font: 700 1.5rem var(--display); color: #8A5A00; }
-.otd-kind { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #4D6157; }
+.otd-list { display: grid; gap: .9rem; }
+.otd-card { --k: #C9B27A; display: grid; grid-template-columns: 5.2rem 1fr; gap: 1rem; align-items: start; padding: 1rem 1.1rem;
+  background: #fff; border: 1px solid var(--mist-2, #cfd9d3); border-left: 7px solid var(--k); border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(19, 38, 31, .06); }
+.otd-k-news { --k: #C9B27A; } .otd-k-mil { --k: #E07A4F; } .otd-k-myst { --k: #B98ACB; } .otd-k-ce { --k: #8E8CF0; } .otd-k-ufo { --k: #4FB3A9; }
+.otd-yr { display: inline-flex; align-items: center; justify-content: center; min-height: 2.6rem; padding: .2rem .5rem; border-radius: 10px;
+  background: var(--spruce, #13261F); color: #F2B33D; font: 700 1.3rem var(--display); box-shadow: inset 0 -3px 0 var(--k); }
+.otd-kind { display: inline-block; font-size: .74rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: #13261F;
+  background: color-mix(in srgb, var(--k) 30%, #fff); border-radius: 999px; padding: .1rem .6rem; }
 .otd-list h3 { margin: .1rem 0 .2rem; font-size: 1.15rem; }
 .otd-list p { margin: .2rem 0; line-height: 1.5; }
 .otd-where { color: #4D6157; font-size: .92rem; }
@@ -22,4 +27,44 @@
 .otd-days a:hover { background: #E4EBE6; }
 .otd-days a.has { color: #13261F; font-weight: 800; background: #F6F0E2; }
 .otd-days a.today { background: #F2B33D; color: #13261F; font-weight: 800; outline: 2px solid #13261F; }
-@media (max-width: 560px) { .otd-list li { grid-template-columns: 1fr; gap: .2rem; } }
+@media (max-width: 560px) { .otd-card { grid-template-columns: 1fr; gap: .4rem; } .otd-yr { justify-self: start; } }
+
+/* Date spinner: arrows (plain links) either side of two dials, Today and a dice */
+.otd-spin { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .7rem; margin: 1.2rem 0 .4rem; max-width: 640px;
+  background: radial-gradient(ellipse at 80% 10%, #24443a 0, #1C352C 70%); border: 1px solid rgba(243, 241, 218, .15); border-radius: 18px; padding: .9rem; }
+.otd-arrow { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 56px; min-height: 76px; border-radius: 14px;
+  background: rgba(243, 241, 218, .08); color: #F3F1DA; text-decoration: none; line-height: 1; }
+.otd-arrow span { font-size: 2.2rem; color: #F2B33D; }
+.otd-arrow small { font-size: .78rem; margin-top: .25rem; color: #C9D3A4; white-space: nowrap; }
+.otd-arrow:hover { background: rgba(242, 179, 61, .18); color: #F3F1DA; }
+.otd-prev { grid-column: 1; } .otd-next { grid-column: 3; }
+.otd-dials { grid-column: 2; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .6rem; }
+.otd-spin:not(:has(.otd-arrow)) .otd-dials { grid-column: 1 / -1; }
+.otd-dial { display: flex; flex-direction: column; align-items: stretch; background: #F3F1DA; border-radius: 16px; padding: 3px;
+  box-shadow: inset 0 0 0 3px #F2B33D, 0 6px 16px rgba(0, 0, 0, .3); }
+.otd-step { border: 0; background: transparent; color: #1E4A4F; font-size: .85rem; min-height: 30px; min-width: 44px; cursor: pointer; border-radius: 12px; }
+.otd-step:hover { background: rgba(242, 179, 61, .35); }
+.otd-dial select { appearance: none; -webkit-appearance: none; border: 0; background: #fff; color: #13261F; font: 700 1.35rem var(--display);
+  text-align: center; text-align-last: center; padding: .35rem .7rem; min-height: 48px; border-radius: 10px; cursor: pointer; }
+#otd-m { min-width: 8.5rem; } #otd-d { min-width: 4.6rem; }
+.otd-go { min-height: 48px; }
+.otd-quick { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin: .2rem 0 0; }
+.otd-quick .btn { min-height: 46px; display: inline-flex; align-items: center; gap: .45rem; }
+.otd-die { width: 22px; height: 22px; }
+.otd-hint { grid-column: 1 / -1; text-align: center; margin: 0; font-size: .9rem; color: #C9D3A4; min-height: 1.4em; }
+.otd-bump { animation: otd-bump .25s ease-out; }
+@keyframes otd-bump { 0% { transform: translateY(-5px); opacity: .5; } 100% { transform: none; opacity: 1; } }
+.otd-rolling .otd-die { animation: otd-roll .7s linear infinite; }
+.otd-rolling .otd-dial select { color: #E07A4F; }
+@keyframes otd-roll { to { transform: rotate(360deg); } }
+@media (max-width: 560px) {
+  .otd-spin { grid-template-columns: 1fr 1fr; }
+  .otd-prev { grid-column: 1; grid-row: 1; } .otd-next { grid-column: 2; grid-row: 1; }
+  .otd-arrow { flex-direction: row; gap: .4rem; min-height: 48px; }
+  .otd-arrow span { font-size: 1.6rem; }
+  .otd-next { flex-direction: row-reverse; }
+  .otd-dials { grid-column: 1 / -1; }
+  .otd-quick .btn { flex: 1 1 auto; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { .otd-bump, .otd-rolling .otd-die { animation: none; } }
+.otd-dials[hidden], .otd-quick[hidden] { display: none; }

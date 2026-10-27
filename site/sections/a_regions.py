@@ -11,6 +11,7 @@ import json, os, sys
 from collections import Counter, defaultdict
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _legend import legend_card, head as legend_head
+import _tripadd
 
 
 def build(ctx):
@@ -70,6 +71,7 @@ def build(ctx):
         for st in r.get('link_from', []):
             part_of[st].append((f'/us/{r["slug"]}/', r['name'], r['h1']))
     css = f'<link rel="stylesheet" href="{U("/static/ufo_archive.css")}"><link rel="stylesheet" href="{U("/static/canada.css")}">' + legend_head(ctx)
+    css_trip = css + _tripadd.head(ctx, spotmap=True)  # state and province hubs: mini map and road trip buttons
 
     def card(href, title, sub, text, cls=''):
         return (f'<li><a class="cn-card{cls}" href="{href}"><b>{E(title)}</b><small>{E(sub)}</small>'
@@ -121,9 +123,17 @@ def build(ctx):
             parts.append(f'<h2 id="history">From the old newspapers</h2><p>Strange creatures, sea serpents and mystery airships reported in {E(nm)} papers before 1927.</p>'
                          f'<ol class="timeline">{items}</ol>{more}')
         if d.get('pl'):
-            pls = ''.join(card(U('/places/' + x['slug'] + '/'), x['name'], x.get('city') or nm, x.get('summary') or '', ' cn-place') for x in d['pl'])
+            pls = ''.join(card(U('/places/' + x['slug'] + '/'), x['name'], x.get('city') or nm, x.get('summary') or '', ' cn-place')
+                          .replace('</a></li>', '</a>' + _tripadd.button(ctx, x.get('lat'), x.get('lon'), x['name'], '/places/' + x['slug'] + '/', 'on-card') + '</li>')
+                          for x in d['pl'])
             parts.append(f'<h2 id="visit">Places to visit</h2><ul class="cn-grid">{pls}</ul>'
                          f'<p><a href="{U("/places/" + ctx.slugify(nm) + "/")}">More about visiting in {E(nm)}</a> · <a href="{U("/events/")}">Events and festivals</a></p>')
+        spots = ([('case', f.get('lat'), f.get('lon'), f['name'], '/creatures/' + f['creature'] + '/') for f in fam]
+                 + [('encounter', x.get('lat'), x.get('lon'), x['name'], '/encounters/' + x['slug'] + '/') for x in d.get('ce', [])]
+                 + [('mystery', x.get('lat'), x.get('lon'), x['name'], '/mysteries/' + x['slug'] + '/') for x in d.get('my', [])]
+                 + [('military', x.get('lat'), x.get('lon'), x['name'], '/military/') for x in d.get('mil', [])]
+                 + [('place', x.get('lat'), x.get('lon'), x['name'], '/places/' + x['slug'] + '/') for x in d.get('pl', [])])
+        mini = _tripadd.spot_map(ctx, spots, nm)
         neigh = ''.join(f'<a class="md-chip" href="{U(p)}">{E(n)}</a>' for kk, (p, n) in sorted(made.items(), key=lambda kv: kv[1][1]) if kk[:2] == cc and kk != k)
         top = 'Canada' if cc == 'CA' else 'United States'
         cnames = [ctx.by_slug[c]['name'] for c in crit[:3]]
@@ -146,6 +156,7 @@ def build(ctx):
 </section>
 <div class="band band-mist"><div class="wrap">
   {intro}{legend_card(ctx, cc, nm)}
+  {mini}
   {''.join(parts)}
   <section class="cn-cta"><h2>Seen something in {E(nm)}?</h2>
   <p>Tell us what happened. Every report is read by a person before it goes on the map, and you can keep the exact spot private.</p>
@@ -156,7 +167,7 @@ def build(ctx):
         title = (f'{"Bigfoot, cryptids" if big else "Cryptids"} and UFOs in {nm}' if cc == 'US'
                  else f'{"Sasquatch, cryptids" if big else "Cryptids"} and UFOs in {nm}')
         desc = (f'Everything strange in {nm}: ' + ', '.join(f'{v} {t}' for v, t in stats[:4]) + '.')
-        ctx.write(path, ctx.page(path, o.get('seo_title') or title, body, o.get('seo_desc') or desc, head_extra=css))
+        ctx.write(path, ctx.page(path, o.get('seo_title') or title, body, o.get('seo_desc') or desc, head_extra=css_trip if mini or d.get('pl') else css))
 
     # hand-written multi-state region hubs (/us/appalachia/), from data/region_hubs.json
     pl_by = {x['slug']: x for x in load('places.json')}

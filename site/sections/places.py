@@ -12,6 +12,7 @@ from collections import defaultdict
 from datetime import date
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _legend import legend_card, head as legend_head
+import _tripadd
 import contact
 
 TYPES = {  # key: (singular, plural, icon)
@@ -412,6 +413,7 @@ class Builder:
                 q = f'{p["lat"]},{p["lon"]}' if not p.get('approx') else (p.get('address') or self.where(p, short=False))
                 btns += (f'<a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query={esc(q).replace(" ", "+")}" '
                          f'rel="noopener">Directions</a>')
+            btns += _tripadd.button(c, p['lat'], p['lon'], p['name'], f'/places/{p["slug"]}/', 'on-dark')
             note = f'<p class="callout pl-note">{esc(p["note"])}</p>' if p.get('note') else ''
             crit = ''.join(c.creature_card(c.by_slug[s]) for s in p['creatures'])
             crit_html = f'<h2>The creature{"s" if len(p["creatures"]) > 1 else ""}</h2><div class="crit-grid pl-crit">{crit}</div>' if crit else ''
@@ -469,7 +471,7 @@ class Builder:
                     title += f': {one.lower()}'
             desc = p.get('seo_desc') or p['summary'] + (f' {p["price"]}.' if p.get('price') and not p['price'].endswith('.') else '')
             c.write(f'/places/{p["slug"]}/', c.page(f'/places/{p["slug"]}/', title, body, desc[:300],
-                                                    body_class='places', head_extra=self.map_head + self.jsonld(p),
+                                                    body_class='places', head_extra=self.map_head + _tripadd.head(c) + self.jsonld(p),
                                                     noindex=bool(p.get('brief'))))  # brief: calendar entry only, not yet written up
 
     def events(self):
