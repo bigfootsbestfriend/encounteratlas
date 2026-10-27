@@ -876,6 +876,8 @@ select { max-width: 100%; }
 .play-badge { display: inline-block; line-height: 0; }
 .play-badge img { height: 58px; width: auto; }
 .in-app .play-badge, .in-app .foot-app, .in-app .nm-play, .in-app .mm-app, .in-app .app-band, .in-app .home-app { display: none !important; }
+.in-ios body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); padding-bottom: env(safe-area-inset-bottom); }
+.in-ios .top { padding-top: calc(.7rem + env(safe-area-inset-top)); }
 .foot-app { display: flex; align-items: center; gap: .4rem 1rem; flex-wrap: wrap; margin: .6rem 0 .4rem; }
 .foot-app span { font-size: .92rem; color: var(--muted-d); max-width: 30rem; }
 .nm-play { display: flex; align-items: center; gap: .3rem 1rem; flex-wrap: wrap; margin: .6rem 0 .2rem; }
@@ -908,3 +910,8 @@ select { max-width: 100%; }
 .ab-list li::before { content: ""; position: absolute; left: 0; top: .72rem; width: .7rem; height: .7rem; border-radius: 50%; background: var(--lantern); }
 .app-band .play-badge img { height: 64px; }
 @media (max-width: 760px) { .ab-in { grid-template-columns: 1fr; } .ab-cards { max-width: 440px; margin: 0 auto; } .app-band { padding: 1.8rem 0; } }
+
+/* Narrow phones (and the iPhone app's side status bar): the header buttons never shrink; the site name gives way first */
+.top .search-btn, .top .report-btn, .top .mm { flex-shrink: 0; }
+.top { container-type: inline-size; }
+@container (max-width: 390px) { .top .brand { font-size: .92rem; gap: .4rem; } .top .brand .mark { height: 32px; width: 32px; } .top .report-btn { padding: .45rem .6rem; } .top .search-btn { margin-right: -.4rem; } }

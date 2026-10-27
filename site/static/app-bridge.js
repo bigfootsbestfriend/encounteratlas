@@ -16,6 +16,14 @@
   document.documentElement.classList.add('in-app');
 
   const EA = window.EAApp = { native: true, platform: C.getPlatform ? C.getPlatform() : 'android', push: false, version: '' };
+
+  // iPhone: the app draws the page under the status bar (contentInset 'never'), so let the page reach the edges and pad
+  // for the safe areas itself (site.css .in-ios). Safari does this on its own; the WebView doesn't.
+  if (EA.platform === 'ios') {
+    document.documentElement.classList.add('in-ios');
+    const vp = document.querySelector('meta[name="viewport"]');
+    if (vp && !/viewport-fit/.test(vp.content)) vp.content += ', viewport-fit=cover';
+  }
   EA.ready = (P.EaApp ? P.EaApp.info().catch(() => ({})) : Promise.resolve({})).then((i) => {
     EA.push = !!(i && i.push) && !!P.PushNotifications;
     EA.version = (i && i.version) || '';
