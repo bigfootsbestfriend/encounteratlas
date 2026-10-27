@@ -172,3 +172,10 @@ body.pp-on { padding-bottom: calc(11.5rem + env(safe-area-inset-bottom)); }
 .pp-share-inline { display: inline-flex; align-items: center; gap: .3rem; background: none; border: 1px solid currentColor; border-radius: 999px;
   padding: .25rem .7rem; font: 700 .8rem var(--body, sans-serif); color: inherit; cursor: pointer; min-height: 36px; }
 .pp-share-inline svg { width: 15px; height: 15px; }
+.pp-sh-save { display: flex; flex-direction: column; gap: .35rem; padding: .7rem; border-radius: var(--r-sm, 6px); background: #fff; border: 1px solid #d8d4b8; }
+.pp-sh-save label { font-weight: 700; }
+.pp-sh-row { display: flex; gap: .4rem; }
+.pp-sh-row input { flex: 1; min-width: 0; min-height: 48px; padding: 0 .7rem; border: 1px solid #b9b49a; border-radius: var(--r-sm, 6px); font: inherit; }
+.pp-sh-row .btn { width: auto; flex: none; padding: 0 1.1rem; }
+.pp-sh-save small { color: var(--muted-l, #4D6157); font-size: .8rem; line-height: 1.35; }
+.pp-sh-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }

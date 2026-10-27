@@ -18,7 +18,8 @@ _cache = {}
 
 
 def head(ctx):
-    return (f'<link rel="stylesheet" href="{ctx.url("/static/podplayer.css")}">'
+    return (f'<meta name="ea-nl" content="{html.escape(getattr(ctx, "NEWSLETTER_API", ""))}">'
+            f'<link rel="stylesheet" href="{ctx.url("/static/podplayer.css")}">'
             f'<script src="{ctx.url("/static/podplayer.js")}" defer></script>')
 
 

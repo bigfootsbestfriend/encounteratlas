@@ -276,7 +276,10 @@
       sheet = el('dialog', 'pp-sheet');
       sheet.setAttribute('aria-labelledby', 'pp-sheet-h');
       sheet.innerHTML = `<form method="dialog" class="pp-sheet-in"><h2 id="pp-sheet-h">Save or share</h2><p class="pp-sheet-t"></p>
-<a class="btn pp-sh-mail" href="#">Email it to myself</a>
+<div class="pp-sh-save"><label for="pp-sh-email">Email it to myself</label>
+<div class="pp-sh-row"><input id="pp-sh-email" type="email" autocomplete="email" placeholder="you@example.com" enterkeyhint="send"><button type="button" class="btn pp-sh-mail">Send</button></div>
+<input class="pp-sh-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+<small>We'll email you the link, and sign you up for our free weekly email (strange news, a creature of the week, new reports). Unsubscribe anytime.</small></div>
 <button type="button" class="btn pp-sh-share">Send to a friend</button>
 <button type="button" class="btn pp-sh-copy">Copy link</button>
 <p class="pp-sheet-msg" aria-live="polite"></p><button class="pp-sheet-x" value="close">Close</button></form>`;
@@ -285,9 +288,31 @@
     }
     $('.pp-sheet-t', sheet).textContent = line;
     $('.pp-sheet-msg', sheet).textContent = '';
-    const mail = $('.pp-sh-mail', sheet);
-    mail.href = `mailto:?subject=${encodeURIComponent('Listen later: ' + e.t)}&body=${encodeURIComponent(body)}`;
-    mail.onclick = () => track('podcast_share', { how: 'email', show: e.s });
+    const mail = $('.pp-sh-mail', sheet), input = $('#pp-sh-email', sheet), msg = $('.pp-sheet-msg', sheet);
+    const api = (document.querySelector('meta[name="ea-nl"]') || {}).content;
+    try { const saved = localStorage.getItem('ea-nl-email'); if (saved && !input.value) input.value = saved; } catch (x) { /* storage blocked */ }
+    const mailto = () => { location.href = `mailto:?subject=${encodeURIComponent('Listen later: ' + e.t)}&body=${encodeURIComponent(body)}`; };
+    const send = async () => {
+      const email = input.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { msg.textContent = 'Type your email address first.'; input.focus(); return; }
+      if (!api) { mailto(); return; }
+      mail.disabled = true; msg.textContent = 'Sending...';
+      try {
+        const r = await fetch(api + '/save-episode', { method: 'POST', headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ site: 'encounteratlas', email, a: e.a, website: $('.pp-sh-hp', sheet).value }) });
+        const d = await r.json().catch(() => ({}));
+        if (d.state === 'sent') {
+          msg.textContent = 'Sent! Check your inbox. You\'re on the weekly email too.';
+          track('podcast_share', { how: 'email', show: e.s });
+          try { localStorage.setItem('ea-nl-email', email); localStorage.setItem('nl-subbed', '1'); } catch (x) { /* storage blocked */ }
+        } else if (d.state === 'slow') msg.textContent = "That's a lot of saves at once. Try again in a little while.";
+        else if (d.state === 'invalid') msg.textContent = "That email address doesn't look right.";
+        else { msg.textContent = "Couldn't send it, so we opened your email app instead."; mailto(); }
+      } catch (x) { msg.textContent = "Couldn't send it, so we opened your email app instead."; mailto(); }
+      mail.disabled = false;
+    };
+    mail.onclick = send;
+    input.onkeydown = (ev) => { if (ev.key === 'Enter') { ev.preventDefault(); send(); } };
     const sh = $('.pp-sh-share', sheet);
     sh.onclick = async () => {
       track('podcast_share', { how: 'share', show: e.s });
