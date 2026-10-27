@@ -754,5 +754,165 @@
  "zuiyo-maru-carcass": {
   "look": "The famous 1977 Zuiyo-maru carcass: a huge, rotting, pinkish-grey and white sea creature carcass about 10 m long hanging from a fishing ship's crane by ropes, its decaying flesh sagging in strips, with a long neck, a small head, four flipper-like limbs and a long tail, dripping as fishermen look up at it. Decayed and strange, not a clean cartoon plesiosaur, no blood.",
   "setting": "The deck of a Japanese fishing trawler off Christchurch, New Zealand at dusk, a crane and rough sea."
+ },
+ "ningen": {
+  "look": "A colossal, smooth, ghostly white humanoid rising out of black Antarctic water: a glossy whale-like pale body with no hair, long human-like arms with five long fingers, a blank rounded head with two small dark eyes and a thin slit mouth and no nose, and a broad whale-like tail fluke trailing behind it in the water. Its skin glows faintly pale. Eerie and enormous, dwarfing a small whaling ship nearby.",
+  "setting": "The Southern Ocean at night, drifting ice floes and a tabular iceberg, a tiny research ship with one searchlight far away."
+ },
+ "shadow-people": {
+  "look": "Three solid black, featureless human-shaped silhouettes, darker than the darkness around them, with no faces, no eyes and soft smoky edges, standing in a dim hallway and doorway. One leans around the door frame as if peering in. Uncanny and unsettling, not demons, no glowing eyes.",
+  "setting": "A dim bedroom at night seen from the bed, a doorway to a hallway, moonlight through blinds making stripes on the floor."
+ },
+ "hoop-snake": {
+  "look": "A long dark-green and gold banded snake that has bitten its own tail to form a perfect wheel, rolling at speed down a dirt hill, with a sharp black venomous stinger at the tip of its tail. Motion lines and kicked-up dust behind it. Its eyes are fixed and mean.",
+  "setting": "An American farm hillside with a split-rail fence, an old oak tree at the bottom of the slope and a farmer's straw hat left in the dust."
+ },
+ "the-rake": {
+  "look": "A pale, thin, hairless humanoid crouched on all fours like a starved dog, grey-white skin stretched over a jutting spine and ribs, very long arms ending in long claw-like fingers, a gaunt bald head with large blank black eyes and a lipless mouth. It is crouched at the foot of a bed, staring. Creepy and emaciated, not gory, no blood.",
+  "setting": "A dark bedroom at night, the end of a bed with rumpled blankets, a window with pale moonlight behind the figure."
+ },
+ "hat-man": {
+  "look": "A tall, solid black human silhouette with no face, wearing a wide-brimmed fedora hat and a long dark coat that fades into smoke at the hem, standing perfectly still in a bedroom doorway. Faint suggestion of being watched, no visible eyes. Silent and menacing.",
+  "setting": "A dark bedroom at night seen from the pillow, the open doorway lit faintly from a hallway, a clock on the nightstand."
+ },
+ "alabama-white-thang": {
+  "look": "A tall, about 8 ft, ape-like creature covered in long shaggy pure white hair, walking upright on two legs with long arms, a dark grey face with deep-set glowing eyes, mouth open as if screaming. Powerful and fast, mid-stride. Like a white Bigfoot.",
+  "setting": "A dark Southern pine and hardwood forest at night in north Alabama, a creek bank, kudzu-covered trees and a dirt road."
+ },
+ "tailypo": {
+  "look": "A strange, dog-sized creature with dark matted fur, a lean cat-like body, long pointed ears, huge glowing yellow eyes and long sharp claws, with only a short raw stump where its tail should be. It is scratching at the door of a log cabin and peering in, hungry and spiteful.",
+  "setting": "A lonely Appalachian log cabin in the woods at night, a chimney with smoke, a window glowing orange, bare trees."
+ },
+ "ninki-nanka": {
+  "look": "A huge, long-necked dragon-like reptile rising from a mangrove creek: a long serpent body covered in shining mirror-like scales that reflect the moon, a horse-like head with a crest of horns, glaring eyes, and a long tail coiled in the water. Terrifying and majestic, no wings.",
+  "setting": "A West African mangrove swamp on the Gambia River at dusk, tangled mangrove roots, a dugout canoe pulled up on the mud."
+ },
+ "drop-bear": {
+  "look": "A snarling, muscular koala-like beast the size of a leopard, grey fur, round furry ears, black nose, big claws and bared fangs, dropping head-first from a eucalyptus branch with its arms spread wide. Funny-scary, clearly a tall-tale monster, not cute.",
+  "setting": "The Australian bush at dusk, tall gum trees, red earth, a hiking trail with a lone backpacker's hat below."
+ },
+ "bukavac": {
+  "look": "A monstrous six-legged lake beast crawling out of a pond: a squat, heavy, toad-like and reptilian body with warty dark green hide, six thick clawed legs, a broad head with large gnarled twisted horns and bright glowing eyes, its wide mouth open bellowing. Menacing, not a dragon, no wings.",
+  "setting": "A reedy pond on the flat Serbian plain of Syrmia at night, willow trees and a moonlit village with a church tower far off."
+ },
+ "mande-barung": {
+  "look": "A large, hairy, upright ape-like wild man with dark brown shaggy fur, broad shoulders, long arms, a heavy brow and a dark human-like face, walking through dense forest and pushing aside a branch. Big footprints in the mud behind it.",
+  "setting": "The misty subtropical forests of the Garo Hills, India, with bamboo, ferns and tall broadleaf trees."
+ },
+ "chuchuna": {
+  "look": "A tall, powerfully built wild man covered in dark brown hair, wearing a rough cloak of reindeer and animal skins over its shoulders, with a pale patch of fur on its forearms, a heavy brow and a fierce face, standing on a snowy ridge holding a broken branch. Primitive and wary.",
+  "setting": "The snowy taiga of Yakutia, Siberia at dusk, larch trees, frozen river and low mountains."
+ },
+ "orang-mawas": {
+  "look": "A tall, black-furred ape-like wild man standing upright in a jungle stream, holding a fish in one hand, with long arms, shaggy black hair, a dark face and crooked snaggle teeth showing in a grimace.",
+  "setting": "Dense Malaysian rainforest in Johor, a rocky jungle stream, palms, giant ferns and hanging vines, a fruit orchard edge in the distance."
+ },
+ "moehau-monster": {
+  "look": "A tall, hairy, man-like creature with long grey-brown hair, long arms and large hands, a broad face half-hidden by hair, standing among tree ferns and watching from the bush. Wild and imposing.",
+  "setting": "The dense native bush of the Moehau Range, Coromandel, New Zealand, with tree ferns, nikau palms and a misty coastal bay below."
+ },
+ "mono-grande": {
+  "look": "A large, tailless ape about 5 ft tall with reddish-brown hair, long arms, a flat face and a long jaw, standing upright and brandishing a broken branch aggressively. Clearly no tail.",
+  "setting": "A riverbank in the rainforest of Venezuela, giant trees, hanging vines, a misty tepui mountain in the distance."
+ },
+ "cadejo": {
+  "look": "A huge, shaggy black spectral dog the size of a calf with burning red eyes, goat hooves instead of paws, and a broken iron chain dragging from its neck, stalking down a dirt road. Behind it, a white cadejo with blue glowing eyes watches protectively.",
+  "setting": "A lonely dirt road at night in rural Central America, a volcano silhouette, banana plants and a single lantern."
+ },
+ "huay-chivo": {
+  "look": "A menacing goat-man standing upright: a muscular, hairy human-like body with clawed hands, the head of a black goat with long curved ridged horns, a shaggy beard and burning red eyes, a ragged cloak on its shoulders. It looms over a corral, threatening, not cute.",
+  "setting": "A Yucatán village at night, a thatched-roof Maya house, a stone wall corral with frightened goats, a ceiba tree."
+ },
+ "gwyllgi": {
+  "look": "An enormous black mastiff with a broad head, blazing red eyes, a massive chest and bared teeth, with dark mist steaming from its jaws, standing in the middle of a narrow road. Spectral and threatening.",
+  "setting": "A lonely mountain pass road in north Wales at night, stone walls, bracken, moonlit hills and an old fingerpost."
+ },
+ "wulver": {
+  "look": "A tall man covered in short brown hair with the head of a wolf, wearing simple rough woollen clothes, sitting on a sea rock with a fishing line, a string of fish beside him. Calm and gentle, not snarling.",
+  "setting": "A rocky Shetland shoreline at dusk, a small stone croft house with a lit window, calm grey sea and low hills."
+ },
+ "wolpertinger": {
+  "look": "A small rabbit-like animal with soft brown fur, short deer antlers, small bird wings on its back, tiny fangs and webbed duck feet, perched on a mossy stump. Funny and odd.",
+  "setting": "A Bavarian alpine forest clearing at dusk, spruce trees, a mountain peak and an onion-domed chapel far off."
+ },
+ "turtle-lake-monster": {
+  "look": "A long, dark lake creature with no back fin breaking the surface of a calm lake, with a dog- or pig-like head with small eyes and a blunt snout, and a long smooth humped back trailing behind it.",
+  "setting": "Turtle Lake, Saskatchewan at sunset, aspen and spruce shoreline, a small aluminium fishing boat in the distance."
+ },
+ "brownies": {
+  "look": "A small, shaggy, brown-skinned little man with wild hair and a beard, wearing ragged brown clothes, busily sweeping a farmhouse kitchen floor at night with a broom, a bowl of cream waiting for him by the hearth. Homely and a little wild, friendly.",
+  "setting": "An old Scottish farmhouse kitchen at night, a stone hearth with glowing embers, a butter churn and a sleeping cat."
+ },
+ "hob": {
+  "look": "A small, hairy, wizened little old man with a long nose and big ears, wearing a ragged shirt, carrying a bundle of hay across a farmyard at night. Mischievous grin.",
+  "setting": "A Yorkshire farmyard at night, a stone barn, a dry-stone wall and moonlit moors behind."
+ },
+ "dwarves": {
+  "look": "A stocky, broad-shouldered dwarf with a long braided beard, a leather apron and strong arms, hammering a glowing piece of metal on an anvil, sparks flying. Fierce master smith, not a cartoon.",
+  "setting": "A forge inside a mountain cave, glowing embers, rough rock walls and a heap of gold treasure."
+ },
+ "tomte": {
+  "look": "A small, child-sized old man with two normal kind eyes, a round nose, a long white beard, a red woollen cap pulled low and grey wool clothes, carrying a lantern through deep snow toward a red barn. Kind but serious face, two eyes, normal human face.",
+  "setting": "A snowy Swedish farm at night, a red wooden barn with white trim, falling snow and a bowl of porridge on the step."
+ },
+ "domovoi": {
+  "look": "A small, grey-haired old man with a long shaggy grey beard covering most of his body, bright glinting eyes, peeking out from behind a big white tiled stove. Watchful, old and furry.",
+  "setting": "A cosy old Russian wooden izba at night, a large stove, an icon corner, a cat on a bench and a samovar."
+ },
+ "duwende": {
+  "look": "A tiny, wizened old man spirit, child-sized or smaller, with brown wrinkled skin, a white beard, a pointed hat, sitting on a termite mound. Mysterious, watchful.",
+  "setting": "A Philippine rural yard at dusk, a nipa hut on stilts, banana and coconut trees, a large termite mound under an old balete tree."
+ },
+ "orang-bunian": {
+  "look": "A group of graceful, beautiful human-like figures in old-fashioned Malay clothing (sarongs, baju and songkok), faint and semi-transparent, walking along a misty forest path carrying oil lamps. Ethereal and mysterious, not frightening.",
+  "setting": "A deep, misty rainforest in Malaysia at dusk, giant trees with buttress roots, fireflies and a hidden village glow."
+ },
+ "korpokkur": {
+  "look": "Two tiny people sheltering under the broad leaves of a giant butterbur plant like an umbrella, dressed in simple robes, holding a fish they caught. Gentle and charming, dignified, small.",
+  "setting": "A riverbank in Hokkaido at dusk, a forest of giant butterbur leaves, a clear stream and mountains."
+ },
+ "duendes": {
+  "look": "A small, mischievous house spirit with a big head, a huge pointed hat, pointy ears and a cheeky grin, hiding behind a cupboard door holding a stolen key. Playful trickster.",
+  "setting": "An old Spanish whitewashed house kitchen at night, terracotta tiles, copper pots and a candle."
+ },
+ "goblins": {
+  "look": "A small, grotesque goblin with green-grey warty skin, long pointed ears, a hooked nose, a wide grin of sharp crooked teeth, long bony fingers and glowing yellow eyes, wearing ragged clothes, crouched on a stone wall. Mischievous and ill-natured.",
+  "setting": "A medieval Normandy village at night, a stone church with a crooked spire, a full moon and gnarled trees."
+ },
+ "hobgoblin": {
+  "look": "A small, hairy, impish little man with pointed ears, a big grin and a shaggy beard, wearing a ragged green jerkin, tiptoeing with a lantern across a kitchen while playing a prank, knocking over a milk pail. Playful, not evil.",
+  "setting": "An old English cottage kitchen at night, wooden beams, a hearth and dried herbs."
+ },
+ "merrow": {
+  "look": "An Irish mermaid with long dark hair, a green fish tail and a small red feathered cap on her head, wearing a simple green woven top that fully covers her chest, sitting on a sea rock. Beautiful and mysterious. Family friendly, fully covered, no nudity.",
+  "setting": "The rugged coast of Kerry, Ireland at dusk, cliffs, green fields and a small stone cottage."
+ },
+ "iara": {
+  "look": "A beautiful river spirit with long black hair and a glittering green and gold fish tail, wearing a modest top woven from river leaves and shells that fully covers her chest, sitting on a rock in an Amazon river and singing. Enchanting and a little dangerous. Family friendly, fully covered, no nudity.",
+  "setting": "An Amazon river at dusk, rainforest on the banks, giant water lilies and a wooden canoe drifting."
+ },
+ "uss-stein-monster": {
+  "look": "An underwater view: the grey hull and bulbous black sonar dome of a US Navy frigate seen from below, the rubber dome slashed with long cuts, and a gigantic squid looming out of the dark below it, reaching up with long tentacles lined with hooked claws, one huge eye glinting. Mysterious and enormous, not gory.",
+  "setting": "Deep blue Pacific water off San Diego, shafts of light from the surface, the ship's propeller wake above."
+ },
+ "bishop-fish": {
+  "look": "A sea creature shaped like a bishop in robes: a scaly fish body with fin-like arms, a tall pointed mitre-shaped head, standing upright on its tail fins and raising a fin as if blessing. Odd and solemn.",
+  "setting": "A Baltic shoreline in the 1500s, a wooden ship, waves and robed clergy standing on the beach."
+ },
+ "blue-men-of-the-minch": {
+  "look": "Several human-sized men with blue skin and long grey faces, swimming with their upper bodies out of the water beside a fishing boat, one rising up to speak to the captain. Eerie.",
+  "setting": "The Minch strait in the Hebrides at dusk, the Shiant Isles cliffs, rough waves and a wooden sailing boat."
+ },
+ "finfolk": {
+  "look": "A tall, thin, grim finman with grey-green scaly skin, webbed hands, long dark wet hair and cold pale eyes, wearing a dark sealskin cloak, standing in a small wooden boat and rowing over a misty sea. Sinister and sorcerous.",
+  "setting": "The Orkney coast at dusk, standing stones on a headland, a glowing undersea city faintly beneath the water."
+ },
+ "brosno-dragon": {
+  "look": "A huge dragon-like lake creature with a long neck and a reptile head with glowing eyes, rising out of a dark lake, with a long serpent back breaking the water behind it. No wings.",
+  "setting": "Lake Brosno in western Russia at dusk, a pine forest shoreline, mist on the water and a wooden church on the far bank."
+ },
+ "lutin": {
+  "look": "A pure white cat with glowing green eyes and a knowing human-like grin, sitting on a horse's back in a stable and braiding knots into its mane.",
+  "setting": "An old Quebec stable at night, wooden beams, a lantern, hay and snowy fields through the door."
  }
 }
