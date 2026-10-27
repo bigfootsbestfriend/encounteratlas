@@ -358,6 +358,49 @@ HELLO = f'''<div class="hello" id="hello" role="region" aria-label="Weekly email
 <script>try{{const s=localStorage;if(s.getItem('ea-subbed')||Date.now()-(+s.getItem('ea-hello')||0)<12096e5)document.getElementById('hello').remove();}}catch(e){{}}</script>'''
 
 
+# Site-wide interactive layer (2026-10-26): the "Random encounter" dice (static/dice.js, pulls /data/random.json),
+# a "Save / share" button by the h1 (static/share.js) and a reading progress bar on long articles (static/dice.css).
+# RANDOM collects the indexable detail pages the dice can land on; write_random() saves it after the build.
+RANDOM_KINDS = [('/creatures/', 'creature'), ('/ufo/cases/', 'ufo'), ('/encounters/', 'ufo'), ('/stories/', 'story'),
+                ('/history/', 'story'), ('/places/', 'place'), ('/mysteries/', 'mystery')]
+RANDOM_SKIP = {'/stories/campfire/'}
+RANDOM = {}
+NO_DICE = ('/map/', '/near-me/', '/report/')  # full-screen maps and the report form: nothing floating over them
+NO_SHARE = ('/', '/search/', '/report/', '/map/', '/near-me/', '/contact/', '/privacy/', '/newsletter/', '/advertise/', '/reports/', '/404.html')
+READ_BAR = ('/stories/', '/creatures/', '/mysteries/', '/ufo/cases/', '/encounters/', '/history/', '/guides/')
+
+
+def page_tools(path, title, body, noindex, canonical):
+    """Head CSS, body-top HTML and end-of-body scripts for the dice, share button and reading bar on this page."""
+    sub = path.count('/') >= 3  # /section/item/ or deeper
+    if not noindex and canonical and path not in RANDOM_SKIP:
+        for prefix, kind in RANDOM_KINDS:
+            if path.startswith(prefix) and path.count('/') == prefix.count('/') + 1 and (kind != 'place' or 'pl-detail' in body):
+                RANDOM[path] = (kind, title)
+                break
+    dice = not path.startswith(NO_DICE)
+    share = path not in NO_SHARE and not path.startswith('/report') and '<h1' in body
+    bar = sub and path.startswith(READ_BAR)
+    css = (f'<link rel="stylesheet" href="{url("/static/dice.css")}">' if dice or bar else '') + \
+          (f'<link rel="stylesheet" href="{url("/static/share.css")}">' if share else '')
+    top = '<div class="read-bar" aria-hidden="true"></div>' if bar else ''
+    js = ((f'<script src="{url("/static/dice.js")}" {f' data-pool="{url("/data/random.json")}"' if dice else ""}{" data-bar" if bar else ""} defer></script>' if dice or bar else '')
+          + (f'<script src="{url("/static/share.js")}" data-page-share defer></script>' if share else ''))
+    return css, top, js
+
+
+def write_random():
+    """/data/random.json for the dice: {kind: [[path, title], ...]} from indexable pages that were really written (no stubs)."""
+    out = {}
+    for path, (kind, title) in sorted(RANDOM.items()):
+        f = os.path.join(OUT, path.strip('/'), 'index.html')
+        if os.path.exists(f) and 'content="noindex' not in open(f, encoding='utf-8').read(3000):
+            out.setdefault(kind, []).append([BASE + path, title])
+    os.makedirs(os.path.join(OUT, 'data'), exist_ok=True)
+    with open(os.path.join(OUT, 'data', 'random.json'), 'w', encoding='utf-8') as f:
+        json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
+
+
 def page(path, title, body, desc='', body_class='', head_extra='', canonical=True, og_image='', noindex=False, viewport_fit=False, ld=None, article=None):
     # article={'published': 'YYYY-MM-DD', 'updated': 'YYYY-MM-DD' or None, 'verb': 'By'|'Retold by'}: pages we wrote get Mike's
     # byline (after the lede, else after the h1), Article structured data and og:type article. See AUTHOR.
@@ -379,6 +422,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
     feeds = (f'<link rel="alternate" type="application/rss+xml" title="Encounter Atlas" href="{SITE_URL}/feed.xml">'
              + (f'<link rel="alternate" type="application/rss+xml" title="Encounter Atlas: {sec[1]}" href="{SITE_URL}{sec[0]}feed.xml">' if sec else ''))
     beacon = ga_tag()
+    tools_css, tools_top, tools_js = page_tools(path, title, body, noindex, canonical)
     canon = f'<link rel="canonical" href="{SITE_URL}{path}">' if canonical else ''
     head_extra = re.sub(r'<link rel="stylesheet" href="(https://cdnjs\.cloudflare\.com/ajax/libs/maplibre-gl/[^"]+\.css)">',
                         r"""<link rel="preload" href="\1" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="\1"></noscript>""", head_extra)
@@ -404,13 +448,13 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 <meta property="og:image" content="{SITE_URL}{og_image or '/static/og.png'}">
 <meta name="twitter:card" content="summary_large_image">
 {font_head()}
-<link rel="stylesheet" href="{url('/static/site.css')}">
+<link rel="stylesheet" href="{url('/static/site.css')}">{tools_css}
 {head_extra}
 {ld_json(path, title, body, ld)}
 {beacon}
 </head>
 <body class="{body_class}">
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main">Skip to content</a>{tools_top}
 <div class="print-brand" aria-hidden="true"><img src="{url('/static/logo-mark.svg')}" alt="" width="44" height="44"><div><b>Encounter Atlas</b><span>Cryptids, UFOs and close encounters, mapped</span></div><span class="pb-url">encounteratlas.com</span></div>
 <div class="print-foot" aria-hidden="true">Printed from encounteratlas.com{esc(path)} · Free to print and share · Report what you saw at encounteratlas.com/report</div>
 {'' if path in ('/map/', '/near-me/') else HELLO}
@@ -435,7 +479,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
   </div>
 </footer>
 <script src="{url('/static/amz.js')}" defer></script>
-<script src="{url('/static/signup.js')}" defer></script>
+<script src="{url('/static/signup.js')}" defer></script>{tools_js}
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('{url('/sw.js')}');</script>
 <script>document.addEventListener('click',e=>{{const a=e.target.closest&&e.target.closest('a[href]');if(a&&/^https?:/.test(a.href)&&!/(^|[.])encounteratlas[.]com$/.test(a.hostname)&&a.host!==location.host&&!a.target){{a.target='_blank';a.rel=((a.rel||'')+' noopener').trim();}}}},true);</script>
 <script>(function(){{const dd=[...document.querySelectorAll('.nav-dd, .mm')];dd.forEach(d=>d.addEventListener('toggle',()=>{{if(d.open)dd.forEach(o=>{{if(o!==d)o.open=false;}});}}));document.addEventListener('click',e=>{{dd.forEach(d=>{{if(d.open&&!d.contains(e.target))d.open=false;}});}});document.addEventListener('keydown',e=>{{if(e.key==='Escape')dd.forEach(d=>{{if(d.open){{d.open=false;d.querySelector('summary').focus();}}}});}});}})();</script>
@@ -1785,6 +1829,7 @@ def main():
                 print(f'warning: section {fn} skipped: {e!r}', file=sys.stderr)
     author_page()
     write_feeds()
+    write_random()
     with open(os.path.join(OUT, 'manifest.webmanifest'), 'w') as f:
         # The app (installed PWA, later the Play Store TWA) opens on /near-me/. id stays fixed so installs survive start_url changes.
         json.dump({'id': BASE + '/near-me/', 'name': 'Encounter Atlas', 'short_name': 'Encounters', 'start_url': BASE + '/near-me/?source=pwa',
