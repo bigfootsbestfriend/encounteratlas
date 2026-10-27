@@ -52,3 +52,50 @@
   }
   if ([...pre.keys()].length) apply();
 })();
+
+// Spin the dial: a random playable episode, filtered by length. Loads /data/podcast-play.json on the first spin only.
+(function () {
+  const box = document.querySelector('[data-spin]');
+  if (!box) return;
+  const cfg = JSON.parse(box.dataset.spin);
+  const out = box.querySelector('.spin-out');
+  const go = box.querySelector('.spin-go');
+  const lens = [...box.querySelectorAll('[data-len]')];
+  const hasArt = new Set(cfg.art);
+  let len = 'any', pool = null, last = '';
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const fits = (m) => len === 'any' || (m > 0 && (len === 'short' ? m < 30 : len === 'mid' ? m >= 30 && m <= 60 : m > 60));
+  lens.forEach((b) => b.addEventListener('click', () => {
+    len = b.dataset.len;
+    lens.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+  }));
+  async function load() {
+    if (pool) return pool;
+    const d = await fetch(cfg.data).then((r) => r.json());
+    pool = [];
+    for (const [slug, eps] of Object.entries(d)) if (cfg.names[slug]) eps.forEach((e) => pool.push([slug, e]));
+    return pool;
+  }
+  async function spin() {
+    go.classList.add('spinning');
+    setTimeout(() => go.classList.remove('spinning'), 750);
+    let all;
+    try { all = await load(); } catch (e) { out.innerHTML = '<p class="spin-hint">Couldn\'t load episodes. Try again in a moment.</p>'; return; }
+    const ok = all.filter(([, e]) => fits(e.m) && e.a !== last);
+    if (!ok.length) { out.innerHTML = '<p class="spin-hint">Nothing that length right now. Try another length.</p>'; return; }
+    const [slug, e] = ok[Math.floor(Math.random() * ok.length)];
+    last = e.a;
+    const art = hasArt.has(slug) ? `<img src="${cfg.thumb}${slug}.webp" alt="" width="360" height="257">` : '<span class="pn-noart"></span>';
+    const pp = esc(JSON.stringify(e));
+    setTimeout(() => {
+      out.classList.add('has-ep');
+      out.innerHTML = `<div class="spin-card"><div class="pn-art">${art}${e.m ? `<span class="pn-min">${e.m} min</span>` : ''}` +
+        `<button type="button" class="pp-btn pp-round pn-play" data-pp="${pp}" aria-label="Play ${esc(e.t)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.1v13.8a1 1 0 0 0 1.5.86l11-6.9a1 1 0 0 0 0-1.72l-11-6.9A1 1 0 0 0 8 5.1z"/></svg><span></span></button></div>` +
+        `<div class="pn-body"><a class="pn-crit" href="${cfg.crit}${slug}/">${esc(cfg.names[slug])}</a><b class="pn-t">${esc(e.t)}</b>` +
+        `<small>${esc(e.s)}</small><button type="button" class="spin-again">Not feeling it? Spin again</button></div></div>`;
+      out.querySelector('.spin-again').addEventListener('click', spin);
+    }, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 450);
+    if (window.gtag) try { window.gtag('event', 'podcast_spin', { page_type: 'podcasts', length: len }); } catch (x) { /* no analytics */ }
+  }
+  go.addEventListener('click', spin);
+})();

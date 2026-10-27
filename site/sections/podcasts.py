@@ -162,7 +162,9 @@ def build(ctx):
 
     def creature_chip(slug):
         c = ctx.by_slug[slug]
-        return (f'<a class="pcrit" href="{url("/podcasts/creature/" + slug + "/")}">{ctx.badge(c, "sm")}'
+        a = _podplay.art_thumb(ctx, slug)
+        pic = f'<img class="pcrit-art" src="{a}" alt="" width="360" height="257" loading="lazy" decoding="async">' if a else ctx.badge(c, "sm")
+        return (f'<a class="pcrit{" has-art" if a else ""}" href="{url("/podcasts/creature/" + slug + "/")}">{pic}'
                 f'<span>{esc(c["name"])}<small>{len(eps_by[slug])} episodes</small></span></a>')
 
     def topic_tiles(current=None):
@@ -199,11 +201,19 @@ def build(ctx):
         if e['t'] not in seen:
             seen.add(e['t']); play_now.append((e, slug))
     play_now = sorted(play_now, key=lambda x: x[0].get('d') or '', reverse=True)[:8]
-    play_html = ''.join(
-        f'<li class="pp-ep">{_podplay.play_button(e, "pp-btn pp-round", "")}<span class="pp-ep-t"><b>{esc(e["t"])}</b>'
-        f'<small><a href="{url("/podcasts/creature/" + slug + "/")}">{esc(ctx.by_slug[slug]["name"])}</a> · {esc(e["s"])}'
-        f'{" · " + str(e["m"]) + " min" if e.get("m") else ""}</small></span></li>'
-        for e, slug in play_now)
+    def pn_card(e, slug):
+        a = _podplay.art_thumb(ctx, slug)
+        pic = f'<img src="{a}" alt="" width="360" height="257" loading="lazy" decoding="async">' if a else '<span class="pn-noart"></span>'
+        mins = f'<span class="pn-min">{e["m"]} min</span>' if e.get('m') else ''
+        return (f'<li class="pn-card"><div class="pn-art">{pic}{mins}{_podplay.play_button(e, "pp-btn pp-round pn-play", "")}</div>'
+                f'<div class="pn-body"><a class="pn-crit" href="{url("/podcasts/creature/" + slug + "/")}">{esc(ctx.by_slug[slug]["name"])}</a>'
+                f'<b class="pn-t">{esc(e["t"])}</b><small>{esc(e["s"])}</small></div></li>')
+    play_html = ''.join(pn_card(e, slug) for e, slug in play_now)
+    # Episode roulette: every playable creature, for the "spin" picker (podcasts.js loads /data/podcast-play.json on use)
+    spin_names = {k: ctx.by_slug[k]['name'] for k in _podplay.playable(ctx) if k not in _podplay.LIVING}
+    spin_art = [k for k in spin_names if _podplay.art_thumb(ctx, k)]
+    spin_cfg = esc(json.dumps({'names': spin_names, 'art': spin_art, 'thumb': url('/static/cards/thumb/'),
+                               'data': url('/data/podcast-play.json'), 'crit': url('/podcasts/creature/')}, separators=(',', ':')))
     body = f'''
 <section class="band band-dark pod-head">
   <div class="wrap">
@@ -218,9 +228,25 @@ def build(ctx):
     <h2 id="pn-h">Play an episode now</h2>
     <p>Fresh episodes about Mothman, Bigfoot, Dogman and the rest. They play right here (and keep going with your screen off in the app), streamed from each show's own feed so the show gets the listen.</p>
     <p><button type="button" class="btn pp-all" data-pp-all>{_podplay.PLAY_SVG} Play all {len(play_now)}</button></p>
-    <ol class="pp-eps">{play_html}</ol>
+    <ol class="pn-grid">{play_html}</ol>
   </div></div>
 </section>""" if play_now else ''}
+{f"""<section class="band band-dark pod-spin" aria-labelledby="spin-h" data-spin="{spin_cfg}">
+  <div class="wrap spin-wrap">
+    <div class="spin-intro">
+      <h2 id="spin-h">Can't decide? Spin the dial</h2>
+      <p>Pick how long you've got and we'll pull a random episode about one of {len(spin_names)} creatures. Don't like it? Spin again.</p>
+      <div class="spin-len" role="group" aria-label="How long have you got?">
+        <button type="button" class="chip" data-len="any" aria-pressed="true">Any length</button>
+        <button type="button" class="chip" data-len="short" aria-pressed="false">Under 30 min</button>
+        <button type="button" class="chip" data-len="mid" aria-pressed="false">30 to 60 min</button>
+        <button type="button" class="chip" data-len="long" aria-pressed="false">Over an hour</button>
+      </div>
+      <p><button type="button" class="btn spin-go"><span class="spin-dial" aria-hidden="true"></span>Spin for an episode</button></p>
+    </div>
+    <div class="spin-out" data-pp-list aria-live="polite"><p class="spin-hint">Your episode shows up here.</p></div>
+  </div>
+</section>""" if spin_names else ''}
 {f"""<section class="band band-dark pod-active-band" aria-labelledby="act-h">
   <div class="wrap">
     <h2 id="act-h"><span class="pulse" aria-hidden="true"></span>Most active this month</h2>
