@@ -62,6 +62,13 @@
   label.textContent = 'Random encounter';
   b.append(svg, label);
   document.body.append(b);
+  // Phones: tuck the dice away while scrolling down so it never sits on a button you're reading past; it comes back on scroll up.
+  let lastY = scrollY;
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    if (innerWidth < 900) { if (y > lastY + 6 && y > 240) b.classList.add('ea-dice-tuck'); else if (y < lastY - 6) b.classList.remove('ea-dice-tuck'); }
+    lastY = y;
+  }, { passive: true });
 
   // Sit just above the podcast player bar (podplayer.js adds it and body.pp-on): its height changes with the screen
   // width and the resume/controls state, so measure it rather than guess.

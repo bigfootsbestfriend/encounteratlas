@@ -18,7 +18,7 @@ WITNESSES = {
 # "What do you think it was?" poll. Where our write-up leans one way, LEAN says which; cases without one are still open.
 POLL = [('made', 'Aircraft, rocket or balloon'), ('natural', 'Something natural'), ('hoax', 'A hoax'), ('unknown', 'Truly unknown')]
 LEAN = {
-    'nuremberg-1561': 'natural', 'basel-1566': 'natural', 'roswell-1947': 'made', 'mantell-1948': 'made', 'mcminnville-1950': 'hoax',
+    'nuremberg-1561': 'natural', 'basel-1566': 'natural', 'roswell-1947': 'made', 'mantell-1948': 'made',
     'lubbock-lights-1951': 'natural', 'levelland-1957': 'natural', 'berwyn-1974': 'natural', 'petrozavodsk-1977': 'made',
     'kaikoura-1978': 'natural', 'jal-1628-1986': 'natural', 'phoenix-lights-1997': 'made', 'ohare-2006': 'natural',
     'stephenville-2008': 'made', 'zacatecas-bonilla-1883': 'natural', 'oloron-angel-hair-1952': 'natural', 'campeche-infrared-2004': 'made',

@@ -36,3 +36,6 @@ html.ea-long .read-bar { display: block; }
 }
 @keyframes ea-read { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @media print { .ea-dice, .read-bar { display: none !important; } }
+.ea-dice { transition: transform .25s ease, opacity .25s ease; }
+.ea-dice.ea-dice-tuck { transform: translateY(140%); opacity: 0; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .ea-dice { transition: none; } }
