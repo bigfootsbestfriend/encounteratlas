@@ -668,18 +668,11 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 
 /* Weekly email signup */
 .signup { position: relative; display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: start; background: var(--spruce);
-  background-image: radial-gradient(circle at 92% 0%, rgba(242,179,61,.18), transparent 45%); color: #F3F1DA; border: 2px solid var(--lantern);
+  color: #F3F1DA; border: 2px solid var(--lantern);
   border-radius: 18px; padding: 1.5rem 1.6rem; margin: 2rem 0 1rem; box-shadow: 0 10px 30px rgba(0,0,0,.18); }
-.su-banner { position: relative; grid-column: 1 / -1; height: 150px; margin: -1.5rem -1.6rem .2rem; border-radius: 16px 16px 0 0; overflow: hidden;
-  background: radial-gradient(circle at 70% 115%, #FBE3A6 0, #F2B33D 22%, #E07A4F 48%, transparent 75%), linear-gradient(#1B3A33, #4A5A3A 55%, #C9783F); }
-.su-banner img { position: absolute; display: block; }
-.sb-land { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 46px; }
-.sb-ufo { width: 64px; height: 64px; left: 58%; top: 10px; transform: rotate(-8deg); }
-.sb-moth { width: 74px; height: 74px; left: 6%; bottom: 26px; }
-.sb-big { width: 96px; height: 96px; left: 24%; bottom: 14px; }
-.sb-dog { width: 82px; height: 82px; left: 42%; bottom: 14px; }
-.sb-ness { width: 92px; height: 92px; right: 6%; bottom: 6px; z-index: 1; }
-.sb-lake { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 46px; z-index: 2; }
+.su-banner { position: relative; grid-column: 1 / -1; aspect-ratio: 994 / 350; margin: -1.5rem -1.6rem .2rem; border-radius: 16px 16px 0 0; overflow: hidden; background: #13261F; }
+.su-banner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.su-banner::after { content: ""; position: absolute; inset: auto 0 0 0; height: 40%; background: linear-gradient(transparent, var(--spruce)); }
 .signup h2 { margin: 0 0 .25rem; color: var(--lantern-2); font-size: clamp(1.4rem, 3vw, 1.8rem); }
 .signup .su-lede { margin: 0 0 .8rem; color: var(--lichen); }
 .su-list { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: .45rem; }
@@ -692,9 +685,7 @@ body.mapper .map-full-bar [data-locate] { position: static; flex: none; margin-l
 .signup .su-fine { margin: .55rem 0 0; font-size: .82rem; color: var(--muted-d); }
 @media (max-width: 640px) {
   .signup { grid-template-columns: 1fr; gap: .8rem; padding: 1.2rem; }
-  .su-banner { height: 118px; margin: -1.2rem -1.2rem .1rem; }
-  .sb-moth { width: 56px; height: 56px; left: 3%; } .sb-big { width: 74px; height: 74px; left: 20%; } .sb-dog { width: 64px; height: 64px; left: 42%; }
-  .sb-ness { width: 70px; height: 70px; right: 3%; } .sb-ufo { width: 50px; height: 50px; left: 60%; top: 8px; }
+  .su-banner { margin: -1.2rem -1.2rem .1rem; }
   .signup input[type=email] { max-width: none; }
 }
 .nl-band { padding-top: 0; }

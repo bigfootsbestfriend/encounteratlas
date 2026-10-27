@@ -448,14 +448,9 @@ def signup_box(uid, title='Strange news, once a week', text=None):
     """Weekly email signup (single opt-in). The newsletter Worker sends people back to /newsletter/#confirmed.
     A dark card with three creature silhouettes, what's in each email, and a short email field (signup.js tracks it)."""
     text = text or 'One short email every Thursday, free, for cryptid and UFO fans everywhere.'
-    # A dusk banner across the top of the card: creature silhouettes on the ridge, Nessie in the lake, a saucer overhead
-    a = lambda n, c: f'<img class="{c}" src="{url("/static/art/" + n + ".svg")}" alt="" width="80" height="80" loading="lazy">'
-    art = (a('ufo-saucer', 'sb-ufo') + a('mothman', 'sb-moth') + a('bigfoot', 'sb-big') + a('dogman', 'sb-dog') + a('loch-ness-monster', 'sb-ness')
-           + '<svg class="sb-land" viewBox="0 0 800 60" preserveAspectRatio="none"><path d="M0 34 C90 14 170 12 260 26 S420 44 520 30 C545 28 560 34 580 60 L0 60Z" fill="#13261F"/></svg>'
-           # the lake sits in front of Nessie so her neck and humps rise out of the water instead of standing on it
-           '<svg class="sb-lake" viewBox="0 0 800 60" preserveAspectRatio="none"><path d="M548 31 Q556 29 572 30 L800 30 L800 60 L548 60Z" fill="#1E4A4F"/>'
-           '<path d="M548 31 Q556 29 572 30 L800 30" fill="none" stroke="#F2B33D" stroke-opacity=".55" stroke-width="2"/>'
-           '<path d="M600 40 h50 M700 46 h60 M630 52 h40" stroke="#F2B33D" stroke-opacity=".3" stroke-width="2"/></svg>')
+    # A painted dusk banner across the top of the card (Gemini art, same poster style as the creature cards)
+    art = (f'<img src="{url("/static/art/signup-banner-994.webp")}" srcset="{url("/static/art/signup-banner-994.webp")} 994w, '
+           f'{url("/static/art/signup-banner.webp")} 1988w" sizes="(min-width: 900px) 820px, 100vw" alt="" width="994" height="418" loading="lazy" decoding="async">')
     return f'''<section class="signup" id="signup-{uid}">
 <div class="su-banner" aria-hidden="true">{art}</div>
 <div class="su-main"><h2>{esc(title)}</h2>
