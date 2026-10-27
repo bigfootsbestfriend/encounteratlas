@@ -451,8 +451,11 @@ def signup_box(uid, title='Strange news, once a week', text=None):
     # A dusk banner across the top of the card: creature silhouettes on the ridge, Nessie in the lake, a saucer overhead
     a = lambda n, c: f'<img class="{c}" src="{url("/static/art/" + n + ".svg")}" alt="" width="80" height="80" loading="lazy">'
     art = (a('ufo-saucer', 'sb-ufo') + a('mothman', 'sb-moth') + a('bigfoot', 'sb-big') + a('dogman', 'sb-dog') + a('loch-ness-monster', 'sb-ness')
-           + '<svg class="sb-land" viewBox="0 0 800 60" preserveAspectRatio="none"><path d="M0 34 C90 14 170 12 260 26 S420 44 520 30 L560 32 L800 32 L800 60 L0 60Z" fill="#13261F"/>'
-           '<path d="M560 36 L800 36 L800 60 L560 60Z" fill="#1E4A4F"/><path d="M590 44 h60 M690 50 h70" stroke="#F2B33D" stroke-opacity=".35" stroke-width="2"/></svg>')
+           + '<svg class="sb-land" viewBox="0 0 800 60" preserveAspectRatio="none"><path d="M0 34 C90 14 170 12 260 26 S420 44 520 30 C545 28 560 34 580 60 L0 60Z" fill="#13261F"/></svg>'
+           # the lake sits in front of Nessie so her neck and humps rise out of the water instead of standing on it
+           '<svg class="sb-lake" viewBox="0 0 800 60" preserveAspectRatio="none"><path d="M548 31 Q556 29 572 30 L800 30 L800 60 L548 60Z" fill="#1E4A4F"/>'
+           '<path d="M548 31 Q556 29 572 30 L800 30" fill="none" stroke="#F2B33D" stroke-opacity=".55" stroke-width="2"/>'
+           '<path d="M600 40 h50 M700 46 h60 M630 52 h40" stroke="#F2B33D" stroke-opacity=".3" stroke-width="2"/></svg>')
     return f'''<section class="signup" id="signup-{uid}">
 <div class="su-banner" aria-hidden="true">{art}</div>
 <div class="su-main"><h2>{esc(title)}</h2>
