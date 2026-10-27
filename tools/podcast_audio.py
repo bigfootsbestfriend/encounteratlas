@@ -188,6 +188,40 @@ def track_id(url):
     return int(m.group(1)) if m else None
 
 
+def show_latest():
+    """Give every show's newest episode (podcasts.json last_ep) its audio URL and length, so the podcast hub and topic
+    pages can play it in the site's player instead of sending people off to Apple. Same sources as the creature episodes:
+    iTunes lookup by trackId, then the show's RSS feed by title."""
+    data = json.load(open(P_SHOWS, encoding='utf-8'))
+    found = 0
+    for n, s in enumerate(data['shows'], 1):
+        le = s.get('last_ep') or {}
+        if not le.get('url'):
+            continue
+        a, mins = '', 0
+        res = (lookup(s['id']) or {}).get('results', [])
+        tid = track_id(le['url'])
+        for r in res:
+            if r.get('wrapperType') == 'podcastEpisode' and (r.get('trackId') == tid or norm(r.get('trackName')) == norm(le.get('title'))):
+                a, mins = r.get('episodeUrl') or '', round((r.get('trackTimeMillis') or 0) / 60000)
+                break
+        if not a and s.get('feed'):
+            a = {norm(t): enc for t, enc in feed_items(s['feed'])}.get(norm(le.get('title')), '')
+        a = https_only(a)
+        if a and live(a):
+            le['audio'] = a
+            if mins:
+                le['mins'] = mins
+            found += 1
+        else:
+            le.pop('audio', None)
+        if n % 25 == 0:
+            print(f'  newest episodes: {n}/{len(data["shows"])} shows', file=sys.stderr)
+    with open(P_SHOWS, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=1, ensure_ascii=False)
+    print(f'newest-episode audio: {found}/{len(data["shows"])} shows', file=sys.stderr)
+
+
 def main():
     os.makedirs(RAW, exist_ok=True)
     data = json.load(open(P_EPS, encoding='utf-8'))
@@ -260,4 +294,11 @@ def main():
 
 
 if __name__ == '__main__':
-    check_only() if '--check' in sys.argv else main()
+    if '--check' in sys.argv:
+        check_only()
+    elif '--shows' in sys.argv:
+        os.makedirs(RAW, exist_ok=True)
+        show_latest()
+    else:
+        main()
+        show_latest()

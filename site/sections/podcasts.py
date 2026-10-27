@@ -124,7 +124,13 @@ def build(ctx):
     def links(s):
         rss = (f'<a class="pod-rss" href="{esc(s["feed"])}" rel="noopener nofollow" title="RSS feed for any podcast app">'
                f'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="2.5" fill="currentColor"/><path d="M3 11a10 10 0 0 1 10 10M3 4a17 17 0 0 1 17 17" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>RSS</a>') if s.get('feed') and not BLOCKED.search(s['feed']) else ''
-        return (f'<p class="pod-links"><a class="pod-apple" href="{esc(s["apple"])}" rel="noopener">'
+        le = s.get('last_ep') or {}
+        play = ''
+        if le.get('audio'):
+            e = {'t': scrub(le.get('title', '')), 's': s['name'], 'd': le.get('date', ''), 'm': le.get('mins') or 0, 'a': le['audio'],
+                 'art': art(s['art'], 160) if s.get('art') else '', 'u': le['url'], 'sa': s['apple']}
+            play = _podplay.play_button(e, 'pod-play', 'Play the newest episode')
+        return (f'<p class="pod-links">{play}<a class="pod-apple{" pod-apple-2" if play else ""}" href="{esc(s["apple"])}" rel="noopener">'
                 f'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.1v13.8a1 1 0 0 0 1.5.86l11-6.9a1 1 0 0 0 0-1.72l-11-6.9A1 1 0 0 0 8 5.1z"/></svg>'
                 f'Apple Podcasts</a>{rss}</p>')
 
@@ -173,7 +179,7 @@ def build(ctx):
 
     def topic_tiles(current=None):
         out = ''
-        for t, (noun, ico, col, _, _) in TOPIC_META.items():
+        for t, (noun, ico, col, _, _) in sorted(TOPIC_META.items(), key=lambda kv: -len(by_topic[kv[0]])):
             if not by_topic[t]:
                 continue
             cur = ' aria-current="page"' if t == current else ''
@@ -224,6 +230,7 @@ def build(ctx):
     <p class="crumb">Podcasts</p>
     <h1>Podcasts for the strange stuff</h1>
     <p class="lede">{len(shows)} shows about Bigfoot, Dogman, cryptids, UFOs and the paranormal, with {total_eps:,} episodes between them. We check every one each week, so dead shows drop off and new ones show up.</p>
+    {f'<p class="pod-jump"><a class="btn" href="#pn-h">{_podplay.PLAY_SVG} Play an episode now</a><span>Or pick a topic:</span></p>' if play_now else ''}
     {topic_tiles()}
   </div>
 </section>
@@ -315,14 +322,17 @@ def build(ctx):
   </div>
 </section>
 <div class="band band-mist"><div class="wrap">
+  <div data-pp-list>
+  {f'<p class="pod-playall"><button type="button" class="btn pp-all" data-pp-all>{_podplay.PLAY_SVG} Play the newest episodes, top show first</button><span>They play right here, streamed from each show\'s own feed.</span></p>' if any((s.get('last_ep') or {}).get('audio') for s in top) else ''}
   <ol class="prow-list">{''.join(row(s, i + 1) for i, s in enumerate(top))}</ol>
+  </div>
   {rest_html}
   {rel_html}
   <p class="small muted">Updated {esc(fmt_date(updated))} from Apple Podcasts. <a href="{url('/podcasts/')}">See all {len(shows)} shows</a>.</p>
 </div></div>'''
         ctx.write(f'/podcasts/{t}/', ctx.page(f'/podcasts/{t}/', TOPIC_TITLE[t].format(year=date.today().year, n=len(lst)) if t in TOPIC_TITLE else f'{h1} ({len(lst)} shows, updated weekly)', body,
                                               f'The best {noun} podcasts, ranked: {", ".join(s["name"] for s in top[:4])} and {len(lst) - 4} more, with episode counts and the latest episodes.',
-                                              head_extra=head))
+                                              head_extra=head + _podplay.head(ctx)))
 
     # ---------- creature episode pages ----------
     def play(e, sh):
