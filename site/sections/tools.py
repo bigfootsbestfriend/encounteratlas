@@ -155,6 +155,35 @@ def settled_sizes(ROOT, creatures):
     return data, sizes, left
 
 
+def wall_item(STATIC, c, e, boxes):
+    """One creature as a size-wall item (same fields Tools.sizes() builds), plus 'src' (its SVG under /static/)
+    and 'vb' (that SVG's viewBox size). Used by the small wall on creature pages (build.py)."""
+    s = c['slug']
+    if os.path.exists(os.path.join(STATIC, 'art', s + '.svg')):
+        ic = 'art/' + s
+        if ic not in boxes:
+            boxes[ic] = art_box(os.path.join(STATIC, 'art', s + '.svg'))
+    else:
+        n = c.get('icon') or ''
+        ic = n if os.path.exists(os.path.join(STATIC, 'icons', n + '.svg')) else CAT_ICON.get(c['cat'], 'hominid')
+    src = ic + '.svg' if ic.startswith('art/') else 'icons/' + ic + '.svg'
+    with open(os.path.join(STATIC, src), encoding='utf-8') as f:
+        m = re.search(r'viewBox="[-\d.]+ [-\d.]+ ([\d.]+) ([\d.]+)"', f.read(800))
+    fit = 'w' if e['dim'] in ('length', 'wingspan', 'across') else 'h'
+    return {'n': c['name'], 'cat': c['cat'], 'i': ic, 'b': boxes.get(ic, [0, 0, 64, 64]), 'f': fit,
+            'd': e['draw'] * (1.2 if e['dim'] == 'shoulder' else 1), 'lo': e['lo'], 'hi': e['hi'], 't': size_text(e), 'dim': e['dim'],
+            'src': src, 'vb': [float(m.group(1)), float(m.group(2))] if m else [64, 64]}
+
+
+def human_item(STATIC, data, boxes):
+    ft = data.get('human', {'ft': 6})['ft']
+    hp = os.path.join(STATIC, 'art', 'pic-human.svg')
+    hi, hb, src, vb = (('art/pic-human', art_box(hp), 'art/pic-human.svg', [800, 800]) if os.path.exists(hp)
+                       else ('human', boxes.get('human', [21, 2, 22, 61]), 'icons/human.svg', [64, 64]))
+    return {'n': 'Person', 'cat': 'human', 'i': hi, 'b': hb, 'f': 'h', 'd': ft, 'lo': ft, 'hi': ft, 't': f'{ft:g} ft tall',
+            'dim': 'height', 'src': src, 'vb': vb}
+
+
 # ---------------------------------------------------------------- identifier scoring
 def _has(word, text):
     return re.search(r'\b' + re.escape(word) + r'(?:s|es|ed|ing)?\b', text) is not None
@@ -593,8 +622,9 @@ class Tools:
         return out
 
     @staticmethod
-    def render_wall(keys, items, icons, VW, VH):
-        """Same layout as compare.js draw(): equal columns, one shared ft scale, ground at the bottom."""
+    def render_wall(keys, items, icons, VW, VH, img=None, cap='cmp-cap', dash='\u2013', human_lbl=None):
+        """Same layout as compare.js draw(): equal columns, one shared ft scale, ground at the bottom.
+        img(it): optional figure markup instead of the inlined icon paths (creature pages use <image> plus a tint filter)."""
         L, R, T, B = 46, 46, 30, 12
         n = len(keys)
         colW = (VW - L - R) / n
@@ -612,7 +642,7 @@ class Tools:
         step = next((st for st in (1, 2, 5, 10, 20, 50, 100, 200) if topFt / st <= 9 and st * px >= 18), 500)
         mstep = next((st for st in (.5, 1, 2, 5, 10, 20, 50) if topFt / 3.28084 / st <= 7 and st * 3.28084 * px >= 18), 100)
         gy = VH - B
-        o = [f'<svg class="wall" viewBox="0 0 {VW} {VH}" role="img" aria-labelledby="cmp-cap" preserveAspectRatio="xMidYMax meet">',
+        o = [f'<svg class="wall" viewBox="0 0 {VW} {VH}" role="img" aria-labelledby="{cap}" preserveAspectRatio="xMidYMax meet">',
              f'<rect class="wall-bg" x="{L}" y="{T - 10}" width="{VW - L - R}" height="{gy - T + 10}"/>']
         i = 0
         while i * step <= topFt:
@@ -634,7 +664,7 @@ class Tools:
             cx = L + colW * (idx + .5)
             x0, y0 = cx - (bx + bw / 2) * kk, gy - (by_ + bh) * kk
             o.append(f'<g class="fig cat-{it["cat"]}" transform="translate({x0:.1f} {y0:.1f}) scale({kk:.4f})" fill="currentColor" '
-                     f'stroke-linecap="round" stroke-linejoin="round">{icons[it["i"]]}</g>')
+                     f'stroke-linecap="round" stroke-linejoin="round">{img(it) if img else icons[it["i"]]}</g>')
             w, h = wft * px, hft * px
             if it['f'] == 'h':
                 lx = cx + w / 2 + 8
@@ -642,14 +672,14 @@ class Tools:
                 o.append(f'<rect class="dim-range" x="{lx - 3:.1f}" y="{yhi:.1f}" width="6" height="{max(2, ylo - yhi):.1f}"/>'
                          f'<line class="dim" x1="{lx:.1f}" x2="{lx:.1f}" y1="{gy:.1f}" y2="{gy - h:.1f}"/>'
                          f'<line class="dim" x1="{lx - 5:.1f}" x2="{lx + 5:.1f}" y1="{gy - h:.1f}" y2="{gy - h:.1f}"/>')
-                lbl = f'{it["d"]:g} ft' if k == 'human' else f'{it["lo"]:g}–{it["hi"]:g} ft' if it['lo'] != it['hi'] else f'{it["lo"]:g} ft'
+                lbl = (human_lbl or f'{it["d"]:g} ft') if k == 'human' else f'{it["lo"]:g}{dash}{it["hi"]:g} ft' if it['lo'] != it['hi'] else f'{it["lo"]:g} ft'
                 o.append(f'<text class="dim-lbl" x="{cx:.1f}" y="{gy - h - 8:.1f}" text-anchor="middle">{lbl}</text>')
             else:
                 y = gy - h - 8
                 o.append(f'<line class="dim" x1="{cx - w / 2:.1f}" x2="{cx + w / 2:.1f}" y1="{y:.1f}" y2="{y:.1f}"/>'
                          f'<line class="dim" x1="{cx - w / 2:.1f}" x2="{cx - w / 2:.1f}" y1="{y - 5:.1f}" y2="{y + 5:.1f}"/>'
                          f'<line class="dim" x1="{cx + w / 2:.1f}" x2="{cx + w / 2:.1f}" y1="{y - 5:.1f}" y2="{y + 5:.1f}"/>'
-                         f'<text class="dim-lbl" x="{cx:.1f}" y="{y - 8:.1f}" text-anchor="middle">{it["lo"]:g}{"–" + format(it["hi"], "g") if it["lo"] != it["hi"] else ""} ft</text>')
+                         f'<text class="dim-lbl" x="{cx:.1f}" y="{y - 8:.1f}" text-anchor="middle">{it["lo"]:g}{dash + format(it["hi"], "g") if it["lo"] != it["hi"] else ""} ft</text>')
         o.append(f'<line class="ground" x1="{L - 4}" x2="{VW - R + 4}" y1="{gy}" y2="{gy}"/></svg>')
         return ''.join(o)
 

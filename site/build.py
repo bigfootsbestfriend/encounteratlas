@@ -931,7 +931,7 @@ def build_creatures(creatures, by_slug):
                         f'Source: {esc(x["source_title"])}</a></p></span></li>' for x in ps)
         return f'<h2 id="papers">In the old newspapers</h2><ol class="timeline">{items}</ol>'
 
-    def case_item(c, f):
+    def case_item(c, f, cid=''):
         d = famous_details.get(c['slug'] + '|' + f['name']) or {}
         story = story_url(c['slug'], f['year'])
         extra = ''
@@ -944,7 +944,7 @@ def build_creatures(creatures, by_slug):
             links.append(f'<a class="case-src" href="{esc(d["source_url"])}" rel="noopener">Source: {esc(d.get("source_title") or "read more")}</a>')
         if links:
             extra += f'<p class="case-links">{"".join(links)}</p>'
-        return (f'<li><span class="yr">{f["year"]}</span><span><strong>{esc(f["name"])}</strong>'
+        return (f'<li{f' id="{cid}"' if cid else ""}><span class="yr">{f["year"]}</span><span><strong>{esc(f["name"])}</strong>'
                 f'<br><span class="muted">{esc(f["place"])}</span>{extra}</span></li>')
 
     def extra_sections(c):
@@ -958,6 +958,107 @@ def build_creatures(creatures, by_slug):
         return ('<h2 id="questions">Questions people ask</h2>'
                 + ''.join(f'<h3>{esc(x["q"])}</h3><p>{md_links(x["a"])}</p>' for x in c['faq']))
 
+    # ---- interactive bits (2026-10-26): painted card hero, "How big is it?" wall, cases-by-decade strip.
+    # CSS in static/creature-ia.css, JS in static/creature.js. All of it reads fine with JS off.
+    sys.path.insert(0, os.path.join(ROOT, 'site', 'sections'))
+    import tools as size_tools
+    sz_data, SIZES, _ = size_tools.settled_sizes(ROOT, creatures)
+    sz_boxes = dict(sz_data.get('icon_box', {}))
+    SZ_HUMAN = size_tools.human_item(STATIC, sz_data, sz_boxes)
+    _fg = os.path.join(ROOT, 'data', 'famous_geo.json')
+    ON_MAP = {f['creature'] for f in json.load(open(_fg, encoding='utf-8'))} if os.path.exists(_fg) else set()
+    TINT = {'human': '#7FA595', 'c': '#C9D3A4', 'me': '#F2B33D'}  # 'me': the person once a reader types their own height
+
+    def card_hero(c, first_label, n_cases, n_ws):
+        """Painted card that flips to quick stats. None when there's no art (living traditions never get art)."""
+        sl = c['slug']
+        if sl in LIVING_TRADITIONS or not os.path.exists(os.path.join(STATIC, 'cards', 'art', sl + '.webp')):
+            return None
+        full = url(f'/static/cards/art/{sl}.webp')
+        src = (f'src="{full}" srcset="{url(f"/static/cards/thumb/{sl}.webp")} 360w, {full} 1164w" sizes="(max-width: 600px) 80vw, 300px"'
+               if os.path.exists(os.path.join(STATIC, 'cards', 'thumb', sl + '.webp')) else f'src="{full}"')
+        nm = esc(c['name'])
+        stats = [('Where', c['region']), ('Size', c['size']), (first_label, c['first']),
+                 ('Famous cases', str(n_cases) if n_cases else ''), ('Witness stories', str(n_ws) if n_ws else '')]
+        dl = ''.join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in stats if v)
+        links = ''
+        if sl in ON_MAP:
+            links += f'<a href="{url("/map/?creature=" + sl)}">See it on the map</a>'
+        if sl in SIZES:
+            links += f'<a href="{url("/tools/size-comparison/?c=" + sl)}">Compare its size</a>'
+        return (f'<div class="ccard cat-{c["cat"]}" data-ccard>'
+                f'<div class="ccard-in">'
+                f'<div class="ccard-face ccard-front"><img {src} alt="Painted card: {nm}" width="1164" height="832" decoding="async" fetchpriority="high">'
+                f'<p class="ccard-name">{nm}<small>{esc(CATS[c["cat"]][0])}</small></p></div>'
+                f'<div class="ccard-face ccard-back"><p class="ccard-bh">{nm}</p><dl aria-hidden="true">{dl}</dl>'
+                + (f'<p class="ccard-links">{links}</p>' if links else '') +
+                f'</div></div>'
+                f'<button type="button" class="ccard-flip" aria-pressed="false" hidden><span class="ccard-flip-ico" aria-hidden="true"></span>Flip the card</button>'
+                f'</div>')
+
+    def size_wall(c):
+        sl = c['slug']
+        e = SIZES.get(sl)
+        if not e:
+            return ''
+        it = size_tools.wall_item(STATIC, c, e, sz_boxes)
+        items = {'human': SZ_HUMAN, sl: it}
+        filt = ''.join(f'<filter id="sz-t-{k}" x="0" y="0" width="1" height="1"><feFlood flood-color="{v}"/>'
+                       f'<feComposite in2="SourceAlpha" operator="in"/></filter>' for k, v in TINT.items())
+        img = lambda x: (f'<image href="{url("/static/" + x["src"])}" width="{x["vb"][0]:g}" height="{x["vb"][1]:g}" '
+                         f'filter="url(#sz-t-{"human" if x["cat"] == "human" else "c"})"/>')
+        svg = size_tools.Tools.render_wall(['human', sl], items, {}, 420, 320, img=img, cap='sz-cap', dash=' to ')
+        svg = svg.replace('preserveAspectRatio="xMidYMax meet">', f'preserveAspectRatio="xMidYMax meet"><defs>{filt}</defs>', 1)
+        js = {k: {x: v[x] for x in ('n', 'cat', 'b', 'f', 'd', 'lo', 'hi', 'dim', 'vb')} | {'src': url('/static/' + v['src'])} for k, v in items.items()}
+        js = esc(json.dumps({'s': sl, 'items': js}, separators=(',', ':')))
+        how = {'shoulder': ' Measured at the shoulder.', 'wingspan': ' Measured wing tip to wing tip.', 'length': ' Measured nose to tail.',
+               'across': ' Measured across.'}.get(e['dim'], '')
+        return f'''<section class="sz" id="size" aria-labelledby="sz-h" data-sz="{js}">
+      <h2 id="sz-h">How big is it?</h2>
+      <figure class="sz-fig">
+        <div class="sz-svg">{svg}</div>
+        <figcaption id="sz-cap"><span class="sz-who sz-it"><b>{esc(c["name"])}</b> {esc(size_tools.size_text(e))} ({size_tools.metres(e)})</span>
+          <span class="sz-who sz-me"><b data-sz-who>Person</b> <span data-sz-me>6 ft (1.83 m)</span></span></figcaption>
+      </figure>
+      <div class="sz-you" hidden>
+        <p class="sz-you-h" id="sz-you-h">Stand next to it: your height</p>
+        <div class="sz-units" role="group" aria-label="Units"><button type="button" data-u="ft" aria-pressed="true">ft and in</button><button type="button" data-u="cm" aria-pressed="false">cm</button></div>
+        <div class="sz-in" data-u="ft"><label><input type="number" inputmode="numeric" min="3" max="8" step="1" value="6" data-f="ft" aria-describedby="sz-you-h"> ft</label>
+          <label><input type="number" inputmode="numeric" min="0" max="11" step="1" value="0" data-f="in" aria-describedby="sz-you-h"> in</label></div>
+        <div class="sz-in" data-u="cm" hidden><label><input type="number" inputmode="numeric" min="90" max="245" step="1" value="183" data-f="cm" aria-describedby="sz-you-h"> cm</label></div>
+      </div>
+      <p class="sz-basis">{esc(e.get("basis", ""))}{how}</p>
+      <p class="sz-go"><a class="btn btn-sm" href="{url("/tools/size-comparison/?c=" + sl)}">Compare it with other creatures</a></p>
+    </section>'''
+
+    def decade_strip(c, ids):
+        """Bars of famous cases per decade; each bar jumps to that decade's first case. Long empty stretches fold into a gap."""
+        per = defaultdict(list)
+        for f in sorted((f for f in c['famous'] if isinstance(f['year'], int)), key=lambda f: f['year']):
+            per[f['year'] // 10 * 10].append(ids[id(f)])
+        if sum(len(v) for v in per.values()) < 3 or len(per) < 2:
+            return ''
+        top = max(len(v) for v in per.values())
+        cells, run = [], []
+
+        def flush():
+            if len(run) > 2:
+                cells.append('<li class="dec-gap" aria-hidden="true"><span>...</span></li>')
+            else:
+                cells.extend(f'<li class="dec-empty" aria-hidden="true"><span class="dec-n">0</span><span class="dec-bar"></span><span class="dec-y">{d}s</span></li>' for d in run)
+            run.clear()
+
+        for d in range(min(per), max(per) + 10, 10):
+            if d not in per:
+                run.append(d)
+                continue
+            flush()
+            n = len(per[d])
+            cells.append(f'<li><a href="#{per[d][0]}" data-dec="{d}" style="--n:{n};--max:{top}" aria-label="{d}s: {n} famous case{"s" if n > 1 else ""}">'
+                         f'<span class="dec-n">{n}</span><span class="dec-bar"></span><span class="dec-y">{d}s</span></a></li>')
+        return (f'<div class="dec"><p class="dec-h" id="dec-h">Famous cases by decade</p>'
+                f'<ol class="dec-bars" aria-labelledby="dec-h">{"".join(cells)}</ol></div>')
+
     for c in creatures:
         aka = (f'<p class="aka-line">Also called {esc(", ".join(c["aliases"]))}</p>' if c['aliases'] else '')
         facts = ''.join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in
@@ -966,12 +1067,15 @@ def build_creatures(creatures, by_slug):
         body_p = ''.join(f'<p>{esc(p)}</p>' for p in c['body'])
         signs = ''.join(f'<li>{esc(s)}</li>' for s in c['signs'])
         fam = sorted(c['famous'], key=lambda f: f['year'])
+        ids = {id(f): f'case-{i + 1}' for i, f in enumerate(fam)}
         modern = ''
         if kind(c) == 'folklore' and FOLK_HYBRID:
             yr = lambda f: f['year'] if isinstance(f['year'], int) else 0
-            modern = ''.join(case_item(c, f) for f in fam if yr(f) >= 1900)
+            modern = ''.join(case_item(c, f, ids[id(f)]) for f in fam if yr(f) >= 1900)
             fam = [f for f in fam if yr(f) < 1900]
-        cases = ''.join(case_item(c, f) for f in fam)
+        cases = ''.join(case_item(c, f, ids[id(f)]) for f in fam)
+        dec = decade_strip(c, ids)
+        first_label = {'single': 'When', 'folklore': 'Earliest record'}.get(kind(c), 'First reported')
         first_story = story_url(c['slug'], 'first')
         rel = ''.join(creature_card(by_slug[s]) for s in c['related'] if s in by_slug)
         wiki = f'https://en.wikipedia.org/wiki/{c["wiki"].replace(" ", "_")}' if c.get('wiki') else ''
@@ -989,13 +1093,14 @@ def build_creatures(creatures, by_slug):
             # Filled in by creature.js once this creature has approved reader reports.
             reads += f'<a href="{url("/reports/?creature=" + c["slug"])}" data-rr-link hidden>Reader reports</a>'
         reads = f'<p class="crit-reads">{reads}</p>'
+        hero = card_hero(c, first_label, len(c['famous']), nws) or (poster(c) if c.get('art') else badge(c, 'xl'))
         rr_sec = (f'<section id="reader" class="rr-sec" data-rr="{c["slug"]}" data-api="{EA_API}" hidden><h2>Reader reports</h2>'
                   f'<p class="ws-intro">Encounters sent in by our readers and checked by a moderator.</p><div class="rr-list"></div>'
                   f'<p><a href="{url("/reports/?creature=" + c["slug"])}">All {esc(c["name"])} reports</a></p></section>') if EA_API else ''
         body = f'''
 <section class="band band-dark creature-head cat-{c['cat']}">
   <div class="wrap creature-head-in">
-    {poster(c) if c.get('art') else badge(c, 'xl')}
+    {hero}
     <div>
       <p class="crumb"><a href="{url('/creatures/')}">Creature index</a> / {esc(CATS[c['cat']][0])}</p>
       <h1>{esc(c['name'])}</h1>
@@ -1017,8 +1122,8 @@ def build_creatures(creatures, by_slug):
     <ul class="signs">{signs}</ul>
     {witness_section(c)}
     {rr_sec}
-    {f'<h2 id="cases">{"Timeline" if kind(c) == "single" else "Famous cases"}</h2><ol class="timeline">{cases}</ol>' if cases else ''}
-    {f'<h2 id="modern">Modern reports</h2><ol class="timeline">{modern}</ol>' if modern else ''}
+    {f'<h2 id="cases">{"Timeline" if kind(c) == "single" else "Famous cases"}</h2>{dec}<ol class="timeline">{cases}</ol>' if cases else ''}
+    {f'<h2 id="modern">Modern reports</h2>{"" if cases else dec}<ol class="timeline">{modern}</ol>' if modern else ''}
     {papers_section(c)}
     {faq_section(c)}
     {seen_box(c)}
@@ -1028,6 +1133,7 @@ def build_creatures(creatures, by_slug):
       <dl>{facts}</dl>
       {f'<p class="more"><a href="{wiki}" rel="noopener">Read more on Wikipedia</a></p>' if wiki else ''}
     </div>
+    {size_wall(c)}
     {extras(c)}
   </aside>
 </div>
@@ -1041,7 +1147,7 @@ def build_creatures(creatures, by_slug):
         og = f'/static/og/creatures/{c["slug"]}.jpg'
         og = og if os.path.exists(os.path.join(STATIC, 'og', 'creatures', c['slug'] + '.jpg')) else ''
         write(f'/creatures/{c["slug"]}/', page(f'/creatures/{c["slug"]}/', title, body, desc, og_image=og, article={'updated': c.get('updated')},
-                                               head_extra=f'<script src="{url("/static/creature.js")}" defer></script>' if EA_API else ''))
+                                               head_extra=f'<link rel="stylesheet" href="{url("/static/creature-ia.css")}"><script src="{url("/static/creature.js")}" defer></script>'))
 
 
 _WRITEUPS = None
