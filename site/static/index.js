@@ -26,6 +26,10 @@
     chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.filter === cat)));
     apply();
   }));
+  // ?cat=hominid (from the home page type tiles) opens the index already filtered to that type.
+  const pc = new URLSearchParams(location.search).get('cat');
+  const pchip = pc && chips.find((c) => c.dataset.filter === pc);
+  if (pchip) pchip.click();
   // Sort within each category group; the HTML ships in "most sightings" order so it works without JS.
   const sel = document.getElementById('sort');
   const num = (c, k) => +c.dataset[k] || 0;

@@ -1610,9 +1610,9 @@ def build_home(creatures, n_points, bluebook, military):
     featured = [c for c in creatures if c['slug'] in ('bigfoot', 'dogman', 'mothman', 'loch-ness-monster', 'chupacabra',
                                                        'ufo-tic-tac', 'jersey-devil', 'flatwoods-monster', 'fairies')]
     cards = ''.join(creature_card(c) for c in featured)
-    tiles = ''.join(f'<a class="tile cat-{cat}" href="{url("/map/?cat=" + cat)}">{tile_icon(ic)}<span>{esc(label)}</span></a>'
+    tiles = ''.join(f'<a class="tile cat-{cat}" href="{url("/creatures/?cat=" + cat)}">{tile_icon(ic)}<span>{esc(label)}</span></a>'
                     for cat, ic, label in TILES)
-    tiles += f'<a class="tile tile-mil" href="{url("/map/?type=military")}">{tile_icon("military")}<span>Military encounters</span></a>'
+    tiles += f'<a class="tile tile-mil" href="{url("/military/")}">{tile_icon("military")}<span>Military encounters</span></a>'
     build_search_index(creatures, bluebook, military)
     # "Today's listen" podcast feature (site/sections/_podplay.py), right under the hero
     sys.path.insert(0, os.path.join(ROOT, 'site', 'sections'))
@@ -1712,6 +1712,19 @@ def build_home(creatures, n_points, bluebook, military):
   <nav class="tiles" aria-label="Browse by type">{tiles}</nav>
 </div></section>
 <script src="{url('/static/home.js')}" defer></script>''', 'Search creatures, places, UFO files and encounters on Encounter Atlas.'))
+    def map_list(cs):
+        """Under the map on phones (Mike 2026-10-27: the full-screen map was a dead end you couldn't scroll past).
+        Every creature by type as plain links; ?cat= moves that type to the top. Hidden on desktop, where the map fills the screen."""
+        groups = ''.join(
+            f'<div class="ml-group" data-cat="{k}"><h3>{esc(v[0])}</h3><p class="ml-links">'
+            + ''.join(f'<a href="{url("/creatures/" + c["slug"] + "/")}">{esc(c["name"])}</a>' for c in sorted(cs, key=lambda c: c['name']) if c['cat'] == k)
+            + '</p></div>' for k, v in CATS.items() if any(c['cat'] == k for c in cs))
+        return (f'<section class="band band-mist map-below" id="map-list" aria-label="Creatures on the map"><div class="wrap">'
+                f'<h2>Creatures on the map</h2><p>Tap one to read about it, or browse the full <a href="{url("/creatures/")}">creature index</a>.</p>{groups}</div></section>'
+                '<script>(function(){var k=new URLSearchParams(location.search).get("cat"),g=k&&document.querySelector(\'.ml-group[data-cat="\'+k.replace(/[^a-z]/g,"")+\'"]\');'
+                'if(g){g.parentNode.insertBefore(g,document.querySelector(".ml-group"));g.classList.add("ml-pick");'
+                'var m=document.querySelector(".map-more");if(m)m.textContent="See the "+g.querySelector("h3").textContent.toLowerCase()+" list";}})();</script>')
+
     write('/map/', page('/map/', 'Encounter map', f'''
 <section class="map-full" aria-label="Encounter map">
   <div class="map-full-bar">
@@ -1722,8 +1735,10 @@ def build_home(creatures, n_points, bluebook, military):
   <div class="map-frame full">
     <div id="mf-panel" class="mf-panel" hidden>{filter_bar(creatures, famous_slugs)}<button type="button" class="btn btn-sm mf-done">Show the map</button></div>
     <div id="map" class="map" data-base="{BASE}"{MAP_API}></div>
-    <a class="map-exit" href="{url('/')}" hidden><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Exit full map</a></div>
-</section>''', 'Map of Bigfoot, Dogman, UFO and cryptid encounters, military cases and every US Air Force Project Blue Book file.',
+    <a class="map-exit" href="{url('/')}" hidden><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Exit full map</a>
+    <a class="map-more" href="#map-list">See the creature list</a></div>
+</section>
+{map_list(creatures)}''', 'Map of Bigfoot, Dogman, UFO and cryptid encounters, military cases and every US Air Force Project Blue Book file.',
                         body_class='mapper', head_extra=map_head()))
 
 
