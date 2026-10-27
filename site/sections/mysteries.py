@@ -1,3 +1,4 @@
+import html
 """Unexplained mysteries: a hub (/mysteries/) and one page per case, from data/mysteries.json.
 
 Strange events, places, lights, sounds and vanishings that are not creatures or close encounters. Each page gives what
@@ -70,7 +71,7 @@ class M:
         ph = x['photos'][0] if x['photos'] else None
         if not ph:
             return f'<span class="my-thumb my-thumb-blank" style="--t:{TYPES[x["type"]][2]}" aria-hidden="true"></span>'
-        return f'<img class="my-thumb" src="{self.u(ph["src"])}" alt="" width="320" height="200" loading="lazy">'
+        return f'<img class="my-thumb" src="{self.u(ph["src"])}" alt="{html.escape(ph.get("alt") or ph.get("caption") or "")}" width="320" height="200" loading="lazy">'
 
     def card(self, x):
         e = self.e

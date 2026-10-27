@@ -104,12 +104,15 @@ def build(ctx):
             return f'<a class="{cls}" href="{url("/podcasts/" + t + "/")}">{label}</a>'
         return f'<span class="{cls}">{label}</span>'
 
+    def cover_alt(n):
+        return n + (' cover art' if n.lower().rstrip().endswith('podcast') else ' podcast cover art')
+
     def img(s_or_e, size, cls='', w=None):
         u = s_or_e.get('art', '')
         if not u:
             return f'<span class="pod-noart {cls}" aria-hidden="true">{icon("saucer")}</span>'
         return (f'<img class="{cls}" src="{esc(art(u, size))}" srcset="{esc(art(u, size))} 1x, {esc(art(u, min(size * 2, 600)))} 2x" '
-                f'alt="" width="{w or size}" height="{w or size}" loading="lazy" decoding="async">')
+                f'alt="{esc(cover_alt(s_or_e.get("name") or s_or_e.get("show") or s_or_e.get("s") or "Podcast"))}" width="{w or size}" height="{w or size}" loading="lazy" decoding="async">')
 
     def latest_line(s):
         age = days_between(s['latest'], updated)

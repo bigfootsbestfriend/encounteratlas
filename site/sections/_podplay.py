@@ -153,7 +153,7 @@ def todays_listen(ctx, where='home'):
             if not cover:
                 return '<span class="pf-noart"></span>'
             cover = re.sub(r'/\d+x\d+bb\.', '/600x600bb.' if not lazy else '/160x160bb.', cover)
-            return f'<img src="{html.escape(cover)}" alt="" width="160" height="160"{' loading="lazy"' if lazy else ''} decoding="async">'
+            return f'<img src="{html.escape(cover)}" alt="{html.escape((e or {}).get("s", "Podcast") + (" cover art" if (e or {}).get("s", "").lower().endswith("podcast") else " podcast cover art"))}" width="160" height="160"{' loading="lazy"' if lazy else ''} decoding="async">'
         if lazy:
             return f'<img src="{a}" alt="" width="360" height="257" loading="lazy" decoding="async">'
         # the featured picture fills the card (up to ~900 px wide), so phones and big screens get the full art

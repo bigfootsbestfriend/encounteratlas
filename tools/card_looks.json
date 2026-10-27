@@ -125,7 +125,8 @@
  },
  "bigfoot": {
   "look": "Like the Patterson-Gimlin film subject: a huge, heavily built upright ape about 2.2 to 2.7 m tall, covered in dark brown to black hair, with a cone-shaped head, no visible neck, broad shoulders, long arms swinging, and a smooth gliding stride on two legs. Turning to look back over its shoulder. Not a gorilla and not a man in a suit.",
-  "setting": "A gravel creek bed beside towering redwood and fir forest in the Pacific Northwest at dusk, ferns and a fallen log."
+  "setting": "A gravel creek bed beside towering redwood and fir forest in the Pacific Northwest at dusk, ferns and a fallen log.",
+  "alt": "Bigfoot: painted illustration of a huge hairy ape-man walking past a river in a misty redwood forest"
  },
  "black-eyed-children": {
   "look": "Two pale children, about 10 to 14 years old, in plain, slightly old-fashioned clothes, standing very still on a doorstep at night. Their eyes are completely black, with no whites at all. They look ordinary except for those eyes and their unsettling calm. No gore, no fangs, no monster features.",
@@ -301,7 +302,8 @@
  },
  "indrid-cold": {
   "look": "A man about 1.8 m tall with an olive complexion, dark brown slicked hair and a glossy dark blue coat, standing beside a highway with a fixed, too-wide friendly smile. Behind him hovers a craft shaped like an old kerosene lamp globe, flat bottom and domed top. Human but uncanny, not a monster.",
-  "setting": "A pull-off on Interstate 77 near Parkersburg, West Virginia in 1966 at night, a stopped truck with its headlights on and wooded hills."
+  "setting": "A pull-off on Interstate 77 near Parkersburg, West Virginia in 1966 at night, a stopped truck with its headlights on and wooded hills.",
+  "alt": "Indrid Cold: painted illustration of a smiling man in a shiny dark coat on a night highway beside a glowing UFO"
  },
  "issie": {
   "look": "A long, dark animal swimming in a deep lake, shown as two large dark humps, each about 5 m long, rising above the surface with a big wake trailing behind, and something long visible just below the water. Head mostly hidden. Like a giant eel in shape. Not a plesiosaur, not a cartoon dinosaur.",
@@ -914,5 +916,9 @@
  "lutin": {
   "look": "A pure white cat with glowing green eyes and a knowing human-like grin, sitting on a horse's back in a stable and braiding knots into its mane.",
   "setting": "An old Quebec stable at night, wooden beams, a lantern, hay and snowy fields through the door."
+ },
+ "mannegishi": {
+  "look": "Small river spirits, about the height of a young child but clearly not human children: thin and wiry with grey-green skin, smooth faces with no noses, big dark eyes and long reedy hair, all fully dressed in simple tunics woven from river reeds. They perch on wet river rocks in white-water rapids, splashing and laughing, one tipping over an empty canoe. Playful tricksters, not scary. Fully clothed, family friendly.",
+  "setting": "A northern Canadian river with white-water rapids and smooth granite rocks, spruce forest, summer evening light."
  }
 }

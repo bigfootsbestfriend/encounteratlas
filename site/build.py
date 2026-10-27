@@ -222,13 +222,89 @@ def external_new_tab(html_text):
     return _EXT_A.sub(fix, html_text)
 
 
+# Image alt text (Mike 2026-10-27: SEO-friendly alt site-wide). Every page goes through write(), so this one pass names
+# our own pictures wherever a template left alt="" or used the old "Painted card: X": painted cards get the creature's
+# name plus what's in the painting (tools/card_looks.json, or its "alt" field when set by hand), silhouettes get
+# "<Name> silhouette". Pure UI icons stay alt="" (decorative), which is right for both screen readers and search.
+_ALT = None
+
+
+def _alt_names():
+    global _ALT
+    if _ALT is None:
+        cs = json.load(open(os.path.join(ROOT, 'data', 'creatures.json'), encoding='utf-8'))
+        cs = cs if isinstance(cs, list) else cs['creatures']
+        looks = json.load(open(os.path.join(ROOT, 'tools', 'card_looks.json'), encoding='utf-8')) if os.path.exists(os.path.join(ROOT, 'tools', 'card_looks.json')) else {}
+
+        def short(t):
+            t = re.split(r'\.\s', t)[0].split(':')[0].strip().rstrip('.')
+            t = re.sub(r'^(A|An|The)\s+', '', t)
+            cut = [i for i, ch in enumerate(t) if ch == ',' and i >= 30]
+            if cut:
+                t = t[:cut[0]]
+            if len(t) > 90:
+                t = t[:90].rsplit(' ', 1)[0]
+                t = re.sub(r'\s+(and|with|a|an|the|of|in|on|to)$', '', t)
+            if '(' in t and ')' not in t:
+                t = t.split('(')[0].rstrip(' ,')
+            if len(t) > 90 or re.search(r'\b(not|no|NOT)\b|^(shown|like|as|in|from|what)\b|usually shown|respectfully', t) or len(t) < 8:
+                return ''
+            return t
+        PROPER = {'Irish', 'English', 'Scottish', 'Welsh', 'American', 'Japanese', 'Tasmanian', 'Australian', 'Canadian', 'Maya',
+                  'Siberian', 'African', 'Russian', 'Icelandic', 'Norse', 'Bavarian', 'Swedish', 'Philippine', 'Malaysian'}
+
+        def lower1(t, name):
+            w = t.split(' ', 1)[0].strip(",'")
+            return t if (w in PROPER or w in name.split() or w.isupper()) else t[0].lower() + t[1:]
+        _ALT = {}
+        for c in cs:
+            lk = looks.get(c['slug'], {})
+            d = lk.get('alt') or ''
+            if not d:
+                sh = short(lk.get('look', ''))
+                if sh and len(c['name']) + len(sh) > 100:
+                    sh = re.sub(r'\s+(and|with|a|an|the|of|in|on|to|or)$', '', sh[:100 - len(c['name'])].rsplit(' ', 1)[0].rstrip(' ,'))
+                sh = lower1(sh, c['name']) if sh else sh
+                d = f'{c["name"]}: painted illustration of {sh}' if sh else f'{c["name"]}, painted illustration'
+            _ALT[c['slug']] = (c['name'], d)
+    return _ALT
+
+
+def fill_alt(text):
+    names = _alt_names()
+
+    def fix(m):
+        tag = m.group(0)
+        a = re.search(r'\balt="([^"]*)"', tag)
+        if a and a.group(1) and not a.group(1).startswith('Painted card: '):
+            return tag
+        src = re.search(r'\bsrc="([^"]+)"', tag)
+        src = src.group(1) if src else ''
+        fixed = {'signup-': 'Painted night scene: Bigfoot, Nessie and a UFO, the Encounter Atlas weekly email',
+                 'report-unknown': 'Painted night sky with an unexplained dark shape over the pine trees'}
+        f = next((v for kk, v in fixed.items() if f'/static/art/{kk}' in src), None)
+        if f:
+            return re.sub(r'\balt="[^"]*"', f'alt="{f}"', tag, 1) if a else tag[:-1].rstrip('/') + f' alt="{f}">'
+        k = re.search(r'/static/cards/(art|thumb)/([a-z0-9-]+)\.webp', src)
+        if k and k.group(2) in names:
+            alt = names[k.group(2)][1] if k.group(1) == 'art' else f'{names[k.group(2)][0]} illustration'
+        else:
+            k = re.search(r'/static/art/([a-z0-9-]+?)(?:-size)?\.svg', src)
+            if not (k and k.group(1) in names):
+                return tag
+            alt = f'{names[k.group(1)][0]} silhouette'
+        alt = alt.replace('"', '&quot;')
+        return re.sub(r'\balt="[^"]*"', f'alt="{alt}"', tag, 1) if a else tag[:-1].rstrip('/') + f' alt="{alt}">'
+    return re.sub(r'<img\b[^>]*>', fix, text)
+
+
 def write(path, text):
     full = os.path.join(OUT, path.lstrip('/'))
     if full.endswith('/'):
         full += 'index.html'
     os.makedirs(os.path.dirname(full), exist_ok=True)
     with open(full, 'w', encoding='utf-8') as f:
-        f.write(external_new_tab(text) if full.endswith('.html') else text)
+        f.write(external_new_tab(fill_alt(text)) if full.endswith('.html') else text)
 
 
 EA_API = os.environ.get('EA_API', '').rstrip('/')  # report Worker; empty until it's deployed
@@ -952,6 +1028,26 @@ def build_creatures(creatures, by_slug):
         """Hand-written longer sections for priority pages: data/creatures.json "sections": [{"h": heading, "p": [paragraphs]}]."""
         return ''.join(f'<h2>{esc(x["h"])}</h2>' + ''.join(f'<p>{md_links(t)}</p>' for t in x['p']) for x in c.get('sections', []))
 
+    _PE = (load('podcasts_episodes.json') or {}).get('creatures', {})
+
+    def listen_band(c):
+        """Podcast episodes about this creature (data/podcasts_episodes.json), linking to its podcast page where they play."""
+        eps = [x for x in _PE.get(c['slug'], []) if x.get('audio')]
+        if not eps:
+            return ''
+        top = sorted(eps, key=lambda x: x.get('date', ''), reverse=True)[:3]
+        lis = ''.join(f'<li><b>{esc(x["title"])}</b><small>{esc(x["show"])}{" · " + str(x["mins"]) + " min" if x.get("mins") else ""}</small></li>' for x in top)
+        return (f'<section class="band band-mist listen-band" id="listen"><div class="wrap"><h2>Listen: {esc(c["name"])} podcasts</h2>'
+                f'<p>{len(eps)} episode{"s" if len(eps) != 1 else ""} about {esc(c["name"])} from shows we follow. They play right on the page.</p>'
+                f'<ul class="listen-list">{lis}</ul><p><a class="btn" href="{url("/podcasts/creature/" + c["slug"] + "/")}">Play {esc(c["name"])} episodes</a></p></div></section>')
+
+    def sources_section(c):
+        """Where the facts come from (data/creatures.json "sources": [{t, u}]); shown on pages that list them."""
+        if not c.get('sources'):
+            return ''
+        return ('<h2 id="sources">Sources</h2><ul class="src-list">'
+                + ''.join(f'<li><a href="{esc(x["u"])}" rel="noopener">{esc(x["t"])}</a></li>' for x in c['sources']) + '</ul>')
+
     def faq_section(c):
         """Short answers to what people actually search (Search Console), as question headings: "faq": [{"q", "a"}]."""
         if not c.get('faq'):
@@ -971,9 +1067,9 @@ def build_creatures(creatures, by_slug):
     TINT = {'human': '#7FA595', 'c': '#C9D3A4', 'me': '#F2B33D'}  # 'me': the person once a reader types their own height
 
     def card_hero(c, first_label, n_cases, n_ws):
-        """Painted card that flips to quick stats. None when there's no art (living traditions never get art)."""
+        """Painted card that flips to quick stats. None when there's no art (living traditions got art 2026-10-27, Mike)."""
         sl = c['slug']
-        if sl in LIVING_TRADITIONS or not os.path.exists(os.path.join(STATIC, 'cards', 'art', sl + '.webp')):
+        if not os.path.exists(os.path.join(STATIC, 'cards', 'art', sl + '.webp')):
             return None
         full = url(f'/static/cards/art/{sl}.webp')
         src = (f'src="{full}" srcset="{url(f"/static/cards/thumb/{sl}.webp")} 360w, {full} 1164w" sizes="(max-width: 600px) 80vw, 300px"'
@@ -1065,7 +1161,7 @@ def build_creatures(creatures, by_slug):
         facts = ''.join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in
                         [('Where', c['region']), ('Size', c['size']), ('Setting' if kind(c) == 'single' else 'Habitat', c['habitat']),
                          ({'single': 'When', 'folklore': 'Earliest record'}.get(kind(c), 'First reported'), c['first'])] if v)
-        body_p = ''.join(f'<p>{esc(p)}</p>' for p in c['body'])
+        body_p = ''.join(f'<p>{md_links(p)}</p>' for p in c['body'])
         signs = ''.join(f'<li>{esc(s)}</li>' for s in c['signs'])
         fam = sorted(c['famous'], key=lambda f: f['year'])
         ids = {id(f): f'case-{i + 1}' for i, f in enumerate(fam)}
@@ -1115,6 +1211,7 @@ def build_creatures(creatures, by_slug):
 </section>
 <div class="band band-mist"><div class="wrap creature-body">
   <article class="prose">
+    {f'<p class="quick-answer"><strong>In short:</strong> {md_links(c["quick"])}</p>' if c.get('quick') else ''}
     {'<h2>The story</h2>' if kind(c) == 'single' else ''}
     {body_p}
     {extra_sections(c)}
@@ -1127,6 +1224,7 @@ def build_creatures(creatures, by_slug):
     {f'<h2 id="modern">Modern reports</h2>{"" if cases else dec}<ol class="timeline">{modern}</ol>' if modern else ''}
     {papers_section(c)}
     {faq_section(c)}
+    {sources_section(c)}
     {seen_box(c)}
   </article>
   <aside class="side">
@@ -1139,6 +1237,7 @@ def build_creatures(creatures, by_slug):
   </aside>
 </div>
 </div>
+{listen_band(c)}
 {gb}
 {mb}
 <div class="band band-mist" id="related">{related_groups(c)}</div>

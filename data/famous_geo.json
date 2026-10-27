@@ -2695,9 +2695,9 @@
 "icon": "mib",
 "name": "Derenberger roadside encounter",
 "year": 1966,
-"place": "Near Parkersburg, West Virginia",
-"lat": 39.2667,
-"lon": -81.5615
+"place": "Interstate 77 near the WV 47 exit, Parkersburg, West Virginia",
+"lat": 39.241,
+"lon": -81.503
 },
 {
 "creature": "indrid-cold",
