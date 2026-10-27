@@ -51,7 +51,9 @@ def _config(ctx):
     cfg = {'api': API, 'base': ctx.BASE, 'sitekey': SITEKEY,
            # "Conditions that night" panel for the /reports/?id= view (vote.js loads these only when it shows a report)
            'cond': {'js': ctx.url('/static/conditions.js'), 'css': ctx.url('/static/conditions.css'), 'living': sorted(LIVING_TRADITIONS)}}
-    meta = {c['slug']: {'n': c['name'], 'c': c['cat'], 'i': c.get('art') or 'icons/' + c['icon']} for c in ctx.creatures}
+    thumb = lambda slug: os.path.exists(os.path.join(ctx.ROOT, 'site', 'static', 'cards', 'thumb', slug + '.webp'))
+    # 'p': 1 when the creature has a painted card thumbnail, used instead of the silhouette poster on report cards
+    meta = {c['slug']: dict({'n': c['name'], 'c': c['cat'], 'i': c.get('art') or 'icons/' + c['icon']}, **({'p': 1} if thumb(c['slug']) else {})) for c in ctx.creatures}
     cats = {k: v[0] for k, v in ctx.CATS.items()}
     # json.dumps output is safe inside <script type="application/json"> once "</" is escaped.
     j = lambda o: json.dumps(o, separators=(',', ':')).replace('</', '<\\/')
@@ -305,6 +307,14 @@ POSTER_SKY = {'hominid': ('#E3A649', '#B5532F'), 'canid': ('#3B4C6B', '#1B2A3A')
 
 def _poster(ctx, c, sid, cls='rposter'):
     """Same park-poster frame vote.js draws for reader reports; "Something else" gets the unknown shape."""
+    # Painted card art when the creature has it; "Something else" gets the painted unknown-sky picture (Mike 2026-10-27)
+    big = 'rposter-lg' in cls
+    if c and os.path.exists(os.path.join(ctx.ROOT, 'site', 'static', 'cards', 'thumb', c['slug'] + '.webp')):
+        src = ctx.url(f"/static/cards/{'art' if big else 'thumb'}/{c['slug']}.webp")
+        return f'<span class="{cls} rposter-painted" aria-hidden="true"><img src="{src}" alt="" loading="lazy" decoding="async"></span>'
+    if not c:
+        src = ctx.url(f"/static/art/report-unknown{'' if big else '-360'}.webp")
+        return f'<span class="{cls} rposter-painted" aria-hidden="true"><img src="{src}" alt="" loading="lazy" decoding="async"></span>'
     cat = c['cat'] if c else 'other'
     art = c['art'] if c and c.get('art') else 'art/unknown-shape'
     a, b = POSTER_SKY.get(cat, POSTER_SKY['other'])

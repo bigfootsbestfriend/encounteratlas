@@ -87,7 +87,7 @@
 
   function creature(slug, other) {
     const c = meta.creatures[slug];
-    if (c) return { name: c.n, cat: c.c, icon: c.i, slug };
+    if (c) return { name: c.n, cat: c.c, icon: c.i, slug, painted: !!c.p };
     return { name: other ? other : 'Something else', cat: 'other', icon: null, slug: 'other' };
   }
   function badge(slug, size = 'sm', other) {
@@ -121,6 +121,14 @@
     const ground = wet ? '<rect y="160" width="200" height="40" fill="#2B4A55"/>'
       : '<path d="M0 182L14 146 28 182 40 138 54 182 146 182 160 132 174 182 188 142 200 182V200H0Z" fill="#1E3A2F"/>';
     const span = h('span', { class: cls, 'aria-hidden': 'true' });
+    // Painted card art when the creature has it; reports filed as "something else" get the painted unknown-sky picture (Mike 2026-10-27)
+    if (c.painted || c.slug === 'other') {
+      const big = cls.includes('rposter-lg');
+      const src = c.slug === 'other' ? `${BASE}/static/art/report-unknown${big ? '' : '-360'}.webp` : `${BASE}/static/cards/${big ? 'art' : 'thumb'}/${c.slug}.webp`;
+      span.classList.add('rposter-painted');
+      span.append(h('img', { src, alt: '', loading: 'lazy', decoding: 'async' }));
+      return span;
+    }
     span.innerHTML = `<svg viewBox="0 0 200 200"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient>` +
       `<clipPath id="c${id}"><rect x="6" y="6" width="188" height="188" rx="10"/></clipPath></defs><g clip-path="url(#c${id})"><rect width="200" height="200" fill="url(#${id})"/>` +
       `<circle cx="150" cy="52" r="24" fill="#F3E3B8" opacity=".9"/><path d="M0 152L30 120 55 138 85 104 120 134 150 110 200 142V200H0Z" fill="#5E4A3A" opacity=".5"/>${ground}` +

@@ -163,7 +163,7 @@
   ]).then(([d, idx]) => {
     if (!d || !d.reports || !d.reports.length) return;
     const art = {};
-    for (const x of idx) { const m = /\/creatures\/([^/]+)\/$/.exec(x.u || ''); if (m) art[m[1]] = { i: x.i, c: x.c, t: x.t }; }
+    for (const x of idx) { const m = /\/creatures\/([^/]+)\/$/.exec(x.u || ''); if (m) art[m[1]] = { i: x.i, c: x.c, t: x.t, p: x.p, s: m[1] }; }
     const week = Date.now() / 1000 - 7 * 86400;
     const fresh = d.reports.filter((x) => x.approved_at > week).length;
     if (fresh) sec.querySelector('[data-nr-count]').textContent = `${fresh}${d.next && fresh === d.reports.length ? '+' : ''} new this week`;
@@ -174,7 +174,7 @@
       const where = place(x.place);
       const isNew = x.approved_at > week;
       return `<a class="nr-card" href="${BASE}/reports/${encodeURIComponent(x.id)}/">
-        <span class="nr-art">${poster(icon, a.c)}${isNew ? '<span class="nr-new">New</span>' : ''}</span>
+        <span class="nr-art">${a.p ? `<img class="nr-paint" src="${BASE}/static/cards/thumb/${a.s}.webp" alt="" loading="lazy">` : !art[x.creature] ? `<img class="nr-paint" src="${BASE}/static/art/report-unknown-360.webp" alt="" loading="lazy">` : poster(icon, a.c)}${isNew ? '<span class="nr-new">New</span>' : ''}</span>
         <span class="nr-body"><span class="nr-what">${esc(what.length > 60 ? what.slice(0, 58) + '…' : what)}</span>
         <span class="nr-where">${esc(where || 'Place not named')}${ago(x.approved_at) ? ' · added ' + ago(x.approved_at) : ''}</span>
         <span class="nr-snip">${esc(x.snippet)}</span><span class="nr-go">Read the report</span></span></a>`;

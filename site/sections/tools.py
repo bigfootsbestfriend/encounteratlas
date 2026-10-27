@@ -155,10 +155,28 @@ def settled_sizes(ROOT, creatures):
     return data, sizes, left
 
 
+# Posters that are whole scenes (a house in a cornfield, a boat, waves, a forest...), not one figure: on a size wall
+# the scenery would be drawn as if it were the creature, so these stand in with the closest single-figure silhouette
+# we have (Mike 2026-10-27). The poster on the creature page itself is unchanged.
+SCENE_ART = {**{s: 'gnomes' for s in ('alux', 'duwende', 'menehune', 'yunwi-tsunsdi', 'mannegishi', 'makiawisug', 'huldufolk',
+                                       'knockers', 'hinzelmann')},
+             'iara': 'mermaid', 'mami-wata': 'mermaid', 'blue-men-of-the-minch': 'pic-human', 'finfolk': 'pic-human',
+             'orang-bunian': 'pic-human', 'kraken': 'lusca', 'zuiyo-maru-carcass': 'morgawr', 'alyoshenka': 'grey-aliens',
+             'monkey-man-of-delhi': 'bukit-timah-monkey-man'}
+
+
+def size_art(STATIC, slug):
+    """Silhouette name for the size walls: a stand-in for whole-scene posters (SCENE_ART), art/<slug>-size.svg when a
+    poster carries a bit of scenery we can cut away (the Bunny Man's overpass), else the poster silhouette itself."""
+    if slug in SCENE_ART:
+        return SCENE_ART[slug]
+    return slug + '-size' if os.path.exists(os.path.join(STATIC, 'art', slug + '-size.svg')) else slug
+
+
 def wall_item(STATIC, c, e, boxes):
     """One creature as a size-wall item (same fields Tools.sizes() builds), plus 'src' (its SVG under /static/)
     and 'vb' (that SVG's viewBox size). Used by the small wall on creature pages (build.py)."""
-    s = c['slug']
+    s = size_art(STATIC, c['slug'])
     if os.path.exists(os.path.join(STATIC, 'art', s + '.svg')):
         ic = 'art/' + s
         if ic not in boxes:
@@ -519,9 +537,10 @@ class Tools:
         for s, e in sizes.items():
             x = by[s]
             ic = self.icon_name(x)
-            if os.path.exists(os.path.join(c.STATIC, 'art', s + '.svg')):  # each creature stands on the wall as its own poster silhouette
-                ic = 'art/' + s
-                boxes.setdefault(ic, art_box(os.path.join(c.STATIC, 'art', s + '.svg')))
+            a = size_art(c.STATIC, s)
+            if os.path.exists(os.path.join(c.STATIC, 'art', a + '.svg')):  # each creature stands on the wall as its own poster silhouette
+                ic = 'art/' + a
+                boxes.setdefault(ic, art_box(os.path.join(c.STATIC, 'art', a + '.svg')))
             fit = 'w' if e['dim'] in ('length', 'wingspan', 'across') else 'h'
             draw = e['draw'] * (1.2 if e['dim'] == 'shoulder' else 1)
             items[s] = {'n': x['name'], 'cat': x['cat'], 'i': ic, 'b': boxes.get(ic, [0, 0, 64, 64]), 'f': fit, 'd': draw,

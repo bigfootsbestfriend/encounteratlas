@@ -725,9 +725,10 @@ def build_creatures(creatures, by_slug):
         """Field guides for this creature, as a full-width band of cards (more prominent than the old sidebar list)."""
         gs = [g for g in guides if c['slug'] in (g.get('creatures') or [])]
         gs += [g for g in guides if g['slug'] in CAT_GUIDES.get(c['cat'], []) and g not in gs]
-        if len(gs) < 3:
-            gs += [g for g in guides if g['slug'] == 'how-to-report' and g not in gs]
-        gs = gs[:3]
+        # Always 4 cards so the two-column grid has no gap (Mike 2026-10-27): top up with How to report, then the other guides
+        gs += [g for g in guides if g['slug'] == 'how-to-report' and g not in gs]
+        gs += [g for g in guides if g not in gs]
+        gs = gs[:4]
         if not gs:
             return ''
         cards = ''.join(f'<a class="cg-card" href="{url("/guides/" + g["slug"] + "/")}"><span class="cg-ico tone-{g.get("tone", "other")}">{icon(g["icon"])}</span>'
@@ -1562,7 +1563,8 @@ def filter_bar(creatures, famous_slugs):
 
 def build_search_index(creatures, bluebook, military):
     """Small JSON index for the home search box: creatures (with aliases), UFO file regions, military cases."""
-    items = [{'t': c['name'], 'a': ' '.join(c['aliases']), 'k': CATS[c['cat']][0], 'u': url('/creatures/' + c['slug'] + '/'), 'i': c.get('art') or c['icon'], 'c': c['cat']}
+    items = [{'t': c['name'], 'a': ' '.join(c['aliases']), 'k': CATS[c['cat']][0], 'u': url('/creatures/' + c['slug'] + '/'), 'i': c.get('art') or c['icon'], 'c': c['cat'],
+              **({'p': 1} if os.path.exists(os.path.join(STATIC, 'cards', 'thumb', c['slug'] + '.webp')) else {})}
              for c in creatures]
     regions = Counter()
     names = {}

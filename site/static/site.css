@@ -838,3 +838,4 @@ select { max-width: 100%; }
 .ml-links { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0; }
 .ml-links a { padding: .45rem .75rem; border-radius: 999px; background: #fff; border: 1px solid #d8d4b8; text-decoration: none; color: var(--ink); font-size: .92rem; min-height: 44px; display: inline-flex; align-items: center; }
 .ml-pick h3 { color: var(--dusk, #E07A4F); }
+.nr-art .nr-paint { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 10px; border: 3px solid #F3E3B8; box-sizing: border-box; }
