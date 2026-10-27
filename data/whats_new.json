@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-10-26",
+    "title": "Flip the cards, roll the dice",
+    "path": "/creatures/",
+    "note": "Creature pages now have a painted card you can flip, a size wall that puts you next to the creature, and a decade strip of famous cases. Roll the dice button on any page for a random encounter. Mysteries let you give your verdict on each theory, UFO cases ask what you think it was, On This Day has dials and a random strange day, and state pages have a map of their strange spots with an Add to road trip button."
+  },
+  {
+    "date": "2026-10-26",
     "title": "Save a podcast episode for later",
     "path": "/podcasts/",
     "note": "Every episode on the podcasts page now has a Save button. Pop in your email and we'll send you the episode so you can listen later, or send it straight to a friend or copy the link."
