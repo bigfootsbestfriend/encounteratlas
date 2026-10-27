@@ -338,10 +338,56 @@
     try { localStorage.setItem(TKEY, JSON.stringify(t.slice(0, 20))); } catch (e) { /* storage blocked */ }
     savedList();
   }
+  // Stops added with "Add to road trip" on place and state pages (tripadd.js): one saved trip marked mine: true
+  const mineTrip = () => trips().find((x) => x && x.mine) || null;
+  function order(pts) {
+    // nearest stop next, starting from the first one added, so the route doesn't zigzag
+    const left = pts.slice(1), out = [pts[0]];
+    while (left.length) {
+      const last = out[out.length - 1];
+      let bi = 0;
+      left.forEach((p, i) => { if (hav(last[0], last[1], p[0], p[1]) < hav(last[0], last[1], left[bi][0], left[bi][1])) bi = i; });
+      out.push(left.splice(bi, 1)[0]);
+    }
+    return out;
+  }
+  function planMine() {
+    const t = mineTrip();
+    if (!t || t.pts.length < 2) return false;
+    S.trip = null; S.km = t.km || 40;
+    plan(order(t.pts), `Your road trip: ${t.pts.length} stops`);
+    track('roadtrip_plan_mine', { stops: t.pts.length });
+    return true;
+  }
+  function mineBox() {
+    const t = mineTrip(); let box = $('rt-mine');
+    if (!t || !t.pts.length) { if (box) box.remove(); return; }
+    if (!box) { box = el('div', 'rt-saved rt-mine'); box.id = 'rt-mine'; form.after(box); }
+    box.replaceChildren(el('h2', '', `Your stops (${t.pts.length})`));
+    const ol = el('ol');
+    t.pts.forEach((p, i) => {
+      const li = el('li'), a = el('a', '', p[2]); a.href = p[3] || '#';
+      const rm = el('button', 'rt-savedbtn rt-rm', 'Remove'); rm.type = 'button';
+      rm.setAttribute('aria-label', 'Remove ' + p[2]);
+      rm.addEventListener('click', () => {
+        const all = trips(), m = all.find((x) => x && x.mine);
+        if (m) m.pts.splice(i, 1);
+        try { localStorage.setItem(TKEY, JSON.stringify(all.filter((x) => !x.mine || x.pts.length))); } catch (e) { /* storage blocked */ }
+        mineBox();
+      });
+      li.append(a, document.createTextNode(' '), rm); ol.append(li);
+    });
+    box.append(ol);
+    if (t.pts.length >= 2) {
+      const go = el('button', 'btn btn-sm', `Plan a route through all ${t.pts.length}`); go.type = 'button';
+      go.addEventListener('click', planMine); box.append(go);
+    } else box.append(el('p', 'small', 'Add one more place from any place or state page and we\'ll plan a route through them.'));
+  }
   function savedList() {
-    const t = trips(); let box = $('rt-saved');
+    mineBox();
+    const t = trips().filter((x) => !x.mine); let box = $('rt-saved');
     if (!t.length) { if (box) box.remove(); return; }
-    if (!box) { box = el('div', 'rt-saved'); box.id = 'rt-saved'; form.after(box); }
+    if (!box) { box = el('div', 'rt-saved'); box.id = 'rt-saved'; ($('rt-mine') || form).after(box); }
     box.replaceChildren(el('h2', '', 'Your saved trips'));
     const ul = el('ul');
     for (const x of t) {
@@ -365,7 +411,9 @@
 
   // Shared links (?from=lat,lon&to=lat,lon&fn=&tn=&km=) and "Open in the planner" (?trip=slug)
   const q = new URLSearchParams(location.search);
-  if (q.get('trip')) {
+  if (q.get('mine')) {
+    if (!planMine() && $('rt-mine')) $('rt-mine').scrollIntoView({ block: 'center' });
+  } else if (q.get('trip')) {
     data().then((d) => {
       const t = d.trips[q.get('trip')];
       if (!t) return;

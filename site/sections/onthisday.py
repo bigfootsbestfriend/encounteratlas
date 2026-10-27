@@ -10,6 +10,8 @@ from collections import Counter, defaultdict
 
 MON = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 DAYS_IN = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+# Each kind of entry gets a colour on its card (class otd-k-<key>, colours in onthisday.css)
+KIND_KEY = {'In the old newspapers': 'news', 'Military encounter': 'mil', 'Mystery': 'myst', 'Close encounter': 'ce', 'Famous UFO case': 'ufo'}
 CU_TYPE = {'nl': 'Night lights', 'nd': 'Night disc', 'dd': 'Daylight disc', 'ph': 'Physical traces', 'c1': 'Close encounter',
            'c2': 'Close encounter with traces', 'c3': 'Close encounter with beings',
            'c4': 'Contact or abduction claim', 'rd': 'Radar', 'ux': 'Unusual'}
@@ -79,14 +81,39 @@ def build(ctx):
     def path(m, d):
         return f'/on-this-day/{MON[m].lower()}-{d}/'
 
-    head = f'<link rel="stylesheet" href="{url("/static/onthisday.css")}">'
+    head = (f'<link rel="stylesheet" href="{url("/static/onthisday.css")}">'
+            f'<script src="{url("/static/onthisday.js")}" defer></script>')
+    days_json = json.dumps({k: len(v) for k, v in sorted(ev.items())}, separators=(',', ':'))
+    die = ('<svg viewBox="0 0 24 24" aria-hidden="true" class="otd-die"><rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="currentColor" stroke-width="2.2"/>'
+           '<circle cx="8" cy="8" r="1.7" fill="currentColor"/><circle cx="16" cy="8" r="1.7" fill="currentColor"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/>'
+           '<circle cx="8" cy="16" r="1.7" fill="currentColor"/><circle cx="16" cy="16" r="1.7" fill="currentColor"/></svg>')
+
+    def spinner(m=0, d=0, prev=None, nxt=None):
+        """Date dials, prev/next arrows, Today and Random. The arrows are plain links (they work with JS off); the dials and
+        the two buttons need JS, so they stay hidden until onthisday.js shows them."""
+        mo = ''.join(f'<option value="{i}"{" selected" if i == m else ""}>{MON[i]}</option>' for i in range(1, 13))
+        da = ''.join(f'<option value="{i}"{" selected" if i == d else ""}>{i}</option>' for i in range(1, DAYS_IN[m or 1] + 1))
+        arrow = lambda mm, dd, cls, lab, sym: (f'<a class="otd-arrow {cls}" href="{url(path(mm, dd))}" aria-label="{lab} day: {MON[mm]} {dd}">'
+                                               f'<span aria-hidden="true">{sym}</span><small>{MON[mm][:3]} {dd}</small></a>')
+        dial = lambda k, lab, opts: (f'<div class="otd-dial"><button type="button" class="otd-step" data-k="{k}" data-by="-1" aria-label="Earlier {lab.lower()}">&#9650;</button>'
+                                     f'<select id="otd-{k}" aria-label="{lab}">{opts}</select>'
+                                     f'<button type="button" class="otd-step" data-k="{k}" data-by="1" aria-label="Later {lab.lower()}">&#9660;</button></div>')
+        return (f'<div class="otd-spin" data-base="{url("/on-this-day/")}" data-here="{key(m, d) if m else ""}">'
+                + (arrow(*prev, 'otd-prev', 'Previous', '&#8249;') if prev else '')
+                + f'<div class="otd-dials" hidden>{dial("m", "Month", mo)}{dial("d", "Day", da)}'
+                  f'<button type="button" class="btn otd-go">Go</button></div>'
+                + (arrow(*nxt, 'otd-next', 'Next', '&#8250;') if nxt else '')
+                + f'<p class="otd-quick" hidden>' + ('<button type="button" class="btn btn-ghost otd-today">Today</button>' if m else '')
+                + f'<button type="button" class="btn otd-random">{die}Random strange day</button></p>'
+                  f'<p class="otd-hint" aria-live="polite"></p>'
+                  f'<script type="application/json" id="otd-days">{days_json}</script></div>')
     for m in range(1, 13):
         for d in range(1, DAYS_IN[m] + 1):
             k, name = key(m, d), f'{MON[m]} {d}'
             items = sorted(ev.get(k, []), key=lambda t: t[0])
             cases = cu.get(k, [])
             evs = ''.join(
-                f'<li><span class="otd-yr">{y}</span><div><span class="otd-kind">{esc(kind)}</span>'
+                f'<li class="otd-card otd-k-{KIND_KEY.get(kind, "news")}"><span class="otd-yr">{y}</span><div><span class="otd-kind">{esc(kind)}</span>'
                 f'<h3><a href="{u}">{esc(t)}</a></h3>{f"<p class=otd-where>{esc(w)}</p>" if w else ""}'
                 f'{f"<p>{esc(clip(n))}</p>" if n else ""}</div></li>'
                 for y, kind, t, w, u, n in items)
@@ -122,8 +149,7 @@ def build(ctx):
   <p class="crumb"><a href="{url('/on-this-day/')}">On this day</a></p>
   <h1>{name} in strange history</h1>
   <p class="lede">{lede}</p>
-  <p class="otd-nav"><a class="btn btn-sm btn-ghost" href="{url(path(prev_m, prev_d))}">&larr; {MON[prev_m]} {prev_d}</a>
-    <a class="btn btn-sm btn-ghost" href="{url(path(next_m, next_d))}">{MON[next_m]} {next_d} &rarr;</a></p>
+  {spinner(m, d, (prev_m, prev_d), (next_m, next_d))}
 </div></section>
 <div class="band band-mist"><div class="wrap otd-body">
   {f'<ol class="otd-list">{evs}</ol>' if evs else f'<p>No famous case or old newspaper story we know of is dated {name}. Yet. Seen something on this date? <a href="{url("/report/")}">Report it</a>.</p>'}
@@ -147,6 +173,7 @@ def build(ctx):
   <h1>On this day in strange history</h1>
   <p class="lede">Pick a date to see the UFO sightings, monster reports, mysteries and military encounters that happened on it. Bold days have a famous case or an old newspaper story.</p>
   <p><a class="btn" id="otd-today" href="{url('/on-this-day/')}">See today</a></p>
+  {spinner()}
 </div></section>
 <div class="band band-mist"><div class="wrap"><div class="otd-cal">{months}</div></div></div>
 <script>

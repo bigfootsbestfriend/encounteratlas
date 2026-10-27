@@ -1,0 +1,34 @@
+/* "Add to road trip" button, toast, and the state-page mini map */
+.trip-add { display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; padding: .45rem .95rem; border-radius: 999px; cursor: pointer;
+  font: 700 .95rem var(--body); border: 2px solid #1E4A4F; background: #fff; color: #1E4A4F; }
+.trip-add:hover { background: #E4EBE6; }
+.trip-add[aria-pressed="true"] { background: #1E4A4F; color: #F3F1DA; }
+.trip-add-i { width: 20px; height: 20px; flex: none; }
+.trip-add.on-dark { border-color: #F2B33D; background: transparent; color: #F2B33D; vertical-align: middle; }
+.trip-add.on-dark:hover { background: rgba(242, 179, 61, .15); }
+.trip-add.on-dark[aria-pressed="true"] { background: #F2B33D; color: #13261F; }
+.cn-grid li { display: flex; flex-direction: column; }
+.cn-grid li .cn-card { flex: 1; }
+.trip-add.on-card { align-self: flex-start; margin-top: .45rem; }
+.trip-toast { position: fixed; left: 12px; right: 12px; bottom: 18px; margin: 0 auto; width: fit-content; z-index: 1000; transform: translateY(160%); transition: transform .25s ease-out;
+  display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .8rem; padding: .75rem 1rem; border-radius: 14px;
+  background: #13261F; color: #F3F1DA; border: 2px solid #F2B33D; box-shadow: 0 10px 30px rgba(0, 0, 0, .35); font-size: .98rem; }
+.trip-toast.is-on { transform: none; }
+.trip-toast a { color: #13261F; background: #F2B33D; border-radius: 999px; padding: .4rem .85rem; font-weight: 800; text-decoration: none; min-height: 40px; display: inline-flex; align-items: center; }
+@media (prefers-reduced-motion: reduce) { .trip-toast { transition: none; } }
+
+.spot-map { background: #13261F; color: #C9D3A4; border-radius: 16px; padding: 1rem; margin: 1.2rem 0 1.6rem; }
+.spot-map-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem; margin-bottom: .7rem; }
+.spot-map h2 { margin: 0; color: #F3F1DA; font-size: 1.25rem; }
+.spot-map-go { min-height: 44px; }
+.spot-map-box { border-radius: 12px; overflow: hidden; background: #0F1F19; cursor: pointer; }
+.spot-map-box { display: flex; justify-content: center; padding: .6rem; }
+.spot-map-pre { display: block; width: 100%; height: auto; max-height: 360px; }
+.spot-shape { fill: #1C352C; stroke: rgba(242, 179, 61, .55); stroke-width: 1.5; stroke-linejoin: round; }
+.spot-map-box:has(.spot-map-live) { padding: 0; display: block; }
+.spot-map-live { height: 380px; cursor: auto; }
+.spot-legend { list-style: none; display: flex; flex-wrap: wrap; gap: .4rem .9rem; padding: 0; margin: .7rem 0 0; font-size: .9rem; }
+.spot-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--k); margin-right: .35rem; border: 2px solid #0F1F19; vertical-align: -1px; }
+.spot-legend b { color: #F3F1DA; }
+.spot-map .pop a { color: #13261F; }
+.trip-add[hidden], .spot-map-go[hidden] { display: none; }
