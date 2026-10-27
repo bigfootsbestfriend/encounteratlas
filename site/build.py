@@ -863,33 +863,39 @@ def build_creatures(creatures, by_slug):
         if len(spec) < 3:
             general = [b for b in MEDIA['books'] if any(g in b['for'] for g in groups) and b not in spec]
             general += [b for b in MEDIA['books'] if '@general' in b['for'] and b not in spec and b not in general]
-            general = general[:max(0, 3 - len(spec))]
+            general = general[:max(0, 4 - len(spec))]
+        if (len(spec) + len(general)) % 2 and len(spec) + len(general) > 1:  # even numbers of cards (Mike)
+            (general if general else spec).pop()
         docs = [d for d in MEDIA['docs'] if sl in d['for']]
         docs += [d for d in MEDIA['docs'] if any(g in d['for'] for g in groups) and d not in docs]
-        docs = docs[:3]
+        docs = docs[:4]
+        docs = docs[:len(docs) - len(docs) % 2] or docs
 
-        def book_card(b, i):
+        def book_card(b, i, tag=''):
             cand = next((v for (bt, ba), v in CANDS.items() if v['for'] == b['for'] and ba.lower() in b['author'].lower()), None)
             title = cand['t'] if cand else b['title']
             author = b['author'].split(',')[0] if ', ' not in b['author'] or b['author'].count(',') > 1 else b['author']
             if re.match(r'^[A-Z][a-z]+, [A-Z]', author):  # "Owen, David" -> "David Owen"
                 author = ' '.join(reversed(author.split(', ', 1)))
             href = amz(f'{title} {author.split(",")[0]}', 'stripbooks')
-            cov = (f'https://covers.openlibrary.org/b/id/{b["cover_id"]}-M.jpg' if b.get('cover_id') else
+            local = b.get('isbn10') and os.path.exists(os.path.join(STATIC, 'covers', 'books', b['isbn10'] + '.webp'))
+            cov = (url(f'/static/covers/books/{b["isbn10"]}.webp') if local else  # tools/book_covers.py
+                   f'https://covers.openlibrary.org/b/id/{b["cover_id"]}-M.jpg' if b.get('cover_id') else
                    f'https://covers.openlibrary.org/b/isbn/{b["isbn10"]}-M.jpg' if b.get('cover') and b.get('isbn10') else '')
             pic = (f'<img class="md-cover" src="{cov}" alt="Cover of {esc(title)}" '
                    f'width="72" height="108" loading="lazy" decoding="async">' if cov
                    else f'<span class="md-nocover" aria-hidden="true"><span>{esc(title[:48])}</span></span>')
             return (f'<a class="md-book tone-{i % 5}" href="{esc(href)}" rel="sponsored nofollow noopener" target="_blank">'
-                    f'{pic}<span class="md-txt"><b>{esc(title)}</b><small>{esc(author)}</small>'
+                    f'{pic}<span class="md-txt">{f"<span class=md-tag>{tag}</span>" if tag else ""}<b>{esc(title)}</b><small>{esc(author)}</small>'
                     f'<span class="md-go">Find it on Amazon</span></span></a>')
         out = ''
         if spec or general:
-            out += f'<h3>Books about {esc(the(c["name"]))}</h3><div class="md-grid">{"".join(book_card(b, i) for i, b in enumerate(spec))}</div>' if spec else ''
-            if general:
-                out += (f'<h3>{"More good reads" if spec else "General books on " + ("UFOs" if c["cat"] in ("ufo", "entity") else "fairy lore" if c["cat"] == "fae" else "cryptids")}</h3>'
-                        f'{"" if spec else "<p class=md-note>No book is devoted to this one yet, so here are the best general guides.</p>"}'
-                        f'<div class="md-grid">{"".join(book_card(b, i + len(spec)) for i, b in enumerate(general))}</div>')
+            # one row of books, even count; general guides tagged on the card instead of a second short row (Mike: even numbers)
+            gen_h = 'General books on ' + ('UFOs' if c['cat'] in ('ufo', 'entity') else 'fairy lore' if c['cat'] == 'fae' else 'cryptids')
+            out += (f'<h3>{"Books about " + esc(the(c["name"])) if spec else gen_h}</h3>'
+                    f'{"" if spec else "<p class=md-note>No book is devoted to this one yet, so here are the best general guides.</p>"}'
+                    f'<div class="md-grid">{"".join(book_card(b, i) for i, b in enumerate(spec))}'
+                    f'{"".join(book_card(b, i + len(spec), "General guide" if spec else "") for i, b in enumerate(general))}</div>')
         if spec or general:
             out += (f'<p class="md-listen">Prefer to listen? <a href="{AUDIBLE}" rel="sponsored nofollow noopener" target="_blank">Try Audible free</a> '
                     f'and hear cryptid and UFO books on the drive to the trailhead.</p>')
@@ -1062,7 +1068,8 @@ def build_creatures(creatures, by_slug):
         eps = [x for x in _PE.get(c['slug'], []) if x.get('audio')]
         if not eps:
             return ''
-        top = sorted(eps, key=lambda x: x.get('date', ''), reverse=True)[:3]
+        top = sorted(eps, key=lambda x: x.get('date', ''), reverse=True)[:4]
+        top = top[:len(top) - len(top) % 2] or top  # cards come in even numbers (Mike)
         def ep(x):
             show = x['show']
             alt = show + (' cover art' if show.lower().endswith('podcast') else ' podcast cover art')

@@ -865,3 +865,10 @@ select { max-width: 100%; }
 .crit:has(.crit-pic) .crit-pic { width: 100%; aspect-ratio: 2 / 1; border-radius: 0; box-shadow: none; }
 .crit:has(.crit-pic) .crit-pic img { object-position: center 40%; }
 .crit:has(.crit-pic) .crit-txt { padding: .8rem 1rem 1rem; }
+.md-tag { align-self: flex-start; font: 800 .68rem/1 var(--body); letter-spacing: .08em; text-transform: uppercase; color: #8A5A00; background: #FBF0D4; border-radius: 999px; padding: .25rem .5rem; margin-bottom: .2rem; }
+.listen-list li:only-child, .md-grid > :only-child { grid-column: 1 / -1; }
+/* card rows always fill: 2 columns on tablets, 4 on desktop, so even counts never leave a lone card (Mike 2026-10-27) */
+.md-grid, .cg-grid { grid-template-columns: 1fr; }
+@media (min-width: 600px) { .md-grid, .cg-grid, .md-grid:has(.md-doc) { grid-template-columns: repeat(2, 1fr); } .listen-list { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .md-grid, .cg-grid { grid-template-columns: repeat(4, 1fr); } .md-grid:has(.md-doc) { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 599px) { .listen-list { grid-template-columns: 1fr; } }
