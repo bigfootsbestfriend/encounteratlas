@@ -448,9 +448,14 @@ def signup_box(uid, title='Strange news, once a week', text=None):
     """Weekly email signup (single opt-in). The newsletter Worker sends people back to /newsletter/#confirmed.
     A dark card with three creature silhouettes, what's in each email, and a short email field (signup.js tracks it)."""
     text = text or 'One short email every Thursday, free, for cryptid and UFO fans everywhere.'
-    # A painted night campsite banner across the top of the card (Gemini art, same poster style as the creature cards)
-    art = (f'<img src="{url("/static/art/signup-camp-896.webp")}" srcset="{url("/static/art/signup-camp-896.webp")} 896w, '
-           f'{url("/static/art/signup-camp.webp")} 1792w" sizes="(min-width: 900px) 820px, 100vw" alt="" width="1792" height="592" loading="lazy" decoding="async">')
+    # A painted banner across the top of the card (Gemini art, same poster style as the creature cards).
+    # The campsite is in the HTML; a tiny script swaps in one of the three at random on each page load (Mike 2026-10-26).
+    pics = [('camp', 1792), ('loch', 1024), ('road', 1024)]
+    sets = [f'{url("/static/art/signup-" + n + "-896.webp")} 896w, {url("/static/art/signup-" + n + ".webp")} {w}w' for n, w in pics]
+    art = (f'<img src="{url("/static/art/signup-camp-896.webp")}" srcset="{sets[0]}" sizes="(min-width: 900px) 820px, 100vw" alt=""'
+           f' width="1792" height="592" loading="lazy" decoding="async">'
+           f'<script>(function(i,s){{s=s[Math.floor(Math.random()*s.length)];i.srcset=s;i.src=s.split(" ")[0]}})'
+           f'(document.currentScript.previousElementSibling,{json.dumps(sets)})</script>')
     return f'''<section class="signup" id="signup-{uid}">
 <div class="su-banner" aria-hidden="true">{art}</div>
 <div class="su-main"><h2>{esc(title)}</h2>
