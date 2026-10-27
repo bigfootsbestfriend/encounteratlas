@@ -875,7 +875,7 @@ select { max-width: 100%; }
 /* Google Play badge (Mike 2026-10-27: the app is live). Google's badge has its own clear space, so no extra padding. */
 .play-badge { display: inline-block; line-height: 0; }
 .play-badge img { height: 58px; width: auto; }
-.in-app .play-badge, .in-app .foot-app, .in-app .nm-play, .in-app .mm-app { display: none !important; }
+.in-app .play-badge, .in-app .foot-app, .in-app .nm-play, .in-app .mm-app, .in-app .app-band, .in-app .home-app { display: none !important; }
 .foot-app { display: flex; align-items: center; gap: .4rem 1rem; flex-wrap: wrap; margin: .6rem 0 .4rem; }
 .foot-app span { font-size: .92rem; color: var(--muted-d); max-width: 30rem; }
 .nm-play { display: flex; align-items: center; gap: .3rem 1rem; flex-wrap: wrap; margin: .6rem 0 .2rem; }
@@ -883,3 +883,28 @@ select { max-width: 100%; }
 .nm-play span { color: var(--lichen); font-size: .98rem; }
 .mm-app { margin: .6rem 0 0; }
 .mm-app .play-badge img { height: 52px; }
+
+/* Get-the-app band (app_band in build.py) and the homepage hero badge */
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 400px); gap: 1rem 3rem; align-items: center; margin-bottom: 1.4rem; }
+.home-app { background: rgba(0,0,0,.18); border: 1px solid var(--spruce-3); border-radius: var(--r-md); padding: 1rem 1.2rem 1.2rem; text-align: center; }
+.ha-cards { width: 100%; height: auto; display: block; margin: -.2rem 0 .4rem; }
+.ha-txt { color: var(--lichen); font-size: .98rem; margin: 0 0 .8rem; text-align: left; }
+.ha-txt b { color: var(--lantern); }
+.home-app .play-badge img { height: 60px; }
+@media (max-width: 1060px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .home-app { display: flex; align-items: center; gap: .4rem 1rem; flex-wrap: wrap; background: none; border: 0; padding: 0; margin: 0; text-align: left; }
+  .hero-grid { gap: .6rem; margin-bottom: 1.2rem; }
+  .ha-cards { display: none; }
+  .ha-txt { margin: 0; max-width: 28rem; }
+}
+.app-band { background: radial-gradient(ellipse at 30% 50%, var(--spruce-3), var(--spruce) 70%); color: var(--mist); padding: 2.4rem 0; margin-top: 2rem; border-top: 1px solid var(--spruce-3); }
+.ab-in { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1rem 2.5rem; align-items: center; }
+.ab-cards { width: 100%; height: auto; display: block; filter: drop-shadow(0 10px 22px rgba(0,0,0,.35)); }
+.ab-kick { color: var(--lantern); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: .85rem; margin: 0 0 .3rem; }
+.app-band h2 { color: var(--mist); margin: 0 0 .8rem; font-size: clamp(1.7rem, 3.2vw, 2.4rem); }
+.ab-list { list-style: none; padding: 0; margin: 0 0 1.2rem; }
+.ab-list li { padding: .3rem 0 .3rem 1.6rem; position: relative; color: var(--lichen); font-size: 1.05rem; }
+.ab-list li::before { content: ""; position: absolute; left: 0; top: .72rem; width: .7rem; height: .7rem; border-radius: 50%; background: var(--lantern); }
+.app-band .play-badge img { height: 64px; }
+@media (max-width: 760px) { .ab-in { grid-template-columns: 1fr; } .ab-cards { max-width: 440px; margin: 0 auto; } .app-band { padding: 1.8rem 0; } }

@@ -331,6 +331,16 @@ def play_badge(where, h=58):
             f'<img src="{url("/static/img/google-play-badge.png")}" alt="Get it on Google Play" width="{round(h * 646 / 250)}" height="{h}" loading="lazy"></a>')
 
 
+def app_band(where):
+    """The big "get the app" band: card fan, what the app does, the Play badge. Under every page's content and on
+    the homepage; hidden inside the app and on iPhones (no iOS app yet)."""
+    return f'''<section class="app-band" aria-labelledby="ab-h-{where}"><div class="wrap ab-in">
+<img class="ab-cards" src="{url('/static/play/app-cards.webp')}" alt="Four Encounter Atlas collector cards: Flying saucer, Mothman, Bigfoot and Loch Ness Monster" width="840" height="532" loading="lazy">
+<div class="ab-txt"><p class="ab-kick">Free on Android</p><h2 id="ab-h-{where}">Take the atlas with you</h2>
+<ul class="ab-list"><li>Sightings near you, anywhere in the world</li><li>An alert when someone reports one close by</li><li>Collect painted creature cards wherever you go</li><li>Podcasts keep playing with your screen off</li></ul>
+{play_badge(where, 64)}</div></div></section>'''
+
+
 def mobile_menu(path):
     """The phone menu: one <details> panel with every group, big tap targets. Works without JS."""
     cur = lambda q: ' aria-current="page"' if path == q or (q != '/' and path.startswith(q)) else ''
@@ -555,6 +565,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 </header>
 <main id="main">
 {body}
+{'' if path in ('/', '/map/', '/near-me/') else app_band('page')}
 </main>
 <footer class="foot">
   <div class="foot-in">
@@ -569,7 +580,7 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 </footer>
 <script src="{url('/static/amz.js')}" defer></script>
 <script src="{url('/static/signup.js')}" defer></script>
-<script>if(/Android/i.test(navigator.userAgent))document.querySelectorAll('.android-only').forEach(e=>e.hidden=false);</script>{tools_js}
+<script>if(/Android/i.test(navigator.userAgent))document.querySelectorAll('.android-only').forEach(e=>e.hidden=false);if(/iPhone|iPad|iPod/i.test(navigator.userAgent))document.querySelectorAll('.app-band,.home-app').forEach(e=>e.hidden=true);</script>{tools_js}
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('{url('/sw.js')}');</script>
 <script>document.addEventListener('click',e=>{{const a=e.target.closest&&e.target.closest('a[href]');if(a&&/^https?:/.test(a.href)&&!/(^|[.])encounteratlas[.]com$/.test(a.hostname)&&a.host!==location.host&&!a.target){{a.target='_blank';a.rel=((a.rel||'')+' noopener').trim();}}}},true);</script>
 <script>(function(){{const dd=[...document.querySelectorAll('.nav-dd, .mm')];dd.forEach(d=>d.addEventListener('toggle',()=>{{if(d.open)dd.forEach(o=>{{if(o!==d)o.open=false;}});}}));document.addEventListener('click',e=>{{dd.forEach(d=>{{if(d.open&&!d.contains(e.target))d.open=false;}});}});document.addEventListener('keydown',e=>{{if(e.key==='Escape')dd.forEach(d=>{{if(d.open){{d.open=false;d.querySelector('summary').focus();}}}});}});}})();</script>
@@ -1783,6 +1794,7 @@ def build_home(creatures, n_points, bluebook, military):
     body = f'''
 <section class="home-hero">
   <div class="wrap">
+    <div class="hero-grid"><div class="hero-main">
     <h1>Every strange thing, on one map</h1>
     <p class="lede">Bigfoot, Dogman, lake monsters, UFOs and what the military saw. {len(creatures)} creatures, {len(bluebook):,} Air Force files, {n_canada:,} Canadian sightings, and reports from readers like you.</p>
     <div class="search" data-index="{url('/data/search.json')}">
@@ -1791,6 +1803,12 @@ def build_home(creatures, n_points, bluebook, military):
       <ul class="search-results" hidden></ul>
     </div>
     <p class="home-where">Or browse where you live: <a href="{url('/us/')}">US states</a> · <a href="{url('/canada/')}">Canada</a> · <a href="{url('/on-this-day/')}" data-otd-today>What happened on this day</a></p>
+    </div>
+    <aside class="home-app" aria-label="The Encounter Atlas app">
+      <img class="ha-cards" src="{url('/static/play/app-cards.webp')}" alt="Four Encounter Atlas collector cards: Flying saucer, Mothman, Bigfoot and Loch Ness Monster" width="840" height="532">
+      <p class="ha-txt"><b>New: the free Android app.</b> Sightings near you, an alert when someone reports one close by, and podcasts that keep playing with your screen off.</p>
+      {play_badge('home-hero', 60)}
+    </aside></div>
     <nav class="tiles" aria-label="Browse by type">{tiles}</nav>
   </div>
 </section>
@@ -2096,7 +2114,7 @@ def main():
     import importlib.util, types
     ctx = types.SimpleNamespace(ROOT=ROOT, OUT=OUT, STATIC=STATIC, SITE_URL=SITE_URL, BASE=BASE, page=page, write=write,
                                 url=url, esc=esc, md_links=md_links, icon=icon, crit_icon=crit_icon, slugify=slugify, badge=badge, creature_card=creature_card,
-                                social_row=social_row, signup_box=signup_box, play_badge=play_badge, NEWSLETTER_API=NEWSLETTER_API, creatures=creatures, by_slug=by_slug, bluebook=bluebook, military=military, CATS=CATS, MONTHS=MONTHS)
+                                social_row=social_row, signup_box=signup_box, play_badge=play_badge, app_band=app_band, NEWSLETTER_API=NEWSLETTER_API, creatures=creatures, by_slug=by_slug, bluebook=bluebook, military=military, CATS=CATS, MONTHS=MONTHS)
     sec_dir = os.path.join(ROOT, 'site', 'sections')
     for fn in sorted(os.listdir(sec_dir)) if os.path.isdir(sec_dir) else []:
         if fn.endswith('.py') and not fn.startswith('_'):
