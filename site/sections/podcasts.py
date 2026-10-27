@@ -6,6 +6,7 @@ import json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import _podplay
+SHARE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 
 # Mike's rule: no links to BFRO, NUFORC, MUFON or competing cryptid/encounter hubs, even as an RSS link.
 BLOCKED = re.compile(r'bfro\.net|nuforc\.org|mufon\.com|cryptidcatchers?\.|cryptidatlas\.|enigmalabs\.', re.I)
@@ -205,7 +206,7 @@ def build(ctx):
         a = _podplay.art_thumb(ctx, slug)
         pic = f'<img src="{a}" alt="" width="360" height="257" loading="lazy" decoding="async">' if a else '<span class="pn-noart"></span>'
         mins = f'<span class="pn-min">{e["m"]} min</span>' if e.get('m') else ''
-        return (f'<li class="pn-card"><div class="pn-art">{pic}{mins}{_podplay.play_button(e, "pp-btn pp-round pn-play", "")}</div>'
+        return (f'<li class="pn-card"><div class="pn-art">{pic}{mins}<button type="button" class="pn-share" data-pp-share aria-label="Save or share this episode">{SHARE_SVG}Save</button>{_podplay.play_button(e, "pp-btn pp-round pn-play", "")}</div>'
                 f'<div class="pn-body"><a class="pn-crit" href="{url("/podcasts/creature/" + slug + "/")}">{esc(ctx.by_slug[slug]["name"])}</a>'
                 f'<b class="pn-t">{esc(e["t"])}</b><small>{esc(e["s"])}</small></div></li>')
     play_html = ''.join(pn_card(e, slug) for e, slug in play_now)
@@ -325,7 +326,8 @@ def build(ctx):
         # Play in the site's player, streamed from the show's own feed (living traditions stay info-only)
         if not e.get('audio') or slug in _podplay.LIVING:
             return ''
-        return _podplay.play_button(_podplay.entry(e, sh['apple'] if sh else ''), 'pod-play')
+        return (_podplay.play_button(dict(_podplay.entry(e, sh['apple'] if sh else ''), c=slug), 'pod-play')
+                + f'<button type="button" class="pp-share-inline" data-pp-share aria-label="Save or share this episode">{SHARE_SVG}Save or share</button>')
 
     for slug in creature_order:
         c, eps = ctx.by_slug[slug], eps_by[slug]

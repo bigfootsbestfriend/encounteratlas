@@ -49,7 +49,7 @@ def playable(ctx):
         for slug, eps in json.load(open(p_eps, encoding='utf-8')).get('creatures', {}).items():
             if slug in LIVING or slug not in ctx.by_slug:
                 continue
-            got = [entry(e, apple.get(e['show_id'], '')) for e in eps if e.get('audio')][:PER_CREATURE]
+            got = [dict(entry(e, apple.get(e['show_id'], '')), c=slug) for e in eps if e.get('audio')][:PER_CREATURE]  # c: creature, for share links
             if got:
                 out[slug] = got
     _cache['play'] = out

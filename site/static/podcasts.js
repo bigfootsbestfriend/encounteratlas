@@ -90,6 +90,7 @@
     setTimeout(() => {
       out.classList.add('has-ep');
       out.innerHTML = `<div class="spin-card"><div class="pn-art">${art}${e.m ? `<span class="pn-min">${e.m} min</span>` : ''}` +
+        `<button type="button" class="pn-share" data-pp-share aria-label="Save or share this episode"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Save</button>` +
         `<button type="button" class="pp-btn pp-round pn-play" data-pp="${pp}" aria-label="Play ${esc(e.t)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.1v13.8a1 1 0 0 0 1.5.86l11-6.9a1 1 0 0 0 0-1.72l-11-6.9A1 1 0 0 0 8 5.1z"/></svg><span></span></button></div>` +
         `<div class="pn-body"><a class="pn-crit" href="${cfg.crit}${slug}/">${esc(cfg.names[slug])}</a><b class="pn-t">${esc(e.t)}</b>` +
         `<small>${esc(e.s)}</small><button type="button" class="spin-again">Not feeling it? Spin again</button></div></div>`;

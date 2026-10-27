@@ -17,6 +17,7 @@
     fwd: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2l5 4-5 4V7a6 6 0 1 0 6 6h2a8 8 0 1 1-8-8z" fill="currentColor"/></svg>',
     next: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 5.6v12.8a1 1 0 0 0 1.5.86L16 13.1V18a1 1 0 0 0 2 0V6a1 1 0 0 0-2 0v4.9L6.5 4.74A1 1 0 0 0 5 5.6z"/></svg>',
     close: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>',
+    share: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   };
   const S = { q: [], i: 0, rate: 1, seekTo: 0, dragging: false, lastSave: 0, errorTimer: null };
   let audio = null, bar = null;
@@ -71,8 +72,10 @@
     const next = btn('pp-next', 'Next episode', ICON.next);
     const rate = btn('pp-rate', 'Playback speed', '1x');
     const close = btn('pp-close', 'Close the player', ICON.close);
+    const share = btn('pp-share', 'Save or share this episode', ICON.share);
+    share.addEventListener('click', () => cur() && shareSheet(cur()));
     ctl.append(back, play, fwd, next, rate);
-    $('.pp-top', bar).append(close);
+    $('.pp-top', bar).append(share, close);
     back.addEventListener('click', () => seekBy(-BACK));
     fwd.addEventListener('click', () => seekBy(FWD));
     play.addEventListener('click', toggle);
@@ -256,6 +259,59 @@
     S.q = queue.filter((e) => e && /^https:\/\//.test(e.a));
     go(Math.max(0, Math.min(i || 0, S.q.length - 1)), true);
   }
+
+  // ---------- save or share an episode (email it to yourself, send it to a friend, copy the link) ----------
+  const ORIGIN = 'https://encounteratlas.com';
+  function shareLink(e) {
+    const base = (document.querySelector('link[rel="canonical"]') || {}).href || location.href;
+    if (e.c) return new URL(`/podcasts/creature/${e.c}/`, ORIGIN).href;
+    return base.split('#')[0].split('?')[0];
+  }
+  let sheet = null;
+  function shareSheet(e) {
+    const link = shareLink(e);
+    const line = `${e.t} (${e.s}${e.m ? `, ${e.m} min` : ''})`;
+    const body = `${line}\n\nListen on Encounter Atlas: ${link}${e.u ? `\nOr in Apple Podcasts: ${e.u}` : ''}`;
+    if (!sheet) {
+      sheet = el('dialog', 'pp-sheet');
+      sheet.setAttribute('aria-labelledby', 'pp-sheet-h');
+      sheet.innerHTML = `<form method="dialog" class="pp-sheet-in"><h2 id="pp-sheet-h">Save or share</h2><p class="pp-sheet-t"></p>
+<a class="btn pp-sh-mail" href="#">Email it to myself</a>
+<button type="button" class="btn pp-sh-share">Send to a friend</button>
+<button type="button" class="btn pp-sh-copy">Copy link</button>
+<p class="pp-sheet-msg" aria-live="polite"></p><button class="pp-sheet-x" value="close">Close</button></form>`;
+      document.body.append(sheet);
+      sheet.addEventListener('click', (ev) => { if (ev.target === sheet) sheet.close(); });
+    }
+    $('.pp-sheet-t', sheet).textContent = line;
+    $('.pp-sheet-msg', sheet).textContent = '';
+    const mail = $('.pp-sh-mail', sheet);
+    mail.href = `mailto:?subject=${encodeURIComponent('Listen later: ' + e.t)}&body=${encodeURIComponent(body)}`;
+    mail.onclick = () => track('podcast_share', { how: 'email', show: e.s });
+    const sh = $('.pp-sh-share', sheet);
+    sh.onclick = async () => {
+      track('podcast_share', { how: 'share', show: e.s });
+      if (navigator.share) {
+        try { await navigator.share({ title: e.t, text: `${line}. Thought you'd like this one:`, url: link }); sheet.close(); } catch (x) { /* cancelled */ }
+      } else {
+        location.href = `mailto:?subject=${encodeURIComponent('You need to hear this: ' + e.t)}&body=${encodeURIComponent(body)}`;
+      }
+    };
+    $('.pp-sh-copy', sheet).onclick = async () => {
+      track('podcast_share', { how: 'copy', show: e.s });
+      try { await navigator.clipboard.writeText(`${line}\n${link}`); $('.pp-sheet-msg', sheet).textContent = 'Link copied.'; }
+      catch (x) { $('.pp-sheet-msg', sheet).textContent = link; }
+    };
+    if (sheet.showModal) sheet.showModal(); else sheet.setAttribute('open', '');
+  }
+  document.addEventListener('click', (ev) => {
+    const b = ev.target.closest('[data-pp-share]');
+    if (!b) return;
+    ev.preventDefault();
+    const src = b.closest('li, .spin-card, [data-pp-item]');
+    const p = src && src.querySelector('[data-pp]');
+    try { if (p) shareSheet(JSON.parse(p.dataset.pp)); } catch (x) { /* bad data */ }
+  });
 
   // ---------- clicks on episode buttons ----------
   const parse = (b) => { try { return JSON.parse(b.dataset.pp); } catch (e) { return null; } };
