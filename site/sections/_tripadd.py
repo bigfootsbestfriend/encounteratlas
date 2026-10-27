@@ -1,7 +1,7 @@
 """Shared bits for state, province and place pages: the "Add to road trip" button (static/tripadd.js) and a mini map of
 an area's spots (static/spotmap.js). The map starts as a static dot picture drawn here, so the page stays light; MapLibre
 only loads when someone taps "Show map". Not a page builder (the underscore keeps build.py from running it)."""
-import json, math
+import json, math, os
 
 KINDS = {  # same colours as the road trip planner's stops
     'place': ('Place to visit', '#9CC46B'),
@@ -30,28 +30,46 @@ def button(ctx, lat, lon, name, path, cls=''):
             f'aria-pressed="false" hidden>{CAR}<span class="trip-add-t">Add to road trip</span></button>')
 
 
-def spot_map(ctx, spots, area):
-    """spots: [(kind, lat, lon, name, path)]. Static SVG preview with a legend, then a "Show map" button."""
+_SHAPES = {}
+
+
+def shapes(ctx):
+    """data/region_shapes.json (made by tools/region_shapes.py): simplified, pre-projected state and province outlines."""
+    if not _SHAPES:
+        path = os.path.join(ctx.ROOT, 'data', 'region_shapes.json')
+        _SHAPES.update(json.load(open(path, encoding='utf-8')) if os.path.exists(path) else {'_': None})
+    return _SHAPES
+
+
+def spot_map(ctx, spots, area, key=''):
+    """spots: [(kind, lat, lon, name, path)]. The area's outline with the spots as dots (same projection as the
+    outline, from tools/region_shapes.py), then a "Show map" button. key is the GeoNames admin1 code (US.CA, CA.02)."""
     E = ctx.esc
     pts = [(k, float(a), float(o), n, p) for k, a, o, n, p in spots if a is not None and o is not None]
     if len(pts) < 2:
         return ''
-    lat0 = sum(a for _, a, _, _, _ in pts) / len(pts)
-    kx = math.cos(math.radians(lat0))
-    xs = [o * kx for _, _, o, _, _ in pts]
-    ys = [-a for _, a, _, _, _ in pts]
-    x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)
-    span = max(x1 - x0, y1 - y0, 0.5)
-    W, H, pad = 600, 340, 26
-    s = min((W - 2 * pad) / max(x1 - x0, span * .3), (H - 2 * pad) / max(y1 - y0, span * .3))
-    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+    sh = shapes(ctx).get(key)
+    if sh:
+        W, H = sh['w'], sh['h']
+        kx, minx, maxy, sc, pad = sh['proj']
+        proj = lambda a, o: ((((o - 360 if sh['wrap'] and o > 0 else o) * kx) - minx) * sc + pad, (maxy - a) * sc + pad)
+        outline = f'<path class="spot-shape" d="{sh["d"]}"/>'
+    else:  # no outline: fit the dots on their own
+        lat0 = sum(a for _, a, _, _, _ in pts) / len(pts)
+        kx = math.cos(math.radians(lat0))
+        xs, ys = [o * kx for _, _, o, _, _ in pts], [-a for _, a, _, _, _ in pts]
+        span = max(max(xs) - min(xs), max(ys) - min(ys), 0.5)
+        W, H, pad = 600, 340, 26
+        sc = min((W - 2 * pad) / max(max(xs) - min(xs), span * .3), (H - 2 * pad) / max(max(ys) - min(ys), span * .3))
+        cx, cy = (min(xs) + max(xs)) / 2, (min(ys) + max(ys)) / 2
+        proj = lambda a, o: (W / 2 + (o * kx - cx) * sc, H / 2 + (-a - cy) * sc)
+        outline = ''
     dots = ''
-    for (k, a, o, n, p), x, y in sorted(zip(pts, xs, ys), key=lambda t: t[0][0] == 'place'):
-        px, py = W / 2 + (x - cx) * s, H / 2 + (y - cy) * s
+    for k, a, o, n, p in sorted(pts, key=lambda t: t[0] == 'place'):
+        px, py = proj(a, o)
+        px, py = min(max(px, 6), W - 6), min(max(py, 6), H - 6)  # a spot just offshore still shows
         dots += (f'<circle cx="{px:.1f}" cy="{py:.1f}" r="{8 if k == "place" else 6}" fill="{KINDS[k][1]}" stroke="#13261F" stroke-width="2">'
                  f'<title>{E(n)}</title></circle>')
-    grid = ''.join(f'<line x1="{i}" y1="0" x2="{i}" y2="{H}"/>' for i in range(0, W + 1, 60)) + \
-           ''.join(f'<line x1="0" y1="{j}" x2="{W}" y2="{j}"/>' for j in range(0, H + 1, 60))
     used = [k for k in KINDS if any(t[0] == k for t in pts)]
     legend = ''.join(f'<li><i style="--k:{KINDS[k][1]}"></i>{E(KINDS[k][0])} <b>{sum(1 for t in pts if t[0] == k)}</b></li>' for k in used)
     data = json.dumps({'type': 'FeatureCollection', 'features': [
@@ -61,8 +79,8 @@ def spot_map(ctx, spots, area):
     return f'''<section class="spot-map" aria-labelledby="spot-map-h">
   <div class="spot-map-top"><h2 id="spot-map-h">Map of {E(area)}'s strange spots</h2>
     <button type="button" class="btn btn-sm spot-map-go" hidden>Show map</button></div>
-  <div class="spot-map-box"><svg class="spot-map-pre" viewBox="0 0 {W} {H}" role="img" aria-label="Where {len(pts)} spots in {E(area)} sit, as a dot picture">
-    <g class="spot-grid">{grid}</g>{dots}</svg></div>
+  <div class="spot-map-box"><svg class="spot-map-pre" viewBox="0 0 {W} {H}" role="img" aria-label="Outline of {E(area)} with its {len(pts)} spots as dots">
+    {outline}{dots}</svg></div>
   <ul class="spot-legend">{legend}</ul>
   <script type="application/json" class="spot-data">{data}</script>
 </section>'''

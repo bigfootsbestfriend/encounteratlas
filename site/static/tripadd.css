@@ -22,8 +22,10 @@
 .spot-map h2 { margin: 0; color: #F3F1DA; font-size: 1.25rem; }
 .spot-map-go { min-height: 44px; }
 .spot-map-box { border-radius: 12px; overflow: hidden; background: #0F1F19; cursor: pointer; }
-.spot-map-pre { display: block; width: 100%; height: auto; max-height: 340px; }
-.spot-grid line { stroke: #1C352C; stroke-width: 1; }
+.spot-map-box { display: flex; justify-content: center; padding: .6rem; }
+.spot-map-pre { display: block; width: 100%; height: auto; max-height: 360px; }
+.spot-shape { fill: #1C352C; stroke: rgba(242, 179, 61, .55); stroke-width: 1.5; stroke-linejoin: round; }
+.spot-map-box:has(.spot-map-live) { padding: 0; display: block; }
 .spot-map-live { height: 380px; cursor: auto; }
 .spot-legend { list-style: none; display: flex; flex-wrap: wrap; gap: .4rem .9rem; padding: 0; margin: .7rem 0 0; font-size: .9rem; }
 .spot-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--k); margin-right: .35rem; border: 2px solid #0F1F19; vertical-align: -1px; }

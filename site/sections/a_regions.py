@@ -133,7 +133,7 @@ def build(ctx):
                  + [('mystery', x.get('lat'), x.get('lon'), x['name'], '/mysteries/' + x['slug'] + '/') for x in d.get('my', [])]
                  + [('military', x.get('lat'), x.get('lon'), x['name'], '/military/') for x in d.get('mil', [])]
                  + [('place', x.get('lat'), x.get('lon'), x['name'], '/places/' + x['slug'] + '/') for x in d.get('pl', [])])
-        mini = _tripadd.spot_map(ctx, spots, nm)
+        mini = _tripadd.spot_map(ctx, spots, nm, k)
         neigh = ''.join(f'<a class="md-chip" href="{U(p)}">{E(n)}</a>' for kk, (p, n) in sorted(made.items(), key=lambda kv: kv[1][1]) if kk[:2] == cc and kk != k)
         top = 'Canada' if cc == 'CA' else 'United States'
         cnames = [ctx.by_slug[c]['name'] for c in crit[:3]]
