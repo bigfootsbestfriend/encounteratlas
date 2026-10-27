@@ -872,3 +872,14 @@ select { max-width: 100%; }
 @media (min-width: 600px) { .md-grid, .cg-grid, .md-grid:has(.md-doc) { grid-template-columns: repeat(2, 1fr); } .listen-list { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1100px) { .md-grid, .cg-grid { grid-template-columns: repeat(4, 1fr); } .md-grid:has(.md-doc) { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 599px) { .listen-list { grid-template-columns: 1fr; } }
+/* Google Play badge (Mike 2026-10-27: the app is live). Google's badge has its own clear space, so no extra padding. */
+.play-badge { display: inline-block; line-height: 0; }
+.play-badge img { height: 58px; width: auto; }
+.in-app .play-badge, .in-app .foot-app, .in-app .nm-play, .in-app .mm-app { display: none !important; }
+.foot-app { display: flex; align-items: center; gap: .4rem 1rem; flex-wrap: wrap; margin: .6rem 0 .4rem; }
+.foot-app span { font-size: .92rem; color: var(--muted-d); max-width: 30rem; }
+.nm-play { display: flex; align-items: center; gap: .3rem 1rem; flex-wrap: wrap; margin: .6rem 0 .2rem; }
+.nm-play .play-badge img { height: 62px; }
+.nm-play span { color: var(--lichen); font-size: .98rem; }
+.mm-app { margin: .6rem 0 0; }
+.mm-app .play-badge img { height: 52px; }

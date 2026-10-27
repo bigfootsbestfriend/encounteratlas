@@ -694,7 +694,8 @@
   // as a pop-up. iPhone Safari has no such event, so it gets a one-line Add to Home Screen tip. Hidden inside the app.
   const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
   let installEvt = null;
-  window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); installEvt = e; if (!standalone) $('nm-install').hidden = false; });
+  // Android gets the Play app instead (the badge in the intro), so the web-app install button stays hidden there.
+  window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); installEvt = e; if (!standalone && !/Android/i.test(navigator.userAgent)) $('nm-install').hidden = false; });
   window.addEventListener('appinstalled', () => { $('nm-install').hidden = true; track('app_installed', {}); track('app_install', { how: 'prompt' }); });
   $('nm-install-btn').addEventListener('click', async () => {
     if (!installEvt) return;

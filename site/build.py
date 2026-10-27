@@ -320,6 +320,17 @@ RES_MENU = [('/guides/', 'Field guides'), ('/gear/', 'Field gear'), ('/books/', 
 NAV = [('/map/', 'Map'), ('/creatures/', 'Creatures'), ('UFOs', UFO_MENU), ('Stories', STORY_MENU), ('Explore', EXPLORE_MENU), ('More', RES_MENU)]
 
 
+PLAY_APP = 'https://play.google.com/store/apps/details?id=com.encounteratlas.app'
+
+
+def play_badge(where, h=58):
+    """Google's official "Get it on Google Play" badge (unmodified, with its own clear space). Hidden inside the app
+    (html.in-app, set by app-bridge.js). `where` goes into the Play referrer so installs can be traced."""
+    href = PLAY_APP + '&referrer=' + urllib.parse.quote(f'utm_source=encounteratlas&utm_medium={where}')
+    return (f'<a class="play-badge" href="{esc(href)}" rel="noopener" target="_blank">'
+            f'<img src="{url("/static/img/google-play-badge.png")}" alt="Get it on Google Play" width="{round(h * 646 / 250)}" height="{h}" loading="lazy"></a>')
+
+
 def mobile_menu(path):
     """The phone menu: one <details> panel with every group, big tap targets. Works without JS."""
     cur = lambda q: ' aria-current="page"' if path == q or (q != '/' and path.startswith(q)) else ''
@@ -328,7 +339,8 @@ def mobile_menu(path):
                      for p, n in NAV if isinstance(n, list))
     return (f'<details class="mm" data-area="mobile-menu"><summary aria-label="Menu"><svg viewBox="0 0 20 14" width="20" height="14" aria-hidden="true">'
             '<path d="M1 1h18M1 7h18M1 13h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Menu</span></summary>'
-            f'<div class="mm-panel"><div class="mm-top">{top}</div><div class="mm-groups">{groups}</div></div></details>')
+            f'<div class="mm-panel"><div class="mm-top">{top}</div><p class="mm-app android-only" hidden>{play_badge("menu", 52)}</p>'
+            f'<div class="mm-groups">{groups}</div></div></details>')
 
 
 def nav_html(path):
@@ -550,12 +562,14 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
     <p>Sightings, creatures and official files, mapped. Reports are what witnesses say they saw. We don't claim they're real, and we don't claim they're not.</p>
     <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/compare/')}">Comparisons</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/stories/')}">Witness stories</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/on-this-day/')}">On this day</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/gear/')}">Gear</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/newsletter/')}">Weekly email</a><a href="{url('/feed.xml')}">RSS feed</a><a href="{url('/datasets/')}">Open data</a><a href="{url('/teachers/')}">For teachers</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{url('/privacy/')}">Privacy policy</a></p>
     {social_row('social foot-social')}
+    <p class="foot-app">{play_badge('footer')}<span>The Encounter Atlas app for Android: sightings near you, alerts and the podcast player.</span></p>
     <p class="small">As an Amazon Associate we earn from qualifying purchases. <a href="{url('/privacy/')}#affiliate">About our affiliate links</a>.</p>
     <p class="small">Air Force case files: US National Archives, Record Group 341. Canadian sightings: the Canadian UFO Survey, Ufology Research. Place data: GeoNames (CC BY 4.0). Map: OpenFreeMap, OpenMapTiles, OpenStreetMap contributors.</p>
   </div>
 </footer>
 <script src="{url('/static/amz.js')}" defer></script>
-<script src="{url('/static/signup.js')}" defer></script>{tools_js}
+<script src="{url('/static/signup.js')}" defer></script>
+<script>if(/Android/i.test(navigator.userAgent))document.querySelectorAll('.android-only').forEach(e=>e.hidden=false);</script>{tools_js}
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('{url('/sw.js')}');</script>
 <script>document.addEventListener('click',e=>{{const a=e.target.closest&&e.target.closest('a[href]');if(a&&/^https?:/.test(a.href)&&!/(^|[.])encounteratlas[.]com$/.test(a.hostname)&&a.host!==location.host&&!a.target){{a.target='_blank';a.rel=((a.rel||'')+' noopener').trim();}}}},true);</script>
 <script>(function(){{const dd=[...document.querySelectorAll('.nav-dd, .mm')];dd.forEach(d=>d.addEventListener('toggle',()=>{{if(d.open)dd.forEach(o=>{{if(o!==d)o.open=false;}});}}));document.addEventListener('click',e=>{{dd.forEach(d=>{{if(d.open&&!d.contains(e.target))d.open=false;}});}});document.addEventListener('keydown',e=>{{if(e.key==='Escape')dd.forEach(d=>{{if(d.open){{d.open=false;d.querySelector('summary').focus();}}}});}});}})();</script>
@@ -2082,7 +2096,7 @@ def main():
     import importlib.util, types
     ctx = types.SimpleNamespace(ROOT=ROOT, OUT=OUT, STATIC=STATIC, SITE_URL=SITE_URL, BASE=BASE, page=page, write=write,
                                 url=url, esc=esc, md_links=md_links, icon=icon, crit_icon=crit_icon, slugify=slugify, badge=badge, creature_card=creature_card,
-                                social_row=social_row, signup_box=signup_box, NEWSLETTER_API=NEWSLETTER_API, creatures=creatures, by_slug=by_slug, bluebook=bluebook, military=military, CATS=CATS, MONTHS=MONTHS)
+                                social_row=social_row, signup_box=signup_box, play_badge=play_badge, NEWSLETTER_API=NEWSLETTER_API, creatures=creatures, by_slug=by_slug, bluebook=bluebook, military=military, CATS=CATS, MONTHS=MONTHS)
     sec_dir = os.path.join(ROOT, 'site', 'sections')
     for fn in sorted(os.listdir(sec_dir)) if os.path.isdir(sec_dir) else []:
         if fn.endswith('.py') and not fn.startswith('_'):

@@ -241,6 +241,7 @@ def build(ctx):
     {glance}
     <nav class="nm-hub" aria-label="More in the app"><ul>{hub}</ul></nav>
     {listen}
+    <p class="nm-play">{ctx.play_badge('near-me', 62)}<span>Get alerts for sightings near you in the Android app.</span></p>
     <p class="nm-install" id="nm-install" hidden><button type="button" class="btn btn-ghost" id="nm-install-btn">Install the app</button>
       <span>Opens straight to this page, full screen, and works with a weak signal.</span></p>
     <p class="nm-install nm-ios" id="nm-ios" hidden>On iPhone: tap Share, then <b>Add to Home Screen</b> to keep this as an app.</p>
