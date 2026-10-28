@@ -90,6 +90,9 @@ NOTABLE = {
     'Wartime Stories': ['military', 'paranormal'],
 }
 
+# Shows whose Apple listing has the wrong or no author: show name -> real host.
+PUBLISHER_FIX = {'Wartime Stories': 'Luke Lamana'}
+
 TOPICS = {
     'bigfoot': ('Bigfoot', 'bigfoot',
                 r'bigfoot|sasquatch|squatch|wood ?ape|\byeti|skunk ?ape|yowie|grassman|forest giant|wild ?man of'),
@@ -366,7 +369,7 @@ def collect_shows():
         shows.append({
             'id': show['collectionId'],
             'name': show.get('collectionName', '').strip(),
-            'publisher': (show.get('artistName') or '').strip(),
+            'publisher': PUBLISHER_FIX.get(show.get('collectionName', '').strip()) or (show.get('artistName') or '').strip(),
             'genre': show.get('primaryGenreName', ''),
             'episodes': n,
             'latest': (latest or '')[:10],
