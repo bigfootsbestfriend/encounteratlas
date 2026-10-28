@@ -915,3 +915,10 @@ select { max-width: 100%; }
 .top .search-btn, .top .report-btn, .top .mm { flex-shrink: 0; }
 .top { container-type: inline-size; }
 @container (max-width: 390px) { .top .brand { font-size: .92rem; gap: .4rem; } .top .brand .mark { height: 32px; width: 32px; } .top .report-btn { padding: .45rem .6rem; } .top .search-btn { margin-right: -.4rem; } }
+
+/* Haunted Airwaves band on the podcast pages (ha_band in build.py) */
+.ha-band { background: radial-gradient(ellipse at 30% 50%, #2E2363, #100E1C 70%); border-top-color: #332C52; }
+.ha-band .ha-mark { width: 220px; height: 220px; border-radius: 48px; margin: 0 auto; box-shadow: 0 0 60px #7FE0B833; }
+.ha-band .ha-links { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin: 0; }
+.ha-band .ha-links a:not(.play-badge) { color: #B5F2D6; font-weight: 700; }
+@media (max-width: 760px) { .ha-band .ha-mark { width: 150px; height: 150px; border-radius: 34px; } }

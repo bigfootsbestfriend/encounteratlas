@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="hb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3B2B73"/><stop offset="1" stop-color="#110E1F"/></linearGradient>
+    <radialGradient id="hg" cx=".5" cy=".46" r=".5"><stop offset="0" stop-color="#7FE0B8" stop-opacity=".5"/><stop offset="1" stop-color="#7FE0B8" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#hb)"/>
+  <g fill="#ECE8F6" opacity=".7"><circle cx="11" cy="11" r=".9"/><circle cx="52" cy="9" r=".7"/><circle cx="56" cy="47" r=".8"/><circle cx="8" cy="49" r=".6"/></g>
+  <circle cx="32" cy="29" r="22" fill="url(#hg)"/>
+  <path d="M20 34V23a12 12 0 0 1 24 0v11l-3-2.4-3 2.4-3-2.4-3 2.4-3-2.4-3 2.4-3-2.4z" fill="#F7F2E2"/>
+  <circle cx="27.6" cy="22" r="2.2" fill="#15112A"/><circle cx="36.4" cy="22" r="2.2" fill="#15112A"/>
+  <path d="M24 27.6h16M23.6 30.6h16.8" stroke="#BDB3E3" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M15.5 30a16.5 16.5 0 0 0 33 0" fill="none" stroke="#F7F2E2" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="M32 46.5v5.5M24.5 53.5h15" stroke="#F7F2E2" stroke-width="3" stroke-linecap="round"/>
+  <path d="M9.5 18.5a26 26 0 0 0 0 21M54.5 18.5a26 26 0 0 1 0 21" fill="none" stroke="#7FE0B8" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M13.8 22.5a18 18 0 0 0 0 13M50.2 22.5a18 18 0 0 1 0 13" fill="none" stroke="#7FE0B8" stroke-width="2.6" stroke-linecap="round" opacity=".75"/>
+</svg>

@@ -341,6 +341,22 @@ def app_band(where):
 {play_badge(where, 64)}</div></div></section>'''
 
 
+HA_SITE = 'https://hauntedairwaves.com/'
+HA_PLAY = 'https://play.google.com/store/apps/details?id=com.hauntedairwaves.app'
+
+
+def ha_band(where):
+    """On the podcast pages the get-the-app band is for Haunted Airwaves, our podcast app built on this directory
+    (~/Work/hauntedairwaves-app). Same hiding rules as app_band (class app-band)."""
+    href = HA_PLAY + '&referrer=' + urllib.parse.quote(f'utm_source=encounteratlas&utm_medium={where}')
+    return f'''<section class="app-band ha-band" aria-labelledby="hab-h-{where}"><div class="wrap ab-in">
+<img class="ha-mark" src="{url('/static/img/haunted-airwaves.svg')}" alt="Haunted Airwaves app icon: a ghost-shaped microphone" width="220" height="220" loading="lazy">
+<div class="ab-txt"><p class="ab-kick">Our free podcast app for Android</p><h2 id="hab-h-{where}">Listen in Haunted Airwaves</h2>
+<ul class="ab-list"><li>Every show on this list, and nothing else</li><li>Episodes sorted by creature, like the lists here</li><li>Downloads, a sleep timer and 15-second skips</li><li>A home-screen widget and lock-screen controls</li></ul>
+<p class="ha-links"><a class="play-badge" href="{esc(href)}" rel="noopener" target="_blank"><img src="{url('/static/img/google-play-badge.png')}" alt="Get Haunted Airwaves on Google Play" width="{round(64 * 646 / 250)}" height="64" loading="lazy"></a>
+<a href="{HA_SITE}?utm_source=encounteratlas&amp;utm_medium={where}">See every show at hauntedairwaves.com</a></p></div></div></section>'''
+
+
 def mobile_menu(path):
     """The phone menu: one <details> panel with every group, big tap targets. Works without JS."""
     cur = lambda q: ' aria-current="page"' if path == q or (q != '/' and path.startswith(q)) else ''
@@ -565,13 +581,13 @@ def page(path, title, body, desc='', body_class='', head_extra='', canonical=Tru
 </header>
 <main id="main">
 {body}
-{'' if path in ('/', '/map/', '/near-me/') else app_band('page')}
+{'' if path in ('/', '/map/', '/near-me/') else ha_band('podcasts') if path.startswith('/podcasts/') else app_band('page')}
 </main>
 <footer class="foot">
   <div class="foot-in">
     <p class="foot-brand"><img class="mark" src="{url('/static/logo-mark.svg')}" alt="" width="42" height="42">Encounter Atlas</p>
     <p>Sightings, creatures and official files, mapped. Reports are what witnesses say they saw. We don't claim they're real, and we don't claim they're not.</p>
-    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/compare/')}">Comparisons</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/stories/')}">Witness stories</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/on-this-day/')}">On this day</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/gear/')}">Gear</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/newsletter/')}">Weekly email</a><a href="{url('/feed.xml')}">RSS feed</a><a href="{url('/datasets/')}">Open data</a><a href="{url('/teachers/')}">For teachers</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{url('/privacy/')}">Privacy policy</a></p>
+    <p class="foot-links"><a href="{url('/about/')}">About and sources</a><a href="{url('/creatures/')}">Creature index</a><a href="{url('/compare/')}">Comparisons</a><a href="{url('/ufo/')}">UFO sightings</a><a href="{url('/encounters/')}">Close encounters</a><a href="{url('/stories/')}">Witness stories</a><a href="{url('/mysteries/')}">Mysteries</a><a href="{url('/on-this-day/')}">On this day</a><a href="{url('/report/')}">Report an encounter</a><a href="{url('/gear/')}">Gear</a><a href="{url('/contact/')}">Contact us</a><a href="{url('/newsletter/')}">Weekly email</a><a href="{url('/feed.xml')}">RSS feed</a><a href="{url('/datasets/')}">Open data</a><a href="{url('/teachers/')}">For teachers</a><a href="{url('/advertise/')}">Advertise with us</a><a href="{HA_SITE}?utm_source=encounteratlas&amp;utm_medium=footer">Haunted Airwaves podcast app</a><a href="{url('/privacy/')}">Privacy policy</a></p>
     {social_row('social foot-social')}
     <p class="foot-app">{play_badge('footer')}<span>The Encounter Atlas app for Android: sightings near you, alerts and the podcast player.</span></p>
     <p class="small">As an Amazon Associate we earn from qualifying purchases. <a href="{url('/privacy/')}#affiliate">About our affiliate links</a>.</p>

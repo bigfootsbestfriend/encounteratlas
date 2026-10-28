@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-10-28",
+    "title": "Haunted Airwaves: our podcast app is out",
+    "path": "/podcasts/",
+    "note": "We built a podcast app just for this stuff. Haunted Airwaves has every show on our podcast list (ghosts, Bigfoot, Dogman, cryptids, UFOs and military encounters), episodes sorted by creature, downloads, a sleep timer and a home-screen widget. Free on Google Play, and every show has its own page at hauntedairwaves.com."
+  },
+  {
     "date": "2026-10-27",
     "title": "The Encounter Atlas app is on Google Play",
     "path": "/near-me/",
