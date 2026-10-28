@@ -81,6 +81,43 @@ def art(u, size):
     return u.replace('600x600bb', f'{size}x{size}bb') if u else ''
 
 
+def write_airwaves(ctx, shows, updated, topic_names, by_topic, eps_by):
+    """/data/airwaves.json: everything the Haunted Airwaves podcast app needs (~/Work/hauntedairwaves-app), rebuilt with
+    the site each week. Shows (feed for the full episode list, newest episode with audio), topics in size order, and the
+    creature episode lists with audio. Living traditions and blocked feeds stay out, same as the site."""
+    def show(s):
+        le = s.get('last_ep') or {}
+        out = {'id': s['id'], 'n': s['name'], 'p': s['publisher'], 'a': s.get('art', ''), 'ap': s['apple'], 't': s['topics'],
+               'ab': scrub(s.get('about', ''))[:600], 'e': s['episodes'], 'l': s['latest'], 'r': s.get('recent30', 0),
+               'sc': s['score'], 'x': bool(s.get('explicit'))}
+        if s.get('feed') and not BLOCKED.search(s['feed']):
+            out['f'] = s['feed']
+        if s.get('stale'):
+            out['st'] = 1
+        if s.get('notable'):
+            out['fav'] = 1
+        if le.get('audio'):
+            out['le'] = {'t': scrub(le.get('title', '')), 'd': le.get('date', ''), 'a': le['audio'], 'm': le.get('mins') or 0, 'u': le.get('url', '')}
+        return out
+    crit = {}
+    for slug, eps in eps_by.items():
+        if slug in _podplay.LIVING:
+            continue
+        lst = [{'t': scrub(e['title']), 's': e['show'], 'sid': e['show_id'], 'd': e.get('date', ''), 'm': e.get('mins') or 0,
+                'a': e['audio'], 'u': e['url'], 'ab': scrub(e.get('about', ''))[:400]} for e in eps if e.get('audio')]
+        if lst:
+            c = ctx.by_slug[slug]
+            th = _podplay.art_thumb(ctx, slug)
+            crit[slug] = {'n': c['name'], 'c': c['cat'], 'img': ('https://encounteratlas.com' + th) if th and th.startswith('/') else (th or ''),
+                          'page': f'https://encounteratlas.com/creatures/{slug}/', 'eps': lst}
+    data = {'v': 1, 'updated': updated,
+            'topics': [{'k': t, 'n': topic_names.get(t, t), 'count': len(by_topic[t])} for t in sorted(TOPIC_META, key=lambda t: -len(by_topic[t])) if by_topic[t]],
+            'shows': [show(s) for s in shows], 'creatures': crit}
+    os.makedirs(os.path.join(ctx.OUT, 'data'), exist_ok=True)
+    with open(os.path.join(ctx.OUT, 'data', 'airwaves.json'), 'w', encoding='utf-8') as f:
+        json.dump(data, f, separators=(',', ':'), ensure_ascii=False)
+
+
 def build(ctx):
     esc, url, icon = ctx.esc, ctx.url, ctx.icon
     p_shows = os.path.join(ctx.ROOT, 'data', 'podcasts.json')
@@ -189,6 +226,7 @@ def build(ctx):
 
     creature_order = [c['slug'] for c in ctx.creatures if c['slug'] in eps_by]
     _podplay.write_json(ctx)  # /data/podcast-play.json for the player (road trip "Listen along")
+    write_airwaves(ctx, shows, updated, topic_names, by_topic, eps_by)
     pp_head = head + _podplay.head(ctx)
 
     # ---------- hub ----------
