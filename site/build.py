@@ -354,7 +354,7 @@ def ha_band(where):
 <div class="ab-txt"><p class="ab-kick">Our free podcast app for Android</p><h2 id="hab-h-{where}">Listen in Haunted Airwaves</h2>
 <ul class="ab-list"><li>Every show on this list, and nothing else</li><li>Episodes sorted by creature, like the lists here</li><li>Downloads, a sleep timer and 15-second skips</li><li>A home-screen widget and lock-screen controls</li></ul>
 <p class="ha-links"><a class="play-badge" href="{esc(href)}" rel="noopener" target="_blank"><img src="{url('/static/img/google-play-badge.png')}" alt="Get Haunted Airwaves on Google Play" width="{round(64 * 646 / 250)}" height="64" loading="lazy"></a>
-<a href="{HA_SITE}?utm_source=encounteratlas&amp;utm_medium={where}">See every show at hauntedairwaves.com</a></p></div></div></section>'''
+<a href="{HA_SITE}?utm_source=encounteratlas&amp;utm_medium={where}">More about the app at hauntedairwaves.com</a></p></div></div></section>'''
 
 
 def mobile_menu(path):
