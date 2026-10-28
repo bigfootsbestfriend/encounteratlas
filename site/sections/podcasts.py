@@ -110,7 +110,25 @@ def write_airwaves(ctx, shows, updated, topic_names, by_topic, eps_by):
             th = _podplay.art_thumb(ctx, slug)
             crit[slug] = {'n': c['name'], 'c': c['cat'], 'img': ('https://encounteratlas.com' + th) if th and th.startswith('/') else (th or ''),
                           'page': f'https://encounteratlas.com/creatures/{slug}/', 'eps': lst}
-    data = {'v': 1, 'updated': updated,
+    # Reading and gear (Amazon Associates, same tag and lists as the site). Book links are Amazon searches, like the site's.
+    import urllib.parse
+    from gear import SECTIONS as GEAR, TAG
+    amz = lambda q, i='': 'https://www.amazon.com/s?' + urllib.parse.urlencode({'k': q, **({'i': i} if i else {}), 'tag': TAG})
+    media = json.load(open(os.path.join(ctx.ROOT, 'data', 'media.json'), encoding='utf-8'))
+    books = []
+    for b in media['books']:
+        title = re.split(r'[:;]', b['title'])[0].strip()
+        author = b['author'].split(',')[0].strip()
+        local = b.get('isbn10') and os.path.exists(os.path.join(ctx.ROOT, 'site', 'static', 'covers', 'books', b['isbn10'] + '.webp'))
+        cov = (f'https://encounteratlas.com/static/covers/books/{b["isbn10"]}.webp' if local else
+               f'https://covers.openlibrary.org/b/id/{b["cover_id"]}-M.jpg' if b.get('cover_id') else
+               f'https://covers.openlibrary.org/b/isbn/{b["isbn10"]}-M.jpg' if b.get('cover') and b.get('isbn10') else '')
+        books.append({'t': title, 'by': author, 'u': amz(f'{title} {author}', 'stripbooks'), 'img': cov, 'for': b['for']})
+    gear = [{'k': k, 'n': name, 'why': why, 'items': [{'n': n, 'u': amz(q), 'why': w} for n, q, w in items]} for k, _, name, why, items in GEAR]
+    pf = os.path.join(ctx.ROOT, 'data', 'podcast_featured.json')  # paid "Featured show" slots: [{"id": show id, "from": "YYYY-MM-DD", "to": "YYYY-MM-DD"}]
+    featured = json.load(open(pf, encoding='utf-8')) if os.path.exists(pf) else []
+    data = {'v': 1, 'updated': updated, 'books': books, 'gear': gear, 'featured': featured,
+            'audible': 'https://www.amazon.com/hz/audible/mlp?tag=' + TAG, 'contact': 'hello@encounteratlas.com',
             'topics': [{'k': t, 'n': topic_names.get(t, t), 'count': len(by_topic[t])} for t in sorted(TOPIC_META, key=lambda t: -len(by_topic[t])) if by_topic[t]],
             'shows': [show(s) for s in shows], 'creatures': crit}
     os.makedirs(os.path.join(ctx.OUT, 'data'), exist_ok=True)
