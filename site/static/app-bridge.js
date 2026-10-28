@@ -6,7 +6,8 @@
 //   - mirrors the podcast player's Media Session to the phone, so audio keeps playing with the screen locked and the
 //     lock screen gets play / pause / skip buttons (native MediaPlaybackService)
 //   - exposes window.EAApp for nearme.js sighting alerts: { native, platform, push, ready, pushToken(), pushOff() }
-//     push is false until the app is built with Firebase (google-services.json); nearme.js then says alerts are coming.
+//     push is false until the app is built with Firebase (google-services.json / GoogleService-Info.plist); nearme.js
+//     then says alerts are coming.
 // "Use my location" needs nothing here: the app asks for the location permission itself.
 (function () {
   const C = window.Capacitor;
@@ -25,7 +26,8 @@
     if (vp && !/viewport-fit/.test(vp.content)) vp.content += ', viewport-fit=cover';
   }
   EA.ready = (P.EaApp ? P.EaApp.info().catch(() => ({})) : Promise.resolve({})).then((i) => {
-    EA.push = !!(i && i.push) && !!P.PushNotifications;
+    // iOS builds always ship Firebase (AppDelegate swaps the APNs token for an FCM one); Android reports it via EaApp.
+    EA.push = (!!(i && i.push) || EA.platform === 'ios') && !!P.PushNotifications;
     EA.version = (i && i.version) || '';
     return EA;
   });
