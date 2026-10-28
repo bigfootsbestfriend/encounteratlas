@@ -87,6 +87,7 @@ NOTABLE = {
     'Dark Histories': ['paranormal'],
     'Bigfoot Report': ['bigfoot'],
     'Bigfoot Field Guide': ['bigfoot'],
+    'Wartime Stories': ['military', 'paranormal'],
 }
 
 TOPICS = {
