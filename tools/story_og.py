@@ -13,6 +13,8 @@ import sys
 import tempfile
 import textwrap
 
+os.environ.setdefault('PANGOCAIRO_BACKEND', 'fontconfig')  # macOS: CoreText ignores the EA fonts; fontconfig finds them
+
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 STATIC = os.path.join(ROOT, 'site', 'static')
 OUT = os.path.join(STATIC, 'og', 'stories')
