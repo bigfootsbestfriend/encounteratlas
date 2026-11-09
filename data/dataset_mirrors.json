@@ -1,12 +1,12 @@
 {
   "bluebook": {
     "huggingface": "https://huggingface.co/datasets/encounteratlas/project-blue-book-case-files",
-    "sha": "095564c22f13fdbc7212002d06e877d16e19913a1a99e24c6bd2803508aa7d10",
+    "sha": "ed7fed779ab610266084bf3af88aac8ee1df0fdb3a7f656395290aa9fcd2d7d6",
     "kaggle": "https://www.kaggle.com/datasets/encounteratlas/project-blue-book-case-files",
     "zenodo_id": 23643582,
-    "zenodo": "https://zenodo.org/records/23643582",
+    "zenodo": "https://zenodo.org/records/24081358",
     "doi": "10.5281/zenodo.23643581",
-    "zenodo_sha": "095564c22f13fdbc7212002d06e877d16e19913a1a99e24c6bd2803508aa7d10"
+    "zenodo_sha": "ed7fed779ab610266084bf3af88aac8ee1df0fdb3a7f656395290aa9fcd2d7d6"
   },
   "programmes": {
     "huggingface": "https://huggingface.co/datasets/encounteratlas/government-ufo-programmes",
