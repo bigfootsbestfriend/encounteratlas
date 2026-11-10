@@ -82,7 +82,7 @@ def author_page():
 <div class="band band-mist"><div class="wrap prose">
   <h2>About me</h2>
   <p>I've had a long-running interest in Sasquatch, lake monsters like Ogopogo, and lights in the sky. I built Encounter Atlas because the information was scattered across old forums, dead links and books that are hard to find. I wanted one place where you can see where things were reported, read what people actually said, and check the original sources yourself.</p>
-  <p>By day I build websites. Here I write and review the creature pages, case write-ups, guides and the official records sections, and I read every reader report before it goes on the map.</p>
+  <p>By day I build websites, and I also run <a href="https://worththeprompt.com/">Worth The Prompt</a>, where we test AI tools on our own PC and Mac. Here I write and review the creature pages, case write-ups, guides and the official records sections, and I read every reader report before it goes on the map.</p>
   <h2>How I research and write</h2>
   <ul>
     <li><strong>Original sources first.</strong> Government archives (Project Blue Book, the National Archives, Library and Archives Canada), congressional transcripts, old newspapers and published witness accounts. Every page links to where the facts came from.</li>
