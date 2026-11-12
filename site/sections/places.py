@@ -620,30 +620,30 @@ class Builder:
         hubs = (
             ('bigfoot', '/bigfoot-festivals/', 'Bigfoot festivals and Sasquatch conferences',
              'Bigfoot festivals 2027: every Sasquatch fest and conference by state',
-             'Every state with a decent stretch of woods seems to have a Bigfoot festival these days, and honestly, I\'m all for it. '
+             'Every state with a decent stretch of woods seems to have a Bigfoot festival these days. '
              'You get calling contests, pancake breakfasts and a hall full of plaster casts, and somewhere in the middle there\'s always '
              'a guy in a suit who takes the whole thing very seriously (or not at all, which is also fine). I\'ve sorted them by when they '
              'happen next and grouped them by country, and I only list a date when the organizer has actually announced one. If a festival '
              'says "dates not announced yet," that means I couldn\'t find a 2027 date, and I\'d rather tell you that than guess. The big '
-             'conferences like Ohio and the Smoky Mountain Bigfoot Conference are in here too. Pick one near you, check the official site '
-             'before you book anything, and go easy on the howling.',
+             'conferences like Ohio and the Smoky Mountain Bigfoot Conference are in here too. Pick one near you and check the official site '
+             'before you book anything.',
              'Every Bigfoot festival, Sasquatch fest and Bigfoot conference we could verify in the US, Canada and beyond, sorted by next edition with 2027 dates where announced.'),
             ('ufo', '/ufo-festivals/', 'UFO festivals and UFO Days',
              'UFO festivals 2027: Roswell, McMinnville and every UFO Days',
              'Roswell gets all the press, but there are UFO festivals scattered across the US and Canada, and most of them are a lot of fun '
              'for not much money. This list has the big ones (Roswell, McMinnville, Contact in the Desert) and the small-town UFO Days where '
              'a parade and a costume contest are the whole show. I\'ve sorted them by when they happen next, US first, then Canada and the '
-             'rest of the world. Same rule as always: I only list a date I actually found on an organizer\'s site. Where it says "dates not '
-             'announced yet," that\'s exactly what it means, and I looked. Bring sunscreen, a folding chair and an open mind, and double check '
+             'rest of the world. I only list a date I actually found on an organizer\'s site. Where it says "dates not '
+             'announced yet," I couldn\'t find one. Bring sunscreen and a folding chair, and double check '
              'the official page before you drive.',
              'UFO festivals and UFO Days across the US, Canada and the world (Roswell, McMinnville, Kecksburg and more), sorted by next edition with 2027 dates where announced.'),
             ('cryptid', '/cryptid-festivals/', 'Cryptid festivals and conventions',
              'Cryptid festivals 2027: Mothman, Rougarou and the Frogman',
              'Mothman has his own festival. So do the Rougarou, the Frogman, the Lizard Man and a lake monster or two. These are the cryptid '
-             'events that don\'t fit neatly under Bigfoot or UFO, which is probably why they\'re the most fun. I\'ve pulled them all into one list, '
+             'events that don\'t fit neatly under Bigfoot or UFO. I\'ve pulled them all into one list, '
              'sorted by when they happen next, with the dates I could confirm and a note where the 2027 dates aren\'t out yet. Some are one-day '
-             'street fairs, a couple are proper conventions with speakers and vendor halls (and a howling contest, because of course there is), '
-             'and every one of them is run by people who clearly love this stuff. Check the official page before you go, because the small events '
+             'street fairs, and a couple are proper conventions with speakers and vendor halls. '
+             'Check the official page before you go, because the small events '
              'move their dates more often than the big ones.',
              'Cryptid festivals beyond Bigfoot and UFOs: Mothman, Rougarou, Frogman, Lizard Man and more, sorted by next edition with 2027 dates where announced.'),
         )
