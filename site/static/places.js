@@ -143,7 +143,9 @@
     await Promise.all(Object.keys(TYPES).map((k) => badge(k, 34)));
     const all = data.features;
     const only = el.dataset.type;
-    const base = only ? all.filter((f) => f.properties.k === only) : all;
+    const slugs = (el.dataset.slugs || '').split(',').filter(Boolean);
+    const base = slugs.length ? all.filter((f) => slugs.includes(f.properties.slug))
+        : (only ? all.filter((f) => f.properties.k === only) : all);
     map.addSource('pl', { type: 'geojson', data: { type: 'FeatureCollection', features: base }, cluster: true, clusterRadius: 34, clusterMaxZoom: 7 });
     map.addLayer({ id: 'pl-clusters', type: 'circle', source: 'pl', filter: ['has', 'point_count'], paint: {
       'circle-color': '#F2B33D', 'circle-opacity': 0.92,
@@ -196,7 +198,7 @@
           'icon-image': 'pl-' + f.properties.k, 'icon-size': 1.35, 'icon-allow-overlap': true } });
         map.on('click', 'pl-focus-pin', (e) => popup(e.features[0]));
       }
-    } else if (only) fit(base, 6);
+    } else if (only || slugs.length) fit(base, 6);
 
     onFilter = () => {
       const feats = base.filter((f) => {

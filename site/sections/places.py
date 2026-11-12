@@ -48,6 +48,7 @@ def build(ctx):
     B.regions()
     B.details()
     B.events()
+    B.festival_hubs()
     B.expeditions()
 
 
@@ -203,6 +204,14 @@ class Builder:
             return 'UFO'
         return 'Cryptid and UFO' if 'ufo' in cats else 'Cryptid'
 
+    def hub_key(self, p):
+        """Which festival hub a festival belongs to: 'bigfoot', 'ufo' or 'cryptid'."""
+        if any(s in ('bigfoot', 'skunk-ape') for s in p['creatures']):
+            return 'bigfoot'
+        if any(self.c.by_slug[s]['cat'] == 'ufo' for s in p['creatures']):
+            return 'ufo'
+        return 'cryptid'
+
     def jsonld(self, p):
         loc = {'@type': 'Place', 'name': p['name'] if p['type'] != 'festival' else (p['city'] or p['name']),
                'address': {'@type': 'PostalAddress', 'streetAddress': p.get('address') or '', 'addressLocality': p['city'] or '',
@@ -279,6 +288,7 @@ class Builder:
 <div class="band band-mist pl-coming"><div class="wrap">
   <div class="pl-coming-head"><h2>Coming up</h2><a class="pl-more" href="{self.u('/events/')}">Full events calendar</a></div>
   <div class="pl-ups">{up}</div>
+  <p class="pl-hublinks">Festivals by theme: <a href="{self.u('/bigfoot-festivals/')}">Bigfoot</a> · <a href="{self.u('/ufo-festivals/')}">UFO</a> · <a href="{self.u('/cryptid-festivals/')}">Cryptid</a></p>
 </div></div>
 <div class="band band-mist pl-list"><div class="wrap">
   {self.grouped_lists(self.P)}
@@ -429,6 +439,11 @@ class Builder:
             # optional hand-written fields: intro (paragraphs, [text](/path/) links), seo_title, seo_desc, more_sources (extra source URLs)
             intro = ''.join(f'<p>{c.md_links(t)}</p>' for t in p.get('intro', []))
             more_src = ''.join(f', <a href="{esc(s)}" rel="noopener">{esc(s.split("/")[2].replace("www.", ""))}</a>' for s in p.get('more_sources', []))
+            hub_link = ''
+            if p['type'] == 'festival':
+                k = self.hub_key(p)
+                hub_label = {'bigfoot': 'Bigfoot festivals', 'ufo': 'UFO festivals', 'cryptid': 'Cryptid festivals'}[k]
+                hub_link = f'<p class="more"><a href="{self.u("/" + k + "-festivals/")}">More {hub_label}</a></p>'
             body = f'''
 <section class="band band-dark pl-head pl-detail-head t-{p['type']}"><div class="wrap pl-detail-in">
   {self.badge(p, 'xl')}
@@ -451,6 +466,7 @@ class Builder:
     <p class="small muted pl-src">Source: <a href="{esc(p['source'])}" rel="noopener">{esc(p['source'].split('/')[2].replace('www.', ''))}</a>{more_src}. Hours, prices and dates change, so confirm with the organizer before you travel. Spotted something out of date? <a href="{self.u('/report/')}">Let us know</a>.</p>
   </article>
   <aside class="facts"><dl>{facts_html}</dl>
+    {hub_link}
     <p class="more"><a href="{self.u('/places/' + p['rg'] + '/') if p['rg'] else self.u('/expeditions/')}">More in {esc(rn or 'expeditions')}</a></p>
   </aside>
 </div></div>'''
@@ -515,6 +531,7 @@ class Builder:
   <p class="crumb"><a href="{self.u('/places/')}">Places</a> / Events</p>
   <h1>Cryptid and UFO festivals, {span}</h1>
   <p class="lede">Mothman, Bigfoot, Rougarou and little green men all get their own parties. Here is the next 12 months, month by month.{lead}</p>
+  <p class="pl-hublinks">Prefer one creature? See <a href="{self.u('/bigfoot-festivals/')}">Bigfoot festivals</a>, <a href="{self.u('/ufo-festivals/')}">UFO festivals</a> or <a href="{self.u('/cryptid-festivals/')}">cryptid festivals</a>.</p>
   <nav class="pl-mnavs" aria-label="Jump to month">{nav}</nav>
   <p class="pl-ics"><a class="btn" href="webcal://{c.SITE_URL.split('://', 1)[1]}/events/calendar.ics" onclick="window.eaTrack&&eaTrack('calendar_subscribe',{{how:'webcal'}})">Add to your calendar</a>
   <a class="btn btn-ghost" href="{self.u('/events/calendar.ics')}" download onclick="window.eaTrack&&eaTrack('calendar_subscribe',{{how:'download'}})">Download .ics</a></p>
@@ -596,3 +613,74 @@ class Builder:
         c.write('/expeditions/', c.page('/expeditions/', 'Bigfoot expeditions, UFO tours and cryptid night hikes', body,
                                         'Guided Bigfoot expeditions, Area 51 and Sedona UFO tours, Loch Ness sonar cruises and Bigfoot night hikes, with prices.',
                                         body_class='places', head_extra=self.map_head))
+
+    def festival_hubs(self):
+        """Three festival hub pages: /bigfoot-festivals/, /ufo-festivals/, /cryptid-festivals/."""
+        c, esc = self.c, self.c.esc
+        hubs = (
+            ('bigfoot', '/bigfoot-festivals/', 'Bigfoot festivals and Sasquatch conferences',
+             'Bigfoot festivals 2027: every Sasquatch fest and conference by state',
+             'Every state with a decent stretch of woods seems to have a Bigfoot festival these days, and honestly, I\'m all for it. '
+             'You get calling contests, pancake breakfasts and a hall full of plaster casts, and somewhere in the middle there\'s always '
+             'a guy in a suit who takes the whole thing very seriously (or not at all, which is also fine). I\'ve sorted them by when they '
+             'happen next and grouped them by country, and I only list a date when the organizer has actually announced one. If a festival '
+             'says "dates not announced yet," that means I couldn\'t find a 2027 date, and I\'d rather tell you that than guess. The big '
+             'conferences like Ohio and the Smoky Mountain Bigfoot Conference are in here too. Pick one near you, check the official site '
+             'before you book anything, and go easy on the howling.',
+             'Every Bigfoot festival, Sasquatch fest and Bigfoot conference we could verify in the US, Canada and beyond, sorted by next edition with 2027 dates where announced.'),
+            ('ufo', '/ufo-festivals/', 'UFO festivals and UFO Days',
+             'UFO festivals 2027: Roswell, McMinnville and every UFO Days',
+             'Roswell gets all the press, but there are UFO festivals scattered across the US and Canada, and most of them are a lot of fun '
+             'for not much money. This list has the big ones (Roswell, McMinnville, Contact in the Desert) and the small-town UFO Days where '
+             'a parade and a costume contest are the whole show. I\'ve sorted them by when they happen next, US first, then Canada and the '
+             'rest of the world. Same rule as always: I only list a date I actually found on an organizer\'s site. Where it says "dates not '
+             'announced yet," that\'s exactly what it means, and I looked. Bring sunscreen, a folding chair and an open mind, and double check '
+             'the official page before you drive.',
+             'UFO festivals and UFO Days across the US, Canada and the world (Roswell, McMinnville, Kecksburg and more), sorted by next edition with 2027 dates where announced.'),
+            ('cryptid', '/cryptid-festivals/', 'Cryptid festivals and conventions',
+             'Cryptid festivals 2027: Mothman, Rougarou and the Frogman',
+             'Mothman has his own festival. So do the Rougarou, the Frogman, the Lizard Man and a lake monster or two. These are the cryptid '
+             'events that don\'t fit neatly under Bigfoot or UFO, which is probably why they\'re the most fun. I\'ve pulled them all into one list, '
+             'sorted by when they happen next, with the dates I could confirm and a note where the 2027 dates aren\'t out yet. Some are one-day '
+             'street fairs, a couple are proper conventions with speakers and vendor halls (and a howling contest, because of course there is), '
+             'and every one of them is run by people who clearly love this stuff. Check the official page before you go, because the small events '
+             'move their dates more often than the big ones.',
+             'Cryptid festivals beyond Bigfoot and UFOs: Mothman, Rougarou, Frogman, Lizard Man and more, sorted by next edition with 2027 dates where announced.'),
+        )
+        for key, path, h1, title, lede, desc in hubs:
+            pl = [p for p in self.P if p['type'] == 'festival' and self.hub_key(p) == key]
+            pl.sort(key=lambda p: (lambda o: (o[0], o[1], o[2] or 99))(self.occurrence(p)))
+            slugs = ','.join(p['slug'] for p in pl)
+            label = {'bigfoot': 'Bigfoot festivals', 'ufo': 'UFO festivals', 'cryptid': 'Cryptid festivals'}[key]
+            sections = ''
+            for cc, ctitle in (('US', 'United States'), ('CA', 'Canada'), ('XX', 'Around the world')):
+                sub = [p for p in pl if (p['country'] == cc if cc != 'XX' else p['country'] not in ('US', 'CA'))]
+                if not sub:
+                    continue
+                rows = ''
+                for p in sub:
+                    y, m, d, when, st = self.occurrence(p)
+                    status = {'set': 'Dates announced', 'past': 'Already happened', 'usual': f'{y} dates not announced yet'}[st]
+                    if st == 'set' and p.get('tentative'):
+                        status = 'Date to confirm'
+                    rows += (f'<li class="pl-ev is-{st}"><span class="pl-date{" is-tba" if d is None else ""}">'
+                             f'<span class="pl-date-m">{SHORT[m]}</span><span class="pl-date-d">{d if d is not None else "TBA"}</span></span>'
+                             f'<div><h3><a href="{self.u("/places/" + p["slug"] + "/")}">{esc(p["name"])}</a></h3>'
+                             f'<p class="pl-ev-meta">{esc(self.where(p))} · <strong>{esc(when)}</strong> · <span class="pl-ev-st">{esc(status)}</span></p>'
+                             f'<p>{esc(p["summary"])}</p>'
+                             + (f'<p class="pl-ev-links"><a href="{esc(p["url"])}" rel="noopener">Official site</a></p>' if p.get('url') else '')
+                             + '</div></li>')
+                sections += f'<section class="pl-country"><h2 class="pl-country-h">{ctitle}</h2><ol class="pl-evs">{rows}</ol></section>'
+            body = f'''
+<section class="band band-dark pl-head"><div class="wrap">
+  <p class="crumb"><a href="{self.u("/places/")}">Places</a> / {esc(label)}</p>
+  <h1>{h1}</h1>
+  <p class="lede">{lede}</p>
+  {self.map_block(f'data-slugs="{slugs}"')}
+</div></section>
+<div class="band band-mist"><div class="wrap">
+  {sections}
+  <p><a class="btn" href="{self.u("/events/")}">Full events calendar</a></p>
+</div></div>
+{self.cta()}'''
+            c.write(path, c.page(path, title, body, desc, body_class='places', head_extra=self.map_head))
