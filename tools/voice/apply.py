@@ -19,8 +19,14 @@ bad = lint(texts)
 # Voice guards from the 2026-11-11 Claude Code review (agent-hub/reviews/2026-11-11-ea-ogopogo-jersey-bunny.md):
 # Mike writes asides in brackets, and the same "Nobody..." closer after several sections is an AI tell.
 paras = [p for s in new.get('sections', []) for p in s['p']]
-if not any('(' in p for p in paras): print('LINT note: no parentheses in the sections (Mike writes asides in brackets)')
-for p in [p for p in paras if re.match(r'(Nobody|No one)\b', p)][1:]: bad.append(('repeated Nobody closer', p[:60]))
+if sum(p.count('(') for p in paras) < 4: print('LINT note: fewer than 4 bracketed asides (approved pages have 4 to 7)')
+# a closer is the LAST sentence of a paragraph starting "Nobody/No one"; more than one per page reads as AI
+closers = [p for p in paras if re.search(r'(^|[.!?] )(Nobody|No one)\b[^.!?]*[.!?]\)?$', p.strip())]
+for p in closers[1:]: bad.append(('repeated Nobody closer', p[-70:]))
+for m in re.finditer(r"(Here's the part most|the part (that gets left out|most \w+ leave out)|One call (was different|stood out)|are the good (stuff|part))", ' '.join(paras)):
+    bad.append(('stock opener', m.group(0)))
+sw = sum(len(p.split()) for p in paras)
+if sw > 950: print(f'LINT note: sections are {sw} words; approved pages run 600 to 850')
 for b in bad: print('LINT', *b)
 words = sum(len(t.split()) for t in texts)
 print(slug, 'words', words, 'lint issues', len(bad))
