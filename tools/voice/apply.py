@@ -16,6 +16,11 @@ slug = sys.argv[1]
 new = json.load(open(f'tools/voice/{slug}.json'))
 texts = [p for s in new.get('sections', []) for p in s['p']] + [f['a'] for f in new.get('faq', [])] + new.get('body', []) + [new.get('summary', ''), new.get('seo_desc', '')]
 bad = lint(texts)
+# Voice guards from the 2026-11-11 Claude Code review (agent-hub/reviews/2026-11-11-ea-ogopogo-jersey-bunny.md):
+# Mike writes asides in brackets, and the same "Nobody..." closer after several sections is an AI tell.
+paras = [p for s in new.get('sections', []) for p in s['p']]
+if not any('(' in p for p in paras): print('LINT note: no parentheses in the sections (Mike writes asides in brackets)')
+for p in [p for p in paras if re.match(r'(Nobody|No one)\b', p)][1:]: bad.append(('repeated Nobody closer', p[:60]))
 for b in bad: print('LINT', *b)
 words = sum(len(t.split()) for t in texts)
 print(slug, 'words', words, 'lint issues', len(bad))
