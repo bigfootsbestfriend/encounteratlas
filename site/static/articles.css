@@ -1,0 +1,24 @@
+/* Costume, gift and town trip guides (site/sections/articles.py). Reuses .blk (creature-ia.css), .md-grid (site.css), .pl-card (places.css). */
+.ar-head .lede a { color: inherit; }
+.ar-prose .ar-shop .md-grid { margin-top: .6rem; }
+.ar-aff { margin: .6rem 0 0; font-size: .85rem; }
+.ar-steps { padding-left: 1.3rem; }
+.ar-steps li { margin: .45rem 0; }
+.ar-places .pl-grid { margin-top: .6rem; }
+.ar-more h2 { font-size: 1.05rem; margin: 0 0 .4rem; }
+.ar-more ul { margin: 0; padding-left: 1.1rem; }
+.ar-more li { margin: .3rem 0; }
+.ar-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 0 0 1.4rem; }
+.ar-card { display: flex; gap: .9rem; align-items: center; background: #fff; border: 1px solid var(--mist-2); border-radius: 16px; padding: 1rem 1.1rem; color: inherit; text-decoration: none; }
+.ar-card:hover, .ar-card:focus-visible { border-color: var(--lantern); }
+.ar-ico { flex: none; width: 56px; height: 56px; border-radius: 14px; background: var(--spruce); color: var(--lantern); display: grid; place-items: center; }
+.ar-ico .ico { width: 34px; height: 34px; }
+.ar-txt b { display: block; font-size: 1.08rem; }
+.ar-txt small { display: block; color: var(--ink-2, #4a5a52); margin-top: .15rem; }
+.ar-other { display: flex; flex-wrap: wrap; gap: .6rem; }
+@media (max-width: 640px) { .ar-cards { grid-template-columns: 1fr; } }
+.ar-places .pl-grid { grid-template-columns: 1fr 1fr; }
+@media (max-width: 700px) { .ar-places .pl-grid { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .facts.ar-more { order: 2; } }
+.ar-shop .md-grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 560px) { .ar-shop .md-grid { grid-template-columns: 1fr; } }

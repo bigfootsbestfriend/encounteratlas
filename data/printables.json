@@ -1,0 +1,7 @@
+{
+  "silhouettes": ["bigfoot", "mothman", "dogman", "loch-ness-monster", "jersey-devil", "yeti", "chupacabra", "grey-aliens",
+                  "ufo-saucer", "flatwoods-monster", "thunderbird", "skunk-ape", "ogopogo", "champ", "yowie", "drop-bear",
+                  "hodag", "jackalope", "black-shuck", "van-meter-visitor", "beast-of-bray-road", "mokele-mbembe", "owlman", "thylacine"],
+  "coloring": ["bigfoot", "mothman", "loch-ness-monster", "jersey-devil", "yeti", "grey-aliens",
+               "ufo-saucer", "flatwoods-monster", "thunderbird", "hodag", "jackalope", "drop-bear"]
+}

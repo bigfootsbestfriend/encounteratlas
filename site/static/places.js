@@ -6,6 +6,7 @@
     festival: { color: '#EE7A5F', icon: 'festival', label: 'Festivals and events' },
     attraction: { color: '#4FB3A9', icon: 'roadside', label: 'Roadside attractions' },
     expedition: { color: '#9CC46B', icon: 'expedition', label: 'Expeditions and tours' },
+    haunted: { color: '#B79BE0', icon: 'ghost', label: 'Haunted places' },
   };
 
   // ---------- events: highlight the current month ----------

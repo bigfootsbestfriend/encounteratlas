@@ -1,7 +1,7 @@
 /* Places, events and expeditions (site/sections/places.py). */
-:root { --t-museum: #F2B33D; --t-festival: #EE7A5F; --t-attraction: #4FB3A9; --t-expedition: #9CC46B; }
+:root { --t-museum: #F2B33D; --t-festival: #EE7A5F; --t-attraction: #4FB3A9; --t-expedition: #9CC46B; --t-haunted: #B79BE0; }
 .t-museum { --tc: var(--t-museum); } .t-festival { --tc: var(--t-festival); }
-.t-attraction { --tc: var(--t-attraction); } .t-expedition { --tc: var(--t-expedition); }
+.t-attraction { --tc: var(--t-attraction); } .t-expedition { --tc: var(--t-expedition); } .t-haunted { --tc: var(--t-haunted); }
 
 /* type badges */
 .pl-badge { display: inline-grid; place-items: center; flex: none; border-radius: 50%; background: var(--spruce);
@@ -64,7 +64,7 @@
   border: 1px solid var(--mist-2); border-left: 4px solid var(--tc, var(--mist-2)); color: var(--ink) !important; text-decoration: none;
   transition: border-color .15s, transform .15s; }
 .pl-card[data-type="museum"] { --tc: var(--t-museum); } .pl-card[data-type="festival"] { --tc: var(--t-festival); }
-.pl-card[data-type="attraction"] { --tc: var(--t-attraction); } .pl-card[data-type="expedition"] { --tc: var(--t-expedition); }
+.pl-card[data-type="attraction"] { --tc: var(--t-attraction); } .pl-card[data-type="expedition"] { --tc: var(--t-expedition); } .pl-card[data-type="haunted"] { --tc: var(--t-haunted); }
 .pl-card:hover { transform: translateY(-2px); border-color: var(--spruce); border-left-color: var(--tc); }
 .pl-txt { display: flex; flex-direction: column; min-width: 0; }
 .pl-kind { font-size: .78rem; font-weight: 600; color: var(--muted-l); text-transform: uppercase; letter-spacing: .03em; }

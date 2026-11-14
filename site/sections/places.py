@@ -20,6 +20,7 @@ TYPES = {  # key: (singular, plural, icon)
     'festival': ('Festival or event', 'Festivals and events', 'festival'),
     'attraction': ('Roadside attraction', 'Roadside attractions', 'roadside'),
     'expedition': ('Expedition or tour', 'Expeditions and tours', 'expedition'),
+    'haunted': ('Haunted place', 'Haunted places', 'ghost'),
 }
 COUNTRY = {'US': 'United States', 'CA': 'Canada', 'GB': 'United Kingdom', 'AU': 'Australia', 'JP': 'Japan',
            'NP': 'Nepal', 'BR': 'Brazil', 'SE': 'Sweden', 'AR': 'Argentina', 'IE': 'Ireland', 'FR': 'France', 'NO': 'Norway', 'IM': 'Isle of Man'}
@@ -50,6 +51,7 @@ def build(ctx):
     B.events()
     B.festival_hubs()
     B.expeditions()
+    B.haunted()
 
 
 class Builder:
@@ -240,7 +242,7 @@ class Builder:
                     offer.update(price=int(m.group(1)), priceCurrency=cur)
                 d['offers'] = offer
         else:
-            kind = {'museum': 'Museum', 'attraction': 'TouristAttraction', 'expedition': 'TouristTrip'}[p['type']]
+            kind = {'museum': 'Museum', 'attraction': 'TouristAttraction', 'expedition': 'TouristTrip', 'haunted': 'TouristAttraction'}[p['type']]
             d = {'@context': 'https://schema.org', '@type': kind, 'name': p['name'], 'description': p['summary']}
             if p['type'] != 'expedition':
                 d.update({k: v for k, v in loc.items() if k in ('address', 'geo')})
@@ -276,7 +278,7 @@ class Builder:
   <div class="wrap">
     <p class="crumb">Places</p>
     <h1>Cryptid and UFO places to visit</h1>
-    <p class="lede">{n} museums, festivals, roadside oddities and guided expeditions, from the steel Mothman in Point Pleasant to a real Bigfoot trap in the Oregon woods. Every listing was checked against a source.</p>
+    <p class="lede">{n} museums, festivals, roadside oddities, guided expeditions and haunted places, from the steel Mothman in Point Pleasant to a real Bigfoot trap in the Oregon woods. Every listing was checked against a source.</p>
     <div class="search-row pl-search">
       <label class="visually-hidden" for="pl-q">Search places</label>
       <input id="pl-q" type="search" placeholder="Search: Ohio, Mothman, Roswell, museum..." autocomplete="off">
@@ -289,6 +291,7 @@ class Builder:
   <div class="pl-coming-head"><h2>Coming up</h2><a class="pl-more" href="{self.u('/events/')}">Full events calendar</a></div>
   <div class="pl-ups">{up}</div>
   <p class="pl-hublinks">Festivals by theme: <a href="{self.u('/bigfoot-festivals/')}">Bigfoot</a> · <a href="{self.u('/ufo-festivals/')}">UFO</a> · <a href="{self.u('/cryptid-festivals/')}">Cryptid</a></p>
+  <p class="pl-hublinks">Trip guides: <a href="{self.u('/places/roswell-ufo-guide/')}">Roswell</a> · <a href="{self.u('/places/point-pleasant-mothman-guide/')}">Point Pleasant</a> · <a href="{self.u('/haunted-places/')}">Haunted places</a></p>
 </div></div>
 <div class="band band-mist pl-list"><div class="wrap">
   {self.grouped_lists(self.P)}
@@ -613,6 +616,33 @@ class Builder:
         c.write('/expeditions/', c.page('/expeditions/', 'Bigfoot expeditions, UFO tours and cryptid night hikes', body,
                                         'Guided Bigfoot expeditions, Area 51 and Sedona UFO tours, Loch Ness sonar cruises and Bigfoot night hikes, with prices.',
                                         body_class='places', head_extra=self.map_head))
+
+    def haunted(self):
+        """/haunted-places/: the short hand-picked list of haunted places you can actually visit."""
+        c = self.c
+        pl = sorted((p for p in self.P if p['type'] == 'haunted'), key=lambda p: p['name'])
+        assert len(pl) % 2 == 0, 'haunted places: keep the card count even'
+        body = f'''
+<section class="band band-dark pl-head"><div class="wrap">
+  <p class="crumb"><a href="{self.u('/places/')}">Places</a> / Haunted places</p>
+  <h1>Haunted places you can visit</h1>
+  <p class="lede">This site is mostly about creatures and lights in the sky, but people who chase Bigfoot tend to like a good ghost story too (I do). So here are {len(pl)} famous haunted places that sell tickets or tours, in the US, Canada, the UK and Australia. I kept it to places you can walk into legally, and for each one I've written up the real history next to the ghost story, including where the ghost story came from when somebody has traced it.</p>
+  {self.map_block('data-type="haunted"')}
+</div></section>
+<div class="band band-mist pl-list"><div class="wrap">
+  <div class="pl-grid">{''.join(self.card(p) for p in pl)}</div>
+  <h2>Before you go</h2>
+  <ul class="signs">
+    <li>Tour times and prices change with the season. Check the official site, which is linked on every page here.</li>
+    <li>Night tours and overnight stays usually sell out ahead of time, most of all in October.</li>
+    <li>Stick to places that sell tickets. Abandoned buildings are private property and a lot of them are falling down.</li>
+  </ul>
+  <p class="pl-hublinks">More trips: <a href="{self.u('/places/museums/')}">museums</a> · <a href="{self.u('/places/roadside-attractions/')}">roadside attractions</a> · <a href="{self.u('/expeditions/')}">expeditions</a> · <a href="{self.u('/events/')}">events calendar</a></p>
+</div></div>
+{self.cta()}'''
+        c.write('/haunted-places/', c.page('/haunted-places/', 'Haunted places you can visit: 12 famous ones with real tours', body,
+                                           'Twelve famous haunted places that sell tours or tickets, from the Winchester Mystery House to the Tower of London, with the real history behind each ghost story.',
+                                           body_class='places', head_extra=self.map_head))
 
     def festival_hubs(self):
         """Three festival hub pages: /bigfoot-festivals/, /ufo-festivals/, /cryptid-festivals/."""
