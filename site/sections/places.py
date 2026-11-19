@@ -58,6 +58,7 @@ class Builder:
     def __init__(self, ctx, places):
         self.c = ctx
         self.today = date.today()
+        self.town_guides = [a for a in json.load(open(os.path.join(ctx.ROOT, 'data', 'articles.json'), encoding='utf-8'))['articles'] if a.get('city')]
         self.P = sorted(places, key=lambda p: p['name'].lower())
         self.by_slug = {p['slug']: p for p in self.P}
         for p in self.P:
@@ -447,6 +448,9 @@ class Builder:
                 k = self.hub_key(p)
                 hub_label = {'bigfoot': 'Bigfoot festivals', 'ufo': 'UFO festivals', 'cryptid': 'Cryptid festivals'}[k]
                 hub_link = f'<p class="more"><a href="{self.u("/" + k + "-festivals/")}">More {hub_label}</a></p>'
+            # a town with a written trip guide (data/articles.json, kind town + city): every place there links to it
+            tg = next((a for a in self.town_guides if a['city'] == p.get('city')), None)
+            guide_link = f'<p class="more"><a href="{self.u(tg["path"])}">{esc(tg["h1"])}</a></p>' if tg else ''
             body = f'''
 <section class="band band-dark pl-head pl-detail-head t-{p['type']}"><div class="wrap pl-detail-in">
   {self.badge(p, 'xl')}
@@ -470,6 +474,7 @@ class Builder:
   </article>
   <aside class="facts"><dl>{facts_html}</dl>
     {hub_link}
+    {guide_link}
     <p class="more"><a href="{self.u('/places/' + p['rg'] + '/') if p['rg'] else self.u('/expeditions/')}">More in {esc(rn or 'expeditions')}</a></p>
   </aside>
 </div></div>'''

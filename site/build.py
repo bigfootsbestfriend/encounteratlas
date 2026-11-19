@@ -1130,6 +1130,17 @@ def build_creatures(creatures, by_slug):
         return ('<section class="blk blk-src"><h2 id="sources">Sources</h2><ul class="src-list">'
                 + ''.join(f'<li><a href="{esc(x["u"])}" rel="noopener">{esc(x["t"])}</a></li>' for x in c['sources']) + '</ul></section>')
 
+    GUIDES = defaultdict(list)  # costume and gift guides (data/articles.json) by creature slug
+    for a in json.load(open(os.path.join(ROOT, 'data', 'articles.json'), encoding='utf-8'))['articles']:
+        if a.get('creature'):
+            GUIDES[a['creature']].append(a)
+
+    def guides_section(c):
+        if not GUIDES.get(c['slug']):
+            return ''
+        return ('<section class="blk"><h2 id="guides">Guides</h2><ul>'
+                + ''.join(f'<li><a href="{url(a["path"])}">{esc(a["h1"])}</a></li>' for a in GUIDES[c['slug']]) + '</ul></section>')
+
     def faq_section(c):
         """Short answers to what people actually search (Search Console), as question headings: "faq": [{"q", "a"}]."""
         if not c.get('faq'):
@@ -1311,6 +1322,7 @@ def build_creatures(creatures, by_slug):
     {f'<section class="blk blk-cases"><h2 id="modern">Modern reports</h2>{"" if cases else dec}<ol class="timeline tl-cards">{modern}</ol></section>' if modern else ''}
     {papers_section(c)}
     {faq_section(c)}
+    {guides_section(c)}
     {sources_section(c)}
     {seen_box(c)}
   </article>

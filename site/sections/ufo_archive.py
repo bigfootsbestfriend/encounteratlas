@@ -357,12 +357,15 @@ def build(ctx):
                 pad = 1.2
                 bounds = f'{min(lo) - pad},{min(la) - pad},{max(lo) + pad},{max(la) + pad}'
             nm = st
+            towns = [t for t, _ in Counter(r['loc'].split(',')[0].strip() for r in rs if r.get('loc') and ',' in r['loc']).most_common(5) if t and t != nm]
+            town_txt = (', '.join(towns[:-1]) + ' and ' + towns[-1]) if len(towns) > 1 else (towns[0] if towns else '')
+            n_rep = f'{len(rs)} UFO report{"s" if len(rs) != 1 else ""}'
             over = ('the ' + nm) if re.search(r'Ocean|Bahamas|District', nm) else nm
             body = f'''
 <section class="band band-dark ua-hero"><div class="wrap">
   <p class="crumb"><a href="{U('/ufo/files/faa/')}">FAA pilot reports</a> / {E(nm)}</p>
   <h1>{'FAA pilot reports with no place given' if st == 'Place not given' else 'Pilot UFO reports over ' + E(over)}</h1>
-  <p class="lede">{len(rs)} {'report' if len(rs) == 1 else 'reports'} from aircrews in the FAA's released UAP files{', ' + E(fmt_date(rs[-1].get('date'))) + ' to ' + E(fmt_date(rs[0].get('date'))) if len(rs) > 1 else ''}.</p>
+  <p class="lede">{len(rs)} {'report' if len(rs) == 1 else 'reports'} from aircrews in the FAA's released UAP files{', ' + E(fmt_date(rs[-1].get('date'))) + ' to ' + E(fmt_date(rs[0].get('date'))) if len(rs) > 1 else ''}.{(' Places named in the files include ' + E(town_txt) + '.') if len(towns) > 1 else ''}</p>
 </div></section>
 {mapbox(['ufo_faa'], 'Map of FAA reports in ' + nm, height='short', bounds=bounds) if bounds else ''}
 <div class="band band-mist"><div class="wrap">
@@ -370,8 +373,9 @@ def build(ctx):
   <p><a href="{U('/ufo/files/faa/')}">All FAA reports</a> · {bb_link(nm)}</p>
 </div></div>{js}'''
             ctx.write(f'/ufo/files/faa/{ctx.slugify(st)}/', ctx.page(f'/ufo/files/faa/{ctx.slugify(st)}/',
-                      ('FAA pilot UFO reports with no place given' if st == 'Place not given' else f'Pilot UFO reports over {over}: FAA files'), body,
-                      f'{len(rs)} FAA pilot UAP reports from {nm}, with dates, altitudes, what crews saw and links to the National Archives originals.',
+                      ('FAA pilot UFO reports with no place given' if st == 'Place not given' else f'{nm} UFO reports: {len(rs)} FAA pilot file{"s" if len(rs) != 1 else ""}, mapped'), body,
+                      (f'{len(rs)} FAA pilot UAP reports with no place given, with dates, altitudes, what crews saw and links to the National Archives originals.' if st == 'Place not given' else
+                       f'{n_rep} over {over} in the FAA\'s released files' + (f', from {town_txt}' if towns else '') + '. Dates, altitudes and the original documents.'),
                       head_extra=css + (MAPLIBRE if bounds else '')))
 
     # --- PURSUE files ----------------------------------------------------------------------------
@@ -447,6 +451,7 @@ def build(ctx):
         parts = []
         if c:
             parts.append(''.join(f'<p>{ctx.md_links(p)}</p>' for p in c['body']))
+            parts.append(''.join(f'<h2>{E(x["h"])}</h2>' + ''.join(f'<p>{ctx.md_links(p)}</p>' for p in x['p']) for x in c.get('sections', [])))
             parts.append(f'<p class="callout"><strong>Our data:</strong> {E(c["data"])}</p>')
         if rels:
             parts.append(f'<h2>Official releases</h2><ol class="ua-tl ua-tl-compact">{"".join(rel_card(r, compact=True) for r in rels)}</ol>')
@@ -478,6 +483,10 @@ def build(ctx):
             bb_slug = ctx.slugify(next(b.get('country') or b['region'] for b in ctx.bluebook if (b.get('cc') or '').lower() == cc))
             cases += f'<p>The US Air Force also logged <a href="{U("/ufo/blue-book/" + bb_slug + "/")}">{bb_cc[cc]} Blue Book case {"folder" if bb_cc[cc] == 1 else "folders"} from {E(name)}</a>.</p>'
         parts.append(cases)
+        cfaq = (c or {}).get('faq', [])
+        if cfaq:
+            parts.append('<section class="blk blk-faq"><h2 id="questions">Questions people ask</h2><div class="faq-list">'
+                         + ''.join(f'<div class="faq-item"><h3>{E(x["q"])}</h3><p>{ctx.md_links(x["a"])}</p></div>' for x in cfaq) + '</div></section>')
         links = ''.join(f'<li>{ext(l["url"], l["name"])}</li>' for l in (c or {}).get('links', []))
         the = ('the ' + name) if name.startswith('United') else name
         lede = (f'Who collected UFO reports in {E(the)}: {E(c["bodies"])}.' if c else
@@ -505,7 +514,10 @@ def build(ctx):
 </div></div>{js}'''
         ctx.write(f'/ufo/countries/{cslug[cc]}/', ctx.page(f'/ufo/countries/{cslug[cc]}/', (c or {}).get('seo_title') or f'{name}: official UFO files and releases', body,
                   ((c.get('seo_desc') or f'How {name} has handled UFO reports, with {len(rels)} official release{"s" if len(rels) != 1 else ""} linked to their sources.') if c else
-                   f'{len(pcs)} US government UFO file{"s" if len(pcs) != 1 else ""} about events in {name}.'), head_extra=css,
+                   f'{len(pcs)} US government UFO file{"s" if len(pcs) != 1 else ""} about events in {name}.'),
+                  head_extra=css + (f'<link rel="stylesheet" href="{U("/static/creature-ia.css")}">' if cfaq else ''),
+                  ld=[{'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
+                      {'@type': 'Question', 'name': x['q'], 'acceptedAnswer': {'@type': 'Answer', 'text': x['a']}} for x in cfaq]}] if cfaq else None,
                   noindex=not c and len(pcs) < 5))  # a country with a handful of files and no releases of its own is thin
     cards = ''
     for cc in sorted((c for c in all_cc if c in cname), key=lambda c: (-len(rel_by_cc.get(c, [])), cname[c])):

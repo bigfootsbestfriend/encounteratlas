@@ -790,6 +790,7 @@
   {
    "kind": "town",
    "path": "/places/roswell-ufo-guide/",
+   "city": "Roswell",
    "icon": "saucer",
    "published": "2026-11-14",
    "title": "Things to do in Roswell, NM: UFO museum, alien stops, day plan",
@@ -894,6 +895,7 @@
   {
    "kind": "town",
    "path": "/places/point-pleasant-mothman-guide/",
+   "city": "Point Pleasant",
    "icon": "mothman",
    "published": "2026-11-14",
    "title": "Point Pleasant, WV Mothman trip: statue, museum and TNT area",
