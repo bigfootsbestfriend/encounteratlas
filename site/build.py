@@ -1138,7 +1138,7 @@ def build_creatures(creatures, by_slug):
     def guides_section(c):
         if not GUIDES.get(c['slug']):
             return ''
-        return ('<section class="blk"><h2 id="guides">Guides</h2><ul>'
+        return ('<section class="blk"><h2 id="buying-guides">Guides</h2><ul>'
                 + ''.join(f'<li><a href="{url(a["path"])}">{esc(a["h1"])}</a></li>' for a in GUIDES[c['slug']]) + '</ul></section>')
 
     def faq_section(c):
