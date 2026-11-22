@@ -14,8 +14,10 @@ _MON = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'
 
 
 def md_links(t):
-    """Escape text, then turn [words](/site/path/) into internal links (hand-written creature sections only)."""
-    return re.sub(r'\[([^\]]+)\]\((/[^)\s]*)\)', lambda m: f'<a href="{url(m.group(2))}">{m.group(1)}</a>', esc(t))
+    """Escape text, then turn [words](/site/path/) into internal links and [words](https://...) into source links (new tab)."""
+    return re.sub(r'\[([^\]]+)\]\((/[^)\s]*|https://[^)\s]+)\)',
+                  lambda m: f'<a href="{m.group(2)}" rel="noopener" target="_blank">{m.group(1)}</a>' if m.group(2).startswith('https://')
+                  else f'<a href="{url(m.group(2))}">{m.group(1)}</a>', esc(t))
 
 
 # Self-hosted fonts (site/static/fonts, OFL): @font-face inlined so text never waits on a third-party stylesheet, and the

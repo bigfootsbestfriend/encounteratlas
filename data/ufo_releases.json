@@ -15,6 +15,64 @@
   "reuse": "US federal records: public domain"
  },
  {
+  "slug": "usfs-foia-ufo-reports",
+  "title": "US Forest Service UFO reports",
+  "country": "us",
+  "agency": "USDA Forest Service (FOIA reading room)",
+  "date": "2026-04-14",
+  "period": "1952 to 2016",
+  "type": "documents",
+  "summary": "In April 2026 the Forest Service posted six UFO records to its FOIA reading room, from a 1952 radar sighting at a Montana Air Force station to a 2016 \"meteorite\" that sent fire crews looking for smoke in Utah. Most of the modern ones turned out to be lightning, a drone or nothing at all.",
+  "why": "Rangers, lookouts and fire crews are out in the backcountry at all hours, so UFO reports land on their desks too. These files show what happens next (someone usually goes and checks, and it's usually something ordinary). The Yaak radar case is the one that stays strange, with radar and people on the ground watching the same object.",
+  "url": "https://www.fs.usda.gov/about-agency/foia/reading-room",
+  "size": "6 scanned records",
+  "reuse": "US federal records: public domain",
+  "records": [
+   {
+    "when": "1952",
+    "title": "Radar and visual sighting at Yaak Air Force Station",
+    "place": "Yaak, Montana (Kootenai National Forest)",
+    "url": "https://www.fs.usda.gov/sites/default/files/2026-04/1952%20Yaak%20Radar%20Station.pdf",
+    "note": "At 4:45 a.m. on September 1, 1952, airmen at the radar station on Hensley Mountain watched two small coloured lights turn into black shapes at dawn and fly erratically for an hour. The radar crew said they saw a dark, cigar-shaped object right where their AN/FPS-3 set had it. Most of the file is a history of the base (open 1952 to 1960) and the Dirty Shame tavern below it. Project Blue Book has a Yaak folder too, though the date on its index is illegible ([National Archives](https://catalog.archives.gov/id/28950542))."
+   },
+   {
+    "when": "1976",
+    "title": "Two circles on Wanless Lake",
+    "place": "Cabinet Mountains, Montana",
+    "url": "https://www.fs.usda.gov/sites/default/files/2026-04/1976%20Wanless%20Lake.pdf",
+    "note": "A handwritten note with a photo of two round marks on the lake and no tracks leading to them. The writer wonders if an unidentified object made them and says the Air Force came out afterwards and measured the rims at 15 feet deep."
+   },
+   {
+    "when": "2012",
+    "title": "The flaming space junk that was lightning",
+    "place": "Massanutten Mountain, Virginia (George Washington and Jefferson National Forests)",
+    "url": "https://www.fs.usda.gov/sites/default/files/2026-04/2012%20Massanutten%20Mountain_Lee%20Ranger%20District.pdf",
+    "note": "A 2013 FOIA request said a satellite or space junk had crashed in flames on the mountain around 11:50 p.m. on June 24, 2012. The Forest Service matched it to the Point 2 Fire on the Lee Ranger District, which its investigators put down to lightning. The file has the ranger's handwritten notes and a map of the lightning strikes."
+   },
+   {
+    "when": "2013",
+    "title": "A secret UFO base above Roosevelt Lake",
+    "place": "Salt River Canyon, Arizona (Tonto National Forest)",
+    "url": "https://www.fs.usda.gov/sites/default/files/2026-04/2013%20Salt%20River%20Canyon.pdf",
+    "note": "A December 30, 2013 call to the Tonto National Forest from someone who said there was a secret installation with UFOs and aliens past Pinal Creek, above Roosevelt Lake. The staff email passing it along ends with a joking P.S., which tells you how seriously it was taken."
+   },
+   {
+    "when": "2015",
+    "title": "A dark oval over Lost Twin Lakes",
+    "place": "Mather Peaks, Wyoming (Bighorn National Forest)",
+    "url": "https://www.fs.usda.gov/sites/default/files/2026-04/2016%20Mather%20Peaks%20-%20Lost%20Twin%20Lakes.pdf",
+    "note": "Four photos a hiker took around 2:30 p.m. on September 12, 2015, emailed to the Forest Service that November. A small dark oval shows up above the cliffs in one frame and nowhere else. Nobody saw anything at the time and the hiker guessed it was a drone. (The file is labelled 2016.)"
+   },
+   {
+    "when": "2016",
+    "title": "The \"meteorite\" smoke check",
+    "place": "Maple Grove Campground, Utah",
+    "url": "https://www.fs.usda.gov/sites/default/files/2026-04/2016%20Maple%20Grove%20Camp%20Ground.pdf",
+    "note": "A July 27, 2016 fire dispatch log filed under Meteorite. Crews saw a glow on a bearing of 149 degrees and went looking for a fire, found nothing and closed it as a false alarm."
+   }
+  ]
+ },
+ {
   "slug": "nara-uap-records-collection",
   "title": "UAP Records Collection opens at the National Archives (Record Group 615)",
   "country": "us",

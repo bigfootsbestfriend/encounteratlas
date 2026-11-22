@@ -243,6 +243,10 @@ def build(ctx):
         elif r.get('rg615') == 493468575 and faa:
             inside = (f'<h2>What is in it</h2><p>{len(faa)} pilot and controller reports. We have mapped {len(faa_feats)} of them and sorted them by state.</p>'
                       f'<p><a class="btn" href="{U("/ufo/files/faa/")}">Browse the FAA reports</a></p>')
+        if r.get('records') and not inside:
+            rows = ''.join(f'<li><span class="ua-it-k">{E(i["when"])}</span><span><a href="{E(i["url"])}" rel="noopener" target="_blank">{E(i["title"])}</a>'
+                           f'<br><span class="muted">{E(i["place"])}</span><br>{ctx.md_links(i["note"])}</span></li>' for i in r['records'])
+            inside = f'<h2>What is in it</h2><p>All {len(r["records"])} records, oldest first. Links open the scanned PDF on the Forest Service site.</p><ul class="ua-items">{rows}</ul>'
         if r.get('local') and not inside:
             label = {'/ufo/blue-book/': 'Browse the Blue Book files', '/ufo/files/pursue/': 'Browse all PURSUE files',
                      '/ufo/files/faa/': 'Browse the FAA reports'}.get(r['local'], 'Browse the files')
