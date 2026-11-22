@@ -922,3 +922,19 @@ select { max-width: 100%; }
 .ha-band .ha-links { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin: 0; }
 .ha-band .ha-links a:not(.play-badge) { color: #B5F2D6; font-weight: 700; }
 @media (max-width: 760px) { .ha-band .ha-mark { width: 150px; height: 150px; border-radius: 34px; } }
+/* "New on Encounter Atlas" homepage band + /new/ page */
+.wn-band { background: #F3F1DA; padding: 28px 0 32px; border-bottom: 1px solid rgba(19,38,31,.12); }
+.wn-band .nr-head h2 { color: #13261F; }
+.wn-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.wn-all { grid-template-columns: repeat(2, 1fr); }
+.wn-card a { display: flex; flex-direction: column; gap: 6px; height: 100%; padding: 14px 16px; background: #fff; border-radius: 12px; border-top: 4px solid #F2B33D; color: #13261F; text-decoration: none; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.wn-card:nth-child(4n+2) a { border-top-color: #2F7D6B; } .wn-card:nth-child(4n+3) a { border-top-color: #B5532E; } .wn-card:nth-child(4n+4) a { border-top-color: #5B4B8A; }
+.wn-card a:hover strong { text-decoration: underline; }
+.wn-top { display: flex; align-items: center; justify-content: space-between; color: #2F7D6B; }
+.wn-top .ico { width: 26px; height: 26px; }
+.wn-top time { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: #5a6b63; }
+.wn-card strong { font-size: 1.05rem; line-height: 1.25; }
+.wn-note { font-size: .9rem; line-height: 1.45; color: #3d4a44; }
+.wn-band .wn-note { display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 900px) { .wn-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .wn-grid, .wn-all { grid-template-columns: 1fr; } .wn-band .wn-card:nth-child(n+3) { display: none; } }

@@ -1821,6 +1821,21 @@ def build_home(creatures, n_points, bluebook, military):
     import types, _podplay
     pctx = types.SimpleNamespace(ROOT=ROOT, url=url, esc=esc, by_slug={c['slug']: c for c in creatures})
     listen = _podplay.todays_listen(pctx, 'home')
+    # "New on Encounter Atlas": newest data/whats_new.json entries (add one with every content push), plus a full /new/ page.
+    wn = json.load(open(os.path.join(ROOT, 'data', 'whats_new.json'), encoding='utf-8'))
+    WN_ICON = [('/ufo/', 'ufo-globe'), ('/creatures/', 'footprint'), ('/podcasts/', 'recorder'), ('/places/', 'museum'), ('/haunted', 'ghost'),
+               ('/events/', 'festival'), ('/history/', 'newspaper'), ('/military/', 'military'), ('/near-me/', 'q-pin'), ('/stories/', 'clipboard')]
+    def wn_card(n):
+        ic = next((i for pre, i in WN_ICON if n['path'].startswith(pre)), 'telescope')
+        d = datetime.date.fromisoformat(n['date'])
+        return (f'<li class="wn-card"><a href="{url(n["path"])}"><span class="wn-top">{icon(ic)}<time datetime="{n["date"]}">{MONTHS[d.month][:3]} {d.day}</time></span>'
+                f'<strong>{esc(n["title"])}</strong><span class="wn-note">{esc(n["note"])}</span></a></li>')
+    wn_home = ''.join(wn_card(n) for n in wn[:4])  # even count (Mike)
+    write('/new/', page('/new/', "What's new on Encounter Atlas", f'''
+<section class="band band-dark"><div class="wrap"><h1>What's new</h1>
+<p class="lede">Everything we've added to Encounter Atlas lately, newest first.</p></div></section>
+<div class="band band-mist"><div class="wrap"><ul class="wn-grid wn-all">{''.join(wn_card(n) for n in wn[:len(wn) // 2 * 2])}</ul></div></div>''',
+                        'New pages, tools and official files added to Encounter Atlas, newest first.'))
     body = f'''
 <section class="home-hero">
   <div class="wrap">
@@ -1843,6 +1858,11 @@ def build_home(creatures, n_points, bluebook, military):
   </div>
 </section>
 {f'<div class="pf-band"><div class="wrap">{listen}</div></div>' if listen else ''}
+<section class="wn-band" aria-labelledby="wn-h"><div class="wrap">
+  <div class="nr-head"><div><p class="nr-pill wn-pill">Just added</p><h2 id="wn-h">New on Encounter Atlas</h2></div>
+  <p class="nr-actions"><a class="btn btn-sm" href="{url('/new/')}">Everything new</a></p></div>
+  <ul class="wn-grid">{wn_home}</ul>
+</div></section>
 {f'''<section class="new-reports" data-api="{EA_API}" data-base="{url('')}" data-index="{url('/data/search.json')}" aria-labelledby="nr-h" hidden>
   <div class="wrap">
     <div class="nr-head"><div><p class="nr-pill"><span class="nr-dot" aria-hidden="true"></span><span data-nr-count>New from readers</span></p>
